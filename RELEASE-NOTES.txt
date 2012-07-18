@@ -1,0 +1,76 @@
+====
+    Copyright 2012 Canada Health Infoway, Inc.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+           http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+    Author:        $LastChangedBy: sdoxsee $
+    Last modified: $LastChangedDate: 2012-03-23 21:24:38 -0400 (Fri, 23 Mar 2012) $
+    Revision:      $LastChangedRevision: 5809 $
+====
+
+
+                          Infoway Message Builder(tm)
+                               Version 1.2.9
+                               Release Notes
+
+INTRODUCTION:
+============
+
+This document contains the release notes for this version of Infoway Message Builder, and highlights changes since the previous version.
+
+
+BUGS FIXED in 1.2.9:
+===================
+
+      - Re-generate SK API using v01r04.2 (hotfix2)
+
+BUGS FIXED in 1.2.8:
+===================
+
+11087 - V01R04.3 API re-generated
+11078 - V02R01 API re-generated
+11077 - V02R02 API re-generated
+10239 - Creation Time value with 3 digits for millisecond now supported via system property using "messagebuilder.date.format.override.<INSERT_SPECIFIC_VERSION_HERE>"
+
+
+BUGS FIXED in 1.2.7:
+===================
+
+The following is a list of the bugs fixed in this release, with their Redmine numbers:
+
+10965 Missing sender sub-elements in some complex cases (AB Session Management messages in particular)
+10983 Re-generate SK API
+10990 Relax II validation constraints for AB (SpecializationType no longer required for II fields)
+
+
+BUGS FIXED in 1.2.6:
+===================
+
+The following is a list of the bugs fixed in this release, with their Redmine numbers:
+
+488	ControlActEvent->EventType for MedicationPrescriptionDetailQuery (PORX_IN060370CA)
+1228	Update tutorial applications and related documents
+1239	hello_world example - NullPointerException in FindCandidatesApp using REST
+1240	hello_world example - FindCandidatesApp failed to receive a response when using SOAP
+1242	Updating hello_world guide and code
+1466	Setting SpecializationType to a collection object
+1561	INT.NONNEG Value is changed to 0 if a negative number is given
+1562	INT.POS Value is not set and no warning/error if a negative number is given
+1570	PQ.Basic truncation provides no way to know what was the original value 
+1624	[SASK feature] Timezone can cause problems in general, and with TS.FULLDATE in particular
+2159	Question - Generate MB API using HL7 model element name (option #3) as the default option ?
+10245	Duplicate fingerprint found in AB Session Managment messages
+10266	Support pCS MR2009 R02.04.03
+10284	ValueHolder does not work in Message builder v1.2.5
+10285	MANIFEST.MF is missing the "Implementation-Version" property in the Message Builder hl7v3 releases
+10293	Create an official release for AB Session Managment API

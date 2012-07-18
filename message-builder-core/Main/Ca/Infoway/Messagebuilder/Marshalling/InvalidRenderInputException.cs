@@ -1,0 +1,41 @@
+using System.Collections.Generic;
+using Ca.Infoway.Messagebuilder.Marshalling;
+using Ca.Infoway.Messagebuilder.Marshalling.HL7;
+
+namespace Ca.Infoway.Messagebuilder.Marshalling
+{
+	/// <summary>
+	/// An exception indicating that the application tried to marshall a message
+	/// part that did not follow the rules of marshalling.
+	/// </summary>
+	/// <remarks>
+	/// An exception indicating that the application tried to marshall a message
+	/// part that did not follow the rules of marshalling.
+	/// </remarks>
+	/// <author>Intelliware Development</author>
+	[System.Serializable]
+	public class InvalidRenderInputException : RenderingException
+	{
+		private readonly IList<Hl7Error> hl7Errors;
+
+		private const long serialVersionUID = -1049387329590610715L;
+
+		public InvalidRenderInputException(IList<Hl7Error> hl7Errors)
+		{
+			this.hl7Errors = hl7Errors;
+		}
+
+		public virtual IList<Hl7Error> GetHl7Errors()
+		{
+			return this.hl7Errors;
+		}
+
+		public override string Message
+		{
+			get
+			{
+				return this.hl7Errors.IsEmpty() ? null : this.hl7Errors[0].ToString();
+			}
+		}
+	}
+}

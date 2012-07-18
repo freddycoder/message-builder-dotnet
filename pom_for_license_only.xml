@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright 2012 Canada Health Infoway, Inc.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+           http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+    Author:        $LastChangedBy: tmcgrady $
+    Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+    Revision:      $LastChangedRevision: 2623 $
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>ca.infoway.messagebuilder</groupId>
+	<artifactId>message-builder</artifactId>
+	<packaging>pom</packaging>
+	<version>1.2.9-SNAPSHOT</version>
+	<name>Message Builder Parent</name>
+        <scm>
+		<connection>scm:svn:https://svn.emri.infoway-inforoute.ca/internal/Projects/MessageBuilderTool/sourceCode/trunk
+		</connection>
+		<developerConnection>scm:svn:https://svn.emri.infoway-inforoute.ca/internal/Projects/MessageBuilderTool/sourceCode/trunk
+		</developerConnection>
+		<url>https://svn.emri.infoway-inforoute.ca/internal/Projects/MessageBuilderTool/sourceCode/trunk
+		</url>
+	</scm>
+	<build>
+		<extensions>
+			<extension>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-webdav</artifactId>
+				<version>1.0-beta-2</version>
+			</extension>
+		</extensions>
+		<plugins>
+			<plugin>
+			    <inherited>false</inherited>
+			    <groupId>com.mycila.maven-license-plugin</groupId>
+			    <artifactId>maven-license-plugin</artifactId>
+			    <version>1.10.b1</version>
+			    <configuration>
+				<header>../../workspace/message-builder/etc/LICENSE_main.txt</header>
+				<validHeaders>
+				    <validHeader>../../workspace/message-builder/etc/LICENSE.txt</validHeader>
+				</validHeaders>
+				<aggregate>true</aggregate>
+				<mapping>
+				    <xslt>XML_STYLE</xslt>
+				    <mappingml>XML_STYLE</mappingml>
+				</mapping>
+				<properties>
+				    <year>2012</year>
+				</properties>
+			        <excludes>
+			            <exclude>**/LICENSE_main.txt</exclude>
+			            <exclude>**/LICENSE.txt</exclude>
+			            <exclude>pomCHI.xml</exclude>
+			            <exclude>**/*.xls</exclude>
+			            <exclude>**/*.svg</exclude>
+			            <exclude>**/translation-*</exclude>
+			            <exclude>**/*.java1</exclude>
+			            <exclude>**/*.mif</exclude>
+			            <exclude>**/*.pdb</exclude>
+			            <exclude>**/*.dll</exclude>
+			            <exclude>**/*.csproj.FileListAbsolute.txt</exclude>
+			            <exclude>**/*.csproj</exclude>
+			            <exclude>**/*.cache</exclude>
+			            <exclude>**/*.build</exclude>
+			            <exclude>**/*.snk</exclude>
+			            <exclude>**/*.application</exclude>
+			            <exclude>**/*.sln</exclude>
+			            <exclude>**/*.exe.manifest</exclude>
+			            <exclude>**/*.suo</exclude>
+			            <exclude>**/svn-commit.tmp</exclude>
+			            <exclude>**/*.csproj.user</exclude>
+			            <exclude>**/app.config</exclude>
+			            <exclude>**/*.vdproj</exclude>
+			            <exclude>**/*.csproj.FileListAbsolute.txt</exclude>
+			        </excludes>
+				<skipExistingHeaders>true</skipExistingHeaders>
+			    </configuration>
+			    <executions>
+				<execution>
+				    <phase>test</phase>
+				    <goals>
+				        <goal>check</goal>
+				    </goals>
+				</execution>
+			    </executions>
+			</plugin>
+		</plugins>
+	</build>
+	<repositories>
+		<repository>
+			<id>intelliwarePublicReleases</id>
+			<name>Intelliware Public Releases</name>
+			<url>http://repo.intelliware.ca/release</url>
+		</repository>
+		<repository>
+			<id>java.net</id>
+			<url>http://download.java.net/maven/1</url>
+			<layout>legacy</layout>
+		</repository>
+		<repository>
+			<id>repository.jboss.com</id>
+			<name>Jboss Repository for Maven</name>
+			<url>http://repository.jboss.com/maven2/</url>
+		</repository>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>intelliwarePublicPluginReleases</id>
+			<name>Intelliware Public Plugin Releases</name>
+			<url>http://repo.intelliware.ca/release</url>
+		</pluginRepository>
+	</pluginRepositories>
+</project>

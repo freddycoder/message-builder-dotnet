@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E3369ED8-EEBF-41F5-8CB7-A817A1D7EBCF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>messagebuilderutil</RootNamespace>
+    <AssemblyName>message-builder-util</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Typed.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Named.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\NamedAndTyped.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Lang\XmlStringEscape.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Util\Xml\NodeUtil.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Util\Text\Indenter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Lang\Enum.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Lang\EnumPattern.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Lang\Generics.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Lang\EnumUtils.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\J5goodies\AbstractClassPredicate.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\J5goodies\Tally.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\J5goodies\XPathHelper.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\J5goodies\Predicates.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\J5goodies\MapOfMaps.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\J5goodies\Counter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\J5goodies\DirectoryFinderStrategy.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\J5goodies\JavaFileUtil.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\J5goodies\MimeTypes.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\J5goodies\CamelCaseUtil.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\J5goodies\ClassPredicate.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\J5goodies\JarFinderStrategy.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\J5goodies\BeanProperty.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\J5goodies\EnumeratedIterable.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\J5goodies\NamespaceContextMap.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\J5goodies\BeanReflectionException.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\J5goodies\Generics.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\J5goodies\ClassFinder.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\J5goodies\Namespace.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\J5goodies\FinderStrategy.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\J5goodies\ManifestReader.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\J5goodies\DateUtil.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Util\Iterator\EmptyIterable.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Util\Iterator\ArrayIterable.cs" />
+    <Compile Include="Platform\FileUtil.cs" />
+    <Compile Include="Platform\DateFormatUtil.cs" />
+    <Compile Include="Platform\ClassUtil.cs" />
+    <Compile Include="Platform\BytesUtil.cs" />
+    <Compile Include="Platform\Base64Test.cs" />
+    <Compile Include="Platform\Base64.cs" />
+    <Compile Include="Platform\AssemblyLocationUtil.cs" />
+    <Compile Include="Platform\LinkedSet.cs" />
+    <Compile Include="Platform\TemplateArgument.cs" />
+    <Compile Include="Platform\SourceCodeLocationUtil.cs" />
+    <Compile Include="Platform\Runtime.cs" />
+    <Compile Include="Platform\ResourceLoader.cs" />
+    <Compile Include="Platform\PropertyPath.cs" />
+    <Compile Include="Platform\NumberUtil.cs" />
+    <Compile Include="Platform\NumberFormatter.cs" />
+    <Compile Include="Platform\ListElementUtil.cs" />
+    <Compile Include="Platform\GenericClassUtil.cs" />
+    <Compile Include="Platform\UUID.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Xml" />
+    <Reference Include="System" />
+    <Reference Include="ILOG.J2CsMapping, Version=1.2.0.0, Culture=neutral, PublicKeyToken=862be65b2bc8c1a7">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\ILOG.J2CsMapping.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.5.3.9345, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Core, Version=1.2.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.DynamicProxy2, Version=2.2.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Castle.DynamicProxy2.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\message-builder-compatibility\message-builder-compatibility.csproj">
+      <Project>{6821E6B6-3A4D-4D4D-A9D0-147878B4FDEE}</Project>
+      <Name>message-builder-compatibility</Name>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,994 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4139D4DB-FBAB-4951-92EA-B5F7BABD8746}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <NoStandardLibraries>false</NoStandardLibraries>
+    <AssemblyName>message-builder-core</AssemblyName>
+    <RootNamespace>messagebuildercore</RootNamespace>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <newfilesearch>OnLoad</newfilesearch>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <ReleaseVersion>1.2.9</ReleaseVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;UNIT_TESTS</DefineConstants>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;UNIT_TESTS</DefineConstants>
+    <WarningLevel>4</WarningLevel>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>message-builder-core.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Castle.Core">
+      <HintPath>..\SharedLibs\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.DynamicProxy2">
+      <HintPath>..\SharedLibs\Castle.DynamicProxy2.dll</HintPath>
+    </Reference>
+    <Reference Include="ILOG.J2CsMapping">
+      <HintPath>..\SharedLibs\ILOG.J2CsMapping.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\SharedLibs\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Code.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Codesystem\CodeSystem.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\AD.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\ANY.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\BL.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\CD.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\CE.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\COLLECTION.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\CS.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\CV.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\ED.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\EN.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\GTS.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Hl7TypeName.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Hl7TypeParser.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\II.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\INT.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\IVL.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Impl\ADImpl.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Impl\ANYImpl.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Impl\BLImpl.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Impl\CDImpl.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Impl\CEImpl.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Impl\CSImpl.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Impl\CVImpl.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Impl\DataTypeFactory.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Impl\DataTypeImplementationFactory.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Impl\EDImpl.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Impl\ENImpl.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Impl\GTSImpl.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Impl\IIImpl.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Impl\INTImpl.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Impl\IVLImpl.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Impl\LISTImpl.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Impl\MOImpl.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Impl\ONImpl.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Impl\PIVLImpl.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Impl\PNImpl.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Impl\PQImpl.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Impl\QTYImpl.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Impl\REALImpl.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Impl\RTOImpl.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Impl\SCImpl.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Impl\SETImpl.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Impl\STImpl.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Impl\SXCMImpl.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Impl\SXPRImpl.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Impl\TELImpl.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Impl\TNImpl.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Impl\TSImpl.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Impl\URGImpl.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Impl\URLImpl.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\LIST.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Lang\CodedString.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Lang\BareDiff.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Lang\CompressedData.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Lang\Compression.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Lang\Country.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Lang\Currency.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Lang\DateConverter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Lang\DateDiff.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Lang\DefaultTimeUnit.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Lang\Diff.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Lang\EncapsulatedData.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Lang\EncapsulatedString.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Lang\EntityName.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Lang\EntityNamePart.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Lang\EntityNameUse.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Lang\GeneralTimingSpecification.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Lang\GenericMath.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Lang\Identifiable.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Lang\Identifier.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Lang\Interval.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Lang\MediaType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Lang\Money.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Lang\NamePartType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Lang\OrganizationName.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Lang\OrganizationNamePartType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Lang\ParentheticSetExpr.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Lang\PeriodicIntervalTime.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Lang\PersonName.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Lang\PersonNamePartType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Lang\PhysicalQuantity.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Lang\PostalAddress.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Lang\PostalAddressPart.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Lang\PostalAddressPartType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Lang\PostalAddressUse.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Lang\Ratio.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Lang\Representation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Lang\SetComponent.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Lang\SetOperator.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Lang\TelecommunicationAddress.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Lang\TelecommunicationAddressUse.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Lang\TrivialName.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Lang\URLScheme.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Lang\UncertainRange.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Lang\UnitsOfMeasureCaseSensitive.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Lang\Util\IntervalUtil.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Lang\Util\NameFormatter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Lang\Util\PersonNameUtil.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\MO.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Nullflavor\NullFlavorSupport.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\ON.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\PIVL.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\PN.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\PQ.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\QTY.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\REAL.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\RTO.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\SC.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\SET.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\ST.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\SXCM.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\SXPR.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\StandardDataType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\TEL.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\TN.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\TS.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\URG.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\URL.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Describable.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\AcknowledgementCondition.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\AcknowledgementDetailCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\AcknowledgementDetailType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\AcknowledgementType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ActCareEventType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ActCareProvisionRequestType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ActClass.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ActClassCondition.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ActClassContainer.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ActClassContract.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ActClassControlAct.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ActClassObservation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ActClassProcedure.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ActClassRoot.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ActClassSupply.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ActCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ActConsentInformationAccessReason.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ActConsentType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ActDetectedIssueCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ActDetectedIssueManagementCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ActEncounterCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ActHealthConditionType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ActIndicationType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ActInformationAccessTypeCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ActInformationCategoryCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ActIssuePriority.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ActListCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ActMedicationDocumentCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ActMonitoringProtocolCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ActMood.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ActMoodIntent.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ActNoImmunizationReason.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ActNonConditionIndicationCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ActNonLabDICodedObservationCategoryList.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ActNonLabDIMeasuredObservationCategoryList.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ActNonLabDIObservationCategoryList.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ActPatientAnnotationCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ActPharmacySupplyType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ActPriority.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ActPrivilegeCategorization.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ActPrivilegeCategorizationType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ActProcedureCategoryList.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ActProfessionalServiceCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ActReason.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ActRelationshipConditional.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ActRelationshipFulfills.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ActRelationshipHasComponent.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ActRelationshipHasSupport.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ActRelationshipPertains.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ActRelationshipReason.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ActRelationshipReplacement.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ActRelationshipSequel.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ActRelationshipSubset.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ActRelationshipType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ActServiceDeliveryLocationService.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ActSite.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ActStatus.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ActSubstanceAdminSubstitutionCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ActSubstanceAdministrationCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ActSubstanceAdministrationImmunizationCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ActSupplyFulfillmentRefusalReason.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ActTherapyDurationWorkingListCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ActUncertainty.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ActiveIngredientDrugEntityType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\AddressPartType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\AdministrableDrugForm.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\AdministrativeContactRoleType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\AdministrativeGender.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\AllergyTestValue.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\AssignedRoleType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\Basic\Iso3166Alpha2Country.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\CareSummaryDocumentType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ClinicalDeviceEntity.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ClinicalDrug.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ClinicalReportDocumentType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ClinicalReportObservationType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\CombinedPharmacyOrderSuspendReasonCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\CommonClinicalObservationType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\CommonClinicalObservationValue.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\CommunicationFunctionType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\CompliancePackageEntityType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\Confidentiality.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ContactRoleType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ContainerCap.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ContextControl.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ContextControlAdditive.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ContextControlPropagating.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ControlActNullificationReasonCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ControlActReason.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\Controlact\ActCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\Controlact\ActConsentInformationAccessReason.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\Controlact\ActDetectedIssueCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\Controlact\ActIssuePriority.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\Controlact\ActStatus.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\Country.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\DiagnosisValue.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\DocumentSectionType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\DocumentType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\EncounterDischargeDisposition.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\EntityClass.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\EntityClassContainer.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\EntityClassDevice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\EntityClassManufacturedMaterial.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\EntityClassMaterial.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\EntityClassNonPersonLivingSubject.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\EntityClassOrganization.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\EntityClassPlace.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\EntityClassRoot.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\EntityCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\EntityDeterminer.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\EntityDeterminerDetermined.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\EntityNamePartQualifier.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\EntityNamePartType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\EntityNameUse.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\EntityRisk.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ExposureAgentEntityType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\FDBDosageForm.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\FDBDrugRoute.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\GenderStatus.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\GenericUpdateReasonCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\HL7StandardVersionCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\HL7TriggerEventCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\HealthcareOrganizationRoleType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\HealthcareProviderRoleType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\HumanLanguage.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\HumanSubstanceAdministrationSite.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\IncidentalServiceDeliveryLocationRoleType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\IncomeSource.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\IndividualCaseSafetyReportType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\IntoleranceValue.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\IssueFilterCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\IssueTriggerObservationValue.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\LanguageAbilityMode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\LanguageAbilityProficiency.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\LicensedEntityRole.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\LocationIdentifiedEntityRoleType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\LogicalObservationIdentifierNamesAndCodes.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ManufacturedDrug.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\MaskableMaterialEntityType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\MaterialForm.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\MediaType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\MedicationGeneralizationRoleType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\MedicationObservationType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\MedicationOrderAbortReasonCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\MedicationOrderReleaseReasonCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\MessageWaitingPriority.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\NonDrugAgentEntity.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\NonLabDICodedObservationSubType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\NonLabDICodedObservationSubValue.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\NonLabDICodedObservationType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\NonLabDICodedObservationValue.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\NonLabDIMeasuredObservationSubType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\NonLabDIMeasuredObservationType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\NonLabDIObservationSubType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\NonLabDIObservationType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\NullFlavor.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\Nullflavor\NullFlavor.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ObservationAllergyTestType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ObservationCausalityAssessmentType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ObservationDosageDefinitionPreconditionType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ObservationInterpretation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ObservationInterpretationNormality.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ObservationInterpretationSusceptibility.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ObservationIntoleranceType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ObservationIssueTriggerCodedObservationType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ObservationIssueTriggerMeasuredObservationType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ObservationMethod.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ObservationOrderableLabType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ObservationQueryMatchType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ObservationType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ObservationValue.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\OrderableDrugForm.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\OtherIDsRoleCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\OtherIdentifierRoleType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ParticipationFunction.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ParticipationIndirectTarget.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ParticipationInformationRecipient.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ParticipationMode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ParticipationPhysicalPerformer.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ParticipationSignature.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ParticipationTargetLocation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ParticipationTargetSubject.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ParticipationType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ParticipationVerifier.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\PatientCharacteristicObservationType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\PatientProfileQueryReasonCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\Payload\ActPharmacySupplyType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\Payload\ActRelationshipSubset.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\Payload\AdministrativeGender.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\Payload\Confidentiality.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\Payload\IssueFilterCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\Payload\ProbabilityMatchCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\Payload\QuantityRequestLimit.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\Payload\QueryResponse.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\Payload\RoleClass.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\Payload\RoleStatus.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\Payload\RoleStatusNormal.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\Payload\SeverityObservation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\Payload\SubscriptionStatus.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\Payload\TopicPriority.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\Payload\x_ActMoodOrderEvent.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\PersonalRelationshipRoleType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\PharmacySupplyEventAbortReasonCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\PharmacySupplyEventStockReasonCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\PharmacySupplyRequestRenewalRefusalReasonCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\PlaceEntityType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\PositionCoordinateObservationCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\PositionObservationCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\PostalAddressUse.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\PrescriptionDispenseFilterCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ProcessingID.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ProcessingMode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\QualifiedRoleType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\QueryParameterValue.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\QueryQuantityUnit.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\QueryRequestLimit.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\QueryResponse.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ReferralDocumentType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\RelatedLinkType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ResponseModality.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ResponseMode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\RoleClass.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\RoleClassAgent.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\RoleClassAssignedEntity.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\RoleClassContact.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\RoleClassDistributedMaterial.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\RoleClassEmployee.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\RoleClassIngredientEntity.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\RoleClassIsSpeciesEntity.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\RoleClassLocatedEntity.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\RoleClassManufacturedProduct.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\RoleClassPartitive.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\RoleClassPassive.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\RoleClassRoot.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\RoleClassServiceDeliveryLocation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\RoleClassSpecimen.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\RoleCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\RoleLinkType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\RoleStatus.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\RoleStatusNormal.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\RouteOfAdministration.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\Sequencing.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ServiceDeliveryLocationPlaceType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ServiceDeliveryLocationRoleType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ServiceDeliveryRoleStatus.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\SeverityObservation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\SimpleMeasurableClinicalObservationType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\State.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\SubjectReaction.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\SubscriptionStatus.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\SubstanceAdminSubstitutionNotAllowedReason.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\SubstanceAdminSubstitutionReason.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\SubstanceAdministrationPermissionRefusalReasonCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\SubstitutionCondition.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\SupplyOrderAbortReasonCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\SymptomValue.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\TelecommunicationAddressUse.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\TopicPriority.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\Transport\AcknowledgementCondition.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\Transport\AcknowledgementDetailCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\Transport\AcknowledgementDetailType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\Transport\AcknowledgementType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\Transport\ActReason.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\Transport\HL7StandardVersionCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\Transport\HL7TriggerEventCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\Transport\ProcessingID.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\Transport\ProcessingMode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\Transport\ResponseMode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\Transport\x_ActMoodIntentEvent.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\URLScheme.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\UnitsOfMeasureCaseSensitive.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\Util\DescribableUtil.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\VaccineEntityType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\x_ActClassCareProvisionEncounter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\x_ActClassCareProvisionObservation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\x_ActClassCareProvisionProcedure.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\x_ActMoodDefEvn.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\x_ActMoodDefEvnRqo.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\x_ActMoodIntentEvent.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\x_ActMoodOrdPrms.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\x_ActMoodOrdPrmsEvn.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\x_ActMoodOrderEvent.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\x_ActMoodRequestEvent.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\x_ActObservationHeightOrWeight.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\x_ActRelationshipPatientTransport.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\x_ActStatusActiveComplete.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\x_ActStatusActiveSuspended.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\x_BasicAddressPartType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\x_BasicConfidentialityKind.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\x_BasicPersonNamePartQualifier.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\x_BasicPersonNamePartType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\x_BasicPersonNameUse.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\x_BasicPostalAddressUse.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\x_BasicTelecommunicationAddressUse.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\x_BasicUnitsOfMeasure.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\x_ClinicalStatementActMood.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\x_ClinicalStatementEncounterMood.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\x_ClinicalStatementObservationMood.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\x_ClinicalStatementProcedureMood.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\x_ClinicalStatementSubstanceMood.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\x_ClinicalStatementSupplyMood.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\x_DocumentMediaType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\x_DrugUnitsOfMeasure.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\x_HeightOrWeightObservationUnitsOfMeasure.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\x_InformationSource.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\x_LabProcessClassCodes.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\x_NormalRestrictedTabooConfidentialityKind.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\x_ParticipationAuthorPerformer.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\x_ParticipationVrfRespSprfWit.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\x_PhoneOrEmailURLScheme.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\x_PhoneURLScheme.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\x_PhysicalVerbalParticipationMode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\x_RoleStatusNormal.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\x_SimplePersonalRelationship.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\x_SubstitutionConditionNoneOrUnconditional.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\x_TimeUnitsOfMeasure.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\x_VeryBasicConfidentialityKind.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\MarshallingException.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\MessageBeanRegistry.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\MessagePartBean.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Oid.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Schema\XmlSchemas.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\SpecificationVersion.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Terminology\CodeResolver.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Terminology\CodeResolverImpl.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Terminology\CodeResolverRegistry.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Terminology\CompositeCodeResolver.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Terminology\Configurator\DefaultCodeResolutionConfigurator.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Terminology\Domainvalue\Active.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Terminology\Domainvalue\Common.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Terminology\Domainvalue\Describable.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Terminology\Domainvalue\Displayable.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Terminology\Domainvalue\Identifiable.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Terminology\Domainvalue\Sortable.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Terminology\EnumBasedCodeResolver.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Terminology\EnumPatternCodeResolver.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Terminology\TrivialCodeResolver.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Transport\PostMethod.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Util\Telephone\Telephone.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Util\Telephone\TelephoneLocalNumber.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Util\Telephone\TelephoneParser.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Util\Xml\ClasspathResource.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Util\Xml\DocumentFactory.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Util\Xml\InputStreamResource.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Util\Xml\XmlDescriber.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Util\Xml\XmlRenderer.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Util\Xml\XmlRenderingUtils.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Version\Configuration.cs" />
+    <Compile Include="Main\Xml.Parsers\XmlDocumentBuilder.cs" />
+    <Compile Include="Main\Xml.Parsers\XmlDocumentBuilderFactory.cs" />
+    <Compile Include="Main\Xml.Sax\SAXException.cs" />
+    <Compile Include="Main\Xml.Sax\XmlEntityResolver.cs" />
+    <Compile Include="Main\Xml.Sax\XmlParserConfigurationException.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\MessageTypeKey.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\BareANY.cs" />
+    <Compile Include="Platform\FullCodeWrapper.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\Transport\MessageWaitingPriority.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Annotation\Hl7Choice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Annotation\Hl7BusinessName.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Annotation\Hl7PartTypeMapping.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Annotation\Hl7RootType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Annotation\Hl7XmlMapping.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\DevTools\DefaultValueHolder.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\DevTools\MessageBeanFactory.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\DevTools\ReceiverValueHolder.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\DevTools\SenderValueHolder.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\DevTools\ValueHolder.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\AssociationBridge.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\AssociationBridgeImpl.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\AttributeBridge.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\AttributeBridgeImpl.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\AttributeValueBridge.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\BaseRelationshipBridge.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\BeanBridgeChoiceRelationshipResolver.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\BeanUtil.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\BeanWrapper.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\BridgeContext.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\BridgeFactory.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\BridgeFactoryImpl.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\CollapsedAttributeBridge.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\ConversionContext.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\DataTypeFieldHelper.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\Describer.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\EmptinessUtil.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\FixedValueAttributeBeanBridge.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\FormatContextImpl.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\Formattable.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\Hl7MessageSource.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\Hl7PartSource.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\Hl7Source.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\Hl7SourceMapper.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\Instantiator.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\InvalidRenderInputException.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\Mapping.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\MessageBeanTransformerImpl.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\MessagePartHolder.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\NonStructuralHl7AttributeRenderer.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\ParseContextImpl.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\PartBridge.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\PartBridgeImpl.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\PathBuilder.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\RelationshipFormat.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\RelationshipReader.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\RelationshipSorter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\RenderMode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\RenderingException.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\StructuralAttributeRenderer.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\TealBeanRenderWalker.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\TopLevelBeanBridgeWrapper.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\Visitor.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\VisitorStructuralAttributeRenderer.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\XmlRenderingVisitor.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\DataTypeHandler.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\DomainTypeHelper.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Hl7DataTypeName.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Hl7Error.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Hl7ErrorCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\RealConfFormat.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\RealCoordFormat.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\RealFormat.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Registry.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Formatter\AbstractAdPropertyFormatter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Formatter\AbstractAttributePropertyFormatter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Formatter\AbstractCerxPqPropertyFormatter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Formatter\AbstractCodePropertyFormatter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Formatter\AbstractEntityNamePropertyFormatter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Formatter\AbstractIvlPropertyFormatter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Formatter\AbstractNullFlavorPropertyFormatter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Formatter\AbstractPivlPropertyFormatter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Formatter\AbstractPqPropertyFormatter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Formatter\AbstractPropertyFormatter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Formatter\AbstractRtoPropertyFormatter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Formatter\AbstractValueNullFlavorPropertyFormatter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Formatter\AdBasicPropertyFormatter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Formatter\AdPropertyFormatter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Formatter\BaseCollectionPropertyFormatter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Formatter\BlPropertyFormatter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Formatter\CdPropertyFormatter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Formatter\CsPropertyFormatter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Formatter\CvPropertyFormatter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Formatter\EdPropertyFormatter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Formatter\EdSignaturePropertyFormatter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Formatter\EnPropertyFormatter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Formatter\FormatContext.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Formatter\FormatContextImpl.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Formatter\FormatterRegistry.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Formatter\GtsBoundedPivlFormatter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Formatter\IiPropertyFormatter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Formatter\IntNonNegPropertyFormatter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Formatter\IntPosPropertyFormatter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Formatter\IntPropertyFormatter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Formatter\IvlPropertyFormatter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Formatter\LenientTelPhonemailPropertyFormatter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Formatter\LenientTelUriPropertyFormatter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Formatter\ListPropertyFormatter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Formatter\MoPropertyFormatter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Formatter\OnPropertyFormatter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Formatter\PivlTsPropertyFormatter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Formatter\PnPropertyFormatter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Formatter\PqBasicPropertyFormatter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Formatter\PqDrugPropertyFormatter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Formatter\PqHeightWeightPropertyFormatter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Formatter\PqPropertyFormatter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Formatter\PropertyFormatter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Formatter\RealConfPropertyFormatter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Formatter\RealCoordPropertyFormatter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Formatter\RtoPqPqPropertyFormatter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Formatter\RtoQtyQtyPropertyFormatter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Formatter\ScPropertyFormatter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Formatter\SetPropertyFormatter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Formatter\StPropertyFormatter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Formatter\TelPhonemailPropertyFormatter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Formatter\TelUriPropertyFormatter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Formatter\TnPropertyFormatter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Formatter\TsFullDatePropertyFormatter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Formatter\TsFullDateTimePropertyFormatter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Formatter\UrgPqPropertyFormatter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Parser\AbstractCodeTypeElementParser.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Parser\AbstractElementParser.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Parser\AbstractEntityNameElementParser.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Parser\AbstractIvlElementParser.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Parser\AbstractPivlElementParser.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Parser\AbstractRtoElementParser.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Parser\AbstractSingleElementParser.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Parser\AdElementParser.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Parser\BlElementParser.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Parser\CsElementParser.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Parser\CvElementParser.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Parser\EdElementParser.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Parser\EdSignatureElementParser.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Parser\ElementParser.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Parser\EnElementParser.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Parser\GtsBoundedPivlElementParser.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Parser\IiElementParser.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Parser\IntElementParser.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Parser\IvlElementParser.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Parser\ListElementParser.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Parser\MoElementParser.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Parser\NullFlavorHelper.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Parser\OnElementParser.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Parser\ParseContext.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Parser\ParserContextImpl.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Parser\ParserRegistry.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Parser\PivlTsDateTimeElementParser.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Parser\PivlTsElementParser.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Parser\PnElementParser.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Parser\PqElementParser.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Parser\RealElementParser.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Parser\RtoPqPqElementParser.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Parser\RtoQtyQtyElementParser.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Parser\ScElementParser.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Parser\SetElementParser.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Parser\SetOrListElementParser.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Parser\StElementParser.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Parser\TelElementParser.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Parser\TnElementParser.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Parser\TsElementParser.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Parser\UrgElementParser.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Parser\UrgPqElementParser.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\Validator\MessageValidator.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\Validator\MessageValidatorImpl.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\Validator\MessageValidatorResult.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\Validator\ParseContextImpl.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\Validator\ValidatingVisitor.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\Validator\Validator.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\Basic\State.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\IInteraction.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Lang\DateWithPattern.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Impl\BareANYImpl.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Impl\CollectionHelper.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Parser\GenericDataTypeFactory.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Impl\BareCollection.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Parser\IvlIntElementParser.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Parser\IvlPqElementParser.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Parser\IvlTsElementParser.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Lang\IntervalFactory.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Formatter\IvlIntPropertyFormatter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Formatter\IvlPqPropertyFormatter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Formatter\IvlTsPropertyFormatter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Impl\RawListWrapper.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Impl\RawSetWrapper.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Transport\Credentials.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Transport\CredentialsProvider.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Transport\HttpTransportLayerException.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Transport\RequestMessage.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Transport\SimpleRequestMessage.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Transport\SystemOutTransportLayer.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Transport\TransportLayer.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Transport\TransportLayerException.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Transport\TrivialCredentialsProvider.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Transport\UsernamePasswordCredentials.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Transport\Mohawk\Client.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Transport\Mohawk\Hl7MessageExtractor.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Transport\Mohawk\MohawkTransportLayer.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Transport\Mohawk\ServiceDefinition.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Transport\Mohawk\Sample\MohawkSender.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Transport\Rest\Client.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Transport\Rest\RestTransportLayer.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Lang\BareRatio.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Lang\UncertainRangeFactory.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Parser\AnyElementParser.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Transport\AsynchronousTransportLayer.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\AnyHelper.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Formatter\AnyPropertyFormatter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\TemplateVariableNameUtil.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\Datatypeadapter\AnyToListOfAnyAdapter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\Datatypeadapter\AnyToSetOfAnyAdapter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\Datatypeadapter\CollectionOfAnyToAnyAdapter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\Datatypeadapter\CollectionToSetOfTnAdapter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\Datatypeadapter\DataTypeAdapter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\Datatypeadapter\DataTypeAdapterHelper.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\Datatypeadapter\DataTypeValueAdapterProvider.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\Datatypeadapter\IvlToTsAdapter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\Datatypeadapter\TsToIvlAdapter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\ModelToXmlResult.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\XmlToModelResult.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\XmlToModelTransformationException.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Formatter\ModelToXmlTransformationException.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Annotation\Hl7MapByPartType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\MappingHelper.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\IndicatorAssociationBridgeImpl.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\RelationshipMap.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Formatter\BagPropertyFormatter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Parser\BagElementParser.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\DevTools\RoutingInstructionLinesValueHolder.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\DevTools\ToBeRespondedToByValueHolder.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ActSpecimenTransportationCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ActSubstanceAdministrationImmunizationType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\Controlact\ActClass.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\Controlact\ActMood.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\Controlact\ActSpecimenTransportationCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\Controlact\ActSubstanceAdministrationImmunizationCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\Controlact\ActSubstanceAdministrationImmunizationType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\Controlact\ParticipationMode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\Controlact\RoleCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\Controlact\SCTEMP.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\Controlact\SpecimenRoleType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\Controlact\TriggerEventId.cs" />
+    <Compile Include="Platform\CodeUtil.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Datatype\Lang\PeriodicIntervalTimeSk.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>
+      </ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>
+      </ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>
+      </ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Main\Ca\Infoway\Messagebuilder\Service\" />
+    <Folder Include="Main\Ca\Infoway\Messagebuilder\Xml\Util\" />
+    <Folder Include="Main\SimpleXml\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio AllowExistingFolder="true" />
+  </ProjectExtensions>
+  <ItemGroup>
+    <None Include="AssemblyInfo.cs">
+      <Visible>False</Visible>
+    </None>
+    <None Include="message-builder-core.csproj.user">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Main\Ca\Infoway\Messagebuilder\svn-commit.tmp">
+      <Visible>False</Visible>
+    </None>
+    <None Include="message-builder-core.snk" />
+    <None Include="test-results\message-builder-core.csproj-Debug-2010-04-30.xml">
+      <Visible>False</Visible>
+    </None>
+    <None Include="test-results\message-builder-core.csproj-Debug-2010-05-03.xml">
+      <Visible>False</Visible>
+    </None>
+    <None Include="test-results\message-builder-core.csproj-Debug-2010-05-04.xml">
+      <Visible>False</Visible>
+    </None>
+    <None Include="test-results\message-builder-core.csproj-Debug-2010-05-07.xml">
+      <Visible>False</Visible>
+    </None>
+    <None Include="test-results\message-builder-core.csproj-Debug-2010-05-11.xml">
+      <Visible>False</Visible>
+    </None>
+    <None Include="test-results\message-builder-core.csproj-Debug-2010-05-16.xml">
+      <Visible>False</Visible>
+    </None>
+    <None Include="message-builder-core.csproj.mine">
+      <Visible>False</Visible>
+    </None>
+    <None Include="message-builder-core.csproj.r27727">
+      <Visible>False</Visible>
+    </None>
+    <None Include="message-builder-core.csproj.r27792">
+      <Visible>False</Visible>
+    </None>
+    <None Include="message-builder-core.pidb.r27727">
+      <Visible>False</Visible>
+    </None>
+    <None Include="message-builder-core.pidb.r27792">
+      <Visible>False</Visible>
+    </None>
+    <None Include="MainResource\Services\Ca.Infoway.Messagebuilder.Xml.Service.MessageDefinitionService" />
+    <None Include="test-results\message-builder-core.csproj-Debug-2010-05-17.xml">
+      <Visible>False</Visible>
+    </None>
+    <None Include="TestResource\messageSet_v02r02.xml">
+      <Visible>False</Visible>
+    </None>
+    <None Include="PRPA_IN101101CA.xml">
+      <Visible>False</Visible>
+    </None>
+    <None Include="sample.xml">
+      <Visible>False</Visible>
+    </None>
+    <None Include="sample_with_argument_choices.xml">
+      <Visible>False</Visible>
+    </None>
+    <None Include="message-builder-core.pidb.r27963">
+      <Visible>False</Visible>
+    </None>
+    <None Include="message-builder-core.pidb.r27972">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Main\Ca\Infoway\Messagebuilder\Transport\AsynchronousTransportLayer.cs">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Test\Ca\Infoway\Messagebuilder\Model\Cr\FindCandidatesCriteria.cs">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Test\Ca\Infoway\Messagebuilder\Model\Cr\FindCandidatesQueryMessageBean.cs">
+      <Visible>False</Visible>
+    </None>
+    <None Include="test-results\message-builder-core.csproj-Debug-2010-05-22.xml">
+      <Visible>False</Visible>
+    </None>
+    <None Include="test-results\message-builder-core.csproj-Debug-2010-05-23.xml">
+      <Visible>False</Visible>
+    </None>
+    <None Include="core.build">
+      <Visible>False</Visible>
+    </None>
+    <None Include="obj\Debug\ResolveAssemblyReference.cache">
+      <Visible>False</Visible>
+    </None>
+    <None Include="obj\Debug\message-builder-core.csproj.FileListAbsolute.txt">
+      <Visible>False</Visible>
+    </None>
+    <None Include="test-results\message-builder-core.csproj-Debug-2010-05-28.xml">
+      <Visible>False</Visible>
+    </None>
+    <None Include="test-results\message-builder-core.csproj.test-cache">
+      <Visible>False</Visible>
+    </None>
+    <None Include="core.build.xml">
+      <Visible>False</Visible>
+    </None>
+    <None Include="j2cstranslator-log.txt">
+      <Visible>False</Visible>
+    </None>
+    <None Include="default.build">
+      <Visible>False</Visible>
+    </None>
+    <None Include="test-results\message-builder-core.csproj-Debug-2010-05-19.xml">
+      <Visible>False</Visible>
+    </None>
+    <None Include="test-results\message-builder-core.csproj-Debug-2010-05-20.xml">
+      <Visible>False</Visible>
+    </None>
+    <None Include="test-results\message-builder-core.csproj-Debug-2010-05-21.xml">
+      <Visible>False</Visible>
+    </None>
+    <None Include="test-results\message-builder-core.csproj-Debug-2010-05-24.xml">
+      <Visible>False</Visible>
+    </None>
+    <None Include="test-results\message-builder-core.csproj-Debug-2010-05-26.xml">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Services\Ca.Infoway.Messagebuilder.Xml.Service.MessageDefinitionService" />
+    <None Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\Formatter\JavaToXmlTransformationException.cs">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Test\Ca\Infoway\Messagebuilder\Marshalling\HL7\Formatter\SetRtoPqPqPropertyFormatterTest.cs">
+      <Visible>False</Visible>
+    </None>
+    <None Include="Test\Ca\Infoway\Messagebuilder\Marshalling\HL7\Parser\SetRtoPqPqElementParserTest.cs">
+      <Visible>False</Visible>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\message-builder-compatibility\message-builder-compatibility.csproj">
+      <Project>{6821E6B6-3A4D-4D4D-A9D0-147878B4FDEE}</Project>
+      <Name>message-builder-compatibility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\message-builder-xml\message-builder-xml.csproj">
+      <Project>{262BF0B7-4E11-43DA-B5E5-EAAE02EF9845}</Project>
+      <Name>message-builder-xml</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\message-builder-util\message-builder-util.csproj">
+      <Project>{E3369ED8-EEBF-41F5-8CB7-A817A1D7EBCF}</Project>
+      <Name>message-builder-util</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+</Project>

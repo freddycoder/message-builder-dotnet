@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<project name="core" default="test">
+
+  <property name="build.output.dir.suffix" value="bin/nant" overwrite="false"/>
+  <property name="debug" value="full" overwrite="false"/>
+
+  <property name="build.dir" value="." />
+  <property name="build.output.dir" value="${build.dir}/${build.output.dir.suffix}" />
+  <property name="project.name" value="${project::get-name()}" />
+
+  <target name="clean">
+    <delete dir="${build.output.dir}" />
+  </target>
+
+  <target name="build">
+    <csc target="library" output="${build.output.dir}/${project.name}.dll" debug="${debug}">
+      <sources>
+        <include name="Main/**/*.cs" />
+        <include name="Platform/**/*.cs" />
+      </sources>
+      <resources dynamicprefix="true" prefix="InfowayCore">
+        <include name="MainResource/**/*" />
+      </resources>
+      <references>
+        <include name="../SharedLibs/*.dll" />
+        <include name="../compatibility/message-builder-compatibility/${build.output.dir.suffix}/*.dll" />
+      </references>
+    </csc>
+  </target>
+
+  <target name="test" depends="build">
+    <csc target="library" output="${build.output.dir}/${project.name}.test.dll" debug="${debug}">
+      <sources>
+        <include name="Test/**/*.cs" />
+        <include name="Main/**/*.cs" />
+        <include name="Platform/**/*.cs" />
+      </sources>
+      <resources dynamicprefix="true" prefix="${project.name}.test">
+        <include name="TestResource/**/*" />
+      </resources>
+      <references>
+        <include name="../compatibility/message-builder-compatibility/${build.output.dir.suffix}/*.dll" />
+        <include name="../SharedLibs/*.dll" />
+      </references>
+    </csc>
+
+    <copy todir="${build.output.dir}">
+      <fileset basedir="../SharedLibs">
+        <include name="*.dll" />
+      </fileset>
+    </copy>
+  
+    <nunit2>
+ 	<formatter type="Xml" usefile="true" extension=".xml" outputdir="${build.output.dir}" />
+ 	<formatter type="Plain" usefile="true" extension=".txt" outputdir="${build.output.dir}" />
+ 	<formatter type="Plain" usefile="false" extension=".txt" />
+	<test assemblyname="${build.output.dir}/${project.name}.test.dll">
+	  <categories>
+            <exclude name="failing-in-nant" />
+	  </categories>
+	  <references>
+            <include name="../compatibility/message-builder-compatibility/${build.output.dir.suffix}/*.dll" />
+            <include name="../SharedLibs/*.dll" />
+          </references>
+	</test>
+    </nunit2>
+
+    <delete file="${build.output.dir}/${project.name}.test.dll" />
+
+  </target>
+</project>

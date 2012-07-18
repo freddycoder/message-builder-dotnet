@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6821E6B6-3A4D-4D4D-A9D0-147878B4FDEE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>messagebuildercompatibility</RootNamespace>
+    <AssemblyName>message-builder-compatibility</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <newfilesearch>OnLoad</newfilesearch>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <ReleaseVersion>1.2.9</ReleaseVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>message-builder-compatibility.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ILOG.J2CsMapping">
+      <HintPath>..\SharedLibs\ILOG.J2CsMapping.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ItemGroup>
+    <None Include="message-builder-compatibility.csproj.user">
+      <Visible>False</Visible>
+    </None>
+    <None Include="message-builder-compatibility.snk" />
+    <None Include="obj\Debug\message-builder-compatibility.csproj.FileListAbsolute.txt">
+      <Visible>False</Visible>
+    </None>
+    <None Include="obj\message-builder-compatibility.csproj.FilesWrittenAbsolute.txt">
+      <Visible>False</Visible>
+    </None>
+    <None Include="obj\Debug\InfowayCompatibility.dll.mdb">
+      <Visible>False</Visible>
+    </None>
+    <None Include="default.build">
+      <Visible>False</Visible>
+    </None>
+    <None Include="test-results\message-builder-compatibility.csproj-Debug-2010-06-07.xml">
+      <Visible>False</Visible>
+    </None>
+    <None Include="test-results\message-builder-compatibility.csproj.test-cache">
+      <Visible>False</Visible>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main\ArrayUtils.cs" />
+    <Compile Include="Main\BigDecimal.cs" />
+    <Compile Include="Main\ClassUtils.cs" />
+    <Compile Include="Main\CollUtils.cs" />
+    <Compile Include="Main\CompareToBuilder.cs" />
+    <Compile Include="Main\DateUtils.cs" />
+    <Compile Include="Main\DecimalFormat.cs" />
+    <Compile Include="Main\DictionaryGenericExtension.cs" />
+    <Compile Include="Main\EqualsBuilder.cs" />
+    <Compile Include="Main\ExceptionUtils.cs" />
+    <Compile Include="Main\FilenameUtils.cs" />
+    <Compile Include="Main\HashCodeBuilder.cs" />
+    <Compile Include="Main\ICollectionGenericExtension.cs" />
+    <Compile Include="Main\IComparator.cs" />
+    <Compile Include="Main\IDictionaryGenericExtension.cs" />
+    <Compile Include="Main\IListGenericExtension.cs" />
+    <Compile Include="Main\IOUtils.cs" />
+    <Compile Include="Main\MethodInfoExtension.cs" />
+    <Compile Include="Main\ObjectUtils.cs" />
+    <Compile Include="Main\PlatformDate.cs" />
+    <Compile Include="Main\PseudoEnum.cs" />
+    <Compile Include="Main\Runnable.cs" />
+    <Compile Include="Main\StopWatch.cs" />
+    <Compile Include="Main\StringBuilderExtension.cs" />
+    <Compile Include="Main\StringExtension.cs" />
+    <Compile Include="Main\StringUtils.cs" />
+    <Compile Include="Main\SynchList.cs" />
+    <Compile Include="Main\SynchMap.cs" />
+    <Compile Include="Main\SynchSet.cs" />
+    <Compile Include="Main\SystemUtils.cs" />
+    <Compile Include="Main\TypeExtensions.cs" />
+    <Compile Include="Main\TypeUtils.cs" />
+    <Compile Include="Main\Validate.cs" />
+    <Compile Include="Main\WordUtils.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+</Project>

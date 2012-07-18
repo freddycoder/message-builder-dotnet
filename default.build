@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<project name="mbt" default="build">
+
+  <property name="build.output.dir.suffix" value="bin/nant" />
+  <property name="debug" value="full" />
+
+  <!-- compatibility -->
+  <target name="build-compatibility">
+	<nant buildfile="compatibility/message-builder-compatibility/default.build" target="build">
+	    <properties>
+	    </properties>
+	</nant>
+  </target>
+  <target name="test-compatibility">
+	<nant buildfile="compatibility/message-builder-compatibility/default.build" target="test">
+	    <properties>
+	    </properties>
+	</nant>
+  </target>
+  <target name="clean-compatibility">
+	<nant buildfile="compatibility/message-builder-compatibility/default.build" target="clean">
+	    <properties>
+	    </properties>
+	</nant>
+  </target>
+
+
+  <!-- core -->
+  <target name="build-core" depends="build-compatibility">
+	<nant buildfile="core/default.build" target="build">
+	    <properties>
+	    </properties>
+	</nant>
+  </target>
+  <target name="test-core" depends="test-compatibility">
+	<nant buildfile="core/default.build" target="test">
+	    <properties>
+	    </properties>
+	</nant>
+  </target>
+  <target name="clean-core" depends="clean-compatibility">
+	<nant buildfile="core/default.build" target="clean">
+	    <properties>
+	    </properties>
+	</nant>
+  </target>
+
+  <!-- message-builder-release-r02_04_02 -->
+  <target name="build-message-builder-release-r02_04_02" depends="build-core">
+	<nant buildfile="message-builder-release-r02_04_02/default.build" target="build">
+	    <properties>
+	    </properties>
+	</nant>
+  </target>
+  <target name="test-message-builder-release-r02_04_02" depends="test-core">
+	<nant buildfile="message-builder-release-r02_04_02/default.build" target="test">
+	    <properties>
+	    </properties>
+	</nant>
+  </target>
+  <target name="clean-message-builder-release-r02_04_02" depends="clean-core">
+	<nant buildfile="message-builder-release-r02_04_02/default.build" target="clean">
+	    <properties>
+	    </properties>
+	</nant>
+  </target>
+
+  <target name="build" depends="build-message-builder-release-r02_04_02"/>
+  <target name="clean" depends="clean-message-builder-release-r02_04_02"/>
+  <target name="test" depends="test-message-builder-release-r02_04_02"/>
+
+</project>

@@ -1,0 +1,54 @@
+using System.IO;
+using Ca.Infoway.Messagebuilder.Xml;
+using Platform.SimpleXml;
+
+namespace Ca.Infoway.Messagebuilder.Xml
+{
+	/// <summary>A utility to read and write the object representation of a message set.</summary>
+	/// <remarks>A utility to read and write the object representation of a message set.</remarks>
+	/// <author>Intelliware Development</author>
+	public class MessageSetMarshaller
+	{
+		private Serializer serializer = new Persister();
+
+		/// <summary>Unmarshall a message set to a file.</summary>
+		/// <remarks>Unmarshall a message set to a file.</remarks>
+		/// <param name="file">- the file to read</param>
+		/// <returns>the message set.</returns>
+		/// <exception cref="System.Exception">- if any underlying exception occurs</exception>
+		public virtual MessageSet Unmarshall(FileInfo file)
+		{
+			return (MessageSet)this.serializer.Read(typeof(MessageSet), file);
+		}
+
+		/// <summary>Marshall a message set to an output stream.</summary>
+		/// <remarks>Marshall a message set to an output stream.</remarks>
+		/// <param name="domain">- the message set to marshall</param>
+		/// <param name="output">- the output stream</param>
+		/// <exception cref="System.Exception">- if any underlying exception occurs</exception>
+		public virtual void Marshall(MessageSet domain, Stream output)
+		{
+			this.serializer.Write(domain, output);
+		}
+
+		/// <summary>Marshall a message set to an output stream.</summary>
+		/// <remarks>Marshall a message set to an output stream.</remarks>
+		/// <param name="domain">- the message set to marshall</param>
+		/// <param name="file">- the file to write to</param>
+		/// <exception cref="System.Exception">- if any underlying exception occurs</exception>
+		public virtual void Marshall(MessageSet domain, FileInfo file)
+		{
+			this.serializer.Write(domain, file);
+		}
+
+		/// <summary>Unmarshall a message set to a file.</summary>
+		/// <remarks>Unmarshall a message set to a file.</remarks>
+		/// <param name="input">- the input stream</param>
+		/// <returns>the message set.</returns>
+		/// <exception cref="System.Exception">- if any underlying exception occurs</exception>
+		public virtual MessageSet Unmarshall(Stream input)
+		{
+			return (MessageSet)this.serializer.Read(typeof(MessageSet), input);
+		}
+	}
+}
