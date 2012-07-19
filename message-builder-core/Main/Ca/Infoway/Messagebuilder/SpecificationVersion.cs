@@ -50,11 +50,6 @@ namespace Ca.Infoway.Messagebuilder
 		public static readonly Ca.Infoway.Messagebuilder.SpecificationVersion R02_04_03 = new Ca.Infoway.Messagebuilder.SpecificationVersion
 			("R02_04_03", "R02.04.03");
 
-		/// <summary>Newfoundland and Labrador (mixed V01R04.3 / V02R02).</summary>
-		/// <remarks>Newfoundland and Labrador (mixed V01R04.3 / V02R02).</remarks>
-		public static readonly Ca.Infoway.Messagebuilder.SpecificationVersion NEWFOUNDLAND = new Ca.Infoway.Messagebuilder.SpecificationVersion
-			("NEWFOUNDLAND", "Newfoundland and Labrador (mixed V01R04.3 / V02R02)");
-
 		/// <summary>
 		/// Saskatchewan (V01R04.2)
 		/// Base version should technically be V01R04_2 (which isn't a MB HL7v3 release), but the value
@@ -73,12 +68,7 @@ namespace Ca.Infoway.Messagebuilder
 		public static readonly Ca.Infoway.Messagebuilder.SpecificationVersion V02R02_AB = new Ca.Infoway.Messagebuilder.SpecificationVersion
 			("V02R02_AB", "Alberta (V02R02)", Ca.Infoway.Messagebuilder.SpecificationVersion.V02R02);
 
-		public static readonly Ca.Infoway.Messagebuilder.SpecificationVersion NA = new Ca.Infoway.Messagebuilder.SpecificationVersion
-			("NA", string.Empty, null, true);
-
 		private readonly string description;
-
-		private readonly bool unknown;
 
 		private readonly VersionNumber baseVersion;
 
@@ -86,16 +76,10 @@ namespace Ca.Infoway.Messagebuilder
 		{
 		}
 
-		private SpecificationVersion(string name, string description, VersionNumber baseVersion) : this(name, description, baseVersion
-			, false)
-		{
-		}
-
-		private SpecificationVersion(string name, string description, VersionNumber baseVersion, bool unknown) : base(name)
+		private SpecificationVersion(string name, string description, VersionNumber baseVersion) : base(name)
 		{
 			this.description = description;
 			this.baseVersion = baseVersion;
-			this.unknown = unknown;
 		}
 
 		/// <summary><inheritDoc></inheritDoc></summary>
@@ -104,17 +88,6 @@ namespace Ca.Infoway.Messagebuilder
 			get
 			{
 				return Name;
-			}
-		}
-
-		/// <summary>Checks if is unknown.</summary>
-		/// <remarks>Checks if is unknown.</remarks>
-		/// <returns>true, if is unknown</returns>
-		public virtual bool Unknown
-		{
-			get
-			{
-				return this.unknown;
 			}
 		}
 

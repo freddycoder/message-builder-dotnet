@@ -101,6 +101,44 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 
 		/// <exception cref="System.Exception"></exception>
 		[Test]
+		[Ignore]
+		public virtual void TestNoInternalValuesAndMandatory()
+		{
+			//FIXME
+			CDImpl cd = new CDImpl(new _Code_109());
+			string result = new CdPropertyFormatter().Format(new FormatContextImpl("name", null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
+				.MANDATORY), cd);
+			System.Console.Out.WriteLine(result);
+			string lineBreak = Runtime.GetProperty("line.separator");
+			Assert.AreEqual("<!-- WARNING: name is a mandatory field, but no value is specified -->" + lineBreak + "<name/>", StringUtils
+				.Trim(result), "result");
+		}
+
+		private sealed class _Code_109 : Code
+		{
+			public _Code_109()
+			{
+			}
+
+			public string CodeValue
+			{
+				get
+				{
+					return null;
+				}
+			}
+
+			public string CodeSystem
+			{
+				get
+				{
+					return null;
+				}
+			}
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
 		public virtual void TestSingleTranslation()
 		{
 			CDImpl cd = new CDImpl(null);

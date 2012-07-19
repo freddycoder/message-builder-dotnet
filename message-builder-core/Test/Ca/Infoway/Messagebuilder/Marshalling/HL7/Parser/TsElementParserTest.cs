@@ -1,3 +1,4 @@
+using System;
 using System.Xml;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype;
@@ -5,6 +6,7 @@ using Ca.Infoway.Messagebuilder.Datatype.Lang;
 using Ca.Infoway.Messagebuilder.J5goodies;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser;
+using ILOG.J2CsMapping.Text;
 using NUnit.Framework;
 
 namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
@@ -24,7 +26,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 
 		private ParseContext CreateContext()
 		{
-			return ParserContextImpl.Create("TS", typeof(PlatformDate), SpecificationVersion.NEWFOUNDLAND, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
+			return ParserContextImpl.Create("TS", typeof(PlatformDate), SpecificationVersion.V02R02, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
 				.POPULATED);
 		}
 
@@ -62,14 +64,18 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		public virtual void TestParseValidValueAttributeWithTimeZoneMinus()
 		{
 			PlatformDate calendar = DateUtil.GetDate(2008, 2, 31, 15, 58, 57, 862);
-			AssertValidValueAttribute(calendar, "20080331155857.8620-0400");
+			string expectedValue = "20080331155857.8620" + GetCurrentTimeZone(calendar);
+			AssertValidValueAttribute(calendar, expectedValue);
 		}
 
 		/// <exception cref="System.Exception"></exception>
 		[Test]
 		public virtual void TestParseValidValueAttributeWithTimeZonePlusHasCorrectDatePattern()
 		{
-			PlatformDate calendar = DateUtil.GetDate(2008, 2, 31, 10, 58, 57, 862);
+            PlatformDate date = DateUtil.GetDate(2008, 2, 31, 10, 58, 57, 862);
+            DateTime calWithTZ = TimeZoneInfo.ConvertTime(date, TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time"));
+            PlatformDate calendar = new PlatformDate(calWithTZ);
+
 			string value = "20080331155857.8620+0100";
 			AssertValidValueAttribute(calendar, value);
 			XmlNode node = CreateNode("<something value=\"" + value + "\" />");
@@ -106,7 +112,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		public virtual void TestParseValidDateForExceptionCase()
 		{
 			PlatformDate expectedResult = DateUtil.GetDate(2008, 5, 25, 14, 16, 10, 0);
-			string value = "20080625141610-0400";
+			string value = "20080625141610" + GetCurrentTimeZone(expectedResult);
 			XmlNode node = CreateNode("<something value=\"" + value + "\" />");
 			ParseContext context = ParserContextImpl.Create("TS.FULLDATETIME", typeof(PlatformDate), SpecificationVersion.R02_04_02, 
 				null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.POPULATED);
@@ -125,7 +131,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		public virtual void TestParseNoFullDateTimeSpecificationTypeForAbstractFullDateWithTime()
 		{
 			PlatformDate expectedResult = DateUtil.GetDate(2008, 5, 25, 14, 16, 10, 0);
-			string value = "20080625141610-0400";
+			string value = "20080625141610" + GetCurrentTimeZone(expectedResult);
 			XmlNode node = CreateNode("<something value=\"" + value + "\" />");
 			ParseContext context = ParserContextImpl.Create("TS.FULLDATEWITHTIME", typeof(PlatformDate), SpecificationVersion.R02_04_02
 				, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.POPULATED);
@@ -183,7 +189,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		public virtual void TestParseValidFullDateTimeSpecificationTypeForAbstractFullDateWithTime()
 		{
 			PlatformDate expectedResult = DateUtil.GetDate(2008, 5, 25, 14, 16, 10, 0);
-			string value = "20080625141610-0400";
+			string value = "20080625141610" + GetCurrentTimeZone(expectedResult);
 			XmlNode node = CreateNode("<something value=\"" + value + "\" specializationType=\"TS.FULLDATETIME\" />");
 			ParseContext context = ParserContextImpl.Create("TS.FULLDATEWITHTIME", typeof(PlatformDate), SpecificationVersion.R02_04_02
 				, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.POPULATED);
@@ -197,15 +203,30 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		public virtual void TestParseValidFullDateTimeButWithFullDateSpecificationTypeForAbstractFullDateWithTime()
 		{
 			PlatformDate expectedResult = DateUtil.GetDate(2008, 5, 25, 14, 16, 10, 0);
-			string value = "20080625141610-0400";
+			string value = "20080625141610" + GetCurrentTimeZone(expectedResult);
 			XmlNode node = CreateNode("<something value=\"" + value + "\" specializationType=\"TS.FULLDATE\" />");
 			ParseContext context = ParserContextImpl.Create("TS.FULLDATEWITHTIME", typeof(PlatformDate), SpecificationVersion.R02_04_02
 				, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.POPULATED);
 			AssertDateEquals("correct value returned " + value, MarshallingTestCase.FULL_DATE_TIME, expectedResult, (PlatformDate)(new 
 				TsElementParser()).Parse(context, node, this.xmlResult).BareValue);
 			Assert.AreEqual(1, this.xmlResult.GetHl7Errors().Count, "one error");
-			Assert.IsTrue(this.xmlResult.GetHl7Errors()[0].GetMessage().Equals("The timestamp element <something specializationType=\"TS.FULLDATE\" value=\"20080625141610-0400\"/> appears to be formatted as type TS.FULLDATETIME, but should be TS.FULLDATE."
-				), "specialization type error");
+			string expectedErrorMsg = "The timestamp element <something specializationType=\"TS.FULLDATE\" " + "value=\"20080625141610"
+				 + GetCurrentTimeZone(expectedResult) + "\"/> appears to be formatted as type TS.FULLDATETIME, " + "but should be TS.FULLDATE.";
+			Assert.IsTrue(this.xmlResult.GetHl7Errors()[0].GetMessage().Equals(expectedErrorMsg), "specialization type error");
+		}
+
+		//Date expectedResult = DateUtil.getDate(2008, 5, 24, 23, 0, 0, 0);
+		//Date expectedResult = DateUtil.getDate(2008, 5, 24);
+		private string GetCurrentTimeZone(PlatformDate calendar)
+		{
+            DateTimeOffset expectedDate1 = TimeZoneInfo.ConvertTime(calendar, TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time"));
+            String timeZoneString = expectedDate1.Offset.ToString().Split(":")[0];
+            String currentTimeZone = timeZoneString;
+            while (currentTimeZone.Length <= 4)
+            {
+                currentTimeZone += "0";
+            }
+            return currentTimeZone;
 		}
 	}
 }

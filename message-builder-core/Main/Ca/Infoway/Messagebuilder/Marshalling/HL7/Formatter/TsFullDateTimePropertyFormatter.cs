@@ -85,14 +85,21 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			}
 			else
 			{
-				if (SpecificationVersion.IsVersion(SpecificationVersion.NEWFOUNDLAND, version))
+				if (IsNewfoundland(version))
 				{
-					// FIXME - TM - temp code to allow transformation tests to pass; 
+					// FIXME - TM - temp hack to allow transformation tests to pass; 
 					//            - these tests should be modified to work with the default date format
 					return DATE_FORMAT_YYYYMMDDHHMMSSZZZZZ;
 				}
 			}
 			return DATE_FORMAT_YYYYMMDDHHMMSS_SSSZZZZZ;
+		}
+
+		private bool IsNewfoundland(VersionNumber version)
+		{
+			// this version is not currently supported by MB and is not in the SpecificationVersion enum
+			// TODO - TM - NEWFOUNDLAND TEST HACK
+			return version != null && StringUtils.Equals(version.VersionLiteral, "NEWFOUNDLAND");
 		}
 
 		private VersionNumber GetVersion(FormatContext context)

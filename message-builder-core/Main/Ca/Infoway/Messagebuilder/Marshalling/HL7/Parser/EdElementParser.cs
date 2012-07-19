@@ -102,9 +102,23 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 
 		private string ParseReference(XmlElement element)
 		{
-			if (element.HasAttribute(EdPropertyFormatter.ATTRIBUTE_REFERENCE))
+			if (element.HasAttribute(EdPropertyFormatter.ELEMENT_REFERENCE))
 			{
-				return element.GetAttribute(EdPropertyFormatter.ATTRIBUTE_REFERENCE);
+				// this format of ED is no longer correct (for any HL7v3 version), contrary to what V01R04.3 and V02R02 data type specifications state
+				return element.GetAttribute(EdPropertyFormatter.ELEMENT_REFERENCE);
+			}
+			else
+			{
+				// look for newer format for providing reference within a "value" attribute of a "reference" element
+				XmlNodeList elements = element.GetElementsByTagName(EdPropertyFormatter.ELEMENT_REFERENCE);
+				if (elements.Count == 1)
+				{
+					XmlElement reference = (XmlElement)elements.Item(0);
+					if (reference.HasAttribute(EdPropertyFormatter.ATTRIBUTE_VALUE))
+					{
+						return reference.GetAttribute(EdPropertyFormatter.ATTRIBUTE_VALUE);
+					}
+				}
 			}
 			return null;
 		}

@@ -31,7 +31,11 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		{
 			IDictionary<string, string> result = new Dictionary<string, string>();
 			result["value"] = value.Quantity.ToString();
-			result["unit"] = value.Unit.CodeValue;
+			// TM - Redmine 11455 - need to account for units being null
+			if (value.Unit != null)
+			{
+				result["unit"] = value.Unit.CodeValue;
+			}
 			result["xsi:type"] = "PQ";
 			return result;
 		}

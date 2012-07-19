@@ -50,7 +50,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
             foreach (var description in messageDescriptions)
             {
                 var interactionBeanType = 
-                    messageBeanRegistry.GetInteractionBeanType(new MessageTypeKey(SpecificationVersion.NEWFOUNDLAND, description.getInteractionId()));
+                    messageBeanRegistry.GetInteractionBeanType(new MessageTypeKey(MockVersionNumber.MOCK_NEWFOUNDLAND, description.getInteractionId()));
 
                 Assert.AreEqual(description.getMessageType(), interactionBeanType.Name, "type");
             }

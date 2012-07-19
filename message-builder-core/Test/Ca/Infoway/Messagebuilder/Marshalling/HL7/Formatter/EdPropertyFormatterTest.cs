@@ -43,10 +43,10 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		[Test]
 		public virtual void TestFormatValueCompressedXmlData()
 		{
-			string expectedResult = "<name compression=\"GZ\" language=\"ENG\" mediaType=\"text/xml\" reference=\"http://www.i-proving.ca\" representation=\"B64\">"
-				 + "H4sIAAAAAAAAALOpyM2xS8vPt9EHMQATOK6nDgAAAA==</name>" + SystemUtils.LINE_SEPARATOR;
-			EncapsulatedData data = new CompressedData(MediaType.XML_TEXT, "http://www.i-proving.ca", System.Text.ASCIIEncoding.ASCII.GetBytes
-				("<xml>foo</xml>"), Compression.GZIP, CompressedData.LANGUAGE_ENGLISH);
+			string expectedResult = "<name compression=\"GZ\" language=\"ENG\" mediaType=\"text/xml\" representation=\"B64\">" + "H4sIAAAAAAAAALOpyM2xS8vPt9EHMQATOK6nDgAAAA==</name>"
+				 + SystemUtils.LINE_SEPARATOR;
+			EncapsulatedData data = new CompressedData(MediaType.XML_TEXT, null, System.Text.ASCIIEncoding.ASCII.GetBytes("<xml>foo</xml>"
+				), Compression.GZIP, CompressedData.LANGUAGE_ENGLISH);
 			string result = new EdPropertyFormatter().Format(GetContext("name"), new EDImpl<EncapsulatedData>(data));
 			Assert.AreEqual(ClearPayload(expectedResult), ClearPayload(result), "element");
 			Assert.AreEqual(DecodeAndUnzip(ExtractPayload(result)), "<xml>foo</xml>", "element payload");
@@ -56,10 +56,10 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		[Test]
 		public virtual void TestFormatValueCompressedXmlDataEmptyContent()
 		{
-			string expectedResult = "<name compression=\"GZ\" language=\"ENG\" mediaType=\"text/xml\" reference=\"http://www.i-proving.ca\" representation=\"B64\">"
-				 + "H4sIAAAAAAAAAAMAAAAAAAAAAAA=</name>" + SystemUtils.LINE_SEPARATOR;
-			EncapsulatedData data = new CompressedData(MediaType.XML_TEXT, "http://www.i-proving.ca", System.Text.ASCIIEncoding.ASCII.GetBytes
-				(string.Empty), Compression.GZIP, CompressedData.LANGUAGE_ENGLISH);
+			string expectedResult = "<name compression=\"GZ\" language=\"ENG\" mediaType=\"text/xml\" representation=\"B64\">" + "H4sIAAAAAAAAAAMAAAAAAAAAAAA=</name>"
+				 + SystemUtils.LINE_SEPARATOR;
+			EncapsulatedData data = new CompressedData(MediaType.XML_TEXT, null, System.Text.ASCIIEncoding.ASCII.GetBytes(string.Empty
+				), Compression.GZIP, CompressedData.LANGUAGE_ENGLISH);
 			string result = new EdPropertyFormatter().Format(GetContext("name"), new EDImpl<EncapsulatedData>(data));
 			Assert.AreEqual(ClearPayload(expectedResult), ClearPayload(result), "element");
 			Assert.AreEqual(DecodeAndUnzip(ExtractPayload(result)), string.Empty, "element payload");
@@ -69,22 +69,21 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		[Test]
 		public virtual void TestFormatValueCompressedXmlDataNullContent()
 		{
-			string expectedResult = "<name compression=\"GZ\" language=\"ENG\" mediaType=\"text/xml\" reference=\"http://www.i-proving.ca\" representation=\"B64\"></name>"
-				 + SystemUtils.LINE_SEPARATOR;
+			string expectedResult = "<name compression=\"GZ\" language=\"ENG\" mediaType=\"text/xml\" representation=\"B64\"><reference value=\"http://www.i-proving.ca\"/></name>";
 			EncapsulatedData data = new CompressedData(MediaType.XML_TEXT, "http://www.i-proving.ca", null, Compression.GZIP, CompressedData
 				.LANGUAGE_ENGLISH);
 			string result = new EdPropertyFormatter().Format(GetContext("name"), new EDImpl<EncapsulatedData>(data));
-			Assert.AreEqual(expectedResult, result, "something in text node");
+			Assert.AreEqual(expectedResult, ClearPayload(result), "something in text node");
 		}
 
 		/// <exception cref="System.Exception"></exception>
 		[Test]
 		public virtual void TestFormatValueCompressedTextData()
 		{
-			string expectedResult = "<name compression=\"GZ\" language=\"ENG\" mediaType=\"text/plain\" reference=\"http://www.i-proving.ca\" representation=\"B64\">"
-				 + "H4sIAAAAAAAAALOpyM2xS8vPt9EHMQATOK6nDgAAAA==</name>" + SystemUtils.LINE_SEPARATOR;
-			EncapsulatedData data = new CompressedData(MediaType.PLAIN_TEXT, "http://www.i-proving.ca", System.Text.ASCIIEncoding.ASCII.GetBytes
-				("<xml>foo</xml>"), Compression.GZIP, CompressedData.LANGUAGE_ENGLISH);
+			string expectedResult = "<name compression=\"GZ\" language=\"ENG\" mediaType=\"text/plain\" representation=\"B64\">" + "H4sIAAAAAAAAALOpyM2xS8vPt9EHMQATOK6nDgAAAA==</name>"
+				 + SystemUtils.LINE_SEPARATOR;
+			EncapsulatedData data = new CompressedData(MediaType.PLAIN_TEXT, null, System.Text.ASCIIEncoding.ASCII.GetBytes("<xml>foo</xml>"
+				), Compression.GZIP, CompressedData.LANGUAGE_ENGLISH);
 			string result = new EdPropertyFormatter().Format(GetContext("name"), new EDImpl<EncapsulatedData>(data));
 			Assert.AreEqual(ClearPayload(expectedResult), ClearPayload(result), "element");
 			Assert.AreEqual(DecodeAndUnzip(ExtractPayload(result)), "<xml>foo</xml>", "element payload");
@@ -110,12 +109,25 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 
 		private string ClearPayload(string result)
 		{
-			return System.Text.RegularExpressions.Regex.Replace(result, ">.*<", "><");
+			return System.Text.RegularExpressions.Regex.Replace(System.Text.RegularExpressions.Regex.Replace(System.Text.RegularExpressions.Regex.Replace
+				(System.Text.RegularExpressions.Regex.Replace(result, "\n", string.Empty), "\t", string.Empty), "\r", string.Empty), ">.+?<"
+				, "><");
 		}
 
 		private string ExtractPayload(string result)
 		{
 			return System.Text.RegularExpressions.Regex.Replace(result, "(<name.*>(.*)</name>)", "$2");
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void TestReferenceForSKBug()
+		{
+			string expectedResult = "<text mediaType=\"text/html\"><reference value=\"https://pipefq.ehealthsask.ca/monograph/WPDM00002197.html\"/></text>";
+			EncapsulatedData data = new EncapsulatedData(MediaType.HTML_TEXT, "https://pipefq.ehealthsask.ca/monograph/WPDM00002197.html"
+				, null);
+			string result = new EdPropertyFormatter().Format(GetContext("text"), new EDImpl<EncapsulatedData>(data));
+			Assert.AreEqual(expectedResult, ClearPayload(result), "something in text node");
 		}
 	}
 }

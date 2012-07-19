@@ -154,6 +154,55 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			Assert.IsTrue(this.result.IsValid());
 		}
 
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void TestParseValidIiPublicForMr2007()
+		{
+			XmlNode node = CreateNode("<something root=\"1.2.3.4\" extension=\"extensionValue\" displayable=\"true\" />");
+			II ii = (II)new IiElementParser().Parse(CreateContext("II.PUBLIC"), node, this.result);
+			AssertResultAsExpected(ii.Value, "1.2.3.4", "extensionValue");
+			Assert.IsTrue(this.result.IsValid());
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void TestParseInvalidIiPublicForMr2007()
+		{
+			XmlNode node = CreateNode("<something root=\"1.2.3.4\" extension=\"extensionValue\" displayable=\"true\" use=\"BUS\" />");
+			II ii = (II)new IiElementParser().Parse(CreateContext("II.PUBLIC"), node, this.result);
+			AssertResultAsExpected(ii.Value, "1.2.3.4", "extensionValue");
+			Assert.IsFalse(this.result.IsValid());
+			Assert.AreEqual(1, this.result.GetHl7Errors().Count);
+			Assert.AreEqual(Hl7ErrorCode.DATA_TYPE_ERROR, this.result.GetHl7Errors()[0].GetHl7ErrorCode());
+			Assert.IsTrue(this.result.GetHl7Errors()[0].GetMessage().Contains("should not include"));
+			Assert.IsTrue(this.result.GetHl7Errors()[0].GetMessage().Contains("'use'"));
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void TestParseValidIiPublicForMr2009()
+		{
+			XmlNode node = CreateNode("<something root=\"1.2.3.4\" extension=\"extensionValue\" displayable=\"true\" use=\"BUS\" />");
+			ParseContext context = CreateContext("II.PUBLIC", SpecificationVersion.R02_04_03);
+			II ii = (II)new IiElementParser().Parse(context, node, this.result);
+			AssertResultAsExpected(ii.Value, "1.2.3.4", "extensionValue");
+			Assert.IsTrue(this.result.IsValid());
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void TestParseInvalidIiPublicForMr2009()
+		{
+			XmlNode node = CreateNode("<something root=\"1.2.3.4\" extension=\"extensionValue\" displayable=\"true\" />");
+			ParseContext context = CreateContext("II.PUBLIC", SpecificationVersion.R02_04_03);
+			II ii = (II)new IiElementParser().Parse(context, node, this.result);
+			AssertResultAsExpected(ii.Value, "1.2.3.4", "extensionValue");
+			Assert.IsFalse(this.result.IsValid());
+			Assert.AreEqual(1, this.result.GetHl7Errors().Count);
+			Assert.AreEqual(Hl7ErrorCode.DATA_TYPE_ERROR, this.result.GetHl7Errors()[0].GetHl7ErrorCode());
+			Assert.IsTrue(this.result.GetHl7Errors()[0].GetMessage().Contains("requires the attribute use=\"BUS\""));
+		}
+
 		private void AssertResultAsExpected(Identifier result, string rootValue, string extensionValue)
 		{
 			Assert.IsNotNull(result, "populated result returned");

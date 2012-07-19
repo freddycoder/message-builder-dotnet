@@ -89,9 +89,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 						result["displayable"] = "true";
 						if (version != null)
 						{
-							if (!SpecificationVersion.IsVersion(SpecificationVersion.V01R04_3, version) && !SpecificationVersion.IsVersion(SpecificationVersion
-								.V02R01, version) && !SpecificationVersion.IsVersion(SpecificationVersion.V02R02, version) && !SpecificationVersion.IsVersion
-								(SpecificationVersion.NEWFOUNDLAND, version))
+							if (IsMR2009(version))
 							{
 								result["use"] = "BUS";
 							}
@@ -100,6 +98,12 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 				}
 			}
 			return result;
+		}
+
+		private bool IsMR2009(VersionNumber version)
+		{
+			return SpecificationVersion.IsVersion(SpecificationVersion.R02_04_02, version) || SpecificationVersion.IsVersion(SpecificationVersion
+				.R02_04_03, version);
 		}
 
 		private bool IsSpecializationTypeAllowed(VersionNumber version, string type)

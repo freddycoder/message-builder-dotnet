@@ -761,18 +761,18 @@ namespace Ca.Infoway.Messagebuilder.Domainvalue.Transport
 			"NLPN_TE100160CA");
 
 		public static readonly Ca.Infoway.Messagebuilder.Domainvalue.Transport.HL7TriggerEventCode LOCATION_SUMMARY_QUERY = new Ca.Infoway.Messagebuilder.Domainvalue.Transport.HL7TriggerEventCode
-			("LOCATION_SUMMARY_QUERY", "PRLO_TE202010CA", SpecificationVersion.NEWFOUNDLAND.VersionLiteral);
+			("LOCATION_SUMMARY_QUERY", "PRLO_TE202010CA", "NEWFOUNDLAND");
 
 		public static readonly Ca.Infoway.Messagebuilder.Domainvalue.Transport.HL7TriggerEventCode LOCATION_SUMMARY_QUERY_RESPONSE
 			 = new Ca.Infoway.Messagebuilder.Domainvalue.Transport.HL7TriggerEventCode("LOCATION_SUMMARY_QUERY_RESPONSE", "PRLO_TE202011CA"
-			, SpecificationVersion.NEWFOUNDLAND.VersionLiteral);
+			, "NEWFOUNDLAND");
 
 		public static readonly Ca.Infoway.Messagebuilder.Domainvalue.Transport.HL7TriggerEventCode LOCATION_DETAILS_QUERY = new Ca.Infoway.Messagebuilder.Domainvalue.Transport.HL7TriggerEventCode
-			("LOCATION_DETAILS_QUERY", "PRLO_TE202012CA", SpecificationVersion.NEWFOUNDLAND.VersionLiteral);
+			("LOCATION_DETAILS_QUERY", "PRLO_TE202012CA", "NEWFOUNDLAND");
 
 		public static readonly Ca.Infoway.Messagebuilder.Domainvalue.Transport.HL7TriggerEventCode LOCATION_DETAILS_QUERY_RESPONSE
 			 = new Ca.Infoway.Messagebuilder.Domainvalue.Transport.HL7TriggerEventCode("LOCATION_DETAILS_QUERY_RESPONSE", "PRLO_TE202013CA"
-			, SpecificationVersion.NEWFOUNDLAND.VersionLiteral);
+			, "NEWFOUNDLAND");
 
 		public static readonly Ca.Infoway.Messagebuilder.Domainvalue.Transport.HL7TriggerEventCode PATIENT_CARE_COMPOSITION_SUMMARIES_QUERY
 			 = new Ca.Infoway.Messagebuilder.Domainvalue.Transport.HL7TriggerEventCode("PATIENT_CARE_COMPOSITION_SUMMARIES_QUERY", "REPC_TE041100UV"
@@ -878,6 +878,7 @@ namespace Ca.Infoway.Messagebuilder.Domainvalue.Transport
 			 version) : base(name)
 		{
 			// BCH: These seem to vary from version to version
+			// TODO - TM - NEWFOUNDLAND TEST HACK
 			this.codeValue = codeValue;
 			this.codeSystem = codeSystem;
 			this.version = version;

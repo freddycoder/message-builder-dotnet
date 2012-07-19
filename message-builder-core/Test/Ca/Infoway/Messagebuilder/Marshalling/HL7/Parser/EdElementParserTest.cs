@@ -27,7 +27,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 
 		private ParseContext CreateContext()
 		{
-			return ParserContextImpl.Create("ED", typeof(EncapsulatedData), SpecificationVersion.NEWFOUNDLAND, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
+			return ParserContextImpl.Create("ED", typeof(EncapsulatedData), SpecificationVersion.V02R02, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
 				.POPULATED);
 		}
 
@@ -145,9 +145,26 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		[Test]
 		public virtual void TestParseTextNodeWithAttributes()
 		{
-			XmlNode node = CreateNode("<something mediaType=\"text/plain\">text value</something>");
+			XmlNode node = CreateNode("<something mediaType=\"text/plain\" reference=\"https://pipefq.ehealthsask.ca/monograph/WPDM00002197.html\">text value</something>"
+				);
 			EncapsulatedData value = (EncapsulatedData)new EdElementParser().Parse(CreateEdContext(), node, null).BareValue;
 			Assert.AreEqual("text value", BytesUtil.AsString(value.Content), "proper text returned");
+			Assert.AreEqual(MediaType.PLAIN_TEXT, value.MediaType, "proper media type returned");
+			Assert.AreEqual("https://pipefq.ehealthsask.ca/monograph/WPDM00002197.html", value.Reference, "proper reference returned"
+				);
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void TestParseReferenceTypeUsingNewerReferenceFormat()
+		{
+			XmlNode node = CreateNode("<text mediaType=\"text/html\"><reference value=\"https://pipefq.ehealthsask.ca/monograph/WPDM00002197.html\"/></text>"
+				);
+			EncapsulatedData value = (EncapsulatedData)new EdElementParser().Parse(CreateEdContext(), node, null).BareValue;
+			Assert.IsNull(value.Content, "no text returned");
+			Assert.AreEqual(MediaType.HTML_TEXT, value.MediaType, "proper media type returned");
+			Assert.AreEqual("https://pipefq.ehealthsask.ca/monograph/WPDM00002197.html", value.Reference, "proper reference returned"
+				);
 		}
 	}
 }

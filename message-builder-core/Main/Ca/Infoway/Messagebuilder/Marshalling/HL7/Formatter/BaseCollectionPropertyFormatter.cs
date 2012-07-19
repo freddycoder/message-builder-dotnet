@@ -37,6 +37,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			{
 				foreach (BareANY element in EmptyIterable<object>.NullSafeIterable<BareANY>(collection))
 				{
+					// FIXME - SPECIALIZATION_TYPE - compare "element" type with subcontext datatype - if different, need to re-build a subcontext
 					builder.Append(formatter.Format(subContext, (BareANY)element, indentLevel));
 				}
 			}

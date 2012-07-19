@@ -28,8 +28,11 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 
 		public static readonly string ATTRIBUTE_MEDIA_TYPE = "mediaType";
 
-		public static readonly string ATTRIBUTE_REFERENCE = "reference";
+		public static readonly string ELEMENT_REFERENCE = "reference";
 
+		public static readonly string ATTRIBUTE_VALUE = "value";
+
+		// for newer format of "reference" usage
 		/// <exception cref="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.ModelToXmlTransformationException"></exception>
 		internal override string FormatNonNullValue(FormatContext context, EncapsulatedData data, int indentLevel)
 		{
@@ -41,6 +44,26 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			bool base64 = IsBase64(data, content);
 			AddEncapsulatedDataAttributes(data, attributes, base64);
 			buffer.Append(CreateElement(context, attributes, indentLevel, false, false));
+			WriteReference(data, buffer, indentLevel + 1);
+			WriteContent(data, buffer, content, base64);
+			buffer.Append(CreateElementClosure(context, 0, true));
+			return buffer.ToString();
+		}
+
+		// FIXME - TM - Need to restrict this formatter based on actual data type - references only allowed in ED.REF/ED.DOCREF (similar restrictions on content, but only for ED.DOC)
+		private void WriteReference(EncapsulatedData data, StringBuilder buffer, int indentLevel)
+		{
+			if (data != null && data.Reference != null)
+			{
+				IDictionary<string, string> attributes = new Dictionary<string, string>();
+				attributes[ATTRIBUTE_VALUE] = data.Reference;
+				// attributes.put("specializationType", "TEL.URI");  // is this necessary? 
+				buffer.Append("\n").Append(CreateElement(ELEMENT_REFERENCE, attributes, indentLevel, true, true));
+			}
+		}
+
+		private void WriteContent(EncapsulatedData data, StringBuilder buffer, byte[] content, bool base64)
+		{
 			if (data != null && content != null && base64)
 			{
 				buffer.Append(Base64.EncodeBase64String(content));
@@ -59,8 +82,6 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 					}
 				}
 			}
-			buffer.Append(CreateElementClosure(context, 0, true));
-			return buffer.ToString();
 		}
 
 		private void AddEncapsulatedDataAttributes(EncapsulatedData data, IDictionary<string, string> attributes, bool base64)
@@ -78,10 +99,6 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 						attributes[ATTRIBUTE_MEDIA_TYPE] = data.MediaType.CodeValue;
 					}
 				}
-			}
-			if (data != null && data.Reference != null)
-			{
-				attributes[ATTRIBUTE_REFERENCE] = data.Reference;
 			}
 			if (base64 == true)
 			{

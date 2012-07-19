@@ -5,6 +5,7 @@ using Ca.Infoway.Messagebuilder.Datatype.Impl;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
 using Ca.Infoway.Messagebuilder.J5goodies;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter;
+using ILOG.J2CsMapping.Text;
 using NUnit.Framework;
 
 namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
@@ -12,6 +13,29 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 	[TestFixture]
 	public class TsFullDateTimePropertyFormatterTest
 	{
+		private sealed class _VersionNumber_48 : VersionNumber
+		{
+			public _VersionNumber_48()
+			{
+			}
+
+			public string VersionLiteral
+			{
+				get
+				{
+					// a hack to make sure our legacy NEWFOUNDLAND tests work
+					return "NEWFOUNDLAND";
+				}
+			}
+
+			public VersionNumber GetBaseVersion()
+			{
+				return null;
+			}
+		}
+
+		private static readonly VersionNumber NEWFOUNDLAND_LEGACY_VERSION_HACK = new _VersionNumber_48();
+
 		/// <exception cref="System.Exception"></exception>
 		[Test]
 		public virtual void TestGetAttributeNameValuePairsNullValue()
@@ -34,7 +58,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 				("name", null, null), calendar1);
 			Assert.AreEqual(1, result.Count, "map size");
 			Assert.IsTrue(result.ContainsKey("value"), "key as expected");
-			Assert.AreEqual("19990423101112.0000-0400", result.SafeGet("value"), "value as expected");
+			string expectedValue = "19990423101112.0000" + GetCurrentTimeZone(calendar1);
+			Assert.AreEqual(expectedValue, result.SafeGet("value"), "value as expected");
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -83,33 +108,36 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		[Test]
 		public virtual void TestVersionDefault()
 		{
-			HandleVersion((SpecificationVersion)null, "19990423101112.0000-0400");
+			string value = "19990423101112.0000";
+			HandleVersion((SpecificationVersion)null, value, true);
 		}
 
 		/// <exception cref="System.Exception"></exception>
 		[Test]
 		public virtual void TestVersionNew()
 		{
-			HandleVersion(SpecificationVersion.R02_04_02, "19990423101112.0000-0400");
+			string value = "19990423101112.0000";
+			HandleVersion(SpecificationVersion.R02_04_02, value, true);
 		}
 
 		/// <exception cref="System.Exception"></exception>
 		[Test]
 		public virtual void TestVersionOld()
 		{
-			HandleVersion(SpecificationVersion.V01R04_3, "19990423101112");
+			HandleVersion(SpecificationVersion.V01R04_3, "19990423101112", false);
 		}
 
 		/// <exception cref="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.ModelToXmlTransformationException"></exception>
-		private void HandleVersion(SpecificationVersion version, string expected)
+		private void HandleVersion(SpecificationVersion version, string expected, bool withTimeZone)
 		{
 			// used as expected: a date object is passed in
 			PlatformDate calendar = DateUtil.GetDate(1999, 3, 23, 10, 11, 12, 0);
 			IDictionary<string, string> result = new TsFullDateTimePropertyFormatter().GetAttributeNameValuePairs(new FormatContextImpl
 				("name", null, null, false, version, null, null), calendar);
 			Assert.AreEqual(1, result.Count, "map size");
+			string expectedValue = withTimeZone ? expected + GetCurrentTimeZone(calendar) : expected;
 			Assert.IsTrue(result.ContainsKey("value"), "key as expected");
-			Assert.AreEqual(expected, result.SafeGet("value"), "value as expected");
+			Assert.AreEqual(expectedValue, result.SafeGet("value"), "value as expected");
 		}
 
 		private FormatContextImpl CreateFormatContextWithTimeZone(TimeZone timeZone)
@@ -127,6 +155,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			PlatformDate dateWithPattern = new DateWithPattern(new PlatformDate(), dateWithPatternPattern);
 			PlatformDate normalDate = new PlatformDate();
 			TsFullDateTimePropertyFormatter formatter = new TsFullDateTimePropertyFormatter();
+            Runtime.SetProperty(TsFullDateTimePropertyFormatter.DATE_FORMAT_OVERRIDE_BASE_PROPERTY_NAME + version.VersionLiteral, null);
 			Assert.AreEqual(TsFullDateTimePropertyFormatter.DATE_FORMAT_YYYYMMDDHHMMSS_SSSZZZZZ, formatter.DetermineDateFormat(normalDate
 				, version), "Should use default format if nothing else provided");
 			Assert.AreEqual(TsFullDateTimePropertyFormatter.DATE_FORMAT_YYYYMMDDHHMMSS, formatter.DetermineDateFormat(normalDate, SpecificationVersion
@@ -134,8 +163,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			Assert.AreEqual(TsFullDateTimePropertyFormatter.DATE_FORMAT_YYYYMMDDHHMMSS, formatter.DetermineDateFormat(normalDate, SpecificationVersion
 				.V01R04_2_SK), "Should use old default format if nothing else provided and version is SK CeRx");
 			Assert.AreEqual(TsFullDateTimePropertyFormatter.DATE_FORMAT_YYYYMMDDHHMMSSZZZZZ, formatter.DetermineDateFormat(normalDate
-				, SpecificationVersion.NEWFOUNDLAND), "Should use old 'bad' default format if nothing else provided and version is NFLD"
-				);
+				, NEWFOUNDLAND_LEGACY_VERSION_HACK), "Should use old 'bad' default format if nothing else provided and version is NFLD");
 			Runtime.SetProperty(TsFullDateTimePropertyFormatter.DATE_FORMAT_OVERRIDE_BASE_PROPERTY_NAME + version.VersionLiteral, overridePattern
 				);
 			Assert.AreEqual(overridePattern, formatter.DetermineDateFormat(normalDate, version), "Should use override format when provided"
@@ -148,15 +176,27 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			Assert.AreEqual(TsFullDateTimePropertyFormatter.DATE_FORMAT_YYYYMMDDHHMMSS, formatter.DetermineDateFormat(normalDate, SpecificationVersion
 				.V01R04_2_SK), "Should not use override format when provided version does not match");
 			Assert.AreEqual(TsFullDateTimePropertyFormatter.DATE_FORMAT_YYYYMMDDHHMMSSZZZZZ, formatter.DetermineDateFormat(normalDate
-				, SpecificationVersion.NEWFOUNDLAND), "Should not use override format when provided version does not match");
+				, NEWFOUNDLAND_LEGACY_VERSION_HACK), "Should not use override format when provided version does not match");
 			Assert.AreEqual(dateWithPatternPattern, formatter.DetermineDateFormat(dateWithPattern, version), "Should use date with pattern always when provided"
 				);
 			Assert.AreEqual(dateWithPatternPattern, formatter.DetermineDateFormat(dateWithPattern, SpecificationVersion.V01R04_3), "Should use date with pattern always when provided even if version is CeRx"
 				);
 			Assert.AreEqual(dateWithPatternPattern, formatter.DetermineDateFormat(dateWithPattern, SpecificationVersion.V01R04_2_SK), 
 				"Should use date with pattern always when provided even if version is SK CeRx");
-			Assert.AreEqual(dateWithPatternPattern, formatter.DetermineDateFormat(dateWithPattern, SpecificationVersion.NEWFOUNDLAND)
-				, "Should use date with pattern always when provided even if version is NFLD");
+			Assert.AreEqual(dateWithPatternPattern, formatter.DetermineDateFormat(dateWithPattern, NEWFOUNDLAND_LEGACY_VERSION_HACK), 
+				"Should use date with pattern always when provided even if version is NFLD");
+		}
+
+		private string GetCurrentTimeZone(PlatformDate calendar)
+		{
+            DateTimeOffset expectedDate1 = TimeZoneInfo.ConvertTime(calendar, TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time"));
+            String timeZoneString = expectedDate1.Offset.ToString().Split(":")[0];
+            String currentTimeZone = timeZoneString;
+            while (currentTimeZone.Length <= 4)
+            {
+                currentTimeZone += "0";
+            }
+            return currentTimeZone;
 		}
 	}
 }

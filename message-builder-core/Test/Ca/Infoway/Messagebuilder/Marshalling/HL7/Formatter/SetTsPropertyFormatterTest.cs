@@ -6,7 +6,9 @@ using Ca.Infoway.Messagebuilder.J5goodies;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter;
 using Ca.Infoway.Messagebuilder.Platform;
 using ILOG.J2CsMapping.Collections.Generics;
+using ILOG.J2CsMapping.Text;
 using NUnit.Framework;
+using System;
 
 namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 {
@@ -33,7 +35,16 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			set.RawSet().AddAll(MakeSet(calendar1, calendar2));
 			string result = new SetPropertyFormatter().Format(new FormatContextImpl("blah", "SET<TS>", Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
 				.MANDATORY), set);
-			AssertXml("non null", "<blah value=\"19990101122959.0000-0500\"/><blah value=\"20010203133000.0000-0500\"/>", result);
+            DateTimeOffset expectedDate1 = TimeZoneInfo.ConvertTime(calendar1, TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time"));
+            String timeZoneString = expectedDate1.Offset.ToString().Split(":")[0];
+            String currentTimeZone = timeZoneString;
+            while (currentTimeZone.Length <= 4)
+            {
+                currentTimeZone += "0";
+            }
+            string expectedValue1 = "19990101122959.0000" +currentTimeZone;
+            string expectedValue2 = "20010203133000.0000" +currentTimeZone;
+			AssertXml("non null", "<blah value=\"" + expectedValue1 + "\"/><blah value=\"" + expectedValue2 + "\"/>", result);
 		}
 
 		private ICollection<PlatformDate> MakeSet(params PlatformDate[] dates)

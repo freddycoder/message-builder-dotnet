@@ -107,6 +107,19 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 
 		/// <exception cref="System.Exception"></exception>
 		[Test]
+		[Ignore]
+		public virtual void TestParseCNEMustHaveNonEmptyCodeAndCodeSystem()
+		{
+			//FIXME
+			XmlNode node = CreateNode("<something code=\"\" codeSystem=\"\" />");
+			CV cv = (CV)this.parser.Parse(CreateContext("CV", typeof(MockCharacters), SpecificationVersion.V02R02, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
+				.OPTIONAL, CodingStrength.CNE), node, this.xmlResult);
+			Assert.IsFalse(this.xmlResult.IsValid(), "valid");
+			Assert.IsNull(cv.Value, "empty node returns null");
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
 		public virtual void TestParseCNENullFlavorOtherMustHaveOriginalText()
 		{
 			XmlNode node = CreateNode("<something nullFlavor=\"OTH\"></something>");

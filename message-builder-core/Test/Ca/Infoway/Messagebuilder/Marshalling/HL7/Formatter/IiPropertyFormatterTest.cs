@@ -43,6 +43,39 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 
 		/// <exception cref="System.Exception"></exception>
 		[Test]
+		public virtual void TestGetAttributeNameValuePairsAllFilledInForIiPublicInMr2007()
+		{
+			Identifier ii = new Identifier("rootString", "extensionString");
+			II iiHl7 = new IIImpl();
+			iiHl7.DataType = StandardDataType.II_PUBLIC;
+			FormatContextImpl context = new FormatContextImpl("name", "II.PUBLIC", null, true, SpecificationVersion.V02R02, null, null
+				);
+			IDictionary<string, string> result = new IiPropertyFormatter().GetAttributeNameValuePairs(context, ii, iiHl7);
+			Assert.AreEqual(3, result.Count, "map size");
+			AssertKeyValuePairInMap(result, "root", "rootString");
+			AssertKeyValuePairInMap(result, "extension", "extensionString");
+			AssertKeyValuePairInMap(result, "displayable", "true");
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void TestGetAttributeNameValuePairsAllFilledInForIiPublicInMr2009()
+		{
+			Identifier ii = new Identifier("rootString", "extensionString");
+			II iiHl7 = new IIImpl();
+			iiHl7.DataType = StandardDataType.II_PUBLIC;
+			FormatContextImpl context = new FormatContextImpl("name", "II.PUBLIC", null, true, SpecificationVersion.R02_04_03, null, 
+				null);
+			IDictionary<string, string> result = new IiPropertyFormatter().GetAttributeNameValuePairs(context, ii, iiHl7);
+			Assert.AreEqual(4, result.Count, "map size");
+			AssertKeyValuePairInMap(result, "root", "rootString");
+			AssertKeyValuePairInMap(result, "extension", "extensionString");
+			AssertKeyValuePairInMap(result, "displayable", "true");
+			AssertKeyValuePairInMap(result, "use", "BUS");
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
 		public virtual void TestGetAttributeNameValuePairsAllFilledInExcludingSpecializationTypeForCeRx()
 		{
 			Identifier ii = new Identifier("rootString", "extensionString");

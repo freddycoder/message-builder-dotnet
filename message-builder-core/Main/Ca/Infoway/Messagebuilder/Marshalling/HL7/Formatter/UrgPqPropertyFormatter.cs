@@ -109,7 +109,11 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		{
 			IDictionary<string, string> map = new Dictionary<string, string>();
 			map[VALUE] = quantity.Quantity.ToString();
-			map[UNIT] = quantity.Unit.CodeValue;
+			// TM - Redmine 11455 - need to account for units being null
+			if (quantity.Unit != null)
+			{
+				map[UNIT] = quantity.Unit.CodeValue;
+			}
 			return map;
 		}
 	}

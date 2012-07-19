@@ -5,6 +5,7 @@ using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.J5goodies;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser;
+using ILOG.J2CsMapping.Text;
 using NUnit.Framework;
 
 namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
@@ -24,7 +25,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 
 		private ParseContext CreateContext()
 		{
-			return ParserContextImpl.Create("TS.FULLDATETIME", typeof(PlatformDate), SpecificationVersion.NEWFOUNDLAND, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
+			return ParserContextImpl.Create("TS.FULLDATETIME", typeof(PlatformDate), SpecificationVersion.V02R02, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
 				.POPULATED);
 		}
 
@@ -79,7 +80,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		public virtual void TestParseValidValueAttributeWithTimeZoneMinus()
 		{
 			PlatformDate calendar = DateUtil.GetDate(2008, 2, 31, 15, 58, 57, 862);
-			XmlNode node = CreateNode("<something extra=\"extra\" value=\"20080331155857.8620-0400\" />");
+			string value = "20080331155857.8620" + GetCurrentTimeZone(calendar);
+			XmlNode node = CreateNode("<something extra=\"extra\" value=\"" + value + "\" />");
 			AssertDateEquals("correct value returned", MarshallingTestCase.FULL_DATE_TIME, calendar, (PlatformDate)new TsElementParser
 				().Parse(CreateContext(), node, this.xmlResult).BareValue);
 		}
@@ -88,7 +90,10 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		[Test]
 		public virtual void TestParseValidValueAttributeWithTimeZonePlus()
 		{
-			PlatformDate expectedCalendar = DateUtil.GetDate(2008, 2, 31, 10, 58, 57, 862);
+			//Date expectedCalendar = DateUtil.getDate(2008, 2, 31, 10, 58, 57, 862);
+            DateTime date = DateUtil.GetDate(2008, 2, 31, 10, 58, 57, 862);
+            DateTime calWithTZ = TimeZoneInfo.ConvertTime(date, TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time"));
+            PlatformDate expectedCalendar = new PlatformDate(calWithTZ);
 			XmlNode node = CreateNode("<something extra=\"extra\" value=\"20080331155857.8620+0100\" />");
 			AssertDateEquals("correct value returned", MarshallingTestCase.FULL_DATE_TIME, expectedCalendar, (PlatformDate)new TsElementParser
 				().Parse(CreateContext(), node, this.xmlResult).BareValue);
@@ -110,8 +115,20 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 
 		private ParseContext CreateContextWithTimeZone(TimeZone timeZone)
 		{
-			return ParserContextImpl.Create("TS.FULLDATETIME", typeof(PlatformDate), SpecificationVersion.NEWFOUNDLAND, null, timeZone
-				, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.POPULATED, null, null);
+			return ParserContextImpl.Create("TS.FULLDATETIME", typeof(PlatformDate), SpecificationVersion.V02R02, null, timeZone, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
+				.POPULATED, null, null);
+		}
+
+		private string GetCurrentTimeZone(PlatformDate calendar)
+		{
+            DateTimeOffset expectedDate1 = TimeZoneInfo.ConvertTime(calendar, TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time"));
+            String timeZoneString = expectedDate1.Offset.ToString().Split(":")[0];
+            String currentTimeZone = timeZoneString;
+            while (currentTimeZone.Length <= 4)
+            {
+                currentTimeZone += "0";
+            }
+            return currentTimeZone;
 		}
 	}
 }

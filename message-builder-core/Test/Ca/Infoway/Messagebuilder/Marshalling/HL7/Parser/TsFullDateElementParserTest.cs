@@ -24,7 +24,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 
 		private ParseContext CreateContext()
 		{
-			return ParserContextImpl.Create("TS.FULLDATE", typeof(PlatformDate), SpecificationVersion.NEWFOUNDLAND, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
+			return ParserContextImpl.Create("TS.FULLDATE", typeof(PlatformDate), SpecificationVersion.V02R02, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
 				.POPULATED);
 		}
 
@@ -81,7 +81,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 
 		private ParseContext CreateContextWithTimeZone(TimeZone timeZone)
 		{
-			return ParserContextImpl.Create("TS.FULLDATE", typeof(PlatformDate), SpecificationVersion.NEWFOUNDLAND, timeZone, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
+			return ParserContextImpl.Create("TS.FULLDATE", typeof(PlatformDate), SpecificationVersion.V02R02, timeZone, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
 				.POPULATED, null, null);
 		}
 	}

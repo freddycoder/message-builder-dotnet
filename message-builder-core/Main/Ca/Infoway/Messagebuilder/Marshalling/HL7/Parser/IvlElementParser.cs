@@ -77,6 +77,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 						ParseContext subContext = ParserContextImpl.Create(diffType.Type, typeof(PhysicalQuantity), context.GetVersion(), context
 							.GetDateTimeZone(), context.GetDateTimeTimeZone(), Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.POPULATED);
 						PhysicalQuantity quantity = (PhysicalQuantity)parser.Parse(subContext, Arrays.AsList((XmlNode)width), xmlToModelResult).BareValue;
+						// TODO - TM - it might be legitimate for units to sometimes be null. Fix this here?
 						if (quantity != null && quantity.Quantity != null && quantity.Unit != null)
 						{
 							result = new DateDiff(quantity);

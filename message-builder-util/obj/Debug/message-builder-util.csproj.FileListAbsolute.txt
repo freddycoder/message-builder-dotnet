@@ -1,0 +1,14 @@
+C:\workspace-Hg\message-builder-dotnet\message-builder-util\bin\Debug\message-builder-util.dll
+C:\workspace-Hg\message-builder-dotnet\message-builder-util\bin\Debug\message-builder-util.pdb
+C:\workspace-Hg\message-builder-dotnet\message-builder-util\bin\Debug\Castle.Core.dll
+C:\workspace-Hg\message-builder-dotnet\message-builder-util\bin\Debug\Castle.DynamicProxy2.dll
+C:\workspace-Hg\message-builder-dotnet\message-builder-util\bin\Debug\ILOG.J2CsMapping.dll
+C:\workspace-Hg\message-builder-dotnet\message-builder-util\bin\Debug\log4net.dll
+C:\workspace-Hg\message-builder-dotnet\message-builder-util\bin\Debug\message-builder-compatibility.dll
+C:\workspace-Hg\message-builder-dotnet\message-builder-util\bin\Debug\message-builder-compatibility.pdb
+C:\workspace-Hg\message-builder-dotnet\message-builder-util\bin\Debug\Castle.Core.xml
+C:\workspace-Hg\message-builder-dotnet\message-builder-util\bin\Debug\Castle.DynamicProxy2.xml
+C:\workspace-Hg\message-builder-dotnet\message-builder-util\bin\Debug\log4net.xml
+C:\workspace-Hg\message-builder-dotnet\message-builder-util\obj\Debug\ResolveAssemblyReference.cache
+C:\workspace-Hg\message-builder-dotnet\message-builder-util\obj\Debug\message-builder-util.dll
+C:\workspace-Hg\message-builder-dotnet\message-builder-util\obj\Debug\message-builder-util.pdb

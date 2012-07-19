@@ -1,0 +1,6 @@
+C:\workspace-Hg\message-builder-dotnet\message-builder-compatibility\bin\Debug\message-builder-compatibility.dll
+C:\workspace-Hg\message-builder-dotnet\message-builder-compatibility\bin\Debug\message-builder-compatibility.pdb
+C:\workspace-Hg\message-builder-dotnet\message-builder-compatibility\bin\Debug\ILOG.J2CsMapping.dll
+C:\workspace-Hg\message-builder-dotnet\message-builder-compatibility\obj\Debug\ResolveAssemblyReference.cache
+C:\workspace-Hg\message-builder-dotnet\message-builder-compatibility\obj\Debug\message-builder-compatibility.dll
+C:\workspace-Hg\message-builder-dotnet\message-builder-compatibility\obj\Debug\message-builder-compatibility.pdb

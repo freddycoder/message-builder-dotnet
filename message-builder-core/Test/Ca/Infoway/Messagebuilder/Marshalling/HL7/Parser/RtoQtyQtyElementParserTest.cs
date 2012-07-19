@@ -26,8 +26,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 
 		private ParseContext CreateContext()
 		{
-			return ParserContextImpl.Create("RTO<QTY,QTY>", typeof(Ratio<object, object>), SpecificationVersion.NEWFOUNDLAND, null, null
-				, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.POPULATED);
+			return ParserContextImpl.Create("RTO<QTY,QTY>", typeof(Ratio<object, object>), SpecificationVersion.V02R02, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
+				.POPULATED);
 		}
 
 		/// <exception cref="System.Exception"></exception>

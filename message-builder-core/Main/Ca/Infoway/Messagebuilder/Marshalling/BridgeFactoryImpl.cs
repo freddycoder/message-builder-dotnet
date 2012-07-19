@@ -341,8 +341,14 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 
 		private bool RequiresNewfoundlandHack(Relationship relationship)
 		{
-			return SpecificationVersion.IsVersion(SpecificationVersion.NEWFOUNDLAND, this.version) && relationship.Choice && relationship
-				.Type == null;
+			return IsNewfoundland(this.version) && relationship.Choice && relationship.Type == null;
+		}
+
+		private bool IsNewfoundland(VersionNumber version)
+		{
+			// this version is not currently supported by MB and is not in the SpecificationVersion enum
+			// TODO - TM - NEWFOUNDLAND TEST HACK
+			return version != null && StringUtils.Equals(version.VersionLiteral, "NEWFOUNDLAND");
 		}
 
 		private string[] GetTypes(object value)

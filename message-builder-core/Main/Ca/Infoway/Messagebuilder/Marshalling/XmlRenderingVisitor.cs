@@ -286,6 +286,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 						any = tealBean.GetHl7Value();
 						any = this.adapterProvider.GetAdapter(any != null ? any.GetType() : null, type).Adapt(any);
 					}
+					//				boolean isSpecializationType = (tealBean.getHl7Value().getDataType() != tealBean.getRelationship().getType());
+					// FIXME - SPECIALIZATION_TYPE - need to allow for specialization type to be set here
 					string xmlFragment = formatter.Format(FormatContextImpl.Create(relationship, version, dateTimeZone, dateTimeTimeZone), any
 						, GetIndent());
 					CurrentBuffer().GetChildBuilder().Append(xmlFragment);

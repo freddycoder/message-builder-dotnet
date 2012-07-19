@@ -105,6 +105,15 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 							{
 								ValidateRootAsOid(root, element, xmlToModelResult);
 								ValidateAttributeEquals(type, element, xmlToModelResult, "displayable", "true");
+								// Redmine 11293 - TM - must have use=BUS, but not for MR2007 (use is not permitted in this case)
+								if (IsMR2009(context.GetVersion()))
+								{
+									ValidateAttributeEquals(type, element, xmlToModelResult, "use", "BUS");
+								}
+								else
+								{
+									ValidateUnallowedAttributes(type, element, xmlToModelResult, "use");
+								}
 							}
 							else
 							{
@@ -122,6 +131,12 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			}
 			ValidateUnallowedAttributes(type, element, xmlToModelResult, "assigningAuthorityName");
 			return new Identifier(root, extension);
+		}
+
+		private bool IsMR2009(VersionNumber version)
+		{
+			return SpecificationVersion.IsVersion(SpecificationVersion.R02_04_02, version) || SpecificationVersion.IsVersion(SpecificationVersion
+				.R02_04_03, version);
 		}
 
 		private string GetType(ParseContext context, XmlElement element, XmlToModelResult xmlToModelResult)
