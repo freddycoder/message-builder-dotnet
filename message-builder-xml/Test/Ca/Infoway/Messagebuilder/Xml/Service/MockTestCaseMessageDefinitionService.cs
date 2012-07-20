@@ -21,7 +21,7 @@
 using System.Collections.Generic;
 using Ca.Infoway.Messagebuilder.Xml.Service;
 using ILOG.J2CsMapping.Collections.Generics;
-
+using System;
 namespace Ca.Infoway.Messagebuilder.Xml.Service
 {
 	public class MockTestCaseMessageDefinitionService : BaseMessageDefinitionService
@@ -51,6 +51,6 @@ namespace Ca.Infoway.Messagebuilder.Xml.Service
 				result.Add(new ResourcePair("/messageSet_mock_r02_04_02.xml", GetType().Assembly));
 				return result;
 			}
-		}
+		}      	
 	}
 }

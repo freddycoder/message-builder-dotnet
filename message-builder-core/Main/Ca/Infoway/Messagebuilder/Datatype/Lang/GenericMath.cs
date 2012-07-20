@@ -87,9 +87,20 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
             {
 				return new PhysicalQuantity(Add(q1.Quantity, q2.Quantity), q1.Unit);
 			} else {
+                //Fix for exception msg.  Null Reference Exception otherwise.  
+                String q1Unit = "";
+                String q2Unit = "";
+                if (q1.Unit != null)
+                {
+                    q1Unit = q1.Unit.CodeValue;
+                }
+                if (q2.Unit != null)
+                {
+                    q2Unit = q2.Unit.CodeValue;
+                }
 				throw new ArgumentException(
 						"Can't add two quantities of different units: "
-								+ q1.Unit.CodeValue + " and " + q2.Unit.CodeValue);
+								+ q1Unit + " and " + q2Unit);
 			}
 		}
 	

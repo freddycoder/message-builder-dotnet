@@ -40,22 +40,16 @@ namespace Ca.Infoway.Messagebuilder.Terminology.Configurator {
 	public class DefaultCodeResolutionConfigurator {
 	
 		/// <summary>
-		/// Configure c resolvers with trivial default.
+		/// Configure code resolvers with enum-based and trivial defaults.
 		/// </summary>
 		///
 		public static void ConfigureCodeResolversWithTrivialDefault() {
 	
 			Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
 					.RegisterResolver(
-							typeof(Country),
-							new EnumBasedCodeResolver(
-									typeof(Ca.Infoway.Messagebuilder.Domainvalue.Basic.Iso3166Alpha2Country)));
-			Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
-					.RegisterResolver(
 							typeof(State),
 							new EnumBasedCodeResolver(
 									typeof(Ca.Infoway.Messagebuilder.Domainvalue.Basic.State)));
-			
 			Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
 					.RegisterResolver(
 							typeof(AcknowledgementCondition),
@@ -76,6 +70,11 @@ namespace Ca.Infoway.Messagebuilder.Terminology.Configurator {
 							typeof(AcknowledgementType),
 							new EnumBasedCodeResolver(
 									typeof(Ca.Infoway.Messagebuilder.Domainvalue.Transport.AcknowledgementType)));
+            Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
+                    .RegisterResolver(
+                            typeof(ActClass),
+                            new EnumBasedCodeResolver(
+                                    typeof(Ca.Infoway.Messagebuilder.Domainvalue.Controlact.ActClass)));
 			Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
 					.RegisterResolver(
 							typeof(ActReason),
@@ -138,6 +137,16 @@ namespace Ca.Infoway.Messagebuilder.Terminology.Configurator {
 							typeof(ActStatus),
 							new EnumBasedCodeResolver(
 									typeof(Ca.Infoway.Messagebuilder.Domainvalue.Controlact.ActStatus)));
+            Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
+                    .RegisterResolver(
+                            typeof(ActSubstanceAdministrationImmunizationCode),
+                            new EnumBasedCodeResolver(
+                                    typeof(Ca.Infoway.Messagebuilder.Domainvalue.Controlact.ActSubstanceAdministrationImmunizationCode)));
+            Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
+                    .RegisterResolver(
+                            typeof(ActSubstanceAdministrationImmunizationType),
+                            new EnumBasedCodeResolver(
+                                    typeof(Ca.Infoway.Messagebuilder.Domainvalue.Controlact.ActSubstanceAdministrationImmunizationType)));
 			Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
 					.RegisterResolver(
 							typeof(ActDetectedIssueCode),
@@ -148,6 +157,11 @@ namespace Ca.Infoway.Messagebuilder.Terminology.Configurator {
 							typeof(ActIssuePriority),
 							new EnumBasedCodeResolver(
 									typeof(Ca.Infoway.Messagebuilder.Domainvalue.Controlact.ActIssuePriority)));
+            Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
+                    .RegisterResolver(
+                            typeof(ActMood),
+                            new EnumBasedCodeResolver(
+                                    typeof(Ca.Infoway.Messagebuilder.Domainvalue.Controlact.ActMood)));
 			Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
 					.RegisterResolver(
 							typeof(ActConsentInformationAccessReason),
@@ -164,6 +178,11 @@ namespace Ca.Infoway.Messagebuilder.Terminology.Configurator {
 							typeof(ActRelationshipSubset),
 							new EnumBasedCodeResolver(
 									typeof(Ca.Infoway.Messagebuilder.Domainvalue.Payload.ActRelationshipSubset)));
+            Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
+                    .RegisterResolver(
+                            typeof(ActSpecimenTransportationCode),
+                            new EnumBasedCodeResolver(
+                                    typeof(Ca.Infoway.Messagebuilder.Domainvalue.Controlact.ActSpecimenTransportationCode)));
 			Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
 					.RegisterResolver(
 							typeof(AdministrativeGender),
@@ -174,6 +193,11 @@ namespace Ca.Infoway.Messagebuilder.Terminology.Configurator {
 							typeof(Confidentiality),
 							new EnumBasedCodeResolver(
 									typeof(Ca.Infoway.Messagebuilder.Domainvalue.Payload.Confidentiality)));
+            Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
+                    .RegisterResolver(
+                            typeof(Country),
+                            new EnumBasedCodeResolver(
+                                    typeof(Ca.Infoway.Messagebuilder.Domainvalue.Basic.Iso3166Alpha2Country)));
 			Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
 					.RegisterResolver(
 							typeof(IssueFilterCode),
@@ -184,6 +208,11 @@ namespace Ca.Infoway.Messagebuilder.Terminology.Configurator {
 							typeof(ObservationQueryMatchType),
 							new EnumBasedCodeResolver(
 									typeof(Ca.Infoway.Messagebuilder.Domainvalue.Payload.ProbabilityMatchCode)));
+            Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
+                    .RegisterResolver(
+                            typeof(ParticipationMode),
+                            new EnumBasedCodeResolver(
+                                    typeof(Ca.Infoway.Messagebuilder.Domainvalue.Controlact.ParticipationMode)));
 			Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
 					.RegisterResolver(
 							typeof(QueryRequestLimit),
@@ -199,6 +228,11 @@ namespace Ca.Infoway.Messagebuilder.Terminology.Configurator {
 							typeof(RoleClass),
 							new EnumBasedCodeResolver(
 									typeof(Ca.Infoway.Messagebuilder.Domainvalue.Payload.RoleClass)));
+            Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
+                    .RegisterResolver(
+                            typeof(RoleCode),
+                            new EnumBasedCodeResolver(
+                                    typeof(Ca.Infoway.Messagebuilder.Domainvalue.Controlact.RoleCode)));
 			Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
 					.RegisterResolver(
 							typeof(RoleStatus),

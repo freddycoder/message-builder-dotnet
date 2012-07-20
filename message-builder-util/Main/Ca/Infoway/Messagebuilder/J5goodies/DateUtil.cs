@@ -70,6 +70,14 @@ namespace Ca.Infoway.Messagebuilder.J5goodies {
 //~			return new GregorianCalendar(year, zeroBasedMonth, day).GetTime();			
             return new PlatformDate(new DateTime(year, 1 + zeroBasedMonth, day, hour, minute, second, subsecond));
 		}
+
+        public static PlatformDate GetDate(int year, int zeroBasedMonth, int day, int hour, int minute, int second, int subsecond, TimeZoneInfo timeZone)
+        {
+            DateTime originalDate = new DateTime(year, 1 + zeroBasedMonth, day, hour, minute, second, subsecond);
+            DateTime convertedDate = TimeZoneInfo.ConvertTime(originalDate, timeZone);
+
+            return new PlatformDate(convertedDate);
+        }
 	
 		public static PlatformDate GetEndOf(PlatformDate date) {
 			PlatformDate result = null;

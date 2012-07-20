@@ -39,336 +39,464 @@ namespace Ca.Infoway.Messagebuilder.Xml.Service {
 	/// A base class for the message defintion service.
 	/// </summary>
 	///
-	public abstract class BaseMessageDefinitionService : 
-			MessageDefinitionService {
-	
-		private IList<MessageSet> messageSets;
-	
-		/// <summary>
-		/// Get an interaction by name and version.
-		/// </summary>
-		///
-		/// <param name="version">- the version</param>
-		/// <param name="type">- the type name</param>
-		/// <returns>the interaction</returns>
-		public virtual Interaction GetInteraction(VersionNumber version, String type) {
-			return GetInteraction(version == null ? null : version.VersionLiteral, type);
-		}
+    public abstract class BaseMessageDefinitionService :
+            MessageDefinitionService
+    {
 
-		/// <summary>
-		/// Get an interaction by name and version.
-		/// </summary>
-		///
-		/// <param name="version">- the version</param>
-		/// <param name="type">- the type name</param>
-		/// <returns>the interaction</returns>
-		private Interaction GetInteraction(String version, String type) {
-			Interaction result = null;
-			/* foreach */
-			foreach (MessageSet messageSet  in  MessageSets) {
-				if (messageSet.Version.Equals(version)) {
-					result = ((Ca.Infoway.Messagebuilder.Xml.Interaction)ILOG.J2CsMapping.Collections.Generics.Collections.Get(messageSet.Interactions,type));
-					if (result != null) {
-						break;
-					}
-				}
-			}
-			return result;
-		}
-	
-		/// <summary>
-		/// Get the list of message sets.
-		/// </summary>
-		///
-		/// <returns>- the message sets</returns>
-		protected internal IList<MessageSet> MessageSets {
-		/// <summary>
-		/// Get the list of message sets.
-		/// </summary>
-		///
-		/// <returns>- the message sets</returns>
-		  get {
-				if (!Initialized()) {
-					Initialize();
-				}
-				return this.messageSets;
-			}
-		}
-		
-	
-		private bool Initialized() {
-			return this.messageSets != null;
-		}
-	
-		[MethodImpl(MethodImplOptions.Synchronized)]
-		private void Initialize() {
-			if (!Initialized()) 
-			{
-				MessageSetMarshaller marshaller = new MessageSetMarshaller();
-	
-				IList<MessageSet> list = new List<MessageSet>();
-				/* foreach */
-				foreach (var resourcePair  in  Names) {
-	                Stream input = ResourceLoader.GetResource(resourcePair.Assembly, resourcePair.Name);
-					try {
-						ILOG.J2CsMapping.Collections.Generics.Collections.Add(list,marshaller.Unmarshall(input));
-					} catch (Exception e) {
-	                    throw new Exception("Could not read " + resourcePair.Name, e);
-					} finally {
-						IOUtils.CloseQuietly(input);
-					}
-				}
-				this.messageSets = ILOG.J2CsMapping.Collections.Generics.Collections.UnmodifiableList(list);				
-			}
-		}
-	
-		/// <summary>
-		/// Get the names.
-		/// </summary>
-		///
-		/// <returns>- the names</returns>
+        private IList<MessageSet> messageSets;
+
+        /// <summary>
+        /// Get an interaction by name and version.
+        /// </summary>
+        ///
+        /// <param name="version">- the version</param>
+        /// <param name="type">- the type name</param>
+        /// <returns>the interaction</returns>
+        public virtual Interaction GetInteraction(VersionNumber version, String type)
+        {
+            return GetInteraction(version == null ? null : version.VersionLiteral, type);
+        }
+
+        /// <summary>
+        /// Get an interaction by name and version.
+        /// </summary>
+        ///
+        /// <param name="version">- the version</param>
+        /// <param name="type">- the type name</param>
+        /// <returns>the interaction</returns>
+        private Interaction GetInteraction(String version, String type)
+        {
+            Interaction result = null;
+            /* foreach */
+            foreach (MessageSet messageSet in MessageSets)
+            {
+                if (messageSet.Version.Equals(version))
+                {
+                    result = ((Ca.Infoway.Messagebuilder.Xml.Interaction)ILOG.J2CsMapping.Collections.Generics.Collections.Get(messageSet.Interactions, type));
+                    if (result != null)
+                    {
+                        break;
+                    }
+                }
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// Get the list of message sets.
+        /// </summary>
+        ///
+        /// <returns>- the message sets</returns>
+        protected internal IList<MessageSet> MessageSets
+        {
+            /// <summary>
+            /// Get the list of message sets.
+            /// </summary>
+            ///
+            /// <returns>- the message sets</returns>
+            get
+            {
+                if (!Initialized())
+                {
+                    Initialize();
+                }
+                return this.messageSets;
+            }
+        }
+
+
+        private bool Initialized()
+        {
+            return this.messageSets != null;
+        }
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        private void Initialize()
+        {
+            if (!Initialized())
+            {
+                MessageSetMarshaller marshaller = new MessageSetMarshaller();
+
+                IList<MessageSet> list = new List<MessageSet>();
+                /* foreach */
+                foreach (var resourcePair in Names)
+                {
+                    Stream input = ResourceLoader.GetResource(resourcePair.Assembly, resourcePair.Name);
+                    try
+                    {
+                        ILOG.J2CsMapping.Collections.Generics.Collections.Add(list, marshaller.Unmarshall(input));
+                    }
+                    catch (Exception e)
+                    {
+                        throw new Exception("Could not read " + resourcePair.Name, e);
+                    }
+                    finally
+                    {
+                        IOUtils.CloseQuietly(input);
+                    }
+                }
+                this.messageSets = ILOG.J2CsMapping.Collections.Generics.Collections.UnmodifiableList(list);
+            }
+        }
+
+        /// <summary>
+        /// Get the names.
+        /// </summary>
+        ///
+        /// <returns>- the names</returns>
         protected abstract IList<ResourcePair> Names
         {
-		/// <summary>
-		/// Get the names.
-		/// </summary>
-		///
-		/// <returns>- the names</returns>
-		  get;
-		}
-		
-	
-		/// <summary>
-		/// Get a message part by name and version.
-		/// </summary>
-		///
-		/// <param name="version">- the version</param>
-		/// <param name="type">- the type name</param>
-		/// <returns>the message part</returns>
-		public virtual MessagePart GetMessagePart(VersionNumber version, String type) {
-			return GetMessagePart(version == null ? null : version.VersionLiteral, type);
-		}
-	
-		/// <summary>
-		/// Get a message part by name and version.
-		/// </summary>
-		///
-		/// <param name="version">- the version</param>
-		/// <param name="type">- the type name</param>
-		/// <returns>the message part</returns>
-		private MessagePart GetMessagePart(String version, String type) {
-			MessagePart result = null;
-			/* foreach */
-			foreach (MessageSet messageSet  in  MessageSets) {
-				if (messageSet.Version.Equals(version)) {
-					result = messageSet.GetMessagePart(type);
-					if (result != null) {
-						break;
-					}
-				}
-			}
-			return result;
-		}
+            /// <summary>
+            /// Get the names.
+            /// </summary>
+            ///
+            /// <returns>- the names</returns>
+            get;
+        }
 
-		/// <summary>
-		/// Get all interactions across all versions.
-		/// </summary>
-		///
-		/// <param name="includeDuplicateInteractionsWithChangedBusinessNames">- a flag indicating whether or not to include duplicates</param>
-		/// <returns>the interactions</returns>
-		public virtual IList<Interaction> GetAllInteractions(
-				bool includeDuplicateInteractionsWithChangedBusinessNames) {
-			SortedList<String, Interaction> map = new SortedList<String, Interaction>();
-			/* foreach */
-			foreach (MessageSet messageSet  in  MessageSets) {
-				if (includeDuplicateInteractionsWithChangedBusinessNames) {
-					ICollection<Interaction> interactions = messageSet.Interactions.Values;
-					/* foreach */
-					foreach (Interaction interaction  in  interactions) {
-						String key = interaction.Name
-								+ interaction.BusinessName;
-						ILOG.J2CsMapping.Collections.Generics.Collections.Put(map,(System.String)(key),(Ca.Infoway.Messagebuilder.Xml.Interaction)(interaction));
-					}
-				} else {
-					ILOG.J2CsMapping.Collections.Generics.Collections.PutAll(map,messageSet.Interactions);
-				}
-			}
-			return new List<Interaction>(map.Values);
-		}
-	
-		/// <summary>
-		/// Get all interactions for a particular version of the specification.
-		/// </summary>
-		///
-		/// <param name="version">- the version</param>
-		/// <returns>the interactions</returns>
-		public virtual IList<Interaction> GetAllInteractions(VersionNumber version) {
-			return GetAllInteractions(version == null ? null : version.VersionLiteral);
-		}
-	
-		/// <summary>
-		/// Get all interactions for a particular version of the specification.
-		/// </summary>
-		///
-		/// <param name="version">- the version</param>
-		/// <returns>the interactions</returns>
-		private IList<Interaction> GetAllInteractions(String version) {
-			SortedList<String, Interaction> map = new SortedList<String, Interaction>();
-			/* foreach */
-			foreach (MessageSet messageSet  in  MessageSets) {
-				if (messageSet.Version.Equals(version)) {
-					ILOG.J2CsMapping.Collections.Generics.Collections.PutAll(map,messageSet.Interactions);
-				}
-			}
-			return new List<Interaction>(map.Values);
-		}
-	
-		/// <summary>
-		/// Get the supported versions.
-		/// </summary>
-		///
-		/// <returns>- the supported versions</returns>
-		public virtual ICollection<String> SupportedVersions {
-		/// <summary>
-		/// Get the supported versions.
-		/// </summary>
-		///
-		/// <returns>- the supported versions</returns>
-		  get {
+
+        /// <summary>
+        /// Get a message part by name and version.
+        /// </summary>
+        ///
+        /// <param name="version">- the version</param>
+        /// <param name="type">- the type name</param>
+        /// <returns>the message part</returns>
+        public virtual MessagePart GetMessagePart(VersionNumber version, String type)
+        {
+            return GetMessagePart(version == null ? null : version.VersionLiteral, type);
+        }
+
+        /// <summary>
+        /// Get a message part by name and version.
+        /// </summary>
+        ///
+        /// <param name="version">- the version</param>
+        /// <param name="type">- the type name</param>
+        /// <returns>the message part</returns>
+        private MessagePart GetMessagePart(String version, String type)
+        {
+            MessagePart result = null;
+            /* foreach */
+            foreach (MessageSet messageSet in MessageSets)
+            {
+                if (messageSet.Version.Equals(version))
+                {
+                    result = messageSet.GetMessagePart(type);
+                    if (result != null)
+                    {
+                        break;
+                    }
+                }
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// Get all interactions across all versions.
+        /// </summary>
+        ///
+        /// <param name="includeDuplicateInteractionsWithChangedBusinessNames">- a flag indicating whether or not to include duplicates</param>
+        /// <returns>the interactions</returns>
+        public virtual IList<Interaction> GetAllInteractions(
+                bool includeDuplicateInteractionsWithChangedBusinessNames)
+        {
+            SortedList<String, Interaction> map = new SortedList<String, Interaction>();
+            /* foreach */
+            foreach (MessageSet messageSet in MessageSets)
+            {
+                if (includeDuplicateInteractionsWithChangedBusinessNames)
+                {
+                    ICollection<Interaction> interactions = messageSet.Interactions.Values;
+                    /* foreach */
+                    foreach (Interaction interaction in interactions)
+                    {
+                        String key = interaction.Name
+                                + interaction.BusinessName;
+                        ILOG.J2CsMapping.Collections.Generics.Collections.Put(map, (System.String)(key), (Ca.Infoway.Messagebuilder.Xml.Interaction)(interaction));
+                    }
+                }
+                else
+                {
+                    ILOG.J2CsMapping.Collections.Generics.Collections.PutAll(map, messageSet.Interactions);
+                }
+            }
+            return new List<Interaction>(map.Values);
+        }
+
+        /// <summary>
+        /// Get all interactions for a particular version of the specification.
+        /// </summary>
+        ///
+        /// <param name="version">- the version</param>
+        /// <returns>the interactions</returns>
+        public virtual IList<Interaction> GetAllInteractions(VersionNumber version)
+        {
+            return GetAllInteractions(version == null ? null : version.VersionLiteral);
+        }
+
+        /// <summary>
+        /// Get all interactions for a particular version of the specification.
+        /// </summary>
+        ///
+        /// <param name="version">- the version</param>
+        /// <returns>the interactions</returns>
+        private IList<Interaction> GetAllInteractions(String version)
+        {
+            SortedList<String, Interaction> map = new SortedList<String, Interaction>();
+            /* foreach */
+            foreach (MessageSet messageSet in MessageSets)
+            {
+                if (messageSet.Version.Equals(version))
+                {
+                    ILOG.J2CsMapping.Collections.Generics.Collections.PutAll(map, messageSet.Interactions);
+                }
+            }
+            return new List<Interaction>(map.Values);
+        }
+
+        /// <summary>
+        /// Get the supported versions.
+        /// </summary>
+        ///
+        /// <returns>- the supported versions</returns>
+        public virtual ICollection<String> SupportedVersions
+        {
+            /// <summary>
+            /// Get the supported versions.
+            /// </summary>
+            ///
+            /// <returns>- the supported versions</returns>
+            get
+            {
                 ILOG.J2CsMapping.Collections.Generics.ISet<String> versions = new ILOG.J2CsMapping.Collections.Generics.SortedSet<System.String>();
-				/* foreach */
-				foreach (MessageSet messageSet  in  MessageSets) {
-					String version = messageSet.Version;
-					ILOG.J2CsMapping.Collections.Generics.Collections.Add(versions,version);
-				}
-				return versions;
-			}
-		}
-		
-	
-		/// <summary>
-		/// Get all the versions known by this service.
-		/// </summary>
-		///
-		/// <param name="type">- the interaction type name</param>
-		/// <returns>the versions</returns>
-		public virtual ICollection<String> GetSupportedVersionsForInteraction(String type) {
+                /* foreach */
+                foreach (MessageSet messageSet in MessageSets)
+                {
+                    String version = messageSet.Version;
+                    ILOG.J2CsMapping.Collections.Generics.Collections.Add(versions, version);
+                }
+                return versions;
+            }
+        }
+
+
+        /// <summary>
+        /// Get all the versions known by this service.
+        /// </summary>
+        ///
+        /// <param name="type">- the interaction type name</param>
+        /// <returns>the versions</returns>
+        public virtual ICollection<String> GetSupportedVersionsForInteraction(String type)
+        {
             ILOG.J2CsMapping.Collections.Generics.ISet<String> versions = new ILOG.J2CsMapping.Collections.Generics.SortedSet<System.String>();
-			ICollection<String> allSupportedVersions = SupportedVersions;
-			/* foreach */
-			foreach (String version  in  allSupportedVersions) {
-				if (GetInteraction(version, type) != null) {
-					ILOG.J2CsMapping.Collections.Generics.Collections.Add(versions,version);
-				}
-			}
-			return versions;
-		}
-	
-		/// <summary>
-		/// Get all the message parts for a particular interaction and version.
-		/// </summary>
-		///
-		/// <param name="interaction">- the interaction</param>
-		/// <param name="version">- the version</param>
-		/// <returns>- the message parts</returns>
-		public virtual IDictionary<String, MessagePart> GetAllMessageParts(Interaction interaction,
-				VersionNumber version) {
-			IDictionary<String, MessagePart> allParts = new SortedList<String, MessagePart>();
-			if (interaction != null) {
-				AddMessagePartsFromSupertype(allParts, interaction.SuperTypeName, version);
-				AddMessagePartsFromArguments(allParts, interaction.Arguments,
-						version);
-			}
-			return allParts;
-		}
-	
-		private void AddMessagePartsFromSupertype(
-				IDictionary<String, MessagePart> allParts, String superTypeName,
-				VersionNumber version) {
-			MessagePart messagePart = this.GetMessagePart(version, superTypeName);
-			if (!allParts.ContainsKey(superTypeName)) {
-				ILOG.J2CsMapping.Collections.Generics.Collections.Put(allParts,(System.String)(superTypeName),(Ca.Infoway.Messagebuilder.Xml.MessagePart)(messagePart));
-				if (messagePart.Abstract
-						&& !(messagePart.SpecializationChilds.Count==0)) {
-					AddMessagePartsFromSpecializationChilds(allParts, messagePart.SpecializationChilds, version);
-				}
-				AddMessagePartsFromRelationships(allParts, messagePart.Relationships, version);
-			}
-		}
-	
-		private void AddMessagePartsFromArguments(
-				IDictionary<String, MessagePart> allParts, IList<Argument> arguments,
-				VersionNumber version) {
-			if (arguments != null) {
-				/* foreach */
-				foreach (Argument argument  in  arguments) {
-					MessagePart messagePart = this.GetMessagePart(version, argument.Name);
-					if (!allParts.ContainsKey(messagePart.Name)) {
-						ILOG.J2CsMapping.Collections.Generics.Collections.Put(allParts,(System.String)(messagePart.Name),(Ca.Infoway.Messagebuilder.Xml.MessagePart)(messagePart));
-	
-						if (messagePart.Abstract
-								&& !(messagePart.SpecializationChilds.Count==0)) {
-							AddMessagePartsFromSpecializationChilds(allParts,
-									messagePart.SpecializationChilds, version);
-						}
-						AddMessagePartsFromRelationships(allParts, messagePart.Relationships, version);
-						AddMessagePartsFromArguments(allParts, argument.Arguments, version);
-					}
-				}
-			}
-		}
-	
-		private void AddMessagePartsFromRelationships(
-				IDictionary<String, MessagePart> allParts,
-				IList<Relationship> relationships, VersionNumber version) {
-			/* foreach */
-			foreach (Relationship relationship  in  relationships) {
-				String type = relationship.Type;
-				if (type != null) {
-					MessagePart messagePart = this.GetMessagePart(version, type);
-					if (messagePart != null) {
-						if (!allParts.ContainsKey(messagePart.Name)) {
-							ILOG.J2CsMapping.Collections.Generics.Collections.Put(allParts,(System.String)(messagePart.Name),(Ca.Infoway.Messagebuilder.Xml.MessagePart)(messagePart));
-							if (messagePart.Abstract
-									&& !(messagePart.SpecializationChilds.Count==0)) {
-								AddMessagePartsFromSpecializationChilds(allParts,
-										messagePart.SpecializationChilds,
-										version);
-							}
-							AddMessagePartsFromRelationships(allParts, messagePart.Relationships, version);
-						}
-					}
-				}
-				if (relationship.Choice) {
-					AddMessagePartsFromRelationships(allParts, relationship.Choices, version);
-				}
-			}
-		}
-	
-		private void AddMessagePartsFromSpecializationChilds(
-				IDictionary<String, MessagePart> allParts,
-				IList<String> specializationChilds, VersionNumber version) {
-	
-			/* foreach */
-			foreach (String specializationChildName  in  specializationChilds) {
-				if (specializationChildName != null) {
-					MessagePart messagePart = this.GetMessagePart(version,
-							specializationChildName);
-					if (messagePart != null && messagePart.Name != null) {
-						if (!allParts.ContainsKey(messagePart.Name)) {
-							ILOG.J2CsMapping.Collections.Generics.Collections.Put(allParts,(System.String)(messagePart.Name),(Ca.Infoway.Messagebuilder.Xml.MessagePart)(messagePart));
-							if (messagePart.Abstract
-									&& !(messagePart.SpecializationChilds.Count==0)) {
-								AddMessagePartsFromSpecializationChilds(allParts,
-										messagePart.SpecializationChilds,
-										version);
-							}
-							AddMessagePartsFromRelationships(allParts, messagePart.Relationships, version);
-						}
-					}
-				}
-			}
-		}
-	
-	}
+            ICollection<String> allSupportedVersions = SupportedVersions;
+            /* foreach */
+            foreach (String version in allSupportedVersions)
+            {
+                if (GetInteraction(version, type) != null)
+                {
+                    ILOG.J2CsMapping.Collections.Generics.Collections.Add(versions, version);
+                }
+            }
+            return versions;
+        }
+
+        /// <summary>
+        /// Get all the message parts for a particular interaction and version.
+        /// </summary>
+        ///
+        /// <param name="interaction">- the interaction</param>
+        /// <param name="version">- the version</param>
+        /// <returns>- the message parts</returns>
+        public virtual IDictionary<String, MessagePart> GetAllMessageParts(Interaction interaction,
+                VersionNumber version)
+        {
+            IDictionary<String, MessagePart> allParts = new SortedList<String, MessagePart>();
+            if (interaction != null)
+            {
+                AddMessagePartsFromSupertype(allParts, interaction.SuperTypeName, version);
+                AddMessagePartsFromArguments(allParts, interaction.Arguments,
+                        version);
+            }
+            return allParts;
+        }
+
+        private void AddMessagePartsFromSupertype(
+                IDictionary<String, MessagePart> allParts, String superTypeName,
+                VersionNumber version)
+        {
+            MessagePart messagePart = this.GetMessagePart(version, superTypeName);
+            if (!allParts.ContainsKey(superTypeName))
+            {
+                ILOG.J2CsMapping.Collections.Generics.Collections.Put(allParts, (System.String)(superTypeName), (Ca.Infoway.Messagebuilder.Xml.MessagePart)(messagePart));
+                if (messagePart.Abstract
+                        && !(messagePart.SpecializationChilds.Count == 0))
+                {
+                    AddMessagePartsFromSpecializationChilds(allParts, messagePart.SpecializationChilds, version);
+                }
+                AddMessagePartsFromRelationships(allParts, messagePart.Relationships, version);
+            }
+        }
+
+        private void AddMessagePartsFromArguments(
+                IDictionary<String, MessagePart> allParts, IList<Argument> arguments,
+                VersionNumber version)
+        {
+            if (arguments != null)
+            {
+                /* foreach */
+                foreach (Argument argument in arguments)
+                {
+                    MessagePart messagePart = this.GetMessagePart(version, argument.Name);
+                    if (!allParts.ContainsKey(messagePart.Name))
+                    {
+                        ILOG.J2CsMapping.Collections.Generics.Collections.Put(allParts, (System.String)(messagePart.Name), (Ca.Infoway.Messagebuilder.Xml.MessagePart)(messagePart));
+
+                        if (messagePart.Abstract
+                                && !(messagePart.SpecializationChilds.Count == 0))
+                        {
+                            AddMessagePartsFromSpecializationChilds(allParts,
+                                    messagePart.SpecializationChilds, version);
+                        }
+                        AddMessagePartsFromRelationships(allParts, messagePart.Relationships, version);
+                        AddMessagePartsFromArguments(allParts, argument.Arguments, version);
+                    }
+                }
+            }
+        }
+
+        private void AddMessagePartsFromRelationships(
+                IDictionary<String, MessagePart> allParts,
+                IList<Relationship> relationships, VersionNumber version)
+        {
+            /* foreach */
+            foreach (Relationship relationship in relationships)
+            {
+                String type = relationship.Type;
+                if (type != null)
+                {
+                    MessagePart messagePart = this.GetMessagePart(version, type);
+                    if (messagePart != null)
+                    {
+                        if (!allParts.ContainsKey(messagePart.Name))
+                        {
+                            ILOG.J2CsMapping.Collections.Generics.Collections.Put(allParts, (System.String)(messagePart.Name), (Ca.Infoway.Messagebuilder.Xml.MessagePart)(messagePart));
+                            if (messagePart.Abstract
+                                    && !(messagePart.SpecializationChilds.Count == 0))
+                            {
+                                AddMessagePartsFromSpecializationChilds(allParts,
+                                        messagePart.SpecializationChilds,
+                                        version);
+                            }
+                            AddMessagePartsFromRelationships(allParts, messagePart.Relationships, version);
+                        }
+                    }
+                }
+                if (relationship.Choice)
+                {
+                    AddMessagePartsFromRelationships(allParts, relationship.Choices, version);
+                }
+            }
+        }
+
+        private void AddMessagePartsFromSpecializationChilds(
+                IDictionary<String, MessagePart> allParts,
+                IList<String> specializationChilds, VersionNumber version)
+        {
+
+            /* foreach */
+            foreach (String specializationChildName in specializationChilds)
+            {
+                if (specializationChildName != null)
+                {
+                    MessagePart messagePart = this.GetMessagePart(version,
+                            specializationChildName);
+                    if (messagePart != null && messagePart.Name != null)
+                    {
+                        if (!allParts.ContainsKey(messagePart.Name))
+                        {
+                            ILOG.J2CsMapping.Collections.Generics.Collections.Put(allParts, (System.String)(messagePart.Name), (Ca.Infoway.Messagebuilder.Xml.MessagePart)(messagePart));
+                            if (messagePart.Abstract
+                                    && !(messagePart.SpecializationChilds.Count == 0))
+                            {
+                                AddMessagePartsFromSpecializationChilds(allParts,
+                                        messagePart.SpecializationChilds,
+                                        version);
+                            }
+                            AddMessagePartsFromRelationships(allParts, messagePart.Relationships, version);
+                        }
+                    }
+                }
+            }
+        }
+
+        public List<MessagePart> getAllRootMessageParts(VersionNumber version)
+        {
+            String versionLiteral = version.VersionLiteral;
+            List<MessagePart> allRootParts = new List<MessagePart>();
+            foreach (MessageSet messageSet in getMessageSets())
+            {
+                if (versionLiteral.Equals(messageSet.Version))
+                {
+                    foreach (PackageLocation packageLocation in messageSet.PackageLocations.Values)
+                    {
+                        foreach (MessagePart messagePart in packageLocation.MessageParts.Values)
+                        {
+                            if (packageLocation.RootType.Equals(messagePart.Name))
+                            {
+                                allRootParts.Add(messagePart);
+                            }
+                        }
+                    }
+                }
+            }
+            return allRootParts;
+        }
+
+        /**
+         * <p>Get the list of message sets.
+         * @return - the message sets
+         */
+        protected IList<MessageSet> getMessageSets()
+        {
+            if (!initialized())
+            {
+                initialize();
+            }
+            return messageSets;
+        }
+
+        private bool initialized()
+        {
+            return this.messageSets != null;
+        }
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        private void initialize()
+        {
+            if (!initialized())
+            {
+                List<MessageSet> list = new List<MessageSet>();
+                MessageSetMarshaller marshaller = new MessageSetMarshaller();
+                foreach (ResourcePair name in Names)
+                {
+                    Stream input = ResourceLoader.GetResource(GetType(), name.Name);
+                    try
+                    {
+                        list.Add(marshaller.Unmarshall(input));
+                    }
+                    catch (Exception e)
+                    {
+                        throw new SystemException("Could not read " + name, e);
+                    }
+                    finally
+                    {
+                        IOUtils.CloseQuietly(input);
+                    }
+                }
+                messageSets = Collections.UnmodifiableList(list);
+            }
+        }
+    }
 }

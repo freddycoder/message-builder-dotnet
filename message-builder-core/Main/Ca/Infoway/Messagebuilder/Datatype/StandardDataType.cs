@@ -125,6 +125,8 @@ namespace Ca.Infoway.Messagebuilder.Datatype {
 				"ED_DOC", "ED.DOC", "EncapsulatedDocumentType");
 		public static readonly StandardDataType ED_DOC_OR_REF = new StandardDataType(
 				"ED_DOC_OR_REF", "ED.DOCORREF", "EncapsulatedDocumentOrReference");
+        public static readonly StandardDataType ED_REF = new StandardDataType(
+                "ED_REF", "ED.REF", "EncapsulatedReferenceType");   //CeRx only
 		public static readonly StandardDataType ED_DOC_REF = new StandardDataType(
 				"ED_DOC_REF", "ED.DOCREF", "EncapsulatedReferenceType");
 		public static readonly StandardDataType ED_SIGNATURE = new StandardDataType(

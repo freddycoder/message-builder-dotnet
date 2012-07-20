@@ -811,6 +811,7 @@
     <Compile Include="Test\Ca\Infoway\Messagebuilder\Datatype\Hl7TypeParserTest.cs" />
     <Compile Include="Test\Ca\Infoway\Messagebuilder\Datatype\Impl\LISTImplTest.cs" />
     <Compile Include="Test\Ca\Infoway\Messagebuilder\Datatype\Impl\SETImplTest.cs" />
+    <Compile Include="Test\Ca\Infoway\Messagebuilder\Datatype\Lang\GenericMathTest.cs" />
     <Compile Include="Test\Ca\Infoway\Messagebuilder\Datatype\StandardDataTypeTest.cs" />
     <Compile Include="Test\Ca\Infoway\Messagebuilder\DevTools\HL7MessageBean.cs" />
     <Compile Include="Test\Ca\Infoway\Messagebuilder\DevTools\HL7Message_1Bean.cs" />
