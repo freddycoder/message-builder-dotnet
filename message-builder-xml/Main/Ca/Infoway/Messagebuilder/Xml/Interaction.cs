@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Xml;
@@ -19,6 +20,7 @@ namespace Ca.Infoway.Messagebuilder.Xml
 		private IList<Difference> differences = new List<Difference>();
 
 		[ElementAttribute(Required = false)]
+		[Obsolete]
 		private string businessName;
 
 		[XmlAttributeAttribute]
@@ -46,6 +48,8 @@ namespace Ca.Infoway.Messagebuilder.Xml
 		{
 			get
 			{
+				// businessName field no longer used; setter/getter delegates to documentation property
+				// however, older message sets, when read in, will have this field populated 
 				return this.name;
 			}
 			set
@@ -103,12 +107,31 @@ namespace Ca.Infoway.Messagebuilder.Xml
 		{
 			get
 			{
-				return this.businessName;
+				// first pull out proper value
+				string docBusinessName = this.documentation == null ? null : this.documentation.BusinessName;
+				// if no proper value, but we have a deprecated field value, return the deprecated field value and set it in the correct field
+				if (docBusinessName == null && this.businessName != null)
+				{
+					docBusinessName = this.businessName;
+					BusinessName = this.businessName;
+				}
+				// side effect: clear out the deprecated field regardless, in case it was populated from an older message set
+				this.businessName = null;
+				return docBusinessName;
 			}
 			set
 			{
 				string businessName = value;
-				this.businessName = businessName;
+				// side effect: clear out the deprecated field regardless, in case it was populated from an older message set
+				this.businessName = null;
+				if (this.documentation == null && businessName != null)
+				{
+					this.documentation = new Ca.Infoway.Messagebuilder.Xml.Documentation();
+				}
+				if (this.documentation != null)
+				{
+					this.documentation.BusinessName = businessName;
+				}
 			}
 		}
 

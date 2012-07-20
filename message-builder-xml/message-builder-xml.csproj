@@ -176,8 +176,8 @@
     <None Include="message-builder-xml.snk" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="TestResource\Ca\Infoway\Messagebuilder\Xml\sample.xml" />
-    <Content Include="TestResource\Ca\Infoway\Messagebuilder\Xml\sample_with_argument_choices.xml" />
+    <EmbeddedResource Include="TestResource\Ca\Infoway\Messagebuilder\Xml\sample.xml" />
+    <EmbeddedResource Include="TestResource\Ca\Infoway\Messagebuilder\Xml\sample_with_argument_choices.xml" />
     <EmbeddedResource Include="TestResource\messageSet_mock_NEWFOUNDLAND.xml" />
     <EmbeddedResource Include="TestResource\messageSet_mock_r02_04_02.xml" />
   </ItemGroup>

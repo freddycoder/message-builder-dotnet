@@ -21,7 +21,7 @@ namespace Ca.Infoway.Messagebuilder.Xml
 		private const long serialVersionUID = 3066114109382422542L;
 
 		public static readonly Ca.Infoway.Messagebuilder.Xml.AnnotationType CONSTRAINT = new Ca.Infoway.Messagebuilder.Xml.AnnotationType
-			("CONSTRAINT", "CONSTRAINT", "constraint");
+			("CONSTRAINT", "CONSTRAINT", "constraint", "formalConstraint");
 
 		public static readonly Ca.Infoway.Messagebuilder.Xml.AnnotationType DESCRIPTION = new Ca.Infoway.Messagebuilder.Xml.AnnotationType
 			("DESCRIPTION", "DESCRIPTION / DEFINITION", "description", "definition");
@@ -36,7 +36,7 @@ namespace Ca.Infoway.Messagebuilder.Xml
 			("OPEN_ISSUE", "OPEN ISSUE", "openIssues", "openIssue");
 
 		public static readonly Ca.Infoway.Messagebuilder.Xml.AnnotationType OTHER_NOTES = new Ca.Infoway.Messagebuilder.Xml.AnnotationType
-			("OTHER_NOTES", "OTHER NOTES", "otherAnnotation", "otherAnnotation");
+			("OTHER_NOTES", "OTHER NOTES", "otherAnnotation");
 
 		public static readonly Ca.Infoway.Messagebuilder.Xml.AnnotationType RATIONALE = new Ca.Infoway.Messagebuilder.Xml.AnnotationType
 			("RATIONALE", "RATIONALE", "rationale");
@@ -50,8 +50,6 @@ namespace Ca.Infoway.Messagebuilder.Xml
 
 		private AnnotationType(string name, string displayName, params string[] mif) : base(name)
 		{
-			//id in mif2 
-			//sourceName
 			this.displayName = displayName;
 			this.mifElementNames = mif;
 		}

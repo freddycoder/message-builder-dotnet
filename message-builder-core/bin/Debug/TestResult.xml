@@ -1,26 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!--This file represents the results of running a test suite-->
-<test-results name="C:\workspace-Hg\message-builder-dotnet\message-builder-core\bin\Debug\message-builder-core.dll" total="664" errors="0" failures="0" not-run="12" inconclusive="0" ignored="12" skipped="0" invalid="0" date="2012-07-20" time="14:10:19">
+<test-results name="C:\workspace-Hg\message-builder-dotnet\message-builder-core\bin\Debug\message-builder-core.dll" total="664" errors="0" failures="0" not-run="12" inconclusive="0" ignored="12" skipped="0" invalid="0" date="2012-07-20" time="15:48:48">
   <environment nunit-version="2.6.0.12051" clr-version="2.0.50727.3634" os-version="Microsoft Windows NT 5.2.3790 Service Pack 2" platform="Win32NT" cwd="C:\workspace-Hg\message-builder-dotnet\message-builder-core\bin\Debug" machine-name="POD1537" user="Administrator" user-domain="POD1537" />
   <culture-info current-culture="en-US" current-uiculture="en-US" />
-  <test-suite type="Assembly" name="C:\workspace-Hg\message-builder-dotnet\message-builder-core\bin\Debug\message-builder-core.dll" executed="True" result="Success" success="True" time="36.047" asserts="0">
+  <test-suite type="Assembly" name="C:\workspace-Hg\message-builder-dotnet\message-builder-core\bin\Debug\message-builder-core.dll" executed="True" result="Success" success="True" time="40.828" asserts="0">
     <results>
-      <test-suite type="Namespace" name="Ca" executed="True" result="Success" success="True" time="35.812" asserts="0">
+      <test-suite type="Namespace" name="Ca" executed="True" result="Success" success="True" time="40.578" asserts="0">
         <results>
-          <test-suite type="Namespace" name="Infoway" executed="True" result="Success" success="True" time="35.812" asserts="0">
+          <test-suite type="Namespace" name="Infoway" executed="True" result="Success" success="True" time="40.578" asserts="0">
             <results>
-              <test-suite type="Namespace" name="Messagebuilder" executed="True" result="Success" success="True" time="35.812" asserts="0">
+              <test-suite type="Namespace" name="Messagebuilder" executed="True" result="Success" success="True" time="40.578" asserts="0">
                 <results>
-                  <test-suite type="Namespace" name="Datatype" executed="True" result="Success" success="True" time="0.203" asserts="0">
+                  <test-suite type="Namespace" name="Datatype" executed="True" result="Success" success="True" time="0.687" asserts="0">
                     <results>
-                      <test-suite type="TestFixture" name="Hl7TypeNameTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
+                      <test-suite type="TestFixture" name="Hl7TypeNameTest" executed="True" result="Success" success="True" time="0.141" asserts="0">
                         <results>
-                          <test-case name="Ca.Infoway.Messagebuilder.Datatype.Hl7TypeNameTest.ShouldCorrectlyIndicateEquality" executed="True" result="Success" success="True" time="0.016" asserts="2" />
+                          <test-case name="Ca.Infoway.Messagebuilder.Datatype.Hl7TypeNameTest.ShouldCorrectlyIndicateEquality" executed="True" result="Success" success="True" time="0.094" asserts="2" />
                         </results>
                       </test-suite>
-                      <test-suite type="TestFixture" name="Hl7TypeParserTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
+                      <test-suite type="TestFixture" name="Hl7TypeParserTest" executed="True" result="Success" success="True" time="0.031" asserts="0">
                         <results>
-                          <test-case name="Ca.Infoway.Messagebuilder.Datatype.Hl7TypeParserTest.ShouldNotSplitOnNestedCommas" executed="True" result="Success" success="True" time="0.000" asserts="2" />
+                          <test-case name="Ca.Infoway.Messagebuilder.Datatype.Hl7TypeParserTest.ShouldNotSplitOnNestedCommas" executed="True" result="Success" success="True" time="0.016" asserts="2" />
                           <test-case name="Ca.Infoway.Messagebuilder.Datatype.Hl7TypeParserTest.ShouldParseComplexParameterizedTypes" executed="True" result="Success" success="True" time="0.000" asserts="5" />
                           <test-case name="Ca.Infoway.Messagebuilder.Datatype.Hl7TypeParserTest.ShouldParseParameterizedTypes" executed="True" result="Success" success="True" time="0.000" asserts="2" />
                           <test-case name="Ca.Infoway.Messagebuilder.Datatype.Hl7TypeParserTest.ShouldParseSimpleCase" executed="True" result="Success" success="True" time="0.000" asserts="1" />
@@ -28,43 +28,43 @@
                           <test-case name="Ca.Infoway.Messagebuilder.Datatype.Hl7TypeParserTest.ShouldStripWhitespace" executed="True" result="Success" success="True" time="0.000" asserts="5" />
                         </results>
                       </test-suite>
-                      <test-suite type="Namespace" name="Impl" executed="True" result="Success" success="True" time="0.094" asserts="0">
+                      <test-suite type="Namespace" name="Impl" executed="True" result="Success" success="True" time="0.156" asserts="0">
                         <results>
-                          <test-suite type="TestFixture" name="LISTImplTest" executed="True" result="Success" success="True" time="0.063" asserts="0">
+                          <test-suite type="TestFixture" name="LISTImplTest" executed="True" result="Success" success="True" time="0.094" asserts="0">
                             <results>
                               <test-case name="Ca.Infoway.Messagebuilder.Datatype.Impl.LISTImplTest.ShouldBeAbleToAddMultipleElementsToList" executed="True" result="Success" success="True" time="0.031" asserts="22" />
                               <test-case name="Ca.Infoway.Messagebuilder.Datatype.Impl.LISTImplTest.ShouldBeAbleToAddToList" executed="True" result="Success" success="True" time="0.016" asserts="6" />
                               <test-case name="Ca.Infoway.Messagebuilder.Datatype.Impl.LISTImplTest.ShouldBeAbleToCreateList" executed="True" result="Success" success="True" time="0.000" asserts="3" />
                               <test-case name="Ca.Infoway.Messagebuilder.Datatype.Impl.LISTImplTest.ShouldBeAbleToDetectLastIndexOf" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                               <test-case name="Ca.Infoway.Messagebuilder.Datatype.Impl.LISTImplTest.ShouldBeAbleToIterateRawList" executed="True" result="Success" success="True" time="0.000" asserts="4" />
-                              <test-case name="Ca.Infoway.Messagebuilder.Datatype.Impl.LISTImplTest.ShouldBeAbleToObtainPartOfList" executed="True" result="Success" success="True" time="0.000" asserts="13" />
-                              <test-case name="Ca.Infoway.Messagebuilder.Datatype.Impl.LISTImplTest.ShouldBeAbleToRemoveMultipleElementsFromList" executed="True" result="Success" success="True" time="0.016" asserts="27" />
+                              <test-case name="Ca.Infoway.Messagebuilder.Datatype.Impl.LISTImplTest.ShouldBeAbleToObtainPartOfList" executed="True" result="Success" success="True" time="0.016" asserts="13" />
+                              <test-case name="Ca.Infoway.Messagebuilder.Datatype.Impl.LISTImplTest.ShouldBeAbleToRemoveMultipleElementsFromList" executed="True" result="Success" success="True" time="0.000" asserts="27" />
                               <test-case name="Ca.Infoway.Messagebuilder.Datatype.Impl.LISTImplTest.ShouldBeAbleToSetValueInList" executed="True" result="Success" success="True" time="0.000" asserts="5" />
                             </results>
                           </test-suite>
-                          <test-suite type="TestFixture" name="SETImplTest" executed="True" result="Success" success="True" time="0.031" asserts="0">
+                          <test-suite type="TestFixture" name="SETImplTest" executed="True" result="Success" success="True" time="0.047" asserts="0">
                             <results>
                               <test-case name="Ca.Infoway.Messagebuilder.Datatype.Impl.SETImplTest.ShouldBeAbleToAddMultipleElementsToSet" executed="True" result="Success" success="True" time="0.016" asserts="11" />
                               <test-case name="Ca.Infoway.Messagebuilder.Datatype.Impl.SETImplTest.ShouldBeAbleToAddToSet" executed="True" result="Success" success="True" time="0.000" asserts="5" />
                               <test-case name="Ca.Infoway.Messagebuilder.Datatype.Impl.SETImplTest.ShouldBeAbleToCreateSet" executed="True" result="Success" success="True" time="0.000" asserts="3" />
                               <test-case name="Ca.Infoway.Messagebuilder.Datatype.Impl.SETImplTest.ShouldBeAbleToIterateRawSet" executed="True" result="Success" success="True" time="0.000" asserts="4" />
                               <test-case name="Ca.Infoway.Messagebuilder.Datatype.Impl.SETImplTest.ShouldBeAbleToObtainArrayFromSet" executed="True" result="Success" success="True" time="0.000" asserts="10" />
-                              <test-case name="Ca.Infoway.Messagebuilder.Datatype.Impl.SETImplTest.ShouldBeAbleToRemoveMultipleElementsFromSet" executed="True" result="Success" success="True" time="0.000" asserts="14" />
+                              <test-case name="Ca.Infoway.Messagebuilder.Datatype.Impl.SETImplTest.ShouldBeAbleToRemoveMultipleElementsFromSet" executed="True" result="Success" success="True" time="0.016" asserts="14" />
                             </results>
                           </test-suite>
                         </results>
                       </test-suite>
-                      <test-suite type="Namespace" name="Lang" executed="True" result="Success" success="True" time="0.047" asserts="0">
+                      <test-suite type="Namespace" name="Lang" executed="True" result="Success" success="True" time="0.328" asserts="0">
                         <results>
-                          <test-suite type="TestFixture" name="GenericMathTest" executed="True" result="Success" success="True" time="0.047" asserts="0">
+                          <test-suite type="TestFixture" name="GenericMathTest" executed="True" result="Success" success="True" time="0.328" asserts="0">
                             <results>
                               <test-case name="Ca.Infoway.Messagebuilder.Datatype.Lang.GenericMathTest.TestAddDateAndDiff" executed="True" result="Success" success="True" time="0.000" asserts="1" />
-                              <test-case name="Ca.Infoway.Messagebuilder.Datatype.Lang.GenericMathTest.TestAddDateDiff" executed="True" result="Success" success="True" time="0.000" asserts="5" />
+                              <test-case name="Ca.Infoway.Messagebuilder.Datatype.Lang.GenericMathTest.TestAddDateDiff" executed="True" result="Success" success="True" time="0.016" asserts="5" />
                               <test-case name="Ca.Infoway.Messagebuilder.Datatype.Lang.GenericMathTest.TestAddIntegers" executed="True" result="Success" success="True" time="0.000" asserts="3" />
                               <test-case name="Ca.Infoway.Messagebuilder.Datatype.Lang.GenericMathTest.TestAddIntegersDiff" executed="True" result="Success" success="True" time="0.000" asserts="3" />
                               <test-case name="Ca.Infoway.Messagebuilder.Datatype.Lang.GenericMathTest.TestAddLong" executed="True" result="Success" success="True" time="0.000" asserts="3" />
-                              <test-case name="Ca.Infoway.Messagebuilder.Datatype.Lang.GenericMathTest.TestAddPhysicalQuantities" executed="True" result="Success" success="True" time="0.000" asserts="2" />
-                              <test-case name="Ca.Infoway.Messagebuilder.Datatype.Lang.GenericMathTest.TestPhysicalQuantitesWithInnerValuesAsNull" executed="True" result="Success" success="True" time="0.000" asserts="36" />
+                              <test-case name="Ca.Infoway.Messagebuilder.Datatype.Lang.GenericMathTest.TestAddPhysicalQuantities" executed="True" result="Success" success="True" time="0.266" asserts="2" />
+                              <test-case name="Ca.Infoway.Messagebuilder.Datatype.Lang.GenericMathTest.TestPhysicalQuantitesWithInnerValuesAsNull" executed="True" result="Success" success="True" time="0.016" asserts="36" />
                               <test-case name="Ca.Infoway.Messagebuilder.Datatype.Lang.GenericMathTest.testPhysicalQuantitiesAsNull" executed="True" result="Success" success="True" time="0.000" asserts="13" />
                               <test-case name="Ca.Infoway.Messagebuilder.Datatype.Lang.GenericMathTest.TestPhysicalQuantityAverage" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                               <test-case name="Ca.Infoway.Messagebuilder.Datatype.Lang.GenericMathTest.TestPhysicalQuantityDiff" executed="True" result="Success" success="True" time="0.000" asserts="1" />
@@ -73,12 +73,12 @@
                           </test-suite>
                         </results>
                       </test-suite>
-                      <test-suite type="TestFixture" name="StandardDataTypeTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
+                      <test-suite type="TestFixture" name="StandardDataTypeTest" executed="True" result="Success" success="True" time="0.000" asserts="0">
                         <results>
                           <test-case name="Ca.Infoway.Messagebuilder.Datatype.StandardDataTypeTest.ShouldCalculateIsCoded" executed="True" result="Success" success="True" time="0.000" asserts="4" />
                           <test-case name="Ca.Infoway.Messagebuilder.Datatype.StandardDataTypeTest.ShouldGetHl7TypeName" executed="True" result="Success" success="True" time="0.000" asserts="2" />
                           <test-case name="Ca.Infoway.Messagebuilder.Datatype.StandardDataTypeTest.ShouldGetRootName" executed="True" result="Success" success="True" time="0.000" asserts="2" />
-                          <test-case name="Ca.Infoway.Messagebuilder.Datatype.StandardDataTypeTest.ShouldResolveSimpleXmlType" executed="True" result="Success" success="True" time="0.016" asserts="2" />
+                          <test-case name="Ca.Infoway.Messagebuilder.Datatype.StandardDataTypeTest.ShouldResolveSimpleXmlType" executed="True" result="Success" success="True" time="0.000" asserts="2" />
                         </results>
                       </test-suite>
                     </results>
@@ -91,7 +91,7 @@
                             <results>
                               <test-case name="Ca.Infoway.Messagebuilder.Domainvalue.Util.DescribableUtilTest.TestShouldConvertEnumLikeStrings" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                               <test-case name="Ca.Infoway.Messagebuilder.Domainvalue.Util.DescribableUtilTest.TestShouldHandleEmptyString" executed="True" result="Success" success="True" time="0.000" asserts="1" />
-                              <test-case name="Ca.Infoway.Messagebuilder.Domainvalue.Util.DescribableUtilTest.TestShouldHandleNull" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                              <test-case name="Ca.Infoway.Messagebuilder.Domainvalue.Util.DescribableUtilTest.TestShouldHandleNull" executed="True" result="Success" success="True" time="0.016" asserts="1" />
                             </results>
                           </test-suite>
                         </results>
@@ -108,11 +108,11 @@
                       </test-suite>
                     </results>
                   </test-suite>
-                  <test-suite type="Namespace" name="Marshalling" executed="True" result="Success" success="True" time="28.875" asserts="0">
+                  <test-suite type="Namespace" name="Marshalling" executed="True" result="Success" success="True" time="33.250" asserts="0">
                     <results>
-                      <test-suite type="TestFixture" name="BeanUtilTest" executed="True" result="Success" success="True" time="0.047" asserts="0">
+                      <test-suite type="TestFixture" name="BeanUtilTest" executed="True" result="Success" success="True" time="0.062" asserts="0">
                         <results>
-                          <test-case name="Ca.Infoway.Messagebuilder.Marshalling.BeanUtilTest.ShouldHandleComplexPath" executed="True" result="Success" success="True" time="0.031" asserts="1" />
+                          <test-case name="Ca.Infoway.Messagebuilder.Marshalling.BeanUtilTest.ShouldHandleComplexPath" executed="True" result="Success" success="True" time="0.047" asserts="1" />
                           <test-case name="Ca.Infoway.Messagebuilder.Marshalling.BeanUtilTest.ShouldHandleComplexPathEndingInNullProperty" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                           <test-case name="Ca.Infoway.Messagebuilder.Marshalling.BeanUtilTest.ShouldHandleComplexPathWithoutMessageBean" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                           <test-case name="Ca.Infoway.Messagebuilder.Marshalling.BeanUtilTest.ShouldHandleEmptyPath" executed="True" result="Success" success="True" time="0.000" asserts="1" />
@@ -123,34 +123,34 @@
                           <test-case name="Ca.Infoway.Messagebuilder.Marshalling.BeanUtilTest.ShouldHandleSimplePath" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                         </results>
                       </test-suite>
-                      <test-suite type="TestFixture" name="BeanWrapperTest" executed="True" result="Success" success="True" time="0.531" asserts="0">
+                      <test-suite type="TestFixture" name="BeanWrapperTest" executed="True" result="Success" success="True" time="0.516" asserts="0">
                         <results>
-                          <test-case name="Ca.Infoway.Messagebuilder.Marshalling.BeanWrapperTest.ShouldCopyOriginalTextFromCVImplObjectToBean" executed="True" result="Success" success="True" time="0.500" asserts="1" />
-                          <test-case name="Ca.Infoway.Messagebuilder.Marshalling.BeanWrapperTest.ShouldWriteMultipleCardinalityAttribute" executed="True" result="Success" success="True" time="0.000" asserts="1" />
-                          <test-case name="Ca.Infoway.Messagebuilder.Marshalling.BeanWrapperTest.ShouldWriteNullFlavorOnCollapsedAssociation" executed="True" result="Success" success="True" time="0.016" asserts="1" />
-                          <test-case name="Ca.Infoway.Messagebuilder.Marshalling.BeanWrapperTest.ShouldWriteSimpleAssociation" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                          <test-case name="Ca.Infoway.Messagebuilder.Marshalling.BeanWrapperTest.ShouldCopyOriginalTextFromCVImplObjectToBean" executed="True" result="Success" success="True" time="0.484" asserts="1" />
+                          <test-case name="Ca.Infoway.Messagebuilder.Marshalling.BeanWrapperTest.ShouldWriteMultipleCardinalityAttribute" executed="True" result="Success" success="True" time="0.016" asserts="1" />
+                          <test-case name="Ca.Infoway.Messagebuilder.Marshalling.BeanWrapperTest.ShouldWriteNullFlavorOnCollapsedAssociation" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                          <test-case name="Ca.Infoway.Messagebuilder.Marshalling.BeanWrapperTest.ShouldWriteSimpleAssociation" executed="True" result="Success" success="True" time="0.016" asserts="1" />
                           <test-case name="Ca.Infoway.Messagebuilder.Marshalling.BeanWrapperTest.ShouldWriteSimpleAttribute" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                         </results>
                       </test-suite>
-                      <test-suite type="TestFixture" name="BridgeFactoryImplTest" executed="True" result="Success" success="True" time="2.141" asserts="0">
+                      <test-suite type="TestFixture" name="BridgeFactoryImplTest" executed="True" result="Success" success="True" time="6.297" asserts="0">
                         <results>
                           <test-case name="Ca.Infoway.Messagebuilder.Marshalling.BridgeFactoryImplTest.ShouldHandleCollapsedTypesWithOuterMultipleCardinality" executed="True" result="Success" success="True" time="0.031" asserts="9" />
                           <test-case name="Ca.Infoway.Messagebuilder.Marshalling.BridgeFactoryImplTest.ShouldHandleCollapsedTypesWithOuterMultipleCardinalityAndSeveralLevelsOfCollapsing" executed="True" result="Success" success="True" time="0.016" asserts="5" />
-                          <test-case name="Ca.Infoway.Messagebuilder.Marshalling.BridgeFactoryImplTest.ShouldHandleSimpleCollapsedTypes" executed="True" result="Success" success="True" time="2.094" asserts="7" />
+                          <test-case name="Ca.Infoway.Messagebuilder.Marshalling.BridgeFactoryImplTest.ShouldHandleSimpleCollapsedTypes" executed="True" result="Success" success="True" time="6.234" asserts="7" />
                           <test-case name="Ca.Infoway.Messagebuilder.Marshalling.BridgeFactoryImplTest.ShouldProcessInteraction" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                         </results>
                       </test-suite>
-                      <test-suite type="Namespace" name="HL7" executed="True" result="Success" success="True" time="1.969" asserts="0">
+                      <test-suite type="Namespace" name="HL7" executed="True" result="Success" success="True" time="1.781" asserts="0">
                         <results>
-                          <test-suite type="Namespace" name="Formatter" executed="True" result="Success" success="True" time="0.984" asserts="0">
+                          <test-suite type="Namespace" name="Formatter" executed="True" result="Success" success="True" time="0.891" asserts="0">
                             <results>
                               <test-suite type="TestFixture" name="AbstractAttributePropertyFormatterTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
                                 <results>
-                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.AbstractAttributePropertyFormatterTest.TestFormatValueIndent" executed="True" result="Success" success="True" time="0.016" asserts="3" />
+                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.AbstractAttributePropertyFormatterTest.TestFormatValueIndent" executed="True" result="Success" success="True" time="0.000" asserts="3" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.AbstractAttributePropertyFormatterTest.TestFormatValueNonNull" executed="True" result="Success" success="True" time="0.000" asserts="3" />
                                 </results>
                               </test-suite>
-                              <test-suite type="TestFixture" name="AbstractCerxPqPropertyFormatterTest" executed="True" result="Success" success="True" time="0.000" asserts="0">
+                              <test-suite type="TestFixture" name="AbstractCerxPqPropertyFormatterTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
                                 <results>
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.AbstractCerxPqPropertyFormatterTest.TestFormatPhysicalQuantityEmpty" executed="True" result="Success" success="True" time="0.000" asserts="3" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.AbstractCerxPqPropertyFormatterTest.TestFormatPhysicalQuantityNull" executed="True" result="Success" success="True" time="0.000" asserts="3" />
@@ -158,16 +158,16 @@
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.AbstractCerxPqPropertyFormatterTest.TestFormatPhysicalQuantityValueOrUnitNull" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                 </results>
                               </test-suite>
-                              <test-suite type="TestFixture" name="AdBasicPropertyFormatterTest" executed="True" result="Success" success="True" time="0.141" asserts="0">
+                              <test-suite type="TestFixture" name="AdBasicPropertyFormatterTest" executed="True" result="Success" success="True" time="0.125" asserts="0">
                                 <results>
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.AdBasicPropertyFormatterTest.TestFormatAll" executed="True" result="Success" success="True" time="0.031" asserts="1" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.AdBasicPropertyFormatterTest.TestFormatAllInvalidAddressUses" executed="True" result="Success" success="True" time="0.000" asserts="8" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.AdBasicPropertyFormatterTest.TestFormatAllValidAddressUses" executed="True" result="Success" success="True" time="0.000" asserts="5" />
-                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.AdBasicPropertyFormatterTest.TestFormatCity" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.AdBasicPropertyFormatterTest.TestFormatCity" executed="True" result="Success" success="True" time="0.016" asserts="1" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.AdBasicPropertyFormatterTest.TestFormatCountryAsCodedString" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.AdBasicPropertyFormatterTest.TestFormatCountryCode" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.AdBasicPropertyFormatterTest.TestFormatCountryIsoCode" executed="True" result="Success" success="True" time="0.000" asserts="1" />
-                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.AdBasicPropertyFormatterTest.TestFormatEmptyAddress" executed="True" result="Success" success="True" time="0.063" asserts="5" />
+                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.AdBasicPropertyFormatterTest.TestFormatEmptyAddress" executed="True" result="Success" success="True" time="0.078" asserts="5" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.AdBasicPropertyFormatterTest.TestFormatFreeformLines" executed="True" result="Success" success="True" time="0.000" asserts="2" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.AdBasicPropertyFormatterTest.TestFormatPostalCode" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.AdBasicPropertyFormatterTest.TestFormatProvince" executed="True" result="Success" success="True" time="0.000" asserts="1" />
@@ -175,18 +175,18 @@
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.AdBasicPropertyFormatterTest.TestNonTrivialDelimiter" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                 </results>
                               </test-suite>
-                              <test-suite type="TestFixture" name="AdPropertyFormatterTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
+                              <test-suite type="TestFixture" name="AdPropertyFormatterTest" executed="True" result="Success" success="True" time="0.000" asserts="0">
                                 <results>
-                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.AdPropertyFormatterTest.TestFormatPostalAddressUses" executed="True" result="Success" success="True" time="0.016" asserts="3" />
+                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.AdPropertyFormatterTest.TestFormatPostalAddressUses" executed="True" result="Success" success="True" time="0.000" asserts="3" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.AdPropertyFormatterTest.TestFormatValueNonNull" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.AdPropertyFormatterTest.TestFormatValueNonNullMultipleAddressParts" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.AdPropertyFormatterTest.TestFormatValueNull" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.AdPropertyFormatterTest.TestFormatValueReservedXmlChars" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                 </results>
                               </test-suite>
-                              <test-suite type="TestFixture" name="AnyPropertyFormatterTest" executed="True" result="Success" success="True" time="0.047" asserts="0">
+                              <test-suite type="TestFixture" name="AnyPropertyFormatterTest" executed="True" result="Success" success="True" time="0.031" asserts="0">
                                 <results>
-                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.AnyPropertyFormatterTest.TestBasic" executed="True" result="Success" success="True" time="0.047" asserts="1" />
+                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.AnyPropertyFormatterTest.TestBasic" executed="True" result="Success" success="True" time="0.031" asserts="1" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.AnyPropertyFormatterTest.TestNullCase" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                 </results>
                               </test-suite>
@@ -196,14 +196,14 @@
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.BagPropertyFormatterTest.TestFormatValueNull" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                 </results>
                               </test-suite>
-                              <test-suite type="TestFixture" name="BlPropertyFormatterTest" executed="True" result="Success" success="True" time="0.000" asserts="0">
+                              <test-suite type="TestFixture" name="BlPropertyFormatterTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
                                 <results>
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.BlPropertyFormatterTest.TestGetAttributeNameValuePairsBooleanFalse" executed="True" result="Success" success="True" time="0.000" asserts="3" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.BlPropertyFormatterTest.TestGetAttributeNameValuePairsBooleanTrue" executed="True" result="Success" success="True" time="0.000" asserts="3" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.BlPropertyFormatterTest.TestGetAttributeNameValuePairsNullValue" executed="True" result="Success" success="True" time="0.000" asserts="3" />
                                 </results>
                               </test-suite>
-                              <test-suite type="TestFixture" name="CdPropertyFormatterTest" executed="True" result="Success" success="True" time="0.031" asserts="0">
+                              <test-suite type="TestFixture" name="CdPropertyFormatterTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
                                 <results>
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.CdPropertyFormatterTest.TestGetAttributeNameValuePairs" executed="True" result="Success" success="True" time="0.000" asserts="3" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.CdPropertyFormatterTest.TestGetAttributeNameValuePairsNullValue" executed="True" result="Success" success="True" time="0.000" asserts="1" />
@@ -219,7 +219,7 @@
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.CdPropertyFormatterTest.TestNoValueAndOptional" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.CdPropertyFormatterTest.TestOriginalText" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.CdPropertyFormatterTest.TestOriginalTextAndNullFlavor" executed="True" result="Success" success="True" time="0.000" asserts="1" />
-                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.CdPropertyFormatterTest.TestSingleTranslation" executed="True" result="Success" success="True" time="0.016" asserts="1" />
+                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.CdPropertyFormatterTest.TestSingleTranslation" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                 </results>
                               </test-suite>
                               <test-suite type="TestFixture" name="CsPropertyFormatterTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
@@ -232,7 +232,7 @@
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.CsPropertyFormatterTest.TestGetAttributeNameValuePairsWithoutCodeSystem" executed="True" result="Success" success="True" time="0.000" asserts="2" />
                                 </results>
                               </test-suite>
-                              <test-suite type="TestFixture" name="CvPropertyFormatterTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
+                              <test-suite type="TestFixture" name="CvPropertyFormatterTest" executed="True" result="Success" success="True" time="0.000" asserts="0">
                                 <results>
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.CvPropertyFormatterTest.TestGetAttributeNameValuePairs" executed="True" result="Success" success="True" time="0.000" asserts="3" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.CvPropertyFormatterTest.TestGetAttributeNameValuePairsNullValue" executed="True" result="Success" success="True" time="0.000" asserts="1" />
@@ -244,9 +244,9 @@
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.CvPropertyFormatterTest.TestOriginalTextAndNullFlavor" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                 </results>
                               </test-suite>
-                              <test-suite type="TestFixture" name="EdPropertyFormatterTest" executed="True" result="Success" success="True" time="0.094" asserts="0">
+                              <test-suite type="TestFixture" name="EdPropertyFormatterTest" executed="True" result="Success" success="True" time="0.078" asserts="0">
                                 <results>
-                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.EdPropertyFormatterTest.TestFormatValueCompressedTextData" executed="True" result="Success" success="True" time="0.063" asserts="2" />
+                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.EdPropertyFormatterTest.TestFormatValueCompressedTextData" executed="True" result="Success" success="True" time="0.078" asserts="2" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.EdPropertyFormatterTest.TestFormatValueCompressedXmlData" executed="True" result="Success" success="True" time="0.000" asserts="2" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.EdPropertyFormatterTest.TestFormatValueCompressedXmlDataEmptyContent" executed="True" result="Success" success="True" time="0.000" asserts="2" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.EdPropertyFormatterTest.TestFormatValueCompressedXmlDataNullContent" executed="True" result="Success" success="True" time="0.000" asserts="1" />
@@ -266,15 +266,15 @@
                               </test-suite>
                               <test-suite type="TestFixture" name="EnPropertyFormatterTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
                                 <results>
-                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.EnPropertyFormatterTest.TestEnPropertyFormatterWhenConformanceLevelIsNotSpecified" executed="True" result="Success" success="True" time="0.016" asserts="1" />
-                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.EnPropertyFormatterTest.TestFormatValueOrganizationName" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.EnPropertyFormatterTest.TestEnPropertyFormatterWhenConformanceLevelIsNotSpecified" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.EnPropertyFormatterTest.TestFormatValueOrganizationName" executed="True" result="Success" success="True" time="0.016" asserts="1" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.EnPropertyFormatterTest.TestFormatValuePersonName" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.EnPropertyFormatterTest.TestFormatValueTrivialName" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                 </results>
                               </test-suite>
-                              <test-suite type="TestFixture" name="FormatterRegistryTest" executed="True" result="Success" success="True" time="0.063" asserts="0">
+                              <test-suite type="TestFixture" name="FormatterRegistryTest" executed="True" result="Success" success="True" time="0.078" asserts="0">
                                 <results>
-                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatterRegistryTest.TestAllFormattersAreRegistered" executed="True" result="Success" success="True" time="0.063" asserts="58" />
+                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatterRegistryTest.TestAllFormattersAreRegistered" executed="True" result="Success" success="True" time="0.078" asserts="58" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatterRegistryTest.TestShouldFindListIiOidFormatter" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                 </results>
                               </test-suite>
@@ -303,7 +303,7 @@
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.IntNonNegPropertyFormatterTest.TestNullCasePopulated" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                 </results>
                               </test-suite>
-                              <test-suite type="TestFixture" name="IntPosPropertyFormatterTest" executed="True" result="Success" success="True" time="0.000" asserts="0">
+                              <test-suite type="TestFixture" name="IntPosPropertyFormatterTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
                                 <results>
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.IntPosPropertyFormatterTest.TestGetAttributeNameValuePairsIntegerNegative" executed="True" result="Success" success="True" time="0.000" asserts="4" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.IntPosPropertyFormatterTest.TestGetAttributeNameValuePairsIntegerValid" executed="True" result="Success" success="True" time="0.000" asserts="3" />
@@ -312,9 +312,9 @@
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.IntPosPropertyFormatterTest.TestGetAttributeNameValuePairsNullValue" executed="True" result="Success" success="True" time="0.000" asserts="3" />
                                 </results>
                               </test-suite>
-                              <test-suite type="TestFixture" name="IvlIntPropertyFormatterTest" executed="True" result="Success" success="True" time="0.031" asserts="0">
+                              <test-suite type="TestFixture" name="IvlIntPropertyFormatterTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
                                 <results>
-                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.IvlIntPropertyFormatterTest.TestBasic" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.IvlIntPropertyFormatterTest.TestBasic" executed="True" result="Success" success="True" time="0.016" asserts="1" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.IvlIntPropertyFormatterTest.TestIntervalLow" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.IvlIntPropertyFormatterTest.TestIntervalWidth" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.IvlIntPropertyFormatterTest.TestNullCase" executed="True" result="Success" success="True" time="0.000" asserts="1" />
@@ -322,13 +322,13 @@
                               </test-suite>
                               <test-suite type="TestFixture" name="IvlPqPropertyFormatterTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
                                 <results>
-                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.IvlPqPropertyFormatterTest.TestBasic" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.IvlPqPropertyFormatterTest.TestBasic" executed="True" result="Success" success="True" time="0.016" asserts="1" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.IvlPqPropertyFormatterTest.TestIntervalLow" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.IvlPqPropertyFormatterTest.TestIntervalWidth" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.IvlPqPropertyFormatterTest.TestNullCase" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                 </results>
                               </test-suite>
-                              <test-suite type="TestFixture" name="IvlTsFullDatePropertyFormatterTest" executed="True" result="Success" success="True" time="0.031" asserts="0">
+                              <test-suite type="TestFixture" name="IvlTsFullDatePropertyFormatterTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
                                 <results>
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.IvlTsFullDatePropertyFormatterTest.TestBasic" executed="True" result="Success" success="True" time="0.016" asserts="1" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.IvlTsFullDatePropertyFormatterTest.TestBasicAbstract" executed="True" result="Success" success="True" time="0.000" asserts="1" />
@@ -336,7 +336,7 @@
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.IvlTsFullDatePropertyFormatterTest.TestIntervalLowWidth" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.IvlTsFullDatePropertyFormatterTest.TestIntervalSimple" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.IvlTsFullDatePropertyFormatterTest.TestIntervalWidth" executed="True" result="Success" success="True" time="0.000" asserts="1" />
-                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.IvlTsFullDatePropertyFormatterTest.TestIntervalWidthWithDecimals" executed="True" result="Success" success="True" time="0.016" asserts="1" />
+                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.IvlTsFullDatePropertyFormatterTest.TestIntervalWidthWithDecimals" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.IvlTsFullDatePropertyFormatterTest.TestNullCase" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                 </results>
                               </test-suite>
@@ -346,20 +346,20 @@
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.IvlTsFullDateTimePropertyFormatterTest.TestNullable" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                 </results>
                               </test-suite>
-                              <test-suite type="TestFixture" name="ListEnPropertyFormatterTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
+                              <test-suite type="TestFixture" name="ListEnPropertyFormatterTest" executed="True" result="Success" success="True" time="0.000" asserts="0">
                                 <results>
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.ListEnPropertyFormatterTest.TestFormatValueNonNull" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.ListEnPropertyFormatterTest.TestFormatValueNull" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                 </results>
                               </test-suite>
-                              <test-suite type="TestFixture" name="ListOnPropertyFormatterTest" executed="True" result="Success" success="True" time="0.000" asserts="0">
+                              <test-suite type="TestFixture" name="ListOnPropertyFormatterTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
                                 <results>
-                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.ListOnPropertyFormatterTest.TestFormatValueNonNull" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.ListOnPropertyFormatterTest.TestFormatValueNonNull" executed="True" result="Success" success="True" time="0.016" asserts="1" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.ListOnPropertyFormatterTest.TestFormatValueNull" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.ListOnPropertyFormatterTest.TestFormatValueNullMandatory" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                 </results>
                               </test-suite>
-                              <test-suite type="TestFixture" name="ListTelPhonemailPropertyFormatterTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
+                              <test-suite type="TestFixture" name="ListTelPhonemailPropertyFormatterTest" executed="True" result="Success" success="True" time="0.000" asserts="0">
                                 <results>
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.ListTelPhonemailPropertyFormatterTest.TestFormatValueNonNull" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.ListTelPhonemailPropertyFormatterTest.TestFormatValueNull" executed="True" result="Success" success="True" time="0.000" asserts="1" />
@@ -371,7 +371,7 @@
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.ListTelPropertyFormatterTest.TestFormatValueNull" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                 </results>
                               </test-suite>
-                              <test-suite type="TestFixture" name="MoPropertyFormatterTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
+                              <test-suite type="TestFixture" name="MoPropertyFormatterTest" executed="True" result="Success" success="True" time="0.000" asserts="0">
                                 <results>
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.MoPropertyFormatterTest.TestFormatValueNonNull" executed="True" result="Success" success="True" time="0.000" asserts="5" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.MoPropertyFormatterTest.TestFormatValueNonNullMultipleNameParts" executed="True" result="Success" success="True" time="0.000" asserts="1" />
@@ -379,12 +379,12 @@
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.MoPropertyFormatterTest.TestFormatValueReservedXmlChars" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                 </results>
                               </test-suite>
-                              <test-suite type="TestFixture" name="OnPropertyFormatterTest" executed="True" result="Success" success="True" time="0.000" asserts="0">
+                              <test-suite type="TestFixture" name="OnPropertyFormatterTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
                                 <results>
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.OnPropertyFormatterTest.TestFormatValueNonNull" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.OnPropertyFormatterTest.TestFormatValueNonNullMultipleNameParts" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.OnPropertyFormatterTest.TestFormatValueNull" executed="True" result="Success" success="True" time="0.000" asserts="1" />
-                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.OnPropertyFormatterTest.TestFormatValueReservedXmlChars" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.OnPropertyFormatterTest.TestFormatValueReservedXmlChars" executed="True" result="Success" success="True" time="0.016" asserts="1" />
                                 </results>
                               </test-suite>
                               <test-suite type="TestFixture" name="PnPropertyFormatterTest" executed="True" result="Success" success="True" time="0.000" asserts="0">
@@ -399,17 +399,17 @@
                                 <results>
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.PqPropertyFormatterTest.TestFormatNonNullWithEmptyPq" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.PqPropertyFormatterTest.TestFormatPhysicalQuantityEmpty" executed="True" result="Success" success="True" time="0.000" asserts="3" />
-                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.PqPropertyFormatterTest.TestFormatPhysicalQuantityFormatting" executed="True" result="Success" success="True" time="0.016" asserts="16" />
+                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.PqPropertyFormatterTest.TestFormatPhysicalQuantityFormatting" executed="True" result="Success" success="True" time="0.000" asserts="16" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.PqPropertyFormatterTest.TestFormatPhysicalQuantityFormattingErrors" executed="True" result="Success" success="True" time="0.000" asserts="8" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.PqPropertyFormatterTest.TestFormatPhysicalQuantityNull" executed="True" result="Success" success="True" time="0.000" asserts="3" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.PqPropertyFormatterTest.TestFormatPhysicalQuantityValid" executed="True" result="Success" success="True" time="0.000" asserts="5" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.PqPropertyFormatterTest.TestFormatPhysicalQuantityValueOrUnitNull" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                 </results>
                               </test-suite>
-                              <test-suite type="TestFixture" name="RealConfPropertyFormatterTest" executed="True" result="Success" success="True" time="0.031" asserts="0">
+                              <test-suite type="TestFixture" name="RealConfPropertyFormatterTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
                                 <results>
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.RealConfPropertyFormatterTest.TestFormatCorrectly" executed="True" result="Success" success="True" time="0.000" asserts="3" />
-                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.RealConfPropertyFormatterTest.TestGetAttributeNameValuePairsNullValue" executed="True" result="Success" success="True" time="0.000" asserts="3" />
+                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.RealConfPropertyFormatterTest.TestGetAttributeNameValuePairsNullValue" executed="True" result="Success" success="True" time="0.016" asserts="3" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.RealConfPropertyFormatterTest.TestRoundedToFourDecimalPlacesCieling" executed="True" result="Success" success="True" time="0.000" asserts="3" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.RealConfPropertyFormatterTest.TestRoundedToFourDecimalPlacesFloor" executed="True" result="Success" success="True" time="0.000" asserts="3" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.RealConfPropertyFormatterTest.TestValueEqualsToOne" executed="True" result="Success" success="True" time="0.000" asserts="3" />
@@ -418,19 +418,19 @@
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.RealConfPropertyFormatterTest.TestValueShouldBeLessThanOne" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                 </results>
                               </test-suite>
-                              <test-suite type="TestFixture" name="RtoPqPqPropertyFormatterTest" executed="True" result="Success" success="True" time="0.000" asserts="0">
+                              <test-suite type="TestFixture" name="RtoPqPqPropertyFormatterTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
                                 <results>
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.RtoPqPqPropertyFormatterTest.TestBasic" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.RtoPqPqPropertyFormatterTest.TestNullCase" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                 </results>
                               </test-suite>
-                              <test-suite type="TestFixture" name="RtoQtyQtyPropertyFormatterTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
+                              <test-suite type="TestFixture" name="RtoQtyQtyPropertyFormatterTest" executed="True" result="Success" success="True" time="0.000" asserts="0">
                                 <results>
-                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.RtoQtyQtyPropertyFormatterTest.TestBasic" executed="True" result="Success" success="True" time="0.016" asserts="1" />
+                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.RtoQtyQtyPropertyFormatterTest.TestBasic" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.RtoQtyQtyPropertyFormatterTest.TestNullCase" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                 </results>
                               </test-suite>
-                              <test-suite type="TestFixture" name="ScPropertyFormatterTest" executed="True" result="Success" success="True" time="0.000" asserts="0">
+                              <test-suite type="TestFixture" name="ScPropertyFormatterTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
                                 <results>
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.ScPropertyFormatterTest.TestFormatValueCode" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.ScPropertyFormatterTest.TestFormatValueNull" executed="True" result="Success" success="True" time="0.000" asserts="1" />
@@ -441,7 +441,7 @@
                               <test-suite type="TestFixture" name="SetCdPropertyFormatterTest" executed="True" result="Success" success="True" time="0.031" asserts="0">
                                 <results>
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.SetCdPropertyFormatterTest.TestFormatValueEmptySet" executed="True" result="Success" success="True" time="0.000" asserts="1" />
-                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.SetCdPropertyFormatterTest.TestFormatValueNonNull" executed="True" result="Success" success="True" time="0.016" asserts="1" />
+                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.SetCdPropertyFormatterTest.TestFormatValueNonNull" executed="True" result="Success" success="True" time="0.031" asserts="1" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.SetCdPropertyFormatterTest.TestFormatValueNull" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.SetCdPropertyFormatterTest.TestFormatValueNullNotMandatory" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                 </results>
@@ -452,13 +452,13 @@
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.SetCePropertyFormatterTest.TestFormatValueNull" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                 </results>
                               </test-suite>
-                              <test-suite type="TestFixture" name="SetCsPropertyFormatterTest" executed="True" result="Success" success="True" time="0.000" asserts="0">
+                              <test-suite type="TestFixture" name="SetCsPropertyFormatterTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
                                 <results>
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.SetCsPropertyFormatterTest.TestFormatValueNonNull" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.SetCsPropertyFormatterTest.TestFormatValueNull" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                 </results>
                               </test-suite>
-                              <test-suite type="TestFixture" name="SetCvPropertyFormatterTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
+                              <test-suite type="TestFixture" name="SetCvPropertyFormatterTest" executed="True" result="Success" success="True" time="0.000" asserts="0">
                                 <results>
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.SetCvPropertyFormatterTest.TestFormatValueNonNull" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.SetCvPropertyFormatterTest.TestFormatValueNull" executed="True" result="Success" success="True" time="0.000" asserts="1" />
@@ -470,19 +470,19 @@
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.SetStringPropertyFormatterTest.TestFormatValueNull" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                 </results>
                               </test-suite>
-                              <test-suite type="TestFixture" name="SetTelPhonemailPropertyFormatterTest" executed="True" result="Success" success="True" time="0.000" asserts="0">
+                              <test-suite type="TestFixture" name="SetTelPhonemailPropertyFormatterTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
                                 <results>
-                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.SetTelPhonemailPropertyFormatterTest.TestFormatValueNonNull" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.SetTelPhonemailPropertyFormatterTest.TestFormatValueNonNull" executed="True" result="Success" success="True" time="0.016" asserts="1" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.SetTelPhonemailPropertyFormatterTest.TestFormatValueNull" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                 </results>
                               </test-suite>
                               <test-suite type="TestFixture" name="SetTsPropertyFormatterTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
                                 <results>
-                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.SetTsPropertyFormatterTest.TestFormatValueNonNull" executed="True" result="Success" success="True" time="0.016" asserts="1" />
+                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.SetTsPropertyFormatterTest.TestFormatValueNonNull" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.SetTsPropertyFormatterTest.TestFormatValueNull" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                 </results>
                               </test-suite>
-                              <test-suite type="TestFixture" name="StPropertyFormatterTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
+                              <test-suite type="TestFixture" name="StPropertyFormatterTest" executed="True" result="Success" success="True" time="0.000" asserts="0">
                                 <results>
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.StPropertyFormatterTest.TestFormatValueNonNull" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.StPropertyFormatterTest.TestFormatValueNonNullWithLanguage" executed="True" result="Success" success="True" time="0.000" asserts="1" />
@@ -492,7 +492,7 @@
                               </test-suite>
                               <test-suite type="TestFixture" name="TelPhonemailPropertyFormatterTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
                                 <results>
-                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.TelPhonemailPropertyFormatterTest.TestGetAttributeNameValuePairsAllInvalidAddressUses" executed="True" result="Success" success="True" time="0.000" asserts="6" />
+                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.TelPhonemailPropertyFormatterTest.TestGetAttributeNameValuePairsAllInvalidAddressUses" executed="True" result="Success" success="True" time="0.016" asserts="6" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.TelPhonemailPropertyFormatterTest.TestGetAttributeNameValuePairsAllInvalidSchemes" executed="True" result="Success" success="True" time="0.000" asserts="8" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.TelPhonemailPropertyFormatterTest.TestGetAttributeNameValuePairsAllValidAddressUses" executed="True" result="Success" success="True" time="0.000" asserts="18" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.TelPhonemailPropertyFormatterTest.TestGetAttributeNameValuePairsIncludeUses" executed="True" result="Success" success="True" time="0.000" asserts="9" />
@@ -501,7 +501,7 @@
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.TelPhonemailPropertyFormatterTest.TestGetAttributeNameValuePairsTelPhonemailValid" executed="True" result="Success" success="True" time="0.000" asserts="3" />
                                 </results>
                               </test-suite>
-                              <test-suite type="TestFixture" name="TelUriPropertyFormatterTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
+                              <test-suite type="TestFixture" name="TelUriPropertyFormatterTest" executed="True" result="Success" success="True" time="0.000" asserts="0">
                                 <results>
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.TelUriPropertyFormatterTest.TestGetAttributeNameValuePairsAllInvalidUris" executed="True" result="Success" success="True" time="0.000" asserts="5" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.TelUriPropertyFormatterTest.TestGetAttributeNameValuePairsNullValue" executed="True" result="Success" success="True" time="0.000" asserts="3" />
@@ -509,7 +509,7 @@
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.TelUriPropertyFormatterTest.TestGetAttributeNameValuePairsTelUriValid" executed="True" result="Success" success="True" time="0.000" asserts="3" />
                                 </results>
                               </test-suite>
-                              <test-suite type="TestFixture" name="TnPropertyFormatterTest" executed="True" result="Success" success="True" time="0.000" asserts="0">
+                              <test-suite type="TestFixture" name="TnPropertyFormatterTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
                                 <results>
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.TnPropertyFormatterTest.TestFormatNameUses" executed="True" result="Success" success="True" time="0.000" asserts="3" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.TnPropertyFormatterTest.TestFormatValueNonNull" executed="True" result="Success" success="True" time="0.000" asserts="1" />
@@ -523,7 +523,7 @@
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.TsFullDatePropertyFormatterTest.TestGetAttributeNameValuePairsNullValue" executed="True" result="Success" success="True" time="0.000" asserts="3" />
                                 </results>
                               </test-suite>
-                              <test-suite type="TestFixture" name="TsFullDateTimePropertyFormatterTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
+                              <test-suite type="TestFixture" name="TsFullDateTimePropertyFormatterTest" executed="True" result="Success" success="True" time="0.031" asserts="0">
                                 <results>
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.TsFullDateTimePropertyFormatterTest.TestDateFormatPrecedence" executed="True" result="Success" success="True" time="0.000" asserts="13" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.TsFullDateTimePropertyFormatterTest.TestGetAttributeNameValuePairsDate" executed="True" result="Success" success="True" time="0.000" asserts="3" />
@@ -552,7 +552,7 @@
                               <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Hl7DataTypeNameTest.TestShouldRecognizeQualifiedTypes" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                             </results>
                           </test-suite>
-                          <test-suite type="Namespace" name="Parser" executed="True" result="Success" success="True" time="0.953" asserts="0">
+                          <test-suite type="Namespace" name="Parser" executed="True" result="Success" success="True" time="0.859" asserts="0">
                             <results>
                               <test-suite type="TestFixture" name="AdElementParserTest" executed="True" result="Success" success="True" time="0.031" asserts="0">
                                 <results>
@@ -568,20 +568,20 @@
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.AdElementParserTest.TestUsesUnknownUse" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                 </results>
                               </test-suite>
-                              <test-suite type="TestFixture" name="AnyElementParserTest" executed="True" result="Success" success="True" time="0.063" asserts="0">
+                              <test-suite type="TestFixture" name="AnyElementParserTest" executed="True" result="Success" success="True" time="0.062" asserts="0">
                                 <results>
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.AnyElementParserTest.TestParse" executed="True" result="Success" success="True" time="0.031" asserts="6" />
-                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.AnyElementParserTest.TestParseAbsentSpecializationTypeUrgExampleFromChiDocs" executed="True" result="Success" success="True" time="0.000" asserts="8" />
+                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.AnyElementParserTest.TestParseAbsentSpecializationTypeUrgExampleFromChiDocs" executed="True" result="Success" success="True" time="0.016" asserts="8" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.AnyElementParserTest.TestParseRetainsProperDatatype" executed="True" result="Success" success="True" time="0.000" asserts="5" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.AnyElementParserTest.TestParseRetainsProperDatatypeForSpecializationTypeWhenAnyOnlySpecifiesOkToUseAbstractType" executed="True" result="Success" success="True" time="0.016" asserts="7" />
-                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.AnyElementParserTest.TestParseWithMissingSpecializationType" executed="True" result="Success" success="True" time="0.016" asserts="2" />
+                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.AnyElementParserTest.TestParseWithMissingSpecializationType" executed="True" result="Success" success="True" time="0.000" asserts="2" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.AnyElementParserTest.TestReportErrorForMissingSpecializationType" executed="True" result="Success" success="True" time="0.000" asserts="3" />
                                 </results>
                               </test-suite>
                               <test-suite type="TestFixture" name="BagEnElementParserTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
                                 <results>
-                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.BagEnElementParserTest.ShouldParseEmptyBag" executed="True" result="Success" success="True" time="0.000" asserts="2" />
-                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.BagEnElementParserTest.ShouldParseNullFlavor" executed="True" result="Success" success="True" time="0.016" asserts="3" />
+                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.BagEnElementParserTest.ShouldParseEmptyBag" executed="True" result="Success" success="True" time="0.016" asserts="2" />
+                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.BagEnElementParserTest.ShouldParseNullFlavor" executed="True" result="Success" success="True" time="0.000" asserts="3" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.BagEnElementParserTest.ShouldParseSimpleBag" executed="True" result="Success" success="True" time="0.000" asserts="6" />
                                 </results>
                               </test-suite>
@@ -602,7 +602,7 @@
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.CsElementParserTest.TestParseContainsCodeSystem" executed="True" result="Success" success="True" time="0.000" asserts="3" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.CsElementParserTest.TestParseContainsCodeSystemName" executed="True" result="Success" success="True" time="0.000" asserts="3" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.CsElementParserTest.TestParseContainsDisplayName" executed="True" result="Success" success="True" time="0.000" asserts="3" />
-                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.CsElementParserTest.TestParseContainsOriginalText" executed="True" result="Success" success="True" time="0.000" asserts="3" />
+                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.CsElementParserTest.TestParseContainsOriginalText" executed="True" result="Success" success="True" time="0.016" asserts="3" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.CsElementParserTest.TestParseEmptyNode" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.CsElementParserTest.TestParseInvalidEnumCode" executed="True" result="Success" success="True" time="0.000" asserts="4" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.CsElementParserTest.TestParseNoCodeAttributeNode" executed="True" result="Success" success="True" time="0.000" asserts="1" />
@@ -612,7 +612,7 @@
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.CsElementParserTest.TestParseValidEnumCode" executed="True" result="Success" success="True" time="0.000" asserts="2" />
                                 </results>
                               </test-suite>
-                              <test-suite type="TestFixture" name="CvElementParserTest" executed="True" result="Success" success="True" time="0.078" asserts="0">
+                              <test-suite type="TestFixture" name="CvElementParserTest" executed="True" result="Success" success="True" time="0.062" asserts="0">
                                 <results>
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.CvElementParserTest.TestParseCNEMustHaveNonEmptyCodeAndCodeSystem" executed="False" result="Ignored">
                                     <reason>
@@ -621,17 +621,17 @@
                                   </test-case>
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.CvElementParserTest.TestParseCNENonNullMustNotHaveOriginalText" executed="True" result="Success" success="True" time="0.000" asserts="3" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.CvElementParserTest.TestParseCNENullFlavorOtherMustHaveOriginalText" executed="True" result="Success" success="True" time="0.000" asserts="2" />
-                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.CvElementParserTest.TestParseCNEWithNullCanHaveOriginalText" executed="True" result="Success" success="True" time="0.016" asserts="4" />
+                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.CvElementParserTest.TestParseCNEWithNullCanHaveOriginalText" executed="True" result="Success" success="True" time="0.000" asserts="4" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.CvElementParserTest.TestParseContainsOriginalTextAndNullFlavor" executed="True" result="Success" success="True" time="0.000" asserts="3" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.CvElementParserTest.TestParseCWEMustHaveNonEmptyOriginalTextOrCode" executed="True" result="Success" success="True" time="0.000" asserts="2" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.CvElementParserTest.TestParseCWEMustHaveOriginalTextOrCode" executed="True" result="Success" success="True" time="0.000" asserts="2" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.CvElementParserTest.TestParseEmptyNode" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.CvElementParserTest.TestParseEmptyNodeCNE" executed="True" result="Success" success="True" time="0.000" asserts="2" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.CvElementParserTest.TestParseInvalid" executed="True" result="Success" success="True" time="0.000" asserts="1" />
-                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.CvElementParserTest.TestParseInvalidEnumCode" executed="True" result="Success" success="True" time="0.000" asserts="4" />
-                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.CvElementParserTest.TestParseInvalidNullFavorAttributeValue" executed="True" result="Success" success="True" time="0.016" asserts="1" />
+                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.CvElementParserTest.TestParseInvalidEnumCode" executed="True" result="Success" success="True" time="0.016" asserts="4" />
+                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.CvElementParserTest.TestParseInvalidNullFavorAttributeValue" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.CvElementParserTest.TestParseInvalidTranslation" executed="True" result="Success" success="True" time="0.000" asserts="13" />
-                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.CvElementParserTest.TestParseMaximumValidTranslation" executed="True" result="Success" success="True" time="0.000" asserts="7" />
+                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.CvElementParserTest.TestParseMaximumValidTranslation" executed="True" result="Success" success="True" time="0.016" asserts="7" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.CvElementParserTest.TestParseNoCodeAttributeNode" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.CvElementParserTest.TestParseNullNode" executed="True" result="Success" success="True" time="0.000" asserts="2" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.CvElementParserTest.TestParseOtherNullNode" executed="True" result="Success" success="True" time="0.000" asserts="2" />
@@ -648,9 +648,9 @@
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.CvElementParserTest.TestParseValidWithOriginalTextNoCodeSet" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                 </results>
                               </test-suite>
-                              <test-suite type="TestFixture" name="EdElementParserTest" executed="True" result="Success" success="True" time="0.047" asserts="0">
+                              <test-suite type="TestFixture" name="EdElementParserTest" executed="True" result="Success" success="True" time="0.031" asserts="0">
                                 <results>
-                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.EdElementParserTest.TestParseEmptyNode" executed="True" result="Success" success="True" time="0.016" asserts="1" />
+                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.EdElementParserTest.TestParseEmptyNode" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.EdElementParserTest.TestParseNullNode" executed="True" result="Success" success="True" time="0.000" asserts="2" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.EdElementParserTest.TestParseReferenceTypeUsingNewerReferenceFormat" executed="True" result="Success" success="True" time="0.000" asserts="3" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.EdElementParserTest.TestParseTextNode" executed="True" result="Success" success="True" time="0.000" asserts="1" />
@@ -677,7 +677,7 @@
                               </test-suite>
                               <test-suite type="TestFixture" name="EnElementParserTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
                                 <results>
-                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.EnElementParserTest.TestParseEmptyNode" executed="True" result="Success" success="True" time="0.016" asserts="4" />
+                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.EnElementParserTest.TestParseEmptyNode" executed="True" result="Success" success="True" time="0.000" asserts="4" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.EnElementParserTest.TestParseNullNode" executed="True" result="Success" success="True" time="0.000" asserts="2" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.EnElementParserTest.TestParseOrganizationName" executed="True" result="Success" success="True" time="0.000" asserts="7" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.EnElementParserTest.TestParsePersonName" executed="True" result="Success" success="True" time="0.000" asserts="9" />
@@ -697,18 +697,18 @@
                               </test-suite>
                               <test-suite type="TestFixture" name="GtsBoundedPivlElementParserTest" executed="True" result="Success" success="True" time="0.047" asserts="0">
                                 <results>
-                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.GtsBoundedPivlElementParserTest.ShouldDetectIncorrectElementType" executed="True" result="Success" success="True" time="0.000" asserts="1" />
-                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.GtsBoundedPivlElementParserTest.ShouldParseNullFlavor" executed="True" result="Success" success="True" time="0.016" asserts="1" />
+                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.GtsBoundedPivlElementParserTest.ShouldDetectIncorrectElementType" executed="True" result="Success" success="True" time="0.016" asserts="1" />
+                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.GtsBoundedPivlElementParserTest.ShouldParseNullFlavor" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.GtsBoundedPivlElementParserTest.ShouldParseValidInformation" executed="True" result="Success" success="True" time="0.016" asserts="6" />
-                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.GtsBoundedPivlElementParserTest.ShouldParseValidInformationForSk" executed="True" result="Success" success="True" time="0.000" asserts="9" />
-                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.GtsBoundedPivlElementParserTest.ShouldParseValidInformationWhenMissingInnerSpecializationTypes" executed="True" result="Success" success="True" time="0.016" asserts="6" />
+                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.GtsBoundedPivlElementParserTest.ShouldParseValidInformationForSk" executed="True" result="Success" success="True" time="0.016" asserts="9" />
+                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.GtsBoundedPivlElementParserTest.ShouldParseValidInformationWhenMissingInnerSpecializationTypes" executed="True" result="Success" success="True" time="0.000" asserts="6" />
                                 </results>
                               </test-suite>
-                              <test-suite type="TestFixture" name="IiElementParserTest" executed="True" result="Success" success="True" time="0.031" asserts="0">
+                              <test-suite type="TestFixture" name="IiElementParserTest" executed="True" result="Success" success="True" time="0.062" asserts="0">
                                 <results>
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.IiElementParserTest.TestIsOid" executed="True" result="Success" success="True" time="0.000" asserts="7" />
-                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.IiElementParserTest.TestParseEmptyNode" executed="True" result="Success" success="True" time="0.000" asserts="1" />
-                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.IiElementParserTest.TestParseInvalidIiPublicForMr2007" executed="True" result="Success" success="True" time="0.016" asserts="8" />
+                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.IiElementParserTest.TestParseEmptyNode" executed="True" result="Success" success="True" time="0.016" asserts="1" />
+                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.IiElementParserTest.TestParseInvalidIiPublicForMr2007" executed="True" result="Success" success="True" time="0.000" asserts="8" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.IiElementParserTest.TestParseInvalidIiPublicForMr2009" executed="True" result="Success" success="True" time="0.000" asserts="7" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.IiElementParserTest.TestParseInvalidMissingSpecializationType" executed="False" result="Ignored">
                                     <reason>
@@ -725,13 +725,13 @@
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.IiElementParserTest.TestParseValidSpecializationType" executed="True" result="Success" success="True" time="0.000" asserts="4" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.IiElementParserTest.TestParseValidTwoAttributes" executed="True" result="Success" success="True" time="0.000" asserts="3" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.IiElementParserTest.TestParseValidTwoAttributesAsId" executed="True" result="Success" success="True" time="0.000" asserts="4" />
-                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.IiElementParserTest.TestParseValidTwoAttributesDifferentOrder" executed="True" result="Success" success="True" time="0.000" asserts="3" />
+                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.IiElementParserTest.TestParseValidTwoAttributesDifferentOrder" executed="True" result="Success" success="True" time="0.016" asserts="3" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.IiElementParserTest.TestParseValidTwoAttributesPlusExtra" executed="True" result="Success" success="True" time="0.000" asserts="3" />
                                 </results>
                               </test-suite>
-                              <test-suite type="TestFixture" name="IiTokenElementParserTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
+                              <test-suite type="TestFixture" name="IiTokenElementParserTest" executed="True" result="Success" success="True" time="0.000" asserts="0">
                                 <results>
-                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.IiTokenElementParserTest.TestParseDetectExtraAttribute" executed="True" result="Success" success="True" time="0.016" asserts="2" />
+                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.IiTokenElementParserTest.TestParseDetectExtraAttribute" executed="True" result="Success" success="True" time="0.000" asserts="2" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.IiTokenElementParserTest.TestParseEmptyNode" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.IiTokenElementParserTest.TestParseNullNode" executed="True" result="Success" success="True" time="0.000" asserts="2" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.IiTokenElementParserTest.TestParseValid" executed="True" result="Success" success="True" time="0.000" asserts="2" />
@@ -746,7 +746,7 @@
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.IntElementParserTest.TestParseNoValueAttributeNode" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.IntElementParserTest.TestParseNullNode" executed="True" result="Success" success="True" time="0.000" asserts="2" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.IntElementParserTest.TestParseTooManyChildNodes" executed="True" result="Success" success="True" time="0.000" asserts="1" />
-                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.IntElementParserTest.TestParseValueAttributeValid" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.IntElementParserTest.TestParseValueAttributeValid" executed="True" result="Success" success="True" time="0.016" asserts="1" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.IntElementParserTest.TestParseValueAttributeValidIntgerWithDecimal" executed="True" result="Success" success="True" time="0.000" asserts="2" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.IntElementParserTest.TestParseValueAttributeValidIntgerWithOtherDecimal" executed="True" result="Success" success="True" time="0.000" asserts="2" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.IntElementParserTest.TestParseValueAttributeValidNegative" executed="True" result="Success" success="True" time="0.000" asserts="1" />
@@ -754,9 +754,9 @@
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.IntElementParserTest.TestParseValueAttributeValidZero" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                 </results>
                               </test-suite>
-                              <test-suite type="TestFixture" name="IvlIntElementParserTest" executed="True" result="Success" success="True" time="0.000" asserts="0">
+                              <test-suite type="TestFixture" name="IvlIntElementParserTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
                                 <results>
-                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.IvlIntElementParserTest.TestParseCentreWidth" executed="True" result="Success" success="True" time="0.000" asserts="6" />
+                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.IvlIntElementParserTest.TestParseCentreWidth" executed="True" result="Success" success="True" time="0.016" asserts="6" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.IvlIntElementParserTest.TestParseCentreWidthWithRounding" executed="True" result="Success" success="True" time="0.000" asserts="6" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.IvlIntElementParserTest.TestParseLowHigh" executed="True" result="Success" success="True" time="0.000" asserts="6" />
                                 </results>
@@ -768,7 +768,7 @@
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.IvlPqElementParserTest.TestParseLowWidth" executed="True" result="Success" success="True" time="0.000" asserts="9" />
                                 </results>
                               </test-suite>
-                              <test-suite type="TestFixture" name="IvlTsElementParserTest" executed="True" result="Success" success="True" time="0.031" asserts="0">
+                              <test-suite type="TestFixture" name="IvlTsElementParserTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
                                 <results>
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.IvlTsElementParserTest.TestParseCaseThatLooksLikeSetComponent" executed="True" result="Success" success="True" time="0.000" asserts="3" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.IvlTsElementParserTest.TestParseEffectiveTimeDate" executed="True" result="Success" success="True" time="0.000" asserts="3" />
@@ -778,7 +778,7 @@
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.IvlTsElementParserTest.TestParseLowWidth" executed="True" result="Success" success="True" time="0.000" asserts="5" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.IvlTsElementParserTest.TestParseMissingMandatoryEffectiveTimeDate" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.IvlTsElementParserTest.TestParseWidth" executed="True" result="Success" success="True" time="0.000" asserts="14" />
-                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.IvlTsElementParserTest.TestParseWidthFailureUnit" executed="True" result="Success" success="True" time="0.016" asserts="5" />
+                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.IvlTsElementParserTest.TestParseWidthFailureUnit" executed="True" result="Success" success="True" time="0.000" asserts="5" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.IvlTsElementParserTest.TestParseWidthFailureValue" executed="True" result="Success" success="True" time="0.000" asserts="5" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.IvlTsElementParserTest.TestParseWidthFailureValueAndUnit" executed="True" result="Success" success="True" time="0.000" asserts="7" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.IvlTsElementParserTest.TestRegistered" executed="True" result="Success" success="True" time="0.000" asserts="1" />
@@ -787,12 +787,12 @@
                               <test-suite type="TestFixture" name="IvlTsFullDateElementParserTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
                                 <results>
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.IvlTsFullDateElementParserTest.TestParseLow" executed="True" result="Success" success="True" time="0.000" asserts="6" />
-                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.IvlTsFullDateElementParserTest.TestParseLowFullDateTime" executed="True" result="Success" success="True" time="0.016" asserts="6" />
+                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.IvlTsFullDateElementParserTest.TestParseLowFullDateTime" executed="True" result="Success" success="True" time="0.000" asserts="6" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.IvlTsFullDateElementParserTest.TestParseLowHigh" executed="True" result="Success" success="True" time="0.000" asserts="8" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.IvlTsFullDateElementParserTest.TestParseLowWidth" executed="True" result="Success" success="True" time="0.000" asserts="8" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.IvlTsFullDateElementParserTest.TestParseWidthFailureUnit" executed="True" result="Success" success="True" time="0.000" asserts="5" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.IvlTsFullDateElementParserTest.TestParseWidthFailureValue" executed="True" result="Success" success="True" time="0.000" asserts="5" />
-                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.IvlTsFullDateElementParserTest.TestParseWidthFailureValueAndUnit" executed="True" result="Success" success="True" time="0.000" asserts="7" />
+                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.IvlTsFullDateElementParserTest.TestParseWidthFailureValueAndUnit" executed="True" result="Success" success="True" time="0.016" asserts="7" />
                                 </results>
                               </test-suite>
                               <test-suite type="TestFixture" name="ListEnElementParserTest" executed="True" result="Success" success="True" time="0.000" asserts="0">
@@ -805,14 +805,14 @@
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.ListErrorElementParserTest.TestParse" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                 </results>
                               </test-suite>
-                              <test-suite type="TestFixture" name="ListTelElementParserTest" executed="True" result="Success" success="True" time="0.000" asserts="0">
+                              <test-suite type="TestFixture" name="ListTelElementParserTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
                                 <results>
-                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.ListTelElementParserTest.TestParse" executed="True" result="Success" success="True" time="0.000" asserts="4" />
+                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.ListTelElementParserTest.TestParse" executed="True" result="Success" success="True" time="0.016" asserts="4" />
                                 </results>
                               </test-suite>
-                              <test-suite type="TestFixture" name="ListTelPhonemailElementParserTest" executed="True" result="Success" success="True" time="0.000" asserts="0">
+                              <test-suite type="TestFixture" name="ListTelPhonemailElementParserTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
                                 <results>
-                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.ListTelPhonemailElementParserTest.TestParse" executed="True" result="Success" success="True" time="0.000" asserts="6" />
+                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.ListTelPhonemailElementParserTest.TestParse" executed="True" result="Success" success="True" time="0.016" asserts="6" />
                                 </results>
                               </test-suite>
                               <test-suite type="TestFixture" name="MoElementParserTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
@@ -821,21 +821,21 @@
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.MoElementParserTest.TestParseInvalidCurrency" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.MoElementParserTest.TestParseInvalidValue" executed="True" result="Success" success="True" time="0.000" asserts="0" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.MoElementParserTest.TestParseNoCurrencyAttributeNode" executed="True" result="Success" success="True" time="0.000" asserts="1" />
-                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.MoElementParserTest.TestParseNullNode" executed="True" result="Success" success="True" time="0.016" asserts="2" />
+                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.MoElementParserTest.TestParseNullNode" executed="True" result="Success" success="True" time="0.000" asserts="2" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.MoElementParserTest.TestParseTooManyChildNodes" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.MoElementParserTest.TestParseValidTwoAttributes" executed="True" result="Success" success="True" time="0.000" asserts="3" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.MoElementParserTest.TestParseValidTwoAttributesDifferentOrder" executed="True" result="Success" success="True" time="0.000" asserts="3" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.MoElementParserTest.TestParseValidTwoAttributesPlusExtra" executed="True" result="Success" success="True" time="0.000" asserts="3" />
                                 </results>
                               </test-suite>
-                              <test-suite type="TestFixture" name="NullFlavorHelperTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
+                              <test-suite type="TestFixture" name="NullFlavorHelperTest" executed="True" result="Success" success="True" time="0.000" asserts="0">
                                 <results>
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.NullFlavorHelperTest.ShouldCatchXsiNilAttributeErrorForAssociation" executed="True" result="Success" success="True" time="0.000" asserts="3" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.NullFlavorHelperTest.ShouldHandleXsiNilAttributeForAssociation" executed="True" result="Success" success="True" time="0.000" asserts="1" />
-                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.NullFlavorHelperTest.TestConformanceHandlingForNullFlavorIsErrorFree" executed="True" result="Success" success="True" time="0.016" asserts="3" />
+                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.NullFlavorHelperTest.TestConformanceHandlingForNullFlavorIsErrorFree" executed="True" result="Success" success="True" time="0.000" asserts="3" />
                                 </results>
                               </test-suite>
-                              <test-suite type="TestFixture" name="OnElementParserTest" executed="True" result="Success" success="True" time="0.000" asserts="0">
+                              <test-suite type="TestFixture" name="OnElementParserTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
                                 <results>
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.OnElementParserTest.TestParseAll" executed="True" result="Success" success="True" time="0.000" asserts="10" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.OnElementParserTest.TestParseEmptyNode" executed="True" result="Success" success="True" time="0.000" asserts="3" />
@@ -856,7 +856,7 @@
                               <test-suite type="TestFixture" name="PnElementParserTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
                                 <results>
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.PnElementParserTest.TestParseAll" executed="True" result="Success" success="True" time="0.000" asserts="17" />
-                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.PnElementParserTest.TestParseAllPlusUntypedValue" executed="True" result="Success" success="True" time="0.000" asserts="23" />
+                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.PnElementParserTest.TestParseAllPlusUntypedValue" executed="True" result="Success" success="True" time="0.016" asserts="23" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.PnElementParserTest.TestParseEmptyNode" executed="True" result="Success" success="True" time="0.000" asserts="3" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.PnElementParserTest.TestParseEmptyPrefix" executed="True" result="Success" success="True" time="0.000" asserts="4" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.PnElementParserTest.TestParseFailure" executed="True" result="Success" success="True" time="0.000" asserts="1" />
@@ -870,15 +870,15 @@
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.PqElementParserTest.TestParseEmptyNode" executed="True" result="Success" success="True" time="0.000" asserts="2" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.PqElementParserTest.TestParseInvalidValueAttribute" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.PqElementParserTest.TestParseNoCorrectAttributeNodes" executed="True" result="Success" success="True" time="0.000" asserts="2" />
-                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.PqElementParserTest.TestParseNullNode" executed="True" result="Success" success="True" time="0.016" asserts="2" />
+                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.PqElementParserTest.TestParseNullNode" executed="True" result="Success" success="True" time="0.000" asserts="2" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.PqElementParserTest.TestParseTooManyDecimalDigitsValueAttribute" executed="True" result="Success" success="True" time="0.000" asserts="3" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.PqElementParserTest.TestParseTooManyIntegerDigitsValueAttribute" executed="True" result="Success" success="True" time="0.000" asserts="3" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.PqElementParserTest.TestParseValidAttributes" executed="True" result="Success" success="True" time="0.000" asserts="3" />
-                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.PqElementParserTest.TestParseValidAttributesNoUnit" executed="True" result="Success" success="True" time="0.000" asserts="4" />
+                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.PqElementParserTest.TestParseValidAttributesNoUnit" executed="True" result="Success" success="True" time="0.016" asserts="4" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.PqElementParserTest.TestParseValidAttributesWithElementClosure" executed="True" result="Success" success="True" time="0.000" asserts="3" />
                                 </results>
                               </test-suite>
-                              <test-suite type="TestFixture" name="RealElementParserTest" executed="True" result="Success" success="True" time="0.031" asserts="0">
+                              <test-suite type="TestFixture" name="RealElementParserTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
                                 <results>
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.RealElementParserTest.TestParseEmptyNode" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.RealElementParserTest.TestParseInvalidValueAttribute" executed="True" result="Success" success="True" time="0.000" asserts="2" />
@@ -902,10 +902,10 @@
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.RtoPqPqElementParserTest.TestParseValidAttributes" executed="True" result="Success" success="True" time="0.000" asserts="5" />
                                 </results>
                               </test-suite>
-                              <test-suite type="TestFixture" name="RtoQtyQtyElementParserTest" executed="True" result="Success" success="True" time="0.000" asserts="0">
+                              <test-suite type="TestFixture" name="RtoQtyQtyElementParserTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
                                 <results>
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.RtoQtyQtyElementParserTest.TestParseEmptyNode" executed="True" result="Success" success="True" time="0.000" asserts="3" />
-                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.RtoQtyQtyElementParserTest.TestParseInvalidValueAttribute" executed="True" result="Success" success="True" time="0.000" asserts="0" />
+                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.RtoQtyQtyElementParserTest.TestParseInvalidValueAttribute" executed="True" result="Success" success="True" time="0.016" asserts="0" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.RtoQtyQtyElementParserTest.TestParseNullNode" executed="True" result="Success" success="True" time="0.000" asserts="2" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.RtoQtyQtyElementParserTest.TestParseValidAttributes" executed="True" result="Success" success="True" time="0.000" asserts="3" />
                                 </results>
@@ -921,14 +921,14 @@
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.ScElementParserTest.TestParseTooManyChildNodes" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                 </results>
                               </test-suite>
-                              <test-suite type="TestFixture" name="SetRtoPqPqElementParserTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
+                              <test-suite type="TestFixture" name="SetRtoPqPqElementParserTest" executed="True" result="Success" success="True" time="0.000" asserts="0">
                                 <results>
-                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.SetRtoPqPqElementParserTest.TestParse" executed="True" result="Success" success="True" time="0.016" asserts="4" />
+                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.SetRtoPqPqElementParserTest.TestParse" executed="True" result="Success" success="True" time="0.000" asserts="4" />
                                 </results>
                               </test-suite>
-                              <test-suite type="TestFixture" name="SetStringElementParserTest" executed="True" result="Success" success="True" time="0.000" asserts="0">
+                              <test-suite type="TestFixture" name="SetStringElementParserTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
                                 <results>
-                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.SetStringElementParserTest.TestParse" executed="True" result="Success" success="True" time="0.000" asserts="5" />
+                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.SetStringElementParserTest.TestParse" executed="True" result="Success" success="True" time="0.016" asserts="5" />
                                 </results>
                               </test-suite>
                               <test-suite type="TestFixture" name="SetTelPhonemailElementParserTest" executed="True" result="Success" success="True" time="0.000" asserts="0">
@@ -966,7 +966,7 @@
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.TelElementParserTest.TestParseValueAttributeValidPlusExtraAttribute" executed="True" result="Success" success="True" time="0.000" asserts="2" />
                                 </results>
                               </test-suite>
-                              <test-suite type="TestFixture" name="TnElementParserTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
+                              <test-suite type="TestFixture" name="TnElementParserTest" executed="True" result="Success" success="True" time="0.031" asserts="0">
                                 <results>
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.TnElementParserTest.TestParseEmptyNode" executed="True" result="Success" success="True" time="0.000" asserts="2" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.TnElementParserTest.TestParseNotATextNode" executed="True" result="Success" success="True" time="0.000" asserts="1" />
@@ -977,7 +977,7 @@
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.TnElementParserTest.TestUsesMultipleUses" executed="True" result="Success" success="True" time="0.000" asserts="4" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.TnElementParserTest.TestUsesNoUse" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.TnElementParserTest.TestUsesOneUse" executed="True" result="Success" success="True" time="0.000" asserts="2" />
-                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.TnElementParserTest.TestUsesUnknownUse" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.TnElementParserTest.TestUsesUnknownUse" executed="True" result="Success" success="True" time="0.016" asserts="1" />
                                 </results>
                               </test-suite>
                               <test-suite type="TestFixture" name="TsElementParserTest" executed="True" result="Success" success="True" time="0.031" asserts="0">
@@ -991,14 +991,14 @@
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.TsElementParserTest.TestParseNullNode" executed="True" result="Success" success="True" time="0.000" asserts="2" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.TsElementParserTest.TestParseValidDateForExceptionCase" executed="True" result="Success" success="True" time="0.000" asserts="6" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.TsElementParserTest.TestParseValidFullDateSpecificationTypeForAbstractFullDateWithTime" executed="True" result="Success" success="True" time="0.000" asserts="3" />
-                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.TsElementParserTest.TestParseValidFullDateTimeButWithFullDateSpecificationTypeForAbstractFullDateWithTime" executed="True" result="Success" success="True" time="0.016" asserts="4" />
+                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.TsElementParserTest.TestParseValidFullDateTimeButWithFullDateSpecificationTypeForAbstractFullDateWithTime" executed="True" result="Success" success="True" time="0.000" asserts="4" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.TsElementParserTest.TestParseValidFullDateTimeSpecificationTypeForAbstractFullDateWithTime" executed="True" result="Success" success="True" time="0.000" asserts="3" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.TsElementParserTest.TestParseValidValueAttribute" executed="True" result="Success" success="True" time="0.000" asserts="12" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.TsElementParserTest.TestParseValidValueAttributeWithTimeZoneMinus" executed="True" result="Success" success="True" time="0.000" asserts="2" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.TsElementParserTest.TestParseValidValueAttributeWithTimeZonePlusHasCorrectDatePattern" executed="True" result="Success" success="True" time="0.000" asserts="4" />
                                 </results>
                               </test-suite>
-                              <test-suite type="TestFixture" name="TsFullDateElementParserTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
+                              <test-suite type="TestFixture" name="TsFullDateElementParserTest" executed="True" result="Success" success="True" time="0.000" asserts="0">
                                 <results>
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.TsFullDateElementParserTest.TestParseEmptyNode" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.TsFullDateElementParserTest.TestParseInvalidValueAttribute" executed="True" result="Success" success="True" time="0.000" asserts="4" />
@@ -1008,15 +1008,15 @@
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.TsFullDateElementParserTest.TestParseValidValueAttributePlusExtraAttribute" executed="True" result="Success" success="True" time="0.000" asserts="2" />
                                 </results>
                               </test-suite>
-                              <test-suite type="TestFixture" name="TsFullDateTimeElementParserTest" executed="True" result="Success" success="True" time="0.031" asserts="0">
+                              <test-suite type="TestFixture" name="TsFullDateTimeElementParserTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
                                 <results>
-                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.TsFullDateTimeElementParserTest.TestParseEmptyNode" executed="True" result="Success" success="True" time="0.016" asserts="1" />
+                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.TsFullDateTimeElementParserTest.TestParseEmptyNode" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.TsFullDateTimeElementParserTest.TestParseInvalidValueAttribute" executed="True" result="Success" success="True" time="0.000" asserts="4" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.TsFullDateTimeElementParserTest.TestParseNoValueAttributeNode" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.TsFullDateTimeElementParserTest.TestParseNullNode" executed="True" result="Success" success="True" time="0.000" asserts="2" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.TsFullDateTimeElementParserTest.TestParseValidValueAttribute" executed="True" result="Success" success="True" time="0.000" asserts="2" />
-                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.TsFullDateTimeElementParserTest.TestParseValidValueAttributePlusExtraAttribute" executed="True" result="Success" success="True" time="0.016" asserts="2" />
-                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.TsFullDateTimeElementParserTest.TestParseValidValueAttributeWithTimeZoneMinus" executed="True" result="Success" success="True" time="0.000" asserts="2" />
+                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.TsFullDateTimeElementParserTest.TestParseValidValueAttributePlusExtraAttribute" executed="True" result="Success" success="True" time="0.000" asserts="2" />
+                                  <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.TsFullDateTimeElementParserTest.TestParseValidValueAttributeWithTimeZoneMinus" executed="True" result="Success" success="True" time="0.016" asserts="2" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.TsFullDateTimeElementParserTest.TestParseValidValueAttributeWithTimeZonePlus" executed="True" result="Success" success="True" time="0.000" asserts="2" />
                                   <test-case name="Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.TsFullDateTimeElementParserTest.TestParseValueInWrongFormat" executed="True" result="Success" success="True" time="0.000" asserts="2" />
                                 </results>
@@ -1036,48 +1036,48 @@
                           </test-suite>
                         </results>
                       </test-suite>
-                      <test-suite type="TestFixture" name="Hl7SourceMapperAssociationTest" executed="True" result="Success" success="True" time="1.734" asserts="0">
+                      <test-suite type="TestFixture" name="Hl7SourceMapperAssociationTest" executed="True" result="Success" success="True" time="1.781" asserts="0">
                         <results>
-                          <test-case name="Ca.Infoway.Messagebuilder.Marshalling.Hl7SourceMapperAssociationTest.ShouldMapSender" executed="True" result="Success" success="True" time="1.734" asserts="8" />
+                          <test-case name="Ca.Infoway.Messagebuilder.Marshalling.Hl7SourceMapperAssociationTest.ShouldMapSender" executed="True" result="Success" success="True" time="1.781" asserts="8" />
                         </results>
                       </test-suite>
-                      <test-suite type="TestFixture" name="Hl7SourceMapperBasicTest" executed="True" result="Success" success="True" time="5.063" asserts="0">
+                      <test-suite type="TestFixture" name="Hl7SourceMapperBasicTest" executed="True" result="Success" success="True" time="5.281" asserts="0">
                         <results>
-                          <test-case name="Ca.Infoway.Messagebuilder.Marshalling.Hl7SourceMapperBasicTest.ShouldMapObservationAttributes" executed="True" result="Success" success="True" time="1.703" asserts="7" />
-                          <test-case name="Ca.Infoway.Messagebuilder.Marshalling.Hl7SourceMapperBasicTest.ShouldMapSenderAttributes" executed="True" result="Success" success="True" time="1.672" asserts="3" />
-                          <test-case name="Ca.Infoway.Messagebuilder.Marshalling.Hl7SourceMapperBasicTest.ShouldMapSenderCollapsedAssociation" executed="True" result="Success" success="True" time="1.688" asserts="5" />
+                          <test-case name="Ca.Infoway.Messagebuilder.Marshalling.Hl7SourceMapperBasicTest.ShouldMapObservationAttributes" executed="True" result="Success" success="True" time="1.750" asserts="7" />
+                          <test-case name="Ca.Infoway.Messagebuilder.Marshalling.Hl7SourceMapperBasicTest.ShouldMapSenderAttributes" executed="True" result="Success" success="True" time="1.734" asserts="3" />
+                          <test-case name="Ca.Infoway.Messagebuilder.Marshalling.Hl7SourceMapperBasicTest.ShouldMapSenderCollapsedAssociation" executed="True" result="Success" success="True" time="1.797" asserts="5" />
                         </results>
                       </test-suite>
-                      <test-suite type="TestFixture" name="Hl7SourceMapperChoiceTest" executed="True" result="Success" success="True" time="1.719" asserts="0">
+                      <test-suite type="TestFixture" name="Hl7SourceMapperChoiceTest" executed="True" result="Success" success="True" time="1.766" asserts="0">
                         <results>
-                          <test-case name="Ca.Infoway.Messagebuilder.Marshalling.Hl7SourceMapperChoiceTest.ShouldMapPatientChoice" executed="True" result="Success" success="True" time="1.719" asserts="3" />
+                          <test-case name="Ca.Infoway.Messagebuilder.Marshalling.Hl7SourceMapperChoiceTest.ShouldMapPatientChoice" executed="True" result="Success" success="True" time="1.766" asserts="3" />
                         </results>
                       </test-suite>
-                      <test-suite type="TestFixture" name="Hl7SourceMapperIndicatorTest" executed="True" result="Success" success="True" time="5.141" asserts="0">
+                      <test-suite type="TestFixture" name="Hl7SourceMapperIndicatorTest" executed="True" result="Success" success="True" time="5.187" asserts="0">
                         <results>
                           <test-case name="Ca.Infoway.Messagebuilder.Marshalling.Hl7SourceMapperIndicatorTest.ShouldHandleIndicatorAttributesWhenAbsent" executed="True" result="Success" success="True" time="1.703" asserts="5" />
-                          <test-case name="Ca.Infoway.Messagebuilder.Marshalling.Hl7SourceMapperIndicatorTest.ShouldHandleIndicatorAttributesWhenNullFlavor" executed="True" result="Success" success="True" time="1.734" asserts="4" />
-                          <test-case name="Ca.Infoway.Messagebuilder.Marshalling.Hl7SourceMapperIndicatorTest.ShouldMapIndicatorAttributesWhenPresent" executed="True" result="Success" success="True" time="1.688" asserts="5" />
+                          <test-case name="Ca.Infoway.Messagebuilder.Marshalling.Hl7SourceMapperIndicatorTest.ShouldHandleIndicatorAttributesWhenNullFlavor" executed="True" result="Success" success="True" time="1.687" asserts="4" />
+                          <test-case name="Ca.Infoway.Messagebuilder.Marshalling.Hl7SourceMapperIndicatorTest.ShouldMapIndicatorAttributesWhenPresent" executed="True" result="Success" success="True" time="1.781" asserts="5" />
                         </results>
                       </test-suite>
-                      <test-suite type="TestFixture" name="Hl7SourceMapperMessageBeanTest" executed="True" result="Success" success="True" time="1.750" asserts="0">
+                      <test-suite type="TestFixture" name="Hl7SourceMapperMessageBeanTest" executed="True" result="Success" success="True" time="1.781" asserts="0">
                         <results>
-                          <test-case name="Ca.Infoway.Messagebuilder.Marshalling.Hl7SourceMapperMessageBeanTest.ShouldMapPatientReferralSummariesQueryResponseMessageBean" executed="True" result="Success" success="True" time="1.750" asserts="10" />
+                          <test-case name="Ca.Infoway.Messagebuilder.Marshalling.Hl7SourceMapperMessageBeanTest.ShouldMapPatientReferralSummariesQueryResponseMessageBean" executed="True" result="Success" success="True" time="1.781" asserts="10" />
                         </results>
                       </test-suite>
-                      <test-suite type="TestFixture" name="Hl7SourceMapperNullFlavorTest" executed="True" result="Success" success="True" time="5.172" asserts="0">
+                      <test-suite type="TestFixture" name="Hl7SourceMapperNullFlavorTest" executed="True" result="Success" success="True" time="5.156" asserts="0">
                         <results>
-                          <test-case name="Ca.Infoway.Messagebuilder.Marshalling.Hl7SourceMapperNullFlavorTest.ShouldMapAttributeWithNullFlavor" executed="True" result="Success" success="True" time="1.719" asserts="3" />
-                          <test-case name="Ca.Infoway.Messagebuilder.Marshalling.Hl7SourceMapperNullFlavorTest.ShouldMapCDAttributeWithNullFlavor" executed="True" result="Success" success="True" time="1.688" asserts="4" />
-                          <test-case name="Ca.Infoway.Messagebuilder.Marshalling.Hl7SourceMapperNullFlavorTest.ShouldMapChoiceWithNullFlavor" executed="True" result="Success" success="True" time="1.766" asserts="3" />
+                          <test-case name="Ca.Infoway.Messagebuilder.Marshalling.Hl7SourceMapperNullFlavorTest.ShouldMapAttributeWithNullFlavor" executed="True" result="Success" success="True" time="1.750" asserts="3" />
+                          <test-case name="Ca.Infoway.Messagebuilder.Marshalling.Hl7SourceMapperNullFlavorTest.ShouldMapCDAttributeWithNullFlavor" executed="True" result="Success" success="True" time="1.703" asserts="4" />
+                          <test-case name="Ca.Infoway.Messagebuilder.Marshalling.Hl7SourceMapperNullFlavorTest.ShouldMapChoiceWithNullFlavor" executed="True" result="Success" success="True" time="1.703" asserts="3" />
                         </results>
                       </test-suite>
-                      <test-suite type="TestFixture" name="Hl7SourceMapperRequestMessageBeanTest" executed="True" result="Success" success="True" time="1.703" asserts="0">
+                      <test-suite type="TestFixture" name="Hl7SourceMapperRequestMessageBeanTest" executed="True" result="Success" success="True" time="1.719" asserts="0">
                         <results>
-                          <test-case name="Ca.Infoway.Messagebuilder.Marshalling.Hl7SourceMapperRequestMessageBeanTest.ShouldMapRequestMessageBean" executed="True" result="Success" success="True" time="1.703" asserts="6" />
+                          <test-case name="Ca.Infoway.Messagebuilder.Marshalling.Hl7SourceMapperRequestMessageBeanTest.ShouldMapRequestMessageBean" executed="True" result="Success" success="True" time="1.719" asserts="6" />
                         </results>
                       </test-suite>
-                      <test-suite type="TestFixture" name="InstantiatorTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
+                      <test-suite type="TestFixture" name="InstantiatorTest" executed="True" result="Success" success="True" time="0.000" asserts="0">
                         <results>
                           <test-case name="Ca.Infoway.Messagebuilder.Marshalling.InstantiatorTest.ShouldFindTealBeanWhenPartTypeHasVersionSuffix" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                           <test-case name="Ca.Infoway.Messagebuilder.Marshalling.InstantiatorTest.ShouldFindUniqueTealBeanForHl7PartType" executed="True" result="Success" success="True" time="0.000" asserts="1" />
@@ -1092,11 +1092,11 @@
                           </test-case>
                         </results>
                       </test-suite>
-                      <test-suite type="TestFixture" name="RelationshipSorterTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
+                      <test-suite type="TestFixture" name="RelationshipSorterTest" executed="True" result="Success" success="True" time="0.000" asserts="0">
                         <results>
                           <test-case name="Ca.Infoway.Messagebuilder.Marshalling.RelationshipSorterTest.ShouldHandleCollapsedProperties" executed="True" result="Success" success="True" time="0.000" asserts="5" />
                           <test-case name="Ca.Infoway.Messagebuilder.Marshalling.RelationshipSorterTest.ShouldHandleCompoundPropertiesWithMapByPartType" executed="True" result="Success" success="True" time="0.000" asserts="14" />
-                          <test-case name="Ca.Infoway.Messagebuilder.Marshalling.RelationshipSorterTest.ShouldHandleInlinedPropertiesWithMapByPartTypeAndWithout" executed="True" result="Success" success="True" time="0.016" asserts="25" />
+                          <test-case name="Ca.Infoway.Messagebuilder.Marshalling.RelationshipSorterTest.ShouldHandleInlinedPropertiesWithMapByPartTypeAndWithout" executed="True" result="Success" success="True" time="0.000" asserts="25" />
                           <test-case name="Ca.Infoway.Messagebuilder.Marshalling.RelationshipSorterTest.ShouldHandlePropertiesWithMapByPartType" executed="True" result="Success" success="True" time="0.000" asserts="6" />
                         </results>
                       </test-suite>
@@ -1106,18 +1106,18 @@
                           <test-case name="Ca.Infoway.Messagebuilder.Marshalling.TealBeanRenderWalkerTest.ShouldVisitAttribute" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                         </results>
                       </test-suite>
-                      <test-suite type="TestFixture" name="XmlRenderingVisitorIntegrationTest" executed="True" result="Success" success="True" time="1.750" asserts="0">
+                      <test-suite type="TestFixture" name="XmlRenderingVisitorIntegrationTest" executed="True" result="Success" success="True" time="1.734" asserts="0">
                         <results>
                           <test-case name="Ca.Infoway.Messagebuilder.Marshalling.XmlRenderingVisitorIntegrationTest.ShouldRenderCompleteSolution" executed="True" result="Success" success="True" time="1.734" asserts="0" />
                         </results>
                       </test-suite>
-                      <test-suite type="TestFixture" name="XmlRenderingVisitorTest" executed="True" result="Success" success="True" time="0.047" asserts="0">
+                      <test-suite type="TestFixture" name="XmlRenderingVisitorTest" executed="True" result="Success" success="True" time="0.062" asserts="0">
                         <results>
-                          <test-case name="Ca.Infoway.Messagebuilder.Marshalling.XmlRenderingVisitorTest.ShouldRenderChoiceAssociation" executed="True" result="Success" success="True" time="0.000" asserts="1" />
-                          <test-case name="Ca.Infoway.Messagebuilder.Marshalling.XmlRenderingVisitorTest.ShouldRenderCombinationOfAttributesAndAssociations" executed="True" result="Success" success="True" time="0.016" asserts="1" />
+                          <test-case name="Ca.Infoway.Messagebuilder.Marshalling.XmlRenderingVisitorTest.ShouldRenderChoiceAssociation" executed="True" result="Success" success="True" time="0.016" asserts="1" />
+                          <test-case name="Ca.Infoway.Messagebuilder.Marshalling.XmlRenderingVisitorTest.ShouldRenderCombinationOfAttributesAndAssociations" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                           <test-case name="Ca.Infoway.Messagebuilder.Marshalling.XmlRenderingVisitorTest.ShouldRenderFixedValueNonStructuralAttribute" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                           <test-case name="Ca.Infoway.Messagebuilder.Marshalling.XmlRenderingVisitorTest.ShouldRenderFixedValueStructuralAttribute" executed="True" result="Success" success="True" time="0.000" asserts="1" />
-                          <test-case name="Ca.Infoway.Messagebuilder.Marshalling.XmlRenderingVisitorTest.ShouldRenderNonStructuralAttribute" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                          <test-case name="Ca.Infoway.Messagebuilder.Marshalling.XmlRenderingVisitorTest.ShouldRenderNonStructuralAttribute" executed="True" result="Success" success="True" time="0.016" asserts="1" />
                           <test-case name="Ca.Infoway.Messagebuilder.Marshalling.XmlRenderingVisitorTest.ShouldRenderNonStructuralAttributeString" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                           <test-case name="Ca.Infoway.Messagebuilder.Marshalling.XmlRenderingVisitorTest.ShouldRenderNonStructuralAttributeWithNullFlavor" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                           <test-case name="Ca.Infoway.Messagebuilder.Marshalling.XmlRenderingVisitorTest.ShouldRenderNotNonStructuralAttributeFullDate" executed="True" result="Success" success="True" time="0.000" asserts="3" />
@@ -1125,15 +1125,15 @@
                           <test-case name="Ca.Infoway.Messagebuilder.Marshalling.XmlRenderingVisitorTest.ShouldRenderRootElement" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                           <test-case name="Ca.Infoway.Messagebuilder.Marshalling.XmlRenderingVisitorTest.ShouldRenderSimpleAssociation" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                           <test-case name="Ca.Infoway.Messagebuilder.Marshalling.XmlRenderingVisitorTest.ShouldRenderSimpleAssociationWithNullFlavor" executed="True" result="Success" success="True" time="0.000" asserts="1" />
-                          <test-case name="Ca.Infoway.Messagebuilder.Marshalling.XmlRenderingVisitorTest.ShouldRenderStructuralAttribute" executed="True" result="Success" success="True" time="0.016" asserts="1" />
-                          <test-case name="Ca.Infoway.Messagebuilder.Marshalling.XmlRenderingVisitorTest.ShouldRenderTemplateAssociation" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                          <test-case name="Ca.Infoway.Messagebuilder.Marshalling.XmlRenderingVisitorTest.ShouldRenderStructuralAttribute" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                          <test-case name="Ca.Infoway.Messagebuilder.Marshalling.XmlRenderingVisitorTest.ShouldRenderTemplateAssociation" executed="True" result="Success" success="True" time="0.016" asserts="1" />
                         </results>
                       </test-suite>
                     </results>
                   </test-suite>
-                  <test-suite type="Namespace" name="Model" executed="True" result="Success" success="True" time="0.031" asserts="0">
+                  <test-suite type="Namespace" name="Model" executed="True" result="Success" success="True" time="0.016" asserts="0">
                     <results>
-                      <test-suite type="TestFixture" name="MessagePartBeanTest" executed="True" result="Success" success="True" time="0.031" asserts="0">
+                      <test-suite type="TestFixture" name="MessagePartBeanTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
                         <results>
                           <test-case name="Ca.Infoway.Messagebuilder.Model.MessagePartBeanTest.getAsHl7DataTypeShouldHandleLISTCorrectly" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                           <test-case name="Ca.Infoway.Messagebuilder.Model.MessagePartBeanTest.getAsHl7DataTypeShouldHandleListIndexOutOfBounds" executed="False" result="Ignored">
@@ -1188,7 +1188,7 @@
                       </test-suite>
                     </results>
                   </test-suite>
-                  <test-suite type="Namespace" name="Terminology" executed="True" result="Success" success="True" time="0.047" asserts="0">
+                  <test-suite type="Namespace" name="Terminology" executed="True" result="Success" success="True" time="0.031" asserts="0">
                     <results>
                       <test-suite type="TestFixture" name="CompositeCodeResolverTest" executed="True" result="Success" success="True" time="0.000" asserts="0">
                         <results>
@@ -1197,7 +1197,7 @@
                           <test-case name="Ca.Infoway.Messagebuilder.Terminology.CompositeCodeResolverTest.TestShouldResolveCodeAndCodeSystem" executed="True" result="Success" success="True" time="0.000" asserts="2" />
                         </results>
                       </test-suite>
-                      <test-suite type="TestFixture" name="EnumBasedCodeResolverTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
+                      <test-suite type="TestFixture" name="EnumBasedCodeResolverTest" executed="True" result="Success" success="True" time="0.000" asserts="0">
                         <results>
                           <test-case name="Ca.Infoway.Messagebuilder.Terminology.EnumBasedCodeResolverTest.TestAllValues" executed="True" result="Success" success="True" time="0.000" asserts="2" />
                           <test-case name="Ca.Infoway.Messagebuilder.Terminology.EnumBasedCodeResolverTest.TestAllValuesTwoParamConstructorCase" executed="True" result="Success" success="True" time="0.000" asserts="2" />
@@ -1209,22 +1209,22 @@
                       <test-suite type="TestFixture" name="TrivialCodeResolverTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
                         <results>
                           <test-case name="Ca.Infoway.Messagebuilder.Terminology.TrivialCodeResolverTest.TestNullCode" executed="True" result="Success" success="True" time="0.000" asserts="2" />
-                          <test-case name="Ca.Infoway.Messagebuilder.Terminology.TrivialCodeResolverTest.TestResolveCodeWithCodeAndCodeSystem" executed="True" result="Success" success="True" time="0.016" asserts="2" />
+                          <test-case name="Ca.Infoway.Messagebuilder.Terminology.TrivialCodeResolverTest.TestResolveCodeWithCodeAndCodeSystem" executed="True" result="Success" success="True" time="0.000" asserts="2" />
                         </results>
                       </test-suite>
                     </results>
                   </test-suite>
-                  <test-suite type="Namespace" name="Transport" executed="True" result="Success" success="True" time="2.250" asserts="0">
+                  <test-suite type="Namespace" name="Transport" executed="True" result="Success" success="True" time="2.109" asserts="0">
                     <results>
-                      <test-suite type="Namespace" name="Mohawk" executed="True" result="Success" success="True" time="1.875" asserts="0">
+                      <test-suite type="Namespace" name="Mohawk" executed="True" result="Success" success="True" time="1.828" asserts="0">
                         <results>
-                          <test-suite type="TestFixture" name="Hl7MessageExtractorTest" executed="True" result="Success" success="True" time="0.094" asserts="0">
+                          <test-suite type="TestFixture" name="Hl7MessageExtractorTest" executed="True" result="Success" success="True" time="0.109" asserts="0">
                             <results>
                               <test-case name="Ca.Infoway.Messagebuilder.Transport.Mohawk.Hl7MessageExtractorTest.ShouldExtractResponseMessage" executed="True" result="Success" success="True" time="0.094" asserts="2" />
-                              <test-case name="Ca.Infoway.Messagebuilder.Transport.Mohawk.Hl7MessageExtractorTest.ShouldExtractResponseMessageAlt" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                              <test-case name="Ca.Infoway.Messagebuilder.Transport.Mohawk.Hl7MessageExtractorTest.ShouldExtractResponseMessageAlt" executed="True" result="Success" success="True" time="0.016" asserts="1" />
                             </results>
                           </test-suite>
-                          <test-suite type="TestFixture" name="MohawkTransportLayerTest" executed="True" result="Success" success="True" time="1.781" asserts="0">
+                          <test-suite type="TestFixture" name="MohawkTransportLayerTest" executed="True" result="Success" success="True" time="1.719" asserts="0">
                             <results>
                               <test-case name="Ca.Infoway.Messagebuilder.Transport.Mohawk.MohawkTransportLayerTest.ShouldMapToCorrectService" executed="True" result="Success" success="True" time="0.016" asserts="1" />
                               <test-case name="Ca.Infoway.Messagebuilder.Transport.Mohawk.MohawkTransportLayerTest.ShouldRun" executed="False" result="Ignored">
@@ -1232,18 +1232,18 @@
                                   <message><![CDATA[]]></message>
                                 </reason>
                               </test-case>
-                              <test-case name="Ca.Infoway.Messagebuilder.Transport.Mohawk.MohawkTransportLayerTest.ShouldThrowExceptionOnBadState" executed="True" result="Success" success="True" time="1.750" asserts="0" />
+                              <test-case name="Ca.Infoway.Messagebuilder.Transport.Mohawk.MohawkTransportLayerTest.ShouldThrowExceptionOnBadState" executed="True" result="Success" success="True" time="1.687" asserts="0" />
                               <test-case name="Ca.Infoway.Messagebuilder.Transport.Mohawk.MohawkTransportLayerTest.ShouldWrapInSoapEnvelope" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                             </results>
                           </test-suite>
                         </results>
                       </test-suite>
-                      <test-suite type="Namespace" name="Rest" executed="True" result="Success" success="True" time="0.375" asserts="0">
+                      <test-suite type="Namespace" name="Rest" executed="True" result="Success" success="True" time="0.281" asserts="0">
                         <results>
-                          <test-suite type="TestFixture" name="RestTransportLayerTest" executed="True" result="Success" success="True" time="0.375" asserts="0">
+                          <test-suite type="TestFixture" name="RestTransportLayerTest" executed="True" result="Success" success="True" time="0.281" asserts="0">
                             <results>
-                              <test-case name="Ca.Infoway.Messagebuilder.Transport.Rest.RestTransportLayerTest.ShouldSendBasicMessageToServer" executed="True" result="Success" success="True" time="0.250" asserts="0" />
-                              <test-case name="Ca.Infoway.Messagebuilder.Transport.Rest.RestTransportLayerTest.TestShouldRequestUseridAndPassword" executed="True" result="Success" success="True" time="0.094" asserts="0" />
+                              <test-case name="Ca.Infoway.Messagebuilder.Transport.Rest.RestTransportLayerTest.ShouldSendBasicMessageToServer" executed="True" result="Success" success="True" time="0.203" asserts="0" />
+                              <test-case name="Ca.Infoway.Messagebuilder.Transport.Rest.RestTransportLayerTest.TestShouldRequestUseridAndPassword" executed="True" result="Success" success="True" time="0.062" asserts="0" />
                               <test-case name="Ca.Infoway.Messagebuilder.Transport.Rest.RestTransportLayerTest.TestShouldRethrowHttpExceptions" executed="False" result="Ignored">
                                 <reason>
                                   <message><![CDATA[]]></message>
@@ -1266,9 +1266,9 @@
                       </test-suite>
                     </results>
                   </test-suite>
-                  <test-suite type="Namespace" name="Util" executed="True" result="Success" success="True" time="0.078" asserts="0">
+                  <test-suite type="Namespace" name="Util" executed="True" result="Success" success="True" time="0.094" asserts="0">
                     <results>
-                      <test-suite type="Namespace" name="Iterator" executed="True" result="Success" success="True" time="0.016" asserts="0">
+                      <test-suite type="Namespace" name="Iterator" executed="True" result="Success" success="True" time="0.031" asserts="0">
                         <results>
                           <test-suite type="TestFixture" name="EmptyIterableTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
                             <results>
@@ -1290,7 +1290,7 @@
                         <results>
                           <test-suite type="TestFixture" name="TelephoneParserTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
                             <results>
-                              <test-case name="Ca.Infoway.Messagebuilder.Util.Telephone.TelephoneParserTest.ShouldParse" executed="True" result="Success" success="True" time="0.016" asserts="34" />
+                              <test-case name="Ca.Infoway.Messagebuilder.Util.Telephone.TelephoneParserTest.ShouldParse" executed="True" result="Success" success="True" time="0.000" asserts="34" />
                             </results>
                           </test-suite>
                         </results>
@@ -1301,7 +1301,7 @@
                             <results>
                               <test-case name="Ca.Infoway.Messagebuilder.Util.Xml.XmlDescriberTest.ShouldDescribeAttribute" executed="True" result="Success" success="True" time="0.016" asserts="1" />
                               <test-case name="Ca.Infoway.Messagebuilder.Util.Xml.XmlDescriberTest.ShouldDescribePath" executed="True" result="Success" success="True" time="0.000" asserts="1" />
-                              <test-case name="Ca.Infoway.Messagebuilder.Util.Xml.XmlDescriberTest.ShouldDescribePathWithMultiples" executed="True" result="Success" success="True" time="0.016" asserts="1" />
+                              <test-case name="Ca.Infoway.Messagebuilder.Util.Xml.XmlDescriberTest.ShouldDescribePathWithMultiples" executed="True" result="Success" success="True" time="0.031" asserts="1" />
                               <test-case name="Ca.Infoway.Messagebuilder.Util.Xml.XmlDescriberTest.ShouldDescribePathWithMultiples2" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                               <test-case name="Ca.Infoway.Messagebuilder.Util.Xml.XmlDescriberTest.ShouldDescribePathWithMultiplesInParentHierarchy" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                               <test-case name="Ca.Infoway.Messagebuilder.Util.Xml.XmlDescriberTest.ShouldDescribePathWithMultiplesInParentHierarchyAndAttribute" executed="True" result="Success" success="True" time="0.000" asserts="1" />
@@ -1312,20 +1312,20 @@
                       </test-suite>
                     </results>
                   </test-suite>
-                  <test-suite type="Namespace" name="Xml" executed="True" result="Success" success="True" time="4.219" asserts="0">
+                  <test-suite type="Namespace" name="Xml" executed="True" result="Success" success="True" time="4.234" asserts="0">
                     <results>
-                      <test-suite type="Namespace" name="Validator" executed="True" result="Success" success="True" time="4.219" asserts="0">
+                      <test-suite type="Namespace" name="Validator" executed="True" result="Success" success="True" time="4.234" asserts="0">
                         <results>
-                          <test-suite type="TestFixture" name="ValidatingVisitorTest" executed="True" result="Success" success="True" time="0.031" asserts="0">
+                          <test-suite type="TestFixture" name="ValidatingVisitorTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
                             <results>
-                              <test-case name="Ca.Infoway.Messagebuilder.Xml.Validator.ValidatingVisitorTest.ShouldHaveNoValidationErrorForFixedNonStructuralWhenBoolean" executed="True" result="Success" success="True" time="0.016" asserts="1" />
-                              <test-case name="Ca.Infoway.Messagebuilder.Xml.Validator.ValidatingVisitorTest.ShouldHaveNoValidationErrorForFixedNonStructuralWhenIntPos" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                              <test-case name="Ca.Infoway.Messagebuilder.Xml.Validator.ValidatingVisitorTest.ShouldHaveNoValidationErrorForFixedNonStructuralWhenBoolean" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                              <test-case name="Ca.Infoway.Messagebuilder.Xml.Validator.ValidatingVisitorTest.ShouldHaveNoValidationErrorForFixedNonStructuralWhenIntPos" executed="True" result="Success" success="True" time="0.016" asserts="1" />
                               <test-case name="Ca.Infoway.Messagebuilder.Xml.Validator.ValidatingVisitorTest.ShouldHaveValidationErrorForFixedNonStructural" executed="True" result="Success" success="True" time="0.000" asserts="3" />
-                              <test-case name="Ca.Infoway.Messagebuilder.Xml.Validator.ValidatingVisitorTest.ShouldHaveValidationErrorForFixedNonStructuralWhenNotValidType" executed="True" result="Success" success="True" time="0.016" asserts="1" />
+                              <test-case name="Ca.Infoway.Messagebuilder.Xml.Validator.ValidatingVisitorTest.ShouldHaveValidationErrorForFixedNonStructuralWhenNotValidType" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                               <test-case name="Ca.Infoway.Messagebuilder.Xml.Validator.ValidatingVisitorTest.ShouldHaveValidationErrors" executed="True" result="Success" success="True" time="0.000" asserts="2" />
                             </results>
                           </test-suite>
-                          <test-suite type="TestFixture" name="ValidatorTest" executed="True" result="Success" success="True" time="4.187" asserts="0">
+                          <test-suite type="TestFixture" name="ValidatorTest" executed="True" result="Success" success="True" time="4.219" asserts="0">
                             <results>
                               <test-case name="Ca.Infoway.Messagebuilder.Xml.Validator.ValidatorTest.TestChiSampleXml1" executed="False" result="Ignored">
                                 <reason>
@@ -1345,16 +1345,16 @@
                               <test-case name="Ca.Infoway.Messagebuilder.Xml.Validator.ValidatorTest.TestValidate" executed="True" result="Success" success="True" time="0.437" asserts="0" />
                               <test-case name="Ca.Infoway.Messagebuilder.Xml.Validator.ValidatorTest.TestValidateCaseWhereTemplateTypeIsAlsoChoiceType" executed="True" result="Success" success="True" time="0.328" asserts="0" />
                               <test-case name="Ca.Infoway.Messagebuilder.Xml.Validator.ValidatorTest.TestValidateMessageWithLocalExtensions" executed="True" result="Success" success="True" time="0.312" asserts="0" />
-                              <test-case name="Ca.Infoway.Messagebuilder.Xml.Validator.ValidatorTest.TestValidationFailureOnAttribute" executed="True" result="Success" success="True" time="0.312" asserts="2" />
+                              <test-case name="Ca.Infoway.Messagebuilder.Xml.Validator.ValidatorTest.TestValidationFailureOnAttribute" executed="True" result="Success" success="True" time="0.297" asserts="2" />
                               <test-case name="Ca.Infoway.Messagebuilder.Xml.Validator.ValidatorTest.TestValidationFailureOnFixedValue" executed="True" result="Success" success="True" time="0.312" asserts="2" />
                               <test-case name="Ca.Infoway.Messagebuilder.Xml.Validator.ValidatorTest.TestValidationFailureWithExtraAttributed" executed="True" result="Success" success="True" time="0.312" asserts="2" />
-                              <test-case name="Ca.Infoway.Messagebuilder.Xml.Validator.ValidatorTest.TestValidationFailureWithExtraElements" executed="True" result="Success" success="True" time="0.312" asserts="2" />
+                              <test-case name="Ca.Infoway.Messagebuilder.Xml.Validator.ValidatorTest.TestValidationFailureWithExtraElements" executed="True" result="Success" success="True" time="0.297" asserts="2" />
                               <test-case name="Ca.Infoway.Messagebuilder.Xml.Validator.ValidatorTest.TestValidationFailureWithMissingAssociation" executed="True" result="Success" success="True" time="0.297" asserts="2" />
-                              <test-case name="Ca.Infoway.Messagebuilder.Xml.Validator.ValidatorTest.TestValidationFailureWithMissingNamespace" executed="True" result="Success" success="True" time="0.328" asserts="2" />
-                              <test-case name="Ca.Infoway.Messagebuilder.Xml.Validator.ValidatorTest.TestValidationFailureWithTooManyInstancesOfAssociation" executed="True" result="Success" success="True" time="0.297" asserts="2" />
-                              <test-case name="Ca.Infoway.Messagebuilder.Xml.Validator.ValidatorTest.TestValidationNoFailureDueToSchemaLocation" executed="True" result="Success" success="True" time="0.297" asserts="0" />
+                              <test-case name="Ca.Infoway.Messagebuilder.Xml.Validator.ValidatorTest.TestValidationFailureWithMissingNamespace" executed="True" result="Success" success="True" time="0.312" asserts="2" />
+                              <test-case name="Ca.Infoway.Messagebuilder.Xml.Validator.ValidatorTest.TestValidationFailureWithTooManyInstancesOfAssociation" executed="True" result="Success" success="True" time="0.312" asserts="2" />
+                              <test-case name="Ca.Infoway.Messagebuilder.Xml.Validator.ValidatorTest.TestValidationNoFailureDueToSchemaLocation" executed="True" result="Success" success="True" time="0.312" asserts="0" />
                               <test-case name="Ca.Infoway.Messagebuilder.Xml.Validator.ValidatorTest.TestValidationOfUnknownType" executed="True" result="Success" success="True" time="0.312" asserts="1" />
-                              <test-case name="Ca.Infoway.Messagebuilder.Xml.Validator.ValidatorTest.TestValidationWithNullFlavor" executed="True" result="Success" success="True" time="0.312" asserts="0" />
+                              <test-case name="Ca.Infoway.Messagebuilder.Xml.Validator.ValidatorTest.TestValidationWithNullFlavor" executed="True" result="Success" success="True" time="0.297" asserts="0" />
                             </results>
                           </test-suite>
                         </results>
@@ -1367,11 +1367,11 @@
           </test-suite>
         </results>
       </test-suite>
-      <test-suite type="Namespace" name="Platform" executed="True" result="Success" success="True" time="0.000" asserts="0">
+      <test-suite type="Namespace" name="Platform" executed="True" result="Success" success="True" time="0.016" asserts="0">
         <results>
-          <test-suite type="Namespace" name="SimpleXml" executed="True" result="Success" success="True" time="0.000" asserts="0">
+          <test-suite type="Namespace" name="SimpleXml" executed="True" result="Success" success="True" time="0.016" asserts="0">
             <results>
-              <test-suite type="TestFixture" name="PersisterTest" executed="True" result="Success" success="True" time="0.000" asserts="0">
+              <test-suite type="TestFixture" name="PersisterTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
                 <results>
                   <test-case name="Platform.SimpleXml.PersisterTest.ShouldReadSimpleXml" executed="True" result="Success" success="True" time="0.000" asserts="2" />
                   <test-case name="Platform.SimpleXml.PersisterTest.ShouldReadSimpleXmlWithNestedElement" executed="True" result="Success" success="True" time="0.000" asserts="2" />
