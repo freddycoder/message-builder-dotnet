@@ -1,36 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <VisualState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ShowCheckBoxes="false">
-  <TopNode>[0-1812]C:\workspace-Hg\message-builder-dotnet\message-builder-core\bin\Debug\message-builder-core.dll</TopNode>
-  <SelectedNode>[0-1812]C:\workspace-Hg\message-builder-dotnet\message-builder-core\bin\Debug\message-builder-core.dll</SelectedNode>
+  <TopNode>[0-1822]C:\workspace-Hg\message-builder\message-builder-core\target\translation\mbtdotnet\message-builder-core\bin\Debug\message-builder-core.dll</TopNode>
+  <SelectedNode>[0-1822]C:\workspace-Hg\message-builder\message-builder-core\target\translation\mbtdotnet\message-builder-core\bin\Debug\message-builder-core.dll</SelectedNode>
   <ExcludeCategories>false</ExcludeCategories>
   <Nodes>
-    <Node UniqueName="[0-1812]C:\workspace-Hg\message-builder-dotnet\message-builder-core\bin\Debug\message-builder-core.dll" Expanded="true" />
-    <Node UniqueName="[0-1813]Ca" Expanded="true" />
-    <Node UniqueName="[0-1814]Ca.Infoway" Expanded="true" />
-    <Node UniqueName="[0-1815]Ca.Infoway.Messagebuilder" Expanded="true" />
-    <Node UniqueName="[0-1826]Ca.Infoway.Messagebuilder.Datatype" Expanded="true" />
+    <Node UniqueName="[0-1822]C:\workspace-Hg\message-builder\message-builder-core\target\translation\mbtdotnet\message-builder-core\bin\Debug\message-builder-core.dll" Expanded="true" />
+    <Node UniqueName="[0-1823]Ca" Expanded="true" />
+    <Node UniqueName="[0-1824]Ca.Infoway" Expanded="true" />
+    <Node UniqueName="[0-1825]Ca.Infoway.Messagebuilder" Expanded="true" />
+    <Node UniqueName="[0-1834]Ca.Infoway.Messagebuilder.Datatype" Expanded="true" />
     <Node UniqueName="[0-1835]Ca.Infoway.Messagebuilder.Datatype.Impl" Expanded="true" />
-    <Node UniqueName="[0-1827]Ca.Infoway.Messagebuilder.Datatype.Lang" Expanded="true" />
-    <Node UniqueName="[0-1833]Ca.Infoway.Messagebuilder.Domainvalue" Expanded="true" />
-    <Node UniqueName="[0-1834]Ca.Infoway.Messagebuilder.Domainvalue.Util" Expanded="true" />
-    <Node UniqueName="[0-1825]Ca.Infoway.Messagebuilder.Lang" Expanded="true" />
-    <Node UniqueName="[0-1819]Ca.Infoway.Messagebuilder.Marshalling" Expanded="true" />
-    <Node UniqueName="[0-1820]Ca.Infoway.Messagebuilder.Marshalling.HL7" Expanded="true" />
-    <Node UniqueName="[0-1822]Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter" Expanded="true" />
-    <Node UniqueName="[0-1821]Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser" Expanded="true" />
-    <Node UniqueName="[0-1839]Ca.Infoway.Messagebuilder.Model" Expanded="true" />
-    <Node UniqueName="[0-1828]Ca.Infoway.Messagebuilder.Platform" Expanded="true" />
-    <Node UniqueName="[0-1818]Ca.Infoway.Messagebuilder.Terminology" Expanded="true" />
-    <Node UniqueName="[0-1816]Ca.Infoway.Messagebuilder.Transport" Expanded="true" />
-    <Node UniqueName="[0-1817]Ca.Infoway.Messagebuilder.Transport.Mohawk" Expanded="true" />
-    <Node UniqueName="[0-1829]Ca.Infoway.Messagebuilder.Transport.Rest" Expanded="true" />
-    <Node UniqueName="[0-1830]Ca.Infoway.Messagebuilder.Util" Expanded="true" />
-    <Node UniqueName="[0-1836]Ca.Infoway.Messagebuilder.Util.Iterator" Expanded="true" />
-    <Node UniqueName="[0-1832]Ca.Infoway.Messagebuilder.Util.Telephone" Expanded="true" />
-    <Node UniqueName="[0-1831]Ca.Infoway.Messagebuilder.Util.Xml" Expanded="true" />
-    <Node UniqueName="[0-1823]Ca.Infoway.Messagebuilder.Xml" Expanded="true" />
-    <Node UniqueName="[0-1824]Ca.Infoway.Messagebuilder.Xml.Validator" Expanded="true" />
-    <Node UniqueName="[0-1837]Platform" Expanded="true" />
-    <Node UniqueName="[0-1838]Platform.SimpleXml" Expanded="true" />
+    <Node UniqueName="[0-1843]Ca.Infoway.Messagebuilder.Datatype.Lang" Expanded="true" />
+    <Node UniqueName="[0-1836]Ca.Infoway.Messagebuilder.Domainvalue" Expanded="true" />
+    <Node UniqueName="[0-1837]Ca.Infoway.Messagebuilder.Domainvalue.Util" Expanded="true" />
+    <Node UniqueName="[0-1845]Ca.Infoway.Messagebuilder.Lang" Expanded="true" />
+    <Node UniqueName="[0-1828]Ca.Infoway.Messagebuilder.Marshalling" Expanded="true" />
+    <Node UniqueName="[0-1023]Ca.Infoway.Messagebuilder.Marshalling.BridgeFactoryImplTest" Expanded="true" />
+    <Node UniqueName="[0-1829]Ca.Infoway.Messagebuilder.Marshalling.HL7" Expanded="true" />
+    <Node UniqueName="[0-1831]Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter" Expanded="true" />
+    <Node UniqueName="[0-1830]Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser" Expanded="true" />
+    <Node UniqueName="[0-1842]Ca.Infoway.Messagebuilder.Model" Expanded="true" />
+    <Node UniqueName="[0-1839]Ca.Infoway.Messagebuilder.Platform" Expanded="true" />
+    <Node UniqueName="[0-1838]Ca.Infoway.Messagebuilder.Terminology" Expanded="true" />
+    <Node UniqueName="[0-1832]Ca.Infoway.Messagebuilder.Transport" Expanded="true" />
+    <Node UniqueName="[0-1833]Ca.Infoway.Messagebuilder.Transport.Mohawk" Expanded="true" />
+    <Node UniqueName="[0-1844]Ca.Infoway.Messagebuilder.Transport.Rest" Expanded="true" />
+    <Node UniqueName="[0-1826]Ca.Infoway.Messagebuilder.Util" Expanded="true" />
+    <Node UniqueName="[0-1827]Ca.Infoway.Messagebuilder.Util.Iterator" Expanded="true" />
+    <Node UniqueName="[0-1848]Ca.Infoway.Messagebuilder.Util.Telephone" Expanded="true" />
+    <Node UniqueName="[0-1849]Ca.Infoway.Messagebuilder.Util.Xml" Expanded="true" />
+    <Node UniqueName="[0-1840]Ca.Infoway.Messagebuilder.Xml" Expanded="true" />
+    <Node UniqueName="[0-1841]Ca.Infoway.Messagebuilder.Xml.Validator" Expanded="true" />
+    <Node UniqueName="[0-1846]Platform" Expanded="true" />
+    <Node UniqueName="[0-1847]Platform.SimpleXml" Expanded="true" />
   </Nodes>
 </VisualState>

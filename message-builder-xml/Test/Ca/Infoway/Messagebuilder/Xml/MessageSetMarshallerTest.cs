@@ -19,6 +19,15 @@ namespace Ca.Infoway.Messagebuilder.Xml
 
 		/// <exception cref="System.Exception"></exception>
 		[Test]
+		public virtual void TestShouldReadSampleXmlWithBreadcrumbHistory()
+		{
+			MessageSet testset = GetMessageSet("sample_with_breadcrumbs.xml");
+			Assert.IsTrue(testset.RemixHistory.Count > 0);
+			Assert.AreEqual(testset.RemixHistory[0].Value, "R02_04_02");
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
 		public virtual void TestShouldReadSampleXml()
 		{
 			MessageSet set = GetMessageSet("sample.xml");

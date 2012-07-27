@@ -10,6 +10,7 @@ using Ca.Infoway.Messagebuilder.Marshalling.Datatypeadapter;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter;
 using Ca.Infoway.Messagebuilder.Util.Text;
+using Ca.Infoway.Messagebuilder.Util.Xml;
 using Ca.Infoway.Messagebuilder.Xml;
 using Ca.Infoway.Messagebuilder.Xml.Util;
 using ILOG.J2CsMapping.Text;
@@ -155,6 +156,21 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 					{
 						CurrentBuffer().SetWarning("Mandatory association has no data. (" + relationship.Name + ")");
 					}
+					else
+					{
+						if (relationship.Conformance == Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.IGNORED)
+						{
+							CurrentBuffer().SetWarning(System.String.Format(ConformanceLevelUtil.IsIgnoredNotAllowed() ? ConformanceLevelUtil.ASSOCIATION_IS_IGNORED_AND_CAN_NOT_BE_USED
+								 : ConformanceLevelUtil.ASSOCIATION_IS_IGNORED_AND_WILL_NOT_BE_USED, relationship.Name));
+						}
+						else
+						{
+							if (relationship.Conformance == Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.NOT_ALLOWED)
+							{
+								CurrentBuffer().SetWarning(System.String.Format(ConformanceLevelUtil.ASSOCIATION_IS_NOT_ALLOWED, relationship.Name));
+							}
+						}
+					}
 				}
 			}
 		}
@@ -252,6 +268,19 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 			this.propertyPathNames.Push(tealBean.GetPropertyName());
 			if (relationship.Structural)
 			{
+				if (StringUtils.IsBlank(CurrentBuffer().GetWarning()) && relationship.Conformance == Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
+					.IGNORED)
+				{
+					CurrentBuffer().SetWarning(System.String.Format(ConformanceLevelUtil.IsIgnoredNotAllowed() ? ConformanceLevelUtil.ATTRIBUTE_IS_IGNORED_AND_CAN_NOT_BE_USED
+						 : ConformanceLevelUtil.ATTRIBUTE_IS_IGNORED_AND_WILL_NOT_BE_USED, relationship.Name));
+				}
+				else
+				{
+					if (relationship.Conformance == Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.NOT_ALLOWED)
+					{
+						CurrentBuffer().SetWarning(System.String.Format(ConformanceLevelUtil.ATTRIBUTE_IS_NOT_ALLOWED, relationship.Name));
+					}
+				}
 				new VisitorStructuralAttributeRenderer(relationship, tealBean.GetValue()).Render(CurrentBuffer().GetStructuralBuilder());
 			}
 			else
@@ -288,8 +317,31 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 					}
 					//				boolean isSpecializationType = (tealBean.getHl7Value().getDataType() != tealBean.getRelationship().getType());
 					// FIXME - SPECIALIZATION_TYPE - need to allow for specialization type to be set here
-					string xmlFragment = formatter.Format(FormatContextImpl.Create(relationship, version, dateTimeZone, dateTimeTimeZone), any
-						, GetIndent());
+					string xmlFragment = string.Empty;
+					if (StringUtils.IsBlank(CurrentBuffer().GetWarning()) && relationship.Conformance == Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
+						.IGNORED)
+					{
+						if (ConformanceLevelUtil.IsIgnoredNotAllowed())
+						{
+							xmlFragment += new XmlWarningRenderer().CreateWarning(0, System.String.Format(ConformanceLevelUtil.ATTRIBUTE_IS_IGNORED_AND_CAN_NOT_BE_USED
+								, relationship.Name));
+						}
+						else
+						{
+							xmlFragment += new XmlWarningRenderer().CreateWarning(0, System.String.Format(ConformanceLevelUtil.ATTRIBUTE_IS_IGNORED_AND_WILL_NOT_BE_USED
+								, relationship.Name));
+						}
+					}
+					else
+					{
+						if (relationship.Conformance == Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.NOT_ALLOWED)
+						{
+							xmlFragment += new XmlWarningRenderer().CreateWarning(0, System.String.Format(ConformanceLevelUtil.ATTRIBUTE_IS_NOT_ALLOWED
+								, relationship.Name));
+						}
+					}
+					xmlFragment += formatter.Format(FormatContextImpl.Create(relationship, version, dateTimeZone, dateTimeTimeZone), any, GetIndent
+						());
 					CurrentBuffer().GetChildBuilder().Append(xmlFragment);
 				}
 				catch (ModelToXmlTransformationException e)

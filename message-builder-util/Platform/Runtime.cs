@@ -34,7 +34,7 @@ namespace Ca.Infoway.Messagebuilder
 			if (property == "line.separator") {
 				return System.Environment.NewLine;
             }
-            else if (property != null && property.StartsWith("messagebuilder.date.format.override.")) {
+            else if (property != null && (property.StartsWith("messagebuilder.date.format.override.") || property.StartsWith("ignored.as.not.allowed"))) {
                 return System.Environment.GetEnvironmentVariable(property);
             }
 			throw new NotSupportedException(property);
@@ -42,7 +42,8 @@ namespace Ca.Infoway.Messagebuilder
 
         public static void SetProperty(string property, string propertyValue)
         {
-            if (property != null && property.StartsWith("messagebuilder.date.format.override.")) {
+            if (property != null && (property.StartsWith("messagebuilder.date.format.override.") || property.StartsWith("ignored.as.not.allowed")))
+            {
                 System.Environment.SetEnvironmentVariable(property, propertyValue);
                 return;
             }

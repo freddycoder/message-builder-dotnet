@@ -18,6 +18,9 @@ namespace Ca.Infoway.Messagebuilder.Xml
 		[XmlAttributeAttribute(Required = false)]
 		private string component;
 
+		[ElementListAttribute(Name = "remixHistory", Required = false, Inline = true, Entry = "remixHistoryEntry")]
+		private IList<MessageSetHistory> remixHistory = new List<MessageSetHistory>();
+
 		[ElementMapAttribute(Name = "packageLocation", Key = "name", Required = false, Inline = true, Attribute = true, Entry = "packageEntry"
 			)]
 		private IDictionary<string, PackageLocation> packageLocations = new SortedList<string, PackageLocation>();
@@ -187,6 +190,25 @@ namespace Ca.Infoway.Messagebuilder.Xml
 			{
 				string component = value;
 				this.component = component;
+			}
+		}
+
+		/// <summary>Get the remixHistory.</summary>
+		/// <remarks>Get the remixHistory.</remarks>
+		/// <returns>the remixHistory</returns>
+		/// <summary>Set the remixHistory.</summary>
+		/// <remarks>Set the remixHistory.</remarks>
+		/// <value>- the new value</value>
+		public virtual IList<MessageSetHistory> RemixHistory
+		{
+			get
+			{
+				return remixHistory;
+			}
+			set
+			{
+				IList<MessageSetHistory> remixHistory = value;
+				this.remixHistory = remixHistory;
 			}
 		}
 	}

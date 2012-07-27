@@ -1,31 +1,32 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!--This file represents the results of running a test suite-->
-<test-results name="C:\workspace-Hg\message-builder-dotnet\message-builder-xml\bin\Debug\message-builder-xml.dll" total="5" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2012-07-20" time="15:51:32">
-  <environment nunit-version="2.6.0.12051" clr-version="2.0.50727.3634" os-version="Microsoft Windows NT 5.2.3790 Service Pack 2" platform="Win32NT" cwd="C:\workspace-Hg\message-builder-dotnet\message-builder-xml\bin\Debug" machine-name="POD1537" user="Administrator" user-domain="POD1537" />
+<test-results name="C:\workspace-Hg\message-builder\message-builder-core\target\translation\mbtdotnet\message-builder-xml\bin\Debug\message-builder-xml.dll" total="6" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2012-07-27" time="17:27:12">
+  <environment nunit-version="2.6.0.12051" clr-version="2.0.50727.3634" os-version="Microsoft Windows NT 5.2.3790 Service Pack 2" platform="Win32NT" cwd="C:\workspace-Hg\message-builder\message-builder-core\target\translation\mbtdotnet\message-builder-xml\bin\Debug" machine-name="POD1537" user="Administrator" user-domain="POD1537" />
   <culture-info current-culture="en-US" current-uiculture="en-US" />
-  <test-suite type="Assembly" name="C:\workspace-Hg\message-builder-dotnet\message-builder-xml\bin\Debug\message-builder-xml.dll" executed="True" result="Success" success="True" time="0.313" asserts="0">
+  <test-suite type="Assembly" name="C:\workspace-Hg\message-builder\message-builder-core\target\translation\mbtdotnet\message-builder-xml\bin\Debug\message-builder-xml.dll" executed="True" result="Success" success="True" time="1.766" asserts="0">
     <results>
-      <test-suite type="Namespace" name="Ca" executed="True" result="Success" success="True" time="0.281" asserts="0">
+      <test-suite type="Namespace" name="Ca" executed="True" result="Success" success="True" time="1.750" asserts="0">
         <results>
-          <test-suite type="Namespace" name="Infoway" executed="True" result="Success" success="True" time="0.281" asserts="0">
+          <test-suite type="Namespace" name="Infoway" executed="True" result="Success" success="True" time="1.750" asserts="0">
             <results>
-              <test-suite type="Namespace" name="Messagebuilder" executed="True" result="Success" success="True" time="0.281" asserts="0">
+              <test-suite type="Namespace" name="Messagebuilder" executed="True" result="Success" success="True" time="1.750" asserts="0">
                 <results>
-                  <test-suite type="Namespace" name="Xml" executed="True" result="Success" success="True" time="0.281" asserts="0">
+                  <test-suite type="Namespace" name="Xml" executed="True" result="Success" success="True" time="1.750" asserts="0">
                     <results>
-                      <test-suite type="TestFixture" name="MessageSetMarshallerTest" executed="True" result="Success" success="True" time="0.266" asserts="0">
+                      <test-suite type="TestFixture" name="MessageSetMarshallerTest" executed="True" result="Success" success="True" time="1.750" asserts="0">
                         <results>
-                          <test-case name="Ca.Infoway.Messagebuilder.Xml.MessageSetMarshallerTest.TestShouldReadSampleXml" executed="True" result="Success" success="True" time="0.172" asserts="3" />
-                          <test-case name="Ca.Infoway.Messagebuilder.Xml.MessageSetMarshallerTest.TestShouldReadSampleXmlWithArgumentChoices" executed="True" result="Success" success="True" time="0.016" asserts="1" />
+                          <test-case name="Ca.Infoway.Messagebuilder.Xml.MessageSetMarshallerTest.TestShouldReadSampleXml" executed="True" result="Success" success="True" time="0.406" asserts="3" />
+                          <test-case name="Ca.Infoway.Messagebuilder.Xml.MessageSetMarshallerTest.TestShouldReadSampleXmlWithArgumentChoices" executed="True" result="Success" success="True" time="0.047" asserts="1" />
+                          <test-case name="Ca.Infoway.Messagebuilder.Xml.MessageSetMarshallerTest.TestShouldReadSampleXmlWithBreadcrumbHistory" executed="True" result="Success" success="True" time="1.187" asserts="2" />
                           <test-case name="Ca.Infoway.Messagebuilder.Xml.MessageSetMarshallerTest.TestWriteXml" executed="True" result="Success" success="True" time="0.078" asserts="1" />
-                          <test-case name="Ca.Infoway.Messagebuilder.Xml.MessageSetMarshallerTest.TestWriteXmlWithNesting" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                          <test-case name="Ca.Infoway.Messagebuilder.Xml.MessageSetMarshallerTest.TestWriteXmlWithNesting" executed="True" result="Success" success="True" time="0.016" asserts="1" />
                         </results>
                       </test-suite>
-                      <test-suite type="Namespace" name="Service" executed="True" result="Success" success="True" time="0.016" asserts="0">
+                      <test-suite type="Namespace" name="Service" executed="True" result="Success" success="True" time="0.000" asserts="0">
                         <results>
-                          <test-suite type="TestFixture" name="MessageDefinitionServiceFactoryTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
+                          <test-suite type="TestFixture" name="MessageDefinitionServiceFactoryTest" executed="True" result="Success" success="True" time="0.000" asserts="0">
                             <results>
-                              <test-case name="Ca.Infoway.Messagebuilder.Xml.Service.MessageDefinitionServiceFactoryTest.ShouldProduceNonNullResult" executed="True" result="Success" success="True" time="0.016" asserts="1" />
+                              <test-case name="Ca.Infoway.Messagebuilder.Xml.Service.MessageDefinitionServiceFactoryTest.ShouldProduceNonNullResult" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                             </results>
                           </test-suite>
                         </results>

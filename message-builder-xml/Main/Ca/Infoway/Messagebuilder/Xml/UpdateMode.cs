@@ -69,7 +69,7 @@ namespace Ca.Infoway.Messagebuilder.Xml
 				else
 				{
 					IList<string> result = new List<string>();
-					if (updateModesAllowed != null)
+					if (updateModes != null)
 					{
 						foreach (UpdateModeType updateModeType in updateModes)
 						{

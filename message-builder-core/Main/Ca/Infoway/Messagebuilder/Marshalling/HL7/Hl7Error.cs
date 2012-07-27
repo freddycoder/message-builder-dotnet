@@ -269,5 +269,21 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7
 			return new Ca.Infoway.Messagebuilder.Marshalling.HL7.Hl7Error(Hl7ErrorCode.MANDATORY_FIELD_NOT_PROVIDED, System.String.Format
 				("Association \"{0}\" has a nullFlavor, but does not specify xsi:nil=\"true\".", elementName), element);
 		}
+
+		public static Ca.Infoway.Messagebuilder.Marshalling.HL7.Hl7Error CreateIgnoredAsNotAllowedConformanceLevelRelationshipError
+			(string xmlName, XmlElement @base)
+		{
+			return new Ca.Infoway.Messagebuilder.Marshalling.HL7.Hl7Error(Hl7ErrorCode.IGNORED_CONFORMANCE_NOT_ALLOWED_IS_SET, System.String.Format
+				("Ignored Conformance Level for relationship \"{0}\" for element ({1}) is not permitted", xmlName, XmlDescriber.DescribeSingleElement
+				(@base)), @base);
+		}
+
+		public static Ca.Infoway.Messagebuilder.Marshalling.HL7.Hl7Error CreateNotAllowedConformanceLevelRelationshipError(string
+			 xmlName, XmlElement @base)
+		{
+			return new Ca.Infoway.Messagebuilder.Marshalling.HL7.Hl7Error(Hl7ErrorCode.NOT_ALLOWED_CONFORMANCE_IS_SET, System.String.Format
+				("Not Allowed Conformance Level for relationship \"{0}\" for element ({1}) is not permitted", xmlName, XmlDescriber.DescribeSingleElement
+				(@base)), @base);
+		}
 	}
 }

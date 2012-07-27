@@ -62,6 +62,23 @@ namespace Ca.Infoway.Messagebuilder.Xml.Validator
 							this.result.AddHl7Error(Hl7Error.CreateWrongNumberOfAssociationsError(xmlName, @base, elements.Count, relationship.Cardinality
 								));
 						}
+						else
+						{
+							if (relationship.Conformance == Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.IGNORED)
+							{
+								if (true.ToString().EqualsIgnoreCase(Runtime.GetProperty(ConformanceLevelUtil.IGNORED_AS_NOT_ALLOWED)))
+								{
+									this.result.AddHl7Error(Hl7Error.CreateIgnoredAsNotAllowedConformanceLevelRelationshipError(xmlName, @base));
+								}
+							}
+							else
+							{
+								if (relationship.Conformance == Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.NOT_ALLOWED)
+								{
+									this.result.AddHl7Error(Hl7Error.CreateNotAllowedConformanceLevelRelationshipError(xmlName, @base));
+								}
+							}
+						}
 					}
 				}
 			}
@@ -156,6 +173,23 @@ namespace Ca.Infoway.Messagebuilder.Xml.Validator
 									{
 										this.result.AddHl7Error(Hl7Error.CreateMissingMandatoryAttributeError(relationship.Name, @base));
 									}
+									else
+									{
+										if (relationship.Conformance == Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.IGNORED)
+										{
+											if (true.ToString().EqualsIgnoreCase(Runtime.GetProperty(ConformanceLevelUtil.IGNORED_AS_NOT_ALLOWED)))
+											{
+												this.result.AddHl7Error(Hl7Error.CreateIgnoredAsNotAllowedConformanceLevelRelationshipError(relationship.Name, @base));
+											}
+										}
+										else
+										{
+											if (relationship.Conformance == Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.NOT_ALLOWED)
+											{
+												this.result.AddHl7Error(Hl7Error.CreateNotAllowedConformanceLevelRelationshipError(relationship.Name, @base));
+											}
+										}
+									}
 								}
 							}
 						}
@@ -214,24 +248,41 @@ namespace Ca.Infoway.Messagebuilder.Xml.Validator
 						}
 						else
 						{
-							try
+							if (relationship.Conformance == Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.IGNORED)
 							{
-								ElementParser parser = ParserRegistry.GetInstance().Get((Typed)relationship);
-								if (parser != null)
+								if (true.ToString().EqualsIgnoreCase(Runtime.GetProperty(ConformanceLevelUtil.IGNORED_AS_NOT_ALLOWED)))
 								{
-									BareANY value = parser.Parse(ParseContextImpl.Create(relationship, this.version), ToNodeList(elements), this.result);
-									ValidateNonstructuralFixedValue(relationship, value, elements);
+									this.result.AddHl7Error(Hl7Error.CreateIgnoredAsNotAllowedConformanceLevelRelationshipError(relationship.Name, @base));
+								}
+							}
+							else
+							{
+								if (relationship.Conformance == Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.NOT_ALLOWED)
+								{
+									this.result.AddHl7Error(Hl7Error.CreateNotAllowedConformanceLevelRelationshipError(relationship.Name, @base));
 								}
 								else
 								{
-									this.result.AddHl7Error(new Hl7Error(Hl7ErrorCode.SYNTAX_ERROR, "Cannot find a parser for type " + relationship.Type, CollUtils
-										.IsEmpty(elements) ? null : elements[0]));
+									try
+									{
+										ElementParser parser = ParserRegistry.GetInstance().Get((Typed)relationship);
+										if (parser != null)
+										{
+											BareANY value = parser.Parse(ParseContextImpl.Create(relationship, this.version), ToNodeList(elements), this.result);
+											ValidateNonstructuralFixedValue(relationship, value, elements);
+										}
+										else
+										{
+											this.result.AddHl7Error(new Hl7Error(Hl7ErrorCode.SYNTAX_ERROR, "Cannot find a parser for type " + relationship.Type, CollUtils
+												.IsEmpty(elements) ? null : elements[0]));
+										}
+									}
+									catch (XmlToModelTransformationException e)
+									{
+										this.result.AddHl7Error(new Hl7Error(Hl7ErrorCode.SYNTAX_ERROR, e.Message, CollUtils.IsEmpty(elements) ? null : elements[
+											0]));
+									}
 								}
-							}
-							catch (XmlToModelTransformationException e)
-							{
-								this.result.AddHl7Error(new Hl7Error(Hl7ErrorCode.SYNTAX_ERROR, e.Message, CollUtils.IsEmpty(elements) ? null : elements[
-									0]));
 							}
 						}
 					}

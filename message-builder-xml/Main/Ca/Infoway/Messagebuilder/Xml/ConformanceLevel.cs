@@ -52,10 +52,15 @@ namespace Ca.Infoway.Messagebuilder.Xml
 		public static readonly Ca.Infoway.Messagebuilder.Xml.ConformanceLevel OPTIONAL = new Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
 			("OPTIONAL", "Opt", 3);
 
+		/// <summary>The ignored conformance level.</summary>
+		/// <remarks>The ignored conformance level.</remarks>
+		public static readonly Ca.Infoway.Messagebuilder.Xml.ConformanceLevel IGNORED = new Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
+			("IGNORED", "Ign", 4);
+
 		/// <summary>The not allowed conformance level.</summary>
 		/// <remarks>The not allowed conformance level.</remarks>
 		public static readonly Ca.Infoway.Messagebuilder.Xml.ConformanceLevel NOT_ALLOWED = new Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
-			("NOT_ALLOWED", "X", 4);
+			("NOT_ALLOWED", "X", 5);
 
 		private readonly string description;
 

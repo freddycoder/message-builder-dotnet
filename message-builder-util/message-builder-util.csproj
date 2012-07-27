@@ -57,6 +57,7 @@
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Util\Xml\ConformanceLevelUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Main\Ca\Infoway\Messagebuilder\Typed.cs" />
     <Compile Include="Main\Ca\Infoway\Messagebuilder\Named.cs" />

@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2012-01-18 21:44:48 -0500 (Wed, 18 Jan 2012) $
- * Revision:      $LastChangedRevision: 4355 $
+ * Author:        $LastChangedBy: gng $
+ * Last modified: $LastChangedDate: 2012-07-20 16:18:30 -0400 (Fri, 20 Jul 2012) $
+ * Revision:      $LastChangedRevision: 5983 $
  */
 
 using Ca.Infoway.Messagebuilder.Platform;

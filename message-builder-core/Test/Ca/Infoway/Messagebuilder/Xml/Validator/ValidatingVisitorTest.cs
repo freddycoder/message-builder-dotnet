@@ -20,6 +20,12 @@ namespace Ca.Infoway.Messagebuilder.Xml.Validator
 		public static readonly Ca.Infoway.Messagebuilder.Xml.ConformanceLevel POPULATED = Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
 			.POPULATED;
 
+		public static readonly Ca.Infoway.Messagebuilder.Xml.ConformanceLevel IGNORED = Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
+			.IGNORED;
+
+		public static readonly Ca.Infoway.Messagebuilder.Xml.ConformanceLevel NOT_ALLOWED = Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
+			.NOT_ALLOWED;
+
 		/// <exception cref="System.Exception"></exception>
 		[Test]
 		public virtual void ShouldHaveValidationErrors()
@@ -126,6 +132,118 @@ namespace Ca.Infoway.Messagebuilder.Xml.Validator
 				)), relationship);
 			IList<Hl7Error> hl7Errors = validatingVisitor.GetResult().GetHl7Errors();
 			Assert.IsFalse(hl7Errors.IsEmpty());
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void ShouldHaveValidationErrorForIgnoreConformanceAsNotAllowedOnAssociation()
+		{
+			Runtime.SetProperty(ConformanceLevelUtil.IGNORED_AS_NOT_ALLOWED, "true");
+			CodeResolverRegistry.Register(new EnumBasedCodeResolver(typeof(Ca.Infoway.Messagebuilder.Domainvalue.Controlact.ActStatus
+				)));
+			Relationship relationship = new Relationship();
+			relationship.Name = "admitter";
+			relationship.Conformance = IGNORED;
+			relationship.Type = "COCT_MT011001CA.Admitter";
+			ValidatingVisitor validatingVisitor = new ValidatingVisitor(SpecificationVersion.R02_04_02);
+			validatingVisitor.VisitAssociation(CreateElement("<node/>"), "admitter", Arrays.AsList(CreateElement("<admitter />")), relationship
+				);
+			IList<Hl7Error> hl7Errors = validatingVisitor.GetResult().GetHl7Errors();
+			Assert.IsFalse(hl7Errors.IsEmpty());
+			Runtime.SetProperty(ConformanceLevelUtil.IGNORED_AS_NOT_ALLOWED, null);
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void ShouldHaveValidationErrorForNotAllowedConformanceOnAssociation()
+		{
+			CodeResolverRegistry.Register(new EnumBasedCodeResolver(typeof(Ca.Infoway.Messagebuilder.Domainvalue.Controlact.ActStatus
+				)));
+			Relationship relationship = new Relationship();
+			relationship.Name = "admitter";
+			relationship.Conformance = NOT_ALLOWED;
+			relationship.Type = "COCT_MT011001CA.Admitter";
+			ValidatingVisitor validatingVisitor = new ValidatingVisitor(SpecificationVersion.R02_04_02);
+			validatingVisitor.VisitAssociation(CreateElement("<node/>"), "admitter", Arrays.AsList(CreateElement("<admitter />")), relationship
+				);
+			IList<Hl7Error> hl7Errors = validatingVisitor.GetResult().GetHl7Errors();
+			Assert.IsFalse(hl7Errors.IsEmpty());
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void ShouldHaveNoValidationErrorForIgnoreConformanceAsOptionalOnAssociation()
+		{
+			CodeResolverRegistry.Register(new EnumBasedCodeResolver(typeof(Ca.Infoway.Messagebuilder.Domainvalue.Controlact.ActStatus
+				)));
+			Relationship relationship = new Relationship();
+			relationship.Name = "admitter";
+			relationship.Conformance = IGNORED;
+			relationship.Type = "COCT_MT011001CA.Admitter";
+			ValidatingVisitor validatingVisitor = new ValidatingVisitor(SpecificationVersion.R02_04_02);
+			validatingVisitor.VisitAssociation(CreateElement("<node/>"), "admitter", Arrays.AsList(CreateElement("<admitter />")), relationship
+				);
+			IList<Hl7Error> hl7Errors = validatingVisitor.GetResult().GetHl7Errors();
+			Assert.IsTrue(hl7Errors.IsEmpty());
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void ShouldHaveValidationErrorForIgnoreConformanceAsNotAllowedOnAttribute()
+		{
+			Runtime.SetProperty(ConformanceLevelUtil.IGNORED_AS_NOT_ALLOWED, "true");
+			CodeResolverRegistry.Register(new EnumBasedCodeResolver(typeof(Ca.Infoway.Messagebuilder.Domainvalue.Controlact.ActStatus
+				)));
+			Relationship relationship = new Relationship();
+			relationship.Name = "statusCode";
+			relationship.Conformance = IGNORED;
+			relationship.FixedValue = "123";
+			relationship.Structural = false;
+			relationship.Type = "INT.NONNEG";
+			ValidatingVisitor validatingVisitor = new ValidatingVisitor(SpecificationVersion.R02_04_02);
+			validatingVisitor.VisitNonStructuralAttribute(CreateElement("<node/>"), Arrays.AsList(CreateElement("<statusCode value=\"123\"/>"
+				)), relationship);
+			IList<Hl7Error> hl7Errors = validatingVisitor.GetResult().GetHl7Errors();
+			Assert.IsFalse(hl7Errors.IsEmpty());
+			Runtime.SetProperty(ConformanceLevelUtil.IGNORED_AS_NOT_ALLOWED, null);
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void ShouldHaveValidationErrorForNotAllowedConformanceOnAttribute()
+		{
+			CodeResolverRegistry.Register(new EnumBasedCodeResolver(typeof(Ca.Infoway.Messagebuilder.Domainvalue.Controlact.ActStatus
+				)));
+			Relationship relationship = new Relationship();
+			relationship.Name = "statusCode";
+			relationship.Conformance = NOT_ALLOWED;
+			relationship.FixedValue = "123";
+			relationship.Structural = false;
+			relationship.Type = "INT.NONNEG";
+			ValidatingVisitor validatingVisitor = new ValidatingVisitor(SpecificationVersion.R02_04_02);
+			validatingVisitor.VisitNonStructuralAttribute(CreateElement("<node/>"), Arrays.AsList(CreateElement("<statusCode value=\"123\"/>"
+				)), relationship);
+			IList<Hl7Error> hl7Errors = validatingVisitor.GetResult().GetHl7Errors();
+			Assert.IsFalse(hl7Errors.IsEmpty());
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void ShouldHaveNoValidationErrorForIgnoreConformanceAsOptionalOnAttribute()
+		{
+			CodeResolverRegistry.Register(new EnumBasedCodeResolver(typeof(Ca.Infoway.Messagebuilder.Domainvalue.Controlact.ActStatus
+				)));
+			Relationship relationship = new Relationship();
+			relationship.Name = "statusCode";
+			relationship.Conformance = IGNORED;
+			relationship.FixedValue = "123";
+			relationship.Structural = false;
+			relationship.Type = "INT.NONNEG";
+			ValidatingVisitor validatingVisitor = new ValidatingVisitor(SpecificationVersion.R02_04_02);
+			validatingVisitor.VisitNonStructuralAttribute(CreateElement("<node/>"), Arrays.AsList(CreateElement("<statusCode value=\"123\"/>"
+				)), relationship);
+			IList<Hl7Error> hl7Errors = validatingVisitor.GetResult().GetHl7Errors();
+			Assert.IsTrue(hl7Errors.IsEmpty());
 		}
 
 		/// <exception cref="org.xml.sax.SAXException"></exception>

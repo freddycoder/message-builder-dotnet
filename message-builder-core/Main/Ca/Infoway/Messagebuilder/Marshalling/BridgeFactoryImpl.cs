@@ -9,8 +9,10 @@ using Ca.Infoway.Messagebuilder.Marshalling;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Model;
 using Ca.Infoway.Messagebuilder.Platform;
+using Ca.Infoway.Messagebuilder.Util.Xml;
 using Ca.Infoway.Messagebuilder.Xml;
 using Ca.Infoway.Messagebuilder.Xml.Service;
+using ILOG.J2CsMapping.Text;
 using log4net;
 
 namespace Ca.Infoway.Messagebuilder.Marshalling
@@ -104,6 +106,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 							}
 							else
 							{
+								CreateWarningIfConformanceLevelIsNotAllowed(relationship);
 								relationships.Add(CreateAssociationBridge(relationship, sorter, interaction, currentMessagePart, context));
 							}
 						}
@@ -112,6 +115,24 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 			}
 			return new PartBridgeImpl(sorter.GetPropertyName(), sorter.GetBean(), currentMessagePart.GetName(), relationships, context
 				.IsCollapsed());
+		}
+
+		private void CreateWarningIfConformanceLevelIsNotAllowed(Relationship relationship)
+		{
+			if (ConformanceLevelUtil.IsIgnoredNotAllowed() && relationship.Conformance == Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
+				.IGNORED)
+			{
+				this.log.Debug(System.String.Format(relationship.Association ? ConformanceLevelUtil.ASSOCIATION_IS_IGNORED_AND_CAN_NOT_BE_USED
+					 : ConformanceLevelUtil.ATTRIBUTE_IS_IGNORED_AND_CAN_NOT_BE_USED, relationship.Name));
+			}
+			else
+			{
+				if (relationship.Conformance == Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.NOT_ALLOWED)
+				{
+					this.log.Debug(System.String.Format(relationship.Association ? ConformanceLevelUtil.ASSOCIATION_IS_NOT_ALLOWED : ConformanceLevelUtil
+						.ATTRIBUTE_IS_NOT_ALLOWED, relationship.Name));
+				}
+			}
 		}
 
 		private IndicatorAssociationBridgeImpl CreateIndicatorAssociationBridge(Relationship relationship, RelationshipSorter sorter
