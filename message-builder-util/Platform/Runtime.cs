@@ -34,7 +34,7 @@ namespace Ca.Infoway.Messagebuilder
 			if (property == "line.separator") {
 				return System.Environment.NewLine;
             }
-            else if (property != null && (property.StartsWith("messagebuilder.date.format.override.") || property.StartsWith("ignored.as.not.allowed"))) {
+            else if (property != null && isMessageBuilderProperty(property)) {
                 return System.Environment.GetEnvironmentVariable(property);
             }
 			throw new NotSupportedException(property);
@@ -42,8 +42,7 @@ namespace Ca.Infoway.Messagebuilder
 
         public static void SetProperty(string property, string propertyValue)
         {
-            if (property != null && (property.StartsWith("messagebuilder.date.format.override.") || property.StartsWith("ignored.as.not.allowed")))
-            {
+            if (property != null && isMessageBuilderProperty(property)) {
                 System.Environment.SetEnvironmentVariable(property, propertyValue);
                 return;
             }
@@ -66,7 +65,20 @@ namespace Ca.Infoway.Messagebuilder
 				throw new TypeLoadException("Unable to load type: " + typeName, e);				
 			}
 		}
-		
+
+        private static bool isMessageBuilderProperty(string property)
+        {
+            if (property.StartsWith("messagebuilder.date.format.override."))
+            {
+                return true;
+            }
+            else if (property.ToLower().Equals("ignored.as.not.allowed"))
+            {
+                return true;
+            }
+            return false;
+        }
+
 		public static void PrintStackTrace(Exception e) {
 			Console.WriteLine(e.ToString());
 		}

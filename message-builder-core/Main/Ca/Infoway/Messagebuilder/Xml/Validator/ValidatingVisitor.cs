@@ -59,17 +59,13 @@ namespace Ca.Infoway.Messagebuilder.Xml.Validator
 					{
 						if (!relationship.Cardinality.Contains(elements.Count))
 						{
-							this.result.AddHl7Error(Hl7Error.CreateWrongNumberOfAssociationsError(xmlName, @base, elements.Count, relationship.Cardinality
-								));
+							this.result.AddHl7Error(Hl7Error.CreateWrongNumberOfAssociationsError(xmlName, @base, elements.Count, relationship.Cardinality));
 						}
 						else
 						{
-							if (relationship.Conformance == Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.IGNORED)
+							if (relationship.Conformance == Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.IGNORED && ConformanceLevelUtil.IsIgnoredNotAllowed())
 							{
-								if (true.ToString().EqualsIgnoreCase(Runtime.GetProperty(ConformanceLevelUtil.IGNORED_AS_NOT_ALLOWED)))
-								{
-									this.result.AddHl7Error(Hl7Error.CreateIgnoredAsNotAllowedConformanceLevelRelationshipError(xmlName, @base));
-								}
+								this.result.AddHl7Error(Hl7Error.CreateIgnoredAsNotAllowedConformanceLevelRelationshipError(xmlName, @base));
 							}
 							else
 							{
@@ -175,12 +171,9 @@ namespace Ca.Infoway.Messagebuilder.Xml.Validator
 									}
 									else
 									{
-										if (relationship.Conformance == Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.IGNORED)
+										if (relationship.Conformance == Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.IGNORED && ConformanceLevelUtil.IsIgnoredNotAllowed())
 										{
-											if (true.ToString().EqualsIgnoreCase(Runtime.GetProperty(ConformanceLevelUtil.IGNORED_AS_NOT_ALLOWED)))
-											{
-												this.result.AddHl7Error(Hl7Error.CreateIgnoredAsNotAllowedConformanceLevelRelationshipError(relationship.Name, @base));
-											}
+											this.result.AddHl7Error(Hl7Error.CreateIgnoredAsNotAllowedConformanceLevelRelationshipError(relationship.Name, @base));
 										}
 										else
 										{
@@ -248,12 +241,9 @@ namespace Ca.Infoway.Messagebuilder.Xml.Validator
 						}
 						else
 						{
-							if (relationship.Conformance == Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.IGNORED)
+							if (relationship.Conformance == Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.IGNORED && ConformanceLevelUtil.IsIgnoredNotAllowed())
 							{
-								if (true.ToString().EqualsIgnoreCase(Runtime.GetProperty(ConformanceLevelUtil.IGNORED_AS_NOT_ALLOWED)))
-								{
-									this.result.AddHl7Error(Hl7Error.CreateIgnoredAsNotAllowedConformanceLevelRelationshipError(relationship.Name, @base));
-								}
+								this.result.AddHl7Error(Hl7Error.CreateIgnoredAsNotAllowedConformanceLevelRelationshipError(relationship.Name, @base));
 							}
 							else
 							{

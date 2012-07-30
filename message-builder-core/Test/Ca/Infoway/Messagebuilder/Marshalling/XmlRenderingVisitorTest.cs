@@ -52,6 +52,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 			argument.TemplateParameterName = "act";
 			argument.TraversalName = "bambino";
 			this.interation.Arguments.Add(argument);
+			Runtime.SetProperty(ConformanceLevelUtil.IGNORED_AS_NOT_ALLOWED, string.Empty);
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -345,7 +346,6 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 			AssertXmlEquals("xml", "<ABCD_IN123456CA xmlns=\"urn:hl7-org:v3\" " + "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" ITSVersion=\"XML_1.0\">"
 				 + "<!-- WARNING: Association is ignored and can not be used: (receiver) -->" + "<receiver negationInd=\"false\">" + "<id root=\"1ee83ff1-08ab-4fe7-b573-ea777e9bad51\"/>"
 				 + "</receiver>" + "</ABCD_IN123456CA>", xml);
-			Runtime.SetProperty(ConformanceLevelUtil.IGNORED_AS_NOT_ALLOWED, null);
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -363,7 +363,6 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 			AssertXmlEquals("xml", "<ABCD_IN123456CA xmlns=\"urn:hl7-org:v3\" " + "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" ITSVersion=\"XML_1.0\">"
 				 + "<!-- WARNING: Attribute is ignored and can not be used: (negationInd) -->" + "<receiver negationInd=\"false\">" + "<!-- WARNING: Attribute is ignored and can not be used: (id) -->"
 				 + "<id root=\"1ee83ff1-08ab-4fe7-b573-ea777e9bad51\"/>" + "</receiver>" + "</ABCD_IN123456CA>", xml);
-			Runtime.SetProperty(ConformanceLevelUtil.IGNORED_AS_NOT_ALLOWED, null);
 		}
 
 		private void RunVisitor(Relationship relationship, Relationship nonStructuralAttr, Relationship structuralAttr)

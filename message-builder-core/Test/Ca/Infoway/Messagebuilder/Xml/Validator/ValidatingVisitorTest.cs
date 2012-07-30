@@ -26,6 +26,12 @@ namespace Ca.Infoway.Messagebuilder.Xml.Validator
 		public static readonly Ca.Infoway.Messagebuilder.Xml.ConformanceLevel NOT_ALLOWED = Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
 			.NOT_ALLOWED;
 
+		[NUnit.Framework.SetUp]
+		public virtual void SetUp()
+		{
+			Runtime.SetProperty(ConformanceLevelUtil.IGNORED_AS_NOT_ALLOWED, string.Empty);
+		}
+
 		/// <exception cref="System.Exception"></exception>
 		[Test]
 		public virtual void ShouldHaveValidationErrors()
@@ -150,7 +156,6 @@ namespace Ca.Infoway.Messagebuilder.Xml.Validator
 				);
 			IList<Hl7Error> hl7Errors = validatingVisitor.GetResult().GetHl7Errors();
 			Assert.IsFalse(hl7Errors.IsEmpty());
-			Runtime.SetProperty(ConformanceLevelUtil.IGNORED_AS_NOT_ALLOWED, null);
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -197,7 +202,6 @@ namespace Ca.Infoway.Messagebuilder.Xml.Validator
 			Relationship relationship = new Relationship();
 			relationship.Name = "statusCode";
 			relationship.Conformance = IGNORED;
-			relationship.FixedValue = "123";
 			relationship.Structural = false;
 			relationship.Type = "INT.NONNEG";
 			ValidatingVisitor validatingVisitor = new ValidatingVisitor(SpecificationVersion.R02_04_02);
@@ -205,7 +209,6 @@ namespace Ca.Infoway.Messagebuilder.Xml.Validator
 				)), relationship);
 			IList<Hl7Error> hl7Errors = validatingVisitor.GetResult().GetHl7Errors();
 			Assert.IsFalse(hl7Errors.IsEmpty());
-			Runtime.SetProperty(ConformanceLevelUtil.IGNORED_AS_NOT_ALLOWED, null);
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -217,7 +220,6 @@ namespace Ca.Infoway.Messagebuilder.Xml.Validator
 			Relationship relationship = new Relationship();
 			relationship.Name = "statusCode";
 			relationship.Conformance = NOT_ALLOWED;
-			relationship.FixedValue = "123";
 			relationship.Structural = false;
 			relationship.Type = "INT.NONNEG";
 			ValidatingVisitor validatingVisitor = new ValidatingVisitor(SpecificationVersion.R02_04_02);
@@ -236,7 +238,6 @@ namespace Ca.Infoway.Messagebuilder.Xml.Validator
 			Relationship relationship = new Relationship();
 			relationship.Name = "statusCode";
 			relationship.Conformance = IGNORED;
-			relationship.FixedValue = "123";
 			relationship.Structural = false;
 			relationship.Type = "INT.NONNEG";
 			ValidatingVisitor validatingVisitor = new ValidatingVisitor(SpecificationVersion.R02_04_02);

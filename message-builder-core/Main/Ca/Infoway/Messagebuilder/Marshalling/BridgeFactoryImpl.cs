@@ -69,6 +69,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 						{
 							if (context.IsIndexed())
 							{
+								CreateWarningIfConformanceLevelIsNotAllowed(relationship);
 								object field = sorter.GetField(relationship);
 								if (ListElementUtil.IsCollection(field))
 								{
@@ -83,6 +84,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 							}
 							else
 							{
+								CreateWarningIfConformanceLevelIsNotAllowed(relationship);
 								relationships.Add(CreateAttributeBridge(relationship, (BeanProperty)o, sorter, currentMessagePart));
 							}
 						}
@@ -91,6 +93,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 					{
 						if (IsIndicator(relationship))
 						{
+							CreateWarningIfConformanceLevelIsNotAllowed(relationship);
 							relationships.Add(CreateIndicatorAssociationBridge(relationship, sorter, interaction, context, (BeanProperty)o));
 						}
 						else
@@ -113,14 +116,12 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 					}
 				}
 			}
-			return new PartBridgeImpl(sorter.GetPropertyName(), sorter.GetBean(), currentMessagePart.GetName(), relationships, context
-				.IsCollapsed());
+			return new PartBridgeImpl(sorter.GetPropertyName(), sorter.GetBean(), currentMessagePart.GetName(), relationships, context.IsCollapsed());
 		}
 
 		private void CreateWarningIfConformanceLevelIsNotAllowed(Relationship relationship)
 		{
-			if (ConformanceLevelUtil.IsIgnoredNotAllowed() && relationship.Conformance == Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
-				.IGNORED)
+			if (ConformanceLevelUtil.IsIgnoredNotAllowed() && relationship.Conformance == Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.IGNORED)
 			{
 				this.log.Debug(System.String.Format(relationship.Association ? ConformanceLevelUtil.ASSOCIATION_IS_IGNORED_AND_CAN_NOT_BE_USED
 					 : ConformanceLevelUtil.ATTRIBUTE_IS_IGNORED_AND_CAN_NOT_BE_USED, relationship.Name));
