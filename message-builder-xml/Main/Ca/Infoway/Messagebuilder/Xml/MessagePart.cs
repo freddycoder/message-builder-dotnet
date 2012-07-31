@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Xml;
 using Platform.SimpleXml;
+using Ca.Infoway.Messagebuilder.Lang;
 
 namespace Ca.Infoway.Messagebuilder.Xml
 {
@@ -42,6 +43,9 @@ namespace Ca.Infoway.Messagebuilder.Xml
 
 		[ElementAttribute(Required = false)]
 		private Ca.Infoway.Messagebuilder.Xml.Documentation documentation;
+
+        [XmlAttributeAttribute(Required = false)]
+        private string rimClass;
 
 		[ElementListAttribute(Required = false, Inline = true)]
 		private IList<Relationship> relationships = new List<Relationship>();
@@ -268,5 +272,31 @@ namespace Ca.Infoway.Messagebuilder.Xml
 			}
 			return result;
 		}
+
+        /// <summary>Get the conformance level.</summary>
+        /// <remarks>Get the conformance level.</remarks>
+        /// <returns>the conformance level.</returns>
+        /// <summary>Set the conformance level.</summary>
+        /// <remarks>Set the conformance level.</remarks>
+        /// <value>the conformance level.</value>
+        public virtual Ca.Infoway.Messagebuilder.Xml.RimClass RimClass
+        {
+            get
+            {
+                if (this.rimClass != null)
+                {
+                    return EnumPattern.ValueOf<Ca.Infoway.Messagebuilder.Xml.RimClass>(this.rimClass);
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            set
+            {
+                Ca.Infoway.Messagebuilder.Xml.RimClass rimClass = value;
+                this.rimClass = rimClass == null ? null : rimClass.Name;
+            }
+        }
 	}
 }

@@ -116,12 +116,14 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 					}
 				}
 			}
-			return new PartBridgeImpl(sorter.GetPropertyName(), sorter.GetBean(), currentMessagePart.GetName(), relationships, context.IsCollapsed());
+			return new PartBridgeImpl(sorter.GetPropertyName(), sorter.GetBean(), currentMessagePart.GetName(), relationships, context
+				.IsCollapsed());
 		}
 
 		private void CreateWarningIfConformanceLevelIsNotAllowed(Relationship relationship)
 		{
-			if (ConformanceLevelUtil.IsIgnoredNotAllowed() && relationship.Conformance == Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.IGNORED)
+			if (ConformanceLevelUtil.IsIgnoredNotAllowed() && relationship.Conformance == Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
+				.IGNORED)
 			{
 				this.log.Debug(System.String.Format(relationship.Association ? ConformanceLevelUtil.ASSOCIATION_IS_IGNORED_AND_CAN_NOT_BE_USED
 					 : ConformanceLevelUtil.ATTRIBUTE_IS_IGNORED_AND_CAN_NOT_BE_USED, relationship.Name));

@@ -6,6 +6,10 @@ namespace Ca.Infoway.Messagebuilder.Xml
 	[System.Serializable]
 	public class RimClass : EnumPattern
 	{
+		static RimClass()
+		{
+		}
+
 		private const long serialVersionUID = -8779975480440476740L;
 
 		public static readonly Ca.Infoway.Messagebuilder.Xml.RimClass ACT = new Ca.Infoway.Messagebuilder.Xml.RimClass("ACT");

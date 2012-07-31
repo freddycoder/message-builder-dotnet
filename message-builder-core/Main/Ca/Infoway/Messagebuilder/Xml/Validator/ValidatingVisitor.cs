@@ -59,11 +59,13 @@ namespace Ca.Infoway.Messagebuilder.Xml.Validator
 					{
 						if (!relationship.Cardinality.Contains(elements.Count))
 						{
-							this.result.AddHl7Error(Hl7Error.CreateWrongNumberOfAssociationsError(xmlName, @base, elements.Count, relationship.Cardinality));
+							this.result.AddHl7Error(Hl7Error.CreateWrongNumberOfAssociationsError(xmlName, @base, elements.Count, relationship.Cardinality
+								));
 						}
 						else
 						{
-							if (relationship.Conformance == Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.IGNORED && ConformanceLevelUtil.IsIgnoredNotAllowed())
+							if (relationship.Conformance == Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.IGNORED && ConformanceLevelUtil.IsIgnoredNotAllowed
+								())
 							{
 								this.result.AddHl7Error(Hl7Error.CreateIgnoredAsNotAllowedConformanceLevelRelationshipError(xmlName, @base));
 							}
@@ -171,7 +173,8 @@ namespace Ca.Infoway.Messagebuilder.Xml.Validator
 									}
 									else
 									{
-										if (relationship.Conformance == Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.IGNORED && ConformanceLevelUtil.IsIgnoredNotAllowed())
+										if (relationship.Conformance == Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.IGNORED && ConformanceLevelUtil.IsIgnoredNotAllowed
+											())
 										{
 											this.result.AddHl7Error(Hl7Error.CreateIgnoredAsNotAllowedConformanceLevelRelationshipError(relationship.Name, @base));
 										}
@@ -241,7 +244,8 @@ namespace Ca.Infoway.Messagebuilder.Xml.Validator
 						}
 						else
 						{
-							if (relationship.Conformance == Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.IGNORED && ConformanceLevelUtil.IsIgnoredNotAllowed())
+							if (relationship.Conformance == Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.IGNORED && ConformanceLevelUtil.IsIgnoredNotAllowed
+								())
 							{
 								this.result.AddHl7Error(Hl7Error.CreateIgnoredAsNotAllowedConformanceLevelRelationshipError(relationship.Name, @base));
 							}
