@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.IO;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Xml;
@@ -24,6 +25,23 @@ namespace Ca.Infoway.Messagebuilder.Xml
 			MessageSet testset = GetMessageSet("sample_with_breadcrumbs.xml");
 			Assert.IsTrue(testset.RemixHistory.Count > 0);
 			Assert.AreEqual(testset.RemixHistory[0].Value, "R02_04_02");
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void TestShouldReadAndWriteSampleWithRimClass()
+		{
+			MessageSet testset = GetMessageSet("sample_with_rim_class.xml");
+			ICollection<MessagePart> allMessageParts = testset.AllMessageParts;
+			foreach (MessagePart messagePart in allMessageParts)
+			{
+				Assert.IsNotNull(messagePart.RimClass);
+			}
+			MessageSet testset2 = MarshallAndUnmarshall(testset);
+			foreach (MessagePart messagePart in testset2.AllMessageParts)
+			{
+				Assert.IsNotNull(messagePart.RimClass);
+			}
 		}
 
 		/// <exception cref="System.Exception"></exception>

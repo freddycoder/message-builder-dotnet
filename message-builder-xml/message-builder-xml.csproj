@@ -57,8 +57,12 @@
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\ConceptDomain.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\ContextBinding.cs" />
     <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\MessageSetHistory.cs" />
     <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\RimClass.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\ValueSet.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\Vocabulary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\MessageSetMarshaller.cs" />
     <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\MessageSet.cs" />

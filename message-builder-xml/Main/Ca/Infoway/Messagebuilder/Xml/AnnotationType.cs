@@ -23,9 +23,6 @@ namespace Ca.Infoway.Messagebuilder.Xml
 		public static readonly Ca.Infoway.Messagebuilder.Xml.AnnotationType CONSTRAINT = new Ca.Infoway.Messagebuilder.Xml.AnnotationType
 			("CONSTRAINT", "CONSTRAINT", "constraint", "formalConstraint");
 
-		public static readonly Ca.Infoway.Messagebuilder.Xml.AnnotationType DESCRIPTION = new Ca.Infoway.Messagebuilder.Xml.AnnotationType
-			("DESCRIPTION", "DESCRIPTION / DEFINITION", "description", "definition");
-
 		public static readonly Ca.Infoway.Messagebuilder.Xml.AnnotationType DESIGN_COMMENTS = new Ca.Infoway.Messagebuilder.Xml.AnnotationType
 			("DESIGN_COMMENTS", "DESIGN COMMENTS", "designComments");
 
@@ -44,12 +41,47 @@ namespace Ca.Infoway.Messagebuilder.Xml
 		public static readonly Ca.Infoway.Messagebuilder.Xml.AnnotationType USAGE_NOTES = new Ca.Infoway.Messagebuilder.Xml.AnnotationType
 			("USAGE_NOTES", "USAGE NOTES", "usageNotes");
 
+		public static readonly Ca.Infoway.Messagebuilder.Xml.AnnotationType DESCRIPTION = new Ca.Infoway.Messagebuilder.Xml.AnnotationType
+			("DESCRIPTION", "DESCRIPTION", "description");
+
+		public static readonly Ca.Infoway.Messagebuilder.Xml.AnnotationType DEFINITION = new Ca.Infoway.Messagebuilder.Xml.AnnotationType
+			("DEFINITION", "DEFINITION", "definition");
+
+		public static readonly Ca.Infoway.Messagebuilder.Xml.AnnotationType USAGE_CONSTRAINT = new Ca.Infoway.Messagebuilder.Xml.AnnotationType
+			("USAGE_CONSTRAINT", "USAGE CONSTRAINT", "usageConstraint");
+
+		public static readonly Ca.Infoway.Messagebuilder.Xml.AnnotationType REQUIREMENTS = new Ca.Infoway.Messagebuilder.Xml.AnnotationType
+			("REQUIREMENTS", "REQUIREMENTS", "requirements");
+
+		public static readonly Ca.Infoway.Messagebuilder.Xml.AnnotationType STABILITY_REMARKS = new Ca.Infoway.Messagebuilder.Xml.AnnotationType
+			("STABILITY_REMARKS", "STABILITY REMARKS", "stabilityRemarks");
+
+		public static readonly Ca.Infoway.Messagebuilder.Xml.AnnotationType WALKTHROUGH = new Ca.Infoway.Messagebuilder.Xml.AnnotationType
+			("WALKTHROUGH", "WALKTHROUGH", "walkthrough");
+
+		public static readonly Ca.Infoway.Messagebuilder.Xml.AnnotationType APPENDIX = new Ca.Infoway.Messagebuilder.Xml.AnnotationType
+			("APPENDIX", "APPENDIX", "appendix");
+
+		public static readonly Ca.Infoway.Messagebuilder.Xml.AnnotationType BALLOT_COMMENT = new Ca.Infoway.Messagebuilder.Xml.AnnotationType
+			("BALLOT_COMMENT", "BALLOT COMMENT", "ballotComment");
+
+		public static readonly Ca.Infoway.Messagebuilder.Xml.AnnotationType CHANGE_REQUEST = new Ca.Infoway.Messagebuilder.Xml.AnnotationType
+			("CHANGE_REQUEST", "CHANGE REQUEST", "changeRequest");
+
+		public static readonly Ca.Infoway.Messagebuilder.Xml.AnnotationType STATIC_EXAMPLE = new Ca.Infoway.Messagebuilder.Xml.AnnotationType
+			("STATIC_EXAMPLE", "STATIC EXAMPLE", "staticExample");
+
+		public static readonly Ca.Infoway.Messagebuilder.Xml.AnnotationType DEPRECATION_INFO = new Ca.Infoway.Messagebuilder.Xml.AnnotationType
+			("DEPRECATION_INFO", "DEPRECATION INFO", "deprecationInfo");
+
 		private readonly string[] mifElementNames;
 
 		private string displayName;
 
 		private AnnotationType(string name, string displayName, params string[] mif) : base(name)
 		{
+			//	public static final AnnotationType DESCRIPTION = new AnnotationType("DESCRIPTION", "DESCRIPTION / DEFINITION", "description", "definition");
+			//TODO: GN: need to figure out if these have corresponding mappings on mif1s
 			this.displayName = displayName;
 			this.mifElementNames = mif;
 		}

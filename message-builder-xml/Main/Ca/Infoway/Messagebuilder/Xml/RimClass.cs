@@ -12,24 +12,32 @@ namespace Ca.Infoway.Messagebuilder.Xml
 
 		private const long serialVersionUID = -8779975480440476740L;
 
-		public static readonly Ca.Infoway.Messagebuilder.Xml.RimClass ACT = new Ca.Infoway.Messagebuilder.Xml.RimClass("ACT");
+		public static readonly Ca.Infoway.Messagebuilder.Xml.RimClass ACT = new Ca.Infoway.Messagebuilder.Xml.RimClass("ACT", "Act"
+			);
 
 		public static readonly Ca.Infoway.Messagebuilder.Xml.RimClass ACT_RELATIONSHIP = new Ca.Infoway.Messagebuilder.Xml.RimClass
-			("ACT_RELATIONSHIP");
+			("ACT_RELATIONSHIP", "ActRelationship");
 
 		public static readonly Ca.Infoway.Messagebuilder.Xml.RimClass ENTITY = new Ca.Infoway.Messagebuilder.Xml.RimClass("ENTITY"
-			);
+			, "Entity");
+
+		public static readonly Ca.Infoway.Messagebuilder.Xml.RimClass OTHER_CLASS = new Ca.Infoway.Messagebuilder.Xml.RimClass("OTHER_CLASS"
+			, "OtherClass");
 
 		public static readonly Ca.Infoway.Messagebuilder.Xml.RimClass PARTICIPATION = new Ca.Infoway.Messagebuilder.Xml.RimClass(
-			"PARTICIPATION");
+			"PARTICIPATION", "Participation");
 
-		public static readonly Ca.Infoway.Messagebuilder.Xml.RimClass ROLE = new Ca.Infoway.Messagebuilder.Xml.RimClass("ROLE");
-
-		public static readonly Ca.Infoway.Messagebuilder.Xml.RimClass ROLE_LINK = new Ca.Infoway.Messagebuilder.Xml.RimClass("ROLE_LINK"
+		public static readonly Ca.Infoway.Messagebuilder.Xml.RimClass ROLE = new Ca.Infoway.Messagebuilder.Xml.RimClass("ROLE", "Role"
 			);
 
-		private RimClass(string name) : base(name)
+		public static readonly Ca.Infoway.Messagebuilder.Xml.RimClass ROLE_LINK = new Ca.Infoway.Messagebuilder.Xml.RimClass("ROLE_LINK"
+			, "RoleLink");
+
+		private readonly string code;
+
+		private RimClass(string name, string code) : base(name)
 		{
+			this.code = code;
 		}
 
 		public virtual string GetDescription()
@@ -39,7 +47,7 @@ namespace Ca.Infoway.Messagebuilder.Xml
 
 		public virtual string GetCode()
 		{
-			return Name;
+			return this.code;
 		}
 	}
 }

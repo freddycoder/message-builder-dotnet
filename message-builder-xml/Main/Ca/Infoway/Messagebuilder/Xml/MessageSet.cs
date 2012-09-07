@@ -18,6 +18,12 @@ namespace Ca.Infoway.Messagebuilder.Xml
 		[XmlAttributeAttribute(Required = false)]
 		private string component;
 
+		[XmlAttributeAttribute(Required = false)]
+		private string schemaVersion = "1.1";
+
+		[ElementAttribute(Required = false)]
+		private Vocabulary vocabulary;
+
 		[ElementListAttribute(Name = "remixHistory", Required = false, Inline = true, Entry = "remixHistoryEntry")]
 		private IList<MessageSetHistory> remixHistory = new List<MessageSetHistory>();
 
@@ -210,6 +216,15 @@ namespace Ca.Infoway.Messagebuilder.Xml
 				IList<MessageSetHistory> remixHistory = value;
 				this.remixHistory = remixHistory;
 			}
+		}
+
+		public virtual Vocabulary GetVocabulary()
+		{
+			if (this.vocabulary == null)
+			{
+				this.vocabulary = new Vocabulary();
+			}
+			return this.vocabulary;
 		}
 	}
 }
