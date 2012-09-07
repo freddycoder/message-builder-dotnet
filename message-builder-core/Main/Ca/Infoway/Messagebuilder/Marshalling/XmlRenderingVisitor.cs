@@ -308,7 +308,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 					if (relationship.Fixed)
 					{
 						any = (BareANY)DataTypeFactory.CreateDataType(relationship.Type);
-						((BareANYImpl)any).BareValue = NonStructuralHl7AttributeRenderer.GetFixedValue(relationship);
+						((BareANYImpl)any).BareValue = NonStructuralHl7AttributeRenderer.GetFixedValue(relationship, version);
 					}
 					else
 					{

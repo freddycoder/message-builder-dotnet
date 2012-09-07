@@ -25,7 +25,7 @@ namespace Ca.Infoway.Messagebuilder.Xml.Validator
 
 		public virtual System.Type GetExpectedReturnType()
 		{
-			return DomainTypeHelper.GetReturnType(this.relationship);
+			return DomainTypeHelper.GetReturnType(this.relationship, this.version);
 		}
 
 		public virtual string Type

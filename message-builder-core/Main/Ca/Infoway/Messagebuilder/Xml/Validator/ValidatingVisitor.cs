@@ -204,8 +204,8 @@ namespace Ca.Infoway.Messagebuilder.Xml.Validator
 			{
 				if (StandardDataType.CS == StandardDataType.GetByTypeName((Typed)relationship))
 				{
-					new CsElementParser().ParseCodedSimpleValue(attr.Value, (Type)DomainTypeHelper.GetReturnType(relationship), @base, this.result
-						, attr);
+					new CsElementParser().ParseCodedSimpleValue(attr.Value, (Type)DomainTypeHelper.GetReturnType(relationship, version), @base
+						, this.result, attr);
 				}
 				else
 				{

@@ -161,7 +161,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 			}
 		}
 
-		public virtual void WriteNodeAttribute(Relationship relationship, string attributeValue)
+		public virtual void WriteNodeAttribute(Relationship relationship, string attributeValue, VersionNumber version)
 		{
 			BeanProperty property = FindBeanProperty(relationship);
 			if (property != null)
@@ -178,7 +178,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 						{
 							if ("CS".Equals(relationship.Type))
 							{
-								property.Set(ResolveCodeValue(relationship, attributeValue));
+								property.Set(ResolveCodeValue(relationship, attributeValue, version));
 							}
 							else
 							{
@@ -206,9 +206,9 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 			}
 		}
 
-		private Code ResolveCodeValue(Relationship relationship, string attributeValue)
+		private Code ResolveCodeValue(Relationship relationship, string attributeValue, VersionNumber version)
 		{
-			return CodeResolverRegistry.Lookup((Type)DomainTypeHelper.GetReturnType(relationship), attributeValue);
+			return CodeResolverRegistry.Lookup((Type)DomainTypeHelper.GetReturnType(relationship, version), attributeValue);
 		}
 
 		public virtual void WriteNullFlavor(Hl7Source source, Relationship relationship, NullFlavor nullFlavor)

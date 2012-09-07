@@ -1,13 +1,29 @@
 using System;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Domainvalue;
+using Ca.Infoway.Messagebuilder.Marshalling;
 using Ca.Infoway.Messagebuilder.Xml;
 
 namespace Ca.Infoway.Messagebuilder.Marshalling.HL7
 {
 	public class DomainTypeHelper
 	{
-		public static Type GetReturnType(Relationship relationship)
+		public static Type GetReturnType(Relationship relationship, VersionNumber version)
+		{
+			Type type = GetReturnType(relationship);
+			if (type == typeof(Code))
+			{
+				string domainType = relationship.DomainType;
+				Type codeType = MessageBeanRegistry.GetInstance().GetCodeType(domainType, version.VersionLiteral);
+				if (codeType != null)
+				{
+					type = codeType;
+				}
+			}
+			return type;
+		}
+
+		private static Type GetReturnType(Relationship relationship)
 		{
 			string domainType = relationship.DomainType;
 			if (ClassUtils.GetShortClassName(typeof(HealthcareProviderRoleType)).EqualsIgnoreCase(domainType))

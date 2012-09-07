@@ -33,7 +33,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 
 		public virtual System.Type GetExpectedReturnType()
 		{
-			return DomainTypeHelper.GetReturnType(this.relationship);
+			return DomainTypeHelper.GetReturnType(this.relationship, this.version);
 		}
 
 		public virtual string Type

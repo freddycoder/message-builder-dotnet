@@ -8,7 +8,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 {
 	internal class NonStructuralHl7AttributeRenderer
 	{
-		internal static object GetFixedValue(Relationship relationship)
+		internal static object GetFixedValue(Relationship relationship, VersionNumber version)
 		{
 			if (StringUtils.Equals("BL", relationship.Type))
 			{
@@ -24,7 +24,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 				{
 					if (relationship.CodedType)
 					{
-						return CodeResolverRegistry.Lookup(DomainTypeHelper.GetReturnType(relationship), relationship.FixedValue);
+						return CodeResolverRegistry.Lookup(DomainTypeHelper.GetReturnType(relationship, version), relationship.FixedValue);
 					}
 					else
 					{

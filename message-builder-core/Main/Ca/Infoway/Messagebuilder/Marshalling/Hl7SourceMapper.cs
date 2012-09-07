@@ -440,7 +440,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 							{
 								ValidateFixedValue(source, currentElement, (XmlAttribute)attributeNode, attributeRelationship);
 							}
-							wrapper.WriteNodeAttribute(attributeRelationship, attributeNode.Value);
+							wrapper.WriteNodeAttribute(attributeRelationship, attributeNode.Value, source.GetVersion());
 						}
 					}
 					ValidateMandatoryAttributesExist(source, currentElement);

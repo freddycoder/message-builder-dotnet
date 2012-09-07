@@ -35,6 +35,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 
         private Dictionary<MessageTypeKey, Type> registry = new Dictionary<MessageTypeKey, Type>();
         private Dictionary<MessageTypeKey, Type> partTypeRegistry = new Dictionary<MessageTypeKey, Type>();
+        private Dictionary<MessageTypeKey, Type> codeTypeRegistry = new Dictionary<MessageTypeKey, Type>();
 
         public static MessageBeanRegistry GetInstance()
         {
@@ -49,6 +50,12 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
         public Type GetMessagePartType(MessageTypeKey key)
         {
             return partTypeRegistry.ContainsKey(key) ? partTypeRegistry[key] : null;
+        }
+
+        public Type GetCodeType(string domainType, String version)
+        {
+            MessageTypeKey key = new MessageTypeKey(version, domainType);
+            return codeTypeRegistry.ContainsKey(key) ? codeTypeRegistry[key] : null;
         }
 
         public Dictionary<MessageTypeKey, Type>.ValueCollection GetAllMessageParts()
@@ -148,6 +155,27 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
                 var classes = FindClasses(item.Key);
 
                 RegisterClasses(classes, item.Value);
+
+                var codes = FindCodes(item.Key);
+
+                RegisterCodeType(codes, item.Value);
+            }
+        }
+
+        private void RegisterCodeType(List<Type> codes, string[] versions)
+        {
+            foreach (var type in codes)
+            {
+                RegisterCodeType(type, versions);
+            }
+        }
+
+        private void RegisterCodeType(Type type, string[] versions)
+        {
+            string domainType = type.Name;
+            foreach (string version in versions)
+            {
+                codeTypeRegistry.Add(new MessageTypeKey(version, domainType), type);
             }
         }
 
@@ -199,6 +227,23 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
                 var attr = GetClassAttributes(type, typeof(Hl7PartTypeMappingAttribute));
 
                 if (attr != null)
+                {
+                    selectedTypes.Add(type);
+                }
+            }
+
+            return selectedTypes;
+        }
+
+        private static List<Type> FindCodes(Assembly assembly)
+        {
+            var selectedTypes = new List<Type>();
+
+            var types = assembly.GetTypes();
+
+            foreach (var type in types)
+            {
+                if (type.IsAssignableFrom(typeof(Code)))
                 {
                     selectedTypes.Add(type);
                 }
