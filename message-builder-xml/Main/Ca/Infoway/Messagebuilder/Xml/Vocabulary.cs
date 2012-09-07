@@ -4,6 +4,7 @@ using Platform.SimpleXml;
 
 namespace Ca.Infoway.Messagebuilder.Xml
 {
+	[RootAttribute]
 	public class Vocabulary
 	{
 		[ElementListAttribute(Inline = true, Required = false, Entry = "valueSet")]
@@ -12,14 +13,30 @@ namespace Ca.Infoway.Messagebuilder.Xml
 		[ElementListAttribute(Inline = true, Required = false, Entry = "conceptDomain")]
 		private IList<ConceptDomain> conceptDomains = new List<ConceptDomain>();
 
-		public virtual IList<ValueSet> GetValueSets()
+		public virtual IList<ValueSet> ValueSets
 		{
-			return this.valueSets;
+			get
+			{
+				return this.valueSets;
+			}
+			set
+			{
+				IList<ValueSet> valueSets = value;
+				this.valueSets = valueSets;
+			}
 		}
 
-		public virtual IList<ConceptDomain> GetConceptDomains()
+		public virtual IList<ConceptDomain> ConceptDomains
 		{
-			return this.conceptDomains;
+			get
+			{
+				return this.conceptDomains;
+			}
+			set
+			{
+				IList<ConceptDomain> conceptDomains = value;
+				this.conceptDomains = conceptDomains;
+			}
 		}
 	}
 }

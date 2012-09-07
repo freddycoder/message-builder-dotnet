@@ -29,16 +29,11 @@ namespace Ca.Infoway.Messagebuilder.Xml
 
 		/// <exception cref="System.Exception"></exception>
 		[Test]
-		public virtual void TestShouldReadAndWriteSampleWithRimClass()
+		public virtual void TestShouldReadSampleWithRimClass()
 		{
 			MessageSet testset = GetMessageSet("sample_with_rim_class.xml");
 			ICollection<MessagePart> allMessageParts = testset.AllMessageParts;
 			foreach (MessagePart messagePart in allMessageParts)
-			{
-				Assert.IsNotNull(messagePart.RimClass);
-			}
-			MessageSet testset2 = MarshallAndUnmarshall(testset);
-			foreach (MessagePart messagePart in testset2.AllMessageParts)
 			{
 				Assert.IsNotNull(messagePart.RimClass);
 			}

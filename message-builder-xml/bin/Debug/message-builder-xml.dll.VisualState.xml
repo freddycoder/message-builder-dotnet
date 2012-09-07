@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <VisualState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ShowCheckBoxes="false">
-  <TopNode>[0-1008]C:\workspace-Hg\message-builder\message-builder-core\target\translation\mbtdotnet\message-builder-xml\bin\Debug\message-builder-xml.dll</TopNode>
-  <SelectedNode>[0-1008]C:\workspace-Hg\message-builder\message-builder-core\target\translation\mbtdotnet\message-builder-xml\bin\Debug\message-builder-xml.dll</SelectedNode>
+  <TopNode>[0-1009]C:\workspace-Hg\message-builder\message-builder-core\target\translation\mbtdotnet\trunk\message-builder-xml\bin\Debug\message-builder-xml.dll</TopNode>
+  <SelectedNode>[0-1009]C:\workspace-Hg\message-builder\message-builder-core\target\translation\mbtdotnet\trunk\message-builder-xml\bin\Debug\message-builder-xml.dll</SelectedNode>
   <ExcludeCategories>false</ExcludeCategories>
   <Nodes>
-    <Node UniqueName="[0-1008]C:\workspace-Hg\message-builder\message-builder-core\target\translation\mbtdotnet\message-builder-xml\bin\Debug\message-builder-xml.dll" Expanded="true" />
-    <Node UniqueName="[0-1009]Ca" Expanded="true" />
-    <Node UniqueName="[0-1010]Ca.Infoway" Expanded="true" />
-    <Node UniqueName="[0-1011]Ca.Infoway.Messagebuilder" Expanded="true" />
-    <Node UniqueName="[0-1012]Ca.Infoway.Messagebuilder.Xml" Expanded="true" />
-    <Node UniqueName="[0-1002]Ca.Infoway.Messagebuilder.Xml.MessageSetMarshallerTest" Expanded="true" />
-    <Node UniqueName="[0-1013]Ca.Infoway.Messagebuilder.Xml.Service" Expanded="true" />
-    <Node UniqueName="[0-1000]Ca.Infoway.Messagebuilder.Xml.Service.MessageDefinitionServiceFactoryTest" Expanded="true" />
+    <Node UniqueName="[0-1009]C:\workspace-Hg\message-builder\message-builder-core\target\translation\mbtdotnet\trunk\message-builder-xml\bin\Debug\message-builder-xml.dll" Expanded="true" />
+    <Node UniqueName="[0-1010]Ca" Expanded="true" />
+    <Node UniqueName="[0-1012]Ca.Infoway.Messagebuilder" Expanded="true" />
+    <Node UniqueName="[0-1013]Ca.Infoway.Messagebuilder.Xml" Expanded="true" />
+    <Node UniqueName="[0-1000]Ca.Infoway.Messagebuilder.Xml.MessageSetMarshallerTest" Expanded="true" />
+    <Node UniqueName="[0-1014]Ca.Infoway.Messagebuilder.Xml.Service" Expanded="true" />
+    <Node UniqueName="[0-1007]Ca.Infoway.Messagebuilder.Xml.Service.MessageDefinitionServiceFactoryTest" Expanded="true" />
   </Nodes>
 </VisualState>

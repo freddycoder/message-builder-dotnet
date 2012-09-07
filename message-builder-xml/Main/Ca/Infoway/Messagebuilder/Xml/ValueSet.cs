@@ -21,23 +21,47 @@ namespace Ca.Infoway.Messagebuilder.Xml
 
 		public ValueSet(string name, string codeSystem)
 		{
-			this.name = name;
-			this.codeSystem = codeSystem;
+			this.Name = name;
+			this.CodeSystem = codeSystem;
 		}
 
-		public virtual string GetName()
+		public virtual string Name
 		{
-			return this.name;
+			get
+			{
+				return this.name;
+			}
+			set
+			{
+				string name = value;
+				this.name = name;
+			}
 		}
 
-		public virtual string GetCodeSystem()
+		public virtual string CodeSystem
 		{
-			return this.codeSystem;
+			get
+			{
+				return this.codeSystem;
+			}
+			set
+			{
+				string codeSystem = value;
+				this.codeSystem = codeSystem;
+			}
 		}
 
-		public virtual IList<ContextBinding> GetContextBindings()
+		public virtual IList<ContextBinding> ContextBindings
 		{
-			return this.contextBindings;
+			get
+			{
+				return this.contextBindings;
+			}
+			set
+			{
+				IList<ContextBinding> contextBindings = value;
+				this.contextBindings = contextBindings;
+			}
 		}
 	}
 }

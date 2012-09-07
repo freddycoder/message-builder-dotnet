@@ -17,21 +17,37 @@ namespace Ca.Infoway.Messagebuilder.Xml
 
 		public ConceptDomain(string name, IList<string> parentConceptDomains)
 		{
-			this.name = name;
+			this.Name = name;
 			if (parentConceptDomains != null)
 			{
-				this.parentConceptDomains.AddAll(parentConceptDomains);
+				this.ParentConceptDomains.AddAll(parentConceptDomains);
 			}
 		}
 
-		public virtual string GetName()
+		public virtual string Name
 		{
-			return this.name;
+			get
+			{
+				return this.name;
+			}
+			set
+			{
+				string name = value;
+				this.name = name;
+			}
 		}
 
-		public virtual IList<string> GetParentConceptDomains()
+		public virtual IList<string> ParentConceptDomains
 		{
-			return this.parentConceptDomains;
+			get
+			{
+				return this.parentConceptDomains;
+			}
+			set
+			{
+				IList<string> parentConceptDomains = value;
+				this.parentConceptDomains = parentConceptDomains;
+			}
 		}
 	}
 }

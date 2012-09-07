@@ -22,7 +22,7 @@ namespace Ca.Infoway.Messagebuilder.Xml
 		private string schemaVersion = "1.1";
 
 		[ElementAttribute(Required = false)]
-		private Vocabulary vocabulary;
+		private Ca.Infoway.Messagebuilder.Xml.Vocabulary vocabulary;
 
 		[ElementListAttribute(Name = "remixHistory", Required = false, Inline = true, Entry = "remixHistoryEntry")]
 		private IList<MessageSetHistory> remixHistory = new List<MessageSetHistory>();
@@ -218,13 +218,34 @@ namespace Ca.Infoway.Messagebuilder.Xml
 			}
 		}
 
-		public virtual Vocabulary GetVocabulary()
+		public virtual Ca.Infoway.Messagebuilder.Xml.Vocabulary Vocabulary
 		{
-			if (this.vocabulary == null)
+			get
 			{
-				this.vocabulary = new Vocabulary();
+				if (this.vocabulary == null)
+				{
+					this.vocabulary = new Ca.Infoway.Messagebuilder.Xml.Vocabulary();
+				}
+				return this.vocabulary;
 			}
-			return this.vocabulary;
+			set
+			{
+				Ca.Infoway.Messagebuilder.Xml.Vocabulary vocabulary = value;
+				this.vocabulary = vocabulary;
+			}
+		}
+
+		public virtual string SchemaVersion
+		{
+			get
+			{
+				return schemaVersion;
+			}
+			set
+			{
+				string schemaVersion = value;
+				this.schemaVersion = schemaVersion;
+			}
 		}
 	}
 }

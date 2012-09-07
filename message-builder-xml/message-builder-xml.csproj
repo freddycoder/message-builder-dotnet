@@ -190,4 +190,9 @@
   <ItemGroup>
     <EmbeddedResource Include="TestResource\Ca\Infoway\Messagebuilder\Xml\sample_with_breadcrumbs.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestResource\Ca\Infoway\Messagebuilder\Xml\sample_with_rim_class.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
 </Project>
