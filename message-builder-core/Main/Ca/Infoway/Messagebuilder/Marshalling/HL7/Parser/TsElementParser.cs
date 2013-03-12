@@ -62,7 +62,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 
 		private ParseContext HandleSpecializationType(ParseContext context, XmlNode node, XmlToModelResult xmlToModelResult)
 		{
-			string specializationType = GetAttributeValue(node, AbstractElementParser.SPECIALIZATION_TYPE);
+			string specializationType = GetSpecializationType(node);
 			if (specializationType == null)
 			{
 				// TM - RedMine issue 492 - there is some concern over MBT forcing a specialization type for abstract TS type TS_FULLDATEWITHTIME

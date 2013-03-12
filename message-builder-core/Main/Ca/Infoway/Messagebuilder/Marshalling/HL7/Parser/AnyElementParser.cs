@@ -111,10 +111,10 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		/// <returns>the converted specializationType</returns>
 		private string ObtainSpecializationType(string parentType, XmlNode node, XmlToModelResult xmlToModelResult)
 		{
-			string rawSpecializationType = GetAttributeValue(node, AbstractElementParser.SPECIALIZATION_TYPE);
+			string rawSpecializationType = GetSpecializationType(node);
 			if (StringUtils.IsBlank(rawSpecializationType))
 			{
-				// some cases don't need "specializationType". Treat xsi:type as specializationType (internally)
+				// some cases don't need specialization type. Treat xsi:type as specializationType (internally)
 				// e.g. URG_PQ, ST
 				string xsiType = GetXsiType(node);
 				if (xsiType != null)
@@ -124,7 +124,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 					for (int i = 0; i < childNodes.Count; i++)
 					{
 						XmlNode child = childNodes.Item(0);
-						innerSpecializationType = GetAttributeValue(child, AbstractElementParser.SPECIALIZATION_TYPE);
+						innerSpecializationType = GetSpecializationType(child);
 						if (StringUtils.IsNotBlank(innerSpecializationType))
 						{
 							break;

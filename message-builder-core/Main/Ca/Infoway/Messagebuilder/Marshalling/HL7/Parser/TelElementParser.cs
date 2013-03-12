@@ -51,7 +51,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			 expectedReturnType, XmlToModelResult xmlToModelResult)
 		{
 			ValidateNoChildren(context, node);
-			string specializationType = GetAttributeValue(node, AbstractElementParser.SPECIALIZATION_TYPE);
+			string specializationType = GetSpecializationType(node);
 			TelecommunicationAddress telecomAddress = ParseTelecommunicationAddress(node, xmlToModelResult);
 			string type = context.Type;
 			TEL_VALIDATION_UTILS.ValidateTelecommunicationAddress(telecomAddress, type, specializationType, context.GetVersion(), (XmlElement

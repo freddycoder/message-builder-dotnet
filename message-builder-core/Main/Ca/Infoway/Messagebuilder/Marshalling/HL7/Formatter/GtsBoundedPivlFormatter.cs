@@ -47,9 +47,9 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			IDictionary<string, string> attributes = new Dictionary<string, string>();
 			if (RequiresSpecializationType(context))
 			{
-				attributes["specializationType"] = GTS_BOUNDED_PIVL;
+				attributes[AbstractPropertyFormatter.SPECIALIZATION_TYPE] = GTS_BOUNDED_PIVL;
 			}
-			attributes["xsi:type"] = "SXPR_TS";
+			attributes[AbstractPropertyFormatter.XSI_TYPE] = "SXPR_TS";
 			return attributes;
 		}
 
@@ -121,7 +121,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			{
 				if ("comp".Equals(name) && !this.requiresSpecializationType && attributes != null)
 				{
-					attributes["xsi:type"] = "PIVL_TS";
+					attributes[AbstractPropertyFormatter.XSI_TYPE] = "PIVL_TS";
 				}
 				return base.CreateElement(name, attributes, indentLevel, close, lineBreak);
 			}
@@ -154,7 +154,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 					}
 					if (!this.requiresSpecializationType && attributes != null)
 					{
-						attributes["xsi:type"] = "IVL_TS";
+						attributes[AbstractPropertyFormatter.XSI_TYPE] = "IVL_TS";
 					}
 				}
 				return base.CreateElement(name, attributes, indentLevel, close, lineBreak);

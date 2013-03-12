@@ -160,11 +160,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 
 		private string ParseSpecializationType(XmlElement element)
 		{
-			if (element.HasAttribute(AbstractElementParser.SPECIALIZATION_TYPE))
-			{
-				return element.GetAttribute(AbstractElementParser.SPECIALIZATION_TYPE);
-			}
-			return null;
+			return GetSpecializationType(element);
 		}
 
 		private string ParseLanguage(XmlElement element)

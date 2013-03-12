@@ -83,13 +83,13 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 				if (validSpecializationType)
 				{
 					typeFromContext = typeFromField;
-					result["specializationType"] = typeFromContext;
+					result[AbstractPropertyFormatter.SPECIALIZATION_TYPE] = typeFromContext;
 				}
 				else
 				{
 					if (iiValidationUtils.IsIiBusAndVer(typeFromContext))
 					{
-						result["specializationType"] = IiValidationUtils.II_BUS;
+						result[AbstractPropertyFormatter.SPECIALIZATION_TYPE] = IiValidationUtils.II_BUS;
 						typeFromContext = IiValidationUtils.II_BUS;
 						RecordError(iiValidationUtils.GetInvalidSpecializationTypeForBusAndVerErrorMessage(typeFromField, typeFromContext), context
 							);

@@ -39,6 +39,19 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			return node != null && node is XmlElement ? GetAttributeValue((XmlElement)node, attributeName) : null;
 		}
 
+		protected virtual string GetSpecializationType(XmlNode node)
+		{
+			string specializationType = node != null && node is XmlElement ? GetAttributeValue((XmlElement)node, SPECIALIZATION_TYPE)
+				 : null;
+			// specialization types defined as A<B.C> are not a problem.
+			// specialization types defined as A_B.C (the way MB formats specializationType!) are not handled properly, so convert the value here
+			if (specializationType != null && specializationType.Contains("_"))
+			{
+				specializationType = System.Text.RegularExpressions.Regex.Replace(specializationType, "_", "<") + ">";
+			}
+			return specializationType;
+		}
+
 		protected virtual string GetAttributeValue(XmlElement node, string attributeName)
 		{
 			return node != null && node.HasAttribute(attributeName) ? node.GetAttribute(attributeName) : null;

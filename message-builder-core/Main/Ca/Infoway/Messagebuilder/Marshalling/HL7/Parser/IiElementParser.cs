@@ -235,7 +235,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		{
 			VersionNumber version = context.GetVersion();
 			string typeFromContext = context.Type;
-			string specializationType = GetAttributeValue(element, AbstractElementParser.SPECIALIZATION_TYPE);
+			string specializationType = GetSpecializationType(element);
 			if (iiValidationUtils.IsSpecializationTypeRequired(version, typeFromContext))
 			{
 				bool validSpecializationType = IsSpecializationTypeProvided(specializationType);

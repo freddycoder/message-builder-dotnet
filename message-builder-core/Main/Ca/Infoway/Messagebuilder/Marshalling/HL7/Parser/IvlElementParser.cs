@@ -180,7 +180,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		private ParseContext HandleSpecializationType(ParseContext context, XmlNode node, XmlToModelResult xmlToModelResult)
 		{
 			string type = context.Type;
-			string specializationType = GetAttributeValue(node, AbstractElementParser.SPECIALIZATION_TYPE);
+			string specializationType = GetSpecializationType(node);
 			IList<string> errors = new List<string>();
 			string newType = this.ivlValidationUtils.ValidateSpecializationType(type, specializationType, errors);
 			RecordAnyErrors(errors, (XmlElement)node, xmlToModelResult);

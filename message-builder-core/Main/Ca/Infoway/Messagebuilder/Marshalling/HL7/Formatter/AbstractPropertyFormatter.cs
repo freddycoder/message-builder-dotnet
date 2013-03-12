@@ -27,6 +27,10 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 {
 	public abstract class AbstractPropertyFormatter : PropertyFormatter
 	{
+		protected static readonly string SPECIALIZATION_TYPE = "specializationType";
+
+		protected static readonly string XSI_TYPE = "xsi:type";
+
 		private static readonly XmlWarningRenderer warningRenderer = new XmlWarningRenderer();
 
 		internal static readonly IDictionary<string, string> EMPTY_ATTRIBUTE_MAP = new Dictionary<string, string>();
@@ -100,8 +104,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		protected virtual void AddSpecializationType(IDictionary<string, string> attributes, string typeAsString)
 		{
 			StandardDataType type = StandardDataType.GetByTypeName(typeAsString);
-			attributes["xsi:type"] = Xmlify(type.TypeName.UnspecializedName);
-			attributes["specializationType"] = Xmlify(type.Type);
+			attributes[XSI_TYPE] = Xmlify(type.TypeName.UnspecializedName);
+			attributes[SPECIALIZATION_TYPE] = Xmlify(type.Type);
 		}
 
 		protected virtual bool IsNullFlavor(IDictionary<string, string> attributes)
