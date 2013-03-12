@@ -1,3 +1,22 @@
+/**
+ * Copyright 2013 Canada Health Infoway, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Author:        $LastChangedBy: tmcgrady $
+ * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Revision:      $LastChangedRevision: 2623 $
+ */
 using System;
 using System.Xml;
 using Ca.Infoway.Messagebuilder;
@@ -22,8 +41,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 	/// like this:
 	/// 
 	/// http://www.hl7.org/v3ballot/html/infrastructure/itsxml/datatypes-its-xml.htm#dtimpl-INT
-	/// CeRx further breaks down the datatype into INT.NONNEG and INT.POS subtypes, but those are
-	/// irrelevant on the parsing side. We don't check for non-negative or positive constraints.
+	/// CeRx further breaks down the datatype into INT.NONNEG and INT.POS subtypes.
 	/// </remarks>
 	[DataTypeHandler(new string[] { "INT.NONNEG", "INT.POS", "INT" })]
 	internal class IntElementParser : AbstractSingleElementParser<Int32?>
@@ -32,12 +50,13 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		protected override Int32? ParseNonNullNode(ParseContext context, XmlNode node, BareANY result, Type expectedReturnType, XmlToModelResult
 			 xmlToModelResult)
 		{
+			// TODO - TM - this validation throws an XmlToModelTransformationException if it fails; would be nice to log this as an error and then try to process the value anyway
 			ValidateNoChildren(context, node);
-			return ParseNonNullNode((XmlElement)node, expectedReturnType, xmlToModelResult);
+			return ParseNonNullNode(context, (XmlElement)node, xmlToModelResult);
 		}
 
 		/// <exception cref="Ca.Infoway.Messagebuilder.Marshalling.HL7.XmlToModelTransformationException"></exception>
-		protected virtual Int32? ParseNonNullNode(XmlElement element, Type expectedReturnType, XmlToModelResult xmlToModelResult)
+		private Int32? ParseNonNullNode(ParseContext context, XmlElement element, XmlToModelResult xmlToModelResult)
 		{
 			Int32? result = null;
 			string unparsedInteger = GetAttributeValue(element, "value");
@@ -45,16 +64,23 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			{
 				if (!NumberUtil.IsNumber(unparsedInteger))
 				{
-					xmlToModelResult.AddHl7Error(new Hl7Error(Hl7ErrorCode.DATA_TYPE_ERROR, "The attribute \"value\" does not contain a valid number ("
-						 + XmlDescriber.DescribeSingleElement(element) + ")", element));
+					RecordNotAValidNumberError(element, xmlToModelResult);
 				}
 				else
 				{
 					result = NumberUtil.ParseAsInteger(unparsedInteger);
-					if (!NumberUtil.IsInteger(unparsedInteger))
+					// using the isNumeric check to catch silly things such as passing in a hexadecimal number (0x1a, for example)
+					bool mustBePositive = StandardDataType.INT_POS.Type.Equals(context.Type);
+					if (!NumberUtil.IsInteger(unparsedInteger) || !StringUtils.IsNumeric(unparsedInteger))
 					{
-						xmlToModelResult.AddHl7Error(new Hl7Error(Hl7ErrorCode.DATA_TYPE_ERROR, "The attribute \"value\" is not a valid integer, it will be truncated to "
-							 + result + " (" + XmlDescriber.DescribeSingleElement(element) + ")", element));
+						RecordInvalidIntegerError(result, element, mustBePositive, xmlToModelResult);
+					}
+					else
+					{
+						if (mustBePositive && result.Value == 0)
+						{
+							RecordMustBeGreaterThanZeroError(element, xmlToModelResult);
+						}
 					}
 				}
 			}
@@ -62,11 +88,55 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			{
 				if (element.HasAttribute("value"))
 				{
-					xmlToModelResult.AddHl7Error(new Hl7Error(Hl7ErrorCode.DATA_TYPE_ERROR, "The attribute \"value\" is specified, but empty. ("
-						 + XmlDescriber.DescribeSingleElement(element) + ")", element));
+					RecordEmptyValueError(element, xmlToModelResult);
+				}
+				else
+				{
+					RecordMissingValueError(element, xmlToModelResult);
 				}
 			}
 			return result;
+		}
+
+		private void RecordMissingValueError(XmlElement element, XmlToModelResult xmlToModelResult)
+		{
+			xmlToModelResult.AddHl7Error(new Hl7Error(Hl7ErrorCode.DATA_TYPE_ERROR, "The attribute \"value\" must be specified. (" + 
+				XmlDescriber.DescribeSingleElement(element) + ")", element));
+		}
+
+		private void RecordEmptyValueError(XmlElement element, XmlToModelResult xmlToModelResult)
+		{
+			xmlToModelResult.AddHl7Error(new Hl7Error(Hl7ErrorCode.DATA_TYPE_ERROR, "The attribute \"value\" is specified, but empty. ("
+				 + XmlDescriber.DescribeSingleElement(element) + ")", element));
+		}
+
+		private void RecordMustBeGreaterThanZeroError(XmlElement element, XmlToModelResult xmlToModelResult)
+		{
+			xmlToModelResult.AddHl7Error(new Hl7Error(Hl7ErrorCode.DATA_TYPE_ERROR, "The attribute \"value\" must be greater than zero for INT.POS. ("
+				 + XmlDescriber.DescribeSingleElement(element) + ")", element));
+		}
+
+		//	private void recordNotNegativeError(Element element, XmlToModelResult xmlToModelResult) {
+		//		xmlToModelResult.addHl7Error(
+		//				new Hl7Error(Hl7ErrorCode.DATA_TYPE_ERROR, 
+		//						"The attribute \"value\" must not be negative for INT.NONNEG. (" 
+		//						+ XmlDescriber.describeSingleElement(element)
+		//						+ ")", element));
+		//	}
+		//
+		private void RecordInvalidIntegerError(Int32? result, XmlElement element, bool mustBePositive, XmlToModelResult xmlToModelResult
+			)
+		{
+			xmlToModelResult.AddHl7Error(new Hl7Error(Hl7ErrorCode.DATA_TYPE_ERROR, "The attribute \"value\" is not a valid integer: it cannot be negative "
+				 + (mustBePositive ? "or zero " : string.Empty) + "and must be digits only (maximum of 10), with a maximum value of " + 
+				int.MaxValue + "." + " The value may have been truncated; processing value as " + result + " (" + XmlDescriber.DescribeSingleElement
+				(element) + ")", element));
+		}
+
+		private void RecordNotAValidNumberError(XmlElement element, XmlToModelResult xmlToModelResult)
+		{
+			xmlToModelResult.AddHl7Error(new Hl7Error(Hl7ErrorCode.DATA_TYPE_ERROR, "The attribute \"value\" does not contain a valid number ("
+				 + XmlDescriber.DescribeSingleElement(element) + ")", element));
 		}
 
 		protected override BareANY DoCreateDataTypeInstance(string typeName)

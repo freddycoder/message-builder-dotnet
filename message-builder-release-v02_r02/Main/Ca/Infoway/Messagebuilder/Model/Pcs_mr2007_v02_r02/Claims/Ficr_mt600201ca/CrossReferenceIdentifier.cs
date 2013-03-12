@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,10 +27,10 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Ficr_mt60020
 
 
     /**
-     * <summary>Cross Reference Identifier</summary>
+     * <summary>Business Name: Cross Reference Identifier</summary>
      * 
-     * <remarks><p>Unique identifier used for cross-referrence.</p> 
-     * <p>Identifier required to link invoices.</p></remarks>
+     * <p>Identifier required to link invoices.</p> <p>Unique 
+     * identifier used for cross-referrence.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"FICR_MT600201CA.InvoiceElementCrossReference"})]
     public class CrossReferenceIdentifier : MessagePartBean {
@@ -41,16 +41,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Ficr_mt60020
             this.id = new IIImpl();
         }
         /**
-         * <summary>Cross Reference Identifier</summary>
+         * <summary>Business Name: Cross Reference Identifier</summary>
          * 
-         * <remarks><p>Includes references to authorization, coverage 
-         * extension and pre-determination results. Previous 
-         * adjudication results are not referenced with this 
-         * mechanism</p> <p>Includes references to authorization, 
-         * coverage extension and pre-determination results. The 
-         * identifier is the Root Adjudicated Invoice Element Group ID, 
-         * returned on the previous authorization, coverage extension 
-         * or pre-determination results.</p><p>In some situations, the 
+         * <remarks>Relationship: 
+         * FICR_MT600201CA.InvoiceElementCrossReference.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>Includes 
+         * references to authorization, coverage extension and 
+         * pre-determination results. The identifier is the Root 
+         * Adjudicated Invoice Element Group ID, returned on the 
+         * previous authorization, coverage extension or 
+         * pre-determination results.</p><p>In some situations, the 
          * authorization, coverage extension and pre-determination 
          * number may not be available to the submitter electronically. 
          * Therefore, the OID root may not be available. Current action 
@@ -59,48 +59,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Ficr_mt60020
          * referenced with this mechanism</p><p>May also be used for 
          * other identifiers that have been assigned by external 
          * agencies through a manual process, that if supplied on an 
-         * Invoice, would result in payment.</p> <p>Includes references 
-         * to authorization, coverage extension and pre-determination 
-         * results. The identifier is the Root Adjudicated Invoice 
-         * Element Group ID, returned on the previous authorization, 
-         * coverage extension or pre-determination results.</p><p>In 
-         * some situations, the authorization, coverage extension and 
-         * pre-determination number may not be available to the 
-         * submitter electronically. Therefore, the OID root may not be 
-         * available. Current action item raised to determine if the 
-         * OID root can be optional for this situation.</p><p>Previous 
-         * adjudication results are not referenced with this 
-         * mechanism</p><p>May also be used for other identifiers that 
-         * have been assigned by external agencies through a manual 
-         * process, that if supplied on an Invoice, would result in 
-         * payment.</p> <p>Includes references to authorization, 
-         * coverage extension and pre-determination results. The 
-         * identifier is the Root Adjudicated Invoice Element Group ID, 
-         * returned on the previous authorization, coverage extension 
-         * or pre-determination results.</p><p>In some situations, the 
+         * Invoice, would result in payment.</p> <p>RxS1: Not permitted 
+         * for this scenario.</p> <p>Includes references to 
          * authorization, coverage extension and pre-determination 
-         * number may not be available to the submitter electronically. 
-         * Therefore, the OID root may not be available. Current action 
-         * item raised to determine if the OID root can be optional for 
-         * this situation.</p><p>Previous adjudication results are not 
-         * referenced with this mechanism</p><p>May also be used for 
-         * other identifiers that have been assigned by external 
-         * agencies through a manual process, that if supplied on an 
-         * Invoice, would result in payment.</p> <p>Includes references 
-         * to authorization, coverage extension and pre-determination 
-         * results. The identifier is the Root Adjudicated Invoice 
-         * Element Group ID, returned on the previous authorization, 
-         * coverage extension or pre-determination results.</p><p>In 
-         * some situations, the authorization, coverage extension and 
-         * pre-determination number may not be available to the 
-         * submitter electronically. Therefore, the OID root may not be 
-         * available. Current action item raised to determine if the 
-         * OID root can be optional for this situation.</p><p>Previous 
-         * adjudication results are not referenced with this 
-         * mechanism</p><p>May also be used for other identifiers that 
-         * have been assigned by external agencies through a manual 
-         * process, that if supplied on an Invoice, would result in 
-         * payment.</p> <p>RxS1: Not permitted for this scenario.</p></remarks>
+         * results. Previous adjudication results are not referenced 
+         * with this mechanism</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {

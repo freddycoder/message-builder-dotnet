@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt000004ca;
 
 
+    /**
+     * <summary>Business Name: REPC_IN000016CA: Patient 
+     * allergy/intolerance query response</summary>
+     * 
+     * <p>Returns the details of one or more allergy and 
+     * intolerance records.</p> Message: MCCI_MT002300CA.Message 
+     * Control Act: QUQI_MT120006CA.ControlActEvent --> Payload: 
+     * REPC_MT000005CA.IntoleranceCondition --> Payload: 
+     * REPC_MT000004CA.ParameterList
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"REPC_IN000016CA"})]
     public class PatientAllergyIntoleranceQueryResponse : HL7Message_1<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.TriggerEvent_6<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged.AllergyIntolerance,Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt000004ca.AllergyIntoleranceQueryParameters>>, IInteraction {
 

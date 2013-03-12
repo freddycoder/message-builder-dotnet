@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,16 +32,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Coct_mt2
 
 
     /**
-     * <summary>Drug Product</summary>
+     * <summary>Business Name: Drug Product</summary>
      * 
-     * <remarks><p>A pharmaceutical product to be supplied and/or 
+     * <p>A pharmaceutical product to be supplied and/or 
      * administered to a patient. Encompasses manufactured drug 
      * products, generic classifications, prescription medications, 
      * over-the-counter medications and recreational drugs.</p> 
      * <p>A_BillablePharmacyDispense</p> <p>Allows drugs to be 
      * clearly described and referenced. Also allows searching for 
      * and examining information about medications that can be or 
-     * are being used by a patient.</p></remarks>
+     * are being used by a patient.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"COCT_MT220200CA.Medication"})]
     public class DrugProduct : MessagePartBean, Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.IMedication {
@@ -65,12 +65,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Coct_mt2
             this.playerIngredient = new List<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.DrugContains>();
         }
         /**
-         * <summary>A:Drug Code</summary>
+         * <summary>Business Name: A:Drug Code</summary>
          * 
-         * <remarks><p>An identifier for a type of drug. Depending on 
-         * where the drug is being referenced, the drug may be 
-         * identified at different levels of abstraction. E.g. 
-         * Manufactured drug (including vaccine).</p> 
+         * <remarks>Relationship: COCT_MT220200CA.Medicine.code 
+         * Conformance/Cardinality: POPULATED (1) <p>An identifier for 
+         * a type of drug. Depending on where the drug is being 
+         * referenced, the drug may be identified at different levels 
+         * of abstraction. E.g. Manufactured drug (including 
+         * vaccine).</p> 
          * <p>DrugProduct.activeIngredientId</p><p>DrugProduct.ActiveIngredientGroupNumber</p><p>DrugProduct.DIN</p><p>DrugProduct.StandardProductId 
          * (Mnemonic)</p><p>DrugProduct.StandardIDType(Code 
          * System)</p><p>D56(use code system to distinguish different 
@@ -208,8 +210,6 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Coct_mt2
          * system)</p><p>DRU.100-04 (mnemonic)</p><p>DRU.100-05 (code 
          * system)</p><p>Compound.488-RE (code 
          * system)</p><p>Compound.489-TE 
-         * (mnemonic)</p><p>DUR/PPS.475-J9 (code 
-         * system)</p><p>DUR/PPS.476-H6 (mnemonic)</p><p>Claim.436-E1 
          * ... [rest of documentation truncated due to excessive length]
          */
         [Hl7XmlMappingAttribute(new string[] {"player/code"})]
@@ -219,10 +219,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Coct_mt2
         }
 
         /**
-         * <summary>B:Drug Name</summary>
+         * <summary>Business Name: B:Drug Name</summary>
          * 
-         * <remarks><p>The name assigned to a drug.</p> 
-         * <p>DrugProduct.Name 
+         * <remarks>Relationship: COCT_MT220200CA.Medicine.name 
+         * Conformance/Cardinality: MANDATORY (1) <p>The name assigned 
+         * to a drug.</p> <p>DrugProduct.Name 
          * (Search)</p><p>CoumpoundDrugProduct.name</p><p>Contraindication.interactingDrugName</p><p>DrugProduct.labelName(useCode=L)</p><p>ZPB2.2</p><p>ZPB3.2</p><p>ZPC.2</p><p>ZPD.2</p><p>ZPD1.2</p><p>ZPD.5</p><p>MB.01.03</p><p>Drug 
          * Name</p><p>ZDU.4.2</p><p>ZDU.6.1.1</p><p>DRU.010-02</p><p>RXA.TradeName</p><p>DRU.010-10-&gt;12</p><p>Brand 
          * Name</p><p>C.1a</p><p>Trade Name</p><p>Other Name</p> 
@@ -308,8 +309,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Coct_mt2
          * Name</p><p>C.1a</p><p>Trade Name</p><p>Other Name</p> 
          * <p>Names are used for human reference communication, to 
          * allow selection from dropdowns and for local searching. If a 
-         * code is available, the name acts as a cross-check. If the 
-         * code is not available the name
+ 
          * ... [rest of documentation truncated due to excessive length]
          */
         [Hl7XmlMappingAttribute(new string[] {"player/name"})]
@@ -319,12 +319,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Coct_mt2
         }
 
         /**
-         * <summary>C:Drug Description</summary>
+         * <summary>Business Name: C:Drug Description</summary>
          * 
-         * <remarks><p>A free form textual description of a drug. This 
-         * usually is only populated for custom compounds, providing 
-         * instructions on the composition and creation of the 
-         * compound.</p> 
+         * <remarks>Relationship: COCT_MT220200CA.Medicine.desc 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>A free form 
+         * textual description of a drug. This usually is only 
+         * populated for custom compounds, providing instructions on 
+         * the composition and creation of the compound.</p> 
          * <p>DrugProduct.description</p><p>CompoundedDrugProduct.adhocSpecification</p><p>DRU.010-06</p><p>DIN 
          * Description</p> 
          * <p>DrugProduct.description</p><p>CompoundedDrugProduct.adhocSpecification</p><p>DRU.010-06</p><p>DIN 
@@ -342,10 +343,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Coct_mt2
         }
 
         /**
-         * <summary>D:Drug Form</summary>
+         * <summary>Business Name: D:Drug Form</summary>
          * 
-         * <remarks><p>Indicates the form in which the drug product 
-         * must be, or has been manufactured or custom prepared.</p> 
+         * <remarks>Relationship: COCT_MT220200CA.Medicine.formCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
+         * form in which the drug product must be, or has been 
+         * manufactured or custom prepared.</p> 
          * <p>Prescription.dosageForm</p><p>DrugProduct.dosageForm</p><p>CompoundedDrugProduct.dosageForm</p><p>DispensedItem.dosageForm</p><p>D63</p><p>ZPC.3</p><p>ZPD.3</p><p>Drug 
          * form</p><p>ZDP.14.1</p><p>ZDP.3b</p><p>DRU.010-05</p><p>Compound.450-EF</p><p>A_BillablePharmacyDispense</p><p>Dosage 
          * Form</p><p>Dosage Form</p> 
@@ -402,10 +405,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Coct_mt2
         }
 
         /**
-         * <summary>E:Drug Lot Number</summary>
+         * <summary>Business Name: E:Drug Lot Number</summary>
          * 
-         * <remarks><p>Identification of a batch in which a specific 
-         * manufactured drug belongs.</p> 
+         * <remarks>Relationship: 
+         * COCT_MT220200CA.Medicine.lotNumberText 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Identification of 
+         * a batch in which a specific manufactured drug belongs.</p> 
          * <p>X0301</p><p>RXA.15</p><p>C.6</p> 
          * <p>X0301</p><p>RXA.15</p><p>C.6</p> 
          * <p>X0301</p><p>RXA.15</p><p>C.6</p> <p>Useful in tracking 
@@ -418,19 +423,21 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Coct_mt2
         }
 
         /**
-         * <summary>F:Drug Expiry Date</summary>
+         * <summary>Business Name: F:Drug Expiry Date</summary>
          * 
-         * <remarks><p>Indicates either the length of time a drug 
-         * product can remain viable (when talking about a drug in 
-         * general terms), or the date on which the drug product is no 
-         * longer considered viable (when talking about a specific 
-         * medication that has been dispensed).</p> 
-         * <p>DispensedItem.expiryDate</p><p>Drug Expiry 
-         * Date</p><p>C7</p> <p>DispensedItem.expiryDate</p><p>Drug 
+         * <remarks>Relationship: 
+         * COCT_MT220200CA.Medicine.expirationTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates either 
+         * the length of time a drug product can remain viable (when 
+         * talking about a drug in general terms), or the date on which 
+         * the drug product is no longer considered viable (when 
+         * talking about a specific medication that has been 
+         * dispensed).</p> <p>DispensedItem.expiryDate</p><p>Drug 
          * Expiry Date</p><p>C7</p> 
          * <p>DispensedItem.expiryDate</p><p>Drug Expiry 
-         * Date</p><p>C7</p> <p>The potency, effectiveness and safety 
-         * of drug products changes over time. When determining 
+         * Date</p><p>C7</p> <p>DispensedItem.expiryDate</p><p>Drug 
+         * Expiry Date</p><p>C7</p> <p>The potency, effectiveness and 
+         * safety of drug products changes over time. When determining 
          * quantities to be supplied to a patient, one of the 
          * considerations is how long the drug will remain viable.</p> 
          * <p>To indicate the length of time after opening a product 
@@ -444,12 +451,22 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Coct_mt2
             set { this.playerExpirationTime.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: COCT_MT220200CA.Medicine.asContent</summary>
+         * 
+         * <remarks>Conformance/Cardinality: REQUIRED (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"player/asContent"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Merged.DrugDispensedIn PlayerAsContent {
             get { return this.playerAsContent; }
             set { this.playerAsContent = value; }
         }
 
+        /**
+         * <summary>Relationship: COCT_MT220200CA.Medicine.ingredient</summary>
+         * 
+         * <remarks>Conformance/Cardinality: REQUIRED (0-10)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"player/ingredient"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.DrugContains> PlayerIngredient {
             get { return this.playerIngredient; }

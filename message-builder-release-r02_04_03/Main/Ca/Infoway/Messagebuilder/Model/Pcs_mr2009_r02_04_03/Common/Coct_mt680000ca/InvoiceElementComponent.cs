@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,6 +31,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt680
 
         public InvoiceElementComponent() {
         }
+        /**
+         * <summary>Relationship: 
+         * COCT_MT680000CA.InvoiceElementComponent.invoiceElementChoice</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"invoiceElementChoice"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.IInvoiceElementChoice InvoiceElementChoice {
             get { return this.invoiceElementChoice; }

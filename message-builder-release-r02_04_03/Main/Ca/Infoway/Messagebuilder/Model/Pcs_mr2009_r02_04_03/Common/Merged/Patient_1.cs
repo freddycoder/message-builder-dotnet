@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,22 +31,22 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged {
 
 
     /**
-     * <summary>Patient</summary>
+     * <summary>Business Name: Patient</summary>
      * 
-     * <remarks>COCT_MT050201CA.Patient: Patient <p>A person who is 
-     * receiving or may receive healthcare services and has had 
-     * their identity previously confirmed</p> <p>Used when 
+     * <remarks>COCT_MT050201CA.Patient: Patient <p>Used when 
      * patienty identity confirmation is handled as a distinct 
      * business process rather than as part of each transaction. 
      * Allows transactions to be linked to a specific patient.</p> 
-     * COCT_MT050007CA.Patient: Patient <p>A person who is 
+     * <p>A person who is receiving or may receive healthcare 
+     * services and has had their identity previously confirmed</p> 
+     * COCT_MT050007CA.Patient: Patient <p>Information used to 
+     * identify the patient and to support clinical decisions. This 
+     * information applies to the person in the context of the 
+     * associated action only, and should be stored separately. 
+     * I.e. the address/phone/email only apply to the current 
+     * prescription/dispense/lab order etc.</p> <p>A person who is 
      * receiving or may receive healthcare services and has 
-     * personal attributes (e.g. name, birth date).</p> 
-     * <p>Information used to identify the patient and to support 
-     * clinical decisions. This information applies to the person 
-     * in the context of the associated action only, and should be 
-     * stored separately. I.e. the address/phone/email only apply 
-     * to the current prescription/dispense/lab order etc.</p></remarks>
+     * personal attributes (e.g. name, birth date).</p></remarks>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"COCT_MT050007CA.Patient","COCT_MT050201CA.Patient"})]
     public class Patient_1 : MessagePartBean, Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.IPatient {
@@ -65,111 +65,30 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged {
             this.certificateText = new STImpl();
         }
         /**
-         * <summary>PatientIdentifier</summary>
+         * <summary>Business Name: PatientIdentifier</summary>
          * 
-         * <remarks>A:Patient Identifier <p>Unique identifier issued as 
-         * part of the patient identity verification process.</p> 
-         * <p>C39 (Extension)</p><p>PTT.050.01 
-         * (Extension)</p><p>PTT.050.02 
-         * (Root)</p><p>A.1</p><p>PID.2</p><p>Patient.332-CY 
-         * (Extension)</p><p>Patient.331-CX 
-         * (Root)</p><p>Claim.330-CW</p><p>Health Card 
-         * Number</p><p>PID.2</p><p>PID.4</p><p>ZDU.2</p><p>ZKW.3</p><p>Jurisdiction 
-         * (Root)</p><p>Person.PHN (Extension)</p> <p>C39 
-         * (Extension)</p><p>PTT.050.01 (Extension)</p><p>PTT.050.02 
-         * (Root)</p><p>A.1</p><p>PID.2</p><p>Patient.332-CY 
-         * (Extension)</p><p>Patient.331-CX 
-         * (Root)</p><p>Claim.330-CW</p><p>Health Card 
-         * Number</p><p>PID.2</p><p>PID.4</p><p>ZDU.2</p><p>ZKW.3</p><p>Jurisdiction 
-         * (Root)</p><p>Person.PHN (Extension)</p> <p>C39 
-         * (Extension)</p><p>PTT.050.01 (Extension)</p><p>PTT.050.02 
-         * (Root)</p><p>A.1</p><p>PID.2</p><p>Patient.332-CY 
-         * (Extension)</p><p>Patient.331-CX 
-         * (Root)</p><p>Claim.330-CW</p><p>Health Card 
-         * Number</p><p>PID.2</p><p>PID.4</p><p>ZDU.2</p><p>ZKW.3</p><p>Jurisdiction 
-         * (Root)</p><p>Person.PHN (Extension)</p> <p>C39 
-         * (Extension)</p><p>PTT.050.01 (Extension)</p><p>PTT.050.02 
-         * (Root)</p><p>A.1</p><p>PID.2</p><p>Patient.332-CY 
-         * (Extension)</p><p>Patient.331-CX 
-         * (Root)</p><p>Claim.330-CW</p><p>Health Card 
-         * Number</p><p>PID.2</p><p>PID.4</p><p>ZDU.2</p><p>ZKW.3</p><p>Jurisdiction 
-         * (Root)</p><p>Person.PHN (Extension)</p> <p>C39 
-         * (Extension)</p><p>PTT.050.01 (Extension)</p><p>PTT.050.02 
-         * (Root)</p><p>A.1</p><p>PID.2</p><p>Patient.332-CY 
-         * (Extension)</p><p>Patient.331-CX 
-         * (Root)</p><p>Claim.330-CW</p><p>Health Card 
-         * Number</p><p>PID.2</p><p>PID.4</p><p>ZDU.2</p><p>ZKW.3</p><p>Jurisdiction 
-         * (Root)</p><p>Person.PHN (Extension)</p> <p>C39 
-         * (Extension)</p><p>PTT.050.01 (Extension)</p><p>PTT.050.02 
-         * (Root)</p><p>A.1</p><p>PID.2</p><p>Patient.332-CY 
-         * (Extension)</p><p>Patient.331-CX 
-         * (Root)</p><p>Claim.330-CW</p><p>Health Card 
-         * Number</p><p>PID.2</p><p>PID.4</p><p>ZDU.2</p><p>ZKW.3</p><p>Jurisdiction 
-         * (Root)</p><p>Person.PHN (Extension)</p> <p>C39 
-         * (Extension)</p><p>PTT.050.01 (Extension)</p><p>PTT.050.02 
-         * (Root)</p><p>A.1</p><p>PID.2</p><p>Patient.332-CY 
-         * (Extension)</p><p>Patient.331-CX 
-         * (Root)</p><p>Claim.330-CW</p><p>Health Card 
-         * Number</p><p>PID.2</p><p>PID.4</p><p>ZDU.2</p><p>ZKW.3</p><p>Jurisdiction 
-         * (Root)</p><p>Person.PHN (Extension)</p> <p>C39 
-         * (Extension)</p><p>PTT.050.01 (Extension)</p><p>PTT.050.02 
-         * (Root)</p><p>A.1</p><p>PID.2</p><p>Patient.332-CY 
-         * (Extension)</p><p>Patient.331-CX 
-         * (Root)</p><p>Claim.330-CW</p><p>Health Card 
-         * Number</p><p>PID.2</p><p>PID.4</p><p>ZDU.2</p><p>ZKW.3</p><p>Jurisdiction 
-         * (Root)</p><p>Person.PHN (Extension)</p> <p>C39 
-         * (Extension)</p><p>PTT.050.01 (Extension)</p><p>PTT.050.02 
-         * (Root)</p><p>A.1</p><p>PID.2</p><p>Patient.332-CY 
-         * (Extension)</p><p>Patient.331-CX 
-         * (Root)</p><p>Claim.330-CW</p><p>Health Card 
-         * Number</p><p>PID.2</p><p>PID.4</p><p>ZDU.2</p><p>ZKW.3</p><p>Jurisdiction 
-         * (Root)</p><p>Person.PHN (Extension)</p> <p>C39 
-         * (Extension)</p><p>PTT.050.01 (Extension)</p><p>PTT.050.02 
-         * (Root)</p><p>A.1</p><p>PID.2</p><p>Patient.332-CY 
-         * (Extension)</p><p>Patient.331-CX 
-         * (Root)</p><p>Claim.330-CW</p><p>Health Card 
-         * Number</p><p>PID.2</p><p>PID.4</p><p>ZDU.2</p><p>ZKW.3</p><p>Jurisdiction 
-         * (Root)</p><p>Person.PHN (Extension)</p> <p>C39 
-         * (Extension)</p><p>PTT.050.01 (Extension)</p><p>PTT.050.02 
-         * (Root)</p><p>A.1</p><p>PID.2</p><p>Patient.332-CY 
-         * (Extension)</p><p>Patient.331-CX 
-         * (Root)</p><p>Claim.330-CW</p><p>Health Card 
-         * Number</p><p>PID.2</p><p>PID.4</p><p>ZDU.2</p><p>ZKW.3</p><p>Jurisdiction 
-         * (Root)</p><p>Person.PHN (Extension)</p> <p>C39 
-         * (Extension)</p><p>PTT.050.01 (Extension)</p><p>PTT.050.02 
-         * (Root)</p><p>A.1</p><p>PID.2</p><p>Patient.332-CY 
-         * (Extension)</p><p>Patient.331-CX 
-         * (Root)</p><p>Claim.330-CW</p><p>Health Card 
-         * Number</p><p>PID.2</p><p>PID.4</p><p>ZDU.2</p><p>ZKW.3</p><p>Jurisdiction 
-         * (Root)</p><p>Person.PHN (Extension)</p> <p>C39 
-         * (Extension)</p><p>PTT.050.01 (Extension)</p><p>PTT.050.02 
-         * (Root)</p><p>A.1</p><p>PID.2</p><p>Patient.332-CY 
-         * (Extension)</p><p>Patient.331-CX 
-         * (Root)</p><p>Claim.330-CW</p><p>Health Card 
-         * Number</p><p>PID.2</p><p>PID.4</p><p>ZDU.2</p><p>ZKW.3</p><p>Jurisdiction 
-         * (Root)</p><p>Person.PHN (Extension)</p> <p>C39 
-         * (Extension)</p><p>PTT.050.01 (Extension)</p><p>PTT.050.02 
-         * (Root)</p><p>A.1</p><p>PID.2</p><p>Patient.332-CY 
-         * (Extension)</p><p>Patient.331-CX 
-         * (Root)</p><p>Claim.330-CW</p><p>Health Card 
-         * Number</p><p>PID.2</p><p>PID.4</p><p>ZDU.2</p><p>ZKW.3</p><p>Jurisdiction 
-         * (Root)</p><p>Person.PHN (Extension)</p> <p>C39 
-         * (Extension)</p><p>PTT.050.01 (Extension)</p><p>PTT.050.02 
-         * (Root)</p><p>A.1</p><p>PID.2</p><p>Patient.332-CY 
-         * (Extension)</p><p>Patient.331-CX 
-         * (Root)</p><p>Claim.330-CW</p><p>Health Card 
-         * Number</p><p>PID.2</p><p>PID.4</p><p>ZDU.2</p><p>ZKW.3</p><p>Jurisdiction 
-         * (Root)</p><p>Person.PHN (Extension)</p> <p>Allows a patient 
+         * <remarks>Un-merged Business Name: PatientIdentifier 
+         * Relationship: COCT_MT050201CA.Patient.id 
+         * Conformance/Cardinality: MANDATORY (1-3) <p>C39 
+         * (Extension)</p> <p>PTT.050.01 (Extension)</p> <p>PTT.050.02 
+         * (Root)</p> <p>A.1</p> <p>PID.2</p> <p>Patient.332-CY 
+         * (Extension)</p> <p>Patient.331-CX (Root)</p> 
+         * <p>Claim.330-CW</p> <p>Health Card Number</p> <p>PID.2</p> 
+         * <p>PID.4</p> <p>ZDU.2</p> <p>ZKW.3</p> <p>Jurisdiction 
+         * (Root)</p> <p>Person.PHN (Extension)</p> <p>Allows a patient 
          * to be referred to unambiguously. Because this is the 
          * principal mechanism for identifying patients to electronic 
          * systems, the attribute is mandatory. The cardinality of 
          * patient identifiers is up to 3 based on the use case to 
          * support communication of a local and jurisdictional 
-         * identifier along with the national identifier.</p> A:Patient 
-         * Identifier <p>The cardinality of patient identifiers is up 
-         * to 3 based on the use case to support communication of a 
-         * local and jurisdictional identifier along with the national 
-         * identifier.</p></remarks>
+         * identifier along with the national identifier.</p> <p>Unique 
+         * identifier issued as part of the patient identity 
+         * verification process.</p> Un-merged Business Name: 
+         * PatientIdentifier Relationship: COCT_MT050007CA.Patient.id 
+         * Conformance/Cardinality: MANDATORY (1-3) <p>The cardinality 
+         * of patient identifiers is up to 3 based on the use case to 
+         * support communication of a local and jurisdictional 
+         * identifier along with the national identifier.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public ICollection<Identifier> Id {
@@ -177,9 +96,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged {
         }
 
         /**
-         * <summary>PatientAddress</summary>
+         * <summary>Business Name: PatientAddress</summary>
          * 
-         * <remarks>E:Patient Address</remarks>
+         * <remarks>Un-merged Business Name: PatientAddress 
+         * Relationship: COCT_MT050007CA.Patient.addr 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"addr"})]
         public PostalAddress Addr {
@@ -188,9 +109,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged {
         }
 
         /**
-         * <summary>PatientContactPhoneAndEMails</summary>
+         * <summary>Business Name: PatientContactPhoneAndEMails</summary>
          * 
-         * <remarks>F:Patient Contact Phone and E-Mails</remarks>
+         * <remarks>Un-merged Business Name: 
+         * PatientContactPhoneAndEMails Relationship: 
+         * COCT_MT050007CA.Patient.telecom Conformance/Cardinality: 
+         * REQUIRED (0-5)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"telecom"})]
         public IList<TelecommunicationAddress> Telecom {
@@ -198,9 +122,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged {
         }
 
         /**
-         * <summary>PatientHealthCardVersionCode</summary>
+         * <summary>Business Name: PatientHealthCardVersionCode</summary>
          * 
-         * <remarks>L:Patient Health Card Version Code</remarks>
+         * <remarks>Un-merged Business Name: 
+         * PatientHealthCardVersionCode Relationship: 
+         * COCT_MT050007CA.Patient.certificateText 
+         * Conformance/Cardinality: REQUIRED (0-1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"certificateText"})]
         public String CertificateText {
@@ -208,12 +135,27 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged {
             set { this.certificateText.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: COCT_MT050007CA.Patient.patientPerson 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"patientPerson"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.ActingPerson PatientPerson {
             get { return this.patientPerson; }
             set { this.patientPerson = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * COCT_MT050007CA.Subject.identifyingCharacteristicsObservationEvent 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf/identifyingCharacteristicsObservationEvent"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt050007ca.PatientIdentifyingCharacteristics SubjectOfIdentifyingCharacteristicsObservationEvent {
             get { return this.subjectOfIdentifyingCharacteristicsObservationEvent; }

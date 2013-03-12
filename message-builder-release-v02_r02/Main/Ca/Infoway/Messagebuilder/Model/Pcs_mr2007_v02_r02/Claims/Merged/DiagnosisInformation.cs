@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,10 +37,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Merged {
             this.sequenceNumber = new INTImpl();
         }
         /**
-         * <summary>(no business name)</summary>
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
          * 
-         * <remarks><p>1=Primary, 2=Secondary, etc.</p> (no business 
-         * name) <p>1=Primary, 2=Secondary, etc.</p></remarks>
+         * <remarks>Relationship: 
+         * COCT_MT290000CA.DiagnosisInformation.sequenceNumber 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>1=Primary, 
+         * 2=Secondary, etc.</p> Un-merged Business Name: (no business 
+         * name specified) Relationship: 
+         * COCT_MT490000CA.DiagnosisInformation.sequenceNumber 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>1=Primary, 
+         * 2=Secondary, etc.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"sequenceNumber"})]
         public int? SequenceNumber {
@@ -48,6 +55,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Merged {
             set { this.sequenceNumber.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * COCT_MT290000CA.DiagnosisInformation.diagnosis 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * COCT_MT490000CA.DiagnosisInformation.diagnosis 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"diagnosis"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Merged.Diagnosis Diagnosis {
             get { return this.diagnosis; }

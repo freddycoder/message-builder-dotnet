@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,14 +25,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt090
 
 
     /**
-     * <summary>Healthcare Organization</summary>
+     * <summary>Business Name: Healthcare Organization</summary>
      * 
-     * <remarks><p>The organization under whose authority the 
+     * <p>Critical to tracking responsibility and performing 
+     * follow-up.</p> <p>All attributes other than the various 
+     * identifiers are expected to be retrieved from the provider 
+     * registry.</p> <p>The organization under whose authority the 
      * associated (linked by a participation) action is 
-     * performed</p> <p>Critical to tracking responsibility and 
-     * performing follow-up.</p> <p>All attributes other than the 
-     * various identifiers are expected to be retrieved from the 
-     * provider registry.</p></remarks>
+     * performed</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"COCT_MT090508CA.AssignedEntity"})]
     public class HealthcareOrganization : MessagePartBean, Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Merged.IRecipientChoice, Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.IActingPerson, Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.IRoleChoice, Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt911108ca.IActingPerson {
@@ -41,6 +41,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt090
 
         public HealthcareOrganization() {
         }
+        /**
+         * <summary>Relationship: 
+         * COCT_MT090508CA.AssignedEntity.representedOrganization</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"representedOrganization"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.ResponsibleOrganization RepresentedOrganization {
             get { return this.representedOrganization; }

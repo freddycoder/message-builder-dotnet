@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
 
 
     /**
-     * <summary>AllowedSubstitution</summary>
+     * <summary>Business Name: AllowedSubstitution</summary>
      * 
      * <remarks>PORX_MT060340CA.SubstitutionPermission: Allowed 
      * Substitution <p>A prescriber's instruction that a specific 
@@ -56,24 +56,33 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             this.reasonCode = new CVImpl();
         }
         /**
-         * <summary>A:Substitution Not Allowed?</summary>
+         * <summary>Un-merged Business Name: 
+         * SubstitutionNotAllowedIndicator</summary>
          * 
-         * <remarks><p>If true, indicates that the prescriber has 
-         * prohibited substitution. Default is that substitution is 
-         * allowed.</p> <p>Indicates whether substitutions are allowed. 
-         * The attribute is mandatory because whether substitution is 
-         * allowed must be declared.</p> A:Substitution Not Allowed 
-         * Indicator <p>If true, indicates that the drug must be 
-         * dispensed exactly as prescribed</p> <p>Many jurisdictions 
-         * allow substitution by default and require prescribers to 
-         * explicitly declare when they do not want 
-         * substitution.</p><p>The attribute is mandatory because it 
-         * must be known whether the indicator is true or false.</p> 
+         * <remarks>Relationship: 
+         * PORX_MT060340CA.SubstitutionPermission.negationInd 
+         * Conformance/Cardinality: MANDATORY (1) <p>If true, indicates 
+         * that the drug must be dispensed exactly as prescribed</p> 
          * <p>Many jurisdictions allow substitution by default and 
          * require prescribers to explicitly declare when they do not 
          * want substitution.</p><p>The attribute is mandatory because 
          * it must be known whether the indicator is true or false.</p> 
-         * A:Substitution Not Allowed Indicator <p>If true, indicates 
+         * <p>Many jurisdictions allow substitution by default and 
+         * require prescribers to explicitly declare when they do not 
+         * want substitution.</p><p>The attribute is mandatory because 
+         * it must be known whether the indicator is true or false.</p> 
+         * Un-merged Business Name: SubstitutionNotAllowed 
+         * Relationship: 
+         * PORX_MT010120CA.SubstitutionPermission.negationInd 
+         * Conformance/Cardinality: MANDATORY (1) <p>If true, indicates 
+         * that the prescriber has prohibited substitution. Default is 
+         * that substitution is allowed.</p> <p>Indicates whether 
+         * substitutions are allowed. The attribute is mandatory 
+         * because whether substitution is allowed must be 
+         * declared.</p> Un-merged Business Name: 
+         * SubstitutionNotAllowedIndicator Relationship: 
+         * PORX_MT060160CA.SubstitutionPermission.negationInd 
+         * Conformance/Cardinality: MANDATORY (1) <p>If true, indicates 
          * that the drug must be dispensed exactly as prescribed</p> 
          * <p>Many jurisdictions allow substitution by default and 
          * require prescribers to explicitly declare when they do not 
@@ -87,16 +96,38 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>B:Substitution Not Allowed Reason</summary>
+         * <summary>Un-merged Business Name: NotAllowedReason</summary>
          * 
-         * <remarks><p>The reason why the prescriber has indicated that 
-         * substitution is not allowed by the dispensing pharmacy.</p> 
-         * <p>Some jurisdictions demand that a prescriber gives a 
-         * reason for prohibiting substitution. The field is marked as 
-         * 'Populated' because the reason for substitution is important 
-         * to understanding the decision. However when a prescription 
-         * is being recorded in the pharmacy, the information may not 
-         * be available.</p> Not Allowed Reason <p>The reason why the 
+         * <remarks>Relationship: 
+         * PORX_MT060340CA.SubstitutionPermission.reasonCode 
+         * Conformance/Cardinality: POPULATED (1) <p>The reason why the 
+         * prescriber has indicated that substitution is not allowed by 
+         * the dispensing pharmacy.</p> <p>Some jurisdictions demand 
+         * that a prescriber gives a reason for prohibiting 
+         * substitution.</p><p>The field is marked as 'Populated' 
+         * because the reason for substitution is important to 
+         * understanding the decision. However when a prescription is 
+         * being recorded in the pharmacy, the information may not be 
+         * available.</p> <p>Some jurisdictions demand that a 
+         * prescriber gives a reason for prohibiting 
+         * substitution.</p><p>The field is marked as 'Populated' 
+         * because the reason for substitution is important to 
+         * understanding the decision. However when a prescription is 
+         * being recorded in the pharmacy, the information may not be 
+         * available.</p> Un-merged Business Name: 
+         * SubstitutionNotAllowedReason Relationship: 
+         * PORX_MT010120CA.SubstitutionPermission.reasonCode 
+         * Conformance/Cardinality: POPULATED (1) <p>The reason why the 
+         * prescriber has indicated that substitution is not allowed by 
+         * the dispensing pharmacy.</p> <p>Some jurisdictions demand 
+         * that a prescriber gives a reason for prohibiting 
+         * substitution. The field is marked as 'Populated' because the 
+         * reason for substitution is important to understanding the 
+         * decision. However when a prescription is being recorded in 
+         * the pharmacy, the information may not be available.</p> 
+         * Un-merged Business Name: NotAllowedReason Relationship: 
+         * PORX_MT060160CA.SubstitutionPermission.reasonCode 
+         * Conformance/Cardinality: POPULATED (1) <p>The reason why the 
          * prescriber has indicated that substitution is not allowed by 
          * the dispensing pharmacy.</p> <p>Some jurisdictions demand 
          * that a prescriber gives a reason for prohibiting 

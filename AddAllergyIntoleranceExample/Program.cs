@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Author:        $LastChangedBy: sdoxsee $
- * Last modified: $LastChangedDate: 2012-01-24 15:29:39 -0500 (Tue, 24 Jan 2012) $
- * Revision:      $LastChangedRevision: 4751 $
+ * Author:        $LastChangedBy: tmcgrady $
+ * Last modified: $LastChangedDate: 2013-03-01 17:48:17 -0500 (Fri, 01 Mar 2013) $
+ * Revision:      $LastChangedRevision: 6663 $
  */
 
 using System;
@@ -40,9 +40,10 @@ using Ca.Infoway.Messagebuilder.Version;
 using ActCode = Ca.Infoway.Messagebuilder.Domainvalue.ActCode;
 using ActStatus = Ca.Infoway.Messagebuilder.Domainvalue.ActStatus;
 using HL7TriggerEventCode = Ca.Infoway.Messagebuilder.Domainvalue.Transport.HL7TriggerEventCode;
-using PostalAddressUse = Ca.Infoway.Messagebuilder.Datatype.Lang.PostalAddressUse;
+using X_BasicPostalAddressUse = Ca.Infoway.Messagebuilder.Domainvalue.Basic.X_BasicPostalAddressUse;
 using URLScheme = Ca.Infoway.Messagebuilder.Domainvalue.URLScheme;
 using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_02.Iehr.Merged;
+using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_02.Domainvalue;
 
 
 namespace AddAllergyIntoleranceExample
@@ -86,7 +87,7 @@ namespace AddAllergyIntoleranceExample
             TriggerEvent_1<AllergyIntolerance> controlActEvent = new TriggerEvent_1<AllergyIntolerance>();
             messageBean.ControlActEvent = controlActEvent;
 
-            controlActEvent.EventType = HL7TriggerEventCode.ADD_ALLERGY_INTOLERANCE_REQUEST;
+            controlActEvent.Code = HL7TriggerEventCode.ADD_ALLERGY_INTOLERANCE_REQUEST;
 
             populateMessageAttributesStandardValues(messageBean);
             populateRecordControlActStandardValues(controlActEvent);
@@ -103,27 +104,27 @@ namespace AddAllergyIntoleranceExample
 
             AllergyIntolerance allergyIntoleranceBean = new AllergyIntolerance();
 
-            allergyIntoleranceBean.AllergyIntoleranceStatus = CodeResolverRegistry.Lookup<ActStatus>("active", CodeSystem.VOCABULARY_ACT_STATUS.Root);
+            allergyIntoleranceBean.StatusCode = CodeResolverRegistry.Lookup<ActStatus>("active", CodeSystem.VOCABULARY_ACT_STATUS.Root);
 
-            allergyIntoleranceBean.AllergyIntoleranceType =
+            allergyIntoleranceBean.Code =
                     CodeResolverRegistry.Lookup<ObservationIntoleranceType>("OINT", CodeSystem.VOCABULARY_ACT_CODE.Root);
 
-            allergyIntoleranceBean.AllergyIntoleranceMaskingIndicators.Add(
+            allergyIntoleranceBean.ConfidentialityCode.Add(
                     CodeResolverRegistry.Lookup<x_BasicConfidentialityKind>("N", CodeSystem.VOCABULARY_CONFIDENTIALITY.Root));
 
 			AllergyIntoleranceSeverityLevel severityLevelBean = new AllergyIntoleranceSeverityLevel();
-			severityLevelBean.SeverityLevel =
+			severityLevelBean.Value =
 					CodeResolverRegistry.Lookup<SeverityObservation>("H", CodeSystem.VOCABULARY_SEVERITY_OBSERVATION.Root);
 			allergyIntoleranceBean.SubjectOfSeverityObservation = severityLevelBean;
 			
-            allergyIntoleranceBean.AllergyIntoleranceDate = new PlatformDate(new DateTime(2009, 3, 22));
+            allergyIntoleranceBean.EffectiveTime = new PlatformDate(new DateTime(2009, 3, 22));
 
-            allergyIntoleranceBean.AllergyIntoleranceRefuted = true;
+            allergyIntoleranceBean.NegationInd = true;
 
-            allergyIntoleranceBean.ConfirmedIndicator =
+            allergyIntoleranceBean.UncertaintyCode =
                     CodeResolverRegistry.Lookup<ActUncertainty>("N", CodeSystem.VOCABULARY_ACT_UNCERTAINTY.Root);
 
-            allergyIntoleranceBean.Agent =
+            allergyIntoleranceBean.Value =
                     CodeResolverRegistry.Lookup<IntoleranceValue>("NDA02", CodeSystem.VOCABULARY_ENTITY_CODE.Root);
 
             allergyIntoleranceBean.SubjectOfSeverityObservation = severityLevelBean;
@@ -141,8 +142,8 @@ namespace AddAllergyIntoleranceExample
         private static Includes createNote()
         {
             Notes annotation = new Notes();
-            annotation.NoteTimestamp = new PlatformDate();
-            annotation.NoteText = "some allergy/intolerance note text";
+            annotation.AuthorTime = new PlatformDate();
+            annotation.Text = "some allergy/intolerance note text";
             annotation.AuthorAssignedPerson = createNoteAuthor();
 
 			Includes includes = new Includes();
@@ -169,33 +170,33 @@ namespace AddAllergyIntoleranceExample
         private static void populateMessageAttributesStandardValues(AddAllergyIntoleranceRequest message)
         {
 
-            message.MessageIdentifier = new Identifier(UUID.RandomUUID().ToString());
+            message.Id = new Identifier(UUID.RandomUUID().ToString());
 
-            message.MessageTimestamp = new PlatformDate(new DateTime(2008, 6, 25, 14, 16, 10));
-            message.ConformanceProfileIdentifiers.Add(new Identifier("1.2.3.4.5", "profileIdExtension"));
+            message.CreationTime = new PlatformDate(new DateTime(2008, 6, 25, 14, 16, 10));
+            message.ProfileId.Add(new Identifier("1.2.3.4.5", "profileIdExtension"));
             message.ProcessingCode = Ca.Infoway.Messagebuilder.Domainvalue.Transport.ProcessingID.PRODUCTION;
-			message.ProcessingMode = Ca.Infoway.Messagebuilder.Domainvalue.Transport.ProcessingMode.CURRENT_PROCESSING;
-            message.DesiredAcknowledgmentType = Ca.Infoway.Messagebuilder.Domainvalue.Transport.AcknowledgementCondition.ALWAYS;
+			message.ProcessingModeCode = Ca.Infoway.Messagebuilder.Domainvalue.Transport.ProcessingMode.CURRENT_PROCESSING;
+            message.AcceptAckCode = Ca.Infoway.Messagebuilder.Domainvalue.Transport.AcknowledgementCondition.ALWAYS;
             message.Receiver = new Receiver();
-            message.Receiver.ReceiverApplicationIdentifier = new Identifier("2.16.124.113620.1.2.100", "222");
+            message.Receiver.DeviceId = new Identifier("2.16.124.113620.1.2.100", "222");
 
-            message.Receiver.ReceiverNetworkAddress = new TelecommunicationAddress(CodeResolverRegistry.Lookup<URLScheme>("http"), "123.456.789.10");
+            message.Receiver.Telecom = new TelecommunicationAddress(CodeResolverRegistry.Lookup<URLScheme>("http"), "123.456.789.10");
 
             message.Sender = new Sender();
-            message.Sender.SendingApplicationIdentifier = new Identifier("2.16.124.113620.1.2.100", "111");
-            message.Sender.SendingSoftwareVersionNumber = (new Configuration()).Version;
-            message.Sender.SendingApplicationName = (new Configuration()).Name;
-            message.Sender.SendingNetworkAddress = new TelecommunicationAddress();
-            message.Sender.SendingNetworkAddress.Address = "987.654.321.0";
-            message.Sender.SendingNetworkAddress.UrlScheme = CodeResolverRegistry.Lookup<URLScheme>("http");
-            message.ResponseType = Ca.Infoway.Messagebuilder.Domainvalue.Transport.ResponseMode.IMMEDIATE;
+            message.Sender.DeviceId = new Identifier("2.16.124.113620.1.2.100", "111");
+            message.Sender.DeviceManufacturerModelName = (new Configuration()).Version;
+            message.Sender.DeviceName = (new Configuration()).Name;
+            message.Sender.Telecom = new TelecommunicationAddress();
+            message.Sender.Telecom.Address = "987.654.321.0";
+            message.Sender.Telecom.UrlScheme = CodeResolverRegistry.Lookup<URLScheme>("http");
+            message.ResponseModeCode = Ca.Infoway.Messagebuilder.Domainvalue.Transport.ResponseMode.IMMEDIATE;
         }
 
         private static void populateRecordControlActStandardValues(TriggerEvent_1<AllergyIntolerance> controlActEvent)
         {
 
-            controlActEvent.EventIdentifier = new Identifier("2.16.840.1.113883.1.6", "8141234");
-            controlActEvent.EventEffectivePeriod = IntervalUtil.CreateInterval(new PlatformDate(0), null);
+            controlActEvent.Id = new Identifier("2.16.840.1.113883.1.6", "8141234");
+            controlActEvent.EffectiveTime = IntervalUtil.CreateInterval(new PlatformDate(0), null);
             controlActEvent.Author = createAuthorBean();
             controlActEvent.LocationServiceDeliveryLocation = createServiceDeliveryLocationBean();
             controlActEvent.ResponsiblePartyAssignedEntity = createAssignedPersonBean();
@@ -206,18 +207,18 @@ namespace AddAllergyIntoleranceExample
         private static Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_02.Common.Coct_mt240002ca.ServiceLocation createServiceDeliveryLocationBean()
         {
             Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_02.Common.Coct_mt240002ca.ServiceLocation result = new Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_02.Common.Coct_mt240002ca.ServiceLocation();
-            result.ServiceLocationIdentifier = new Identifier("2.16.124.113620.1.1.11111", "1");
-            result.ServiceLocationName = "Intelliware's Pharmacy";
+            result.Id = new Identifier("2.16.124.113620.1.1.11111", "1");
+            result.LocationName = "Intelliware's Pharmacy";
             return result;
         }
 
         private static Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_02.Common.Merged.HealthcareWorker createAssignedPersonBean()
         {
             Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_02.Common.Merged.HealthcareWorker assignedPersonBean = new Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_02.Common.Merged.HealthcareWorker();
-            assignedPersonBean.HealthcareWorkerIdentifier.Add(new Identifier("12.34.56", "1"));
+            assignedPersonBean.Id.Add(new Identifier("12.34.56", "1"));
 			assignedPersonBean.AssignedPerson = new ActingPerson();
-			assignedPersonBean.AssignedPerson.LicenseNumber = new Identifier("12.34.56.78", "78");
-			assignedPersonBean.HealthcareWorkerType = CodeResolverRegistry.Lookup<HealthcareProviderRoleType>("AUD", CodeSystem.VOCABULARY_ROLE_CODE.Root);
+			assignedPersonBean.AssignedPerson.AsHealthCareProviderId = new Identifier("12.34.56.78", "78");
+			assignedPersonBean.Code = CodeResolverRegistry.Lookup<HealthcareProviderRoleType>("AUD", CodeSystem.VOCABULARY_ROLE_CODE.Root);
 				
             return assignedPersonBean;
         }
@@ -225,7 +226,7 @@ namespace AddAllergyIntoleranceExample
         private static CreatedBy_1 createAuthorBean()
         {
             CreatedBy_1 authorBean = new CreatedBy_1();
-            authorBean.TimeOfCreation = new PlatformDate(0);
+            authorBean.Time = new PlatformDate(0);
             authorBean.AuthorPerson = createAssignedPersonBean();
             return authorBean;
         }
@@ -234,14 +235,14 @@ namespace AddAllergyIntoleranceExample
         {
 
             Patient_1 identifiedPersonBean = new Patient_1();
-            identifiedPersonBean.PatientIdentifier.Add(new Identifier("3.14", "159"));
-            identifiedPersonBean.PatientAddress = createPostalAddress();
-            identifiedPersonBean.PatientContactPhoneAndEMails.Add(new TelecommunicationAddress(
+            identifiedPersonBean.Id.Add(new Identifier("3.14", "159"));
+            identifiedPersonBean.Addr = createPostalAddress();
+            identifiedPersonBean.Telecom.Add(new TelecommunicationAddress(
                     CodeResolverRegistry.Lookup<URLScheme>("http"), "123.456.789.10"));
 			identifiedPersonBean.PatientPerson = new ActingPerson();
-            identifiedPersonBean.PatientPerson.Name = PersonNameUtil.CreateFirstNameLastName("Alan", "Wall");
+            identifiedPersonBean.PatientPerson.Name = PersonName.CreateFirstNameLastName("Alan", "Wall");
 
-            identifiedPersonBean.PatientPerson.PatientGender =
+            identifiedPersonBean.PatientPerson.AdministrativeGenderCode =
                 CodeResolverRegistry.Lookup<AdministrativeGender>("F", CodeSystem.VOCABULARY_ADMINISTRATIVE_GENDER.Root);
 
             identifiedPersonBean.PatientPerson.BirthTime = new PlatformDate(new DateTime(1972, 2, 21));
@@ -256,7 +257,7 @@ namespace AddAllergyIntoleranceExample
         private static PostalAddress createPostalAddress(String streetName)
         {
             PostalAddress address1 = new PostalAddress();
-            address1.AddUse(PostalAddressUse.HOME);
+            address1.AddUse(X_BasicPostalAddressUse.HOME);
             address1.AddPostalAddressPart(new PostalAddressPart(PostalAddressPartType.STREET_NAME, streetName));
             return address1;
         }
@@ -266,16 +267,16 @@ namespace AddAllergyIntoleranceExample
 
             AllergyTests allergyTestEvent = new AllergyTests();
 
-            allergyTestEvent.AllergyTestRecordId = new Identifier("2.16.840.1.113883.1.13", "995");
+            allergyTestEvent.Id = new Identifier("2.16.840.1.113883.1.13", "995");
 
-            allergyTestEvent.AllergyTestType =
+            allergyTestEvent.Code =
                     CodeResolverRegistry.Lookup<ObservationAllergyTestType>("10921-5", CodeSystem.LOINC.Root);
 
-            allergyTestEvent.AllergyTestResult =
+            allergyTestEvent.Value =
                 CodeResolverRegistry.Lookup<AllergyTestValue>("A3", CodeSystem.VOCABULARY_ALLERGY_TEST_VALUE.Root);
 
 
-            allergyTestEvent.AllergyTestDate = new PlatformDate(new DateTime(2009, 3, 10));
+            allergyTestEvent.EffectiveTime = new PlatformDate(new DateTime(2009, 3, 10));
 
             return allergyTestEvent;
         }
@@ -283,23 +284,23 @@ namespace AddAllergyIntoleranceExample
         private static ReportedReactions createAssessment()
         {
 			Exposures exposureEvent = new Exposures();
-            exposureEvent.IncidenceIdentifier = new Identifier("2.16.840.1.113883.1.133", "12");
-			exposureEvent.ExposureMethod = 
+            exposureEvent.Id = new Identifier("2.16.840.1.113883.1.133", "12");
+            exposureEvent.RouteCode = 
                     CodeResolverRegistry.Lookup<RouteOfAdministration>("CHEW", CodeSystem.VOCABULARY_ROUTE_OF_ADMINISTRATION.Root);
-			exposureEvent.ExposedMaterialType =
+            exposureEvent.ConsumableAdministrableMaterialAdministerableMaterialKindCode =
                     CodeResolverRegistry.Lookup<ExposureAgentEntityType>("NDA05", CodeSystem.VOCABULARY_ENTITY_CODE.Root);
 			
 			AllergyIntoleranceSeverityLevel severityLevel = new AllergyIntoleranceSeverityLevel();
-			severityLevel.SeverityLevel = 
+			severityLevel.Value = 
                     CodeResolverRegistry.Lookup<SeverityObservation>("H", CodeSystem.VOCABULARY_SEVERITY_OBSERVATION.Root);
 
 			ReportedReactions subjectObservationEvent = new ReportedReactions();
-			subjectObservationEvent.ReactionRecordId = new Identifier("2.16.840.1.113883.1.133", "15");
+			subjectObservationEvent.Id = new Identifier("2.16.840.1.113883.1.133", "15");
 			subjectObservationEvent.Code =
-                    CodeResolverRegistry.Lookup<ActCode>("371627004", CodeSystem.SNOMED.Root);
-			subjectObservationEvent.NoReactionOccurred = false;
-			subjectObservationEvent.Description = "description of assessment";
-			subjectObservationEvent.ReactionOnsetDate =
+                    CodeResolverRegistry.Lookup<ActDiagnosisCode>("371627004", CodeSystem.SNOMED.Root);
+            subjectObservationEvent.NegationInd = false;
+            subjectObservationEvent.Text = "description of assessment";
+			subjectObservationEvent.EffectiveTime =
 			        Interval<PlatformDate>.CreateLow(new PlatformDate(new DateTime(2008, 3, 17)));
 			subjectObservationEvent.Value =
                     CodeResolverRegistry.Lookup<SubjectReaction>("Y45.1", CodeSystem.ICD10.Root);
@@ -309,7 +310,7 @@ namespace AddAllergyIntoleranceExample
 			
 			ReportedReactions assessmentBean = new ReportedReactions();
             assessmentBean.Code =
-                    CodeResolverRegistry.Lookup<ObservationCausalityAssessmentType>("RXNASSESS", CodeSystem.VOCABULARY_ACT_CODE.Root);
+                    CodeResolverRegistry.Lookup<ActDiagnosisCode>("RXNASSESS", CodeSystem.VOCABULARY_ACT_CODE.Root);
 			assessmentBean.StartsAfterStartOfExposureEvent = exposureEvent;
 			assessmentBean.SubjectObservationEvent = subjectObservationEvent;
 

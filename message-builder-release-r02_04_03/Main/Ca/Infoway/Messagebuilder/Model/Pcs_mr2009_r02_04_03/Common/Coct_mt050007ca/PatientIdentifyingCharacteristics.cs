@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,12 +28,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt050
 
 
     /**
-     * <summary>Patient Identifying Characteristics</summary>
+     * <summary>Business Name: Patient Identifying Characteristics</summary>
      * 
-     * <remarks><p>For this model, the observation is a description 
-     * of patient characteristics used for identification.</p> 
      * <p>Used for patient identification when the client registry 
-     * is not available.</p></remarks>
+     * is not available.</p> <p>For this model, the observation is 
+     * a description of patient characteristics used for 
+     * identification.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"COCT_MT050007CA.IdentifyingCharacteristicsObservationEvent"})]
     public class PatientIdentifyingCharacteristics : MessagePartBean {
@@ -46,12 +46,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt050
             this.value = new STImpl();
         }
         /**
-         * <summary>Identifying Characteristics Observation Type</summary>
+         * <summary>Business Name: Identifying Characteristics 
+         * Observation Type</summary>
          * 
-         * <remarks><p>Describes the observation type.</p> <p>Used to 
-         * categorize this observation event. For this model, the 
-         * observation is a description of patient characteristics used 
-         * for identification.</p></remarks>
+         * <remarks>Relationship: 
+         * COCT_MT050007CA.IdentifyingCharacteristicsObservationEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Used to categorize 
+         * this observation event. For this model, the observation is a 
+         * description of patient characteristics used for 
+         * identification.</p> <p>Describes the observation type.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public PatientCharacteristicObservationType Code {
@@ -60,16 +63,19 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt050
         }
 
         /**
-         * <summary>I:Patient Characteristics Text</summary>
+         * <summary>Business Name: I:Patient Characteristics Text</summary>
          * 
-         * <remarks><p>A text attribute that is specifically used to 
-         * describe identifying characteristics of a patient.</p> 
-         * <p>When a lab does not have access to the client registry to 
-         * identify the patient, additional information is helpful in 
-         * patient identification. This text description allows for 
-         * non-coded patient descriptive details which don't change 
-         * measurable over time and can be used to assist in patient 
-         * identification.</p></remarks>
+         * <remarks>Relationship: 
+         * COCT_MT050007CA.IdentifyingCharacteristicsObservationEvent.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>When a lab does 
+         * not have access to the client registry to identify the 
+         * patient, additional information is helpful in patient 
+         * identification. This text description allows for non-coded 
+         * patient descriptive details which don't change measurable 
+         * over time and can be used to assist in patient 
+         * identification.</p> <p>A text attribute that is specifically 
+         * used to describe identifying characteristics of a 
+         * patient.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"value"})]
         public String Value {

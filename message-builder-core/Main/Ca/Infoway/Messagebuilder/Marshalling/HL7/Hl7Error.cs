@@ -1,3 +1,22 @@
+/**
+ * Copyright 2013 Canada Health Infoway, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Author:        $LastChangedBy: tmcgrady $
+ * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Revision:      $LastChangedRevision: 2623 $
+ */
 using System.Text;
 using System.Xml;
 using Ca.Infoway.Messagebuilder;
@@ -18,13 +37,15 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7
 
 		private string beanPath;
 
-		public Hl7Error(Hl7ErrorCode hl7ErrorCode, string message) : this(hl7ErrorCode, message, (string)null)
-		{
-		}
+		[System.NonSerialized]
+		private bool renderedToXml = false;
 
 		public Hl7Error(Hl7ErrorCode hl7ErrorCode, string message, string beanPath)
 		{
 			// must be set explicitly - later - when passing in an xpath
+			//	public Hl7Error(Hl7ErrorCode hl7ErrorCode, String message) {
+			//		this(hl7ErrorCode, message, (String) null);
+			//	}
 			this.hl7ErrorCode = hl7ErrorCode;
 			this.message = message;
 			this.path = null;
@@ -73,6 +94,16 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7
 			this.beanPath = beanPath;
 		}
 
+		public virtual bool IsRenderedToXml()
+		{
+			return renderedToXml;
+		}
+
+		public virtual void MarkAsRenderedToXml()
+		{
+			this.renderedToXml = true;
+		}
+
 		public override bool Equals(object obj)
 		{
 			if (obj == null)
@@ -103,15 +134,15 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.Append(this.hl7ErrorCode);
-			sb.Append(" > ");
+			sb.Append(" : ");
 			sb.Append(this.message);
-			if (this.path != null)
+			if (StringUtils.IsNotBlank(this.path))
 			{
 				sb.Append(" (");
 				sb.Append(this.path);
 				sb.Append(")");
 			}
-			if (this.beanPath != null)
+			if (StringUtils.IsNotBlank(this.beanPath))
 			{
 				sb.Append(" (");
 				sb.Append(this.beanPath);

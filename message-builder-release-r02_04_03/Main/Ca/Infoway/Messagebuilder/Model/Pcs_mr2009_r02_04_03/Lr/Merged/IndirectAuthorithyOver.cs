@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,6 +30,23 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lr.Merged {
 
         public IndirectAuthorithyOver() {
         }
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PRPA_MT202302CA.IndirectAuthorithyOver.territorialAuthority 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PRPA_MT202301CA.IndirectAuthorithyOver.territorialAuthority 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PRPA_MT202303CA.IndirectAuthorithyOver.territorialAuthority 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PRPA_MT202317CA.IndirectAuthorithyOver.territorialAuthority 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"territorialAuthority"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lr.Merged.TerritorialAuthority TerritorialAuthority {
             get { return this.territorialAuthority; }

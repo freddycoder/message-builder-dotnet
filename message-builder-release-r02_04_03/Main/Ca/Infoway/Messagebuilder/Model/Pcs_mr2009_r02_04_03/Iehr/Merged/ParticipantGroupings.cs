@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,47 +26,38 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged {
 
 
     /**
-     * <summary>ParticipantGroupings</summary>
+     * <summary>Business Name: ParticipantGroupings</summary>
      * 
      * <remarks>REPC_MT500002CA.PatientCareProvisionEventPortion: 
      * Participant Groupings <p>May only be used when Care 
      * Composition Type is Encounter or a specialization of 
-     * Encounter</p><p>All participant identifiers must correspond 
+     * Encounter</p> <p>All participant identifiers must correspond 
      * to either patient identifiers or performer identifiers</p> 
-     * <p>May only be used when Care Composition Type is Encounter 
-     * or a specialization of Encounter</p><p>All participant 
-     * identifiers must correspond to either patient identifiers or 
-     * performer identifiers</p> <p>Identifies a 'portion' of the 
-     * encounter performed at a single location.</p> <p>Allows 
-     * tracking what participants were present at each location 
-     * within the encounter. This information provides context for 
-     * the events within the encounter.</p> 
+     * <p>Allows tracking what participants were present at each 
+     * location within the encounter. This information provides 
+     * context for the events within the encounter.</p> 
+     * <p>Identifies a 'portion' of the encounter performed at a 
+     * single location.</p> 
      * REPC_MT500001CA.PatientCareProvisionEventPortion: 
      * Participant Groupings <p>May only be used when Care 
      * Composition Type is Encounter or a specialization of 
-     * Encounter</p><p>All participant identifiers must correspond 
+     * Encounter</p> <p>All participant identifiers must correspond 
      * to either patient identifiers or performer identifiers</p> 
-     * <p>May only be used when Care Composition Type is Encounter 
-     * or a specialization of Encounter</p><p>All participant 
-     * identifiers must correspond to either patient identifiers or 
-     * performer identifiers</p> <p>Identifies a 'portion' of the 
-     * encounter performed at a single location.</p> <p>Allows 
-     * tracking what participants were present at each location 
-     * within the encounter. This information provides context for 
-     * the events within the encounter.</p> 
+     * <p>Allows tracking what participants were present at each 
+     * location within the encounter. This information provides 
+     * context for the events within the encounter.</p> 
+     * <p>Identifies a 'portion' of the encounter performed at a 
+     * single location.</p> 
      * REPC_MT500004CA.PatientCareProvisionEventPortion: 
      * Participant Groupings <p>May only be used when Care 
      * Composition Type is Encounter or a specialization of 
-     * Encounter</p><p>All participant identifiers must correspond 
+     * Encounter</p> <p>All participant identifiers must correspond 
      * to either patient identifiers or performer identifiers</p> 
-     * <p>May only be used when Care Composition Type is Encounter 
-     * or a specialization of Encounter</p><p>All participant 
-     * identifiers must correspond to either patient identifiers or 
-     * performer identifiers</p> <p>Identifies a 'portion' of the 
-     * encounter performed at a single location.</p> <p>Allows 
-     * tracking what participants were present at each location 
-     * within the encounter. This information provides context for 
-     * the events within the encounter.</p></remarks>
+     * <p>Allows tracking what participants were present at each 
+     * location within the encounter. This information provides 
+     * context for the events within the encounter.</p> 
+     * <p>Identifies a 'portion' of the encounter performed at a 
+     * single location.</p></remarks>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"REPC_MT500001CA.PatientCareProvisionEventPortion","REPC_MT500002CA.PatientCareProvisionEventPortion","REPC_MT500004CA.PatientCareProvisionEventPortion"})]
     public class ParticipantGroupings : MessagePartBean {
@@ -77,12 +68,40 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged {
         public ParticipantGroupings() {
             this.participant = new List<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged.Has>();
         }
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * REPC_MT500002CA.PatientCareProvisionEventPortion.location 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT500001CA.PatientCareProvisionEventPortion.location 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT500004CA.PatientCareProvisionEventPortion.location 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"location"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.CreatedAt Location {
             get { return this.location; }
             set { this.location = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * REPC_MT500002CA.PatientCareProvisionEventPortion.participant 
+         * Conformance/Cardinality: MANDATORY (1-200) Un-merged 
+         * Business Name: (no business name specified) Relationship: 
+         * REPC_MT500001CA.PatientCareProvisionEventPortion.participant 
+         * Conformance/Cardinality: MANDATORY (1-200) Un-merged 
+         * Business Name: (no business name specified) Relationship: 
+         * REPC_MT500004CA.PatientCareProvisionEventPortion.participant 
+         * Conformance/Cardinality: MANDATORY (1-200)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"participant"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged.Has> Participant {
             get { return this.participant; }

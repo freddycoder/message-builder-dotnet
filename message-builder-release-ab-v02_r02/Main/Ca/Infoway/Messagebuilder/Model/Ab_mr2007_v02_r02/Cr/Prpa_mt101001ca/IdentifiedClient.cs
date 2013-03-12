@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,17 +32,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Cr.Prpa_mt101001ca {
 
 
     /**
-     * <summary>Identified Client</summary>
+     * <summary>Business Name: Identified Client</summary>
      * 
-     * <remarks><p>The IdentifiedEntity class is the entry point to 
-     * the R-MIM and contains one or more identifiers (for example 
-     * an &quot;internal&quot; id used only by computer systems and 
-     * an &quot;external&quot; id for display to users) for the 
-     * Person in the Client Registry. The statusCode is set to 
+     * <p>The IdentifiedEntity class is the entry point to the 
+     * R-MIM and contains one or more identifiers (for example an 
+     * &quot;internal&quot; id used only by computer systems and an 
+     * &quot;external&quot; id for display to users) for the Person 
+     * in the Client Registry. The statusCode is set to 
      * &quot;active&quot;. The beginning of the effectiveTime is 
      * when the record was added to the registry.</p> <p>Provides 
      * the message entry point required to add a person to the 
-     * Client Registry</p></remarks>
+     * Client Registry</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"PRPA_MT101001CA.IdentifiedEntity"})]
     public class IdentifiedClient : MessagePartBean {
@@ -83,14 +83,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Cr.Prpa_mt101001ca {
             this.identifiedPersonLanguageCommunication = new List<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.LanguageOfCommunication>();
         }
         /**
-         * <summary>Client Healthcare Identification Number</summary>
+         * <summary>Business Name: Client Healthcare Identification 
+         * Number</summary>
          * 
-         * <remarks><p>This identification attribute supports capture 
-         * of a healthcare identifier specific to the client. This 
-         * identifier may be assigned jurisdictionally or by care 
-         * facility.</p> <p>Populated attribute supports unique 
-         * identification of the client.</p> <p>At least 1 client 
-         * identifier must be present in the message</p></remarks>
+         * <remarks>Relationship: PRPA_MT101001CA.IdentifiedEntity.id 
+         * Conformance/Cardinality: POPULATED (1-40) <p>This 
+         * identification attribute supports capture of a healthcare 
+         * identifier specific to the client. This identifier may be 
+         * assigned jurisdictionally or by care facility.</p> 
+         * <p>Populated attribute supports unique identification of the 
+         * client.</p> <p>At least 1 client identifier must be present 
+         * in the message</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public ICollection<Identifier> Id {
@@ -98,11 +101,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Cr.Prpa_mt101001ca {
         }
 
         /**
-         * <summary>Client Status Code</summary>
+         * <summary>Business Name: Client Status Code</summary>
          * 
-         * <remarks><p>Indicates the status of the Client role (e.g. 
-         * Active)</p> <p>Populated attribute supports the 
-         * identification of the client</p></remarks>
+         * <remarks>Relationship: 
+         * PRPA_MT101001CA.IdentifiedEntity.statusCode 
+         * Conformance/Cardinality: POPULATED (1) <p>Indicates the 
+         * status of the Client role (e.g. Active)</p> <p>Populated 
+         * attribute supports the identification of the client</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"statusCode"})]
         public RoleStatus StatusCode {
@@ -111,11 +116,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Cr.Prpa_mt101001ca {
         }
 
         /**
-         * <summary>Client Effective Time</summary>
+         * <summary>Business Name: Client Effective Time</summary>
          * 
-         * <remarks><p>Indicates the effective time of the Client 
-         * role;</p> <p>Required attribute supports the identification 
-         * of the client</p></remarks>
+         * <remarks>Relationship: 
+         * PRPA_MT101001CA.IdentifiedEntity.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
+         * effective time of the Client role;</p> <p>Required attribute 
+         * supports the identification of the client</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"effectiveTime"})]
         public Interval<PlatformDate> EffectiveTime {
@@ -124,25 +131,27 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Cr.Prpa_mt101001ca {
         }
 
         /**
-         * <summary>Client Masked Information</summary>
+         * <summary>Business Name: Client Masked Information</summary>
          * 
-         * <remarks><p>A code that controls the disclosure of 
-         * information about this client record.</p> <p>Populated 
-         * attribute supports the business requirement to provide 
-         * restricted access where required</p> <p>Data in the EHR may 
-         * at some point (and in some jurisdictions) be accessed 
-         * directly by patients. Some health information may be deemed 
-         * inappropriate for direct access by patients and requires 
-         * interpretation by a clinician (e.g. prescription of 
-         * placebos, analysis of certain psychiatric conditions, etc) 
-         * Even where direct access by patient is not provided, there 
-         * may need to be guidance to other providers viewing the 
-         * record where care should be used in disclosing information 
-         * to the patient. Non-clinical data (e.g. demographics) may 
-         * need to be flagged as not for disclosure to patient and or 
-         * next of kin. There may be professional policy and or 
-         * legislative guidelines about when/if records may be flagged 
-         * as not for direct disclosure.</p></remarks>
+         * <remarks>Relationship: 
+         * PRPA_MT101001CA.IdentifiedEntity.confidentialityCode 
+         * Conformance/Cardinality: POPULATED (1) <p>A code that 
+         * controls the disclosure of information about this client 
+         * record.</p> <p>Populated attribute supports the business 
+         * requirement to provide restricted access where required</p> 
+         * <p>Data in the EHR may at some point (and in some 
+         * jurisdictions) be accessed directly by patients. Some health 
+         * information may be deemed inappropriate for direct access by 
+         * patients and requires interpretation by a clinician (e.g. 
+         * prescription of placebos, analysis of certain psychiatric 
+         * conditions, etc) Even where direct access by patient is not 
+         * provided, there may need to be guidance to other providers 
+         * viewing the record where care should be used in disclosing 
+         * information to the patient. Non-clinical data (e.g. 
+         * demographics) may need to be flagged as not for disclosure 
+         * to patient and or next of kin. There may be professional 
+         * policy and or legislative guidelines about when/if records 
+         * may be flagged as not for direct disclosure.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"confidentialityCode"})]
         public x_NormalRestrictedTabooConfidentialityKind ConfidentialityCode {
@@ -151,10 +160,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Cr.Prpa_mt101001ca {
         }
 
         /**
-         * <summary>Client Name</summary>
+         * <summary>Business Name: Client Name</summary>
          * 
-         * <remarks><p>Name(s) for the Client</p> <p>Populated 
-         * attribute supports the identification of the client</p></remarks>
+         * <remarks>Relationship: PRPA_MT101001CA.Person.name 
+         * Conformance/Cardinality: POPULATED (1-20) <p>Name(s) for the 
+         * Client</p> <p>Populated attribute supports the 
+         * identification of the client</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"identifiedPerson/name"})]
         public IList<PersonName> IdentifiedPersonName {
@@ -162,11 +173,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Cr.Prpa_mt101001ca {
         }
 
         /**
-         * <summary>Client Telecom</summary>
+         * <summary>Business Name: Client Telecom</summary>
          * 
-         * <remarks><p>Provides information about telecom</p> 
-         * <p>Required attribute supports the identification of the 
-         * client</p></remarks>
+         * <remarks>Relationship: PRPA_MT101001CA.Person.telecom 
+         * Conformance/Cardinality: POPULATED (1-20) <p>Provides 
+         * information about telecom</p> <p>Required attribute supports 
+         * the identification of the client</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"identifiedPerson/telecom"})]
         public IList<TelecommunicationAddress> IdentifiedPersonTelecom {
@@ -174,13 +186,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Cr.Prpa_mt101001ca {
         }
 
         /**
-         * <summary>Client Gender</summary>
+         * <summary>Business Name: Client Gender</summary>
          * 
-         * <remarks><p>Gender of the Client, this is not to be confused 
-         * with Clinical Gender of a client. Administrative Gender is 
-         * typically restricted to Male (M), Female (F) or 
-         * Undifferentiated (U)</p> <p>Populated attribute supports the 
-         * identification of the client</p></remarks>
+         * <remarks>Relationship: 
+         * PRPA_MT101001CA.Person.administrativeGenderCode 
+         * Conformance/Cardinality: POPULATED (1) <p>Gender of the 
+         * Client, this is not to be confused with Clinical Gender of a 
+         * client. Administrative Gender is typically restricted to 
+         * Male (M), Female (F) or Undifferentiated (U)</p> 
+         * <p>Populated attribute supports the identification of the 
+         * client</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"identifiedPerson/administrativeGenderCode"})]
         public AdministrativeGender IdentifiedPersonAdministrativeGenderCode {
@@ -189,10 +204,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Cr.Prpa_mt101001ca {
         }
 
         /**
-         * <summary>Client Date of Birth</summary>
+         * <summary>Business Name: Client Date of Birth</summary>
          * 
-         * <remarks><p>Date of birth of the Client</p> <p>Populated 
-         * attribute supports the identification of the client</p></remarks>
+         * <remarks>Relationship: PRPA_MT101001CA.Person.birthTime 
+         * Conformance/Cardinality: POPULATED (1) <p>Date of birth of 
+         * the Client</p> <p>Populated attribute supports the 
+         * identification of the client</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"identifiedPerson/birthTime"})]
         public PlatformDate IdentifiedPersonBirthTime {
@@ -201,11 +218,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Cr.Prpa_mt101001ca {
         }
 
         /**
-         * <summary>Client Deceased Indicator</summary>
+         * <summary>Business Name: Client Deceased Indicator</summary>
          * 
-         * <remarks><p>An indication that the client is deceased.</p> 
-         * <p>Required attribute supports the identification of the 
-         * client</p></remarks>
+         * <remarks>Relationship: PRPA_MT101001CA.Person.deceasedInd 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>An indication 
+         * that the client is deceased.</p> <p>Required attribute 
+         * supports the identification of the client</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"identifiedPerson/deceasedInd"})]
         public bool? IdentifiedPersonDeceasedInd {
@@ -214,12 +232,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Cr.Prpa_mt101001ca {
         }
 
         /**
-         * <summary>Client Deceased Date</summary>
+         * <summary>Business Name: Client Deceased Date</summary>
          * 
-         * <remarks><p>Deceased time only present if deceasedInd is = 
-         * TRUE</p> <p>The date and time that a client's death 
-         * occurred</p> <p>Required attribute supports verification of 
-         * death from official source such as Vital Statistics.</p></remarks>
+         * <remarks>Relationship: PRPA_MT101001CA.Person.deceasedTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Deceased time 
+         * only present if deceasedInd is = TRUE</p> <p>The date and 
+         * time that a client's death occurred</p> <p>Required 
+         * attribute supports verification of death from official 
+         * source such as Vital Statistics.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"identifiedPerson/deceasedTime"})]
         public PlatformDate IdentifiedPersonDeceasedTime {
@@ -228,11 +248,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Cr.Prpa_mt101001ca {
         }
 
         /**
-         * <summary>Client Multiple Birth Indicator</summary>
+         * <summary>Business Name: Client Multiple Birth Indicator</summary>
          * 
-         * <remarks><p>An indication as to whether the client is part 
-         * of a multiple birth.</p> <p>Required attribute supports the 
-         * identification of the client</p></remarks>
+         * <remarks>Relationship: 
+         * PRPA_MT101001CA.Person.multipleBirthInd 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>An indication as 
+         * to whether the client is part of a multiple birth.</p> 
+         * <p>Required attribute supports the identification of the 
+         * client</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"identifiedPerson/multipleBirthInd"})]
         public bool? IdentifiedPersonMultipleBirthInd {
@@ -241,11 +264,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Cr.Prpa_mt101001ca {
         }
 
         /**
-         * <summary>Client Multiple Birth Order Number</summary>
+         * <summary>Business Name: Client Multiple Birth Order Number</summary>
          * 
-         * <remarks><p>The order in which this client was born if part 
-         * of a multiple birth.</p> <p>Required attribute supports the 
-         * identification of the client</p></remarks>
+         * <remarks>Relationship: 
+         * PRPA_MT101001CA.Person.multipleBirthOrderNumber 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The order in 
+         * which this client was born if part of a multiple birth.</p> 
+         * <p>Required attribute supports the identification of the 
+         * client</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"identifiedPerson/multipleBirthOrderNumber"})]
         public int? IdentifiedPersonMultipleBirthOrderNumber {
@@ -254,26 +280,45 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Cr.Prpa_mt101001ca {
         }
 
         /**
-         * <summary>Client Address</summary>
+         * <summary>Business Name: Client Address</summary>
          * 
-         * <remarks><p>Address(es) of the Client</p> <p>Populated 
-         * attribute supports the identification of the client</p></remarks>
+         * <remarks>Relationship: PRPA_MT101001CA.Person.addr 
+         * Conformance/Cardinality: POPULATED (1-10) <p>Address(es) of 
+         * the Client</p> <p>Populated attribute supports the 
+         * identification of the client</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"identifiedPerson/addr"})]
         public IList<PostalAddress> IdentifiedPersonAddr {
             get { return this.identifiedPersonAddr.RawList(); }
         }
 
+        /**
+         * <summary>Relationship: PRPA_MT101001CA.Person.asOtherIDs</summary>
+         * 
+         * <remarks>Conformance/Cardinality: REQUIRED (0-100)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"identifiedPerson/asOtherIDs"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Cr.Merged.OtherIDsNonHealthcareIdentifiers> IdentifiedPersonAsOtherIDs {
             get { return this.identifiedPersonAsOtherIDs; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PRPA_MT101001CA.Person.personalRelationship</summary>
+         * 
+         * <remarks>Conformance/Cardinality: REQUIRED (0-10)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"identifiedPerson/personalRelationship"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Cr.Merged.PersonalRelationship> IdentifiedPersonPersonalRelationship {
             get { return this.identifiedPersonPersonalRelationship; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PRPA_MT101001CA.Person.languageCommunication</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1-10)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"identifiedPerson/languageCommunication"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.LanguageOfCommunication> IdentifiedPersonLanguageCommunication {
             get { return this.identifiedPersonLanguageCommunication; }

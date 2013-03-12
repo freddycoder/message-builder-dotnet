@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Iehr.Merged {
 
 
     /**
-     * <summary>Exposures</summary>
+     * <summary>Business Name: Exposures</summary>
      * 
      * <remarks>REPC_MT000005CA.ExposureEvent: Exposures 
      * <p>Incidence of the patient's exposure to (or contact with) 
@@ -128,18 +128,57 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Iehr.Merged {
             this.consumableAdministrableMaterialAdministerableMaterialKindCode = new CVImpl();
         }
         /**
-         * <summary>IncidenceIdentifier</summary>
+         * <summary>Business Name: IncidenceIdentifier</summary>
          * 
-         * <remarks>B:Incidence Identifier <p>Identifier of the record 
-         * or order that caused the reaction. This could be an 
-         * identifier for a prescription, immunization, or other active 
-         * medication record.</p> <p>Allows for drilling down to 
+         * <remarks>Un-merged Business Name: IncidenceIdentifier 
+         * Relationship: REPC_MT000005CA.ExposureEvent.id 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Identifier of the 
+         * exposure event that caused the adverse reaction. This could 
+         * be an identifier for a prescription, immunization, or other 
+         * active medication record.</p> <p>Allows for drilling down to 
          * retrieve further information about the exposure</p> 
-         * B:Incidence Identifier <p>Identifier of the exposure event 
-         * that caused the adverse reaction. This could be an 
-         * identifier for a prescription, immunization, or other active 
-         * medication record.</p> <p>Allows for drilling down to 
-         * retrieve further information about the exposure</p></remarks>
+         * Un-merged Business Name: IncidenceIdentifier Relationship: 
+         * REPC_MT000006CA.ExposureEvent.id Conformance/Cardinality: 
+         * REQUIRED (0-1) <p>Identifier of the exposure event that 
+         * caused the adverse reaction. This could be an identifier for 
+         * a prescription, immunization, or other active medication 
+         * record.</p> <p>Allows for drilling down to retrieve further 
+         * information about the exposure</p> Un-merged Business Name: 
+         * IncidenceIdentifier Relationship: 
+         * REPC_MT000001CA.ExposureEvent.id Conformance/Cardinality: 
+         * REQUIRED (0-1) <p>Identifier of the record or order that 
+         * caused the reaction. This could be an identifier for a 
+         * prescription, immunization, or other active medication 
+         * record.</p> <p>Allows for drilling down to retrieve further 
+         * information about the exposure</p> Un-merged Business Name: 
+         * IncidenceIdentifier Relationship: 
+         * REPC_MT000009CA.ExposureEvent.id Conformance/Cardinality: 
+         * REQUIRED (0-1) <p>Identifier of the exposure event that 
+         * caused the adverse reaction. This could be an identifier for 
+         * a prescription, immunization, or other active medication 
+         * record.</p> <p>Allows for drilling down to retrieve further 
+         * information about the exposure</p> Un-merged Business Name: 
+         * IncidenceIdentifier Relationship: 
+         * REPC_MT000012CA.ExposureEvent.id Conformance/Cardinality: 
+         * REQUIRED (0-1) <p>Identifier of the exposure event that 
+         * caused the adverse reaction. This could be an identifier for 
+         * a prescription, immunization, or other active medication 
+         * record.</p> <p>Allows for drilling down to retrieve further 
+         * information about the exposure</p> Un-merged Business Name: 
+         * IncidenceIdentifier Relationship: 
+         * REPC_MT000013CA.ExposureEvent.id Conformance/Cardinality: 
+         * REQUIRED (0-1) <p>Identifier of the exposure event that 
+         * caused the adverse reaction. This could be an identifier for 
+         * a prescription, immunization, or other active medication 
+         * record.</p> <p>Allows for drilling down to retrieve further 
+         * information about the exposure</p> Un-merged Business Name: 
+         * IncidenceIdentifier Relationship: 
+         * REPC_MT000002CA.ExposureEvent.id Conformance/Cardinality: 
+         * REQUIRED (0-1) <p>Identifier of the exposure event that 
+         * caused the adverse reaction. This could be an identifier for 
+         * a prescription, immunization, or other active medication 
+         * record.</p> <p>Allows for drilling down to retrieve further 
+         * information about the exposure</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -148,11 +187,43 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Iehr.Merged {
         }
 
         /**
-         * <summary>ExposureMethod</summary>
+         * <summary>Business Name: ExposureMethod</summary>
          * 
-         * <remarks>C:Exposure Method <p>The method by which the 
-         * patient was exposed to the substance.</p> <p>Helps evaluate 
-         * the cause of the reaction.</p></remarks>
+         * <remarks>Un-merged Business Name: ExposureMethod 
+         * Relationship: REPC_MT000005CA.ExposureEvent.routeCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The method by 
+         * which the patient was exposed to the substance.</p> <p>Helps 
+         * evaluate the cause of the reaction.</p> Un-merged Business 
+         * Name: ExposureMethod Relationship: 
+         * REPC_MT000006CA.ExposureEvent.routeCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The method by 
+         * which the patient was exposed to the substance.</p> <p>Helps 
+         * evaluate the cause of the reaction.</p> Un-merged Business 
+         * Name: ExposureMethod Relationship: 
+         * REPC_MT000001CA.ExposureEvent.routeCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The method by 
+         * which the patient was exposed to the substance.</p> <p>Helps 
+         * evaluate the cause of the reaction.</p> Un-merged Business 
+         * Name: ExposureMethod Relationship: 
+         * REPC_MT000009CA.ExposureEvent.routeCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The method by 
+         * which the patient was exposed to the substance.</p> <p>Helps 
+         * evaluate the cause of the reaction.</p> Un-merged Business 
+         * Name: ExposureMethod Relationship: 
+         * REPC_MT000012CA.ExposureEvent.routeCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The method by 
+         * which the patient was exposed to the substance.</p> <p>Helps 
+         * evaluate the cause of the reaction.</p> Un-merged Business 
+         * Name: ExposureMethod Relationship: 
+         * REPC_MT000013CA.ExposureEvent.routeCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The method by 
+         * which the patient was exposed to the substance.</p> <p>Helps 
+         * evaluate the cause of the reaction.</p> Un-merged Business 
+         * Name: ExposureMethod Relationship: 
+         * REPC_MT000002CA.ExposureEvent.routeCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The method by 
+         * which the patient was exposed to the substance.</p> <p>Helps 
+         * evaluate the cause of the reaction.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"routeCode"})]
         public RouteOfAdministration RouteCode {
@@ -161,10 +232,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Iehr.Merged {
         }
 
         /**
-         * <summary>ExposedMaterialType</summary>
+         * <summary>Business Name: ExposedMaterialType</summary>
          * 
-         * <remarks>A:Exposed Material Type <p>Indicates the type of 
-         * agent that the patient was exposed to which caused the 
+         * <remarks>Un-merged Business Name: ExposedMaterialType 
+         * Relationship: REPC_MT000005CA.MaterialKind.code 
+         * Conformance/Cardinality: POPULATED (1) <p>Indicates the type 
+         * of agent that the patient was exposed to which caused the 
          * adverse reaction. This includes Drug, Food, Latex, Dust, 
          * etc.</p> <p>Allows different kinds of reaction agents to be 
          * distinguished. Coding strength is set to CWE because the 
@@ -172,8 +245,10 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Iehr.Merged {
          * attribute is populated because there is little point in 
          * communicating about the exposure to an agent if it is not 
          * known what the agent is, however it may not always be 
-         * coded.</p> A:Exposed Material Type <p>Indicates the type of 
-         * agent that the patient was exposed to which caused the 
+         * coded.</p> Un-merged Business Name: ExposedMaterialType 
+         * Relationship: REPC_MT000001CA.MaterialKind.code 
+         * Conformance/Cardinality: POPULATED (1) <p>Indicates the type 
+         * of agent that the patient was exposed to which caused the 
          * adverse reaction. This includes Drug, Food, Latex, Dust, 
          * etc.</p> <p>Allows different kinds of reaction agents to be 
          * distinguished. Coding strength is set to CWE because the 
@@ -182,7 +257,29 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Iehr.Merged {
          * communicating about the exposure to an agent if it is not 
          * known what the agent is, however it may not always be coded. 
          * Also, the code may sometimes be masked, in which case a 
-         * &quot;null flavor&quot; must be specified.</p></remarks>
+         * &quot;null flavor&quot; must be specified.</p> Un-merged 
+         * Business Name: ExposedMaterialType Relationship: 
+         * REPC_MT000009CA.MaterialKind.code Conformance/Cardinality: 
+         * POPULATED (1) <p>Indicates the type of agent that the 
+         * patient was exposed to which caused the adverse reaction. 
+         * This includes Drug, Food, Latex, Dust, etc.</p> <p>Allows 
+         * different kinds of reaction agents to be distinguished. 
+         * Coding strength is set to CWE because the exposure agent 
+         * type may not always be codified. The attribute is populated 
+         * because there is little point in communicating about the 
+         * exposure to an agent if it is not known what the agent is, 
+         * however it may not always be coded.</p> Un-merged Business 
+         * Name: ExposedMaterialType Relationship: 
+         * REPC_MT000013CA.MaterialKind.code Conformance/Cardinality: 
+         * POPULATED (1) <p>Indicates the type of agent that the 
+         * patient was exposed to which caused the adverse reaction. 
+         * This includes Drug, Food, Latex, Dust, etc.</p> <p>Allows 
+         * different kinds of reaction agents to be distinguished. 
+         * Coding strength is set to CWE because the exposure agent 
+         * type may not always be codified. The attribute is populated 
+         * because there is little point in communicating about the 
+         * exposure to an agent if it is not known what the agent is, 
+         * however it may not always be coded.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"consumable/administerableMaterial/administerableMaterialKind/code","consumable/administrableMaterial/administerableMaterialKind/code"})]
         [Hl7MapByPartType(Name="consumable", Type="REPC_MT000001CA.Consumable")]
@@ -202,6 +299,20 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Iehr.Merged {
             set { this.consumableAdministrableMaterialAdministerableMaterialKindCode.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * REPC_MT000006CA.AdministrableMaterial.administerableMaterialKind 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT000012CA.AdministerableMaterial.administerableMaterialKind 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT000002CA.AdministrableMaterial.administerableMaterialKind 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"consumable/administerableMaterial/administerableMaterialKind","consumable/administrableMaterial/administerableMaterialKind"})]
         [Hl7MapByPartType(Name="consumable", Type="REPC_MT000002CA.Consumable")]
         [Hl7MapByPartType(Name="consumable", Type="REPC_MT000006CA.Consumable")]

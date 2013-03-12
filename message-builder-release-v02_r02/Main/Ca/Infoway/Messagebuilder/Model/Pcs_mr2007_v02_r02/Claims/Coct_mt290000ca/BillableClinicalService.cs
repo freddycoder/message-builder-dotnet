@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,17 +27,18 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Coct_mt29000
     using Ca.Infoway.Messagebuilder.Domainvalue;
     using Ca.Infoway.Messagebuilder.Model;
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Merged;
+    using Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Domainvalue;
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Merged;
     using System;
     using System.Collections.Generic;
 
 
     /**
-     * <summary>Billable Clinical Service</summary>
+     * <summary>Business Name: Billable Clinical Service</summary>
      * 
-     * <remarks><p>Patient classes are not referenced in the 
-     * billable acts, as they are noted in the parent model (e.g. 
-     * Invoice message) as the CoveredPartyAsPatient</p></remarks>
+     * <p>Patient classes are not referenced in the billable acts, 
+     * as they are noted in the parent model (e.g. Invoice message) 
+     * as the CoveredPartyAsPatient</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"COCT_MT290000CA.BillableClinicalService"})]
     public class BillableClinicalService : MessagePartBean, Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Coct_mt280001ca.IA_BillableActChoice {
@@ -67,6 +68,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Coct_mt29000
             this.pertinentInformation1 = new List<Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Coct_mt290000ca.AccidentInformation>();
             this.pertinentInformation3 = new List<Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Merged.DiagnosisInformation>();
         }
+        /**
+         * <summary>Relationship: 
+         * COCT_MT290000CA.BillableClinicalService.moodCode</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"moodCode"})]
         public x_ActMoodIntentEvent MoodCode {
             get { return (x_ActMoodIntentEvent) this.moodCode.Value; }
@@ -74,10 +81,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Coct_mt29000
         }
 
         /**
-         * <summary>Service event ID</summary>
+         * <summary>Business Name: Service event ID</summary>
          * 
-         * <remarks><p>Can be used to uniquely identify a service 
-         * event</p></remarks>
+         * <remarks>Relationship: 
+         * COCT_MT290000CA.BillableClinicalService.id 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Can be used to 
+         * uniquely identify a service event</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -86,20 +95,26 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Coct_mt29000
         }
 
         /**
-         * <summary>Procedure code</summary>
+         * <summary>Business Name: Procedure code</summary>
          * 
-         * <remarks><p>procedure cd, CPT cd, supply cd</p></remarks>
+         * <remarks>Relationship: 
+         * COCT_MT290000CA.BillableClinicalService.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>procedure cd, CPT 
+         * cd, supply cd</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
-        public Code Code {
-            get { return (Code) this.code.Value; }
+        public ActProcedureCode Code {
+            get { return (ActProcedureCode) this.code.Value; }
             set { this.code.Value = value; }
         }
 
         /**
-         * <summary>Duration, date/time of occurrence</summary>
+         * <summary>Business Name: Duration, date/time of occurrence</summary>
          * 
-         * <remarks><p>Duration, date/time of occurrence</p></remarks>
+         * <remarks>Relationship: 
+         * COCT_MT290000CA.BillableClinicalService.effectiveTime 
+         * Conformance/Cardinality: MANDATORY (1) <p>Duration, 
+         * date/time of occurrence</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"effectiveTime"})]
         public Interval<PlatformDate> EffectiveTime {
@@ -108,65 +123,121 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Coct_mt29000
         }
 
         /**
-         * <summary><p>clinical reasons for service, not related or 
-         * specified by diagnosis. e.g. duplicate therapy, fraudulent 
-         * prescription</p></summary>
+         * <summary>Relationship: 
+         * COCT_MT290000CA.BillableClinicalService.reasonCode</summary>
          * 
-         * <remarks><p>(clinical reasons for service, not related or 
-         * specified by a diagnosis e.g. duplicate therapy, fraudulent 
-         * prescription</p></remarks>
+         * <remarks>Conformance/Cardinality: REQUIRED (0-5) 
+         * <p>(clinical reasons for service, not related or specified 
+         * by a diagnosis e.g. duplicate therapy, fraudulent 
+         * prescription</p> <p>clinical reasons for service, not 
+         * related or specified by diagnosis. e.g. duplicate therapy, 
+         * fraudulent prescription</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"reasonCode"})]
-        public ICollection<Code> ReasonCode {
-            get { return this.reasonCode.RawSet<Code>(); }
+        public ICollection<ActBillableClinicalServiceReason> ReasonCode {
+            get { return this.reasonCode.RawSet<ActBillableClinicalServiceReason>(); }
         }
 
+        /**
+         * <summary>Relationship: 
+         * COCT_MT290000CA.Product.manufacturedProduct</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"product/manufacturedProduct"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Merged.ManufacturedProduct> ProductManufacturedProduct {
             get { return this.productManufacturedProduct; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * COCT_MT290000CA.ResponsibleProvider.healthCareProvider</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"performer/healthCareProvider"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Merged.HealthcareProvider PerformerHealthCareProvider {
             get { return this.performerHealthCareProvider; }
             set { this.performerHealthCareProvider = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * COCT_MT290000CA.ProviderSupervisor.healthCareProvider</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"secondaryPerformer/healthCareProvider"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Merged.HealthcareProvider SecondaryPerformerHealthCareProvider {
             get { return this.secondaryPerformerHealthCareProvider; }
             set { this.secondaryPerformerHealthCareProvider = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * COCT_MT290000CA.ServiceReferrer.healthCareProvider</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"referrer/healthCareProvider"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Merged.HealthcareProvider ReferrerHealthCareProvider {
             get { return this.referrerHealthCareProvider; }
             set { this.referrerHealthCareProvider = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * COCT_MT290000CA.Consultant.healthCareProvider</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"consultant/healthCareProvider"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Merged.HealthcareProvider ConsultantHealthCareProvider {
             get { return this.consultantHealthCareProvider; }
             set { this.consultantHealthCareProvider = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * COCT_MT290000CA.ServiceLocation.serviceDeliveryLocation</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"location/serviceDeliveryLocation"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Merged.ServiceLocation LocationServiceDeliveryLocation {
             get { return this.locationServiceDeliveryLocation; }
             set { this.locationServiceDeliveryLocation = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * COCT_MT290000CA.BillableClinicalService.pertinentInformation1</summary>
+         * 
+         * <remarks>Conformance/Cardinality: REQUIRED (0-5)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"pertinentInformation1"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Coct_mt290000ca.AccidentInformation> PertinentInformation1 {
             get { return this.pertinentInformation1; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * COCT_MT290000CA.EncounterInformation.patientEncounter</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"pertinentInformation2/patientEncounter"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Merged.PatientEncounter PertinentInformation2PatientEncounter {
             get { return this.pertinentInformation2PatientEncounter; }
             set { this.pertinentInformation2PatientEncounter = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * COCT_MT290000CA.BillableClinicalService.pertinentInformation3</summary>
+         * 
+         * <remarks>Conformance/Cardinality: REQUIRED (0-10)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"pertinentInformation3"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Merged.DiagnosisInformation> PertinentInformation3 {
             get { return this.pertinentInformation3; }

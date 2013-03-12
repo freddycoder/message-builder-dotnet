@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,8 +24,9 @@
 /// ---------------------------------------------------------------------------------------------------
  
 namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
-	
-	using Ca.Infoway.Messagebuilder;
+
+    using Ca.Infoway.Messagebuilder.Datatype.Lang.Util;
+    using Ca.Infoway.Messagebuilder;
 	using System;
 	using System.Collections;
 	using System.Collections.Generic;
@@ -64,7 +65,7 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		public static PeriodicIntervalTimeSk CreateFrequencySk(Int32? repetitions_0, PhysicalQuantity quantity_1, PhysicalQuantity quantity_2) {
 			Interval<PhysicalQuantity> ivlPq = IntervalUtil.CreateInterval(quantity_1, quantity_2);
 			return new PeriodicIntervalTimeSk(null, null, repetitions_0, ivlPq,
-					Ca.Infoway.Messagebuilder.Datatype.Lang.Representation.FREQUENCY);
+					Representation.FREQUENCY);
 		}
 
 		[Obsolete("getQuantity() call not allowed for SK version. Use getQuantitySk() instead.")]
@@ -79,13 +80,16 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		/// </summary>
 		///
 		/// <returns>the quantity interval</returns>
-		public Interval<PhysicalQuantity> GetQuantitySk() {
+		public Interval<PhysicalQuantity> QuantitySk {
 		/// <summary>
 		/// Returns the physical quantity. interval 
 		/// </summary>
 		///
 		/// <returns>the quantity interval</returns>
-			return quantitySk;
+            get
+            {
+                return quantitySk;
+            }
 		}
 		
 	}

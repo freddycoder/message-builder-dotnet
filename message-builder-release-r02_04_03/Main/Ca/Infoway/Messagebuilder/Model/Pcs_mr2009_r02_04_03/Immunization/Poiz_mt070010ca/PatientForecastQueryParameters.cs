@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,11 +29,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Poiz
 
 
     /**
-     * <summary>Patient Forecast Query Parameters</summary>
+     * <summary>Business Name: Patient Forecast Query Parameters</summary>
      * 
-     * <remarks><p>Defines the set of parameters that may be used 
-     * to filter the query response.</p> <p>Root class for 
-     * query.</p></remarks>
+     * <p>Root class for query.</p> <p>Defines the set of 
+     * parameters that may be used to filter the query 
+     * response.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"POIZ_MT070010CA.ParameterList"})]
     public class PatientForecastQueryParameters : MessagePartBean {
@@ -50,12 +50,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Poiz
             this.patientNameValue = new PNImpl();
         }
         /**
-         * <summary>Patient Birth Date</summary>
+         * <summary>Business Name: Patient Birth Date</summary>
          * 
-         * <remarks><p>Indicates the date on which the patient was 
-         * born.</p> <p>Use to confirm identity of the patient for the 
-         * query. Full dates must be specified. As a result, this 
-         * attribute is required.</p></remarks>
+         * <remarks>Relationship: 
+         * POIZ_MT070010CA.PatientBirthDate.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Use to confirm 
+         * identity of the patient for the query. Full dates must be 
+         * specified. As a result, this attribute is required.</p> 
+         * <p>Indicates the date on which the patient was born.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"patientBirthDate/value"})]
         public PlatformDate PatientBirthDateValue {
@@ -64,11 +66,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Poiz
         }
 
         /**
-         * <summary>Patient Gender</summary>
+         * <summary>Business Name: Patient Gender</summary>
          * 
-         * <remarks><p>Indicates the gender (sex) of the patient.</p> 
-         * <p>Used to confirm the identity of the patient for the 
-         * query. As a result, this attribute is required.</p></remarks>
+         * <remarks>Relationship: POIZ_MT070010CA.PatientGender.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Used to confirm 
+         * the identity of the patient for the query. As a result, this 
+         * attribute is required.</p> <p>Indicates the gender (sex) of 
+         * the patient.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"patientGender/value"})]
         public AdministrativeGender PatientGenderValue {
@@ -77,14 +81,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Poiz
         }
 
         /**
-         * <summary>Patient Identifier</summary>
+         * <summary>Business Name: Patient Identifier</summary>
          * 
-         * <remarks><p>Identifier of the patient who is the subject of 
-         * the patient forecast query. Filter the result set to include 
-         * only those records pertaining to the patient with this 
-         * Id.</p> <p>Allows filtering of result set by patient ID. 
-         * This is the key parameter and must always be present. As a 
-         * result, this attribute is mandatory.</p></remarks>
+         * <remarks>Relationship: POIZ_MT070010CA.PatientID.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows filtering 
+         * of result set by patient ID. This is the key parameter and 
+         * must always be present. As a result, this attribute is 
+         * mandatory.</p> <p>Identifier of the patient who is the 
+         * subject of the patient forecast query. Filter the result set 
+         * to include only those records pertaining to the patient with 
+         * this Id.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"patientID/value"})]
         public Identifier PatientIDValue {
@@ -93,12 +99,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Poiz
         }
 
         /**
-         * <summary>Patient Name</summary>
+         * <summary>Business Name: Patient Name</summary>
          * 
-         * <remarks><p>The name of the patient who is the subject of 
-         * the patient forecast query.</p> <p>This information is used 
-         * to confirm the patient id. As a result, this attribute is 
-         * required.</p></remarks>
+         * <remarks>Relationship: POIZ_MT070010CA.PatientName.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>This information 
+         * is used to confirm the patient id. As a result, this 
+         * attribute is required.</p> <p>The name of the patient who is 
+         * the subject of the patient forecast query.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"patientName/value"})]
         public PersonName PatientNameValue {

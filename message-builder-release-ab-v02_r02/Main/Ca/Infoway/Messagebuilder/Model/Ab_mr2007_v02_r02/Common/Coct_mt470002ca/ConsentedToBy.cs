@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,14 +29,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Coct_mt470002
 
 
     /**
-     * <summary>b:consented to by</summary>
+     * <summary>Business Name: b:consented to by</summary>
      * 
-     * <remarks><p>Indicates that the consent was provided by the 
-     * patient or representative.</p> 
+     * <p>Indicates that the consent was provided by the patient or 
+     * representative.</p> 
      * <p>Authorization.Person</p><p>Authorization.signatory(PT)</p> 
      * <p>Authorization.Person</p><p>Authorization.signatory(PT)</p> 
      * <p>Consent can be provided by the patient or representative 
-     * or the provider.</p></remarks>
+     * or the provider.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"COCT_MT470002CA.Author"})]
     public class ConsentedToBy : MessagePartBean {
@@ -53,12 +53,23 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Coct_mt470002
             this.modeCode = new CVImpl();
             this.signatureText = new EDImpl<String>();
         }
+        /**
+         * <summary>Relationship: COCT_MT470002CA.Author.typeCode</summary>
+         * 
+         * <remarks>Conformance/Cardinality: OPTIONAL (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"typeCode"})]
         public ParticipationType TypeCode {
             get { return (ParticipationType) this.typeCode.Value; }
             set { this.typeCode.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * COCT_MT470002CA.Author.contextControlCode</summary>
+         * 
+         * <remarks>Conformance/Cardinality: OPTIONAL (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"contextControlCode"})]
         public ContextControl ContextControlCode {
             get { return (ContextControl) this.contextControlCode.Value; }
@@ -66,11 +77,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Coct_mt470002
         }
 
         /**
-         * <summary>Patient Consent Mechanism</summary>
+         * <summary>Business Name: Patient Consent Mechanism</summary>
          * 
-         * <remarks><p>Indicates whether the patient's consent is 
-         * written or verbal.</p> <p>Verbal consents may trigger a 
-         * higher level of auditing.</p></remarks>
+         * <remarks>Relationship: COCT_MT470002CA.Author.modeCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates whether 
+         * the patient's consent is written or verbal.</p> <p>Verbal 
+         * consents may trigger a higher level of auditing.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"modeCode"})]
         public x_PhysicalVerbalParticipationMode ModeCode {
@@ -79,12 +91,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Coct_mt470002
         }
 
         /**
-         * <summary>Keyword</summary>
+         * <summary>Business Name: Keyword</summary>
          * 
-         * <remarks><p>Indicates the keyword appropriate to the action 
-         * being performed by the message.</p> <p>Allows providers who 
-         * know the keyword to access information protected by patient 
-         * keywords.</p></remarks>
+         * <remarks>Relationship: COCT_MT470002CA.Author.signatureText 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
+         * keyword appropriate to the action being performed by the 
+         * message.</p> <p>Allows providers who know the keyword to 
+         * access information protected by patient keywords.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"signatureText"})]
         public String SignatureText {
@@ -92,6 +105,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Coct_mt470002
             set { this.signatureText.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * COCT_MT470002CA.Author.personalRelationship</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"personalRelationship"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged.RelatedPerson PersonalRelationship {
             get { return this.personalRelationship; }

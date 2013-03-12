@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt230004ca;
 
 
+    /**
+     * <summary>Business Name: REPC_IN000089CA: Patient clinical 
+     * obs. doc summaries query response</summary>
+     * 
+     * <p>Returns a list of available clinical observation 
+     * documents for a particular patient, potentially filtered by 
+     * type of note.</p> Message: MCCI_MT002300CA.Message Control 
+     * Act: QUQI_MT120006CA.ControlActEvent --> Payload: 
+     * REPC_MT230002CA.Document --> Payload: 
+     * REPC_MT230004CA.ParameterList
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"REPC_IN000089CA"})]
     public class PatientClinicalObsDocSummariesQueryResponse : HL7Message_1<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.TriggerEvent_6<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt230002ca.ClinicalObservationDocument,Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt230004ca.QueryDefinition>>, IInteraction {
 

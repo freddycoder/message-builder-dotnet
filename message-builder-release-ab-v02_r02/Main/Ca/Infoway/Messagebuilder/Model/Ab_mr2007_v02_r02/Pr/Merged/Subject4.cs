@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,12 +35,39 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Merged {
         public Subject4() {
             this.typeCode = new CSImpl();
         }
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PRPM_MT303010CA.Subject4.privilegeCategorization 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PRPM_MT301010CA.Subject4.privilegeCategorization 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PRPM_MT306011CA.Subject4.privilegeCategorization 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PRPM_MT309000CA.Subject4.privilegeCategorization 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"privilegeCategorization"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Merged.PrivilegeCategorization PrivilegeCategorization {
             get { return this.privilegeCategorization; }
             set { this.privilegeCategorization = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: PRPM_MT306011CA.Subject4.typeCode 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PRPM_MT309000CA.Subject4.typeCode Conformance/Cardinality: 
+         * MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"typeCode"})]
         public ActRelationshipType TypeCode {
             get { return (ActRelationshipType) this.typeCode.Value; }

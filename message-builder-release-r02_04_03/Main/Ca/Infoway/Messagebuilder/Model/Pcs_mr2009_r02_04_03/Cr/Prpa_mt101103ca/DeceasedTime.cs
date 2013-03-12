@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,7 +35,10 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Cr.Prpa_mt101103c
             this.value = new TSImpl();
         }
         /**
-         * <summary>Deceased Date</summary>
+         * <summary>Business Name: Deceased Date</summary>
+         * 
+         * <remarks>Relationship: PRPA_MT101103CA.DeceasedTime.value 
+         * Conformance/Cardinality: REQUIRED (0-1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"value"})]
         public PlatformDate Value {

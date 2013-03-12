@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
 
 
     /**
-     * <summary>HealthcareOrganization</summary>
+     * <summary>Business Name: HealthcareOrganization</summary>
      * 
      * <remarks>COCT_MT090508CA.AssignedEntity: Healthcare 
      * Organization <p>The organization under whose authority the 
@@ -65,18 +65,22 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             this.representedOrganizationDeterminerCode = new CSImpl();
         }
         /**
-         * <summary>OrganizationIdentifier</summary>
+         * <summary>Business Name: OrganizationIdentifier</summary>
          * 
-         * <remarks>E: Organization identifier <p>A unique identifier 
-         * for the organization</p> <p>Allows the organization to be 
-         * referenced when determining privileges and for drill-downs 
-         * to retrieve additional information. Because of its 
-         * importance, the attribute is mandatory.</p> D: Organization 
-         * identifier <p>A unique identifier for the organization</p> 
-         * <p>Allows the organization to be referenced when determining 
-         * privileges and for drill-downs to retrieve additional 
-         * information. Because of its importance, the attribute is 
-         * mandatory.</p></remarks>
+         * <remarks>Un-merged Business Name: OrganizationIdentifier 
+         * Relationship: COCT_MT090508CA.Organization.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>A unique 
+         * identifier for the organization</p> <p>Allows the 
+         * organization to be referenced when determining privileges 
+         * and for drill-downs to retrieve additional information. 
+         * Because of its importance, the attribute is mandatory.</p> 
+         * Un-merged Business Name: OrganizationIdentifier 
+         * Relationship: COCT_MT090502CA.Organization.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>A unique 
+         * identifier for the organization</p> <p>Allows the 
+         * organization to be referenced when determining privileges 
+         * and for drill-downs to retrieve additional information. 
+         * Because of its importance, the attribute is mandatory.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"representedOrganization/id"})]
         public Identifier RepresentedOrganizationId {
@@ -85,16 +89,20 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>OrganizationName</summary>
+         * <summary>Business Name: OrganizationName</summary>
          * 
-         * <remarks>E: Organization Name <p>Identifies the name of the 
-         * organization</p> <p>Allows for human recognition of the 
-         * organization as well as confirmation of the identifier. As a 
-         * result, the attribute is mandatory.</p> G: Organization Name 
-         * <p>Identifies the name of the organization</p> <p>Allows for 
-         * human recognition of the organization as well as 
-         * confirmation of the identifier. As a result, the attribute 
-         * is mandatory.</p></remarks>
+         * <remarks>Un-merged Business Name: OrganizationName 
+         * Relationship: COCT_MT090508CA.Organization.name 
+         * Conformance/Cardinality: MANDATORY (1) <p>Identifies the 
+         * name of the organization</p> <p>Allows for human recognition 
+         * of the organization as well as confirmation of the 
+         * identifier. As a result, the attribute is mandatory.</p> 
+         * Un-merged Business Name: OrganizationName Relationship: 
+         * COCT_MT090502CA.Organization.name Conformance/Cardinality: 
+         * MANDATORY (1) <p>Identifies the name of the organization</p> 
+         * <p>Allows for human recognition of the organization as well 
+         * as confirmation of the identifier. As a result, the 
+         * attribute is mandatory.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"representedOrganization/name"})]
         public String RepresentedOrganizationName {
@@ -103,12 +111,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>OrganizationType</summary>
+         * <summary>Business Name: OrganizationType</summary>
          * 
-         * <remarks>F: Organization Type <p>Identifies the type of 
-         * organization on whose behalf the action was taken. E.g. 
-         * Pharmacy, Clinic, Hospital, etc.</p> <p>Provides context to 
-         * the action and is therefore mandatory.</p></remarks>
+         * <remarks>Un-merged Business Name: OrganizationType 
+         * Relationship: COCT_MT090508CA.AssignedOrganization.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Identifies the 
+         * type of organization on whose behalf the action was taken. 
+         * E.g. Pharmacy, Clinic, Hospital, etc.</p> <p>Provides 
+         * context to the action and is therefore mandatory.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"representedOrganization/assignedOrganization/code"})]
         public HealthcareOrganizationRoleType RepresentedOrganizationAssignedOrganizationCode {
@@ -117,9 +127,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>OrganizationPhoneAndEmails</summary>
+         * <summary>Business Name: OrganizationPhoneAndEmails</summary>
          * 
-         * <remarks>H: Organization Phone and Emails <p>Identifies 
+         * <remarks>Un-merged Business Name: OrganizationPhoneAndEmails 
+         * Relationship: COCT_MT090508CA.AssignedOrganization.telecom 
+         * Conformance/Cardinality: REQUIRED (0-5) <p>Identifies 
          * contact information for the responsible organization.</p> 
          * <p>This is the most commonly used contact information and is 
          * returned to avoid unnecessary queries against the client 
@@ -130,18 +142,42 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             get { return this.representedOrganizationAssignedOrganizationTelecom.RawSet(); }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * COCT_MT090502CA.AssignedEntity.classCode 
+         * Conformance/Cardinality: OPTIONAL (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"classCode"})]
         public RoleClass ClassCode {
             get { return (RoleClass) this.classCode.Value; }
             set { this.classCode.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * COCT_MT090502CA.Organization.classCode 
+         * Conformance/Cardinality: OPTIONAL (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"representedOrganization/classCode"})]
         public EntityClass RepresentedOrganizationClassCode {
             get { return (EntityClass) this.representedOrganizationClassCode.Value; }
             set { this.representedOrganizationClassCode.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * COCT_MT090502CA.Organization.determinerCode 
+         * Conformance/Cardinality: OPTIONAL (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"representedOrganization/determinerCode"})]
         public EntityDeterminer RepresentedOrganizationDeterminerCode {
             get { return (EntityDeterminer) this.representedOrganizationDeterminerCode.Value; }

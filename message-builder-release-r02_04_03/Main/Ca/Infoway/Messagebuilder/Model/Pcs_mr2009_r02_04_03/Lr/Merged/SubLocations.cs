@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,25 +29,25 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lr.Merged {
 
 
     /**
-     * <summary>SubLocations</summary>
+     * <summary>Business Name: SubLocations</summary>
      * 
      * <remarks>PRPA_MT202301CA.SubLocation: Sub-Locations 
-     * <p>Identifies service delivery locations contained within 
-     * the described &quot;parent&quot; service delivery 
-     * location.</p> <p>Allows a more thorough understanding of the 
+     * <p>Allows a more thorough understanding of the capabilities 
+     * of the service delivery location, as well as drill-down to 
+     * component parts.</p> <p>Identifies service delivery 
+     * locations contained within the described &quot;parent&quot; 
+     * service delivery location.</p> PRPA_MT202302CA.SubLocation: 
+     * Sub-Locations <p>Allows a more thorough understanding of the 
      * capabilities of the service delivery location, as well as 
-     * drill-down to component parts.</p> 
-     * PRPA_MT202302CA.SubLocation: Sub-Locations <p>Identifies 
-     * service delivery locations contained within the described 
-     * &quot;parent&quot; service delivery location.</p> <p>Allows 
-     * a more thorough understanding of the capabilities of the 
-     * service delivery location, as well as drill-down to 
-     * component parts.</p> PRPA_MT202303CA.SubLocation: 
-     * Sub-Locations <p>Identifies service delivery locations 
+     * drill-down to component parts.</p> <p>Identifies service 
+     * delivery locations contained within the described 
+     * &quot;parent&quot; service delivery location.</p> 
+     * PRPA_MT202303CA.SubLocation: Sub-Locations <p>Allows a more 
+     * thorough understanding of the capabilities of the service 
+     * delivery location, as well as drill-down to component 
+     * parts.</p> <p>Identifies service delivery locations 
      * contained within the described &quot;parent&quot; service 
-     * delivery location.</p> <p>Allows a more thorough 
-     * understanding of the capabilities of the service delivery 
-     * location, as well as drill-down to component parts.</p></remarks>
+     * delivery location.</p></remarks>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"PRPA_MT202301CA.SubLocation","PRPA_MT202302CA.SubLocation","PRPA_MT202303CA.SubLocation"})]
     public class SubLocations : MessagePartBean {
@@ -64,12 +64,27 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lr.Merged {
             this.locationCode = new CVImpl();
         }
         /**
-         * <summary>SubLocationIdentifier</summary>
+         * <summary>Business Name: SubLocationIdentifier</summary>
          * 
-         * <remarks>A: Sub-Location Identifier <p>Unique identifier for 
-         * the contained service delivery location</p> <p>Allows 
-         * subsequent queries to drill down to detail information about 
-         * this specific sub location and is therefore mandatory.</p></remarks>
+         * <remarks>Un-merged Business Name: SubLocationIdentifier 
+         * Relationship: PRPA_MT202301CA.SubLocation.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows subsequent 
+         * queries to drill down to detail information about this 
+         * specific sub location and is therefore mandatory.</p> 
+         * <p>Unique identifier for the contained service delivery 
+         * location</p> Un-merged Business Name: SubLocationIdentifier 
+         * Relationship: PRPA_MT202302CA.SubLocation.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows subsequent 
+         * queries to drill down to detail information about this 
+         * specific sub location and is therefore mandatory.</p> 
+         * <p>Unique identifier for the contained service delivery 
+         * location</p> Un-merged Business Name: SubLocationIdentifier 
+         * Relationship: PRPA_MT202303CA.SubLocation.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows subsequent 
+         * queries to drill down to detail information about this 
+         * specific sub location and is therefore mandatory.</p> 
+         * <p>Unique identifier for the contained service delivery 
+         * location</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -78,15 +93,33 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lr.Merged {
         }
 
         /**
-         * <summary>SubLocationType</summary>
+         * <summary>Business Name: SubLocationType</summary>
          * 
-         * <remarks>B: Sub-Location Type <p>Describes the 'type' of 
+         * <remarks>Un-merged Business Name: SubLocationType 
+         * Relationship: PRPA_MT202301CA.SubLocation.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Provides context 
+         * about what the capabilities of the component service 
+         * delivery location are. Allows for unique identification of a 
+         * sub-location and is therefore mandatory.</p> <p>Describes 
+         * the 'type' of component service delivery location. For 
+         * example, a hospital might contain a laboratory or a 
+         * community clinic.</p> Un-merged Business Name: 
+         * SubLocationType Relationship: 
+         * PRPA_MT202302CA.SubLocation.code Conformance/Cardinality: 
+         * MANDATORY (1) <p>Provides context about what the 
+         * capabilities of the component service delivery location are. 
+         * Allows for unique identification of a sub-location and is 
+         * therefore mandatory.</p> <p>Describes the 'type' of 
          * component service delivery location. For example, a hospital 
          * might contain a laboratory or a community clinic.</p> 
-         * <p>Provides context about what the capabilities of the 
-         * component service delivery location are. Allows for unique 
-         * identification of a sub-location and is therefore 
-         * mandatory.</p></remarks>
+         * Un-merged Business Name: SubLocationType Relationship: 
+         * PRPA_MT202303CA.SubLocation.code Conformance/Cardinality: 
+         * MANDATORY (1) <p>Provides context about what the 
+         * capabilities of the component service delivery location are. 
+         * Allows for unique identification of a sub-location and is 
+         * therefore mandatory.</p> <p>Describes the 'type' of 
+         * component service delivery location. For example, a hospital 
+         * might contain a laboratory or a community clinic.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public ServiceDeliveryLocationRoleType Code {
@@ -95,13 +128,27 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lr.Merged {
         }
 
         /**
-         * <summary>LocationName</summary>
+         * <summary>Business Name: LocationName</summary>
          * 
-         * <remarks>Location Name <p>A descriptive name for the 
-         * sub-location.</p> <p>Provides a human-readable label for the 
+         * <remarks>Un-merged Business Name: LocationName Relationship: 
+         * PRPA_MT202301CA.SubLocation.name Conformance/Cardinality: 
+         * MANDATORY (1) <p>Provides a human-readable label for the 
          * location and is therefore mandatory. In general, names of 
          * sub-locations will be unique within their containing 
-         * location.</p></remarks>
+         * location.</p> <p>A descriptive name for the 
+         * sub-location.</p> Un-merged Business Name: LocationName 
+         * Relationship: PRPA_MT202302CA.SubLocation.name 
+         * Conformance/Cardinality: MANDATORY (1) <p>Provides a 
+         * human-readable label for the location and is therefore 
+         * mandatory. In general, names of sub-locations will be unique 
+         * within their containing location.</p> <p>A descriptive name 
+         * for the sub-location.</p> Un-merged Business Name: 
+         * LocationName Relationship: PRPA_MT202303CA.SubLocation.name 
+         * Conformance/Cardinality: MANDATORY (1) <p>Provides a 
+         * human-readable label for the location and is therefore 
+         * mandatory. In general, names of sub-locations will be unique 
+         * within their containing location.</p> <p>A descriptive name 
+         * for the sub-location.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"name"})]
         public String Name {
@@ -110,18 +157,33 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lr.Merged {
         }
 
         /**
-         * <summary>SubLocationPlaceType</summary>
+         * <summary>Business Name: SubLocationPlaceType</summary>
          * 
-         * <remarks>D: Sub-Location Place Type <p>Identifies the 
-         * physical type of the component location. For example, a 
+         * <remarks>Un-merged Business Name: SubLocationPlaceType 
+         * Relationship: PRPA_MT202301CA.SubPlace.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Provides context 
+         * about the type of sub-location.</p><p>Used for searching, as 
+         * well as for understanding what is meant by a particular 
+         * sub-location and is therefore mandatory.</p> <p>Identifies 
+         * the physical type of the component location. For example, a 
          * campus may contain a building, a building may contain a 
-         * ward, etc.</p> <p>Provides context about the type of 
-         * sub-location.</p><p>Used for searching, as well as for 
-         * understanding what is meant by a particular sub-location and 
-         * is therefore mandatory.</p> <p>Provides context about the 
-         * type of sub-location.</p><p>Used for searching, as well as 
-         * for understanding what is meant by a particular sub-location 
-         * and is therefore mandatory.</p></remarks>
+         * ward, etc.</p> Un-merged Business Name: SubLocationPlaceType 
+         * Relationship: PRPA_MT202302CA.SubPlace.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Provides context 
+         * about the type of sub-location.</p><p>Used for searching, as 
+         * well as for understanding what is meant by a particular 
+         * sub-location and is therefore mandatory.</p> <p>Identifies 
+         * the physical type of the component location. For example, a 
+         * campus may contain a building, a building may contain a 
+         * ward, etc.</p> Un-merged Business Name: SubLocationPlaceType 
+         * Relationship: PRPA_MT202303CA.SubPlace.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Provides context 
+         * about the type of sub-location.</p><p>Used for searching, as 
+         * well as for understanding what is meant by a particular 
+         * sub-location and is therefore mandatory.</p> <p>Identifies 
+         * the physical type of the component location. For example, a 
+         * campus may contain a building, a building may contain a 
+         * ward, etc.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"location/code"})]
         public ServiceDeliveryLocationPlaceType LocationCode {

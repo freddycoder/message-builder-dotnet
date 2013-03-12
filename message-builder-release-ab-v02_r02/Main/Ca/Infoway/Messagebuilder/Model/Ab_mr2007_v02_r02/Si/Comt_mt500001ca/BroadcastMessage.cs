@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,12 +27,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Si.Comt_mt500001ca {
 
 
     /**
-     * <summary>Broadcast Message</summary>
+     * <summary>Business Name: Broadcast Message</summary>
      * 
-     * <remarks><p>Information being transmitted to proviers as a 
-     * 'mass broadcast'</p> <p>Allows conveying information such as 
+     * <p>Information being transmitted to proviers as a 'mass 
+     * broadcast'</p> <p>Allows conveying information such as 
      * stolen prescription pads, system availability information, 
-     * etc.</p></remarks>
+     * etc.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"COMT_MT500001CA.InformEvent"})]
     public class BroadcastMessage : MessagePartBean {
@@ -43,12 +43,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Si.Comt_mt500001ca {
             this.text = new STImpl();
         }
         /**
-         * <summary>Broadcast Message</summary>
+         * <summary>Business Name: Broadcast Message</summary>
          * 
-         * <remarks><p>Contains the text to be displayed to the user of 
-         * the system.</p> <p>Allows conveying of system messages and 
-         * other types of alerts. E.g. Planned outages, stolen 
-         * prescription pads, etc.</p></remarks>
+         * <remarks>Relationship: COMT_MT500001CA.InformEvent.text 
+         * Conformance/Cardinality: MANDATORY (1) <p>Contains the text 
+         * to be displayed to the user of the system.</p> <p>Allows 
+         * conveying of system messages and other types of alerts. E.g. 
+         * Planned outages, stolen prescription pads, etc.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"text"})]
         public String Text {

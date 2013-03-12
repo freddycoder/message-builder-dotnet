@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,13 +30,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Coct_mt130001
 
 
     /**
-     * <summary>Version Information</summary>
+     * <summary>Business Name: Version Information</summary>
      * 
-     * <remarks><p>This records the history of changes that have 
-     * been made to the record, including why the changes were 
-     * made, who made them and when.</p> <p>Provides a record 
-     * changes, providing deeper clinical understanding, 
-     * particularly of past clinical decisions.</p></remarks>
+     * <p>This records the history of changes that have been made 
+     * to the record, including why the changes were made, who made 
+     * them and when.</p> <p>Provides a record changes, providing 
+     * deeper clinical understanding, particularly of past clinical 
+     * decisions.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"COCT_MT130001CA.ControlActEvent"})]
     public class VersionInformation : MessagePartBean {
@@ -54,12 +54,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Coct_mt130001
             this.reasonCode = new CVImpl();
         }
         /**
-         * <summary>B:Change Identifier</summary>
+         * <summary>Business Name: B:Change Identifier</summary>
          * 
-         * <remarks><p>A unique identifier for this particular 
-         * change.</p> <p>Allows referencing (and potentially undoing) 
-         * a specific change. Every status change has an identifier, 
-         * thus this attribute is mandatory.</p></remarks>
+         * <remarks>Relationship: COCT_MT130001CA.ControlActEvent.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>A unique 
+         * identifier for this particular change.</p> <p>Allows 
+         * referencing (and potentially undoing) a specific change. 
+         * Every status change has an identifier, thus this attribute 
+         * is mandatory.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -68,11 +70,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Coct_mt130001
         }
 
         /**
-         * <summary>A:Change Type</summary>
+         * <summary>Business Name: A:Change Type</summary>
          * 
-         * <remarks><p>Identifies what kind of change occurred.</p> 
-         * <p>This attribute is mandatory to ensure that change types 
-         * are distinguishable.</p></remarks>
+         * <remarks>Relationship: COCT_MT130001CA.ControlActEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Identifies what 
+         * kind of change occurred.</p> <p>This attribute is mandatory 
+         * to ensure that change types are distinguishable.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public HL7TriggerEventCode Code {
@@ -81,16 +84,18 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Coct_mt130001
         }
 
         /**
-         * <summary>C:Change Effective Date and End Date</summary>
+         * <summary>Business Name: C:Change Effective Date and End Date</summary>
          * 
-         * <remarks><p>The date on which the various changes of an 
-         * event become valid and applicable and potentially when the 
-         * change is supposed to cease.</p> <p>Allows applications to 
-         * sort and filter by time. The date on which a change is 
-         * effective should always be known and thus is mandatory. The 
-         * end date may be left unspecified if there isn't a specific 
-         * targetted end date (e.g. with a suspend including a planned 
-         * release date).</p></remarks>
+         * <remarks>Relationship: 
+         * COCT_MT130001CA.ControlActEvent.effectiveTime 
+         * Conformance/Cardinality: MANDATORY (1) <p>The date on which 
+         * the various changes of an event become valid and applicable 
+         * and potentially when the change is supposed to cease.</p> 
+         * <p>Allows applications to sort and filter by time. The date 
+         * on which a change is effective should always be known and 
+         * thus is mandatory. The end date may be left unspecified if 
+         * there isn't a specific targetted end date (e.g. with a 
+         * suspend including a planned release date).</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"effectiveTime"})]
         public Interval<PlatformDate> EffectiveTime {
@@ -99,12 +104,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Coct_mt130001
         }
 
         /**
-         * <summary>D:Change Reason</summary>
+         * <summary>Business Name: D:Change Reason</summary>
          * 
-         * <remarks><p>Denotes the reason the record was modified.</p> 
-         * <p>Ensures consistent terminology in capturing and 
-         * interpreting reasons for change. Allows CWE because not all 
-         * reasons will correspond to a pre-defined code.</p></remarks>
+         * <remarks>Relationship: 
+         * COCT_MT130001CA.ControlActEvent.reasonCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Denotes the 
+         * reason the record was modified.</p> <p>Ensures consistent 
+         * terminology in capturing and interpreting reasons for 
+         * change. Allows CWE because not all reasons will correspond 
+         * to a pre-defined code.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"reasonCode"})]
         public ControlActReason ReasonCode {
@@ -112,6 +120,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Coct_mt130001
             set { this.reasonCode.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * COCT_MT130001CA.ControlActEvent.author</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"author"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.Author1 Author {
             get { return this.author; }

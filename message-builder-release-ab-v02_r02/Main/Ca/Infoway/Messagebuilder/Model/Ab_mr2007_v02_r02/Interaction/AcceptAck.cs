@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,6 +24,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged;
 
 
+    /**
+     * <summary>Business Name: MCCI_IN000002CA: Accept Ack</summary>
+     * 
+     * <remarks>Message: MCCI_MT002200CA.Message</remarks>
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"MCCI_IN000002CA"})]
     public class AcceptAck : HL7Message, IInteraction {
 

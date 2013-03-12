@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,11 +32,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Porx_mt0200
 
 
     /**
-     * <summary>Office Supply</summary>
+     * <summary>Business Name: Office Supply</summary>
      * 
-     * <remarks><p>This is the detailed information about a 
-     * medication being supplied for office use.</p> <p>Allows for 
-     * tracking of medications supplied to an office.</p></remarks>
+     * <p>This is the detailed information about a medication being 
+     * supplied for office use.</p> <p>Allows for tracking of 
+     * medications supplied to an office.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"PORX_MT020050CA.SupplyEvent"})]
     public class OfficeSupply : MessagePartBean {
@@ -58,12 +58,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Porx_mt0200
             this.destinationServiceDeliveryLocationId = new IIImpl();
         }
         /**
-         * <summary>A:Local Dispense ID</summary>
+         * <summary>Business Name: A:Local Dispense ID</summary>
          * 
-         * <remarks><p>Identifier assigned by the dispensing 
-         * facility.</p> <p>Allows formal tracking of centrally 
-         * recorded dispenses to local records for audit and related 
-         * purposes.</p></remarks>
+         * <remarks>Relationship: PORX_MT020050CA.SupplyEvent.id 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Identifier 
+         * assigned by the dispensing facility.</p> <p>Allows formal 
+         * tracking of centrally recorded dispenses to local records 
+         * for audit and related purposes.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -72,16 +73,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Porx_mt0200
         }
 
         /**
-         * <summary>Dispense Type</summary>
+         * <summary>Business Name: Dispense Type</summary>
          * 
-         * <remarks><p>Indicates the type of dispensing event that is 
-         * being performed.</p><p>This is a fixed dispense type of 
-         * 'Office Supply' unless using SNOMED.</p> <p>Indicates the 
-         * type of dispensing event that is being performed.</p><p>This 
-         * is a fixed dispense type of 'Office Supply' unless using 
-         * SNOMED.</p> <p>Indicates reason for the size of dispense. 
-         * Because it defines what type of dispense is occurring, the 
-         * attribute is mandatory.</p></remarks>
+         * <remarks>Relationship: PORX_MT020050CA.SupplyEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the type 
+         * of dispensing event that is being performed.</p><p>This is a 
+         * fixed dispense type of 'Office Supply' unless using 
+         * SNOMED.</p> <p>Indicates the type of dispensing event that 
+         * is being performed.</p><p>This is a fixed dispense type of 
+         * 'Office Supply' unless using SNOMED.</p> <p>Indicates reason 
+         * for the size of dispense. Because it defines what type of 
+         * dispense is occurring, the attribute is mandatory.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public ActCode Code {
@@ -90,15 +92,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Porx_mt0200
         }
 
         /**
-         * <summary>A:Supply Date</summary>
+         * <summary>Business Name: A:Supply Date</summary>
          * 
-         * <remarks><p>Represents the date medication was supplied.</p> 
-         * <p>Needed for audit purposes.</p><p>Because the supply date 
-         * is always known, the attribute is mandatory.</p> <p>Needed 
-         * for audit purposes.</p><p>Because the supply date is always 
-         * known, the attribute is mandatory.</p> <p>Must be able to 
-         * post date a dispense (enter retroactively) e.g. system 
-         * failure</p></remarks>
+         * <remarks>Relationship: 
+         * PORX_MT020050CA.SupplyEvent.effectiveTime 
+         * Conformance/Cardinality: MANDATORY (1) <p>Represents the 
+         * date medication was supplied.</p> <p>Needed for audit 
+         * purposes.</p><p>Because the supply date is always known, the 
+         * attribute is mandatory.</p> <p>Needed for audit 
+         * purposes.</p><p>Because the supply date is always known, the 
+         * attribute is mandatory.</p> <p>Must be able to post date a 
+         * dispense (enter retroactively) e.g. system failure</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"effectiveTime"})]
         public PlatformDate EffectiveTime {
@@ -107,13 +111,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Porx_mt0200
         }
 
         /**
-         * <summary>B:Supplied Quantity</summary>
+         * <summary>Business Name: B:Supplied Quantity</summary>
          * 
-         * <remarks><p>The amount of medication that has been 
-         * dispensed. Includes unit of measure.</p> <p>Allows for 
-         * auditing of medication dispensed to an office. This is 
-         * mandatory to allow reconciliation with the amount used from 
-         * the office.</p></remarks>
+         * <remarks>Relationship: PORX_MT020050CA.SupplyEvent.quantity 
+         * Conformance/Cardinality: MANDATORY (1) <p>The amount of 
+         * medication that has been dispensed. Includes unit of 
+         * measure.</p> <p>Allows for auditing of medication dispensed 
+         * to an office. This is mandatory to allow reconciliation with 
+         * the amount used from the office.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"quantity"})]
         public PhysicalQuantity Quantity {
@@ -121,6 +126,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Porx_mt0200
             set { this.quantity.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: PORX_MT020050CA.Product2.medication</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"product/medication"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Coct_mt220200ca.DrugProduct ProductMedication {
             get { return this.productMedication; }
@@ -128,12 +138,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Porx_mt0200
         }
 
         /**
-         * <summary>C:Ship-to Facility Id</summary>
+         * <summary>Business Name: C:Ship-to Facility Id</summary>
          * 
-         * <remarks><p>Identifier of the facility where the dispensed 
-         * medication was shipped.</p> <p>Allows tracking what drugs 
-         * are dispensed to a facility. The attribute is mandatory 
-         * because identification of the facility must be known.</p></remarks>
+         * <remarks>Relationship: 
+         * PORX_MT020050CA.ServiceDeliveryLocation.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>Identifier of the 
+         * facility where the dispensed medication was shipped.</p> 
+         * <p>Allows tracking what drugs are dispensed to a facility. 
+         * The attribute is mandatory because identification of the 
+         * facility must be known.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"destination/serviceDeliveryLocation/id"})]
         public Identifier DestinationServiceDeliveryLocationId {
@@ -141,12 +154,23 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Porx_mt0200
             set { this.destinationServiceDeliveryLocationId.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PORX_MT020050CA.InFulfillmentOf.supplyRequest</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"fulfillment/supplyRequest"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged.SupplyOrder FulfillmentSupplyRequest {
             get { return this.fulfillmentSupplyRequest; }
             set { this.fulfillmentSupplyRequest = value; }
         }
 
+        /**
+         * <summary>Relationship: PORX_MT020050CA.Subject7.annotation</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf/annotation"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Coct_mt120600ca.Notes SubjectOfAnnotation {
             get { return this.subjectOfAnnotation; }

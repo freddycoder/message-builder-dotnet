@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,22 +28,22 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Porx_mt0101
 
 
     /**
-     * <summary>g:includes</summary>
+     * <summary>Business Name: g:includes</summary>
      * 
-     * <remarks><p>Indicates other patient information that is an 
-     * important consideration for the prescription. This 
-     * information is limited to height and weight.</p> <p>Allows 
-     * patient height and weight to be conveyed to the pharmacy for 
-     * dosage calculation or verification</p><p>The additional 
-     * repetitions are to allow for capturing of additional 
-     * concepts beyond height and weight without impacting the 
-     * message structure should future versions of the 
-     * specification allow.</p> <p>Allows patient height and weight 
-     * to be conveyed to the pharmacy for dosage calculation or 
-     * verification</p><p>The additional repetitions are to allow 
-     * for capturing of additional concepts beyond height and 
-     * weight without impacting the message structure should future 
-     * versions of the specification allow.</p></remarks>
+     * <p>Indicates other patient information that is an important 
+     * consideration for the prescription. This information is 
+     * limited to height and weight.</p> <p>Allows patient height 
+     * and weight to be conveyed to the pharmacy for dosage 
+     * calculation or verification</p><p>The additional repetitions 
+     * are to allow for capturing of additional concepts beyond 
+     * height and weight without impacting the message structure 
+     * should future versions of the specification allow.</p> 
+     * <p>Allows patient height and weight to be conveyed to the 
+     * pharmacy for dosage calculation or verification</p><p>The 
+     * additional repetitions are to allow for capturing of 
+     * additional concepts beyond height and weight without 
+     * impacting the message structure should future versions of 
+     * the specification allow.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"PORX_MT010120CA.PertinentInformation"})]
     public class Includes_2 : MessagePartBean {
@@ -54,12 +54,24 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Porx_mt0101
         public Includes_2() {
             this.contextConductionInd = new BLImpl();
         }
+        /**
+         * <summary>Relationship: 
+         * PORX_MT010120CA.PertinentInformation.contextConductionInd</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"contextConductionInd"})]
         public bool? ContextConductionInd {
             get { return this.contextConductionInd.Value; }
             set { this.contextConductionInd.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PORX_MT010120CA.PertinentInformation.quantityObservationEvent</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"quantityObservationEvent"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.PrescriptionPatientMeasurements QuantityObservationEvent {
             get { return this.quantityObservationEvent; }

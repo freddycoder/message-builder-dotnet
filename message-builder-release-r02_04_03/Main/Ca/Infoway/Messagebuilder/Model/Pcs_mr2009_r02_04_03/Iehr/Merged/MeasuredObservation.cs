@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,34 +34,34 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged {
 
 
     /**
-     * <summary>MeasuredObservation</summary>
+     * <summary>Business Name: MeasuredObservation</summary>
      * 
      * <remarks>REPC_MT410003CA.CommonObservationEvent: Measured 
      * Observation <p>Annotation is only permitted if Annotation 
-     * Indicator is not present and vice versa</p> <p>&lt;p&gt;This 
-     * record expresses a single point-in-time measured observation 
-     * made about a patient.&lt;/p&gt; &lt;p&gt;E.g. height, 
-     * weight, blood pressure, mole diameter, gum depth, 
-     * etc.&lt;/p&gt; &lt;p&gt;Note: This transaction is not 
-     * intended to deal with numeric 'scores'. Those are not 
-     * considered measurements and should be handled using Coded 
-     * Observation.&lt;/p&gt;</p> <p>Observations are a key 
-     * mechanism for capturing the state of a patient. Observations 
-     * provide context for interventions subsequently taken. 
-     * Observations can also be tracked over time to look for 
-     * changes that may help in assessing a patient's health.</p> 
+     * Indicator is not present and vice versa</p> <p>Observations 
+     * are a key mechanism for capturing the state of a patient. 
+     * Observations provide context for interventions subsequently 
+     * taken. Observations can also be tracked over time to look 
+     * for changes that may help in assessing a patient's 
+     * health.</p> <p>&lt;p&gt;This record expresses a single 
+     * point-in-time measured observation made about a 
+     * patient.&lt;/p&gt; &lt;p&gt;E.g. height, weight, blood 
+     * pressure, mole diameter, gum depth, etc.&lt;/p&gt; 
+     * &lt;p&gt;Note: This transaction is not intended to deal with 
+     * numeric 'scores'. Those are not considered measurements and 
+     * should be handled using Coded Observation.&lt;/p&gt;</p> 
      * REPC_MT410001CA.CommonObservationEvent: Measured Observation 
-     * <p>&lt;p&gt;This record expresses a single point-in-time 
-     * measured observation made about a patient.&lt;/p&gt; 
-     * &lt;p&gt;E.g. height, weight, blood pressure, mole diameter, 
-     * gum depth, etc.&lt;/p&gt; &lt;p&gt;Note: This transaction is 
-     * not intended to deal with numeric 'scores'. Those are not 
-     * considered measurements and should be handled using Coded 
-     * Observation.&lt;/p&gt;</p> <p>Observations are a key 
-     * mechanism for capturing the state of a patient. Observations 
-     * provide context for interventions subsequently taken. 
-     * Observations can also be tracked over time to look for 
-     * changes that may help in assessing a patient's health.</p></remarks>
+     * <p>Observations are a key mechanism for capturing the state 
+     * of a patient. Observations provide context for interventions 
+     * subsequently taken. Observations can also be tracked over 
+     * time to look for changes that may help in assessing a 
+     * patient's health.</p> <p>&lt;p&gt;This record expresses a 
+     * single point-in-time measured observation made about a 
+     * patient.&lt;/p&gt; &lt;p&gt;E.g. height, weight, blood 
+     * pressure, mole diameter, gum depth, etc.&lt;/p&gt; 
+     * &lt;p&gt;Note: This transaction is not intended to deal with 
+     * numeric 'scores'. Those are not considered measurements and 
+     * should be handled using Coded Observation.&lt;/p&gt;</p></remarks>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"REPC_MT410001CA.CommonObservationEvent","REPC_MT410003CA.CommonObservationEvent"})]
     public class MeasuredObservation : MessagePartBean, Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Comt_mt111111ca.ISHR {
@@ -110,9 +110,19 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged {
             this.componentOf2 = new List<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged.Component2>();
         }
         /**
-         * <summary>ObservationRecordId</summary>
+         * <summary>Business Name: ObservationRecordId</summary>
          * 
-         * <remarks>A:Observation Record Id </p> </p></remarks>
+         * <remarks>Un-merged Business Name: ObservationRecordId 
+         * Relationship: REPC_MT410003CA.CommonObservationEvent.id 
+         * Conformance/Cardinality: MANDATORY (1) <p> <i>Allows for 
+         * unique identification of the Measured Observation and is 
+         * therefore mandatory. Supports drill-down queries, linking of 
+         * this record to other records, matching of EHR records to 
+         * locally-stored PoS records and is necessary when identifying 
+         * records for amending (revising)/directional linking 
+         * (superseding).</i> </p> <p> <i>A globally unique identifier 
+         * assigned by the EHR to the Measured Observation record.</i> 
+         * </p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -121,55 +131,68 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged {
         }
 
         /**
-         * <summary>ObservationType</summary>
+         * <summary>Business Name: ObservationType</summary>
          * 
-         * <remarks>B:Observation Type <p>Only 'nullFlavor' value of 
-         * OTH is available.</p> </p><p>Observation types include: 
-         * height, weight, blood pressure, etc.</p> </p><p>Observation 
-         * types include: height, weight, blood pressure, etc.</p> 
-         * <p>EPHS: new vocab concepts needed. See implementation 
-         * notes</p><p>EPHS: vocab code needed for immunization 
-         * interpretation</p><p>EPHS: vocab domain needed for medical 
-         * history</p><p>EPHS: vocab domain needed for 
-         * Assessment</p><p>EPHS: vocab domain needed for encounter 
-         * complication</p><p>EPHS: concept code needed for Outbreak 
-         * Complication</p> <p>EPHS: new vocab concepts needed. See 
-         * implementation notes</p><p>EPHS: vocab code needed for 
-         * immunization interpretation</p><p>EPHS: vocab domain needed 
-         * for medical history</p><p>EPHS: vocab domain needed for 
-         * Assessment</p><p>EPHS: vocab domain needed for encounter 
-         * complication</p><p>EPHS: concept code needed for Outbreak 
-         * Complication</p> <p>EPHS: new vocab concepts needed. See 
-         * implementation notes</p><p>EPHS: vocab code needed for 
-         * immunization interpretation</p><p>EPHS: vocab domain needed 
-         * for medical history</p><p>EPHS: vocab domain needed for 
-         * Assessment</p><p>EPHS: vocab domain needed for encounter 
-         * complication</p><p>EPHS: concept code needed for Outbreak 
-         * Complication</p> <p>EPHS: new vocab concepts needed. See 
-         * implementation notes</p><p>EPHS: vocab code needed for 
-         * immunization interpretation</p><p>EPHS: vocab domain needed 
-         * for medical history</p><p>EPHS: vocab domain needed for 
-         * Assessment</p><p>EPHS: vocab domain needed for encounter 
-         * complication</p><p>EPHS: concept code needed for Outbreak 
-         * Complication</p> <p>EPHS: new vocab concepts needed. See 
-         * implementation notes</p><p>EPHS: vocab code needed for 
-         * immunization interpretation</p><p>EPHS: vocab domain needed 
-         * for medical history</p><p>EPHS: vocab domain needed for 
-         * Assessment</p><p>EPHS: vocab domain needed for encounter 
-         * complication</p><p>EPHS: concept code needed for Outbreak 
-         * Complication</p> <p>EPHS: new vocab concepts needed. See 
-         * implementation notes</p><p>EPHS: vocab code needed for 
-         * immunization interpretation</p><p>EPHS: vocab domain needed 
-         * for medical history</p><p>EPHS: vocab domain needed for 
-         * Assessment</p><p>EPHS: vocab domain needed for encounter 
-         * complication</p><p>EPHS: concept code needed for Outbreak 
-         * Complication</p> </p> </p> </p> </p> 
+         * <remarks>Un-merged Business Name: ObservationType 
+         * Relationship: REPC_MT410003CA.CommonObservationEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Only 'nullFlavor' 
+         * value of OTH is available.</p> <p>EPHS: new vocab concepts 
+         * needed. See implementation notes</p><p>EPHS: vocab code 
+         * needed for immunization interpretation</p><p>EPHS: vocab 
+         * domain needed for medical history</p><p>EPHS: vocab domain 
+         * needed for Assessment</p><p>EPHS: vocab domain needed for 
+         * encounter complication</p><p>EPHS: concept code needed for 
+         * Outbreak Complication</p> <p> <i>Observation Type is used 
+         * for searching and for organizing Measured Observation 
+         * records as well as sorting them for presentation.</i> 
+         * </p><p> <i>This is a key attribute for understanding the 
+         * type of record and is therefore mandatory.</i> </p><p> 
+         * <i>This element makes use of the CD datatype to allow for 
+         * use of the SNOMED code system that in some circumstances 
+         * requires the use of post-coordination. Post-coordination is 
+         * only supported by the CD datatype.</i> </p><p> <i>The 
+         * element uses CWE to allow for the capture of Observation 
+         * Type concepts not presently supported by the approved code 
+         * system(s). In this case, the human-to-human benefit of 
+         * capturing additional non-coded values outweighs the 
+         * penalties of capturing some information that will not be 
+         * amenable to searching or categorizing.</i> </p> 
          * <p>EPHS:Observation.code fixed to &quot;OUTCOME&quot; at 
          * runtime</p><p>EPHS: observation.code fixed to &quot;DIRECTLY 
-         * OBSERVED DOSES TAKEN&quot; at runtime</p> 
+         * OBSERVED DOSES TAKEN&quot; at runtime</p> <p> <i>Identifies 
+         * the type of Measured Observation represented by this 
+         * record.</i> </p><p>Observation types include: height, 
+         * weight, blood pressure, etc.</p> Un-merged Business Name: 
+         * ObservationType Relationship: 
+         * REPC_MT410001CA.CommonObservationEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Only 'nullFlavor' 
+         * value of OTH is available.</p> <p>EPHS: new vocab concepts 
+         * needed. See implementation notes</p><p>EPHS: vocab code 
+         * needed for immunization interpretation</p><p>EPHS: vocab 
+         * domain needed for medical history</p><p>EPHS: vocab domain 
+         * needed for Assessment</p><p>EPHS: vocab domain needed for 
+         * encounter complication</p><p>EPHS: concept code needed for 
+         * Outbreak Complication</p> <p> <i>Observation Type is used 
+         * for searching and for organizing Measured Observation 
+         * records as well as sorting them for presentation.</i> 
+         * </p><p> <i>This is a key attribute for understanding the 
+         * type of record and is therefore mandatory.</i> </p><p> 
+         * <i>This element makes use of the CD datatype to allow for 
+         * use of the SNOMED code system that in some circumstances 
+         * requires the use of post-coordination. Post-coordination is 
+         * only supported by the CD datatype.</i> </p><p> <i>The 
+         * element uses CWE to allow for the capture of Observation 
+         * Type concepts not presently supported by the approved code 
+         * system(s). In this case, the human-to-human benefit of 
+         * capturing additional non-coded values outweighs the 
+         * penalties of capturing some information that will not be 
+         * amenable to searching or categorizing.</i> </p> 
          * <p>EPHS:Observation.code fixed to &quot;OUTCOME&quot; at 
          * runtime</p><p>EPHS: observation.code fixed to &quot;DIRECTLY 
-         * OBSERVED DOSES TAKEN&quot; at runtime</p></remarks>
+         * OBSERVED DOSES TAKEN&quot; at runtime</p> <p> <i>Identifies 
+         * the type of Measured Observation represented by this 
+         * record.</i> </p><p>Observation types include: height, 
+         * weight, blood pressure, etc.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public SimpleMeasurableClinicalObservationType Code {
@@ -178,9 +201,49 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged {
         }
 
         /**
-         * <summary>RefutedIndicator</summary>
+         * <summary>Business Name: RefutedIndicator</summary>
          * 
-         * <remarks>D:Refuted Indicator </p> </p> </p></remarks>
+         * <remarks>Un-merged Business Name: RefutedIndicator 
+         * Relationship: 
+         * REPC_MT410003CA.CommonObservationEvent.negationInd 
+         * Conformance/Cardinality: MANDATORY (1) <p> <i>This is 
+         * primarily used to supersede records where an assertion was 
+         * made that is subsequently determined to be false. It is 
+         * important to be able to make explicit statements that 
+         * something is known to not be true.</i> </p><p> <i>This 
+         * element is mandatory because it should always be known 
+         * whether the record is being refuted or not. NOTE: This 
+         * element should not be used to communicate negative findings, 
+         * but rather circumstances where the observation itself was 
+         * not actually made. E.g. &quot;I did not make a diagnosis of 
+         * meningitis&quot; would be appropriate. &quot;I diagnosed 
+         * that they did not have meningitis&quot; would not. (The 
+         * latter would be handled as part of the code describing the 
+         * diagnosis.)</i> </p> <p> <i>When set to true, specifically 
+         * flags the Measured Observation record as &quot;did not 
+         * occur&quot;. The default is false. Additional details about 
+         * the reasons for refuting the record may be conveyed in 
+         * notes.</i> </p> Un-merged Business Name: RefutedIndicator 
+         * Relationship: 
+         * REPC_MT410001CA.CommonObservationEvent.negationInd 
+         * Conformance/Cardinality: MANDATORY (1) <p> <i>This is 
+         * primarily used to supersede records where an assertion was 
+         * made that is subsequently determined to be false. It is 
+         * important to be able to make explicit statements that 
+         * something is known to not be true.</i> </p><p> <i>This 
+         * element is mandatory because it should always be known 
+         * whether the record is being refuted or not. NOTE: This 
+         * element should not be used to communicate negative findings, 
+         * but rather circumstances where the observation itself was 
+         * not actually made. E.g. &quot;I did not make a diagnosis of 
+         * meningitis&quot; would be appropriate. &quot;I diagnosed 
+         * that they did not have meningitis&quot; would not. (The 
+         * latter would be handled as part of the code describing the 
+         * diagnosis.)</i> </p> <p> <i>When set to true, specifically 
+         * flags the Measured Observation record as &quot;did not 
+         * occur&quot;. The default is false. Additional details about 
+         * the reasons for refuting the record may be conveyed in 
+         * notes.</i> </p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"negationInd"})]
         public bool? NegationInd {
@@ -189,32 +252,49 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged {
         }
 
         /**
-         * <summary>ObservationPeriod</summary>
+         * <summary>Business Name: ObservationPeriod</summary>
          * 
-         * <remarks>E:Observation Period <p>Identifies the time at 
-         * which the observation applies. Usually, this will be 
-         * conveyed as a single point in time (center with a width of 
-         * 0). However, some observations may cover a time-period with 
-         * in which case start and end or start and duration may be 
-         * specified.</p><p>Note that the date the observation applies 
-         * is not always the same as the time the observation is 
-         * actually made. A lab example: if blood was drawn two days 
-         * ago and White Blood Count (WBC) was done today, then WBC 
-         * observation date should reflect the date of two days ago 
-         * because that is the time the observation actually applies 
-         * to.</p> <p>Identifies the time at which the observation 
-         * applies. Usually, this will be conveyed as a single point in 
-         * time (center with a width of 0). However, some observations 
-         * may cover a time-period with in which case start and end or 
+         * <remarks>Un-merged Business Name: ObservationPeriod 
+         * Relationship: 
+         * REPC_MT410003CA.CommonObservationEvent.effectiveTime 
+         * Conformance/Cardinality: POPULATED (1) <p> <i>Identifies the 
+         * time-period of relevance to the record that is useful in 
+         * filtering and organizing &quot;time-view&quot; presentations 
+         * of data. Because the timing information won't always be 
+         * known, this attribute is marked as 'populated'.</i> </p> 
+         * <p>EPHS: signs and symptoms onset date maps to beginning of 
+         * time interval, recovery date to end of interval</p> 
+         * <p>Identifies the time at which the observation applies. 
+         * Usually, this will be conveyed as a single point in time 
+         * (center with a width of 0). However, some observations may 
+         * cover a time-period with in which case start and end or 
          * start and duration may be specified.</p><p>Note that the 
          * date the observation applies is not always the same as the 
          * time the observation is actually made. A lab example: if 
          * blood was drawn two days ago and White Blood Count (WBC) was 
          * done today, then WBC observation date should reflect the 
          * date of two days ago because that is the time the 
-         * observation actually applies to.</p> </p> <p>EPHS: signs and 
-         * symptoms onset date maps to beginning of time interval, 
-         * recovery date to end of interval</p></remarks>
+         * observation actually applies to.</p> Un-merged Business 
+         * Name: ObservationPeriod Relationship: 
+         * REPC_MT410001CA.CommonObservationEvent.effectiveTime 
+         * Conformance/Cardinality: POPULATED (1) <p> <i>Identifies the 
+         * time-period of relevance to the record that is useful in 
+         * filtering and organizing &quot;time-view&quot; presentations 
+         * of data. Because the timing information won't always be 
+         * known, this attribute is marked as 'populated'.</i> </p> 
+         * <p>EPHS: signs and symptoms onset date maps to beginning of 
+         * time interval, recovery date to end of interval</p> 
+         * <p>Identifies the time at which the observation applies. 
+         * Usually, this will be conveyed as a single point in time 
+         * (center with a width of 0). However, some observations may 
+         * cover a time-period with in which case start and end or 
+         * start and duration may be specified.</p><p>Note that the 
+         * date the observation applies is not always the same as the 
+         * time the observation is actually made. A lab example: if 
+         * blood was drawn two days ago and White Blood Count (WBC) was 
+         * done today, then WBC observation date should reflect the 
+         * date of two days ago because that is the time the 
+         * observation actually applies to.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"effectiveTime"})]
         public Interval<PlatformDate> EffectiveTime {
@@ -223,9 +303,58 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged {
         }
 
         /**
-         * <summary>ObservationMaskingIndicators</summary>
+         * <summary>Business Name: ObservationMaskingIndicators</summary>
          * 
-         * <remarks>D:Observation Masking Indicators </p> </p> </p> 
+         * <remarks>Un-merged Business Name: 
+         * ObservationMaskingIndicators Relationship: 
+         * REPC_MT410003CA.CommonObservationEvent.confidentialityCode 
+         * Conformance/Cardinality: REQUIRED (0-2) <p></p> <p> <i>The 
+         * value specified for a particular record may be overridden by 
+         * a higher level masking applied to an indication, a care 
+         * composition, a type of record or even all patient 
+         * records.</i> </p> <p> <i>Communicates the desire of the 
+         * patient to restrict access to this Measured Observation 
+         * record. Provides support for additional confidentiality 
+         * constraint, giving patients a level of control over their 
+         * information. Methods for accessing masked event records will 
+         * be governed by each jurisdiction (e.g. court orders, shared 
+         * secret/consent, etc.).</i> </p><p> <i>Can also be used to 
+         * communicate that the information is deemed to be sensitive 
+         * and should not be communicated or exposed to the patient (at 
+         * least without the guidance of the authoring or other 
+         * responsible healthcare provider).</i> </p><p> <i>Valid 
+         * values are: 'normal' (denotes 'Not Masked'); 'restricted' 
+         * (denotes 'Masked') and 'taboo' (denotes 'patient 
+         * restricted'). The default is 'normal' signifying 'Not 
+         * Masked'. Either or both of the other codes can be asserted 
+         * to indicate masking by the patient from providers or masking 
+         * by a provider from the patient, respectively. 'normal' 
+         * should never be asserted with one of the other codes.</i> 
+         * </p> Un-merged Business Name: ObservationMaskingIndicators 
+         * Relationship: 
+         * REPC_MT410001CA.CommonObservationEvent.confidentialityCode 
+         * Conformance/Cardinality: OPTIONAL (0-2) <p></p> <p> <i>The 
+         * value specified for a particular record may be overridden by 
+         * a higher level masking applied to an indication, a care 
+         * composition, a type of record or even all patient 
+         * records.</i> </p> <p> <i>Communicates the desire of the 
+         * patient to restrict access to this Measured Observation 
+         * record. Provides support for additional confidentiality 
+         * constraint, giving patients a level of control over their 
+         * information. Methods for accessing masked event records will 
+         * be governed by each jurisdiction (e.g. court orders, shared 
+         * secret/consent, etc.).</i> </p><p> <i>Can also be used to 
+         * communicate that the information is deemed to be sensitive 
+         * and should not be communicated or exposed to the patient (at 
+         * least without the guidance of the authoring or other 
+         * responsible healthcare provider).</i> </p><p> <i>Valid 
+         * values are: 'normal' (denotes 'Not Masked'); 'restricted' 
+         * (denotes 'Masked') and 'taboo' (denotes 'patient 
+         * restricted'). The default is 'normal' signifying 'Not 
+         * Masked'. Either or both of the other codes can be asserted 
+         * to indicate masking by the patient from providers or masking 
+         * by a provider from the patient, respectively. 'normal' 
+         * should never be asserted with one of the other codes.</i> 
          * </p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"confidentialityCode"})]
@@ -234,18 +363,26 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged {
         }
 
         /**
-         * <summary>ObservationValue</summary>
+         * <summary>Business Name: ObservationValue</summary>
          * 
-         * <remarks>L:Observation Value <p>Observation Value must be 
-         * specified and may only be specified when no sub-observations 
-         * are present.</p> <p>Indicates what was actually observed 
+         * <remarks>Un-merged Business Name: ObservationValue 
+         * Relationship: REPC_MT410003CA.CommonObservationEvent.value 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Observation Value 
+         * must be specified and may only be specified when no 
+         * sub-observations are present.</p> <p>Conveys the clinical 
+         * information resulting from the observation in a standardized 
+         * representation.</p> <p>Indicates what was actually observed 
          * when the observation was made.</p><p>&lt;p&gt;E.g. height in 
          * centimeters, weight in kilograms, etc.&lt;/p&gt;</p> 
-         * <p>Indicates what was actually observed when the observation 
-         * was made.</p><p>&lt;p&gt;E.g. height in centimeters, weight 
-         * in kilograms, etc.&lt;/p&gt;</p> <p>Conveys the clinical 
+         * Un-merged Business Name: ObservationValue Relationship: 
+         * REPC_MT410001CA.CommonObservationEvent.value 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Observation Value 
+         * must be specified and may only be specified when no 
+         * sub-observations are present.</p> <p>Conveys the clinical 
          * information resulting from the observation in a standardized 
-         * representation.</p></remarks>
+         * representation.</p> <p>Indicates what was actually observed 
+         * when the observation was made.</p><p>&lt;p&gt;E.g. height in 
+         * centimeters, weight in kilograms, etc.&lt;/p&gt;</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"value"})]
         public PhysicalQuantity Value {
@@ -254,23 +391,28 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged {
         }
 
         /**
-         * <summary>ObservationNormalityInterpretation</summary>
+         * <summary>Business Name: ObservationNormalityInterpretation</summary>
          * 
-         * <remarks>M:Observation Normality Interpretation 
-         * <p>Identifies the level of variation of the observed state 
-         * from what would be considered normal for a patient of 
-         * similar age and gender. E.g. &quot;Normal&quot;, 
-         * &quot;High&quot;, etc.</p> <p>Provides an ability to quickly 
-         * flag observations that are outside the norm. These are 
-         * generally the records which are of most interest from a 
-         * clinical perspective.</p> M:Observation Normality 
-         * Interpretation <p>Identifies the level of variation of the 
-         * observed state from what would be considered normal for a 
-         * patient of similar age and gender. E.g. &quot;Normal&quot;, 
-         * &quot;High&quot;, &quot;Critically High&quot;, etc.</p> 
-         * <p>Provides an ability to quickly flag observations that are 
-         * outside the norm. These are generally the records which are 
-         * of most interest from a clinical perspective.</p></remarks>
+         * <remarks>Un-merged Business Name: 
+         * ObservationNormalityInterpretation Relationship: 
+         * REPC_MT410003CA.CommonObservationEvent.interpretationCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Provides an 
+         * ability to quickly flag observations that are outside the 
+         * norm. These are generally the records which are of most 
+         * interest from a clinical perspective.</p> <p>Identifies the 
+         * level of variation of the observed state from what would be 
+         * considered normal for a patient of similar age and gender. 
+         * E.g. &quot;Normal&quot;, &quot;High&quot;, &quot;Critically 
+         * High&quot;, etc.</p> Un-merged Business Name: 
+         * ObservationNormalityInterpretation Relationship: 
+         * REPC_MT410001CA.CommonObservationEvent.interpretationCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Provides an 
+         * ability to quickly flag observations that are outside the 
+         * norm. These are generally the records which are of most 
+         * interest from a clinical perspective.</p> <p>Identifies the 
+         * level of variation of the observed state from what would be 
+         * considered normal for a patient of similar age and gender. 
+         * E.g. &quot;Normal&quot;, &quot;High&quot;, etc.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"interpretationCode"})]
         public ObservationInterpretationNormality InterpretationCode {
@@ -278,85 +420,235 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged {
             set { this.interpretationCode.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * REPC_MT410003CA.IndirectTarget.serviceDeliveryLocation 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT410001CA.IndirectTarget.serviceDeliveryLocation 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"indirectTarget/serviceDeliveryLocation"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.ServiceLocation IndirectTargetServiceDeliveryLocation {
             get { return this.indirectTargetServiceDeliveryLocation; }
             set { this.indirectTargetServiceDeliveryLocation = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * REPC_MT410003CA.ResponsibleParty.actingPerson 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"responsibleParty/actingPerson"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt911108ca.IActingPerson ResponsiblePartyActingPerson {
             get { return this.responsiblePartyActingPerson; }
             set { this.responsiblePartyActingPerson = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * REPC_MT410003CA.Performer.actingPerson 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT410001CA.Performer.actingPerson 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"performer/actingPerson"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt911108ca.IActingPerson> PerformerActingPerson {
             get { return this.performerActingPerson; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * REPC_MT410003CA.CommonObservationEvent.author 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"author"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged.RequestedBy Author {
             get { return this.author; }
             set { this.author = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * REPC_MT410003CA.Informant.actingPerson 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT410001CA.Informant.actingPerson 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"informant/actingPerson"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.IActingPerson InformantActingPerson {
             get { return this.informantActingPerson; }
             set { this.informantActingPerson = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * REPC_MT410003CA.Custodian.assignedDevice 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"custodian1/assignedDevice"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.EHRRepository Custodian1AssignedDevice {
             get { return this.custodian1AssignedDevice; }
             set { this.custodian1AssignedDevice = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * REPC_MT410003CA.Custodian2.serviceDeliveryLocation 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"custodian2/serviceDeliveryLocation"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.ServiceLocation Custodian2ServiceDeliveryLocation {
             get { return this.custodian2ServiceDeliveryLocation; }
             set { this.custodian2ServiceDeliveryLocation = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * REPC_MT410003CA.CommonObservationEvent.location 
+         * Conformance/Cardinality: REQUIRED (0-1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT410001CA.CommonObservationEvent.location 
+         * Conformance/Cardinality: REQUIRED (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"location"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.OccurredAt Location {
             get { return this.location; }
             set { this.location = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * REPC_MT410003CA.InFulfillmentOf.actRequest 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT410001CA.InFulfillmentOf.actRequest 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"inFulfillmentOf/actRequest"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged.Request_2 InFulfillmentOfActRequest {
             get { return this.inFulfillmentOfActRequest; }
             set { this.inFulfillmentOfActRequest = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * REPC_MT410003CA.Definition.actDefinition 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT410001CA.Definition.actDefinition 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"definition/actDefinition"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged.ActDefinition> DefinitionActDefinition {
             get { return this.definitionActDefinition; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * REPC_MT410003CA.Predecessor.oldCommonObservationEvent 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT410001CA.Predecessor.oldCommonObservationEvent 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"predecessor/oldCommonObservationEvent"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged.OldCommonObservationEvent> PredecessorOldCommonObservationEvent {
             get { return this.predecessorOldCommonObservationEvent; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * REPC_MT410003CA.CommonObservationEvent.reason 
+         * Conformance/Cardinality: REQUIRED (0-5) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT410001CA.CommonObservationEvent.reason 
+         * Conformance/Cardinality: REQUIRED (0-5)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"reason"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.BecauseOf> Reason {
             get { return this.reason; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * REPC_MT410003CA.Component.subObservationEvent 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT410001CA.Component.subObservationEvent 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"component/subObservationEvent"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged.ComponentObservations_1> ComponentSubObservationEvent {
             get { return this.componentSubObservationEvent; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * REPC_MT410003CA.Predecessor2.newCommonObservationEvent 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"successor/newCommonObservationEvent"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged.NewCommonObservationEvent SuccessorNewCommonObservationEvent {
             get { return this.successorNewCommonObservationEvent; }
             set { this.successorNewCommonObservationEvent = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * REPC_MT410003CA.CommonObservationEvent.subjectOf1 
+         * Conformance/Cardinality: REQUIRED (0-100) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT410001CA.CommonObservationEvent.subjectOf 
+         * Conformance/Cardinality: REQUIRED (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf","subjectOf1"})]
         [Hl7MapByPartType(Name="subjectOf", Type="REPC_MT410001CA.Subject")]
         [Hl7MapByPartType(Name="subjectOf1", Type="REPC_MT410003CA.Subject")]
@@ -365,12 +657,31 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged {
             set { this.subjectOf = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * REPC_MT410003CA.Subject2.annotationIndicator 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf2/annotationIndicator"})]
         public bool? SubjectOf2AnnotationIndicator {
             get { return this.subjectOf2AnnotationIndicator.Value; }
             set { this.subjectOf2AnnotationIndicator.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * REPC_MT410003CA.Component3.patientCareProvisionEvent 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT410001CA.Component3.patientCareProvisionEvent 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"componentOf/patientCareProvisionEvent","componentOf1/patientCareProvisionEvent"})]
         [Hl7MapByPartType(Name="componentOf", Type="REPC_MT410001CA.Component3")]
         [Hl7MapByPartType(Name="componentOf/patientCareProvisionEvent", Type="COCT_MT011001CA.PatientCareProvisionEvent")]
@@ -380,6 +691,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged {
             get { return this.componentOfPatientCareProvisionEvent; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * REPC_MT410003CA.CommonObservationEvent.componentOf2 
+         * Conformance/Cardinality: MANDATORY (1-5)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"componentOf2"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged.Component2> ComponentOf2 {
             get { return this.componentOf2; }

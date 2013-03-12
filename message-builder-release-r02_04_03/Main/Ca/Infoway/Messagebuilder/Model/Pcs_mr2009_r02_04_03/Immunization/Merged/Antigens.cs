@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,18 +28,18 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merg
 
 
     /**
-     * <summary>Antigens</summary>
+     * <summary>Business Name: Antigens</summary>
      * 
-     * <remarks>POIZ_MT030060CA.Antigens: Antigens <p>A list of 
+     * <remarks>POIZ_MT030060CA.Antigens: Antigens <p>Important for 
+     * expressing antigen validity and counts.</p> <p>A list of 
      * antigens that may or be present in a vaccine administered to 
-     * a patient.</p> <p>Important for expressing antigen validity 
-     * and counts.</p> POIZ_MT030050CA.Antigens: Antigens <p>A list 
-     * of antigens that may or be present in a vaccine administered 
-     * to a patient.</p> <p>Important for expressing antigen 
-     * validity and counts.</p> POIZ_MT060150CA.Antigens: Antigens 
+     * a patient.</p> POIZ_MT030050CA.Antigens: Antigens 
+     * <p>Important for expressing antigen validity and counts.</p> 
      * <p>A list of antigens that may or be present in a vaccine 
-     * administered to a patient.</p> <p>Important for expressing 
-     * antigen validity and counts.</p></remarks>
+     * administered to a patient.</p> POIZ_MT060150CA.Antigens: 
+     * Antigens <p>Important for expressing antigen validity and 
+     * counts.</p> <p>A list of antigens that may or be present in 
+     * a vaccine administered to a patient.</p></remarks>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"POIZ_MT030050CA.Antigens","POIZ_MT030060CA.Antigens","POIZ_MT060150CA.Antigens"})]
     public class Antigens : MessagePartBean {
@@ -53,17 +53,29 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merg
             this.name = new STImpl();
         }
         /**
-         * <summary>AntigenCode</summary>
+         * <summary>Business Name: AntigenCode</summary>
          * 
-         * <remarks>Antigen Code <p>The unique code used to identify 
-         * the antigen.</p> <p>Allows un-ambiguous identification of 
-         * the ingredients of a drug for performing various alert 
+         * <remarks>Un-merged Business Name: AntigenCode Relationship: 
+         * POIZ_MT030060CA.Antigens.code Conformance/Cardinality: 
+         * REQUIRED (0-1) <p>Allows un-ambiguous identification of the 
+         * ingredients of a drug for performing various alert 
          * checking.</p><p>Also allows for the identification of 
          * antigens as specific class of ingredients in vaccines.</p> 
-         * <p>Allows un-ambiguous identification of the ingredients of 
-         * a drug for performing various alert checking.</p><p>Also 
-         * allows for the identification of antigens as specific class 
-         * of ingredients in vaccines.</p></remarks>
+         * <p>The unique code used to identify the antigen.</p> 
+         * Un-merged Business Name: AntigenCode Relationship: 
+         * POIZ_MT030050CA.Antigens.code Conformance/Cardinality: 
+         * REQUIRED (0-1) <p>Allows un-ambiguous identification of the 
+         * ingredients of a drug for performing various alert 
+         * checking.</p><p>Also allows for the identification of 
+         * antigens as specific class of ingredients in vaccines.</p> 
+         * <p>The unique code used to identify the antigen.</p> 
+         * Un-merged Business Name: AntigenCode Relationship: 
+         * POIZ_MT060150CA.Antigens.code Conformance/Cardinality: 
+         * REQUIRED (0-1) <p>Allows un-ambiguous identification of the 
+         * ingredients of a drug for performing various alert 
+         * checking.</p><p>Also allows for the identification of 
+         * antigens as specific class of ingredients in vaccines.</p> 
+         * <p>The unique code used to identify the antigen.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public ClinicalDrug Code {
@@ -72,11 +84,22 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merg
         }
 
         /**
-         * <summary>AntigenName</summary>
+         * <summary>Business Name: AntigenName</summary>
          * 
-         * <remarks>Antigen Name <p>The name of the antigen contained 
-         * within a vaccine.</p> <p>Used for communication between and 
-         * display to providers.</p></remarks>
+         * <remarks>Un-merged Business Name: AntigenName Relationship: 
+         * POIZ_MT030060CA.Antigens.name Conformance/Cardinality: 
+         * REQUIRED (0-1) <p>Used for communication between and display 
+         * to providers.</p> <p>The name of the antigen contained 
+         * within a vaccine.</p> Un-merged Business Name: AntigenName 
+         * Relationship: POIZ_MT030050CA.Antigens.name 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Used for 
+         * communication between and display to providers.</p> <p>The 
+         * name of the antigen contained within a vaccine.</p> 
+         * Un-merged Business Name: AntigenName Relationship: 
+         * POIZ_MT060150CA.Antigens.name Conformance/Cardinality: 
+         * REQUIRED (0-1) <p>Used for communication between and display 
+         * to providers.</p> <p>The name of the antigen contained 
+         * within a vaccine.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"name"})]
         public String Name {
@@ -84,6 +107,20 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merg
             set { this.name.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * POIZ_MT030060CA.Antigens.asHealthChart 
+         * Conformance/Cardinality: REQUIRED (0-1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * POIZ_MT030050CA.Antigens.asHealthChart 
+         * Conformance/Cardinality: REQUIRED (0-1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * POIZ_MT060150CA.Antigens.asHealthChart 
+         * Conformance/Cardinality: REQUIRED (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"asHealthChart"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merged.HealthChart AsHealthChart {
             get { return this.asHealthChart; }

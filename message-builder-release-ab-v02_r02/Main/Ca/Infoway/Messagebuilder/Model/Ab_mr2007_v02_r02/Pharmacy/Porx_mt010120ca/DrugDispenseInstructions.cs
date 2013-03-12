@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,13 +30,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Porx_mt0101
 
 
     /**
-     * <summary>Drug Dispense Instructions</summary>
+     * <summary>Business Name: Drug Dispense Instructions</summary>
      * 
-     * <remarks><p>Specification of the overall use duration of the 
+     * <p>Specification of the overall use duration of the 
      * prescrbed medication and/or overall quantity to be 
      * dispensed.</p> <p>Sets the parameters within which the 
      * dispenser must operate in dispensing the medication to the 
-     * patient.</p></remarks>
+     * patient.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"PORX_MT010120CA.SupplyRequestItem"})]
     public class DrugDispenseInstructions : MessagePartBean {
@@ -52,24 +52,26 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Porx_mt0101
             this.expectedUseTime = new IVLImpl<TS, Interval<PlatformDate>>();
         }
         /**
-         * <summary>B:Total Prescribed Quantity</summary>
+         * <summary>Business Name: B:Total Prescribed Quantity</summary>
          * 
-         * <remarks><p>The overall amount of amount medication to be 
-         * dispensed under this prescription. Includes any first fills 
-         * (trials, aligning quantities), the initial standard fill 
-         * plus all refills.</p> <p>Sets upper limit for medication to 
-         * be dispensed. Can be used to verify the intention of the 
-         * prescriber with respect to the overall medication. Used for 
-         * comparison when determining whether additional quantity may 
-         * be dispensed in the context of a part-fill 
-         * prescription.</p><p>Narcotics must always be specified as a 
-         * total.</p> <p>Sets upper limit for medication to be 
-         * dispensed. Can be used to verify the intention of the 
-         * prescriber with respect to the overall medication. Used for 
-         * comparison when determining whether additional quantity may 
-         * be dispensed in the context of a part-fill 
-         * prescription.</p><p>Narcotics must always be specified as a 
-         * total.</p></remarks>
+         * <remarks>Relationship: 
+         * PORX_MT010120CA.SupplyRequestItem.quantity 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The overall 
+         * amount of amount medication to be dispensed under this 
+         * prescription. Includes any first fills (trials, aligning 
+         * quantities), the initial standard fill plus all refills.</p> 
+         * <p>Sets upper limit for medication to be dispensed. Can be 
+         * used to verify the intention of the prescriber with respect 
+         * to the overall medication. Used for comparison when 
+         * determining whether additional quantity may be dispensed in 
+         * the context of a part-fill prescription.</p><p>Narcotics 
+         * must always be specified as a total.</p> <p>Sets upper limit 
+         * for medication to be dispensed. Can be used to verify the 
+         * intention of the prescriber with respect to the overall 
+         * medication. Used for comparison when determining whether 
+         * additional quantity may be dispensed in the context of a 
+         * part-fill prescription.</p><p>Narcotics must always be 
+         * specified as a total.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"quantity"})]
         public PhysicalQuantity Quantity {
@@ -78,11 +80,21 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Porx_mt0101
         }
 
         /**
-         * <summary>A:Total Days Supply</summary>
+         * <summary>Business Name: A:Total Days Supply</summary>
          * 
-         * <remarks><p>The number of days that the overall prescribed 
-         * item is expected to last, if the patient is compliant with 
-         * the dispensing and administration of the prescription.</p> 
+         * <remarks>Relationship: 
+         * PORX_MT010120CA.SupplyRequestItem.expectedUseTime 
+         * Conformance/Cardinality: MANDATORY (1) <p>The number of days 
+         * that the overall prescribed item is expected to last, if the 
+         * patient is compliant with the dispensing and administration 
+         * of the prescription.</p> <p>Used to specify a total 
+         * authorization as a duration rather than a quantity with 
+         * refills. E.g. dispense 30 at a time, refill for 1 year. May 
+         * also be sent as an estimate of the expected overall duration 
+         * of the prescription based on the quantity 
+         * prescribed.</p><p>This attribute is mandatory because the 
+         * prescriber (in discussion with the patient) has a better 
+         * understanding of the days supply needed by the patient.</p> 
          * <p>Used to specify a total authorization as a duration 
          * rather than a quantity with refills. E.g. dispense 30 at a 
          * time, refill for 1 year. May also be sent as an estimate of 
@@ -90,14 +102,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Porx_mt0101
          * the quantity prescribed.</p><p>This attribute is mandatory 
          * because the prescriber (in discussion with the patient) has 
          * a better understanding of the days supply needed by the 
-         * patient.</p> <p>Used to specify a total authorization as a 
-         * duration rather than a quantity with refills. E.g. dispense 
-         * 30 at a time, refill for 1 year. May also be sent as an 
-         * estimate of the expected overall duration of the 
-         * prescription based on the quantity prescribed.</p><p>This 
-         * attribute is mandatory because the prescriber (in discussion 
-         * with the patient) has a better understanding of the days 
-         * supply needed by the patient.</p></remarks>
+         * patient.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"expectedUseTime"})]
         public Interval<PlatformDate> ExpectedUseTime {
@@ -105,18 +110,35 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Porx_mt0101
             set { this.expectedUseTime.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: PORX_MT010120CA.Product1.medication</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"product/medication"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Coct_mt220100ca.DrugProduct ProductMedication {
             get { return this.productMedication; }
             set { this.productMedication = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PORX_MT010120CA.Component8.subsequentSupplyRequest</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"component1/subsequentSupplyRequest"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.SubsequentSupplyRequest Component1SubsequentSupplyRequest {
             get { return this.component1SubsequentSupplyRequest; }
             set { this.component1SubsequentSupplyRequest = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PORX_MT010120CA.Component7.initialSupplyRequest</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"component2/initialSupplyRequest"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.FirstFill Component2InitialSupplyRequest {
             get { return this.component2InitialSupplyRequest; }

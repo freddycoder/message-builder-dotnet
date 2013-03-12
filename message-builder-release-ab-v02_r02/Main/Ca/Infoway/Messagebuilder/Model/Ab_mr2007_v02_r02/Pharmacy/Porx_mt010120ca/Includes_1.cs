@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,22 +24,21 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Porx_mt0101
 
 
     /**
-     * <summary>f:includes</summary>
+     * <summary>Business Name: f:includes</summary>
      * 
-     * <remarks><p>Identifies the instructions for how the 
-     * prescribed medication should be dispensed to the 
-     * patient.</p> <p>An essential part of most prescriptions is 
-     * the authorization to dispense. Multiple repetitions are 
-     * included to accommodate circumstances where multiple drug 
-     * products may need to be dispensed to complete a therapy. 
-     * E.g. 100 x 20mg tablets and 50 x 10mg tablets. The 
-     * association is marked as Populated because the authorization 
-     * to dispense is a critical portion of a prescription. However 
-     * the association is allowed to be 'null' when the order is 
-     * for a medication which requires no dispense authorization 
-     * (e.g. over-the-counter medications), or when the patient 
-     * already has sufficient supply of the medication on hand to 
-     * complete the therapy.</p></remarks>
+     * <p>Identifies the instructions for how the prescribed 
+     * medication should be dispensed to the patient.</p> <p>An 
+     * essential part of most prescriptions is the authorization to 
+     * dispense. Multiple repetitions are included to accommodate 
+     * circumstances where multiple drug products may need to be 
+     * dispensed to complete a therapy. E.g. 100 x 20mg tablets and 
+     * 50 x 10mg tablets. The association is marked as Populated 
+     * because the authorization to dispense is a critical portion 
+     * of a prescription. However the association is allowed to be 
+     * 'null' when the order is for a medication which requires no 
+     * dispense authorization (e.g. over-the-counter medications), 
+     * or when the patient already has sufficient supply of the 
+     * medication on hand to complete the therapy.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"PORX_MT010120CA.Component6"})]
     public class Includes_1 : MessagePartBean {
@@ -48,6 +47,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Porx_mt0101
 
         public Includes_1() {
         }
+        /**
+         * <summary>Relationship: 
+         * PORX_MT010120CA.Component6.supplyRequest</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"supplyRequest"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Porx_mt010120ca.DispenseInstructions SupplyRequest {
             get { return this.supplyRequest; }

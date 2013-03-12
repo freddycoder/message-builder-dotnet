@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,11 +28,10 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Coct_mt960002
 
 
     /**
-     * <summary>Coordinate Axis</summary>
+     * <summary>Business Name: Coordinate Axis</summary>
      * 
-     * <remarks><p>Describes the postion of the location along a 
-     * specific axis.</p> <p>Defines the position of the 
-     * location</p></remarks>
+     * <p>Describes the postion of the location along a specific 
+     * axis.</p> <p>Defines the position of the location</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"COCT_MT960002CA.PositionCoordinate"})]
     public class CoordinateAxis : MessagePartBean {
@@ -45,19 +44,21 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Coct_mt960002
             this.value = new REALImpl();
         }
         /**
-         * <summary>Coordinate Axis Type</summary>
+         * <summary>Business Name: Coordinate Axis Type</summary>
          * 
-         * <remarks><p>Identifies the individual coordinate in the 
-         * coordinate system inclusive of any transformations or 
-         * projections.</p><p>Examples of corordinate types are: 
-         * meridian, range, township, longitude, latitude, lot, block, 
-         * etc.</p> <p>Identifies the individual coordinate in the 
-         * coordinate system inclusive of any transformations or 
-         * projections.</p><p>Examples of corordinate types are: 
-         * meridian, range, township, longitude, latitude, lot, block, 
-         * etc.</p> <p>Acts as the &quot;name&quot; in the name-value 
-         * pair that expresses a coordinate and is therefore 
-         * mandatory</p></remarks>
+         * <remarks>Relationship: 
+         * COCT_MT960002CA.PositionCoordinate.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Identifies the 
+         * individual coordinate in the coordinate system inclusive of 
+         * any transformations or projections.</p><p>Examples of 
+         * corordinate types are: meridian, range, township, longitude, 
+         * latitude, lot, block, etc.</p> <p>Identifies the individual 
+         * coordinate in the coordinate system inclusive of any 
+         * transformations or projections.</p><p>Examples of 
+         * corordinate types are: meridian, range, township, longitude, 
+         * latitude, lot, block, etc.</p> <p>Acts as the 
+         * &quot;name&quot; in the name-value pair that expresses a 
+         * coordinate and is therefore mandatory</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public PositionCoordinateObservationCode Code {
@@ -66,13 +67,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Coct_mt960002
         }
 
         /**
-         * <summary>Coordinate Axis Value</summary>
+         * <summary>Business Name: Coordinate Axis Value</summary>
          * 
-         * <remarks><p>Denotes the individual coordinate value as a a 
-         * physical quantity. For example, lot number, range number, 
-         * latitude, etc.</p> <p>Actually expresses the location along 
-         * the axis. Because unknown axis positions can simply be 
-         * omitted, this attribute is mandatory.</p></remarks>
+         * <remarks>Relationship: 
+         * COCT_MT960002CA.PositionCoordinate.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Denotes the 
+         * individual coordinate value as a a physical quantity. For 
+         * example, lot number, range number, latitude, etc.</p> 
+         * <p>Actually expresses the location along the axis. Because 
+         * unknown axis positions can simply be omitted, this attribute 
+         * is mandatory.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"value"})]
         public BigDecimal Value {

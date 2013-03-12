@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,16 +29,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Coct_mt0
 
 
     /**
-     * <summary>Patient</summary>
+     * <summary>Business Name: Patient</summary>
      * 
-     * <remarks><p>A person who is receiving or may receive 
-     * healthcare services and has personal attributes (e.g. name, 
-     * birth date). .</p> <p>Information used to identify the 
-     * patient and to support clinical decisions. This information 
-     * applies to the person in the context of the associated 
-     * action only, and should be stored separately. I.e. the 
-     * address/phone/email only apply to the current 
-     * prescription/dispense/lab order etc.</p></remarks>
+     * <p>A person who is receiving or may receive healthcare 
+     * services and has personal attributes (e.g. name, birth 
+     * date). .</p> <p>Information used to identify the patient and 
+     * to support clinical decisions. This information applies to 
+     * the person in the context of the associated action only, and 
+     * should be stored separately. I.e. the address/phone/email 
+     * only apply to the current prescription/dispense/lab order 
+     * etc.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"COCT_MT050202CA.Patient"})]
     public class Patient : MessagePartBean, Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.IChoice, Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Iehr.Merged.IParty, Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged.ISubjectChoice, Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged.IPatient_2 {
@@ -55,18 +55,20 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Coct_mt0
             this.patientPersonBirthTime = new TSImpl();
         }
         /**
-         * <summary>A:Patient ID</summary>
+         * <summary>Business Name: A:Patient ID</summary>
          * 
-         * <remarks><p>Unique identifier assigned to a person by 
-         * Federal, Provincial and Territorial jurisdiction for the 
-         * purposes of uniquely identifying the person within the 
-         * EHR.</p><p>The EHR will define which identifier to use 
-         * within a jurisdiction.</p> <p>Unique identifier assigned to 
-         * a person by Federal, Provincial and Territorial jurisdiction 
-         * for the purposes of uniquely identifying the person within 
-         * the EHR.</p><p>The EHR will define which identifier to use 
-         * within a jurisdiction.</p> <p>C39 
-         * (Extension)</p><p>PTT.050.01 (Extension)</p><p>PTT.050.02 
+         * <remarks>Relationship: COCT_MT050202CA.Patient.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>Unique identifier 
+         * assigned to a person by Federal, Provincial and Territorial 
+         * jurisdiction for the purposes of uniquely identifying the 
+         * person within the EHR.</p><p>The EHR will define which 
+         * identifier to use within a jurisdiction.</p> <p>Unique 
+         * identifier assigned to a person by Federal, Provincial and 
+         * Territorial jurisdiction for the purposes of uniquely 
+         * identifying the person within the EHR.</p><p>The EHR will 
+         * define which identifier to use within a jurisdiction.</p> 
+         * <p>C39 (Extension)</p><p>PTT.050.01 
+         * (Extension)</p><p>PTT.050.02 
          * (Root)</p><p>A.1</p><p>PID.2</p><p>Patient.332-CY 
          * (Extension)</p><p>Patient.331-CX 
          * (Root)</p><p>Claim.330-CW</p><p>Health Card 
@@ -169,27 +171,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Coct_mt0
         }
 
         /**
-         * <summary>B:Patient Name</summary>
+         * <summary>Business Name: B:Patient Name</summary>
          * 
-         * <remarks><p>The name by which the patient is known and which 
-         * apply to a particular clinical action that has been reported 
-         * or recorded.</p> <p>ZPA.1 (partType=Given)</p><p>ZPA.2 
-         * (partType=Family)</p><p>ZPA.3 (partType=Given - all 
-         * repetitions except first)</p><p>C37 
-         * (partType=Given)</p><p>C38 
-         * (partType=Family)</p><p>PTT.030-01 
-         * (partType=Family)</p><p>PTT.030-02 (partType=Given - 1st 
-         * occurrence)</p><p>PTT.030-03 (partType=Given - subsequen 
-         * occurrences)</p><p>PTT.030-04 
-         * (partType=Suffix)</p><p>PTT.030-05 
-         * (partType=Prefix)</p><p>patient 
-         * Initials</p><p>PID.5</p><p>Patient.310-CA 
-         * (partType=Given)</p><p>Patient.311-CB 
-         * (partType=Family)</p><p>Recipient Name First 
-         * (partType=Given)</p><p>Recipient Name Last 
-         * (partType=Family)</p><p>PID.5</p><p>PID.9 (any name other 
-         * than first repetition is an 
-         * alias)</p><p>ZDU.3</p><p>ZKW.2</p><p>Person.givenName</p><p>Person.lastName</p><p>Person.middleName</p><p>Person.namePrefix</p><p>Person.nameSuffix</p> 
+         * <remarks>Relationship: COCT_MT050202CA.Person.name 
+         * Conformance/Cardinality: MANDATORY (1) <p>The name by which 
+         * the patient is known and which apply to a particular 
+         * clinical action that has been reported or recorded.</p> 
          * <p>ZPA.1 (partType=Given)</p><p>ZPA.2 
          * (partType=Family)</p><p>ZPA.3 (partType=Given - all 
          * repetitions except first)</p><p>C37 
@@ -336,7 +323,21 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Coct_mt0
          * occurrences)</p><p>PTT.030-04 
          * (partType=Suffix)</p><p>PTT.030-05 
          * (partType=Prefix)</p><p>patient 
-
+         * Initials</p><p>PID.5</p><p>Patient.310-CA 
+         * (partType=Given)</p><p>Patient.311-CB 
+         * (partType=Family)</p><p>Recipient Name First 
+         * (partType=Given)</p><p>Recipient Name Last 
+         * (partType=Family)</p><p>PID.5</p><p>PID.9 (any name other 
+         * than first repetition is an 
+         * alias)</p><p>ZDU.3</p><p>ZKW.2</p><p>Person.givenName</p><p>Person.lastName</p><p>Person.middleName</p><p>Person.namePrefix</p><p>Person.nameSuffix</p> 
+         * <p>ZPA.1 (partType=Given)</p><p>ZPA.2 
+         * (partType=Family)</p><p>ZPA.3 (partType=Given - all 
+         * repetitions except first)</p><p>C37 
+         * (partType=Given)</p><p>C38 
+         * (partType=Family)</p><p>PTT.030-01 
+         * (partType=Family)</p><p>PTT.030-02 (partType=Given - 1st 
+         * occurrence)</p><p>PTT.030-03 (partType=Given - subsequen 
+         * occ
          * ... [rest of documentation truncated due to excessive length]
          */
         [Hl7XmlMappingAttribute(new string[] {"patientPerson/name"})]
@@ -346,20 +347,22 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Coct_mt0
         }
 
         /**
-         * <summary>F:Patient Gender</summary>
+         * <summary>Business Name: F:Patient Gender</summary>
          * 
-         * <remarks><p>Indicates the gender (sex) of the patient. 
-         * Complex genetic genders are handled as observations if they 
-         * are considered relevant.</p> <p>Used to confirm patient 
-         * identity. May affect dosing or therapy 
-         * appropriateness.</p><p>Element is mandatory because the 
-         * patient's gender is necessary for positive identification of 
-         * the patient in the jurisdictional client registry.</p> 
+         * <remarks>Relationship: 
+         * COCT_MT050202CA.Person.administrativeGenderCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the 
+         * gender (sex) of the patient. Complex genetic genders are 
+         * handled as observations if they are considered relevant.</p> 
          * <p>Used to confirm patient identity. May affect dosing or 
          * therapy appropriateness.</p><p>Element is mandatory because 
          * the patient's gender is necessary for positive 
          * identification of the patient in the jurisdictional client 
-         * registry.</p></remarks>
+         * registry.</p> <p>Used to confirm patient identity. May 
+         * affect dosing or therapy appropriateness.</p><p>Element is 
+         * mandatory because the patient's gender is necessary for 
+         * positive identification of the patient in the jurisdictional 
+         * client registry.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"patientPerson/administrativeGenderCode"})]
         public AdministrativeGender PatientPersonAdministrativeGenderCode {
@@ -368,13 +371,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Coct_mt0
         }
 
         /**
-         * <summary>E:Patient Birth Date</summary>
+         * <summary>Business Name: E:Patient Birth Date</summary>
          * 
-         * <remarks><p>Indicates the date on which the patient was 
-         * born.</p> <p>Used to confirm patient identity.</p><p>May 
-         * also influence dosage and therapy 
-         * appropriateness.</p><p>Element is mandatory because the 
-         * patient's birth date is necessary for positive 
+         * <remarks>Relationship: COCT_MT050202CA.Person.birthTime 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the date 
+         * on which the patient was born.</p> <p>Used to confirm 
+         * patient identity.</p><p>May also influence dosage and 
+         * therapy appropriateness.</p><p>Element is mandatory because 
+         * the patient's birth date is necessary for positive 
          * identification of the patient in the jurisdictional client 
          * registry.</p> <p>Used to confirm patient identity.</p><p>May 
          * also influence dosage and therapy 

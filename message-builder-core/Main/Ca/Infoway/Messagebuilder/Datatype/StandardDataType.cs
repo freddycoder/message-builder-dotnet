@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -156,8 +156,6 @@ namespace Ca.Infoway.Messagebuilder.Datatype {
 				"IVL_FULL_DATE_WITH_TIME", "IVL<TS.FULLDATEWITHTIME>");
 		public static readonly StandardDataType IVL_TS = new StandardDataType(
 				"IVL_TS", "IVL<TS>", "DateInterval");
-		public static readonly StandardDataType IVL_PQ = new StandardDataType(
-				"IVL_PQ", "IVL<PQ>", "PhysicalQuantityInterval");
 		public static readonly StandardDataType IVL_HIGH_TS_FULLDATE = new StandardDataType(
 				"IVL_HIGH_TS_FULLDATE", "IVL.HIGH<TS.FULLDATE>", "DateInterval");
 		public static readonly StandardDataType IVL_WIDTH_TS_FULLDATE = new StandardDataType(
@@ -166,6 +164,14 @@ namespace Ca.Infoway.Messagebuilder.Datatype {
 				"IVL_LOW_TS_DATE", "IVL.LOW<TS.DATE>", "DateInterval");
 		public static readonly StandardDataType IVL_LOW_TS_FULLDATE = new StandardDataType(
 				"IVL_LOW_TS_FULLDATE", "IVL.LOW<TS.FULLDATE>", "DateInterval");
+        public static readonly StandardDataType IVL_PQ = new StandardDataType(
+                "IVL_PQ", "IVL<PQ>", "PhysicalQuantityInterval");
+        public static readonly StandardDataType IVL_PQ_BASIC = new StandardDataType("IVL_PQ_BASIC", "IVL<PQ.BASIC>", "PhysicalQuantityInterval"); 
+        public static readonly StandardDataType IVL_PQ_DRUG = new StandardDataType("IVL_PQ_DRUG", "IVL<PQ.DRUG>", "PhysicalQuantityInterval"); 
+        public static readonly StandardDataType IVL_PQ_TIME = new StandardDataType("IVL_PQ_TIME", "IVL<PQ.TIME>", "PhysicalQuantityInterval"); 
+        public static readonly StandardDataType IVL_PQ_LAB = new StandardDataType("IVL_PQ_LAB", "IVL<PQ.LAB>", "PhysicalQuantityInterval"); 
+        public static readonly StandardDataType IVL_PQ_HEIGHTWEIGHT = new StandardDataType("IVL_PQ_HEIGHTWEIGHT", "IVL<PQ.HEIGHTWEIGHT>", "PhysicalQuantityInterval");
+        public static readonly StandardDataType IVL_PQ_DISTANCE = new StandardDataType("IVL_PQ_DISTANCE", "IVL<PQ.DISTANCE>", "PhysicalQuantityInterval");
 	
 		public static readonly StandardDataType IVL_WIDTH = new StandardDataType(
 				"IVL_WIDTH", "IVL.WIDTH", "Interval");
@@ -235,6 +241,7 @@ namespace Ca.Infoway.Messagebuilder.Datatype {
 	
 		public static readonly StandardDataType TEL = new StandardDataType("TEL",
 				"TEL", "BaseTelecommunicationAddress");
+        public static readonly StandardDataType TEL_ALL = new StandardDataType("TEL_ALL", "TEL.ALL", "PhonemailTelecommunicationAddress"); 
 		public static readonly StandardDataType TEL_PHONEMAIL = new StandardDataType(
 				"TEL_PHONEMAIL", "TEL.PHONEMAIL",
 				"PhonemailTelecommunicationAddress");
@@ -251,10 +258,14 @@ namespace Ca.Infoway.Messagebuilder.Datatype {
 				"URG_TS_DATE", "URG<TS.DATE>");
 		public static readonly StandardDataType URG_PQ = new StandardDataType(
 				"URG_PQ", "URG<PQ>");
+        public static readonly StandardDataType URG_PQ_BASIC = new StandardDataType("URG_PQ_BASIC", "URG<PQ.BASIC>");
 		public static readonly StandardDataType URG_PQ_DRUG = new StandardDataType(
 				"URG_PQ_DRUG", "URG<PQ.DRUG>");
 		public static readonly StandardDataType URG_PQ_TIME = new StandardDataType(
 				"URG_PQ_TIME", "URG<PQ.TIME>");
+	    public static readonly StandardDataType URG_PQ_LAB = new StandardDataType("URG_PQ_LAB", "URG<PQ.LAB>");
+	    public static readonly StandardDataType URG_PQ_HEIGHTWEIGHT = new StandardDataType("URG_PQ_HEIGHTWEIGHT", "URG<PQ.HEIGHTWEIGHT>");
+        public static readonly StandardDataType URG_PQ_DISTANCE = new StandardDataType("URG_PQ_DISTANCE", "URG<PQ.DISTANCE>");
 	
 		public static readonly StandardDataType URL = new StandardDataType("URL",
 				"URL");
@@ -281,8 +292,6 @@ namespace Ca.Infoway.Messagebuilder.Datatype {
 	/// pan-Canadian Data Types specification.
 		public static readonly StandardDataType BAG = new StandardDataType("BAG",
 				"BAG");
-
-		private static readonly IDictionary<StandardDataType, StandardDataType> widthType;
 
         private static readonly ILOG.J2CsMapping.Collections.Generics.ISet<StandardDataType> ignorable;
 	
@@ -478,25 +487,6 @@ namespace Ca.Infoway.Messagebuilder.Datatype {
 		}
 	
 		/// <summary>
-		/// Determines the enum datatype for the width attribute of the given enum datatype.
-		/// </summary>
-		///
-		/// <param name="type">the enum datatype for which its width datetype needs to be determined</param>
-		/// <returns>the enum datatype representing the width attribute of the given enum datatype</returns>
-		public static StandardDataType GetWidthType(StandardDataType type) {
-			StandardDataType result = (type == null) ? null : ((Ca.Infoway.Messagebuilder.Datatype.StandardDataType)ILOG.J2CsMapping.Collections.Generics.Collections.Get(widthType,type));
-			if (type == null) {
-				throw new ArgumentException(
-						"Cannot determine the width type of an unknown interval type.");
-			} else if (result == null) {
-				throw new ArgumentException(type.Type
-						+ " is not an interval");
-			} else {
-				return result;
-			}
-		}
-	
-		/// <summary>
 		/// Checks if this enum datatype is part of the Canadian datatype specs.
 		/// </summary>
 		///
@@ -574,14 +564,6 @@ namespace Ca.Infoway.Messagebuilder.Datatype {
 		}
 	
 		static StandardDataType() {
-            IDictionary<StandardDataType, StandardDataType> map = new Dictionary<StandardDataType, StandardDataType>();
-			ILOG.J2CsMapping.Collections.Generics.Collections.Put(map,(Ca.Infoway.Messagebuilder.Datatype.StandardDataType)(IVL_FULL_DATE),(Ca.Infoway.Messagebuilder.Datatype.StandardDataType)(PQ_TIME));
-			ILOG.J2CsMapping.Collections.Generics.Collections.Put(map,(Ca.Infoway.Messagebuilder.Datatype.StandardDataType)(IVL_DATE),(Ca.Infoway.Messagebuilder.Datatype.StandardDataType)(PQ_TIME));
-			ILOG.J2CsMapping.Collections.Generics.Collections.Put(map,(Ca.Infoway.Messagebuilder.Datatype.StandardDataType)(IVL_DATETIME),(Ca.Infoway.Messagebuilder.Datatype.StandardDataType)(PQ_TIME));
-			ILOG.J2CsMapping.Collections.Generics.Collections.Put(map,(Ca.Infoway.Messagebuilder.Datatype.StandardDataType)(IVL_FULL_DATE_TIME),(Ca.Infoway.Messagebuilder.Datatype.StandardDataType)(PQ_TIME));
-			ILOG.J2CsMapping.Collections.Generics.Collections.Put(map,(Ca.Infoway.Messagebuilder.Datatype.StandardDataType)(IVL_FULL_DATE_WITH_TIME),(Ca.Infoway.Messagebuilder.Datatype.StandardDataType)(PQ_TIME));
-			ILOG.J2CsMapping.Collections.Generics.Collections.Put(map,(Ca.Infoway.Messagebuilder.Datatype.StandardDataType)(IVL_TS),(Ca.Infoway.Messagebuilder.Datatype.StandardDataType)(PQ_TIME));
-			widthType = ILOG.J2CsMapping.Collections.Generics.Collections.UnmodifiableMap(map);
             ILOG.J2CsMapping.Collections.Generics.ISet<StandardDataType> set = new HashedSet<StandardDataType>();
 			ILOG.J2CsMapping.Collections.Generics.Collections.Add(set,ED);
 			ILOG.J2CsMapping.Collections.Generics.Collections.Add(set,EN);

@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
 
 
     /**
-     * <summary>ErrorsOrWarnings</summary>
+     * <summary>Business Name: ErrorsOrWarnings</summary>
      * 
      * <remarks>MCCI_MT000300CA.AcknowledgementDetail: Errors or 
      * Warnings <p>An error, warning or information message 
@@ -61,14 +61,24 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             this.location = new SETImpl<ST, String>(typeof(STImpl));
         }
         /**
-         * <summary>MessageType</summary>
+         * <summary>Business Name: MessageType</summary>
          * 
-         * <remarks>Message type <p>Distinguishes between errors, 
-         * warnings and information messages.</p> <p>Different types of 
-         * messages have substantially different ramifications.</p> 
-         * Message type <p>Distinguishes between errors, warnings and 
-         * information messages.</p> <p>Different types of messages 
-         * have substantially different ramifications.</p></remarks>
+         * <remarks>Un-merged Business Name: MessageType Relationship: 
+         * MCCI_MT000300CA.AcknowledgementDetail.typeCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>Distinguishes 
+         * between errors, warnings and information messages.</p> 
+         * <p>Different types of messages have substantially different 
+         * ramifications.</p> Un-merged Business Name: MessageType 
+         * Relationship: MCCI_MT002200CA.AcknowledgementDetail.typeCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>Distinguishes 
+         * between errors, warnings and information messages.</p> 
+         * <p>Different types of messages have substantially different 
+         * ramifications.</p> Un-merged Business Name: MessageType 
+         * Relationship: MCCI_MT002300CA.AcknowledgementDetail.typeCode 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>Distinguishes 
+         * between errors, warnings and information messages.</p> 
+         * <p>Different types of messages have substantially different 
+         * ramifications.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"typeCode"})]
         public AcknowledgementDetailType TypeCode {
@@ -77,15 +87,25 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>ResponseCode</summary>
+         * <summary>Business Name: ResponseCode</summary>
          * 
-         * <remarks>A:Response Code <p>Indicates the specific issue 
-         * represented by this message.</p> <p>By providing coded 
-         * identification of issues and errors, allows applications to 
-         * have logic that manages particular errors and warnings 
-         * automatically. However in some circumstances, a code may not 
-         * be available. Therefore the attribute is marked as 
-         * 'populated'.</p><p>The coding strength is CWE (coded with 
+         * <remarks>Un-merged Business Name: ResponseCode Relationship: 
+         * MCCI_MT000300CA.AcknowledgementDetail.code 
+         * Conformance/Cardinality: POPULATED (1) <p>Indicates the 
+         * specific issue represented by this message.</p> <p>By 
+         * providing coded identification of issues and errors, allows 
+         * applications to have logic that manages particular errors 
+         * and warnings automatically. However in some circumstances, a 
+         * code may not be available. Therefore the attribute is marked 
+         * as 'populated'.</p> Un-merged Business Name: ResponseCode 
+         * Relationship: MCCI_MT002200CA.AcknowledgementDetail.code 
+         * Conformance/Cardinality: POPULATED (1) <p>Indicates the 
+         * specific issue represented by this message.</p> <p>By 
+         * providing coded identification of issues and errors, allows 
+         * applications to have logic that manages particular errors 
+         * and warnings automatically. However in some circumstances, a 
+         * code may not be available. Therefore the attribute is marked 
+         * as 'populated'.</p><p>The coding strength is CWE (coded with 
          * extensions). The use of local codes is only permitted when 
          * those codes are submitted to the SC for consideration and if 
          * the SC makes a recommendation other then adoption of the 
@@ -100,12 +120,29 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
          * to the SC for consideration and if the SC makes a 
          * recommendation other then adoption of the local code, 
          * jurisdictions are bound to adopt the recommendation.</p> 
-         * A:Response Code <p>Indicates the specific issue represented 
-         * by this message.</p> <p>By providing coded identification of 
+         * Un-merged Business Name: ResponseCode Relationship: 
+         * MCCI_MT002300CA.AcknowledgementDetail.code 
+         * Conformance/Cardinality: POPULATED (1) <p>Indicates the 
+         * specific issue represented by this message.</p> <p>By 
+         * providing coded identification of issues and errors, allows 
+         * applications to have logic that manages particular errors 
+         * and warnings automatically. However in some circumstances, a 
+         * code may not be available. Therefore the attribute is marked 
+         * as 'populated'.</p><p>The coding strength is CWE (coded with 
+         * extensions). The use of local codes is only permitted when 
+         * those codes are submitted to the SC for consideration and if 
+         * the SC makes a recommendation other then adoption of the 
+         * local code, jurisdictions are bound to adopt the 
+         * recommendation.</p> <p>By providing coded identification of 
          * issues and errors, allows applications to have logic that 
          * manages particular errors and warnings automatically. 
          * However in some circumstances, a code may not be available. 
-         * Therefore the attribute is marked as 'populated'.</p></remarks>
+         * Therefore the attribute is marked as 'populated'.</p><p>The 
+         * coding strength is CWE (coded with extensions). The use of 
+         * local codes is only permitted when those codes are submitted 
+         * to the SC for consideration and if the SC makes a 
+         * recommendation other then adoption of the local code, 
+         * jurisdictions are bound to adopt the recommendation.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public AcknowledgementDetailCode Code {
@@ -114,14 +151,27 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>MessageDescription</summary>
+         * <summary>Business Name: MessageDescription</summary>
          * 
-         * <remarks>C:Message Description <p>The human-readable 
-         * description of the error, warning or information message. 
-         * May convey additional details not present in the 'code', but 
-         * is not intended to be human-processable.</p> <p>Allows 
-         * supplementing the 'computer' information for 
-         * human-readability.</p> C:Message Description <p>The 
+         * <remarks>Un-merged Business Name: MessageDescription 
+         * Relationship: MCCI_MT000300CA.AcknowledgementDetail.text 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The 
+         * human-readable description of the error, warning or 
+         * information message. May convey additional details not 
+         * present in the 'code', but is not intended to be 
+         * human-processable.</p> <p>Allows supplementing the 
+         * 'computer' information for human-readability.</p> Un-merged 
+         * Business Name: MessageDescription Relationship: 
+         * MCCI_MT002200CA.AcknowledgementDetail.text 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The 
+         * human-readable description of the error, warning or 
+         * information message. May convey additional details not 
+         * present in the 'code', but is not intended to be 
+         * human-processable.</p> <p>Allows supplementing the 
+         * 'computer' information for human-readability.</p> Un-merged 
+         * Business Name: MessageDescription Relationship: 
+         * MCCI_MT002300CA.AcknowledgementDetail.text 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The 
          * human-readable description of the error, warning or 
          * information message. May convey additional details not 
          * present in the 'code', but is not intended to be 
@@ -135,22 +185,35 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>ReferencedMessageLocations</summary>
+         * <summary>Business Name: ReferencedMessageLocations</summary>
          * 
-         * <remarks>B:Referenced Message Locations <p>Indicates the 
+         * <remarks>Un-merged Business Name: ReferencedMessageLocations 
+         * Relationship: MCCI_MT000300CA.AcknowledgementDetail.location 
+         * Conformance/Cardinality: REQUIRED (0-5) <p>Indicates the 
          * location of the elements within the message instance that 
          * triggered this error, warning or information message.</p> 
          * <p>Allows syntax and other messages to be linked to 
          * particular fields within the message.</p> <p>I.e. only the 
          * default 'child' axis is permitted, occurrence numbers are 
          * always specified, and no other predicates are permitted.</p> 
-         * B:Referenced Message Locations <p>Indicates the location of 
-         * the elements within the message instance that triggered this 
-         * error, warning or information message.</p> <p>Allows syntax 
-         * and other messages to be linked to particular fields within 
-         * the message.</p> <p>I.e. only the default 'child' axis is 
-         * permitted, occurrence numbers are always specified, and no 
-         * other predicates are permitted.</p></remarks>
+         * Un-merged Business Name: ReferencedMessageLocations 
+         * Relationship: MCCI_MT002200CA.AcknowledgementDetail.location 
+         * Conformance/Cardinality: REQUIRED (0-5) <p>Indicates the 
+         * location of the elements within the message instance that 
+         * triggered this error, warning or information message.</p> 
+         * <p>Allows syntax and other messages to be linked to 
+         * particular fields within the message.</p> <p>I.e. only the 
+         * default 'child' axis is permitted, occurrence numbers are 
+         * always specified, and no other predicates are permitted.</p> 
+         * Un-merged Business Name: ReferencedMessageLocations 
+         * Relationship: MCCI_MT002300CA.AcknowledgementDetail.location 
+         * Conformance/Cardinality: OPTIONAL (0-5) <p>Indicates the 
+         * location of the elements within the message instance that 
+         * triggered this error, warning or information message.</p> 
+         * <p>Allows syntax and other messages to be linked to 
+         * particular fields within the message.</p> <p>I.e. only the 
+         * default 'child' axis is permitted, occurrence numbers are 
+         * always specified, and no other predicates are permitted.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"location"})]
         public ICollection<String> Location {

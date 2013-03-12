@@ -1,49 +1,62 @@
+/**
+ * Copyright 2013 Canada Health Infoway, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Author:        $LastChangedBy: tmcgrady $
+ * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Revision:      $LastChangedRevision: 2623 $
+ */
 using System.Collections.Generic;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype.Impl;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter;
-using ILOG.J2CsMapping.Text;
+using Ca.Infoway.Messagebuilder.Terminology.Configurator;
 using NUnit.Framework;
 
 namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 {
 	[TestFixture]
-	public class PqPropertyFormatterTest
+	public class PqPropertyFormatterTest : FormatterTestCase
 	{
-		private class TestablePqPropertyFormatter : AbstractCerxPqPropertyFormatter
+		[SetUp]
+		public override void Setup()
 		{
-			internal TestablePqPropertyFormatter(PqPropertyFormatterTest _enclosing)
-			{
-				this._enclosing = _enclosing;
-			}
-
-			private readonly PqPropertyFormatterTest _enclosing;
+			DefaultCodeResolutionConfigurator.ConfigureCodeResolversWithTrivialDefault();
 		}
 
 		/// <exception cref="System.Exception"></exception>
 		[Test]
 		public virtual void TestFormatPhysicalQuantityNull()
 		{
-			IDictionary<string, string> result = new PqPropertyFormatterTest.TestablePqPropertyFormatter(this).GetAttributeNameValuePairs
-				(new FormatContextImpl("name", null, null), null);
-			// a null value for PQ elements results in a nullFlavor attribute
-			Assert.AreEqual(1, result.Count, "map size");
-			Assert.IsTrue(result.ContainsKey("nullFlavor"), "key as expected");
-			Assert.AreEqual(AbstractPropertyFormatter.NULL_FLAVOR_NO_INFORMATION, result.SafeGet("nullFlavor"), "value as expected");
+			string result = new PqPropertyFormatter().Format(CreateContext(), new PQImpl());
+			// a null value for PQ elements results in a nullFlavor attribute (but not via calling getAttributeNameValuePairs, only through format() itself)
+			Assert.AreEqual("<name nullFlavor=\"NI\"/>", result.Trim(), "map size");
 		}
 
 		/// <exception cref="System.Exception"></exception>
 		[Test]
 		public virtual void TestFormatPhysicalQuantityEmpty()
 		{
-			IDictionary<string, string> result = new PqPropertyFormatterTest.TestablePqPropertyFormatter(this).GetAttributeNameValuePairs
-				(new FormatContextImpl("name", null, null), new PhysicalQuantity());
+			IDictionary<string, string> resultMap = new PqPropertyFormatter().GetAttributeNameValuePairs(CreateContext(), new PhysicalQuantity
+				(), null);
 			// an empty value for PQ elements results in a nullFlavor attribute
-			Assert.AreEqual(1, result.Count, "map size");
-			Assert.IsTrue(result.ContainsKey("nullFlavor"), "key as expected");
-			Assert.AreEqual(AbstractPropertyFormatter.NULL_FLAVOR_NO_INFORMATION, result.SafeGet("nullFlavor"), "value as expected");
+			Assert.AreEqual(1, resultMap.Count, "map size");
+			Assert.IsTrue(resultMap.ContainsKey("nullFlavor"), "key as expected");
+			Assert.AreEqual(AbstractPropertyFormatter.NULL_FLAVOR_NO_INFORMATION, resultMap.SafeGet("nullFlavor"), "value as expected"
+				);
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -51,19 +64,13 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		public virtual void TestFormatPhysicalQuantityValueOrUnitNull()
 		{
 			// no name-value pairs
-			PqPropertyFormatterTest.TestablePqPropertyFormatter formatter = new PqPropertyFormatterTest.TestablePqPropertyFormatter(this
-				);
+			PqPropertyFormatter formatter = new PqPropertyFormatter();
 			PhysicalQuantity physicalQuantity = new PhysicalQuantity();
 			physicalQuantity.Unit = CeRxDomainTestValues.ENZYME_UNIT_MICROMOLES_MINUTE_PER_LITRE;
-			try
-			{
-				formatter.GetAttributeNameValuePairs(new FormatContextImpl("name", null, null), physicalQuantity);
-				Assert.Fail("expected exception");
-			}
-			catch (ModelToXmlTransformationException e)
-			{
-				Assert.AreEqual("PhysicalQuantity must define quantity", e.Message, "exception message null quantity");
-			}
+			formatter.Format(CreateContext(), new PQImpl(physicalQuantity));
+			Assert.AreEqual(1, this.result.GetHl7Errors().Count);
+			Assert.AreEqual("No value provided for physical quantity", this.result.GetHl7Errors()[0].GetMessage(), "exception message null quantity"
+				);
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -75,8 +82,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			PhysicalQuantity physicalQuantity = new PhysicalQuantity();
 			physicalQuantity.Quantity = new BigDecimal(quantity);
 			physicalQuantity.Unit = unit;
-			IDictionary<string, string> result = new PqPropertyFormatterTest.TestablePqPropertyFormatter(this).GetAttributeNameValuePairs
-				(new FormatContextImpl("name", null, null), physicalQuantity);
+			IDictionary<string, string> result = new PqPropertyFormatter().GetAttributeNameValuePairs(CreateContext(), physicalQuantity
+				, null);
 			Assert.AreEqual(2, result.Count, "map size");
 			Assert.IsTrue(result.ContainsKey("value"), "key as expected");
 			Assert.AreEqual(quantity, result.SafeGet("value"), "value");
@@ -100,34 +107,32 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 
 		private void AssertExceptionAsExpected(string quantity, bool decimalError, bool integerError)
 		{
+			this.result.ClearErrors();
 			PhysicalQuantity physicalQuantity = new PhysicalQuantity();
 			BigDecimal bigDecimal = new BigDecimal(quantity);
 			physicalQuantity.Quantity = bigDecimal;
 			physicalQuantity.Unit = CeRxDomainTestValues.FLUID_OUNCE;
-			try
+			string expectedErrorDecimal = "PhysicalQuantity for MR2009/PQ.BASIC can contain a maximum of 2 decimal places";
+			string expectedErrorInteger = "PhysicalQuantity for MR2009/PQ.BASIC can contain a maximum of 11 integer places";
+			new PqPropertyFormatter().Format(new FormatContextImpl(this.result, null, "name", "PQ.BASIC", Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
+				.MANDATORY, false, SpecificationVersion.R02_04_02, null, null, null), new PQImpl(physicalQuantity), 0);
+			if (decimalError)
 			{
-				string expectedErrorMessage = System.String.Format("<!-- WARNING: {0}{1} -->", decimalError ? "PhysicalQuantity can contain a maximum of 2 decimal places. Value has "
-					 + bigDecimal.Scale() + " decimal places." : string.Empty, integerError ? "PhysicalQuantity can contain a maximum of 11 integer places. Value has "
-					 + (bigDecimal.Precision() - bigDecimal.Scale()) + " integer places." : string.Empty);
-				string result = new PqPropertyFormatterTest.TestablePqPropertyFormatter(this).Format(new FormatContextImpl("name", "PQ", 
-					Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY), new PQImpl(physicalQuantity), 0);
-				Assert.AreEqual(expectedErrorMessage, StringUtils.SubstringBefore(result, SystemUtils.LINE_SEPARATOR));
+				Assert.AreEqual(expectedErrorDecimal, this.result.GetHl7Errors()[0].GetMessage());
 			}
-			catch (ModelToXmlTransformationException e)
+			if (integerError)
 			{
-				Assert.Fail("should not throw exception: " + e.Message);
+				Assert.AreEqual(expectedErrorInteger, this.result.GetHl7Errors()[decimalError && integerError ? 1 : 0].GetMessage());
 			}
 		}
 
-		/// <exception cref="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.ModelToXmlTransformationException"></exception>
 		[Test]
 		public virtual void TestFormatNonNullWithEmptyPq()
 		{
-			PqPropertyFormatterTest.TestablePqPropertyFormatter formatter = new PqPropertyFormatterTest.TestablePqPropertyFormatter(this
-				);
+			PqPropertyFormatter formatter = new PqPropertyFormatter();
 			PQImpl pqImpl = new PQImpl();
 			pqImpl.Value = new PhysicalQuantity();
-			string @string = formatter.FormatNonNullDataType(new FormatContextImpl("name", null, null), pqImpl, 0);
+			string @string = formatter.FormatNonNullDataType(CreateContext(), pqImpl, 0);
 			string lineBreak = Runtime.GetProperty("line.separator");
 			Assert.AreEqual("<name nullFlavor=\"NI\"/>" + lineBreak, @string);
 		}
@@ -161,9 +166,15 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			PhysicalQuantity physicalQuantity = new PhysicalQuantity();
 			physicalQuantity.Quantity = new BigDecimal(quantity);
 			physicalQuantity.Unit = CeRxDomainTestValues.CENTIMETRE;
-			IDictionary<string, string> result = new PqPropertyFormatterTest.TestablePqPropertyFormatter(this).GetAttributeNameValuePairs
-				(new FormatContextImpl("name", null, null), physicalQuantity);
+			IDictionary<string, string> result = new PqPropertyFormatter().GetAttributeNameValuePairs(CreateContext(), physicalQuantity
+				, null);
 			Assert.AreEqual(formattedQuantity, result.SafeGet("value"), "value " + quantity);
+		}
+
+		private FormatContextImpl CreateContext()
+		{
+			return new FormatContextImpl(this.result, null, "name", "PQ.BASIC", null, false, SpecificationVersion.R02_04_02, null, null
+				, null);
 		}
 	}
 }

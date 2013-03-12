@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -49,14 +49,31 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
             this.expectedUseTime = new IVLImpl<TS, Interval<PlatformDate>>();
         }
         /**
-         * <summary>DispenseType</summary>
+         * <summary>Business Name: DispenseType</summary>
          * 
-         * <remarks>Dispense Type <p>Indicates the type of dispensing 
-         * event that is performed. Examples include: Trial Fill, 
-         * Completion of Trial, Partial Fill, Emergency Fill, Samples, 
-         * etc.</p> <p>Indicates reason for the size of dispense. 
-         * Because it defines what type of dispense is occurring, the 
-         * attribute is mandatory.</p></remarks>
+         * <remarks>Un-merged Business Name: DispenseType Relationship: 
+         * PORX_MT020060CA.SupplyEvent.code Conformance/Cardinality: 
+         * MANDATORY (1) <p>Indicates the type of dispensing event that 
+         * is performed. Examples include: Trial Fill, Completion of 
+         * Trial, Partial Fill, Emergency Fill, Samples, etc.</p> 
+         * <p>Indicates reason for the size of dispense. Because it 
+         * defines what type of dispense is occurring, the attribute is 
+         * mandatory.</p> Un-merged Business Name: DispenseType 
+         * Relationship: PORX_MT060010CA.SupplyEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the type 
+         * of dispensing event that is performed. Examples include: 
+         * Trial Fill, Completion of Trial, Partial Fill, Emergency 
+         * Fill, Samples, etc.</p> <p>Indicates reason for the size of 
+         * dispense. Because it defines what type of dispense is 
+         * occurring, the attribute is mandatory.</p> Un-merged 
+         * Business Name: DispenseType Relationship: 
+         * PORX_MT060040CA.SupplyEvent.code Conformance/Cardinality: 
+         * MANDATORY (1) <p>Indicates the type of dispensing event that 
+         * is performed. Examples include: Trial Fill, Completion of 
+         * Trial, Partial Fill, Emergency Fill, Samples, etc.</p> 
+         * <p>Indicates reason for the size of dispense. Because it 
+         * defines what type of dispense is occurring, the attribute is 
+         * mandatory.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public ActPharmacySupplyType Code {
@@ -65,24 +82,42 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
         }
 
         /**
-         * <summary>DispenseProcessingAndPickupDate</summary>
+         * <summary>Business Name: DispenseProcessingAndPickupDate</summary>
          * 
-         * <remarks>Dispense Processing and Pickup Date <p>Represents 
-         * the date the dispense product was prepared and when the 
-         * product was picked up by or delivered to the patient. The 
-         * dispense processing date and pickup date can be back dated 
-         * to reflect when the actual processing and pickup occurred. 
-         * The lower-bound of the period signifies the 
-         * dispense-processing date whereas the upper-bound signifies 
-         * the dispense-pickup date.</p> <p>Used by the system in 
-         * calculating expected exhaustion time. Valuable in compliance 
-         * checking. This attribute is mandatory because an existing 
-         * dispense record must at least indicate the date it was 
-         * processed.</p> <p>Must be able to post-date a dispense 
-         * (enter retroactively) e.g. system failure.</p> Dispense 
-         * Processing and Pickup Date <p>Represents the date the 
-         * dispense product was prepared and when the product was 
-         * picked up by or delivered to the patient. The dispense 
+         * <remarks>Un-merged Business Name: 
+         * DispenseProcessingAndPickupDate Relationship: 
+         * PORX_MT020060CA.SupplyEvent.effectiveTime 
+         * Conformance/Cardinality: MANDATORY (1) <p>Represents the 
+         * date the dispense product was prepared and when the product 
+         * was picked up by or delivered to the patient. The dispense 
+         * processing date and pickup date can be back dated to reflect 
+         * when the actual processing and pickup occurred. The 
+         * lower-bound of the period signifies the dispense-processing 
+         * date whereas the upper-bound signifies the dispense-pickup 
+         * date.</p> <p>Used by the system in calculating expected 
+         * exhaustion time. Valuable in compliance checking. This 
+         * attribute is mandatory because an existing dispense record 
+         * must at least indicate the date it was processed.</p> 
+         * <p>Must be able to post-date a dispense (enter 
+         * retroactively) e.g. system failure.</p> Un-merged Business 
+         * Name: DispenseProcessingAndPickupDate Relationship: 
+         * PORX_MT060010CA.SupplyEvent.effectiveTime 
+         * Conformance/Cardinality: MANDATORY (1) <p>Represents the 
+         * date the dispense product was prepared and when the product 
+         * was picked up by or delivered to the patient. The dispense 
+         * processing date and pickup date can be back dated to reflect 
+         * when the actual processing and pickup occurred. The 
+         * lower-bound of the period signifies the dispense-processing 
+         * date whereas the upper-bound signifies the dispense-pickup 
+         * date.</p> <p>Used by the system in calculating expected 
+         * exhaustion time. Valuable in compliance checking. This 
+         * attribute is mandatory because an existing dispense record 
+         * must at least indicate the date it was processed.</p> 
+         * Un-merged Business Name: DispenseProcessingAndPickupDate 
+         * Relationship: PORX_MT060020CA.SupplyEvent.effectiveTime 
+         * Conformance/Cardinality: MANDATORY (1) <p>Represents the 
+         * date the dispense product was prepared and when the product 
+         * was picked up by or delivered to the patient. The dispense 
          * processing date and pickup date can be back dated to reflect 
          * when the actual processing and pickup occurred. The 
          * lower-bound of the period signifies the dispense-processing 
@@ -94,10 +129,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
          * <p>Used by the system in calculating expected exhaustion 
          * time. Valuable in compliance checking.</p><p>This attribute 
          * is mandatory because an existing dispense record must at 
-         * least indicate the date it was processed.</p> Dispense 
-         * Processing and Pickup Date <p>Represents the date the 
-         * dispense product was prepared and when the product was 
-         * picked up by or delivered to the patient. The dispense 
+         * least indicate the date it was processed.</p> Un-merged 
+         * Business Name: DispenseProcessingAndPickupDate Relationship: 
+         * PORX_MT060040CA.SupplyEvent.effectiveTime 
+         * Conformance/Cardinality: MANDATORY (1) <p>Represents the 
+         * date the dispense product was prepared and when the product 
+         * was picked up by or delivered to the patient. The dispense 
          * processing date and pickup date can be back dated to reflect 
          * when the actual processing and pickup occurred. The 
          * lower-bound of the period signifies the dispense-processing 
@@ -114,19 +151,37 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
         }
 
         /**
-         * <summary>DispensedQuantity</summary>
+         * <summary>Business Name: DispensedQuantity</summary>
          * 
-         * <remarks>Dispensed Quantity <p>The number of devices that 
-         * have been dispensed.</p> <p>Critical in understanding the 
-         * patient's profile, both past and current, This is also 
-         * mandatory to allow determination of the amount that remains 
-         * to be dispensed against the prescription.</p> Dispensed 
-         * Quantity <p>The number of devices that have been 
-         * dispensed.</p> <p>D58</p><p>ZPB3.4</p> 
-         * <p>D58</p><p>ZPB3.4</p> <p>Critical in understanding the 
-         * patient's profile, both past and current, This is also 
-         * mandatory to allow determination of the amount that remains 
-         * to be dispensed against the prescription.</p></remarks>
+         * <remarks>Un-merged Business Name: DispensedQuantity 
+         * Relationship: PORX_MT020060CA.SupplyEvent.quantity 
+         * Conformance/Cardinality: MANDATORY (1) <p>The number of 
+         * devices that have been dispensed.</p> <p>Critical in 
+         * understanding the patient's profile, both past and current, 
+         * This is also mandatory to allow determination of the amount 
+         * that remains to be dispensed against the prescription.</p> 
+         * Un-merged Business Name: DispensedQuantity Relationship: 
+         * PORX_MT060010CA.SupplyEvent.quantity 
+         * Conformance/Cardinality: MANDATORY (1) <p>The number of 
+         * devices that have been dispensed.</p> <p>Critical in 
+         * understanding the patient's profile, both past and current, 
+         * This is also mandatory to allow determination of the amount 
+         * that remains to be dispensed against the prescription.</p> 
+         * Un-merged Business Name: DispensedQuantity Relationship: 
+         * PORX_MT060020CA.SupplyEvent.quantity 
+         * Conformance/Cardinality: MANDATORY (1) <p>The number of 
+         * devices that have been dispensed.</p> 
+         * <p>D58</p><p>ZPB3.4</p> <p>D58</p><p>ZPB3.4</p> <p>Critical 
+         * in understanding the patient's profile, both past and 
+         * current, This is also mandatory to allow determination of 
+         * the amount that remains to be dispensed against the 
+         * prescription.</p> Un-merged Business Name: DispensedQuantity 
+         * Relationship: PORX_MT060040CA.SupplyEvent.quantity 
+         * Conformance/Cardinality: MANDATORY (1) <p>The number of 
+         * devices that have been dispensed.</p> <p>Critical in 
+         * understanding the patient's profile, both past and current, 
+         * This is also mandatory to allow determination of the amount 
+         * that remains to be dispensed against the prescription.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"quantity"})]
         public int? Quantity {
@@ -135,18 +190,44 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
         }
 
         /**
-         * <summary>Dispensed Days Supply</summary>
+         * <summary>Un-merged Business Name: DispensedDaysSupply</summary>
          * 
-         * <remarks><p>The number of days that the dispensed quantity 
-         * is expected to last. Cannot be mandatory as there are some 
-         * situations where 'as needed' cannot be used to determine 
-         * days supply.</p> <p>Useful in monitoring patient compliance. 
-         * May also be useful in determining and managing certain 
-         * contraindications ('Fill-Too-Soon', 'Fill-Too-Late', and 
-         * 'Duration of Therapy'). Because 'Days Supply' may be 
+         * <remarks>Relationship: 
+         * PORX_MT020060CA.SupplyEvent.expectedUseTime 
+         * Conformance/Cardinality: POPULATED (1) <p>The number of days 
+         * that the dispensed quantity is expected to last.</p> 
+         * <p>Useful in monitoring patient compliance. May also be 
+         * useful in determining and managing certain contraindications 
+         * ('Fill-Too-Soon', 'Fill-Too-Late', and 'Duration of 
+         * Therapy'). Because 'Days Supply' may be necessary to compute 
+         * total dispensed quantity, it is made a 'populated' 
+         * field.</p> Un-merged Business Name: DispensedDaysSupply 
+         * Relationship: PORX_MT060010CA.SupplyEvent.expectedUseTime 
+         * Conformance/Cardinality: POPULATED (1) <p>The number of days 
+         * that the dispensed quantity is expected to last. Cannot be 
+         * mandatory as there are some situations where 'as needed' 
+         * cannot be used to determine days supply.</p> 
+         * <p>.daysSupply</p> <p>Useful in monitoring patient 
+         * compliance. May also be useful in determining and managing 
+         * certain contraindications ('Fill-Too-Soon', 'Fill-Too-Late', 
+         * and 'Duration of Therapy'). Because 'Days Supply' may be 
          * necessary to compute total dispensed quantity, it is made a 
-         * 'populated' field.</p> Dispense Days Supply <p>The number of 
-         * days that the dispensed quantity is expected to 
+         * 'populated' field.</p> Un-merged Business Name: 
+         * DispensedDaysSupply Relationship: 
+         * PORX_MT060020CA.SupplyEvent.expectedUseTime 
+         * Conformance/Cardinality: POPULATED (1) <p>The number of days 
+         * that the dispensed quantity is expected to last. Cannot be 
+         * mandatory as there are some situations where 'as needed' 
+         * cannot be used to determine days supply.</p> <p>Useful in 
+         * monitoring patient compliance. May also be useful in 
+         * determining and managing certain contraindications 
+         * ('Fill-Too-Soon', 'Fill-Too-Late', and 'Duration of 
+         * Therapy'). Because 'Days Supply' may be necessary to compute 
+         * total dispensed quantity, it is made a 'populated' 
+         * field.</p> Un-merged Business Name: DispenseDaysSupply 
+         * Relationship: PORX_MT060040CA.SupplyEvent.expectedUseTime 
+         * Conformance/Cardinality: POPULATED (1) <p>The number of days 
+         * that the dispensed quantity is expected to 
          * last.</p><p>Cannot be mandatory as there are some situations 
          * where 'as needed' cannot be used to determine days 
          * supply.</p> <p>The number of days that the dispensed 
@@ -157,23 +238,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
          * managing certain contraindications ('Fill-Too-Soon', 
          * 'Fill-Too-Late', and 'Duration of Therapy'). Because 'Days 
          * Supply' may be necessary to compute total dispensed 
-         * quantity, it is made a 'populated' field.</p> Dispensed Days 
-         * Supply <p>The number of days that the dispensed quantity is 
-         * expected to last. Cannot be mandatory as there are some 
-         * situations where 'as needed' cannot be used to determine 
-         * days supply.</p> <p>.daysSupply</p> <p>Useful in monitoring 
-         * patient compliance. May also be useful in determining and 
-         * managing certain contraindications ('Fill-Too-Soon', 
-         * 'Fill-Too-Late', and 'Duration of Therapy'). Because 'Days 
-         * Supply' may be necessary to compute total dispensed 
-         * quantity, it is made a 'populated' field.</p> Dispensed Days 
-         * Supply <p>The number of days that the dispensed quantity is 
-         * expected to last.</p> <p>Useful in monitoring patient 
-         * compliance. May also be useful in determining and managing 
-         * certain contraindications ('Fill-Too-Soon', 'Fill-Too-Late', 
-         * and 'Duration of Therapy'). Because 'Days Supply' may be 
-         * necessary to compute total dispensed quantity, it is made a 
-         * 'populated' field.</p></remarks>
+         * quantity, it is made a 'populated' field.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"expectedUseTime"})]
         public Interval<PlatformDate> ExpectedUseTime {
@@ -181,18 +246,60 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
             set { this.expectedUseTime.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PORX_MT020060CA.Product2.manufacturedProduct 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060010CA.Product2.manufacturedProduct 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060020CA.Product2.manufacturedProduct 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060040CA.Product2.manufacturedProduct 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"product/manufacturedProduct"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Coct_mt141007ca.DeviceProduct ProductManufacturedProduct {
             get { return this.productManufacturedProduct; }
             set { this.productManufacturedProduct = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PORX_MT020060CA.Destination2.serviceDeliveryLocation 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060010CA.Destination2.serviceDeliveryLocation 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060040CA.Destination2.serviceDeliveryLocation 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"destination/serviceDeliveryLocation"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.DispenseShipToLocation DestinationServiceDeliveryLocation {
             get { return this.destinationServiceDeliveryLocation; }
             set { this.destinationServiceDeliveryLocation = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PORX_MT060010CA.Receiver2.personalRelationship 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060040CA.Receiver2.personalRelationship 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"receiver/personalRelationship"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged.RelatedPerson ReceiverPersonalRelationship {
             get { return this.receiverPersonalRelationship; }

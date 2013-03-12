@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,7 +40,10 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt510
             this.modeCode = new CVImpl();
         }
         /**
-         * <summary>Adjudication date/time</summary>
+         * <summary>Business Name: Adjudication date/time</summary>
+         * 
+         * <remarks>Relationship: FICR_MT510201CA.Author1.time 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"time"})]
         public PlatformDate Time {
@@ -48,12 +51,23 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt510
             set { this.time.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: FICR_MT510201CA.Author1.modeCode</summary>
+         * 
+         * <remarks>Conformance/Cardinality: REQUIRED (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"modeCode"})]
         public ParticipationMode ModeCode {
             get { return (ParticipationMode) this.modeCode.Value; }
             set { this.modeCode.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * FICR_MT510201CA.Author1.adjudicatorRole</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"adjudicatorRole"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Merged.AdjudicatorId AdjudicatorRole {
             get { return this.adjudicatorRole; }

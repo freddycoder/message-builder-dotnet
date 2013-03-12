@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,10 +35,57 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged {
             this.id = new IIImpl();
         }
         /**
-         * <summary>ReplacesRecordIds</summary>
+         * <summary>Business Name: ReplacesRecordIds</summary>
          * 
-         * <remarks>F:Replaces Record Ids </p> </p> F:Replaces Record 
-         * Ids</remarks>
+         * <remarks>Un-merged Business Name: ReplacesRecordIds 
+         * Relationship: REPC_MT420001CA.OldCommonObservationEvent.id 
+         * Conformance/Cardinality: MANDATORY (1) <p> <i>Used in 
+         * circumstances where information initially captured about an 
+         * event is erroneous, incomplete or not captured at the 
+         * desired level of detail and the change cannot be made by 
+         * retracting the original record. (E.g. Too much time has 
+         * elapsed, change is being made by a provider other than the 
+         * original author of the vent record, etc.) May also be used 
+         * to reference multiple records in the case where the same 
+         * event has been accidentally captured more than once.</i> 
+         * </p> <p> <i>Used to identify any records that are 
+         * &quot;superseded&quot; by the current record. This will 
+         * cause the referenced records to be marked as 
+         * &quot;obsolete&quot; with a reference pointing to this 
+         * record.</i> </p> Un-merged Business Name: ReplacesRecordIds 
+         * Relationship: REPC_MT420003CA.OldCommonObservationEvent.id 
+         * Conformance/Cardinality: MANDATORY (1) <p> <i>Used in 
+         * circumstances where information initially captured about an 
+         * event is erroneous, incomplete or not captured at the 
+         * desired level of detail and the change cannot be made by 
+         * retracting the original record. (E.g. Too much time has 
+         * elapsed, change is being made by a provider other than the 
+         * original author of the vent record, etc.) May also be used 
+         * to reference multiple records in the case where the same 
+         * event has been accidentally captured more than once.</i> 
+         * </p> <p> <i>Used to identify any records that are 
+         * &quot;superseded&quot; by the current record. This will 
+         * cause the referenced records to be marked as 
+         * &quot;obsolete&quot; with a reference pointing to this 
+         * record.</i> </p> Un-merged Business Name: ReplacesRecordIds 
+         * Relationship: REPC_MT410003CA.OldCommonObservationEvent.id 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: ReplacesRecordIds Relationship: 
+         * REPC_MT410001CA.OldCommonObservationEvent.id 
+         * Conformance/Cardinality: MANDATORY (1) <p> <i>Used in 
+         * circumstances where information initially captured about an 
+         * event is erroneous, incomplete or not captured at the 
+         * desired level of detail and the change cannot be made by 
+         * retracting the original record. (E.g. Too much time has 
+         * elapsed, change is being made by a provider other than the 
+         * original author of the vent record, etc.) May also be used 
+         * to reference multiple records in the case where the same 
+         * event has been accidentally captured more than once.</i> 
+         * </p> <p> <i>Used to identify any records that are 
+         * &quot;superseded&quot; by the current record. This will 
+         * cause the referenced records to be marked as 
+         * &quot;obsolete&quot; with a reference pointing to this 
+         * record.</i> </p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {

@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,32 +33,31 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
      * <summary>PORX_MT020030CA.SupplyEvent: Prescription Dispense 
      * Response</summary>
      * 
-     * <remarks><p>Represents the information returned when a 
-     * dispense has been accepted</p> <p>Allows communication of 
-     * the identifiers assigned to the dispense and the 
-     * prescription by the DIS.</p> PORX_MT980020CA.SupplyEvent: 
-     * Dispense <p>Indicates a particular dispense event that 
-     * resulted in the issue.</p> <p>Used when the issue pertains 
-     * to the supply of the drug rather than the drug itself. E.g. 
-     * Duplicate pharmacy, refill too soon, etc.</p> 
-     * PORX_MT020020CA.SupplyEvent: Dispense Pickup <p>Captures 
-     * information about what prescription was picked up and who 
-     * received it.</p> <p>The root class for the message. The time 
-     * of pickup is specified on the ControlAct wrapper.</p> 
-     * PORX_MT980010CA.SupplyEvent: Dispense <p>Indicates a 
-     * particular dispense event that resulted in the issue.</p> 
+     * <p>Represents the information returned when a dispense has 
+     * been accepted</p> <p>Allows communication of the identifiers 
+     * assigned to the dispense and the prescription by the 
+     * DIS.</p> PORX_MT980020CA.SupplyEvent: Dispense <p>Indicates 
+     * a particular dispense event that resulted in the issue.</p> 
      * <p>Used when the issue pertains to the supply of the drug 
      * rather than the drug itself. E.g. Duplicate pharmacy, refill 
-     * too soon, etc.</p> COCT_MT260010CA.SupplyEvent: Dispense 
+     * too soon, etc.</p> PORX_MT020020CA.SupplyEvent: Dispense 
+     * Pickup <p>Captures information about what prescription was 
+     * picked up and who received it.</p> <p>The root class for the 
+     * message. The time of pickup is specified on the ControlAct 
+     * wrapper.</p> PORX_MT980010CA.SupplyEvent: Dispense 
      * <p>Indicates a particular dispense event that resulted in 
      * the issue.</p> <p>Used when the issue pertains to the supply 
      * of the drug rather than the drug itself. E.g. Duplicate 
      * pharmacy, refill too soon, etc.</p> 
-     * COCT_MT260020CA.SupplyEvent: Dispense <p>Indicates a 
+     * COCT_MT260010CA.SupplyEvent: Dispense <p>Indicates a 
      * particular dispense event that resulted in the issue.</p> 
      * <p>Used when the issue pertains to the supply of the drug 
      * rather than the drug itself. E.g. Duplicate pharmacy, refill 
-     * too soon, etc.</p></remarks>
+     * too soon, etc.</p> COCT_MT260020CA.SupplyEvent: Dispense 
+     * <p>Indicates a particular dispense event that resulted in 
+     * the issue.</p> <p>Used when the issue pertains to the supply 
+     * of the drug rather than the drug itself. E.g. Duplicate 
+     * pharmacy, refill too soon, etc.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"COCT_MT260010CA.SupplyEvent","COCT_MT260020CA.SupplyEvent","PORX_MT020020CA.SupplyEvent","PORX_MT020030CA.SupplyEvent","PORX_MT980010CA.SupplyEvent","PORX_MT980020CA.SupplyEvent"})]
     public class Dispense : MessagePartBean, Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.ICausalActs {
@@ -80,18 +79,42 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             this.confidentialityCode = new CVImpl();
         }
         /**
-         * <summary>A:Prescription Dispense Number</summary>
+         * <summary>Un-merged Business Name: DispenseIdentifier</summary>
          * 
-         * <remarks><p>Unique identifier of the dispense event that 
-         * triggered the issue.</p> <p>Allows provider to drill down 
-         * and retrieve additional information about the dispense event 
-         * for consideration in their issue management decision.</p> 
-         * Dispense Identifier <p>Identifier of a dispense event to be 
-         * used by the requesting dispenser.</p> <p>Establishes a 
-         * record of impending dispense on the prescription. Attribute 
-         * is mandatory to ensure that successful request to dispense 
-         * has been acknowledged by the DIS.</p> A:Prescription 
-         * Dispense Number <p>Unique identifier of the dispensed event 
+         * <remarks>Relationship: PORX_MT020030CA.SupplyEvent.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>Identifier of a 
+         * dispense event to be used by the requesting dispenser.</p> 
+         * <p>Establishes a record of impending dispense on the 
+         * prescription. Attribute is mandatory to ensure that 
+         * successful request to dispense has been acknowledged by the 
+         * DIS.</p> Un-merged Business Name: PrescriptionDispenseNumber 
+         * Relationship: PORX_MT980020CA.SupplyEvent.id 
+         * Conformance/Cardinality: POPULATED (1) <p>Unique identifier 
+         * of the dispense event that triggered the issue.</p> 
+         * <p>Allows provider to drill down and retrieve additional 
+         * information about the dispense event for consideration in 
+         * their issue management decision.</p><p>The attribute is only 
+         * marked as 'populated' because it may be masked.</p> 
+         * <p>Allows provider to drill down and retrieve additional 
+         * information about the dispense event for consideration in 
+         * their issue management decision.</p><p>The attribute is only 
+         * marked as 'populated' because it may be masked.</p> 
+         * Un-merged Business Name: DispenseId Relationship: 
+         * PORX_MT020020CA.SupplyEvent.id Conformance/Cardinality: 
+         * MANDATORY (1) <p>Identity of prescription dispense that has 
+         * been picked up.</p> <p>Allows dispenses to be uniquely 
+         * identified. This attribute is mandatory because the identity 
+         * of the dispense record must be known.</p> Un-merged Business 
+         * Name: PrescriptionDispenseNumber Relationship: 
+         * COCT_MT260010CA.SupplyEvent.id Conformance/Cardinality: 
+         * POPULATED (1) <p>Unique identifier of the dispensed event 
+         * that triggered the issue.</p> <p>Allows provider to drill 
+         * down and retrieve additional information about the dispense 
+         * event for consideration in their issue management 
+         * decision.</p> Un-merged Business Name: 
+         * PrescriptionDispenseNumber Relationship: 
+         * PORX_MT980010CA.SupplyEvent.id Conformance/Cardinality: 
+         * POPULATED (1) <p>Unique identifier of the dispensed event 
          * that triggered the issue.</p> <p>Allows provider to drill 
          * down and retrieve additional information about the dispense 
          * event for consideration in their issue management 
@@ -100,25 +123,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
          * retrieve additional information about the dispense event for 
          * consideration in their issue management decision.</p><p>The 
          * attribute is marked as populated because it may be 
-         * masked.</p> A:Prescription Dispense Number <p>Unique 
-         * identifier of the dispense event that triggered the 
-         * issue.</p> <p>Allows provider to drill down and retrieve 
-         * additional information about the dispense event for 
-         * consideration in their issue management decision.</p><p>The 
-         * attribute is only marked as 'populated' because it may be 
-         * masked.</p> <p>Allows provider to drill down and retrieve 
-         * additional information about the dispense event for 
-         * consideration in their issue management decision.</p><p>The 
-         * attribute is only marked as 'populated' because it may be 
-         * masked.</p> A:Prescription Dispense Number <p>Unique 
-         * identifier of the dispensed event that triggered the 
-         * issue.</p> <p>Allows provider to drill down and retrieve 
-         * additional information about the dispense event for 
-         * consideration in their issue management decision.</p> 
-         * Dispense Id <p>Identity of prescription dispense that has 
-         * been picked up.</p> <p>Allows dispenses to be uniquely 
-         * identified. This attribute is mandatory because the identity 
-         * of the dispense record must be known.</p></remarks>
+         * masked.</p> Un-merged Business Name: 
+         * PrescriptionDispenseNumber Relationship: 
+         * COCT_MT260020CA.SupplyEvent.id Conformance/Cardinality: 
+         * POPULATED (1) <p>Unique identifier of the dispense event 
+         * that triggered the issue.</p> <p>Allows provider to drill 
+         * down and retrieve additional information about the dispense 
+         * event for consideration in their issue management 
+         * decision.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -127,9 +139,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>PrescriptionOrderNumber</summary>
+         * <summary>Business Name: PrescriptionOrderNumber</summary>
          * 
-         * <remarks>A:Prescription Order Number <p>This is an 
+         * <remarks>Un-merged Business Name: PrescriptionOrderNumber 
+         * Relationship: PORX_MT020030CA.ActRequest.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>This is an 
          * identifier assigned to a specific medication order. The 
          * number remains constant across the lifetime of the order, 
          * regardless of the number of providers or pharmacies involved 
@@ -152,21 +166,48 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>DispenseStatus</summary>
+         * <summary>Business Name: DispenseStatus</summary>
          * 
-         * <remarks>B:Dispense Status <p>Indicates the status of the 
-         * dispense record created on the EHR/DIS. If 'Active' it means 
-         * that the dispense has been processed but not yet given to 
-         * the patient. If 'Complete', it indicates that the medication 
-         * has been delivered to the patient.</p> <p>Important in 
-         * understanding what medication the patient actually has on 
-         * hand, thus the attribute is mandatory. May also influence 
-         * the ability of a different pharmacy to dispense the 
-         * medication.</p> B:Dispense Status <p>Indicates the status of 
-         * the dispense record created on the EHR/DIS. If 'Active' it 
-         * means that the dispense has been processed but not yet given 
-         * to the patient. If 'Complete', it indicates that the 
-         * medication has been delivered to the patient.</p> 
+         * <remarks>Un-merged Business Name: DispenseStatus 
+         * Relationship: PORX_MT980020CA.SupplyEvent.statusCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the 
+         * status of the dispense record created on the EHR/DIS. If 
+         * 'Active' it means that the dispense has been processed but 
+         * not yet given to the patient. If 'Complete', it indicates 
+         * that the medication has been delivered to the patient.</p> 
+         * <p>Important in understanding what medication the patient 
+         * actually has on hand, thus the attribute is mandatory. May 
+         * also influence the ability of a different pharmacy to 
+         * dispense the medication.</p> Un-merged Business Name: 
+         * DispenseStatus Relationship: 
+         * COCT_MT260010CA.SupplyEvent.statusCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the 
+         * status of the dispense record created on the EHR/DIS. If 
+         * 'Active' it means that the dispense has been processed but 
+         * not yet given to the patient. If 'Complete', it indicates 
+         * that the medication has been delivered to the patient.</p> 
+         * <p>Important in understanding what medication the patient 
+         * actually has on hand, thus the attribute is mandatory. May 
+         * also influence the ability of a different pharmacy to 
+         * dispense the medication.</p> Un-merged Business Name: 
+         * DispenseStatus Relationship: 
+         * PORX_MT980010CA.SupplyEvent.statusCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the 
+         * status of the dispense record created on the EHR/DIS. If 
+         * 'Active' it means that the dispense has been processed but 
+         * not yet given to the patient. If 'Complete', it indicates 
+         * that the medication has been delivered to the patient.</p> 
+         * <p>Important in understanding what medication the patient 
+         * actually has on hand, thus the attribute is mandatory. May 
+         * also influence the ability of a different pharmacy to 
+         * dispense the medication.</p> Un-merged Business Name: 
+         * DispenseStatus Relationship: 
+         * COCT_MT260020CA.SupplyEvent.statusCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the 
+         * status of the dispense record created on the EHR/DIS. If 
+         * 'Active' it means that the dispense has been processed but 
+         * not yet given to the patient. If 'Complete', it indicates 
+         * that the medication has been delivered to the patient.</p> 
          * <p>Important in understanding what medication the patient 
          * actually has on hand, thus the attribute is mandatory. May 
          * also influence the ability of a different pharmacy to 
@@ -179,30 +220,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>DispensedDate</summary>
+         * <summary>Business Name: DispensedDate</summary>
          * 
-         * <remarks>B:Dispensed Date <p>The date and time on which the 
-         * product was dispensed to the patient.</p> <p>ZDU.4.5</p> 
-         * <p>Allows evaluation of 'refill too soon' and similar 
-         * issues.</p><p>Attribute is marked as &quot;populated&quot; 
-         * as a dispense record may not exist without processing 
-         * date.</p> <p>Allows evaluation of 'refill too soon' and 
-         * similar issues.</p><p>Attribute is marked as 
-         * &quot;populated&quot; as a dispense record may not exist 
-         * without processing date.</p> <p>Applications should specify 
-         * a null flavor of &quot;Not Applicable&quot; for dispenses 
-         * that have not yet been picked up.</p> B:Dispensed Date 
-         * <p>The date and time on which the product was issued to the 
-         * patient.</p> <p>ZDU.4.5</p> <p>Allows evaluation of 'refill 
-         * too soon' and similar issues.</p><p>Attribute is marked as 
-         * 'populated' as a dispense record may not exist without 
-         * processing date.</p> <p>Allows evaluation of 'refill too 
-         * soon' and similar issues.</p><p>Attribute is marked as 
-         * 'populated' as a dispense record may not exist without 
-         * processing date.</p> <p>Applications should specify a null 
-         * flavor of &quot;Not Applicable&quot; for dispenses that have 
-         * not yet been picked up.</p> B:Dispensed Date <p>The date and 
-         * time on which the product was dispensed to the patient.</p> 
+         * <remarks>Un-merged Business Name: DispensedDate 
+         * Relationship: PORX_MT980020CA.SupplyEvent.effectiveTime 
+         * Conformance/Cardinality: POPULATED (1) <p>The date and time 
+         * on which the product was dispensed to the patient.</p> 
          * <p>ZDU.4.5</p> <p>Allows evaluation of 'refill too soon' and 
          * similar issues.</p><p>Attribute is marked as 
          * &quot;populated&quot; as a dispense record may not exist 
@@ -211,17 +234,44 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
          * &quot;populated&quot; as a dispense record may not exist 
          * without processing date.</p> <p>Applications should specify 
          * a null flavor of &quot;Not Applicable&quot; for dispenses 
-         * that have not yet been picked up.</p> B:Dispensed Date 
-         * <p>The date and time on which the product was issued to the 
-         * patient.</p> <p>ZDU.4.5</p> <p>Allows evaluation of 'refill 
+         * that have not yet been picked up.</p> Un-merged Business 
+         * Name: DispensedDate Relationship: 
+         * COCT_MT260010CA.SupplyEvent.effectiveTime 
+         * Conformance/Cardinality: POPULATED (1) <p>The date and time 
+         * on which the product was issued to the patient.</p> 
+         * <p>ZDU.4.5</p> <p>Allows evaluation of 'refill too soon' and 
+         * similar issues.</p><p>Attribute is marked as 'populated' as 
+         * a dispense record may not exist without processing date.</p> 
+         * <p>Allows evaluation of 'refill too soon' and similar 
+         * issues.</p><p>Attribute is marked as 'populated' as a 
+         * dispense record may not exist without processing date.</p> 
+         * <p>Applications should specify a null flavor of &quot;Not 
+         * Applicable&quot; for dispenses that have not yet been picked 
+         * up.</p> Un-merged Business Name: DispensedDate Relationship: 
+         * PORX_MT980010CA.SupplyEvent.effectiveTime 
+         * Conformance/Cardinality: POPULATED (1) <p>The date and time 
+         * on which the product was issued to the patient.</p> 
+         * <p>ZDU.4.5</p> <p>Allows evaluation of 'refill too soon' and 
+         * similar issues.</p><p>Attribute is marked as 'populated' as 
+         * a dispense record may not exist without processing date.</p> 
+         * <p>Allows evaluation of 'refill too soon' and similar 
+         * issues.</p><p>Attribute is marked as 'populated' as a 
+         * dispense record may not exist without processing date.</p> 
+         * <p>Applications should specify a null flavor of &quot;Not 
+         * Applicable&quot; for dispenses that have not yet been picked 
+         * up.</p> Un-merged Business Name: DispensedDate Relationship: 
+         * COCT_MT260020CA.SupplyEvent.effectiveTime 
+         * Conformance/Cardinality: POPULATED (1) <p>The date and time 
+         * on which the product was dispensed to the patient.</p> 
+         * <p>ZDU.4.5</p> <p>Allows evaluation of 'refill too soon' and 
+         * similar issues.</p><p>Attribute is marked as 
+         * &quot;populated&quot; as a dispense record may not exist 
+         * without processing date.</p> <p>Allows evaluation of 'refill 
          * too soon' and similar issues.</p><p>Attribute is marked as 
-         * 'populated' as a dispense record may not exist without 
-         * processing date.</p> <p>Allows evaluation of 'refill too 
-         * soon' and similar issues.</p><p>Attribute is marked as 
-         * 'populated' as a dispense record may not exist without 
-         * processing date.</p> <p>Applications should specify a null 
-         * flavor of &quot;Not Applicable&quot; for dispenses that have 
-         * not yet been picked up.</p></remarks>
+         * &quot;populated&quot; as a dispense record may not exist 
+         * without processing date.</p> <p>Applications should specify 
+         * a null flavor of &quot;Not Applicable&quot; for dispenses 
+         * that have not yet been picked up.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"effectiveTime"})]
         public Interval<PlatformDate> EffectiveTime {
@@ -230,42 +280,52 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>C:Dispense Masking Indicator</summary>
+         * <summary>Un-merged Business Name: DispenseMaskedIndicator</summary>
          * 
-         * <remarks><p>An indication of sensitivity surrounding the 
-         * related drug, and thus defines the required sensitivity for 
-         * the detected issue.</p> <p>Conveys the patient's wishes 
-         * relating to the sensitivity of the drug 
-         * information.</p><p>The attribute is optional because not all 
+         * <remarks>Relationship: 
+         * PORX_MT980020CA.SupplyEvent.confidentialityCode 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>An indication of 
+         * sensitivity surrounding the implicated drug, and thus 
+         * defines the required sensitivity for the detected issue.</p> 
+         * <p>Conveys the patient's wishes relating to the sensitivity 
+         * of the drug.</p><p>The attribute is optional because not all 
          * systems will support masking.</p> <p>Conveys the patient's 
-         * wishes relating to the sensitivity of the drug 
+         * wishes relating to the sensitivity of the drug.</p><p>The 
+         * attribute is optional because not all systems will support 
+         * masking.</p> Un-merged Business Name: 
+         * DispenseMaskingIndicator Relationship: 
+         * COCT_MT260010CA.SupplyEvent.confidentialityCode 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>An indication of 
+         * sensitivity surrounding the related drug, and thus defines 
+         * the required sensitivity for the detected issue.</p> 
+         * <p>Conveys the patient's wishes relating to the sensitivity 
+         * of the drug information.</p><p>The attribute is optional 
+         * because not all systems will support masking.</p> <p>Conveys 
+         * the patient's wishes relating to the sensitivity of the drug 
          * information.</p><p>The attribute is optional because not all 
-         * systems will support masking.</p> C:Dispense Masked 
-         * Indicator <p>An indication of sensitivity surrounding the 
-         * implicated drug, and thus defines the required sensitivity 
-         * for the detected issue.</p> <p>Conveys the patient's wishes 
-         * relating to the sensitivity of the drug.</p><p>The attribute 
-         * is optional because not all systems will support 
-         * masking.</p> <p>Conveys the patient's wishes relating to the 
-         * sensitivity of the drug.</p><p>The attribute is optional 
-         * because not all systems will support masking.</p> C:Dispense 
-         * Masking Indicator <p>An indication of sensitivity 
-         * surrounding the related drug, and thus defines the required 
-         * sensitivity for the detected issue.</p> <p>Conveys the 
-         * patient's wishes relating to the sensitivity of the drug 
+         * systems will support masking.</p> Un-merged Business Name: 
+         * DispenseMaskingIndicator Relationship: 
+         * PORX_MT980010CA.SupplyEvent.confidentialityCode 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>An indication of 
+         * sensitivity surrounding the related drug, and thus defines 
+         * the required sensitivity for the detected issue.</p> 
+         * <p>Conveys the patient's wishes relating to the sensitivity 
+         * of the drug information.</p><p>The attribute is optional 
+         * because not all systems will support masking.</p> <p>Conveys 
+         * the patient's wishes relating to the sensitivity of the drug 
          * information.</p><p>The attribute is optional because not all 
+         * systems will support masking.</p> Un-merged Business Name: 
+         * DispenseMaskedIndicator Relationship: 
+         * COCT_MT260020CA.SupplyEvent.confidentialityCode 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>An indication of 
+         * sensitivity surrounding the implicated drug, and thus 
+         * defines the required sensitivity for the detected issue.</p> 
+         * <p>Conveys the patient's wishes relating to the sensitivity 
+         * of the drug.</p><p>The attribute is optional because not all 
          * systems will support masking.</p> <p>Conveys the patient's 
-         * wishes relating to the sensitivity of the drug 
-         * information.</p><p>The attribute is optional because not all 
-         * systems will support masking.</p> C:Dispense Masked 
-         * Indicator <p>An indication of sensitivity surrounding the 
-         * implicated drug, and thus defines the required sensitivity 
-         * for the detected issue.</p> <p>Conveys the patient's wishes 
-         * relating to the sensitivity of the drug.</p><p>The attribute 
-         * is optional because not all systems will support 
-         * masking.</p> <p>Conveys the patient's wishes relating to the 
-         * sensitivity of the drug.</p><p>The attribute is optional 
-         * because not all systems will support masking.</p></remarks>
+         * wishes relating to the sensitivity of the drug.</p><p>The 
+         * attribute is optional because not all systems will support 
+         * masking.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"confidentialityCode"})]
         public x_VeryBasicConfidentialityKind ConfidentialityCode {
@@ -273,18 +333,57 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             set { this.confidentialityCode.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: PORX_MT980020CA.SupplyEvent.product 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * COCT_MT260010CA.SupplyEvent.product Conformance/Cardinality: 
+         * POPULATED (1) Un-merged Business Name: (no business name 
+         * specified) Relationship: PORX_MT980010CA.SupplyEvent.product 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * COCT_MT260020CA.SupplyEvent.product Conformance/Cardinality: 
+         * POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"product"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.Dispensed_1 Product {
             get { return this.product; }
             set { this.product = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: PORX_MT980020CA.SupplyEvent.location 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * COCT_MT260010CA.SupplyEvent.location 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT980010CA.SupplyEvent.location 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * COCT_MT260020CA.SupplyEvent.location 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"location"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.CreatedAt Location {
             get { return this.location; }
             set { this.location = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PORX_MT020020CA.Receiver.personalRelationship 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"receiver/personalRelationship"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged.RelatedPerson ReceiverPersonalRelationship {
             get { return this.receiverPersonalRelationship; }

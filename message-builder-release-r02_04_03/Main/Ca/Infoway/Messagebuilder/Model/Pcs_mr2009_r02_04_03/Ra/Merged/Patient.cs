@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,15 +24,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Ra.Merged {
 
 
     /**
-     * <summary>Patient</summary>
+     * <summary>Business Name: Patient</summary>
      * 
-     * <remarks>RCMR_MT010002CA.Patient: Patient <p>Indicates that 
-     * the keyword was changed by the patient themselves.</p> 
-     * <p>Sometimes keywords are changed by the patient, sometimes 
-     * by a patient representative.</p> RCMR_MT010001CA.Patient: 
-     * Patient <p>Indicates that consent was granted by the patient 
-     * themselves</p> <p>Allows assertion of who issued the 
-     * consent.</p></remarks>
+     * <remarks>RCMR_MT010002CA.Patient: Patient <p>Sometimes 
+     * keywords are changed by the patient, sometimes by a patient 
+     * representative.</p> <p>Indicates that the keyword was 
+     * changed by the patient themselves.</p> 
+     * RCMR_MT010001CA.Patient: Patient <p>Allows assertion of who 
+     * issued the consent.</p> <p>Indicates that consent was 
+     * granted by the patient themselves</p></remarks>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"RCMR_MT010001CA.Patient","RCMR_MT010002CA.Patient"})]
     public class Patient : MessagePartBean, Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.IConsenter {

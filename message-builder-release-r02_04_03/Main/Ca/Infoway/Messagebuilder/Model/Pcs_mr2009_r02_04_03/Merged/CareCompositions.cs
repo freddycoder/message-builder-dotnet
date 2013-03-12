@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,17 +31,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged {
 
 
     /**
-     * <summary>CareCompositions</summary>
+     * <summary>Business Name: CareCompositions</summary>
      * 
      * <remarks>COCT_MT011001CA.PatientCareProvisionEvent: Care 
-     * Compositions <p>A care composition is a record with two 
-     * purposes. It indicates that care of a given type has 
-     * occurred or is occurring. It also acts as a collector for 
-     * the events that happened during care, including who is 
-     * responsible for the care provided.</p> <p>Allows linking 
-     * records to encounters, condition and care-based 
-     * compositions. Useful for searching and navigation of the 
-     * patient's record.</p></remarks>
+     * Compositions <p>Allows linking records to encounters, 
+     * condition and care-based compositions. Useful for searching 
+     * and navigation of the patient's record.</p> <p>A care 
+     * composition is a record with two purposes. It indicates that 
+     * care of a given type has occurred or is occurring. It also 
+     * acts as a collector for the events that happened during 
+     * care, including who is responsible for the care 
+     * provided.</p></remarks>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"COCT_MT011001CA.PatientCareProvisionEvent","REPC_MT210001CA.PatientCareProvisionEvent2","REPC_MT210002CA.PatientCareProvisionEvent2","REPC_MT210003CA.PatientCareProvisionEvent2"})]
     public class CareCompositions : MessagePartBean {
@@ -61,19 +61,34 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged {
             this.attenderAssignees = new List<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt011001ca.IAssignees>();
         }
         /**
-         * <summary>B: Care Composition Identifier</summary>
+         * <summary>Un-merged Business Name: CareCompositionIdentifier</summary>
          * 
-         * <remarks><p>Unique identifier of an encounter, condition or 
-         * care-based collection.</p> <p>IMMUNIZATION 
+         * <remarks>Relationship: 
+         * COCT_MT011001CA.PatientCareProvisionEvent.id 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>IMMUNIZATION 
          * INTERPRETATION.REFERENCED DATA</p> <p>Allows care 
          * compositions to be uniquely identified and referenced.</p> 
-         * N: Referral Report Link <p>A unique identifier for the 
-         * report resulting from the action requested by this 
-         * referral.</p> <p>Provides a direct link between the referral 
-         * and the resulting report.</p> <p>This linkage may be 
-         * established after the document has been created if the 
-         * report provides a direct link to the referral.</p> N: 
-         * Referral Report Link</remarks>
+         * <p>Unique identifier of an encounter, condition or 
+         * care-based collection.</p> Un-merged Business Name: 
+         * ReferralReportLink Relationship: 
+         * REPC_MT210002CA.PatientCareProvisionEvent2.id 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Provides a direct 
+         * link between the referral and the resulting report.</p> 
+         * <p>This linkage may be established after the document has 
+         * been created if the report provides a direct link to the 
+         * referral.</p> <p>A unique identifier for the report 
+         * resulting from the action requested by this referral.</p> 
+         * Un-merged Business Name: ReferralReportLink Relationship: 
+         * REPC_MT210001CA.PatientCareProvisionEvent2.id 
+         * Conformance/Cardinality: REQUIRED (0-1) Un-merged Business 
+         * Name: ReferralReportLink Relationship: 
+         * REPC_MT210003CA.PatientCareProvisionEvent2.id 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Provides a direct 
+         * link between the referral and the resulting report.</p> 
+         * <p>This linkage may be established after the document has 
+         * been created if the report provides a direct link to the 
+         * referral.</p> <p>A unique identifier for the report 
+         * resulting from the action requested by this referral.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -82,20 +97,22 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged {
         }
 
         /**
-         * <summary>CareCompositionType</summary>
+         * <summary>Business Name: CareCompositionType</summary>
          * 
-         * <remarks>A: Care Composition Type <p>Identifies the kind of 
-         * composition represented. Examples include encounters 
-         * (&quot;Emergency Encounter&quot;, &quot;Long Term Care 
-         * Encounter&quot;, etc), health condition (episode)-based 
-         * collections (e.g. &quot;Diabetes&quot;, 
-         * &quot;Hypertension&quot;, etc) and general care-based 
-         * collections such as &quot;gynecological care&quot;.</p> 
-         * <p>IMMUNIZATION INTERPRETATION.REFERENCED DATA</p> <p>EPHS: 
-         * vocab concepts needed for LAB ID, Special Considerations ID 
-         * etc.</p> <p>Allows care compositions to be captured and 
-         * categorized at different levels of abstraction, and is 
-         * therefore mandatory.</p></remarks>
+         * <remarks>Un-merged Business Name: CareCompositionType 
+         * Relationship: COCT_MT011001CA.PatientCareProvisionEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>IMMUNIZATION 
+         * INTERPRETATION.REFERENCED DATA</p> <p>EPHS: vocab concepts 
+         * needed for LAB ID, Special Considerations ID etc.</p> 
+         * <p>Allows care compositions to be captured and categorized 
+         * at different levels of abstraction, and is therefore 
+         * mandatory.</p> <p>Identifies the kind of composition 
+         * represented. Examples include encounters (&quot;Emergency 
+         * Encounter&quot;, &quot;Long Term Care Encounter&quot;, etc), 
+         * health condition (episode)-based collections (e.g. 
+         * &quot;Diabetes&quot;, &quot;Hypertension&quot;, etc) and 
+         * general care-based collections such as &quot;gynecological 
+         * care&quot;.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public ActCareEventType Code {
@@ -104,9 +121,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged {
         }
 
         /**
-         * <summary>CareCompositionEffectiveDate</summary>
+         * <summary>Business Name: CareCompositionEffectiveDate</summary>
          * 
-         * <remarks>Care Composition Effective Date</remarks>
+         * <remarks>Un-merged Business Name: 
+         * CareCompositionEffectiveDate Relationship: 
+         * COCT_MT011001CA.PatientCareProvisionEvent.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"effectiveTime"})]
         public Interval<PlatformDate> EffectiveTime {
@@ -114,16 +134,38 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged {
             set { this.effectiveTime.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: COCT_MT011001CA.Admitter.assignees 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"admitter/assignees"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt011001ca.IAssignees> AdmitterAssignees {
             get { return this.admitterAssignees; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: COCT_MT011001CA.Attender.assignees 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"attender/assignees"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt011001ca.IAssignees> AttenderAssignees {
             get { return this.attenderAssignees; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * COCT_MT011001CA.PatientCareProvisionEvent.location 
+         * Conformance/Cardinality: REQUIRED (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"location"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.OccurredAt Location {
             get { return this.location; }

@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -41,19 +41,29 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged {
             this.component3Reference = new List<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged.Reference>();
         }
         /**
-         * <summary>DocumentOverviewContent</summary>
+         * <summary>Business Name: DocumentOverviewContent</summary>
          * 
-         * <remarks>M: Document Overview Content <p>Provides the 
+         * <remarks>Un-merged Business Name: DocumentOverviewContent 
+         * Relationship: REPC_MT220001CA.Section.text 
+         * Conformance/Cardinality: MANDATORY (1) <p>Represents the 
+         * principle content of the document and therefore is 
+         * mandatory.</p> <p>There is no guidance provided within the 
+         * standard on how report content should be organized or 
+         * formatted. Guidance may be provided by professional 
+         * colleges, specialty groups or others.</p> <p>Provides the 
          * primary rendered textual content of the document.</p><p>E.g. 
          * The cover letter for a referral, the overview portion of a 
-         * report, etc.</p> <p>Provides the primary rendered textual 
-         * content of the document.</p><p>E.g. The cover letter for a 
-         * referral, the overview portion of a report, etc.</p> 
-         * <p>Represents the principle content of the document and 
-         * therefore is mandatory.</p> <p>There is no guidance provided 
-         * within the standard on how report content should be 
-         * organized or formatted. Guidance may be provided by 
-         * professional colleges, specialty groups or others.</p></remarks>
+         * report, etc.</p> Un-merged Business Name: 
+         * DocumentOverviewContent Relationship: 
+         * REPC_MT220003CA.Section.text Conformance/Cardinality: 
+         * MANDATORY (1) <p>Represents the principle content of the 
+         * document and therefore is mandatory.</p> <p>There is no 
+         * guidance provided within the standard on how report content 
+         * should be organized or formatted. Guidance may be provided 
+         * by professional colleges, specialty groups or others.</p> 
+         * <p>Provides the primary rendered textual content of the 
+         * document.</p><p>E.g. The cover letter for a referral, the 
+         * overview portion of a report, etc.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"text"})]
         public EncapsulatedData Text {
@@ -61,17 +71,48 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged {
             set { this.text.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * REPC_MT220001CA.Component4.documentContent 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT220003CA.Component4.documentContent 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"component1/documentContent"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged.IDocumentContent_2 Component1DocumentContent {
             get { return this.component1DocumentContent; }
             set { this.component1DocumentContent = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: REPC_MT220001CA.Component.subSection 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT220003CA.Component.subSection 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"component2/subSection"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged.DocumentSections> Component2SubSection {
             get { return this.component2SubSection; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: REPC_MT220001CA.Component5.reference 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT220003CA.Component5.reference 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"component3/reference"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged.Reference> Component3Reference {
             get { return this.component3Reference; }

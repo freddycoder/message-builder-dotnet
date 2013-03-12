@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,10 +27,10 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Merged {
     /**
      * <summary>POLB_MT004100CA.Performer: Culture Performer Person</summary>
      * 
-     * <remarks><p>Performer Clone</p> POLB_MT004200CA.Performer: 
-     * was performed by <p>Associates the report with the 
-     * entity(ies) that performed or conducted (the observations) 
-     * which make up the focal report.</p></remarks>
+     * <p>Performer Clone</p> POLB_MT004200CA.Performer: was 
+     * performed by <p>Associates the report with the entity(ies) 
+     * that performed or conducted (the observations) which make up 
+     * the focal report.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"POLB_MT004100CA.Performer","POLB_MT004200CA.Performer"})]
     public class WasPerformedBy : MessagePartBean {
@@ -39,6 +39,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Merged {
 
         public WasPerformedBy() {
         }
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: POLB_MT004100CA.Performer.roleChoice 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * POLB_MT004200CA.Performer.roleChoice 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"roleChoice"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.IRoleChoice RoleChoice {
             get { return this.roleChoice; }

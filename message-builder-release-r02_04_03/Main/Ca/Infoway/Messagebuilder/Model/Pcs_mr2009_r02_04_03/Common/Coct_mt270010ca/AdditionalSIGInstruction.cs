@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,13 +28,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt270
 
 
     /**
-     * <summary>Additional SIG Instruction</summary>
+     * <summary>Business Name: Additional SIG Instruction</summary>
      * 
-     * <remarks><p>This is a modifier for a specific dosage line or 
-     * for the entire SIG. Examples are: On empty stomach, At 
-     * breakfast, before bedtime, etc.</p> <p>Adds further 
-     * constraint or flexibility to the primary administration 
-     * instruction.</p></remarks>
+     * <p>Adds further constraint or flexibility to the primary 
+     * administration instruction.</p> <p>This is a modifier for a 
+     * specific dosage line or for the entire SIG. Examples are: On 
+     * empty stomach, At breakfast, before bedtime, etc.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"COCT_MT270010CA.SupplementalInstruction"})]
     public class AdditionalSIGInstruction : MessagePartBean {
@@ -47,36 +46,21 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt270
             this.text = new STImpl();
         }
         /**
-         * <summary>Dosage Usage Context</summary>
+         * <summary>Business Name: Dosage Usage Context</summary>
          * 
-         * <remarks><p>- moodCode must be DEFN for drug definitions 
-         * (such as as monographs) - moodCode must be RQO for orders; - 
-         * moodCode must be EVN for dispenses and recording of other 
-         * medications { x.; }</p> <p>Indicates the context of the 
-         * administration.</p><p>moodCode = RQO, for administration 
-         * instruction on orders</p><p>moodCode = EVN, for 
-         * administration instruction on dispenses</p><p>moodCode = 
-         * DEF, for administration instruction on medication definition 
-         * documents/references (typically, monographs).</p> 
+         * <remarks>Relationship: 
+         * COCT_MT270010CA.SupplementalInstruction.moodCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>- moodCode must be 
+         * DEFN for drug definitions (such as as monographs) - moodCode 
+         * must be RQO for orders; - moodCode must be EVN for dispenses 
+         * and recording of other medications { x.; }</p> <p>Puts the 
+         * class in context, and is therefore mandatory.</p> 
          * <p>Indicates the context of the 
          * administration.</p><p>moodCode = RQO, for administration 
          * instruction on orders</p><p>moodCode = EVN, for 
          * administration instruction on dispenses</p><p>moodCode = 
          * DEF, for administration instruction on medication definition 
-         * documents/references (typically, monographs).</p> 
-         * <p>Indicates the context of the 
-         * administration.</p><p>moodCode = RQO, for administration 
-         * instruction on orders</p><p>moodCode = EVN, for 
-         * administration instruction on dispenses</p><p>moodCode = 
-         * DEF, for administration instruction on medication definition 
-         * documents/references (typically, monographs).</p> 
-         * <p>Indicates the context of the 
-         * administration.</p><p>moodCode = RQO, for administration 
-         * instruction on orders</p><p>moodCode = EVN, for 
-         * administration instruction on dispenses</p><p>moodCode = 
-         * DEF, for administration instruction on medication definition 
-         * documents/references (typically, monographs).</p> <p>Puts 
-         * the class in context, and is therefore mandatory.</p></remarks>
+         * documents/references (typically, monographs).</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"moodCode"})]
         public x_ActMoodDefEvnRqo MoodCode {
@@ -85,20 +69,18 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt270
         }
 
         /**
-         * <summary>F:Additional Dosage Instruction</summary>
+         * <summary>Business Name: F:Additional Dosage Instruction</summary>
          * 
-         * <remarks><p>A free form textual description of extended 
-         * instruction regarding the administration of the drug.</p> 
-         * <p>ZDP.13.8</p> <p>Allows for expression of non-codable 
-         * qualifiers such as: 'on an empty stomach', 'add water' etc; 
-         * which do not affect calculations of frequencies or 
-         * quantity.</p><p>This attribute is marked as 'mandatory' as 
-         * it is the only information that can be specified here.</p> 
+         * <remarks>Relationship: 
+         * COCT_MT270010CA.SupplementalInstruction.text 
+         * Conformance/Cardinality: MANDATORY (1) <p>ZDP.13.8</p> 
          * <p>Allows for expression of non-codable qualifiers such as: 
          * 'on an empty stomach', 'add water' etc; which do not affect 
          * calculations of frequencies or quantity.</p><p>This 
          * attribute is marked as 'mandatory' as it is the only 
-         * information that can be specified here.</p></remarks>
+         * information that can be specified here.</p> <p>A free form 
+         * textual description of extended instruction regarding the 
+         * administration of the drug.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"text"})]
         public String Text {

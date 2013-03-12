@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,6 +25,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged;
 
 
+    /**
+     * <summary>Business Name: FICR_IN404102CA: Special 
+     * Authorization Summary Query Response</summary>
+     * 
+     * <p>Returns summary level Special Authorization Requests 
+     * based on submitted query parameters.</p> Message: 
+     * MCCI_MT002300CA.Message Control Act: 
+     * QUQI_MT120008CA.ControlActEvent --> Payload: 
+     * FICR_MT490101CA.SpecialAuthorizationRequest --> Payload: 
+     * FICR_MT490001CA.ParameterList
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"FICR_IN404102CA"})]
     public class SpecialAuthorizationSummaryQueryResponse : HL7Message_1<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.TriggerEvent_6<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Merged.SpecialAuthorizationRequest,Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Merged.ParameterList_1>>, IInteraction {
 

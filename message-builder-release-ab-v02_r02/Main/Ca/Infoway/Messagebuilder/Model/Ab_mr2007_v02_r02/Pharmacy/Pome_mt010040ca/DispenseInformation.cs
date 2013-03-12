@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,13 +24,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Pome_mt0100
 
 
     /**
-     * <summary>Dispense Information</summary>
+     * <summary>Business Name: Dispense Information</summary>
      * 
-     * <remarks><p>At least one of the 2 components of 
-     * SupplyDefinition3 First Fill Period or Refill Period must be 
-     * specified.</p> <p>Indicates how the drug should be supplied 
-     * and/or who can dispense it.</p> <p>Needed to understand 
-     * limits on how dispenses can be performed.</p></remarks>
+     * <p>At least one of the 2 components of SupplyDefinition3 
+     * First Fill Period or Refill Period must be specified.</p> 
+     * <p>Indicates how the drug should be supplied and/or who can 
+     * dispense it.</p> <p>Needed to understand limits on how 
+     * dispenses can be performed.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"POME_MT010040CA.DispenseGuidelines"})]
     public class DispenseInformation : MessagePartBean {
@@ -40,12 +40,24 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Pome_mt0100
 
         public DispenseInformation() {
         }
+        /**
+         * <summary>Relationship: 
+         * POME_MT010040CA.Component2.subsequentDispense</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"component1/subsequentDispense"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Pome_mt010040ca.SubsequentDispense Component1SubsequentDispense {
             get { return this.component1SubsequentDispense; }
             set { this.component1SubsequentDispense = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * POME_MT010040CA.Component.initialDispense</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"component2/initialDispense"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Pome_mt010040ca.DrugValidityPeriod Component2InitialDispense {
             get { return this.component2InitialDispense; }

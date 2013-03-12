@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -50,7 +50,7 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Impl {
 	
 		private const long serialVersionUID = 9117867441166259585L;
 	
-		public static IList<String> ALLOWED_LANGUAGES = ILOG.J2CsMapping.Collections.Generics.Arrays.AsList("en-CA","fr-Ca");
+		public static IList<String> ALLOWED_LANGUAGES = ILOG.J2CsMapping.Collections.Generics.Arrays.AsList("en-CA","fr-CA");
 	
 		private String language;
 	

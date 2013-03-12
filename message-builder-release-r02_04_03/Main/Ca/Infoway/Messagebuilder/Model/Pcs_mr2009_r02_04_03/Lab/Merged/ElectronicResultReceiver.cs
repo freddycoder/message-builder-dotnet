@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,14 +30,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Merged {
     /**
      * <summary>POLB_MT002000CA.Receiver: (no business name)</summary>
      * 
-     * <remarks><p>Distribution List</p> POLB_MT004000CA.Receiver: 
-     * Electronic Receiver <p>These are the persons or 
-     * organizations identifed on the Distribution List.</p> 
-     * <p>Distribution List</p> POLB_MT004100CA.Receiver: (no 
-     * business name) <p>Receiver Clone</p> 
-     * POLB_MT004200CA.Receiver: Electronic Result Receiver 
-     * <p>Identifies the healthcare providers who are to receive 
-     * electronic copies of the result via the JLIS.</p></remarks>
+     * <p>Distribution List</p> POLB_MT004000CA.Receiver: 
+     * Electronic Receiver <p>Distribution List</p> <p>These are 
+     * the persons or organizations identifed on the Distribution 
+     * List.</p> POLB_MT004100CA.Receiver: (no business name) 
+     * <p>Receiver Clone</p> POLB_MT004200CA.Receiver: Electronic 
+     * Result Receiver <p>Identifies the healthcare providers who 
+     * are to receive electronic copies of the result via the 
+     * JLIS.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"POLB_MT002000CA.Receiver","POLB_MT004000CA.Receiver","POLB_MT004100CA.Receiver","POLB_MT004200CA.Receiver"})]
     public class ElectronicResultReceiver : MessagePartBean {
@@ -48,12 +48,44 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Merged {
         public ElectronicResultReceiver() {
             this.contextControlCode = new CSImpl();
         }
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * POLB_MT002000CA.Receiver.contextControlCode 
+         * Conformance/Cardinality: REQUIRED (0-1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * POLB_MT004000CA.Receiver.contextControlCode 
+         * Conformance/Cardinality: REQUIRED (0-1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * POLB_MT004100CA.Receiver.contextControlCode 
+         * Conformance/Cardinality: REQUIRED (0-1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * POLB_MT004200CA.Receiver.contextControlCode 
+         * Conformance/Cardinality: REQUIRED (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"contextControlCode"})]
         public ContextControl ContextControlCode {
             get { return (ContextControl) this.contextControlCode.Value; }
             set { this.contextControlCode.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: POLB_MT002000CA.Receiver.roleChoice 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * POLB_MT004000CA.Receiver.roleChoice Conformance/Cardinality: 
+         * POPULATED (1) Un-merged Business Name: (no business name 
+         * specified) Relationship: POLB_MT004100CA.Receiver.roleChoice 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * POLB_MT004200CA.Receiver.roleChoice Conformance/Cardinality: 
+         * POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"roleChoice"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.IRoleChoice RoleChoice {
             get { return this.roleChoice; }

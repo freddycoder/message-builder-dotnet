@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged;
 
 
+    /**
+     * <summary>Business Name: FICR_IN404001CA: Special 
+     * Authorization Additional Information Reque</summary>
+     * 
+     * <p>Indicates that the Payor requires additional information 
+     * in order to adjudicate the Special Authorization 
+     * Request.</p> Message: MCCI_MT002100CA.Message Control Act: 
+     * MCAI_MT700211CA.ControlActEvent --> Payload: 
+     * FICR_MT490003CA.SpecialAuthorizationAdditionalInformationRequest
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"FICR_IN404001CA"})]
     public class SpecialAuthorizationAdditionalInformationReque : HL7Message_1<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Mcai_mt700211ca.TriggerEvent<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Merged.SpecialAuthorizationAdditionalInformationRequest>>, IInteraction {
 

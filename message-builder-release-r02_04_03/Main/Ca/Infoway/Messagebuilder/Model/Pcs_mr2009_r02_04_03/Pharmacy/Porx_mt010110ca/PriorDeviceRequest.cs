@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,17 +35,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Porx_mt0
             this.id = new IIImpl();
         }
         /**
-         * <summary>B:Previous Prescription Order Number</summary>
+         * <summary>Business Name: B:Previous Prescription Order Number</summary>
          * 
-         * <remarks><p>A reference to a previous prescription which the 
-         * current prescription replaces.</p> <p>Allows a prescription 
-         * renewal (this prescription) to note the previous 
-         * prescription id that was renewed;</p><p>Allows tracking a 
-         * therapy across multiple renewal prescriptions.</p> <p>Allows 
-         * a prescription renewal (this prescription) to note the 
+         * <remarks>Relationship: PORX_MT010110CA.PriorDeviceRequest.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows a 
+         * prescription renewal (this prescription) to note the 
          * previous prescription id that was renewed;</p><p>Allows 
          * tracking a therapy across multiple renewal 
-         * prescriptions.</p></remarks>
+         * prescriptions.</p> <p>A reference to a previous prescription 
+         * which the current prescription replaces.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {

@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,6 +30,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt510
 
         public Reason2() {
         }
+        /**
+         * <summary>Relationship: 
+         * FICR_MT510201CA.Reason2.adjudicatedInvoiceElementGroup</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"adjudicatedInvoiceElementGroup"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt510201ca.AdjudicatedInvoiceElementGroup AdjudicatedInvoiceElementGroup {
             get { return this.adjudicatedInvoiceElementGroup; }

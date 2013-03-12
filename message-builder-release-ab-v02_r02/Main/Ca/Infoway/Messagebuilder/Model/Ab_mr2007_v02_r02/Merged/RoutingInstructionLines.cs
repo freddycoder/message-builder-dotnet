@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
 
 
     /**
-     * <summary>RoutingInstructionLines</summary>
+     * <summary>Business Name: RoutingInstructionLines</summary>
      * 
      * <remarks>MCCI_MT000300CA.AttentionLine: Routing Instruction 
      * Lines <p>Provides information on how the message should be 
@@ -69,15 +69,38 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             this.value = new STImpl();
         }
         /**
-         * <summary>RoutingType</summary>
+         * <summary>Business Name: RoutingType</summary>
          * 
-         * <remarks>A:Routing Type <p>A particular type of guidance for 
-         * routing the message.</p> <p>Allows categorization of routing 
-         * types or support for multiple route pieces. Mandatory to 
-         * understand the routing information.</p> A:Routing Type <p>A 
-         * particular type of guidance for routing the message.</p> 
-         * <p>Allows categorization of routing types or support for 
-         * multiple route pieces. Mandatory to understand the routing 
+         * <remarks>Un-merged Business Name: RoutingType Relationship: 
+         * MCCI_MT000300CA.AttentionLine.keyWordText 
+         * Conformance/Cardinality: MANDATORY (1) <p>A particular type 
+         * of guidance for routing the message.</p> <p>Allows 
+         * categorization of routing types or support for multiple 
+         * route pieces. Mandatory to understand the routing 
+         * information.</p> Un-merged Business Name: RoutingType 
+         * Relationship: MCCI_MT000100CA.AttentionLine.keyWordText 
+         * Conformance/Cardinality: MANDATORY (1) <p>A particular type 
+         * of guidance for routing the message.</p> <p>Allows 
+         * categorization of routing types or support for multiple 
+         * route pieces. Mandatory to understand the routing 
+         * information.</p> Un-merged Business Name: RoutingType 
+         * Relationship: MCCI_MT102001CA.AttentionLine.keyWordText 
+         * Conformance/Cardinality: MANDATORY (1) <p>A particular type 
+         * of guidance for routing the message.</p> <p>Allows 
+         * categorization of routing types or support for multiple 
+         * route pieces. Mandatory to understand the routing 
+         * information.</p> Un-merged Business Name: RoutingType 
+         * Relationship: MCCI_MT002300CA.AttentionLine.keyWordText 
+         * Conformance/Cardinality: MANDATORY (1) <p>A particular type 
+         * of guidance for routing the message.</p> <p>Allows 
+         * categorization of routing types or support for multiple 
+         * route pieces. Mandatory to understand the routing 
+         * information.</p> Un-merged Business Name: RoutingType 
+         * Relationship: MCCI_MT002100CA.AttentionLine.keyWordText 
+         * Conformance/Cardinality: MANDATORY (1) <p>A particular type 
+         * of guidance for routing the message.</p> <p>Allows 
+         * categorization of routing types or support for multiple 
+         * route pieces. Mandatory to understand the routing 
          * information.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"keyWordText"})]
@@ -87,13 +110,31 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>RoutingName</summary>
+         * <summary>Business Name: RoutingName</summary>
          * 
-         * <remarks>B:Routing Name <p>Indicates the specific value used 
-         * to route the item.</p> <p>Allows internal routing within an 
-         * application.</p> B:Routing Name <p>Indicates the specific 
-         * value used to route the item.</p> <p>Allows internal routing 
-         * within an application.</p></remarks>
+         * <remarks>Un-merged Business Name: RoutingName Relationship: 
+         * MCCI_MT000300CA.AttentionLine.value Conformance/Cardinality: 
+         * REQUIRED (0-1) <p>Indicates the specific value used to route 
+         * the item.</p> <p>Allows internal routing within an 
+         * application.</p> Un-merged Business Name: RoutingName 
+         * Relationship: MCCI_MT000100CA.AttentionLine.value 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
+         * specific value used to route the item.</p> <p>Allows 
+         * internal routing within an application.</p> Un-merged 
+         * Business Name: RoutingName Relationship: 
+         * MCCI_MT102001CA.AttentionLine.value Conformance/Cardinality: 
+         * REQUIRED (0-1) <p>Indicates the specific value used to route 
+         * the item.</p> <p>Allows internal routing within an 
+         * application.</p> Un-merged Business Name: RoutingName 
+         * Relationship: MCCI_MT002300CA.AttentionLine.value 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
+         * specific value used to route the item.</p> <p>Allows 
+         * internal routing within an application.</p> Un-merged 
+         * Business Name: RoutingName Relationship: 
+         * MCCI_MT002100CA.AttentionLine.value Conformance/Cardinality: 
+         * REQUIRED (0-1) <p>Indicates the specific value used to route 
+         * the item.</p> <p>Allows internal routing within an 
+         * application.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"value"})]
         public String Value {

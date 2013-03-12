@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
 
 
     /**
-     * <summary>FirstDispenseInformation</summary>
+     * <summary>Business Name: FirstDispenseInformation</summary>
      * 
      * <remarks>PORX_MT060060CA.SupplyEventFirstSummary: First 
      * Dispense Information <p>Provides summary information about 
@@ -52,14 +52,20 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
             this.quantity = new INTImpl();
         }
         /**
-         * <summary>FirstDispensePickupDate</summary>
+         * <summary>Business Name: FirstDispensePickupDate</summary>
          * 
-         * <remarks>A:First Dispense Pickup Date <p>Indicates when the 
-         * first dispense against the prescription was picked up.</p> 
+         * <remarks>Un-merged Business Name: FirstDispensePickupDate 
+         * Relationship: 
+         * PORX_MT060060CA.SupplyEventFirstSummary.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates when 
+         * the first dispense against the prescription was picked 
+         * up.</p> <p>Useful in establishing start of 
+         * therapy.</p><p>Important information for compliance.</p> 
          * <p>Useful in establishing start of therapy.</p><p>Important 
-         * information for compliance.</p> <p>Useful in establishing 
-         * start of therapy.</p><p>Important information for 
-         * compliance.</p> First Dispense Pickup Date <p>Indicates when 
+         * information for compliance.</p> Un-merged Business Name: 
+         * FirstDispensePickupDate Relationship: 
+         * PORX_MT060040CA.SupplyEventFirstSummary.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates when 
          * the first dispense against the prescription was picked 
          * up.</p> <p>Useful in establishing start of 
          * therapy.</p><p>Important information for compliance.</p> 
@@ -73,21 +79,27 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
         }
 
         /**
-         * <summary>FirstQuantityDispensed</summary>
+         * <summary>Business Name: FirstQuantityDispensed</summary>
          * 
-         * <remarks>First Quantity Dispensed <p>Indicates the amount of 
-         * device first dispensed on the prescription.</p> <p>Usually 
-         * establishes trial quantities for a prescription. If the 
-         * first dispense is known, then the quantity must be known, 
-         * thus the element is mandatory.</p> B:First Quantity 
-         * Dispensed <p>Indicates the number of devices first dispensed 
-         * on the prescription.</p> <p>Usually establishes trial 
-         * quantities for a prescription.</p><p>Because the quantity 
-         * should always be known if the first dispense is known, this 
-         * attribute is mandatory.</p> <p>Usually establishes trial 
-         * quantities for a prescription.</p><p>Because the quantity 
-         * should always be known if the first dispense is known, this 
-         * attribute is mandatory.</p></remarks>
+         * <remarks>Un-merged Business Name: FirstQuantityDispensed 
+         * Relationship: 
+         * PORX_MT060060CA.SupplyEventFirstSummary.quantity 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the 
+         * number of devices first dispensed on the prescription.</p> 
+         * <p>Usually establishes trial quantities for a 
+         * prescription.</p><p>Because the quantity should always be 
+         * known if the first dispense is known, this attribute is 
+         * mandatory.</p> <p>Usually establishes trial quantities for a 
+         * prescription.</p><p>Because the quantity should always be 
+         * known if the first dispense is known, this attribute is 
+         * mandatory.</p> Un-merged Business Name: 
+         * FirstQuantityDispensed Relationship: 
+         * PORX_MT060040CA.SupplyEventFirstSummary.quantity 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the 
+         * amount of device first dispensed on the prescription.</p> 
+         * <p>Usually establishes trial quantities for a prescription. 
+         * If the first dispense is known, then the quantity must be 
+         * known, thus the element is mandatory.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"quantity"})]
         public int? Quantity {

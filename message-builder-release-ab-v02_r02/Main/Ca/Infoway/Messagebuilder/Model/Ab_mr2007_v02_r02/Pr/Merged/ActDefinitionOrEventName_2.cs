@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Merged {
 
 
     /**
-     * <summary>ActDefinitionOrEventName</summary>
+     * <summary>Business Name: ActDefinitionOrEventName</summary>
      * 
      * <remarks>PRPM_MT309000CA.ActDefinitionOrEvent: Act 
      * Definition or Event Name <p>A record of something that is 
@@ -83,12 +83,20 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Merged {
             this.sequel = new List<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt306011ca.SequelTo>();
         }
         /**
-         * <summary>ActDefinitionOrEventNameEffectiveTime</summary>
+         * <summary>Business Name: 
+         * ActDefinitionOrEventNameEffectiveTime</summary>
          * 
-         * <remarks>Act Definition or Event Name Effective Time 
-         * <p>Effective Time with regard to the act involved</p> 
-         * <p>Required attribute indicating effective time of this 
-         * act</p></remarks>
+         * <remarks>Un-merged Business Name: 
+         * ActDefinitionOrEventNameEffectiveTime Relationship: 
+         * PRPM_MT306011CA.ActDefinitionOrEvent.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Effective Time 
+         * with regard to the act involved</p> <p>Required attribute 
+         * indicating effective time of this act</p> Un-merged Business 
+         * Name: ActDefinitionOrEventNameEffectiveTime Relationship: 
+         * PRPM_MT309000CA.ActDefinitionOrEvent.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Effective Time 
+         * with regard to the act involved</p> <p>Required attribute 
+         * indicating effective time of this act</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"effectiveTime"})]
         public Interval<PlatformDate> EffectiveTime {
@@ -96,11 +104,30 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Merged {
             set { this.effectiveTime.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PRPM_MT306011CA.ActDefinitionOrEvent.location 
+         * Conformance/Cardinality: REQUIRED (0-25) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PRPM_MT309000CA.ActDefinitionOrEvent.location 
+         * Conformance/Cardinality: OPTIONAL (0-25)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"location"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Merged.Location_2> Location {
             get { return this.location; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PRPM_MT306011CA.ActDefinitionOrEvent.sequel 
+         * Conformance/Cardinality: REQUIRED (0-25)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"sequel"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt306011ca.SequelTo> Sequel {
             get { return this.sequel; }

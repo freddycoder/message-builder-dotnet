@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,6 +27,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged;
 
 
+    /**
+     * <summary>Business Name: PORX_IN050040CA: Patient drug 
+     * contraindications query response</summary>
+     * 
+     * <remarks>Message: MCCI_MT002300CA.Message Control Act: 
+     * QUQI_MT120006CA.ControlActEvent --> Payload: 
+     * COCT_MT260020CA.DetectedIssueEvent --> Payload: 
+     * PORX_MT050020CA.ParameterList</remarks>
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"PORX_IN050040CA"})]
     public class PatientDrugContraindicationsQueryResponse : HL7Message<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged.TriggerEvent_4<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.Issues,Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged.GenericQueryParameters>>, IInteraction {
 

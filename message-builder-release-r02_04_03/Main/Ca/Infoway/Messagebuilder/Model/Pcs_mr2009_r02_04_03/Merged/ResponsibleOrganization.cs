@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,25 +33,25 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged {
      * <summary>COCT_MT090102CA.Organization: Responsible 
      * organization</summary>
      * 
-     * <remarks><p>Identifies the organization or group on whose 
-     * behalf the action is performed.</p> <p>Used for determining 
-     * responsibility and potentially confirming permissions.</p> 
+     * <p>Used for determining responsibility and potentially 
+     * confirming permissions.</p> <p>Identifies the organization 
+     * or group on whose behalf the action is performed.</p> 
      * COCT_MT090502CA.Organization: Responsible organization 
-     * <p>Identifies the organization or group on whose behalf the 
-     * action is performed.</p> <p>Used for determining 
-     * responsibility and potentially confirming permissions.</p> 
+     * <p>Used for determining responsibility and potentially 
+     * confirming permissions.</p> <p>Identifies the organization 
+     * or group on whose behalf the action is performed.</p> 
      * COCT_MT080100CA.Organization: Specimen Scoping Organization 
-     * <p>Identifies the organization or group assigning the 
-     * associated specimen identifier.</p> <p>To identify or name 
-     * the specimen identifier scoping organization.</p> 
+     * <p>To identify or name the specimen identifier scoping 
+     * organization.</p> <p>Identifies the organization or group 
+     * assigning the associated specimen identifier.</p> 
      * COCT_MT090508CA.Organization: Responsible organization 
-     * <p>Identifies the organization on whose behalf the action is 
-     * performed.</p> <p>Used for determining responsibility and 
-     * potentially confirming permissions.</p> 
+     * <p>Used for determining responsibility and potentially 
+     * confirming permissions.</p> <p>Identifies the organization 
+     * on whose behalf the action is performed.</p> 
      * COCT_MT090108CA.Organization: Responsible organization 
-     * <p>Identifies the organization on whose behalf the action is 
-     * performed.</p> <p>Used for determining responsibility and 
-     * potentially confirming permissions.</p></remarks>
+     * <p>Used for determining responsibility and potentially 
+     * confirming permissions.</p> <p>Identifies the organization 
+     * on whose behalf the action is performed.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"COCT_MT080100CA.Organization","COCT_MT090102CA.Organization","COCT_MT090108CA.Organization","COCT_MT090502CA.Organization","COCT_MT090508CA.Organization","COCT_MT260010CA.Organization","COCT_MT260020CA.Organization","COCT_MT260030CA.Organization","PORX_MT010110CA.Organization","PORX_MT010120CA.Organization","PORX_MT060040CA.Organization","PORX_MT060340CA.Organization"})]
     public class ResponsibleOrganization : MessagePartBean {
@@ -68,35 +68,70 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged {
             this.assignedOrganizationTelecom = new SETImpl<TEL, TelecommunicationAddress>(typeof(TELImpl));
         }
         /**
-         * <summary>C:Payor Name</summary>
+         * <summary>Un-merged Business Name: OrganizationName</summary>
          * 
-         * <remarks><p>The name of the organization responsible for 
-         * issuing the coverage extension</p> <p>Mandatory for display 
-         * purposes.</p> Payor Name <p>The name of the organization 
+         * <remarks>Relationship: COCT_MT090102CA.Organization.name 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows for human 
+         * recognition of the organization as well as confirmation of 
+         * the identifier. As a result, the attribute is mandatory.</p> 
+         * <p>Identifies the name of the organization</p> Un-merged 
+         * Business Name: KnowledgebaseVendorName Relationship: 
+         * COCT_MT260030CA.Organization.name Conformance/Cardinality: 
+         * MANDATORY (1) <p>Allows a knowledgebase vendor to be 
+         * referenced by name.</p><p>The attribute is mandatory because 
+         * it is the only information collected about a knowledgebase 
+         * vendor.</p> <p>The name of a clinical knowledgebase vendor 
+         * organization.</p> Un-merged Business Name: PayorName 
+         * Relationship: PORX_MT060340CA.Organization.name 
+         * Conformance/Cardinality: MANDATORY (1) <p>Mandatory for 
+         * display purposes.</p> <p>The name of the organization 
          * responsible for issuing the coverage extension.</p> 
-         * <p>Mandatory for display purposes.</p> C:Knowledgebase 
-         * Vendor Name <p>The name of a clinical knowledgebase vendor 
-         * organization.</p> <p>Allows a knowledgebase vendor to be 
+         * Un-merged Business Name: OrganizationName Relationship: 
+         * COCT_MT090502CA.Organization.name Conformance/Cardinality: 
+         * MANDATORY (1) <p>Allows for human recognition of the 
+         * organization as well as confirmation of the identifier. As a 
+         * result, the attribute is mandatory.</p> <p>Identifies the 
+         * name of the organization</p> Un-merged Business Name: 
+         * PayorName Relationship: PORX_MT010120CA.Organization.name 
+         * Conformance/Cardinality: MANDATORY (1) <p>Mandatory for 
+         * display purposes.</p> <p>The name of the organization 
+         * responsible for issuing the coverage extension</p> Un-merged 
+         * Business Name: OrganizationName Relationship: 
+         * COCT_MT080100CA.Organization.name Conformance/Cardinality: 
+         * MANDATORY (1) <p>Allows for human recognition of the 
+         * organization as well as confirmation of the identifier. As a 
+         * result, the attribute is mandatory.</p> <p>Identifies the 
+         * name of the organization</p> Un-merged Business Name: 
+         * OrganizationName Relationship: 
+         * COCT_MT090508CA.Organization.name Conformance/Cardinality: 
+         * MANDATORY (1) <p>Allows for human recognition of the 
+         * organization as well as confirmation of the identifier. As a 
+         * result, the attribute is mandatory.</p> <p>Identifies the 
+         * name of the organization</p> Un-merged Business Name: 
+         * OrganizationName Relationship: 
+         * COCT_MT090108CA.Organization.name Conformance/Cardinality: 
+         * REQUIRED (0-1) <p>Allows for human recognition of the 
+         * organization as well as confirmation of the identifier. As a 
+         * result, the attribute is mandatory.</p> <p>Identifies the 
+         * name of the organization</p> Un-merged Business Name: 
+         * PayorName Relationship: PORX_MT010110CA.Organization.name 
+         * Conformance/Cardinality: MANDATORY (1) <p>Mandatory for 
+         * display purposes.</p> <p>The name of the organization 
+         * responsible for issuing the coverage extension</p> Un-merged 
+         * Business Name: KnowledgebaseVendorName Relationship: 
+         * COCT_MT260010CA.Organization.name Conformance/Cardinality: 
+         * MANDATORY (1) <p>Allows a knowledgebase vendor to be 
          * referenced by name.</p><p>The attribute is mandatory because 
          * it is the only information collected about a knowledgebase 
-         * vendor.</p> <p>Allows a knowledgebase vendor to be 
-         * referenced by name.</p><p>The attribute is mandatory because 
-         * it is the only information collected about a knowledgebase 
-         * vendor.</p> H: Organization Name <p>Identifies the name of 
-         * the organization</p> <p>Allows for human recognition of the 
-         * organization as well as confirmation of the identifier. As a 
-         * result, the attribute is mandatory.</p> C:Knowledgebase 
-         * Vendor Name E: Organization Name <p>Identifies the name of 
-         * the organization</p> <p>Allows for human recognition of the 
-         * organization as well as confirmation of the identifier. As a 
-         * result, the attribute is mandatory.</p> G: Organization Name 
-         * <p>Identifies the name of the organization</p> <p>Allows for 
-         * human recognition of the organization as well as 
-         * confirmation of the identifier. As a result, the attribute 
-         * is mandatory.</p> Organization Name <p>Identifies the name 
-         * of the organization</p> <p>Allows for human recognition of 
-         * the organization as well as confirmation of the identifier. 
-         * As a result, the attribute is mandatory.</p></remarks>
+         * vendor.</p> <p>The name of a clinical knowledgebase vendor 
+         * organization.</p> Un-merged Business Name: 
+         * KnowledgebaseVendorName Relationship: 
+         * COCT_MT260020CA.Organization.name Conformance/Cardinality: 
+         * MANDATORY (1) Un-merged Business Name: PayorName 
+         * Relationship: PORX_MT060040CA.Organization.name 
+         * Conformance/Cardinality: MANDATORY (1) <p>Mandatory for 
+         * display purposes.</p> <p>The name of the organization 
+         * responsible for issuing the coverage extension.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"name"})]
         public String Name {
@@ -105,27 +140,43 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged {
         }
 
         /**
-         * <summary>OrganizationIdentifier</summary>
+         * <summary>Business Name: OrganizationIdentifier</summary>
          * 
-         * <remarks>E: Organization identifier <p>A unique identifier 
-         * for the organization</p> <p>Allows the organization to be 
-         * referenced when determining privileges and for drill-downs 
-         * to retrieve additional information. Because of its 
-         * importance, the attribute is mandatory.</p> Organization 
-         * Identifier <p>A unique identifier for the organization</p> 
-         * <p>Allows the organization to be referenced when determining 
-         * privileges and for drill-downs to retrieve additional 
-         * information. Because of its importance, the attribute is 
-         * mandatory.</p> D: Organization identifier <p>A unique 
-         * identifier for the organization</p> <p>Allows the 
+         * <remarks>Un-merged Business Name: OrganizationIdentifier 
+         * Relationship: COCT_MT090102CA.Organization.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows the 
          * organization to be referenced when determining privileges 
          * and for drill-downs to retrieve additional information. 
          * Because of its importance, the attribute is mandatory.</p> 
-         * F: Organization identifier <p>A unique identifier for the 
-         * organization</p> <p>Allows the organization to be referenced 
+         * <p>A unique identifier for the organization</p> Un-merged 
+         * Business Name: OrganizationIdentifier Relationship: 
+         * COCT_MT090502CA.Organization.id Conformance/Cardinality: 
+         * MANDATORY (1) <p>Allows the organization to be referenced 
          * when determining privileges and for drill-downs to retrieve 
          * additional information. Because of its importance, the 
-         * attribute is mandatory.</p></remarks>
+         * attribute is mandatory.</p> <p>A unique identifier for the 
+         * organization</p> Un-merged Business Name: 
+         * OrganizationIdentifier Relationship: 
+         * COCT_MT080100CA.Organization.id Conformance/Cardinality: 
+         * MANDATORY (1) <p>Allows the organization to be referenced 
+         * when determining privileges and for drill-downs to retrieve 
+         * additional information. Because of its importance, the 
+         * attribute is mandatory.</p> <p>A unique identifier for the 
+         * organization</p> Un-merged Business Name: 
+         * OrganizationIdentifier Relationship: 
+         * COCT_MT090508CA.Organization.id Conformance/Cardinality: 
+         * MANDATORY (1) <p>Allows the organization to be referenced 
+         * when determining privileges and for drill-downs to retrieve 
+         * additional information. Because of its importance, the 
+         * attribute is mandatory.</p> <p>A unique identifier for the 
+         * organization</p> Un-merged Business Name: 
+         * OrganizationIdentifier Relationship: 
+         * COCT_MT090108CA.Organization.id Conformance/Cardinality: 
+         * REQUIRED (0-1) <p>Allows the organization to be referenced 
+         * when determining privileges and for drill-downs to retrieve 
+         * additional information. Because of its importance, the 
+         * attribute is mandatory.</p> <p>A unique identifier for the 
+         * organization</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -134,12 +185,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged {
         }
 
         /**
-         * <summary>OrganizationType</summary>
+         * <summary>Business Name: OrganizationType</summary>
          * 
-         * <remarks>F: Organization Type <p>Identifies the type of 
-         * organization on whose behalf the action was taken. E.g. 
-         * Pharmacy, Clinic, Hospital, etc.</p> <p>Provides context to 
-         * the action and is therefore mandatory.</p></remarks>
+         * <remarks>Un-merged Business Name: OrganizationType 
+         * Relationship: COCT_MT090508CA.AssignedOrganization.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Provides context 
+         * to the action and is therefore mandatory.</p> <p>Identifies 
+         * the type of organization on whose behalf the action was 
+         * taken. E.g. Pharmacy, Clinic, Hospital, etc.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"assignedOrganization/code"})]
         public HealthcareOrganizationRoleType AssignedOrganizationCode {
@@ -148,13 +201,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged {
         }
 
         /**
-         * <summary>OrganizationPhoneAndEmails</summary>
+         * <summary>Business Name: OrganizationPhoneAndEmails</summary>
          * 
-         * <remarks>H: Organization Phone and Emails <p>Identifies 
-         * contact information for the responsible organization.</p> 
-         * <p>This is the most commonly used contact information and is 
-         * returned to avoid unnecessary queries against the client 
-         * registry.</p></remarks>
+         * <remarks>Un-merged Business Name: OrganizationPhoneAndEmails 
+         * Relationship: COCT_MT090508CA.AssignedOrganization.telecom 
+         * Conformance/Cardinality: REQUIRED (0-5) <p>This is the most 
+         * commonly used contact information and is returned to avoid 
+         * unnecessary queries against the client registry.</p> 
+         * <p>Identifies contact information for the responsible 
+         * organization.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"assignedOrganization/telecom"})]
         public ICollection<TelecommunicationAddress> AssignedOrganizationTelecom {

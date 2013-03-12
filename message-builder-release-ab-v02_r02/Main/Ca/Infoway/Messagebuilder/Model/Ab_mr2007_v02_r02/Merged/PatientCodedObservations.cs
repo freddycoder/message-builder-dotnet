@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
 
 
     /**
-     * <summary>PatientCodedObservations</summary>
+     * <summary>Business Name: PatientCodedObservations</summary>
      * 
      * <remarks>PORX_MT980030CA.ObservationCodedEvent: Patient 
      * Coded Observations <p>This is the recorded observation (e.g. 
@@ -82,35 +82,62 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             this.value = new CVImpl();
         }
         /**
-         * <summary>ObservationIdentifier</summary>
+         * <summary>Business Name: ObservationIdentifier</summary>
          * 
-         * <remarks>A:Observation Identifier <p>Unique identifier for 
-         * the record of the coded observation (e.g. allergy, medical 
-         * condition, pregnancy status, etc.) that contributed to the 
-         * issue.</p> <p>Allows lookup of the specific coded 
+         * <remarks>Un-merged Business Name: ObservationIdentifier 
+         * Relationship: PORX_MT980030CA.ObservationCodedEvent.id 
+         * Conformance/Cardinality: POPULATED (1) <p>Unique identifier 
+         * for the record of the coded observation (e.g. allergy, 
+         * medical condition, pregnancy status, etc.) that contributed 
+         * to the issue.</p> <p>Allows lookup of the specific coded 
+         * observation (e.g. allergy, medical condition, pregnancy 
+         * status, etc.) for additional details when evaluating 
+         * appropriateness of issue management.</p> Un-merged Business 
+         * Name: ObservationIdentifier Relationship: 
+         * PORX_MT980010CA.ObservationCodedEvent.id 
+         * Conformance/Cardinality: POPULATED (1) <p>Unique identifier 
+         * for the record of the coded observation (e.g. allergy, 
+         * medical condition, pregnancy status, etc.) that contributed 
+         * to the issue.</p> <p>Allows lookup of the specific coded 
+         * observation (e.g. allergy, medical condition, pregnancy 
+         * status, etc.) for additional details when evaluating 
+         * appropriateness of issue management.</p> Un-merged Business 
+         * Name: ObservationIdentifier Relationship: 
+         * PORX_MT980020CA.ObservationCodedEvent.id 
+         * Conformance/Cardinality: POPULATED (1) <p>Unique identifier 
+         * for the record of the coded observation (e.g. allergy, 
+         * medical condition, pregnancy status, etc.) that contributed 
+         * to the issue.</p> <p>Allows lookup of the specific coded 
          * observation (e.g. allergy, medical condition, pregnancy 
          * status, etc) for additional details when evaluating 
-         * appropriateness of issue management.</p> A:Observation 
-         * Identifier <p>Unique identifier for the record of the coded 
+         * appropriateness of issue management.</p> Un-merged Business 
+         * Name: ObservationIdentifier Relationship: 
+         * COCT_MT260010CA.ObservationCodedEvent.id 
+         * Conformance/Cardinality: POPULATED (1) <p>Unique identifier 
+         * for the record of the coded observation (e.g. allergy, 
+         * medical condition, pregnancy status, etc.) that contributed 
+         * to the issue.</p> <p>Allows lookup of the specific coded 
          * observation (e.g. allergy, medical condition, pregnancy 
-         * status, etc.) that contributed to the issue.</p> <p>Allows 
-         * lookup of the specific coded observation (e.g. allergy, 
-         * medical condition, pregnancy status, etc.) for additional 
-         * details when evaluating appropriateness of issue 
-         * management.</p> A:Observation Identifier <p>Unique 
-         * identifier for the record of the coded observation (e.g. 
-         * allergy, medical condition, pregnancy status, etc.) that 
-         * contributed to the issue.</p> <p>Allows lookup of the 
-         * specific coded observation (e.g. allergy, medical condition, 
-         * pregnancy status, etc) for additional details when 
-         * evaluating appropriateness of issue management.</p> 
-         * A:Observation Identifier <p>Unique identifier for the record 
-         * of the coded observation (e.g. allergy, medical condition, 
-         * pregnancy status, etc.) that contributed to the issue.</p> 
-         * <p>Allows lookup of the specific coded observation (e.g. 
-         * allergy, medical condition, pregnancy status, etc.) for 
-         * additional details when evaluating appropriateness of issue 
-         * management.</p></remarks>
+         * status, etc.) for additional details when evaluating 
+         * appropriateness of issue management.</p> Un-merged Business 
+         * Name: ObservationIdentifier Relationship: 
+         * COCT_MT260030CA.ObservationCodedEvent.id 
+         * Conformance/Cardinality: POPULATED (1) <p>Unique identifier 
+         * for the record of the coded observation (e.g. allergy, 
+         * medical condition, pregnancy status, etc.) that contributed 
+         * to the issue.</p> <p>Allows lookup of the specific coded 
+         * observation (e.g. allergy, medical condition, pregnancy 
+         * status, etc.) for additional details when evaluating 
+         * appropriateness of issue management.</p> Un-merged Business 
+         * Name: ObservationIdentifier Relationship: 
+         * COCT_MT260020CA.ObservationCodedEvent.id 
+         * Conformance/Cardinality: POPULATED (1) <p>Unique identifier 
+         * for the record of the coded observation (e.g. allergy, 
+         * medical condition, pregnancy status, etc.) that contributed 
+         * to the issue.</p> <p>Allows lookup of the specific coded 
+         * observation (e.g. allergy, medical condition, pregnancy 
+         * status, etc) for additional details when evaluating 
+         * appropriateness of issue management.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -119,16 +146,18 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>ObservationType</summary>
+         * <summary>Business Name: ObservationType</summary>
          * 
-         * <remarks>B:Observation Type <p>Distinguishes the kinds of 
-         * coded observation that could be the trigger for clinical 
-         * issue detection. Coded Observation types include: Allergy, 
-         * Intolerance, Medical Condition, Indication, Pregnancy 
-         * status, Lactation status and other observable information 
-         * about a person that may be deemed as a possible trigger for 
-         * clinical issue detection.</p> <p>Differentiates DAI from DPD 
-         * Contraindications</p><p>DRU.100-04 
+         * <remarks>Un-merged Business Name: ObservationType 
+         * Relationship: PORX_MT980030CA.ObservationCodedEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Distinguishes the 
+         * kinds of coded observation that could be the trigger for 
+         * clinical issue detection. Coded Observation types include: 
+         * Allergy, Intolerance, Medical Condition, Indication, 
+         * Pregnancy status, Lactation status and other observable 
+         * information about a person that may be deemed as a possible 
+         * trigger for clinical issue detection.</p> <p>Differentiates 
+         * DAI from DPD Contraindications</p><p>DRU.100-04 
          * (mnemonic)</p><p>DRU.100-05 (code system)</p> 
          * <p>Differentiates DAI from DPD 
          * Contraindications</p><p>DRU.100-04 
@@ -139,14 +168,96 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
          * the type of recorded observation being referenced. The 
          * attribute is mandatory because it is essential to 
          * interpreting the rest of the information on the class.</p> 
-         * B:Observation Type <p>Distinguishes the kinds of coded 
-         * observation that could be the trigger for clinical issue 
-         * detection. Coded Observation types include: Allergy, 
-         * Intolerance, Medical Condition, Indication, Pregnancy 
-         * status, Lactation status and other observable information 
-         * about a person that may be deemed as a possible trigger for 
-         * clinical issue detection.</p> <p>Differentiates DAI from DPD 
+         * Un-merged Business Name: ObservationType Relationship: 
+         * PORX_MT980010CA.ObservationCodedEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Distinguishes the 
+         * kinds of coded observation that could be the trigger for 
+         * clinical issue detection. Coded Observation types include: 
+         * Allergy, Intolerance, Medical Condition, Indication, 
+         * Pregnancy status, Lactation status and other observable 
+         * information about a person that may be deemed as a possible 
+         * trigger for clinical issue detection.</p> <p>Differentiates 
+         * DAI from DPD Contraindications</p><p>DRU.100-04 
+         * (mnemonic)</p><p>DRU.100-05 (code system)</p> 
+         * <p>Differentiates DAI from DPD 
          * Contraindications</p><p>DRU.100-04 
+         * (mnemonic)</p><p>DRU.100-05 (code system)</p> 
+         * <p>Differentiates DAI from DPD 
+         * Contraindications</p><p>DRU.100-04 
+         * (mnemonic)</p><p>DRU.100-05 (code system)</p> <p>Indicates 
+         * the type of recorded observation being referenced. The 
+         * attribute is mandatory because it is essential to 
+         * interpreting the rest of the information on the class.</p> 
+         * Un-merged Business Name: ObservationType Relationship: 
+         * PORX_MT980020CA.ObservationCodedEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Distinguishes the 
+         * kinds of coded observation that could be the trigger for 
+         * clinical issue detection. Coded Observation types include: 
+         * Allergy, Intolerance, Medical Condition, Indication, 
+         * Pregnancy status, Lactation status and other observable 
+         * information about a person that may be deemed as a possible 
+         * trigger for clinical issue detection.</p> <p>Differentiates 
+         * DAI from DPD Contraindications</p><p>DRU.100-04 
+         * (mnemonic)</p><p>DRU.100-05 (code system)</p> 
+         * <p>Differentiates DAI from DPD 
+         * Contraindications</p><p>DRU.100-04 
+         * (mnemonic)</p><p>DRU.100-05 (code system)</p> 
+         * <p>Differentiates DAI from DPD 
+         * Contraindications</p><p>DRU.100-04 
+         * (mnemonic)</p><p>DRU.100-05 (code system)</p> <p>Indicates 
+         * the type of recorded observation being referenced. The 
+         * attribute is mandatory because it is essential to 
+         * interpreting the rest of the information on the class.</p> 
+         * Un-merged Business Name: ObservationType Relationship: 
+         * COCT_MT260010CA.ObservationCodedEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Distinguishes the 
+         * kinds of coded observation that could be the trigger for 
+         * clinical issue detection. Coded Observation types include: 
+         * Allergy, Intolerance, Medical Condition, Indication, 
+         * Pregnancy status, Lactation status and other observable 
+         * information about a person that may be deemed as a possible 
+         * trigger for clinical issue detection.</p> <p>Differentiates 
+         * DAI from DPD Contraindications</p><p>DRU.100-04 
+         * (mnemonic)</p><p>DRU.100-05 (code system)</p> 
+         * <p>Differentiates DAI from DPD 
+         * Contraindications</p><p>DRU.100-04 
+         * (mnemonic)</p><p>DRU.100-05 (code system)</p> 
+         * <p>Differentiates DAI from DPD 
+         * Contraindications</p><p>DRU.100-04 
+         * (mnemonic)</p><p>DRU.100-05 (code system)</p> <p>Indicates 
+         * the type of recorded observation being referenced. The 
+         * attribute is mandatory because it is essential to 
+         * interpreting the rest of the information on the class.</p> 
+         * Un-merged Business Name: ObservationType Relationship: 
+         * COCT_MT260030CA.ObservationCodedEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Distinguishes the 
+         * kinds of coded observation that could be the trigger for 
+         * clinical issue detection. Coded Observation types include: 
+         * Allergy, Intolerance, Medical Condition, Indication, 
+         * Pregnancy status, Lactation status and other observable 
+         * information about a person that may be deemed as a possible 
+         * trigger for clinical issue detection.</p> <p>Differentiates 
+         * DAI from DPD Contraindications</p><p>DRU.100-04 
+         * (mnemonic)</p><p>DRU.100-05 (code system)</p> 
+         * <p>Differentiates DAI from DPD 
+         * Contraindications</p><p>DRU.100-04 
+         * (mnemonic)</p><p>DRU.100-05 (code system)</p> 
+         * <p>Differentiates DAI from DPD 
+         * Contraindications</p><p>DRU.100-04 
+         * (mnemonic)</p><p>DRU.100-05 (code system)</p> <p>Indicates 
+         * the type of recorded observation being referenced. The 
+         * attribute is mandatory because it is essential to 
+         * interpreting the rest of the information on the class.</p> 
+         * Un-merged Business Name: ObservationType Relationship: 
+         * COCT_MT260020CA.ObservationCodedEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Distinguishes the 
+         * kinds of coded observation that could be the trigger for 
+         * clinical issue detection. Coded Observation types include: 
+         * Allergy, Intolerance, Medical Condition, Indication, 
+         * Pregnancy status, Lactation status and other observable 
+         * information about a person that may be deemed as a possible 
+         * trigger for clinical issue detection.</p> <p>Differentiates 
+         * DAI from DPD Contraindications</p><p>DRU.100-04 
          * (mnemonic)</p><p>DRU.100-05 (code system)</p> 
          * <p>Differentiates DAI from DPD 
          * Contraindications</p><p>DRU.100-04 
@@ -165,37 +276,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>D:Observation Masked Indicator</summary>
+         * <summary>Un-merged Business Name: 
+         * ObservationMaskingIndicator</summary>
          * 
-         * <remarks><p>An indication of sensitivity surrounding the 
-         * implicated condition, and thus defines the required 
-         * sensitivity for the detected issue.</p> 
-         * <p>Contraindication.intractingSourceMasked (Normal=false; 
-         * Restricted or Very Restricted = True); (Information is 
-         * withheld because the prescription is masked will be given a 
-         * NULL flavour of 'Masked')</p> <p>Conveys the patient's 
-         * wishes relating to the sensitivity of the 
-         * observation.</p><p>The attribute is optional because not all 
-         * systems will support masking.</p> <p>Conveys the patient's 
-         * wishes relating to the sensitivity of the 
-         * observation.</p><p>The attribute is optional because not all 
-         * systems will support masking.</p> D:Observation Masked 
-         * Indicator <p>An indication of sensitivity surrounding the 
-         * implicated condition, and thus defines the required 
-         * sensitivity for the detected issue.</p> 
-         * <p>Contraindication.intractingSourceMasked (Normal=false; 
-         * Restricted or Very Restricted = True); (Information is 
-         * withheld because the prescription is masked will be given a 
-         * NULL flavour of 'Masked')</p> <p>Conveys the patient's 
-         * wishes relating to the sensitivity of the 
-         * observation.</p><p>The attribute is optional because not all 
-         * systems will support masking.</p> <p>Conveys the patient's 
-         * wishes relating to the sensitivity of the 
-         * observation.</p><p>The attribute is optional because not all 
-         * systems will support masking.</p> D:Observation Masking 
-         * Indicator <p>An indication of sensitivity surrounding the 
-         * related condition, and thus defines the required sensitivity 
-         * for the detected issue.</p> 
+         * <remarks>Relationship: 
+         * PORX_MT980030CA.ObservationCodedEvent.confidentialityCode 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>An indication of 
+         * sensitivity surrounding the related condition, and thus 
+         * defines the required sensitivity for the detected issue.</p> 
          * <p>Contraindication.intractingSourceMasked (Normal=false; 
          * Restricted or Very Restricted = True); (Information is 
          * withheld because the prescription is masked will be given a 
@@ -205,10 +293,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
          * systems will support masking.</p> <p>Conveys the patient's 
          * wishes relating to the sensitivity of the observation 
          * information.</p><p>The attribute is optional because not all 
-         * systems will support masking.</p> D:Observation Masking 
-         * Indicator <p>An indication of sensitivity surrounding the 
-         * related condition, and thus defines the required sensitivity 
-         * for the detected issue.</p> 
+         * systems will support masking.</p> Un-merged Business Name: 
+         * ObservationMaskingIndicator Relationship: 
+         * PORX_MT980010CA.ObservationCodedEvent.confidentialityCode 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>An indication of 
+         * sensitivity surrounding the related condition, and thus 
+         * defines the required sensitivity for the detected issue.</p> 
          * <p>Contraindication.intractingSourceMasked (Normal=false; 
          * Restricted or Very Restricted = True); (Information is 
          * withheld because the prescription is masked will be given a 
@@ -218,6 +308,66 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
          * systems will support masking.</p> <p>Conveys the patient's 
          * wishes relating to the sensitivity of the observation 
          * information.</p><p>The attribute is optional because not all 
+         * systems will support masking.</p> Un-merged Business Name: 
+         * ObservationMaskedIndicator Relationship: 
+         * PORX_MT980020CA.ObservationCodedEvent.confidentialityCode 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>An indication of 
+         * sensitivity surrounding the implicated condition, and thus 
+         * defines the required sensitivity for the detected issue.</p> 
+         * <p>Contraindication.intractingSourceMasked (Normal=false; 
+         * Restricted or Very Restricted = True); (Information is 
+         * withheld because the prescription is masked will be given a 
+         * NULL flavour of 'Masked')</p> <p>Conveys the patient's 
+         * wishes relating to the sensitivity of the 
+         * observation.</p><p>The attribute is optional because not all 
+         * systems will support masking.</p> <p>Conveys the patient's 
+         * wishes relating to the sensitivity of the 
+         * observation.</p><p>The attribute is optional because not all 
+         * systems will support masking.</p> Un-merged Business Name: 
+         * ObservationMaskingIndicator Relationship: 
+         * COCT_MT260010CA.ObservationCodedEvent.confidentialityCode 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>An indication of 
+         * sensitivity surrounding the related condition, and thus 
+         * defines the required sensitivity for the detected issue.</p> 
+         * <p>Contraindication.intractingSourceMasked (Normal=false; 
+         * Restricted or Very Restricted = True); (Information is 
+         * withheld because the prescription is masked will be given a 
+         * NULL flavour of 'Masked')</p> <p>Conveys the patient's 
+         * wishes relating to the sensitivity of the observation 
+         * information.</p><p>The attribute is optional because not all 
+         * systems will support masking.</p> <p>Conveys the patient's 
+         * wishes relating to the sensitivity of the observation 
+         * information.</p><p>The attribute is optional because not all 
+         * systems will support masking.</p> Un-merged Business Name: 
+         * ObservationMaskingIndicator Relationship: 
+         * COCT_MT260030CA.ObservationCodedEvent.confidentialityCode 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>An indication of 
+         * sensitivity surrounding the related condition, and thus 
+         * defines the required sensitivity for the detected issue.</p> 
+         * <p>Contraindication.intractingSourceMasked (Normal=false; 
+         * Restricted or Very Restricted = True); (Information is 
+         * withheld because the prescription is masked will be given a 
+         * NULL flavour of 'Masked')</p> <p>Conveys the patient's 
+         * wishes relating to the sensitivity of the observation 
+         * information.</p><p>The attribute is optional because not all 
+         * systems will support masking.</p> <p>Conveys the patient's 
+         * wishes relating to the sensitivity of the observation 
+         * information.</p><p>The attribute is optional because not all 
+         * systems will support masking.</p> Un-merged Business Name: 
+         * ObservationMaskedIndicator Relationship: 
+         * COCT_MT260020CA.ObservationCodedEvent.confidentialityCode 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>An indication of 
+         * sensitivity surrounding the implicated condition, and thus 
+         * defines the required sensitivity for the detected issue.</p> 
+         * <p>Contraindication.intractingSourceMasked (Normal=false; 
+         * Restricted or Very Restricted = True); (Information is 
+         * withheld because the prescription is masked will be given a 
+         * NULL flavour of 'Masked')</p> <p>Conveys the patient's 
+         * wishes relating to the sensitivity of the 
+         * observation.</p><p>The attribute is optional because not all 
+         * systems will support masking.</p> <p>Conveys the patient's 
+         * wishes relating to the sensitivity of the 
+         * observation.</p><p>The attribute is optional because not all 
          * systems will support masking.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"confidentialityCode"})]
@@ -227,11 +377,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>ObservationValue</summary>
+         * <summary>Business Name: ObservationValue</summary>
          * 
-         * <remarks>C:Observation Value <p>Denotes a specific coded 
-         * observation made about a person that might have trigger the 
-         * clinical issue detection.</p> 
+         * <remarks>Un-merged Business Name: ObservationValue 
+         * Relationship: PORX_MT980030CA.ObservationCodedEvent.value 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Denotes a 
+         * specific coded observation made about a person that might 
+         * have trigger the clinical issue detection.</p> 
          * <p>Containdication.allergenGroupName (PrintName) 
          * PIN:Contraindications.drugAllergy (Inferred from Code System 
          * - if it is a DIN it is probably a 
@@ -288,12 +440,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
          * (Code System)</p><p>ZDU.7.2 (mnemonic)</p><p>ZDU.8.2 (Code 
          * System)</p><p>ZDU.8.3 (mnemonic)</p><p>ZDU.8.1 (Print 
          * Name)</p><p>Disease Code</p> <p>Provides unambiguous 
-         * reference to the related coded observation.</p> 
-         * C:Observation Value <p>Denotes a specific coded observation 
-         * made about a person that might have trigger the clinical 
-         * issue detection.</p> <p>Containdication.allergenGroupName 
-         * (PrintName) PIN:Contraindications.drugAllergy (Inferred from 
-         * Code System - if it is a DIN it is probably a 
+         * reference to the related coded observation.</p> Un-merged 
+         * Business Name: ObservationValue Relationship: 
+         * PORX_MT980010CA.ObservationCodedEvent.value 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Denotes a 
+         * specific coded observation made about a person that might 
+         * have trigger the clinical issue detection.</p> 
+         * <p>Containdication.allergenGroupName (PrintName) 
+         * PIN:Contraindications.drugAllergy (Inferred from Code System 
+         * - if it is a DIN it is probably a 
          * drug)</p><p>Contraindication.indicationDescription</p><p>ZDU.7.1 
          * (Code System)</p><p>ZDU.7.2 (mnemonic)</p><p>ZDU.8.2 (Code 
          * System)</p><p>ZDU.8.3 (mnemonic)</p><p>ZDU.8.1 (Print 
@@ -347,16 +502,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
          * (Code System)</p><p>ZDU.7.2 (mnemonic)</p><p>ZDU.8.2 (Code 
          * System)</p><p>ZDU.8.3 (mnemonic)</p><p>ZDU.8.1 (Print 
          * Name)</p><p>Disease Code</p> <p>Provides unambiguous 
-         * reference to the related coded observation.</p> 
-         * C:Observation Value <p>Denotes a specific coded observation 
-         * made about a person that might have trigger the clinical 
-         * issue detection.</p> <p>Containdication.allergenGroupName 
-         * (PrintName) PIN:Contraindications.drugAllergy (Inferred from 
-         * Code System - if it is a DIN it is probably a 
-         * drug)</p><p>Contraindication.indicationDescription</p><p>ZDU.7.1 
-         * (Code System)</p><p>ZDU.7.2 (mnemonic)</p><p>ZDU.8.2 (Code 
-         * System)</p><p>ZDU.8.3 (mnemonic)</p><p>ZDU.8.1 (Print 
-         * Name)</p><p>Disease Code</p> 
+         * reference to the related coded observation.</p> Un-merged 
+         * Business Name: ObservationValue Relationship: 
+         * PORX_MT980020CA.ObservationCodedEvent.value 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Denotes a 
+         * specific coded observation made about a person that might 
+         * have trigger the clinical issue detection.</p> 
          * <p>Containdication.allergenGroupName (PrintName) 
          * PIN:Contraindications.drugAllergy (Inferred from Code System 
          * - if it is a DIN it is probably a 
@@ -383,8 +534,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
          * - if it is a DIN it is probably a 
          * drug)</p><p>Contraindication.indicationDescription</p><p>ZDU.7.1 
          * (Code System)</p><p>ZDU.7.2 (mnemonic)</p><p>ZDU.8.2 (Code 
-         * System)</p><p>ZDU.8.3 (mnemonic)</p><p>ZDU.8.1 (Print 
-  
+         * System)</p><p>ZDU.8.3
          * ... [rest of documentation truncated due to excessive length]
          */
         [Hl7XmlMappingAttribute(new string[] {"value"})]

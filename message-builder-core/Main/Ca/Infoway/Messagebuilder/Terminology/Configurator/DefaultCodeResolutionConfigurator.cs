@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -47,11 +47,6 @@ namespace Ca.Infoway.Messagebuilder.Terminology.Configurator {
 	
 			Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
 					.RegisterResolver(
-							typeof(State),
-							new EnumBasedCodeResolver(
-									typeof(Ca.Infoway.Messagebuilder.Domainvalue.Basic.State)));
-			Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
-					.RegisterResolver(
 							typeof(AcknowledgementCondition),
 							new EnumBasedCodeResolver(
 									typeof(Ca.Infoway.Messagebuilder.Domainvalue.Transport.AcknowledgementCondition)));
@@ -75,68 +70,56 @@ namespace Ca.Infoway.Messagebuilder.Terminology.Configurator {
                             typeof(ActClass),
                             new EnumBasedCodeResolver(
                                     typeof(Ca.Infoway.Messagebuilder.Domainvalue.Controlact.ActClass)));
-			Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
-					.RegisterResolver(
-							typeof(ActReason),
-							new EnumBasedCodeResolver(
-									typeof(Ca.Infoway.Messagebuilder.Domainvalue.Transport.ActReason)));
-			Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
-					.RegisterResolver(
-							typeof(HL7StandardVersionCode),
-							new EnumBasedCodeResolver(
-									typeof(Ca.Infoway.Messagebuilder.Domainvalue.Transport.HL7StandardVersionCode)));
-			Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
-					.RegisterResolver(
-							typeof(HL7TriggerEventCode),
-							new EnumBasedCodeResolver(
-									typeof(Ca.Infoway.Messagebuilder.Domainvalue.Transport.HL7TriggerEventCode)));
-			Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
-					.RegisterResolver(
-							typeof(MessageWaitingPriority),
-							new EnumBasedCodeResolver(
-									typeof(Ca.Infoway.Messagebuilder.Domainvalue.Transport.MessageWaitingPriority)));
-			Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
-					.RegisterResolver(
-							typeof(ProcessingID),
-							new EnumBasedCodeResolver(
-									typeof(Ca.Infoway.Messagebuilder.Domainvalue.Transport.ProcessingID)));
-			Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
-					.RegisterResolver(
-							typeof(ProcessingMode),
-							new EnumBasedCodeResolver(
-									typeof(Ca.Infoway.Messagebuilder.Domainvalue.Transport.ProcessingMode)));
-			Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
-					.RegisterResolver(
-							typeof(ResponseMode),
-							new EnumBasedCodeResolver(
-									typeof(Ca.Infoway.Messagebuilder.Domainvalue.Transport.ResponseMode)));
-			Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
-					.RegisterResolver(
-							typeof(x_ActMoodIntentEvent),
-							new EnumBasedCodeResolver(
-									typeof(Ca.Infoway.Messagebuilder.Domainvalue.Transport.x_ActMoodIntentEvent)));
-	
-			Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
-					.RegisterResolver(
-							typeof(NullFlavor),
-							new EnumBasedCodeResolver(
-									typeof(Ca.Infoway.Messagebuilder.Domainvalue.Nullflavor.NullFlavor)));
-	
-			Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
-					.RegisterResolver(
-							typeof(ActCode),
-							new EnumBasedCodeResolver(
-									typeof(Ca.Infoway.Messagebuilder.Domainvalue.Controlact.ActCode)));
+            Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
+                    .RegisterResolver(
+                            typeof(ActCode),
+                            new EnumBasedCodeResolver(
+                                    typeof(Ca.Infoway.Messagebuilder.Domainvalue.Controlact.ActCode)));
 			Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
 					.RegisterResolver(
 							typeof(ActConsentInformationAccessReason),
 							new EnumBasedCodeResolver(
 									typeof(Ca.Infoway.Messagebuilder.Domainvalue.Controlact.ActConsentInformationAccessReason)));
-			Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
-					.RegisterResolver(
-							typeof(ActStatus),
-							new EnumBasedCodeResolver(
-									typeof(Ca.Infoway.Messagebuilder.Domainvalue.Controlact.ActStatus)));
+            Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
+                    .RegisterResolver(
+                            typeof(ActDetectedIssueCode),
+                            new EnumBasedCodeResolver(
+                                    typeof(Ca.Infoway.Messagebuilder.Domainvalue.Controlact.ActDetectedIssueCode)));
+            Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
+                    .RegisterResolver(
+                            typeof(ActIssuePriority),
+                            new EnumBasedCodeResolver(
+                                    typeof(Ca.Infoway.Messagebuilder.Domainvalue.Controlact.ActIssuePriority)));
+            Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
+                    .RegisterResolver(
+                            typeof(ActMood),
+                            new EnumBasedCodeResolver(
+                                    typeof(Ca.Infoway.Messagebuilder.Domainvalue.Controlact.ActMood)));
+            Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
+                    .RegisterResolver(
+                            typeof(ActPharmacySupplyType),
+                            new EnumBasedCodeResolver(
+                                    typeof(Ca.Infoway.Messagebuilder.Domainvalue.Payload.ActPharmacySupplyType)));
+            Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
+                    .RegisterResolver(
+                            typeof(ActReason),
+                            new EnumBasedCodeResolver(
+                                    typeof(Ca.Infoway.Messagebuilder.Domainvalue.Transport.ActReason)));
+            Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
+                    .RegisterResolver(
+                            typeof(ActRelationshipSubset),
+                            new EnumBasedCodeResolver(
+                                    typeof(Ca.Infoway.Messagebuilder.Domainvalue.Payload.ActRelationshipSubset)));
+            Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
+                    .RegisterResolver(
+                            typeof(ActSpecimenTransportationCode),
+                            new EnumBasedCodeResolver(
+                                    typeof(Ca.Infoway.Messagebuilder.Domainvalue.Controlact.ActSpecimenTransportationCode)));
+            Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
+                    .RegisterResolver(
+                            typeof(ActStatus),
+                            new EnumBasedCodeResolver(
+                                    typeof(Ca.Infoway.Messagebuilder.Domainvalue.Controlact.ActStatus)));
             Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
                     .RegisterResolver(
                             typeof(ActSubstanceAdministrationImmunizationCode),
@@ -147,122 +130,179 @@ namespace Ca.Infoway.Messagebuilder.Terminology.Configurator {
                             typeof(ActSubstanceAdministrationImmunizationType),
                             new EnumBasedCodeResolver(
                                     typeof(Ca.Infoway.Messagebuilder.Domainvalue.Controlact.ActSubstanceAdministrationImmunizationType)));
-			Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
-					.RegisterResolver(
-							typeof(ActDetectedIssueCode),
-							new EnumBasedCodeResolver(
-									typeof(Ca.Infoway.Messagebuilder.Domainvalue.Controlact.ActDetectedIssueCode)));
-			Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
-					.RegisterResolver(
-							typeof(ActIssuePriority),
-							new EnumBasedCodeResolver(
-									typeof(Ca.Infoway.Messagebuilder.Domainvalue.Controlact.ActIssuePriority)));
             Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
                     .RegisterResolver(
-                            typeof(ActMood),
+                            typeof(AdministrativeGender),
                             new EnumBasedCodeResolver(
-                                    typeof(Ca.Infoway.Messagebuilder.Domainvalue.Controlact.ActMood)));
-			Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
-					.RegisterResolver(
-							typeof(ActConsentInformationAccessReason),
-							new EnumBasedCodeResolver(
-									typeof(Ca.Infoway.Messagebuilder.Domainvalue.Controlact.ActConsentInformationAccessReason)));
-	
-			Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
-					.RegisterResolver(
-							typeof(ActPharmacySupplyType),
-							new EnumBasedCodeResolver(
-									typeof(Ca.Infoway.Messagebuilder.Domainvalue.Payload.ActPharmacySupplyType)));
-			Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
-					.RegisterResolver(
-							typeof(ActRelationshipSubset),
-							new EnumBasedCodeResolver(
-									typeof(Ca.Infoway.Messagebuilder.Domainvalue.Payload.ActRelationshipSubset)));
+                                    typeof(Ca.Infoway.Messagebuilder.Domainvalue.Payload.AdministrativeGender)));
             Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
                     .RegisterResolver(
-                            typeof(ActSpecimenTransportationCode),
+                            typeof(Confidentiality),
                             new EnumBasedCodeResolver(
-                                    typeof(Ca.Infoway.Messagebuilder.Domainvalue.Controlact.ActSpecimenTransportationCode)));
-			Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
-					.RegisterResolver(
-							typeof(AdministrativeGender),
-							new EnumBasedCodeResolver(
-									typeof(Ca.Infoway.Messagebuilder.Domainvalue.Payload.AdministrativeGender)));
-			Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
-					.RegisterResolver(
-							typeof(Confidentiality),
-							new EnumBasedCodeResolver(
-									typeof(Ca.Infoway.Messagebuilder.Domainvalue.Payload.Confidentiality)));
+                                    typeof(Ca.Infoway.Messagebuilder.Domainvalue.Payload.Confidentiality)));
             Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
                     .RegisterResolver(
                             typeof(Country),
                             new EnumBasedCodeResolver(
                                     typeof(Ca.Infoway.Messagebuilder.Domainvalue.Basic.Iso3166Alpha2Country)));
-			Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
-					.RegisterResolver(
-							typeof(IssueFilterCode),
-							new EnumBasedCodeResolver(
-									typeof(Ca.Infoway.Messagebuilder.Domainvalue.Payload.IssueFilterCode)));
-			Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
-					.RegisterResolver(
-							typeof(ObservationQueryMatchType),
-							new EnumBasedCodeResolver(
-									typeof(Ca.Infoway.Messagebuilder.Domainvalue.Payload.ProbabilityMatchCode)));
+            Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
+                    .RegisterResolver(
+                            typeof(HL7StandardVersionCode),
+                            new EnumBasedCodeResolver(
+                                    typeof(Ca.Infoway.Messagebuilder.Domainvalue.Transport.HL7StandardVersionCode)));
+            Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
+                    .RegisterResolver(
+                            typeof(HL7TriggerEventCode),
+                            new EnumBasedCodeResolver(
+                                    typeof(Ca.Infoway.Messagebuilder.Domainvalue.Transport.HL7TriggerEventCode)));
+            Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
+                    .RegisterResolver(
+                            typeof(IssueFilterCode),
+                            new EnumBasedCodeResolver(
+                                    typeof(Ca.Infoway.Messagebuilder.Domainvalue.Payload.IssueFilterCode)));
+            Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
+                    .RegisterResolver(
+                            typeof(MessageWaitingPriority),
+                            new EnumBasedCodeResolver(
+                                    typeof(Ca.Infoway.Messagebuilder.Domainvalue.Transport.MessageWaitingPriority)));
+            Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
+                    .RegisterResolver(
+                            typeof(NullFlavor),
+                            new EnumBasedCodeResolver(
+                                    typeof(Ca.Infoway.Messagebuilder.Domainvalue.Nullflavor.NullFlavor)));
+            Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
+                    .RegisterResolver(
+                            typeof(ObservationQueryMatchType),
+                            new EnumBasedCodeResolver(
+                                    typeof(Ca.Infoway.Messagebuilder.Domainvalue.Payload.ProbabilityMatchCode)));
             Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
                     .RegisterResolver(
                             typeof(ParticipationMode),
                             new EnumBasedCodeResolver(
                                     typeof(Ca.Infoway.Messagebuilder.Domainvalue.Controlact.ParticipationMode)));
-			Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
-					.RegisterResolver(
-							typeof(QueryRequestLimit),
-							new EnumBasedCodeResolver(
-									typeof(Ca.Infoway.Messagebuilder.Domainvalue.Payload.QuantityRequestLimit)));
-			Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
-					.RegisterResolver(
-							typeof(QueryResponse),
-							new EnumBasedCodeResolver(
-									typeof(Ca.Infoway.Messagebuilder.Domainvalue.Payload.QueryResponse)));
-			Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
-					.RegisterResolver(
-							typeof(RoleClass),
-							new EnumBasedCodeResolver(
-									typeof(Ca.Infoway.Messagebuilder.Domainvalue.Payload.RoleClass)));
+            Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
+                    .RegisterResolver(
+                            typeof(ProcessingID),
+                            new EnumBasedCodeResolver(
+                                    typeof(Ca.Infoway.Messagebuilder.Domainvalue.Transport.ProcessingID)));
+            Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
+                    .RegisterResolver(
+                            typeof(ProcessingMode),
+                            new EnumBasedCodeResolver(
+                                    typeof(Ca.Infoway.Messagebuilder.Domainvalue.Transport.ProcessingMode)));
+            Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
+                    .RegisterResolver(
+                            typeof(QueryRequestLimit),
+                            new EnumBasedCodeResolver(
+                                    typeof(Ca.Infoway.Messagebuilder.Domainvalue.Payload.QuantityRequestLimit)));
+            Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
+                    .RegisterResolver(
+                            typeof(QueryResponse),
+                            new EnumBasedCodeResolver(
+                                    typeof(Ca.Infoway.Messagebuilder.Domainvalue.Payload.QueryResponse)));
+            Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
+                    .RegisterResolver(
+                            typeof(ResponseMode),
+                            new EnumBasedCodeResolver(
+                                    typeof(Ca.Infoway.Messagebuilder.Domainvalue.Transport.ResponseMode)));
+            Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
+                    .RegisterResolver(
+                            typeof(RoleClass),
+                            new EnumBasedCodeResolver(
+                                    typeof(Ca.Infoway.Messagebuilder.Domainvalue.Payload.RoleClass)));
             Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
                     .RegisterResolver(
                             typeof(RoleCode),
                             new EnumBasedCodeResolver(
                                     typeof(Ca.Infoway.Messagebuilder.Domainvalue.Controlact.RoleCode)));
-			Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
-					.RegisterResolver(
-							typeof(RoleStatus),
-							new EnumBasedCodeResolver(
-									typeof(Ca.Infoway.Messagebuilder.Domainvalue.Payload.RoleStatus)));
-			Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
-					.RegisterResolver(
-							typeof(RoleStatusNormal),
-							new EnumBasedCodeResolver(
-									typeof(Ca.Infoway.Messagebuilder.Domainvalue.Payload.RoleStatusNormal)));
-			Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
-					.RegisterResolver(
-							typeof(SeverityObservation),
-							new EnumBasedCodeResolver(
-									typeof(Ca.Infoway.Messagebuilder.Domainvalue.Payload.SeverityObservation)));
-			Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
-					.RegisterResolver(
-							typeof(SubscriptionStatus),
-							new EnumBasedCodeResolver(
-									typeof(Ca.Infoway.Messagebuilder.Domainvalue.Payload.SubscriptionStatus)));
-			Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
-					.RegisterResolver(
-							typeof(TopicPriority),
-							new EnumBasedCodeResolver(
-									typeof(Ca.Infoway.Messagebuilder.Domainvalue.Payload.TopicPriority)));
-			Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
-					.RegisterResolver(
-							typeof(x_ActMoodOrderEvent),
-							new EnumBasedCodeResolver(
-									typeof(Ca.Infoway.Messagebuilder.Domainvalue.Payload.x_ActMoodOrderEvent)));
+            Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
+                    .RegisterResolver(
+                            typeof(RoleStatus),
+                            new EnumBasedCodeResolver(
+                                    typeof(Ca.Infoway.Messagebuilder.Domainvalue.Payload.RoleStatus)));
+            Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
+                    .RegisterResolver(
+                            typeof(RoleStatusNormal),
+                            new EnumBasedCodeResolver(
+                                    typeof(Ca.Infoway.Messagebuilder.Domainvalue.Payload.RoleStatusNormal)));
+            Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
+                    .RegisterResolver(
+                            typeof(SeverityObservation),
+                            new EnumBasedCodeResolver(
+                                    typeof(Ca.Infoway.Messagebuilder.Domainvalue.Payload.SeverityObservation)));
+            Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
+                    .RegisterResolver(
+                            typeof(State),
+                            new EnumBasedCodeResolver(
+                                    typeof(Ca.Infoway.Messagebuilder.Domainvalue.Basic.State)));
+            Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
+                    .RegisterResolver(
+                            typeof(SubscriptionStatus),
+                            new EnumBasedCodeResolver(
+                                    typeof(Ca.Infoway.Messagebuilder.Domainvalue.Payload.SubscriptionStatus)));
+            Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
+                    .RegisterResolver(
+                            typeof(TopicPriority),
+                            new EnumBasedCodeResolver(
+                                    typeof(Ca.Infoway.Messagebuilder.Domainvalue.Payload.TopicPriority)));
+            Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
+                    .RegisterResolver(
+                            typeof(x_ActMoodIntentEvent),
+                            new EnumBasedCodeResolver(
+                                    typeof(Ca.Infoway.Messagebuilder.Domainvalue.Transport.x_ActMoodIntentEvent)));
+            Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
+                    .RegisterResolver(
+                            typeof(x_ActMoodOrderEvent),
+                            new EnumBasedCodeResolver(
+                                    typeof(Ca.Infoway.Messagebuilder.Domainvalue.Payload.x_ActMoodOrderEvent)));
+
+            Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
+                    .RegisterResolver(
+                            typeof(URLScheme),
+                            new EnumBasedCodeResolver(
+                                    typeof(Ca.Infoway.Messagebuilder.Domainvalue.Basic.URLScheme)));
+            Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
+                    .RegisterResolver(
+                            typeof(TelecommunicationAddressUse),
+                            new EnumBasedCodeResolver(
+                                    typeof(Ca.Infoway.Messagebuilder.Domainvalue.Basic.TelecommunicationAddressUse)));
+
+            Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
+                    .RegisterResolver(
+                            typeof(UnitsOfMeasureCaseSensitive),
+                            new EnumBasedCodeResolver(
+                                    typeof(Ca.Infoway.Messagebuilder.Domainvalue.Basic.UnitsOfMeasureCaseSensitive)));
+            Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
+                    .RegisterResolver(
+                            typeof(x_BasicUnitsOfMeasure),
+                            new EnumBasedCodeResolver(
+                                    typeof(Ca.Infoway.Messagebuilder.Domainvalue.Basic.UnitsOfMeasureCaseSensitive)));
+            Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
+                    .RegisterResolver(
+                            typeof(x_DistanceObservationUnitsOfMeasure),
+                            new EnumBasedCodeResolver(
+                                    typeof(Ca.Infoway.Messagebuilder.Domainvalue.Basic.X_DistanceObservationUnitsOfMeasure)));
+            Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
+                    .RegisterResolver(
+                            typeof(x_DrugUnitsOfMeasure),
+                            new EnumBasedCodeResolver(
+                                    typeof(Ca.Infoway.Messagebuilder.Domainvalue.Basic.X_DrugUnitsOfMeasure)));
+            Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
+                    .RegisterResolver(
+                            typeof(x_HeightOrWeightObservationUnitsOfMeasure),
+                            new EnumBasedCodeResolver(
+                                    typeof(Ca.Infoway.Messagebuilder.Domainvalue.Basic.X_HeightOrWeightObservationUnitsOfMeasure)));
+            Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
+                    .RegisterResolver(
+                            typeof(x_TimeUnitsOfMeasure),
+                            new EnumBasedCodeResolver(
+                                    typeof(Ca.Infoway.Messagebuilder.Domainvalue.Basic.DefaultTimeUnit)));
+            Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
+                    .RegisterResolver(
+                            typeof(x_BasicPostalAddressUse),
+                            new EnumBasedCodeResolver(
+                                    typeof(Ca.Infoway.Messagebuilder.Domainvalue.Basic.X_BasicPostalAddressUse)));
+
 	
 			Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry.Register(new TrivialCodeResolver());
 		}

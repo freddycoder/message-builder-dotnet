@@ -1,3 +1,22 @@
+/**
+ * Copyright 2013 Canada Health Infoway, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Author:        $LastChangedBy: tmcgrady $
+ * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Revision:      $LastChangedRevision: 2623 $
+ */
 using System.Collections.Generic;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Annotation;
@@ -8,7 +27,6 @@ using Ca.Infoway.Messagebuilder.Domainvalue;
 using Ca.Infoway.Messagebuilder.Marshalling;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Terminology;
-using Ca.Infoway.Messagebuilder.Util.Xml;
 using Ca.Infoway.Messagebuilder.Xml;
 using NUnit.Framework;
 
@@ -52,7 +70,12 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 			argument.TemplateParameterName = "act";
 			argument.TraversalName = "bambino";
 			this.interation.Arguments.Add(argument);
-			Runtime.SetProperty(ConformanceLevelUtil.IGNORED_AS_NOT_ALLOWED, string.Empty);
+		}
+
+		[TearDown]
+		public virtual void TearDown()
+		{
+			CodeResolverRegistry.UnregisterAll();
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -83,7 +106,9 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 		[Test]
 		public virtual void ShouldRenderNonStructuralAttribute()
 		{
-			this.attributeBridge.SetHl7Value(new IIImpl(new Identifier("1ee83ff1-08ab-4fe7-b573-ea777e9bad51")));
+			IIImpl iiImpl = new IIImpl(new Identifier("1ee83ff1-08ab-4fe7-b573-ea777e9bad51"));
+			iiImpl.DataType = StandardDataType.II_TOKEN;
+			this.attributeBridge.SetHl7Value(iiImpl);
 			this.visitor.VisitRootStart(this.partBridge, this.interation);
 			this.visitor.VisitAttribute(this.attributeBridge, CreateNonStructuralRelationship(), null, null, null);
 			this.visitor.VisitRootEnd(this.partBridge, this.interation);
@@ -133,7 +158,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 		public virtual void ShouldRenderFixedValueNonStructuralAttribute()
 		{
 			this.visitor.VisitRootStart(this.partBridge, this.interation);
-			this.visitor.VisitAttribute(this.attributeBridge, CreateFixedValueNonStructuralRelationship(), null, null, null);
+			this.visitor.VisitAttribute(this.attributeBridge, CreateFixedValueNonStructuralRelationship(), SpecificationVersion.V01R04_3
+				, null, null);
 			this.visitor.VisitRootEnd(this.partBridge, this.interation);
 			string xml = this.visitor.ToXml().GetXmlMessage();
 			AssertXmlEquals("xml", "<ABCD_IN123456CA xmlns=\"urn:hl7-org:v3\" " + "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" ITSVersion=\"XML_1.0\">"
@@ -282,7 +308,9 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 		public virtual void ShouldRenderCombinationOfAttributesAndAssociations()
 		{
 			this.attributeBridge.SetEmpty(false);
-			this.attributeBridge.SetHl7Value(new IIImpl(new Identifier("1ee83ff1-08ab-4fe7-b573-ea777e9bad51")));
+			IIImpl iiImpl = new IIImpl(new Identifier("1ee83ff1-08ab-4fe7-b573-ea777e9bad51"));
+			iiImpl.DataType = StandardDataType.II_TOKEN;
+			this.attributeBridge.SetHl7Value(iiImpl);
 			this.attributeBridge.SetValue(false);
 			Relationship relationship = CreateSimpleAssociationRelationship();
 			this.visitor.VisitRootStart(this.partBridge, this.interation);
@@ -295,87 +323,6 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 			AssertXmlEquals("xml", "<ABCD_IN123456CA xmlns=\"urn:hl7-org:v3\" " + "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" ITSVersion=\"XML_1.0\">"
 				 + "<receiver negationInd=\"false\"><id root=\"1ee83ff1-08ab-4fe7-b573-ea777e9bad51\"/></receiver>" + "</ABCD_IN123456CA>"
 				, xml);
-		}
-
-		/// <exception cref="System.Exception"></exception>
-		[Test]
-		public virtual void ShouldRenderWarningsForAssociationWithIgnoreConformanceAsOptional()
-		{
-			Relationship relationship = CreateSimpleAssociationRelationship();
-			relationship.Conformance = Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.IGNORED;
-			Relationship nonStructuralAttr = CreateNonStructuralRelationship();
-			nonStructuralAttr.Conformance = Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.IGNORED;
-			Relationship structuralAttr = CreateStructuralRelationship();
-			structuralAttr.Conformance = Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.IGNORED;
-			RunVisitor(relationship, nonStructuralAttr, structuralAttr);
-			string xml = this.visitor.ToXml().GetXmlMessage();
-			AssertXmlEquals("xml", "<ABCD_IN123456CA xmlns=\"urn:hl7-org:v3\" " + "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" ITSVersion=\"XML_1.0\">"
-				 + "<!-- WARNING: Association is ignored and will not be used: (receiver) -->" + "<receiver negationInd=\"false\">" + "<id root=\"1ee83ff1-08ab-4fe7-b573-ea777e9bad51\"/>"
-				 + "</receiver>" + "</ABCD_IN123456CA>", xml);
-		}
-
-		/// <exception cref="System.Exception"></exception>
-		[Test]
-		public virtual void ShouldRenderWarningsForInternalAttributesWithIgnoreConformanceAsOptional()
-		{
-			Relationship relationship = CreateSimpleAssociationRelationship();
-			Relationship nonStructuralAttr = CreateNonStructuralRelationship();
-			nonStructuralAttr.Conformance = Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.IGNORED;
-			Relationship structuralAttr = CreateStructuralRelationship();
-			structuralAttr.Conformance = Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.IGNORED;
-			RunVisitor(relationship, nonStructuralAttr, structuralAttr);
-			string xml = this.visitor.ToXml().GetXmlMessage();
-			AssertXmlEquals("xml", "<ABCD_IN123456CA xmlns=\"urn:hl7-org:v3\" " + "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" ITSVersion=\"XML_1.0\">"
-				 + "<!-- WARNING: Attribute is ignored and will not be used: (negationInd) -->" + "<receiver negationInd=\"false\">" + "<!-- WARNING: Attribute is ignored and will not be used: (id) -->"
-				 + "<id root=\"1ee83ff1-08ab-4fe7-b573-ea777e9bad51\"/>" + "</receiver>" + "</ABCD_IN123456CA>", xml);
-		}
-
-		/// <exception cref="System.Exception"></exception>
-		[Test]
-		public virtual void ShouldRenderWarningsForAssociationWithIgnoreConformanceAsNotAllowed()
-		{
-			Runtime.SetProperty(ConformanceLevelUtil.IGNORED_AS_NOT_ALLOWED, "true");
-			Relationship relationship = CreateSimpleAssociationRelationship();
-			relationship.Conformance = Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.IGNORED;
-			Relationship nonStructuralAttr = CreateNonStructuralRelationship();
-			nonStructuralAttr.Conformance = Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.IGNORED;
-			Relationship structuralAttr = CreateStructuralRelationship();
-			structuralAttr.Conformance = Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.IGNORED;
-			RunVisitor(relationship, nonStructuralAttr, structuralAttr);
-			string xml = this.visitor.ToXml().GetXmlMessage();
-			AssertXmlEquals("xml", "<ABCD_IN123456CA xmlns=\"urn:hl7-org:v3\" " + "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" ITSVersion=\"XML_1.0\">"
-				 + "<!-- WARNING: Association is ignored and can not be used: (receiver) -->" + "<receiver negationInd=\"false\">" + "<id root=\"1ee83ff1-08ab-4fe7-b573-ea777e9bad51\"/>"
-				 + "</receiver>" + "</ABCD_IN123456CA>", xml);
-		}
-
-		/// <exception cref="System.Exception"></exception>
-		[Test]
-		public virtual void ShouldRenderWarningsForInternalAttributesWithIgnoreConformanceAsNotAllowed()
-		{
-			Runtime.SetProperty(ConformanceLevelUtil.IGNORED_AS_NOT_ALLOWED, "true");
-			Relationship relationship = CreateSimpleAssociationRelationship();
-			Relationship nonStructuralAttr = CreateNonStructuralRelationship();
-			nonStructuralAttr.Conformance = Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.IGNORED;
-			Relationship structuralAttr = CreateStructuralRelationship();
-			structuralAttr.Conformance = Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.IGNORED;
-			RunVisitor(relationship, nonStructuralAttr, structuralAttr);
-			string xml = this.visitor.ToXml().GetXmlMessage();
-			AssertXmlEquals("xml", "<ABCD_IN123456CA xmlns=\"urn:hl7-org:v3\" " + "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" ITSVersion=\"XML_1.0\">"
-				 + "<!-- WARNING: Attribute is ignored and can not be used: (negationInd) -->" + "<receiver negationInd=\"false\">" + "<!-- WARNING: Attribute is ignored and can not be used: (id) -->"
-				 + "<id root=\"1ee83ff1-08ab-4fe7-b573-ea777e9bad51\"/>" + "</receiver>" + "</ABCD_IN123456CA>", xml);
-		}
-
-		private void RunVisitor(Relationship relationship, Relationship nonStructuralAttr, Relationship structuralAttr)
-		{
-			this.attributeBridge.SetEmpty(false);
-			this.attributeBridge.SetHl7Value(new IIImpl(new Identifier("1ee83ff1-08ab-4fe7-b573-ea777e9bad51")));
-			this.attributeBridge.SetValue(false);
-			this.visitor.VisitRootStart(this.partBridge, this.interation);
-			this.visitor.VisitAssociationStart(this.partBridge, relationship);
-			this.visitor.VisitAttribute(this.attributeBridge, nonStructuralAttr, null, null, null);
-			this.visitor.VisitAttribute(this.attributeBridge, structuralAttr, null, null, null);
-			this.visitor.VisitAssociationEnd(this.partBridge, relationship);
-			this.visitor.VisitRootEnd(this.partBridge, this.interation);
 		}
 
 		private Relationship CreateSimpleAssociationRelationship()

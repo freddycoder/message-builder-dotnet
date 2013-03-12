@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged;
 
 
+    /**
+     * <summary>Business Name: PORX_IN060500CA: Unfilled 
+     * prescriptions query response</summary>
+     * 
+     * <remarks>Message: MCCI_MT002300CA.Message Control Act: 
+     * QUQI_MT120006CA.ControlActEvent --> Payload: 
+     * PORX_MT060300CA.Prescription ----> Payload Choice: 
+     * PORX_MT030040CA.CombinedMedicationRequest ----> Payload 
+     * Choice: PORX_MT060060CA.DevicePrescription --> Payload: 
+     * PORX_MT060240CA.ParameterList</remarks>
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"PORX_IN060500CA"})]
     public class UnfilledPrescriptionsQueryResponse : HL7Message<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged.TriggerEvent_4<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged.IPrescription_1,Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged.UnfilledPrescriptionQueryParameters>>, IInteraction {
 

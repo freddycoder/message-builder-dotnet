@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,9 +38,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt300
             this.reasonCode = new CVImpl();
         }
         /**
-         * <summary>Substitution Type</summary>
+         * <summary>Business Name: Substitution Type</summary>
          * 
-         * <remarks><p>type of substitution</p></remarks>
+         * <remarks>Relationship: COCT_MT300000CA.Substitution.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>type of 
+         * substitution</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public ActSubstanceAdminSubstitutionCode Code {
@@ -49,11 +51,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt300
         }
 
         /**
-         * <summary>Substitution Reason</summary>
+         * <summary>Business Name: Substitution Reason</summary>
          * 
-         * <remarks><p>Reason why the substitution occurred.</p> 
-         * <p>Reason for substituting or not substituting, e.g. because 
-         * prescriber requested</p></remarks>
+         * <remarks>Relationship: 
+         * COCT_MT300000CA.Substitution.reasonCode 
+         * Conformance/Cardinality: POPULATED (1) <p>Reason for 
+         * substituting or not substituting, e.g. because prescriber 
+         * requested</p> <p>Reason why the substitution occurred.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"reasonCode"})]
         public SubstanceAdminSubstitutionReason ReasonCode {
@@ -61,6 +65,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt300
             set { this.reasonCode.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * COCT_MT300000CA.Performer.substitutionRole</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"performer/substitutionRole"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt300000ca.SubstitutionRole PerformerSubstitutionRole {
             get { return this.performerSubstitutionRole; }

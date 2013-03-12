@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,18 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Cr.Merged;
 
 
+    /**
+     * <summary>Business Name: PRPA_IN101203CA: Person Create Event 
+     * Reject</summary>
+     * 
+     * <p>person registry rejects a request to add a record and 
+     * responds back to the requesting application. The reason for 
+     * the rejection is returned as a Detected Issue in the Master 
+     * File / Reg Notif. Control Act, Role Subject wrapper.</p> 
+     * Message: MCCI_MT002300CA.Message Control Act: 
+     * MFMI_MT700726CA.ControlActEvent --> Payload: 
+     * PRPA_MT101106CA.IdentifiedEntity
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"PRPA_IN101203CA"})]
     public class PersonCreateEventReject : HL7Message_1<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Mfmi_mt700726ca.TriggerEvent<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Cr.Merged.IdentifiedPerson>>, IInteraction {
 

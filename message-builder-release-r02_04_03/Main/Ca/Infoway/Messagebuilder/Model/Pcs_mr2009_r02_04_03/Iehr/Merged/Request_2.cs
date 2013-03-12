@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,14 +28,44 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged {
 
 
     /**
-     * <summary>Request</summary>
+     * <summary>Business Name: Request</summary>
      * 
-     * <remarks>REPC_MT230003CA.ActRequest: Request </p> </p> 
-     * REPC_MT230001CA.ActRequest: Request </p> </p> 
-     * REPC_MT410001CA.ActRequest: Request </p> </p> 
-     * REPC_MT420001CA.ActRequest: Request </p> </p> 
-     * REPC_MT230002CA.ActRequest: Request </p> </p> 
-     * REPC_MT420003CA.ActRequest: Request </p> </p></remarks>
+     * <remarks>REPC_MT230003CA.ActRequest: Request <p> <i>There 
+     * are several pieces of information about a request that may 
+     * influence understanding of the record including when 
+     * requested, by whom, why, etc.</i> </p> <p> <i>A particular 
+     * request (referral or specific request) that resulted in the 
+     * creation of the Clinical Observation Document.</i> </p> 
+     * REPC_MT230001CA.ActRequest: Request <p> <i>There are several 
+     * pieces of information about a request that may influence 
+     * understanding of the record including when requested, by 
+     * whom, why, etc.</i> </p> <p> <i>A particular request 
+     * (referral or specific request) that resulted in the creation 
+     * of the Clinical Observation Document.</i> </p> 
+     * REPC_MT410001CA.ActRequest: Request <p> <i>There are several 
+     * pieces of information about a request that may influence 
+     * understanding of the record including when requested, by 
+     * whom, why, etc.</i> </p> <p> <i>A particular request 
+     * (referral or specific request) that resulted in the creation 
+     * of the Measured Observation.</i> </p> 
+     * REPC_MT420001CA.ActRequest: Request <p> <i>There are several 
+     * pieces of information about a request that may influence 
+     * understanding of the record including when requested, by 
+     * whom, why, etc.</i> </p> <p> <i>A particular request 
+     * (referral or specific request) that resulted in the creation 
+     * of the Coded Observation.</i> </p> 
+     * REPC_MT230002CA.ActRequest: Request <p> <i>There are several 
+     * pieces of information about a request that may influence 
+     * understanding of the record including when requested, by 
+     * whom, why, etc.</i> </p> <p> <i>A particular request 
+     * (referral or specific request) that resulted in the creation 
+     * of the Clinical Observation Document.</i> </p> 
+     * REPC_MT420003CA.ActRequest: Request <p> <i>There are several 
+     * pieces of information about a request that may influence 
+     * understanding of the record including when requested, by 
+     * whom, why, etc.</i> </p> <p> <i>A particular request 
+     * (referral or specific request) that resulted in the creation 
+     * of the Coded Observation.</i> </p></remarks>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"REPC_MT230001CA.ActRequest","REPC_MT230002CA.ActRequest","REPC_MT230003CA.ActRequest","REPC_MT410001CA.ActRequest","REPC_MT410003CA.ActRequest","REPC_MT420001CA.ActRequest","REPC_MT420003CA.ActRequest"})]
     public class Request_2 : MessagePartBean {
@@ -49,10 +79,53 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged {
             this.id = new IIImpl();
         }
         /**
-         * <summary>RequestType</summary>
+         * <summary>Business Name: RequestType</summary>
          * 
-         * <remarks>Request Type Request Type </p> </p> B: Request Type 
-         * </p> </p> Request Type </p> </p></remarks>
+         * <remarks>Un-merged Business Name: RequestType Relationship: 
+         * REPC_MT230003CA.ActRequest.classCode 
+         * Conformance/Cardinality: MANDATORY (1) <p> <i>Needed to know 
+         * what query to execute to retrieve details about the request. 
+         * (I.e. Get Patient Referral vs. Get Clinical Observation 
+         * Document Order.)</i> </p> <p> <i>This distinguishes between 
+         * &quot;referral&quot; requests and specific orders.</i> </p> 
+         * Un-merged Business Name: RequestType Relationship: 
+         * REPC_MT230001CA.ActRequest.classCode 
+         * Conformance/Cardinality: MANDATORY (1) <p> <i>Needed to know 
+         * what query to execute to retrieve details about the request. 
+         * (I.e. Get Patient Referral vs. Get Clinical Observation 
+         * Document Order.)</i> </p> <p> <i>This distinguishes between 
+         * &quot;referral&quot; requests and specific orders.</i> </p> 
+         * Un-merged Business Name: RequestType Relationship: 
+         * REPC_MT410001CA.ActRequest.classCode 
+         * Conformance/Cardinality: MANDATORY (1) <p> <i>Needed to know 
+         * what query to execute to retrieve details about the request. 
+         * (I.e. Get Patient Referral vs. Get Measured Observation 
+         * Order.)</i> </p> <p> <i>This distinguishes between 
+         * &quot;referral&quot; requests and specific orders.</i> </p> 
+         * Un-merged Business Name: RequestType Relationship: 
+         * REPC_MT420001CA.ActRequest.classCode 
+         * Conformance/Cardinality: MANDATORY (1) <p> <i>Needed to know 
+         * what query to execute to retrieve details about the request. 
+         * (I.e. Get Patient Referral vs. Get Coded Observation 
+         * Order.)</i> </p> <p> <i>This distinguishes between 
+         * &quot;referral&quot; requests and specific orders.</i> </p> 
+         * Un-merged Business Name: RequestType Relationship: 
+         * REPC_MT410003CA.ActRequest.classCode 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: RequestType Relationship: 
+         * REPC_MT230002CA.ActRequest.classCode 
+         * Conformance/Cardinality: MANDATORY (1) <p> <i>Needed to know 
+         * what query to execute to retrieve details about the request. 
+         * (I.e. Get Patient Referral vs. Get Clinical Observation 
+         * Document Order.)</i> </p> <p> <i>This distinguishes between 
+         * &quot;referral&quot; requests and specific orders.</i> </p> 
+         * Un-merged Business Name: RequestType Relationship: 
+         * REPC_MT420003CA.ActRequest.classCode 
+         * Conformance/Cardinality: MANDATORY (1) <p> <i>Needed to know 
+         * what query to execute to retrieve details about the request. 
+         * (I.e. Get Patient Referral vs. Get Coded Observation 
+         * Order.)</i> </p> <p> <i>This distinguishes between 
+         * &quot;referral&quot; requests and specific orders.</i> </p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"classCode"})]
         public x_ActClassCareProvisionObservation ClassCode {
@@ -61,10 +134,94 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged {
         }
 
         /**
-         * <summary>RequestId</summary>
+         * <summary>Business Name: RequestId</summary>
          * 
-         * <remarks>Request Id Request Id </p> </p> </p> A: Request Id 
-         * </p> </p> </p> Request Id </p> </p> </p></remarks>
+         * <remarks>Un-merged Business Name: RequestId Relationship: 
+         * REPC_MT230003CA.ActRequest.id Conformance/Cardinality: 
+         * REQUIRED (0-1) <p> <i>Associates a request to its results. 
+         * Allows querying for results associated by a request. Also, 
+         * authors of requests are generally authorized to view 
+         * associated results, even if masked. Result records may also 
+         * be automatically retrieved when retrieving the request 
+         * record.</i> </p><p> <i>This attributes is only 
+         * &quot;required&quot; because in some cases there might not 
+         * be a formal electronic request. However, the requesting 
+         * provider may still be known.</i> </p> <p> <i>This identifies 
+         * the specific request record (referral or order) that this 
+         * Clinical Observation Document is fulfilling. The type of 
+         * request is identified by the Request Type.</i> </p> 
+         * Un-merged Business Name: RequestId Relationship: 
+         * REPC_MT230001CA.ActRequest.id Conformance/Cardinality: 
+         * REQUIRED (0-1) <p> <i>Associates a request to its results. 
+         * Allows querying for results associated by a request. Also, 
+         * authors of requests are generally authorized to view 
+         * associated results, even if masked. Result records may also 
+         * be automatically retrieved when retrieving the request 
+         * record.</i> </p><p> <i>This attributes is only 
+         * &quot;required&quot; because in some cases there might not 
+         * be a formal electronic request. However, the requesting 
+         * provider may still be known.</i> </p> <p> <i>This identifies 
+         * the specific request record (referral or order) that this 
+         * Clinical Observation Document is fulfilling. The type of 
+         * request is identified by the Request Type.</i> </p> 
+         * Un-merged Business Name: RequestId Relationship: 
+         * REPC_MT410001CA.ActRequest.id Conformance/Cardinality: 
+         * REQUIRED (0-1) <p> <i>Associates a request to its results. 
+         * Allows querying for results associated by a request. Also, 
+         * authors of requests are generally authorized to view 
+         * associated results, even if masked. Result records may also 
+         * be automatically retrieved when retrieving the request 
+         * record.</i> </p><p> <i>This attributes is only 
+         * &quot;required&quot; because in some cases there might not 
+         * be a formal electronic request. However, the requesting 
+         * provider may still be known.</i> </p> <p> <i>This identifies 
+         * the specific request record (referral or order) that this 
+         * Measured Observation is fulfilling. The type of request is 
+         * identified by the Request Type.</i> </p> Un-merged Business 
+         * Name: RequestId Relationship: REPC_MT420001CA.ActRequest.id 
+         * Conformance/Cardinality: REQUIRED (0-1) <p> <i>Associates a 
+         * request to its results. Allows querying for results 
+         * associated by a request. Also, authors of requests are 
+         * generally authorized to view associated results, even if 
+         * masked. Result records may also be automatically retrieved 
+         * when retrieving the request record.</i> </p><p> <i>This 
+         * attributes is only &quot;required&quot; because in some 
+         * cases there might not be a formal electronic request. 
+         * However, the requesting provider may still be known.</i> 
+         * </p> <p> <i>This identifies the specific request record 
+         * (referral or order) that this Coded Observation is 
+         * fulfilling. The type of request is identified by the Request 
+         * Type.</i> </p> Un-merged Business Name: RequestId 
+         * Relationship: REPC_MT410003CA.ActRequest.id 
+         * Conformance/Cardinality: REQUIRED (0-1) Un-merged Business 
+         * Name: RequestId Relationship: REPC_MT230002CA.ActRequest.id 
+         * Conformance/Cardinality: REQUIRED (0-1) <p> <i>Associates a 
+         * request to its results. Allows querying for results 
+         * associated by a request. Also, authors of requests are 
+         * generally authorized to view associated results, even if 
+         * masked. Result records may also be automatically retrieved 
+         * when retrieving the request record.</i> </p><p> <i>This 
+         * attributes is only &quot;required&quot; because in some 
+         * cases there might not be a formal electronic request. 
+         * However, the requesting provider may still be known.</i> 
+         * </p> <p> <i>This identifies the specific request record 
+         * (referral or order) that this Clinical Observation Document 
+         * is fulfilling. The type of request is identified by the 
+         * Request Type.</i> </p> Un-merged Business Name: RequestId 
+         * Relationship: REPC_MT420003CA.ActRequest.id 
+         * Conformance/Cardinality: REQUIRED (0-1) <p> <i>Associates a 
+         * request to its results. Allows querying for results 
+         * associated by a request. Also, authors of requests are 
+         * generally authorized to view associated results, even if 
+         * masked. Result records may also be automatically retrieved 
+         * when retrieving the request record.</i> </p><p> <i>This 
+         * attributes is only &quot;required&quot; because in some 
+         * cases there might not be a formal electronic request. 
+         * However, the requesting provider may still be known.</i> 
+         * </p> <p> <i>This identifies the specific request record 
+         * (referral or order) that this Coded Observation is 
+         * fulfilling. The type of request is identified by the Request 
+         * Type.</i> </p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -72,6 +229,28 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged {
             set { this.id.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: REPC_MT230003CA.ActRequest.author 
+         * Conformance/Cardinality: REQUIRED (0-1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT230001CA.ActRequest.author Conformance/Cardinality: 
+         * REQUIRED (0-1) Un-merged Business Name: (no business name 
+         * specified) Relationship: REPC_MT410001CA.ActRequest.author 
+         * Conformance/Cardinality: REQUIRED (0-1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT420001CA.ActRequest.author Conformance/Cardinality: 
+         * REQUIRED (0-1) Un-merged Business Name: (no business name 
+         * specified) Relationship: REPC_MT410003CA.ActRequest.author 
+         * Conformance/Cardinality: REQUIRED (0-1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT230002CA.ActRequest.author Conformance/Cardinality: 
+         * REQUIRED (0-1) Un-merged Business Name: (no business name 
+         * specified) Relationship: REPC_MT420003CA.ActRequest.author 
+         * Conformance/Cardinality: REQUIRED (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"author"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged.RequestedBy Author {
             get { return this.author; }

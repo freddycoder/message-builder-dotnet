@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,6 +27,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Pome_mt010040ca;
 
 
+    /**
+     * <summary>Business Name: POME_IN010060CA: Drug product detail 
+     * query response</summary>
+     * 
+     * <remarks>Message: MCCI_MT002300CA.Message Control Act: 
+     * QUQI_MT120008CA.ControlActEvent --> Payload: 
+     * POME_MT010040CA.Medication --> Payload: 
+     * POME_MT010030CA.ParameterList</remarks>
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"POME_IN010060CA"})]
     public class DrugProductDetailQueryResponse : HL7Message<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged.TriggerEvent_4<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Pome_mt010040ca.Medication,Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged.GenericQueryParameters>>, IInteraction {
 

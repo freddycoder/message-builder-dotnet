@@ -1,3 +1,22 @@
+/**
+ * Copyright 2013 Canada Health Infoway, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Author:        $LastChangedBy: tmcgrady $
+ * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Revision:      $LastChangedRevision: 2623 $
+ */
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -35,18 +54,18 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 		{
 			Interaction interaction = GetInteraction(tealBean);
 			return new TopLevelBeanBridgeWrapper(CreatePartBridgeFromBean(tealBean.GetType().Name, tealBean, interaction, GetMessagePart
-				(interaction)), interaction.Name);
+				(interaction)), interaction.Name, this.version);
 		}
 
 		internal virtual PartBridge CreatePartBridgeFromBean(string propertyPath, object tealBean, Interaction interaction, MessagePartHolder
 			 currentMessagePart)
 		{
 			RelationshipSorter sorter = RelationshipSorter.Create(propertyPath, tealBean);
-			return CreatePartBridge(sorter, interaction, currentMessagePart, new BridgeContext());
+			return CreatePartBridge(sorter, interaction, currentMessagePart, new BridgeContext(), false);
 		}
 
 		private PartBridge CreatePartBridge(RelationshipSorter sorter, Interaction interaction, MessagePartHolder currentMessagePart
-			, BridgeContext context)
+			, BridgeContext context, bool nullPart)
 		{
 			IList<BaseRelationshipBridge> relationships = new List<BaseRelationshipBridge>();
 			foreach (Relationship relationship in currentMessagePart.GetRelationships())
@@ -116,8 +135,12 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 					}
 				}
 			}
+			if (sorter.GetPropertyName() == null || sorter.GetPropertyName().Equals("null"))
+			{
+				System.Console.Out.WriteLine("not correct");
+			}
 			return new PartBridgeImpl(sorter.GetPropertyName(), sorter.GetBean(), currentMessagePart.GetName(), relationships, context
-				.IsCollapsed());
+				.IsCollapsed(), nullPart);
 		}
 
 		private void CreateWarningIfConformanceLevelIsNotAllowed(Relationship relationship)
@@ -148,7 +171,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 			}
 			else
 			{
-				partBridge = CreatePartBridge(sorter, interaction, GetMessagePart(interaction, relationship, null), new BridgeContext());
+				partBridge = CreatePartBridge(sorter, interaction, GetMessagePart(interaction, relationship, null), new BridgeContext(), 
+					false);
 			}
 			return new IndicatorAssociationBridgeImpl(relationship, partBridge, beanProperty);
 		}
@@ -184,16 +208,16 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 
 		private PartBridge CreateNullPartBridge(Relationship relationship, Interaction interaction)
 		{
-			RelationshipSorter sorter = RelationshipSorter.Create("null", null);
+			RelationshipSorter sorter = RelationshipSorter.Create(relationship.Name, null);
 			MessagePartHolder currentMessagePart = GetMessagePart(interaction, relationship, null);
 			if (currentMessagePart != null)
 			{
-				return CreatePartBridge(sorter, interaction, currentMessagePart, new BridgeContext());
+				return CreatePartBridge(sorter, interaction, currentMessagePart, new BridgeContext(), true);
 			}
 			else
 			{
-				return new PartBridgeImpl("null association", null, relationship.Type, CollUtils.EmptyList<BaseRelationshipBridge>(), false
-					);
+				return new PartBridgeImpl(relationship.Name, null, relationship.Type, CollUtils.EmptyList<BaseRelationshipBridge>(), false
+					, true);
 			}
 		}
 
@@ -210,7 +234,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 				{
 					RelationshipSorter collapsedSorter = sorter.GetAsRelationshipSorter(relationship);
 					PartBridge bridge = CreatePartBridge(collapsedSorter, interaction, GetMessagePart(interaction, relationship, collapsedSorter
-						.GetBean()), new BridgeContext(true, context.GetOriginalIndex()));
+						.GetBean()), new BridgeContext(true, context.GetOriginalIndex()), false);
 					return new AssociationBridgeImpl(relationship, bridge);
 				}
 			}
@@ -262,7 +286,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 			for (int i = 0; i < length; i++)
 			{
 				list.Add(CreatePartBridge(association, interaction, GetMessagePart(interaction, relationship, null), new BridgeContext(true
-					, i)));
+					, i), false));
 			}
 			// bug 13240 - if empty collection and pop/mand, add a placeholder bridge - this will output a nullflavor element, and a warning for mandatory
 			if (list.IsEmpty() && (relationship.Conformance == Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.POPULATED || relationship

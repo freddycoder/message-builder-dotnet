@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,25 +27,25 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged {
 
 
     /**
-     * <summary>RoutingInstructionLines</summary>
+     * <summary>Business Name: RoutingInstructionLines</summary>
      * 
      * <remarks>MCCI_MT102001CA.AttentionLine: Routing Instruction 
-     * Lines <p>Provides information on how the message should be 
-     * routed within the receiving application.</p> <p>Allows 
-     * direction of messages within complex applications. This 
-     * association is optional because not all applications will 
-     * require this level of routing.</p> 
-     * MCCI_MT002300CA.AttentionLine: Routing Instruction Lines 
+     * Lines <p>Allows direction of messages within complex 
+     * applications. This association is optional because not all 
+     * applications will require this level of routing.</p> 
      * <p>Provides information on how the message should be routed 
-     * within the receiving application.</p> <p>Allows direction of 
-     * messages within complex applications. This association is 
-     * optional because not all applications will require this 
-     * level of routing.</p> MCCI_MT002100CA.AttentionLine: Routing 
-     * Instruction Lines <p>Provides information on how the message 
-     * should be routed within the receiving application.</p> 
+     * within the receiving application.</p> 
+     * MCCI_MT002300CA.AttentionLine: Routing Instruction Lines 
      * <p>Allows direction of messages within complex applications. 
      * This association is optional because not all applications 
-     * will require this level of routing.</p></remarks>
+     * will require this level of routing.</p> <p>Provides 
+     * information on how the message should be routed within the 
+     * receiving application.</p> MCCI_MT002100CA.AttentionLine: 
+     * Routing Instruction Lines <p>Allows direction of messages 
+     * within complex applications. This association is optional 
+     * because not all applications will require this level of 
+     * routing.</p> <p>Provides information on how the message 
+     * should be routed within the receiving application.</p></remarks>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"MCCI_MT002100CA.AttentionLine","MCCI_MT002300CA.AttentionLine","MCCI_MT102001CA.AttentionLine"})]
     public class RoutingInstructionLines : MessagePartBean {
@@ -58,12 +58,29 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged {
             this.value = new STImpl();
         }
         /**
-         * <summary>RoutingType</summary>
+         * <summary>Business Name: RoutingType</summary>
          * 
-         * <remarks>A:Routing Type <p>A particular type of guidance for 
-         * routing the message.</p> <p>Allows categorization of routing 
-         * types or support for multiple route pieces. Mandatory to 
-         * understand the routing information.</p></remarks>
+         * <remarks>Un-merged Business Name: RoutingType Relationship: 
+         * MCCI_MT102001CA.AttentionLine.keyWordText 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows 
+         * categorization of routing types or support for multiple 
+         * route pieces. Mandatory to understand the routing 
+         * information.</p> <p>A particular type of guidance for 
+         * routing the message.</p> Un-merged Business Name: 
+         * RoutingType Relationship: 
+         * MCCI_MT002300CA.AttentionLine.keyWordText 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows 
+         * categorization of routing types or support for multiple 
+         * route pieces. Mandatory to understand the routing 
+         * information.</p> <p>A particular type of guidance for 
+         * routing the message.</p> Un-merged Business Name: 
+         * RoutingType Relationship: 
+         * MCCI_MT002100CA.AttentionLine.keyWordText 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows 
+         * categorization of routing types or support for multiple 
+         * route pieces. Mandatory to understand the routing 
+         * information.</p> <p>A particular type of guidance for 
+         * routing the message.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"keyWordText"})]
         public String KeyWordText {
@@ -72,11 +89,22 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged {
         }
 
         /**
-         * <summary>RoutingName</summary>
+         * <summary>Business Name: RoutingName</summary>
          * 
-         * <remarks>B:Routing Name <p>Indicates the specific value used 
-         * to route the item.</p> <p>Allows internal routing within an 
-         * application.</p></remarks>
+         * <remarks>Un-merged Business Name: RoutingName Relationship: 
+         * MCCI_MT102001CA.AttentionLine.value Conformance/Cardinality: 
+         * REQUIRED (0-1) <p>Allows internal routing within an 
+         * application.</p> <p>Indicates the specific value used to 
+         * route the item.</p> Un-merged Business Name: RoutingName 
+         * Relationship: MCCI_MT002300CA.AttentionLine.value 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Allows internal 
+         * routing within an application.</p> <p>Indicates the specific 
+         * value used to route the item.</p> Un-merged Business Name: 
+         * RoutingName Relationship: 
+         * MCCI_MT002100CA.AttentionLine.value Conformance/Cardinality: 
+         * REQUIRED (0-1) <p>Allows internal routing within an 
+         * application.</p> <p>Indicates the specific value used to 
+         * route the item.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"value"})]
         public String Value {

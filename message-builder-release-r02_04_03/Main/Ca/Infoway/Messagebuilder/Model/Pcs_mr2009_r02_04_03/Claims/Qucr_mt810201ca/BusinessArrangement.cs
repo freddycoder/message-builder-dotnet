@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,9 +27,9 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Qucr_mt810
 
 
     /**
-     * <summary>Business Arrangement</summary>
+     * <summary>Business Name: Business Arrangement</summary>
      * 
-     * <remarks><p>Business arrangement for payment purposes.</p></remarks>
+     * <p>Business arrangement for payment purposes.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"QUCR_MT810201CA.AdjudResultsFinancialContract"})]
     public class BusinessArrangement : MessagePartBean {
@@ -40,9 +40,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Qucr_mt810
             this.id = new IIImpl();
         }
         /**
-         * <summary>Business Arrangement ID</summary>
+         * <summary>Business Name: Business Arrangement ID</summary>
          * 
-         * <remarks><p>Business arrangement identifier</p></remarks>
+         * <remarks>Relationship: 
+         * QUCR_MT810201CA.AdjudResultsFinancialContract.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>Business 
+         * arrangement identifier</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {

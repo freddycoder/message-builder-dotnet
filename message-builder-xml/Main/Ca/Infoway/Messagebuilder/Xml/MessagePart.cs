@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Author:        $LastChangedBy: gng $
- * Last modified: $LastChangedDate: 2012-07-31 11:05:53 -0400 (Tue, 31 Jul 2012) $
- * Revision:      $LastChangedRevision: 6007 $
+ * Author:        $LastChangedBy: tmcgrady $
+ * Last modified: $LastChangedDate: 2013-03-01 17:48:17 -0500 (Fri, 01 Mar 2013) $
+ * Revision:      $LastChangedRevision: 6663 $
  */
 
 using System.Collections.Generic;
@@ -120,7 +120,11 @@ namespace Ca.Infoway.Messagebuilder.Xml
 		{
 			get
 			{
-				return this.relationships;
+                foreach (Relationship relationship in this.relationships)
+                {
+                    relationship.ParentType = this.name;
+                }
+                return this.relationships;
 			}
 			set
 			{
@@ -216,6 +220,11 @@ namespace Ca.Infoway.Messagebuilder.Xml
 					}
 				}
 			}
+
+            if (result != null) {
+                result.ParentType = this.name;
+            }
+
 			return result;
 		}
 

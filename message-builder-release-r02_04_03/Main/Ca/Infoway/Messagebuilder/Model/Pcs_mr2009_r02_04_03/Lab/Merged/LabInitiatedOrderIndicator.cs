@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,11 +35,23 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Merged {
             this.negationInd = new BLImpl();
         }
         /**
-         * <summary>LabInitiatedOrderIndicator</summary>
+         * <summary>Business Name: LabInitiatedOrderIndicator</summary>
          * 
-         * <remarks>Lab Initiated Order Indicator <p>A 'true' value 
-         * indicates that the Order was initiated by the Lab.</p> Lab 
-         * Initiated Order Indicator</remarks>
+         * <remarks>Un-merged Business Name: LabInitiatedOrderIndicator 
+         * Relationship: 
+         * POLB_MT001000CA.LabInitiatedOrderIndicator.negationInd 
+         * Conformance/Cardinality: MANDATORY (1) <p>A 'true' value 
+         * indicates that the Order was initiated by the Lab.</p> 
+         * Un-merged Business Name: LabInitiatedOrderIndicator 
+         * Relationship: 
+         * POLB_MT001001CA.LabInitiatedOrderIndicator.negationInd 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: LabInitiatedOrderIndicator Relationship: 
+         * POLB_MT001010CA.LabInitiatedOrderIndicator.negationInd 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: LabInitiatedOrderIndicator Relationship: 
+         * POLB_MT001999CA.LabInitiatedOrderIndicator.negationInd 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"negationInd"})]
         public bool? NegationInd {

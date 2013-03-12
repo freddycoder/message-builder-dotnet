@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,22 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt004999ca;
 
 
+    /**
+     * <summary>Business Name: POLB_IN224202CA: Laboratory Result 
+     * Revision Request</summary>
+     * 
+     * <p>This interaction is a Result Corrected with Receiver 
+     * Responsibilitie. This interaction is used when the filler 
+     * must correct (i.e., change) results that were previously 
+     * reported as completed. The expected responses to this 
+     * interaction are confirm or reject.</p> Message: 
+     * MCCI_MT002100CA.Message Control Act: 
+     * MCAI_MT700210CA.ControlActEvent --> Payload: 
+     * POLB_MT004999CA.ResultInstancePayloadChoice ----> Payload 
+     * Choice: POLB_MT004000CA.ResultChoice ----> Payload Choice: 
+     * POLB_MT004100CA.ObservationReport ----> Payload Choice: 
+     * POLB_MT004200CA.ObservationChoice
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"POLB_IN224202CA"})]
     public class LaboratoryResultRevisionRequest : HL7Message_1<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Mcai_mt700210ca.TriggerEvent<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt004999ca.IResultInstancePayloadChoice>>, IInteraction {
 

@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged {
 
 
     /**
-     * <summary>ConsentPertainsTo</summary>
+     * <summary>Business Name: ConsentPertainsTo</summary>
      * 
      * <remarks>COCT_MT470012CA.Subject: *a:consent pertains to 
      * <p>The client's( or patient's) or provider's record the 
@@ -49,18 +49,43 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged {
             this.typeCode = new CSImpl();
             this.contextControlCode = new CSImpl();
         }
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: COCT_MT470012CA.Subject.subjectChoice 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * COCT_MT470002CA.Subject.subjectChoice 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectChoice"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged.ISubjectChoice SubjectChoice {
             get { return this.subjectChoice; }
             set { this.subjectChoice = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: COCT_MT470002CA.Subject.typeCode 
+         * Conformance/Cardinality: OPTIONAL (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"typeCode"})]
         public ParticipationType TypeCode {
             get { return (ParticipationType) this.typeCode.Value; }
             set { this.typeCode.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * COCT_MT470002CA.Subject.contextControlCode 
+         * Conformance/Cardinality: OPTIONAL (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"contextControlCode"})]
         public ContextControl ContextControlCode {
             get { return (ContextControl) this.contextControlCode.Value; }

@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,11 +27,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt004000
 
 
     /**
-     * <summary>Derivation</summary>
+     * <summary>Business Name: Derivation</summary>
      * 
-     * <remarks><p>Used to document a result and component result 
-     * parts from which the conclusive or interpretive result was 
-     * drawn or derived.</p></remarks>
+     * <p>Used to document a result and component result parts from 
+     * which the conclusive or interpretive result was drawn or 
+     * derived.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"POLB_MT004000CA.DerivedFrom"})]
     public class Derivation : MessagePartBean {
@@ -42,12 +42,24 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt004000
         public Derivation() {
             this.inversionInd = new BLImpl();
         }
+        /**
+         * <summary>Relationship: 
+         * POLB_MT004000CA.DerivedFrom.inversionInd</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"inversionInd"})]
         public bool? InversionInd {
             get { return this.inversionInd.Value; }
             set { this.inversionInd.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * POLB_MT004000CA.DerivedFrom.observationEvent</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"observationEvent"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt004000ca.ResultObservation ObservationEvent {
             get { return this.observationEvent; }

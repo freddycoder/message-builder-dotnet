@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,6 +24,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged;
 
 
+    /**
+     * <summary>Business Name: MCCI_IN102003CA: Return Poll Queue 
+     * Status</summary>
+     * 
+     * <p>Returns an indication of the number and priority of 
+     * outstanding interactions (if any) on the application's poll 
+     * queue.</p> Message: MCCI_MT002200CA.Message
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"MCCI_IN102003CA"})]
     public class ReturnPollQueueStatus : HL7Message_2, IInteraction {
 

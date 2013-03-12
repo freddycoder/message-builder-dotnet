@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,9 +26,9 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merg
     /**
      * <summary>POIZ_MT030060CA.PatientRole: (no business name)</summary>
      * 
-     * <remarks><p>Identifies the source of the immunization 
-     * information as the patient.</p> <p>Useful for categorizing 
-     * sources of immunization information.</p></remarks>
+     * <p>Useful for categorizing sources of immunization 
+     * information.</p> <p>Identifies the source of the 
+     * immunization information as the patient.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"POIZ_MT030050CA.PatientRole","POIZ_MT030060CA.PatientRole","POIZ_MT060150CA.PatientRole"})]
     public class PatientRole : MessagePartBean, Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merged.IInformationSourceChoice {

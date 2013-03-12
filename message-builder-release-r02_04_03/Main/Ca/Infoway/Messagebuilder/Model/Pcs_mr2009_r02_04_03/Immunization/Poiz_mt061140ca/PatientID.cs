@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,13 +36,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Poiz
             this.value = new SETImpl<II, Identifier>(typeof(IIImpl));
         }
         /**
-         * <summary>A:Patient IDs</summary>
+         * <summary>Business Name: A:Patient IDs</summary>
          * 
-         * <remarks><p>Identifier of the patient who is the subject of 
-         * the immunization candidate query. Filter the result set to 
-         * include only those records pertaining to the patient with 
-         * this Id.</p> <p>Allows filtering of result set by patient 
-         * Id. As a result, this parameter is required.</p></remarks>
+         * <remarks>Relationship: POIZ_MT061140CA.PatientID.value 
+         * Conformance/Cardinality: MANDATORY (1-5) <p>Allows filtering 
+         * of result set by patient Id. As a result, this parameter is 
+         * required.</p> <p>Identifier of the patient who is the 
+         * subject of the immunization candidate query. Filter the 
+         * result set to include only those records pertaining to the 
+         * patient with this Id.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"value"})]
         public ICollection<Identifier> Value {

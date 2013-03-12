@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,10 +27,10 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Cr.Prpa_mt101101c
 
 
     /**
-     * <summary><p>either a Public or Business Identifier must be 
-     * supplied to support this Query</p></summary>
+     * <p>either a Public or Business Identifier must be supplied 
+     * to support this Query</p>
      * 
-     * <remarks><p>Entry Point</p></remarks>
+     * <p>Entry Point</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"PRPA_MT101101CA.ParameterList"})]
     public class ParameterList : MessagePartBean {
@@ -43,22 +43,21 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Cr.Prpa_mt101101c
             this.clientIDPubValue = new IIImpl();
         }
         /**
-         * <summary>Client Healthcare Identification Number</summary>
+         * <summary>Business Name: Client Healthcare Identification 
+         * Number</summary>
          * 
-         * <remarks><p>This identification attribute supports capture 
-         * of a healthcare identifier specific to the client. This 
+         * <remarks>Relationship: PRPA_MT101101CA.ClientIDBus.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Mandatory 
+         * attribute supports unique identification of the client and 
+         * is a public identifier. E.G. Internal Business ID</p> <p>At 
+         * least 1 client identifier must be present in the 
+         * message</p><p>Text constraint exists on the model to support 
+         * non mandatory requirements either a Public or Business 
+         * Identifier must be supplied to support this Query.</p> 
+         * <p>This identification attribute supports capture of a 
+         * healthcare identifier specific to the client. This 
          * identifier may be assigned jurisdictionally or by care 
-         * facility.</p> <p>Mandatory attribute supports unique 
-         * identification of the client and is a public identifier. 
-         * E.G. Internal Business ID</p> <p>At least 1 client 
-         * identifier must be present in the message</p><p>Text 
-         * constraint exists on the model to support non mandatory 
-         * requirements either a Public or Business Identifier must be 
-         * supplied to support this Query.</p> <p>At least 1 client 
-         * identifier must be present in the message</p><p>Text 
-         * constraint exists on the model to support non mandatory 
-         * requirements either a Public or Business Identifier must be 
-         * supplied to support this Query.</p></remarks>
+         * facility.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"clientIDBus/value"})]
         public Identifier ClientIDBusValue {
@@ -67,22 +66,21 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Cr.Prpa_mt101101c
         }
 
         /**
-         * <summary>Client Healthcare Identification Number</summary>
+         * <summary>Business Name: Client Healthcare Identification 
+         * Number</summary>
          * 
-         * <remarks><p>This identification attribute supports capture 
+         * <remarks>Relationship: PRPA_MT101101CA.ClientIDPub.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Mandatory 
+         * attribute supports unique identification of the client and 
+         * is a public identifier. E.G. Provincial Health Care 
+         * Number</p> <p>At least 1 client identifier must be present 
+         * in the message</p><p>Text constraint exists on the model to 
+         * support non mandatory requirements either a Public or 
+         * Business Identifier must be supplied to support this 
+         * Query.</p> <p>This identification attribute supports capture 
          * of a healthcare identifier specific to the client. This 
          * identifier may be assigned jurisdictionally or by care 
-         * facility.</p> <p>Mandatory attribute supports unique 
-         * identification of the client and is a public identifier. 
-         * E.G. Provincial Health Care Number</p> <p>At least 1 client 
-         * identifier must be present in the message</p><p>Text 
-         * constraint exists on the model to support non mandatory 
-         * requirements either a Public or Business Identifier must be 
-         * supplied to support this Query.</p> <p>At least 1 client 
-         * identifier must be present in the message</p><p>Text 
-         * constraint exists on the model to support non mandatory 
-         * requirements either a Public or Business Identifier must be 
-         * supplied to support this Query.</p></remarks>
+         * facility.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"clientIDPub/value"})]
         public Identifier ClientIDPubValue {

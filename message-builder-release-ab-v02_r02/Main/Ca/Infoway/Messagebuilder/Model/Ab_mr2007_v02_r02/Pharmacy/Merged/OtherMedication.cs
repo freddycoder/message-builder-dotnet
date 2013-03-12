@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,7 +34,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
 
 
     /**
-     * <summary>OtherMedication</summary>
+     * <summary>Business Name: OtherMedication</summary>
      * 
      * <remarks>PORX_MT040020CA.OtherMedication: Other Medication 
      * <p>routeCode must not be used when code is SNOMED and is 
@@ -85,12 +85,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
             this.componentDosageInstruction = new List<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.AdministrationInstructions>();
         }
         /**
-         * <summary>OtherMedicationId</summary>
+         * <summary>Business Name: OtherMedicationId</summary>
          * 
-         * <remarks>A:Other Medication Id <p>Identifier of the Other 
-         * Medication record that needs to be updated.</p> <p>Uniquely 
-         * identifies the record to be updated and is therefore 
-         * mandatory.</p></remarks>
+         * <remarks>Un-merged Business Name: OtherMedicationId 
+         * Relationship: PORX_MT040020CA.OtherMedication.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>Identifier of the 
+         * Other Medication record that needs to be updated.</p> 
+         * <p>Uniquely identifies the record to be updated and is 
+         * therefore mandatory.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -99,18 +101,32 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
         }
 
         /**
-         * <summary>OtherMedicationType</summary>
+         * <summary>Business Name: OtherMedicationType</summary>
          * 
-         * <remarks>Other Medication Type <p>Must be 'DRUG' unless 
-         * using SNOMED</p> <p>Indicates that the record is a drug 
-         * administration rather than an immunization or other type of 
-         * administration. For SNOMED, may also include route, drug and 
-         * other information.</p> <p>Needed to convey the meaning of 
-         * this class and is therefore mandatory.</p><p>The element 
-         * allows 'CD' to provide support for SNOMED.</p> <p>Needed to 
-         * convey the meaning of this class and is therefore 
-         * mandatory.</p><p>The element allows 'CD' to provide support 
-         * for SNOMED.</p></remarks>
+         * <remarks>Un-merged Business Name: OtherMedicationType 
+         * Relationship: PORX_MT040020CA.OtherMedication.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Must be 'DRUG' 
+         * unless using SNOMED</p> <p>Indicates that the record is a 
+         * drug administration rather than an immunization or other 
+         * type of administration. For SNOMED, may also include route, 
+         * drug and other information.</p> <p>Needed to convey the 
+         * meaning of this class and is therefore mandatory.</p><p>The 
+         * element allows 'CD' to provide support for SNOMED.</p> 
+         * <p>Needed to convey the meaning of this class and is 
+         * therefore mandatory.</p><p>The element allows 'CD' to 
+         * provide support for SNOMED.</p> Un-merged Business Name: 
+         * OtherMedicationType Relationship: 
+         * PORX_MT040010CA.OtherMedication.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Must be 'DRUG' 
+         * unless using SNOMED</p> <p>Indicates that the record is a 
+         * drug administration rather than an immunization or other 
+         * type of administration. For SNOMED, may also include route, 
+         * drug and other information.</p> <p>Needed to convey the 
+         * meaning of this class and is therefore mandatory.</p><p>The 
+         * element allows 'CD' to provide support for SNOMED.</p> 
+         * <p>Needed to convey the meaning of this class and is 
+         * therefore mandatory.</p><p>The element allows 'CD' to 
+         * provide support for SNOMED.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public ActCode Code {
@@ -119,15 +135,18 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
         }
 
         /**
-         * <summary>B:Medication Status</summary>
+         * <summary>Un-merged Business Name: MedicationStatus</summary>
          * 
-         * <remarks><p>Indicates whether the medication is still 
-         * considered active.</p><p>Valid status can only be 'ACTIVE' 
-         * or 'COMPLETED'.</p> <p>Indicates whether the medication is 
-         * still considered active.</p><p>Valid status can only be 
-         * 'ACTIVE' or 'COMPLETED'.</p> <p>Indicates the new state of 
-         * the medication and is therefore mandatory.</p><p>Note ------ 
-         * The provider might know that the patient is not taking the 
+         * <remarks>Relationship: 
+         * PORX_MT040020CA.OtherMedication.statusCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates whether 
+         * the medication is still considered active.</p><p>Valid 
+         * status can only be 'ACTIVE' or 'COMPLETED'.</p> <p>Indicates 
+         * whether the medication is still considered 
+         * active.</p><p>Valid status can only be 'ACTIVE' or 
+         * 'COMPLETED'.</p> <p>Indicates the new state of the 
+         * medication and is therefore mandatory.</p><p>Note ------ The 
+         * provider might know that the patient is not taking the 
          * medication but not necessarily when the patient stopped it. 
          * Thus the status of the medication could be set to 
          * 'COMPLETED' by the provider without necessarily setting an 
@@ -138,7 +157,9 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
          * when the patient stopped it. Thus the status of the 
          * medication could be set to 'COMPLETED' by the provider 
          * without necessarily setting an End Date on the medication 
-         * record.</p> C:Other Medication Status <p>This denotes a 
+         * record.</p> Un-merged Business Name: OtherMedicationStatus 
+         * Relationship: PORX_MT040010CA.OtherMedication.statusCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>This denotes a 
          * state in the lifecycle of the other medication. Valid 
          * statuses are: 'ACTIVE' and 'COMPLETED' only.</p> 
          * <p>Indicates what actions are allowed to be performed 
@@ -166,18 +187,22 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
         }
 
         /**
-         * <summary>DrugActivePeriod</summary>
+         * <summary>Business Name: DrugActivePeriod</summary>
          * 
-         * <remarks>C:Drug Active Period <p>The new period in which the 
-         * active medication is deemed to be active.</p> <p>Allows the 
-         * drug active period information to be changed.</p> d:Drug 
-         * Active Period <p>Indicates the time-period in which the 
-         * patient has been taking or is expected to be taking the 
-         * medication.</p> <p>Used to help determine whether the 
-         * medication is currently active. Because this information 
-         * won't always be available, the attribute is marked as 
-         * 'populated'.</p> <p>Either the start or end or both can be 
-         * null if they are not known.</p></remarks>
+         * <remarks>Un-merged Business Name: DrugActivePeriod 
+         * Relationship: PORX_MT040020CA.OtherMedication.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The new period in 
+         * which the active medication is deemed to be active.</p> 
+         * <p>Allows the drug active period information to be 
+         * changed.</p> Un-merged Business Name: DrugActivePeriod 
+         * Relationship: PORX_MT040010CA.OtherMedication.effectiveTime 
+         * Conformance/Cardinality: POPULATED (1) <p>Indicates the 
+         * time-period in which the patient has been taking or is 
+         * expected to be taking the medication.</p> <p>Used to help 
+         * determine whether the medication is currently active. 
+         * Because this information won't always be available, the 
+         * attribute is marked as 'populated'.</p> <p>Either the start 
+         * or end or both can be null if they are not known.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"effectiveTime"})]
         public Interval<PlatformDate> EffectiveTime {
@@ -186,43 +211,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
         }
 
         /**
-         * <summary>OtherMedicationMaskingIndicators</summary>
+         * <summary>Business Name: OtherMedicationMaskingIndicators</summary>
          * 
-         * <remarks>E:Other Medication Masking Indicators <p>Denotes 
-         * access restriction place on the other medication record. 
-         * Methods for accessing masked other medications will be 
-         * governed by each jurisdiction (e.g. court orders, shared 
-         * secret/consent, etc.).</p> <p>Provides support for 
-         * additional confidentiality constraint to reflect the wishes 
-         * of the patient.</p><p>Taboo allows the provider to request 
-         * restricted access to patient or their care 
-         * giver.</p><p>Constraint: Can&#226;&#128;&#153;t have both 
-         * normal and one of the other codes simultaneously.</p><p>The 
-         * attribute is optional because not all systems will support 
-         * masking.</p> <p>Provides support for additional 
-         * confidentiality constraint to reflect the wishes of the 
-         * patient.</p><p>Taboo allows the provider to request 
-         * restricted access to patient or their care 
-         * giver.</p><p>Constraint: Can&#226;&#128;&#153;t have both 
-         * normal and one of the other codes simultaneously.</p><p>The 
-         * attribute is optional because not all systems will support 
-         * masking.</p> <p>Provides support for additional 
-         * confidentiality constraint to reflect the wishes of the 
-         * patient.</p><p>Taboo allows the provider to request 
-         * restricted access to patient or their care 
-         * giver.</p><p>Constraint: Can&#226;&#128;&#153;t have both 
-         * normal and one of the other codes simultaneously.</p><p>The 
-         * attribute is optional because not all systems will support 
-         * masking.</p> <p>Provides support for additional 
-         * confidentiality constraint to reflect the wishes of the 
-         * patient.</p><p>Taboo allows the provider to request 
-         * restricted access to patient or their care 
-         * giver.</p><p>Constraint: Can&#226;&#128;&#153;t have both 
-         * normal and one of the other codes simultaneously.</p><p>The 
-         * attribute is optional because not all systems will support 
-         * masking.</p> E:Other Medication Masking Indicators <p>Taboo 
-         * allows the provider to request restricted access to patient 
-         * or their care giver.</p><p>Constraint: 
+         * <remarks>Un-merged Business Name: 
+         * OtherMedicationMaskingIndicators Relationship: 
+         * PORX_MT040020CA.OtherMedication.confidentialityCode 
+         * Conformance/Cardinality: REQUIRED (0-2) <p>Taboo allows the 
+         * provider to request restricted access to patient or their 
+         * care giver.</p><p>Constraint: Can&#226;&#128;&#153;t have 
+         * both normal and one of the other codes simultaneously.</p> 
+         * <p>Taboo allows the provider to request restricted access to 
+         * patient or their care giver.</p><p>Constraint: 
          * Can&#226;&#128;&#153;t have both normal and one of the other 
          * codes simultaneously.</p> <p>Taboo allows the provider to 
          * request restricted access to patient or their care 
@@ -231,10 +230,42 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
          * <p>Taboo allows the provider to request restricted access to 
          * patient or their care giver.</p><p>Constraint: 
          * Can&#226;&#128;&#153;t have both normal and one of the other 
-         * codes simultaneously.</p> <p>Taboo allows the provider to 
-         * request restricted access to patient or their care 
+         * codes simultaneously.</p> Un-merged Business Name: 
+         * OtherMedicationMaskingIndicators Relationship: 
+         * PORX_MT040010CA.OtherMedication.confidentialityCode 
+         * Conformance/Cardinality: OPTIONAL (0-2) <p>Denotes access 
+         * restriction place on the other medication record. Methods 
+         * for accessing masked other medications will be governed by 
+         * each jurisdiction (e.g. court orders, shared secret/consent, 
+         * etc.).</p> <p>Provides support for additional 
+         * confidentiality constraint to reflect the wishes of the 
+         * patient.</p><p>Taboo allows the provider to request 
+         * restricted access to patient or their care 
          * giver.</p><p>Constraint: Can&#226;&#128;&#153;t have both 
-         * normal and one of the other codes simultaneously.</p></remarks>
+         * normal and one of the other codes simultaneously.</p><p>The 
+         * attribute is optional because not all systems will support 
+         * masking.</p> <p>Provides support for additional 
+         * confidentiality constraint to reflect the wishes of the 
+         * patient.</p><p>Taboo allows the provider to request 
+         * restricted access to patient or their care 
+         * giver.</p><p>Constraint: Can&#226;&#128;&#153;t have both 
+         * normal and one of the other codes simultaneously.</p><p>The 
+         * attribute is optional because not all systems will support 
+         * masking.</p> <p>Provides support for additional 
+         * confidentiality constraint to reflect the wishes of the 
+         * patient.</p><p>Taboo allows the provider to request 
+         * restricted access to patient or their care 
+         * giver.</p><p>Constraint: Can&#226;&#128;&#153;t have both 
+         * normal and one of the other codes simultaneously.</p><p>The 
+         * attribute is optional because not all systems will support 
+         * masking.</p> <p>Provides support for additional 
+         * confidentiality constraint to reflect the wishes of the 
+         * patient.</p><p>Taboo allows the provider to request 
+         * restricted access to patient or their care 
+         * giver.</p><p>Constraint: Can&#226;&#128;&#153;t have both 
+         * normal and one of the other codes simultaneously.</p><p>The 
+         * attribute is optional because not all systems will support 
+         * masking.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"confidentialityCode"})]
         public ICollection<x_NormalRestrictedTabooConfidentialityKind> ConfidentialityCode {
@@ -242,14 +273,19 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
         }
 
         /**
-         * <summary>D:Route</summary>
+         * <summary>Un-merged Business Name: Route</summary>
          * 
-         * <remarks><p>This is the means by which the patient is taking 
-         * the other medication.</p> <p>Ensures consistency in 
-         * description of routes. Provides potential for cross-checking 
-         * dosage form and route. Because this information is 
-         * pre-coordinated into 'code' for SNOMED, it is marked as 
-         * optional.</p> F:Route of Administration <p>This is the means 
+         * <remarks>Relationship: 
+         * PORX_MT040020CA.OtherMedication.routeCode 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>This is the means 
+         * by which the patient is taking the other medication.</p> 
+         * <p>Ensures consistency in description of routes. Provides 
+         * potential for cross-checking dosage form and route. Because 
+         * this information is pre-coordinated into 'code' for SNOMED, 
+         * it is marked as optional.</p> Un-merged Business Name: 
+         * RouteOfAdministration Relationship: 
+         * PORX_MT040010CA.OtherMedication.routeCode 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>This is the means 
          * by which the patient is taking the other medication.</p> 
          * <p>Ensures consistency in description of routes. Provides 
          * potential for cross-checking dosage form and route. Because 
@@ -262,17 +298,40 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
             set { this.routeCode.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PORX_MT040010CA.Consumable2.medication 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"consumable/medication"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Coct_mt220100ca.DrugProduct ConsumableMedication {
             get { return this.consumableMedication; }
             set { this.consumableMedication = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PORX_MT040010CA.Component.dosageInstruction 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"component/dosageInstruction"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.AdministrationInstructions> ComponentDosageInstruction {
             get { return this.componentDosageInstruction; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: PORX_MT040010CA.Subject9.annotation 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf/annotation"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Coct_mt120600ca.Notes SubjectOfAnnotation {
             get { return this.subjectOfAnnotation; }

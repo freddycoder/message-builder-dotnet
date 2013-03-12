@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,6 +28,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Merged {
     using Ca.Infoway.Messagebuilder.Model;
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt400001ca;
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged;
+    using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Domainvalue;
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged;
     using System;
     using System.Collections.Generic;
@@ -68,9 +69,21 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Merged {
             this.subject1 = new List<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Merged.Subject5>();
         }
         /**
-         * <summary>SpecialAuthorizationRequestID</summary>
+         * <summary>Business Name: SpecialAuthorizationRequestID</summary>
          * 
-         * <remarks>Special Authorization Request ID</remarks>
+         * <remarks>Un-merged Business Name: 
+         * SpecialAuthorizationRequestID Relationship: 
+         * FICR_MT400003CA.SpecialAuthorizationRequest.id 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: SpecialAuthorizationRequestID Relationship: 
+         * FICR_MT490003CA.SpecialAuthorizationRequest.id 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: SpecialAuthorizationRequestID Relationship: 
+         * FICR_MT490101CA.SpecialAuthorizationRequest.id 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: SpecialAuthorizationRequestID Relationship: 
+         * FICR_MT400004CA.SpecialAuthorizationRequest.id 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -79,20 +92,44 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Merged {
         }
 
         /**
-         * <summary>SpecialAuthorizationRequestType</summary>
+         * <summary>Business Name: SpecialAuthorizationRequestType</summary>
          * 
-         * <remarks>Special Authorization Request Type</remarks>
+         * <remarks>Un-merged Business Name: 
+         * SpecialAuthorizationRequestType Relationship: 
+         * FICR_MT400003CA.SpecialAuthorizationRequest.code 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: SpecialAuthorizationRequestType Relationship: 
+         * FICR_MT490003CA.SpecialAuthorizationRequest.code 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: SpecialAuthorizationRequestType Relationship: 
+         * FICR_MT400001CA.SpecialAuthorizationRequest.code 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: SpecialAuthorizationRequestType Relationship: 
+         * FICR_MT490101CA.SpecialAuthorizationRequest.code 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: SpecialAuthorizationRequestType Relationship: 
+         * FICR_MT400004CA.SpecialAuthorizationRequest.code 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
-        public Code Code {
-            get { return (Code) this.code.Value; }
+        public ActSpecialAuthorizationCode Code {
+            get { return (ActSpecialAuthorizationCode) this.code.Value; }
             set { this.code.Value = value; }
         }
 
         /**
-         * <summary>RequestStatus</summary>
+         * <summary>Business Name: RequestStatus</summary>
          * 
-         * <remarks>Request Status</remarks>
+         * <remarks>Un-merged Business Name: RequestStatus 
+         * Relationship: 
+         * FICR_MT400003CA.SpecialAuthorizationRequest.statusCode 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: RequestStatus Relationship: 
+         * FICR_MT490003CA.SpecialAuthorizationRequest.statusCode 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: RequestStatus Relationship: 
+         * FICR_MT400004CA.SpecialAuthorizationRequest.statusCode 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"statusCode"})]
         public ActStatus StatusCode {
@@ -100,12 +137,43 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Merged {
             set { this.statusCode.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * FICR_MT400003CA.Author2.assignedEntity 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * FICR_MT490101CA.Author2.assignedEntity 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * FICR_MT400004CA.Author2.assignedEntity 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"author/assignedEntity"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.HealthcareWorker AuthorAssignedEntity {
             get { return this.authorAssignedEntity; }
             set { this.authorAssignedEntity = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * FICR_MT400003CA.SpecialAuthorizationRequest.subject 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * FICR_MT400001CA.SpecialAuthorizationRequest.subject 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * FICR_MT490101CA.SpecialAuthorizationRequest.subject2 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * FICR_MT400004CA.SpecialAuthorizationRequest.subject 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subject","subject2"})]
         [Hl7MapByPartType(Name="subject", Type="FICR_MT400001CA.Subject3")]
         [Hl7MapByPartType(Name="subject", Type="FICR_MT400003CA.Subject3")]
@@ -116,6 +184,20 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Merged {
             set { this.subject = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * FICR_MT400003CA.InFulfillmentOf.specialAuthorization 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * FICR_MT490101CA.InFulfillmentOf.specialAuthorization 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * FICR_MT400004CA.InFulfillmentOf.specialAuthorization 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"fulfillment/specialAuthorization"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Merged.SpecialAuthorization FulfillmentSpecialAuthorization {
             get { return this.fulfillmentSpecialAuthorization; }
@@ -123,9 +205,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Merged {
         }
 
         /**
-         * <summary>SpecialAuthorizationRequestEffectiveDate</summary>
+         * <summary>Business Name: 
+         * SpecialAuthorizationRequestEffectiveDate</summary>
          * 
-         * <remarks>Special Authorization Request Effective Date</remarks>
+         * <remarks>Un-merged Business Name: 
+         * SpecialAuthorizationRequestEffectiveDate Relationship: 
+         * FICR_MT400001CA.SpecialAuthorizationRequest.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"effectiveTime"})]
         public Interval<PlatformDate> EffectiveTime {
@@ -134,9 +220,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Merged {
         }
 
         /**
-         * <summary>SpecialAuthorizationPriorityCode</summary>
+         * <summary>Business Name: SpecialAuthorizationPriorityCode</summary>
          * 
-         * <remarks>Special Authorization Priority Code</remarks>
+         * <remarks>Un-merged Business Name: 
+         * SpecialAuthorizationPriorityCode Relationship: 
+         * FICR_MT400001CA.SpecialAuthorizationRequest.priorityCode 
+         * Conformance/Cardinality: REQUIRED (0-1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"priorityCode"})]
         public ActPriority PriorityCode {
@@ -145,59 +234,134 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Merged {
         }
 
         /**
-         * <summary>ConfidentialityRestrictionS</summary>
+         * <summary>Business Name: ConfidentialityRestrictionS</summary>
          * 
-         * <remarks>Confidentiality Restriction(s</remarks>
+         * <remarks>Un-merged Business Name: 
+         * ConfidentialityRestrictionS Relationship: 
+         * FICR_MT400001CA.SpecialAuthorizationRequest.confidentialityCode 
+         * Conformance/Cardinality: OPTIONAL (0-2)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"confidentialityCode"})]
         public ICollection<x_BasicConfidentialityKind> ConfidentialityCode {
             get { return this.confidentialityCode.RawSet<x_BasicConfidentialityKind>(); }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * FICR_MT400001CA.DirectTarget3.formRole 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"directTarget/formRole"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt400001ca.FormRole DirectTargetFormRole {
             get { return this.directTargetFormRole; }
             set { this.directTargetFormRole = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * FICR_MT400001CA.CallBackContact.contactParty 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"callBackContact/contactParty"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Merged.ContactParty CallBackContactContactParty {
             get { return this.callBackContactContactParty; }
             set { this.callBackContactContactParty = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * FICR_MT400001CA.Predecessor.specialAuthorizationRequestCrossReference 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"predecessor/specialAuthorizationRequestCrossReference"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Merged.SpecialAuthorizationRequestCrossReference PredecessorSpecialAuthorizationRequestCrossReference {
             get { return this.predecessorSpecialAuthorizationRequestCrossReference; }
             set { this.predecessorSpecialAuthorizationRequestCrossReference = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * FICR_MT400001CA.Support2.specialAuthorizationCriteria 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"support/specialAuthorizationCriteria"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Merged.SpecialAuthorizationCriteria> SupportSpecialAuthorizationCriteria {
             get { return this.supportSpecialAuthorizationCriteria; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * FICR_MT400001CA.Coverage.policyOrAccount 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"coverage/policyOrAccount"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Merged.PolicyOrAccount_1 CoveragePolicyOrAccount {
             get { return this.coveragePolicyOrAccount; }
             set { this.coveragePolicyOrAccount = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * FICR_MT400001CA.PertinentInformation.healthDocumentAttachment 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"pertinentInformation/healthDocumentAttachment"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Merged.HealthDocumentAttachment_1> PertinentInformationHealthDocumentAttachment {
             get { return this.pertinentInformationHealthDocumentAttachment; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * FICR_MT400001CA.SpecialAuthorizationRequest.subjectOf 
+         * Conformance/Cardinality: REQUIRED (0-100)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.Includes> SubjectOf {
             get { return this.subjectOf; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * FICR_MT490101CA.SpecialAuthorizationRequest.subject1 
+         * Conformance/Cardinality: REQUIRED (0-20)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subject1"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Merged.Subject5> Subject1 {
             get { return this.subject1; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * FICR_MT400004CA.Reference.specialAuthorizationAdditionalInformationRequest 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"reference/specialAuthorizationAdditionalInformationRequest"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Merged.SpecialAuthorizationAdditionalInformationRequest ReferenceSpecialAuthorizationAdditionalInformationRequest {
             get { return this.referenceSpecialAuthorizationAdditionalInformationRequest; }

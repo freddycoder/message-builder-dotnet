@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Merged {
 
 
     /**
-     * <summary>ManufacturedProduct</summary>
+     * <summary>Business Name: ManufacturedProduct</summary>
      * 
      * <remarks>COCT_MT490000CA.ManufacturedProduct: Manufactured 
      * Product <p>Must have Organization if you dont have UPC/GTIN 
@@ -57,10 +57,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Merged {
             this.manufacturedMaterialCode = new CEImpl();
         }
         /**
-         * <summary>Product ID</summary>
+         * <summary>Un-merged Business Name: ProductID</summary>
          * 
-         * <remarks><p>serial number</p> Product Number <p>serial 
-         * number</p></remarks>
+         * <remarks>Relationship: 
+         * COCT_MT490000CA.ManufacturedProduct.id 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>serial number</p> 
+         * Un-merged Business Name: ProductNumber Relationship: 
+         * COCT_MT290000CA.ManufacturedProduct.id 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>serial number</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -69,11 +73,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Merged {
         }
 
         /**
-         * <summary>Product number code</summary>
+         * <summary>Un-merged Business Name: ProductCode</summary>
          * 
-         * <remarks><p>(UPC/GTIN/pseudo UPC number manufacturers 
-         * item/catalogue number</p> Product Code <p>code denoting 
-         * product type</p></remarks>
+         * <remarks>Relationship: 
+         * COCT_MT490000CA.ManufacturedProduct.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>code denoting 
+         * product type</p> Un-merged Business Name: ProductNumberCode 
+         * Relationship: COCT_MT290000CA.ManufacturedProduct.code 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>(UPC/GTIN/pseudo 
+         * UPC number manufacturers item/catalogue number</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public RoleCode Code {
@@ -81,6 +89,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Merged {
             set { this.code.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * COCT_MT490000CA.ManufacturedProduct.manufacturedMaterialKind 
+         * Conformance/Cardinality: REQUIRED (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"manufacturedMaterialKind"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Coct_mt490000ca.ManufacturedMaterialKind ManufacturedMaterialKind {
             get { return this.manufacturedMaterialKind; }
@@ -88,10 +104,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Merged {
         }
 
         /**
-         * <summary>Organisation Name</summary>
+         * <summary>Un-merged Business Name: OrganisationName</summary>
          * 
-         * <remarks><p>Manufacturer Name</p> Manufacturer Name <p>Name 
-         * of manufacturer.</p></remarks>
+         * <remarks>Relationship: 
+         * COCT_MT490000CA.ManufacturedProductOrganization.name 
+         * Conformance/Cardinality: MANDATORY (1) <p>Manufacturer 
+         * Name</p> Un-merged Business Name: ManufacturerName 
+         * Relationship: 
+         * COCT_MT290000CA.ManufacturedProductOrganization.name 
+         * Conformance/Cardinality: MANDATORY (1) <p>Name of 
+         * manufacturer.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"manufacturerManufacturedProductOrganization/name"})]
         public String ManufacturerManufacturedProductOrganizationName {
@@ -100,11 +122,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Merged {
         }
 
         /**
-         * <summary>ManufacturerTelecom</summary>
+         * <summary>Business Name: ManufacturerTelecom</summary>
          * 
-         * <remarks>Manufacturer Telecom <p>Telephone no. for 
-         * manufacturer</p> (no business name) <p>Organisation 
-         * telephone/email</p></remarks>
+         * <remarks>Un-merged Business Name: (no business name 
+         * specified) Relationship: 
+         * COCT_MT490000CA.ManufacturedProductOrganization.telecom 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Organisation 
+         * telephone/email</p> Un-merged Business Name: 
+         * ManufacturerTelecom Relationship: 
+         * COCT_MT290000CA.ManufacturedProductOrganization.telecom 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Telephone no. for 
+         * manufacturer</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"manufacturerManufacturedProductOrganization/telecom"})]
         public TelecommunicationAddress ManufacturerManufacturedProductOrganizationTelecom {
@@ -113,10 +141,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Merged {
         }
 
         /**
-         * <summary>ProductNumber</summary>
+         * <summary>Business Name: ProductNumber</summary>
          * 
-         * <remarks>Product Number <p>Code for manufactured material 
-         * eg. DIN/PIN</p></remarks>
+         * <remarks>Un-merged Business Name: ProductNumber 
+         * Relationship: COCT_MT290000CA.ManufacturedMaterial.code 
+         * Conformance/Cardinality: POPULATED (1) <p>Code for 
+         * manufactured material eg. DIN/PIN</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"manufacturedMaterial/code"})]
         public EntityCode ManufacturedMaterialCode {

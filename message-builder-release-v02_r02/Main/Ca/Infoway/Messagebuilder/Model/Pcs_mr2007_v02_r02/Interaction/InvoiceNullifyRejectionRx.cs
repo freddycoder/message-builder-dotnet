@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,6 +24,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Common.Merged;
 
 
+    /**
+     * <summary>Business Name: FICR_IN630202CA: Invoice Nullify 
+     * Rejection, Rx</summary>
+     * 
+     * <p>The sender sends an ACK to acknowledge of the request and 
+     * indicate that the nullification was rejected and the 
+     * adjudication results not reversed.</p> Message: 
+     * MCCI_MT002300CA.Message Control Act: 
+     * MCAI_MT700227CA.ControlActEvent --> Payload: 
+     * COMT_MT001103CA.ActEvent
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"FICR_IN630202CA"})]
     public class InvoiceNullifyRejectionRx : HL7Message_1<Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Common.Merged.TriggerEvent_1<Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Common.Merged.ReferencedRecord>>, IInteraction {
 

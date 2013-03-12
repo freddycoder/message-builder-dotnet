@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,6 +25,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged;
 
 
+    /**
+     * <summary>Business Name: POLB_IN121001CA: Laboratory Order 
+     * Reject Response</summary>
+     * 
+     * <p>This interaction is a Order Reject Response. This 
+     * response is used by the filler to reject an order related 
+     * interaction.</p> Message: MCCI_MT002300CA.Message Control 
+     * Act: MCAI_MT700226CA.ControlActEvent --> Payload: 
+     * COMT_MT001103CA.ActEvent
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"POLB_IN121001CA"})]
     public class LaboratoryOrderRejectResponse : HL7Message_1<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.TriggerEvent_2<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.ActRequest>>, IInteraction {
 

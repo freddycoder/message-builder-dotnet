@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -43,9 +43,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged {
             this.formCode = new CVImpl();
         }
         /**
-         * <summary>DrugCode</summary>
+         * <summary>Business Name: DrugCode</summary>
          * 
-         * <remarks>Drug Code</remarks>
+         * <remarks>Un-merged Business Name: DrugCode Relationship: 
+         * FICR_MT400001CA.Medicine.code Conformance/Cardinality: 
+         * REQUIRED (0-1) Un-merged Business Name: DrugCode 
+         * Relationship: FICR_MT490101CA.Medicine.code 
+         * Conformance/Cardinality: REQUIRED (0-1) Un-merged Business 
+         * Name: DrugCode Relationship: FICR_MT400004CA.Medicine.code 
+         * Conformance/Cardinality: REQUIRED (0-1) Un-merged Business 
+         * Name: DrugCode Relationship: FICR_MT400003CA.Medicine.code 
+         * Conformance/Cardinality: REQUIRED (0-1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public ClinicalDrug Code {
@@ -54,9 +62,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged {
         }
 
         /**
-         * <summary>DrugName</summary>
+         * <summary>Business Name: DrugName</summary>
          * 
-         * <remarks>Drug Name</remarks>
+         * <remarks>Un-merged Business Name: DrugName Relationship: 
+         * FICR_MT400001CA.Medicine.name Conformance/Cardinality: 
+         * MANDATORY (1) Un-merged Business Name: DrugName 
+         * Relationship: FICR_MT490101CA.Medicine.name 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: DrugName Relationship: FICR_MT400004CA.Medicine.name 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: DrugName Relationship: FICR_MT400003CA.Medicine.name 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"name"})]
         public String Name {
@@ -65,9 +81,19 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged {
         }
 
         /**
-         * <summary>DrugDescription</summary>
+         * <summary>Business Name: DrugDescription</summary>
          * 
-         * <remarks>Drug Description</remarks>
+         * <remarks>Un-merged Business Name: DrugDescription 
+         * Relationship: FICR_MT400001CA.Medicine.desc 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: DrugDescription Relationship: 
+         * FICR_MT490101CA.Medicine.desc Conformance/Cardinality: 
+         * POPULATED (1) Un-merged Business Name: DrugDescription 
+         * Relationship: FICR_MT400004CA.Medicine.desc 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: DrugDescription Relationship: 
+         * FICR_MT400003CA.Medicine.desc Conformance/Cardinality: 
+         * POPULATED (1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"desc"})]
         public String Desc {
@@ -76,12 +102,30 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged {
         }
 
         /**
-         * <summary>DrugForm</summary>
+         * <summary>Business Name: DrugForm</summary>
          * 
-         * <remarks>Drug Form <p>Indicates the form in which the drug 
+         * <remarks>Un-merged Business Name: DrugForm Relationship: 
+         * FICR_MT400001CA.Medicine.formCode Conformance/Cardinality: 
+         * REQUIRED (0-1) <p>Indicates the form in which the drug 
          * product must be, or has been manufactured or custom 
          * prepared. Examples include: tablet, suspension, liquid, 
-         * injectable, capsule, etc.</p></remarks>
+         * injectable, capsule, etc.</p> Un-merged Business Name: 
+         * DrugForm Relationship: FICR_MT490101CA.Medicine.formCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
+         * form in which the drug product must be, or has been 
+         * manufactured or custom prepared. Examples include: tablet, 
+         * suspension, liquid, injectable, capsule, etc.</p> Un-merged 
+         * Business Name: DrugForm Relationship: 
+         * FICR_MT400004CA.Medicine.formCode Conformance/Cardinality: 
+         * REQUIRED (0-1) <p>Indicates the form in which the drug 
+         * product must be, or has been manufactured or custom 
+         * prepared. Examples include: tablet, suspension, liquid, 
+         * injectable, capsule, etc.</p> Un-merged Business Name: 
+         * DrugForm Relationship: FICR_MT400003CA.Medicine.formCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
+         * form in which the drug product must be, or has been 
+         * manufactured or custom prepared. Examples include: tablet, 
+         * suspension, liquid, injectable, capsule, etc.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"formCode"})]
         public OrderableDrugForm FormCode {
@@ -89,6 +133,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged {
             set { this.formCode.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: FICR_MT400004CA.Medicine.ingredient 
+         * Conformance/Cardinality: REQUIRED (0-1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * FICR_MT400003CA.Medicine.ingredient Conformance/Cardinality: 
+         * REQUIRED (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"ingredient"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.DrugContains Ingredient {
             get { return this.ingredient; }

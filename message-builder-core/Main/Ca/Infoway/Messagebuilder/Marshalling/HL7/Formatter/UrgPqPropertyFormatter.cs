@@ -1,120 +1,76 @@
-using System.Collections.Generic;
-using System.Text;
+/**
+ * Copyright 2013 Canada Health Infoway, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Author:        $LastChangedBy: tmcgrady $
+ * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Revision:      $LastChangedRevision: 2623 $
+ */
+using System;
+using Ca.Infoway.Messagebuilder.Datatype;
+using Ca.Infoway.Messagebuilder.Datatype.Impl;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
+using Ca.Infoway.Messagebuilder.Datatype.Lang.Util;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter;
 
 namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 {
-	[DataTypeHandler(new string[] { "URG<PQ>", "URG<PQ.BASIC>", "URG<PQ.TIME>", "URG<PQ.WIDTH>" })]
+	[DataTypeHandler("URG<PQ>")]
 	internal class UrgPqPropertyFormatter : AbstractNullFlavorPropertyFormatter<UncertainRange<PhysicalQuantity>>
 	{
-		private static readonly string UNIT = "unit";
+		internal IvlPqPropertyFormatter formatter = new IvlPqPropertyFormatter();
 
-		private static readonly string WIDTH = "width";
-
-		private static readonly string CENTRE = "center";
-
-		private static readonly string HIGH = "high";
-
-		private static readonly string LOW = "low";
-
-		private static readonly string VALUE = "value";
-
-		/// <exception cref="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.ModelToXmlTransformationException"></exception>
 		internal override string FormatNonNullValue(FormatContext context, UncertainRange<PhysicalQuantity> value, int indentLevel
 			)
 		{
-			StringBuilder buffer = new StringBuilder();
-			buffer.Append(CreateElement(context, null, indentLevel, false, true));
-			AppendIntervalBounds(value, buffer);
-			buffer.Append(CreateElementClosure(context, 0, true));
-			return buffer.ToString();
-		}
-
-		private void AppendIntervalBounds(UncertainRange<PhysicalQuantity> value, StringBuilder buffer)
-		{
-			switch (value.Representation)
+			// convert URG to an IVL and use IVL formatter (loses any inclusive info; we'll pull that out later)
+			Interval<PhysicalQuantity> convertedInterval = IntervalFactory.CreateFromUncertainRange(value);
+			IVLImpl<PQ, Interval<PhysicalQuantity>> convertedHl7Interval = new IVLImpl<PQ, Interval<PhysicalQuantity>>(convertedInterval
+				);
+			FormatContext ivlContext = new FormatContextImpl(context.Type.Replace("URG", "IVL"), context);
+			string xml = this.formatter.Format(ivlContext, convertedHl7Interval, indentLevel);
+			xml = ChangeAnyIvlRemnants(xml);
+			// add in inclusive attributes if necessary
+			if (value.LowInclusive != null)
 			{
-				case Representation.LOW_HIGH:
-				{
-					buffer.Append(CreateElement(LOW, ToStringMap(value.Low), 1, true, true));
-					buffer.Append(CreateElement(HIGH, ToStringMap(value.High), 1, true, true));
-					break;
-				}
-
-				case Representation.CENTRE:
-				{
-					buffer.Append(CreateElement(CENTRE, ToStringMap(value.Centre), 1, true, true));
-					break;
-				}
-
-				case Representation.HIGH:
-				{
-					buffer.Append(CreateElement(HIGH, ToStringMap(value.High), 1, true, true));
-					break;
-				}
-
-				case Representation.LOW:
-				{
-					buffer.Append(CreateElement(LOW, ToStringMap(value.Low), 1, true, true));
-					break;
-				}
-
-				case Representation.WIDTH:
-				{
-					buffer.Append(CreateElement(WIDTH, ToStringMap(value.Width), 1, true, true));
-					break;
-				}
-
-				case Representation.LOW_WIDTH:
-				{
-					buffer.Append(CreateElement(LOW, ToStringMap(value.Low), 1, true, true));
-					buffer.Append(CreateElement(WIDTH, ToStringMap(value.Width), 1, true, true));
-					break;
-				}
-
-				case Representation.WIDTH_HIGH:
-				{
-					buffer.Append(CreateElement(WIDTH, ToStringMap(value.Width), 1, true, true));
-					buffer.Append(CreateElement(HIGH, ToStringMap(value.Centre), 1, true, true));
-					break;
-				}
-
-				case Representation.CENTRE_WIDTH:
-				{
-					buffer.Append(CreateElement(CENTRE, ToStringMap(value.Centre), 1, true, true));
-					buffer.Append(CreateElement(WIDTH, ToStringMap(value.Width), 1, true, true));
-					break;
-				}
-
-				default:
-				{
-					break;
-				}
+				xml = AddInclusiveAttribute(xml, "low", value.LowInclusive);
 			}
-		}
-
-		private IDictionary<string, string> ToStringMap(Diff<PhysicalQuantity> diff)
-		{
-			return ToStringMap(diff.Value);
-		}
-
-		private IDictionary<string, string> ToStringMap(object quantity)
-		{
-			return ToStringMap((PhysicalQuantity)quantity);
-		}
-
-		private IDictionary<string, string> ToStringMap(PhysicalQuantity quantity)
-		{
-			IDictionary<string, string> map = new Dictionary<string, string>();
-			map[VALUE] = quantity.Quantity.ToString();
-			// TM - Redmine 11455 - need to account for units being null
-			if (quantity.Unit != null)
+			if (value.HighInclusive != null)
 			{
-				map[UNIT] = quantity.Unit.CodeValue;
+				xml = AddInclusiveAttribute(xml, "high", value.HighInclusive);
 			}
-			return map;
+			return xml;
+		}
+
+		private string AddInclusiveAttribute(string xml, string elementName, Boolean? inclusive)
+		{
+			string searchString = "<" + elementName + " ";
+			int elementIndex = xml.IndexOf(searchString);
+			if (elementIndex >= 0)
+			{
+				string first = Ca.Infoway.Messagebuilder.StringUtils.Substring(xml, 0, elementIndex + searchString.Length);
+				string last = Ca.Infoway.Messagebuilder.StringUtils.Substring(xml, elementIndex + searchString.Length);
+				xml = first + "inclusive=\"" + inclusive.ToString().ToLower() + "\" " + last;
+			}
+			return xml;
+		}
+
+		private string ChangeAnyIvlRemnants(string xml)
+		{
+			xml = xml.Replace(" specializationType=\"IVL_", " specializationType=\"URG_");
+			return xml.Replace(" xsi:type=\"IVL_", " xsi:type=\"URG_");
 		}
 	}
 }

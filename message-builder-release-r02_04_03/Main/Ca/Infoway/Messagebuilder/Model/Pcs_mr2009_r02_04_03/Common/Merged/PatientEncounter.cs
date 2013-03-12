@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,12 +28,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged {
 
 
     /**
-     * <summary>PatientEncounter</summary>
+     * <summary>Business Name: PatientEncounter</summary>
      * 
      * <remarks>COCT_MT300000CA.PatientEncounter: Patient Encounter 
-     * <p>Patient Encounter details</p> <p>Can be used to reference 
-     * discharge and admit dates for an encounter in a 
-     * hospital.</p> COCT_MT290000CA.PatientEncounter: Patient 
+     * <p>Can be used to reference discharge and admit dates for an 
+     * encounter in a hospital.</p> <p>Patient Encounter 
+     * details</p> COCT_MT290000CA.PatientEncounter: Patient 
      * Encounter <p>Details of patient Encounter</p></remarks>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"COCT_MT290000CA.PatientEncounter","COCT_MT300000CA.PatientEncounter"})]
@@ -47,11 +47,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged {
             this.effectiveTime = new TSImpl();
         }
         /**
-         * <summary>EncounterID</summary>
+         * <summary>Business Name: EncounterID</summary>
          * 
-         * <remarks>Encounter ID <p>Encounter id</p> Encounter ID <p>A 
-         * unique identifier that refers to the interaction with the 
-         * patient.</p></remarks>
+         * <remarks>Un-merged Business Name: EncounterID Relationship: 
+         * COCT_MT300000CA.PatientEncounter.id Conformance/Cardinality: 
+         * POPULATED (1) <p>A unique identifier that refers to the 
+         * interaction with the patient.</p> Un-merged Business Name: 
+         * EncounterID Relationship: 
+         * COCT_MT290000CA.PatientEncounter.id Conformance/Cardinality: 
+         * POPULATED (1) <p>Encounter id</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -60,13 +64,19 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged {
         }
 
         /**
-         * <summary>Encounter Date</summary>
+         * <summary>Un-merged Business Name: EncounterDate</summary>
          * 
-         * <remarks><p>The start and end dates of the interaction with 
-         * the patient, eg. for dispensing, the interval would be when 
-         * the patient handed the prescription to the pharmacy to when 
-         * the patient picked up the medication.</p> Admit/Discharge 
-         * Date <p>Time of encounter</p></remarks>
+         * <remarks>Relationship: 
+         * COCT_MT300000CA.PatientEncounter.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The start and end 
+         * dates of the interaction with the patient, eg. for 
+         * dispensing, the interval would be when the patient handed 
+         * the prescription to the pharmacy to when the patient picked 
+         * up the medication.</p> Un-merged Business Name: 
+         * AdmitDischargeDate Relationship: 
+         * COCT_MT290000CA.PatientEncounter.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Time of 
+         * encounter</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"effectiveTime"})]
         public PlatformDate EffectiveTime {

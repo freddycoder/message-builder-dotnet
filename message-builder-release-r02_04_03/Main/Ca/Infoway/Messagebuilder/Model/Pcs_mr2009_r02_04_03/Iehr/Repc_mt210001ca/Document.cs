@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -58,7 +58,10 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt21000
             this.componentOfPatientCareProvisionEvent = new List<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.CareCompositions>();
         }
         /**
-         * <summary>B: Document Category</summary>
+         * <summary>Business Name: B: Document Category</summary>
+         * 
+         * <remarks>Relationship: REPC_MT210001CA.Document.code 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public ReferralDocumentType Code {
@@ -67,7 +70,10 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt21000
         }
 
         /**
-         * <summary>J: Document Title</summary>
+         * <summary>Business Name: J: Document Title</summary>
+         * 
+         * <remarks>Relationship: REPC_MT210001CA.Document.title 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"title"})]
         public String Title {
@@ -76,13 +82,23 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt21000
         }
 
         /**
-         * <summary>E: Document Masking Indicators</summary>
+         * <summary>Business Name: E: Document Masking Indicators</summary>
+         * 
+         * <remarks>Relationship: 
+         * REPC_MT210001CA.Document.confidentialityCode 
+         * Conformance/Cardinality: OPTIONAL (0-2)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"confidentialityCode"})]
         public ICollection<x_BasicConfidentialityKind> ConfidentialityCode {
             get { return this.confidentialityCode.RawSet<x_BasicConfidentialityKind>(); }
         }
 
+        /**
+         * <summary>Relationship: 
+         * REPC_MT210001CA.ResponsibleParty.actingPerson</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"responsibleParty/actingPerson"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt911108ca.IActingPerson ResponsiblePartyActingPerson {
             get { return this.responsiblePartyActingPerson; }
@@ -110,34 +126,67 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt21000
             return (this.responsiblePartyActingPerson is Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt910108ca.RelatedPerson);
         }
 
+        /**
+         * <summary>Relationship: REPC_MT210001CA.Document.author</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"author"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged.RequestedBy Author {
             get { return this.author; }
             set { this.author = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * REPC_MT210001CA.InformationRecipient.recipients</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"primaryInformationRecipient/recipients"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged.IRecipients> PrimaryInformationRecipientRecipients {
             get { return this.primaryInformationRecipientRecipients; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * REPC_MT210001CA.Predecessor2.oldClinicalDocumentEvent</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"predecessor/oldClinicalDocumentEvent"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged.OldClinicalDocumentEvent> PredecessorOldClinicalDocumentEvent {
             get { return this.predecessorOldClinicalDocumentEvent; }
         }
 
+        /**
+         * <summary>Relationship: REPC_MT210001CA.Component3.section</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"component/structuredBody/component/section"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt210001ca.Section ComponentStructuredBodyComponentSection {
             get { return this.componentStructuredBodyComponentSection; }
             set { this.componentStructuredBodyComponentSection = value; }
         }
 
+        /**
+         * <summary>Relationship: REPC_MT210001CA.Document.subjectOf</summary>
+         * 
+         * <remarks>Conformance/Cardinality: REQUIRED (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.Includes SubjectOf {
             get { return this.subjectOf; }
             set { this.subjectOf = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * REPC_MT210001CA.Component6.patientCareProvisionEvent</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"componentOf/patientCareProvisionEvent"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.CareCompositions> ComponentOfPatientCareProvisionEvent {
             get { return this.componentOfPatientCareProvisionEvent; }

@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,11 +35,39 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged {
             this.code = new CDImpl();
         }
         /**
-         * <summary>RequestedService</summary>
+         * <summary>Business Name: RequestedService</summary>
          * 
-         * <remarks>H:Requested Service H:Requested Service <p>A coded 
+         * <remarks>Un-merged Business Name: RequestedService 
+         * Relationship: REPC_MT210001CA.ActRequest2.code 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: RequestedService Relationship: 
+         * REPC_MT210003CA.ActRequest2.code Conformance/Cardinality: 
+         * MANDATORY (1) <p>Helps to reconcile to service that is 
+         * subsequently performed.</p><p> <i>This element makes use of 
+         * the CD datatype because some terminologies used for the 
+         * domain require use of modifiers.</i> </p><p> <i>The element 
+         * uses CWE to allow for the capture of Requested Service 
+         * concepts not presently supported by the approved code 
+         * system(s). In this case, the human-to-human benefit of 
+         * capturing additional non-coded values outweighs the 
+         * penalties of capturing some information that will not be 
+         * amenable to searching or categorizing.</i> </p> <p>A coded 
          * value denoting the specific service that has been ordered 
-         * through the referral.</p> </p> </p> </p></remarks>
+         * through the referral.</p> Un-merged Business Name: 
+         * RequestedService Relationship: 
+         * REPC_MT210002CA.ActRequest2.code Conformance/Cardinality: 
+         * MANDATORY (1) <p>Helps to reconcile to service that is 
+         * subsequently performed.</p><p> <i>This element makes use of 
+         * the CD datatype because some terminologies used for the 
+         * domain require use of modifiers.</i> </p><p> <i>The element 
+         * uses CWE to allow for the capture of Requested Service 
+         * concepts not presently supported by the approved code 
+         * system(s). In this case, the human-to-human benefit of 
+         * capturing additional non-coded values outweighs the 
+         * penalties of capturing some information that will not be 
+         * amenable to searching or categorizing.</i> </p> <p>A coded 
+         * value denoting the specific service that has been ordered 
+         * through the referral.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public ActProfessionalServiceCode Code {

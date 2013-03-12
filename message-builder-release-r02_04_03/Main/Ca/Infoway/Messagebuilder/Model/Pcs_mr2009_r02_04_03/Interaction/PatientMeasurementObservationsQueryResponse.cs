@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt410002ca;
 
 
+    /**
+     * <summary>Business Name: REPC_IN000055CA: Patient measurement 
+     * observations query response</summary>
+     * 
+     * <p>Returns one or more measurement observations associated 
+     * with a patient.</p> Message: MCCI_MT002300CA.Message Control 
+     * Act: QUQI_MT120006CA.ControlActEvent --> Payload: 
+     * REPC_MT410003CA.CommonObservationEvent --> Payload: 
+     * REPC_MT410002CA.ParameterList
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"REPC_IN000055CA"})]
     public class PatientMeasurementObservationsQueryResponse : HL7Message_1<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.TriggerEvent_6<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged.MeasuredObservation,Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt410002ca.QueryDefinition>>, IInteraction {
 

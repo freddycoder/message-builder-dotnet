@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,52 +30,52 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged {
 
 
     /**
-     * <summary>Issues</summary>
+     * <summary>Business Name: Issues</summary>
      * 
      * <remarks>PORX_MT030040CA.DetectedIssueEvent: Issues 
-     * <p>Describes an issue associated with a prescription that 
-     * resulted in a dispenser refusing to fill it.</p> <p>Allows a 
+     * <p>Allows a dispenser to assert an issue against a 
+     * prescription to be displayed to subsequent dispensers as 
+     * well as others reviewing the patient's medication 
+     * profile.</p> <p>Describes an issue associated with a 
+     * prescription that resulted in a dispenser refusing to fill 
+     * it.</p> PORX_MT060160CA.DetectedIssueEvent: Issues <p>Allows 
+     * a dispenser to assert an issue against a prescription to be 
+     * displayed to subsequent dispensers as well as others 
+     * reviewing the patient's medication profile.</p> <p>Describes 
+     * an issue associated with a prescription that resulted in a 
+     * dispenser refusing to fill it.</p> 
+     * PORX_MT060340CA.DetectedIssueEvent: Issues <p>Allows a 
      * dispenser to assert an issue against a prescription to be 
      * displayed to subsequent dispensers as well as others 
-     * reviewing the patient's medication profile.</p> 
-     * PORX_MT060160CA.DetectedIssueEvent: Issues <p>Describes an 
-     * issue associated with a prescription that resulted in a 
-     * dispenser refusing to fill it.</p> <p>Allows a dispenser to 
-     * assert an issue against a prescription to be displayed to 
-     * subsequent dispensers as well as others reviewing the 
-     * patient's medication profile.</p> 
-     * PORX_MT060340CA.DetectedIssueEvent: Issues <p>Describes an 
-     * issue associated with a prescription that resulted in a 
-     * dispenser refusing to fill it.</p> <p>Allows a dispenser to 
-     * assert an issue against a prescription to be displayed to 
-     * subsequent dispensers as well as others reviewing the 
-     * patient's medication profile.</p> 
-     * COCT_MT260012CA.DetectedIssueEvent: Issues <p>This is the 
-     * list of clinical and business issues that have been detected 
-     * and recorded involving the current action.</p> <p>Provides a 
+     * reviewing the patient's medication profile.</p> <p>Describes 
+     * an issue associated with a prescription that resulted in a 
+     * dispenser refusing to fill it.</p> 
+     * COCT_MT260012CA.DetectedIssueEvent: Issues <p>Provides a 
      * list of issues that have been detected and/or managed.</p> 
-     * PORX_MT060190CA.DetectedIssueEvent: Issues <p>Describes an 
-     * issue associated with a prescription that resulted in a 
-     * dispenser refusing to fill it.</p> <p>Allows a dispenser to 
-     * assert an issue against a prescription to be displayed to 
-     * subsequent dispensers as well as others reviewing the 
-     * patient's medication profile.</p> 
-     * PORX_MT060040CA.DetectedIssueEvent: Issues <p>Describes an 
-     * issue associated with a prescription that resulted in a 
-     * dispenser refusing to fill it.</p> <p>Allows a dispenser to 
-     * assert an issue against a prescription to be displayed to 
-     * subsequent dispensers as well as others reviewing the 
-     * patient's medication profile.</p> 
-     * COCT_MT260010CA.DetectedIssueEvent: Issues <p>This is the 
-     * list of clinical and business issues that have been detected 
-     * and recorded involving the current action.</p> <p>Provides a 
+     * <p>This is the list of clinical and business issues that 
+     * have been detected and recorded involving the current 
+     * action.</p> PORX_MT060190CA.DetectedIssueEvent: Issues 
+     * <p>Allows a dispenser to assert an issue against a 
+     * prescription to be displayed to subsequent dispensers as 
+     * well as others reviewing the patient's medication 
+     * profile.</p> <p>Describes an issue associated with a 
+     * prescription that resulted in a dispenser refusing to fill 
+     * it.</p> PORX_MT060040CA.DetectedIssueEvent: Issues <p>Allows 
+     * a dispenser to assert an issue against a prescription to be 
+     * displayed to subsequent dispensers as well as others 
+     * reviewing the patient's medication profile.</p> <p>Describes 
+     * an issue associated with a prescription that resulted in a 
+     * dispenser refusing to fill it.</p> 
+     * COCT_MT260010CA.DetectedIssueEvent: Issues <p>Provides a 
      * list of issues that have been detected and/or managed.</p> 
-     * PORX_MT060060CA.DetectedIssueEvent: Issues <p>Describes an 
-     * issue associated with a prescription that resulted in a 
-     * dispenser refusing to fill it.</p> <p>Allows a dispenser to 
-     * assert an issue against a prescription to be displayed to 
-     * subsequent dispensers as well as others reviewing the 
-     * patient's profile.</p></remarks>
+     * <p>This is the list of clinical and business issues that 
+     * have been detected and recorded involving the current 
+     * action.</p> PORX_MT060060CA.DetectedIssueEvent: Issues 
+     * <p>Allows a dispenser to assert an issue against a 
+     * prescription to be displayed to subsequent dispensers as 
+     * well as others reviewing the patient's profile.</p> 
+     * <p>Describes an issue associated with a prescription that 
+     * resulted in a dispenser refusing to fill it.</p></remarks>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"COCT_MT260010CA.DetectedIssueEvent","COCT_MT260012CA.DetectedIssueEvent","PORX_MT030040CA.DetectedIssueEvent","PORX_MT060040CA.DetectedIssueEvent","PORX_MT060060CA.DetectedIssueEvent","PORX_MT060160CA.DetectedIssueEvent","PORX_MT060190CA.DetectedIssueEvent","PORX_MT060340CA.DetectedIssueEvent"})]
     public class Issues : MessagePartBean {
@@ -99,143 +99,113 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged {
             this.subjectOfSeverityObservationValue = new CVImpl();
         }
         /**
-         * <summary>IssueType</summary>
+         * <summary>Business Name: IssueType</summary>
          * 
-         * <remarks>Issue Type <p>A coded value that is used to 
+         * <remarks>Un-merged Business Name: IssueType Relationship: 
+         * PORX_MT030040CA.DetectedIssueEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Identifies what 
+         * kind of issue was detected or is being managed.</p><p>This 
+         * is mandatory so as to ensure that one issue type can be 
+         * distinguished from another.</p> <p>A coded value that is 
+         * used to distinguish between different kinds of issues. Types 
+         * of issue include: unrecognized identifiers, permission 
+         * issues, drug-drug contraindications, drug-allergy alerts, 
+         * duplicate therapies, suspect fraud etc.</p><p>.</p> 
+         * Un-merged Business Name: IssueType Relationship: 
+         * PORX_MT060160CA.DetectedIssueEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Identifies what 
+         * kind of issue was detected or is being managed.</p><p>This 
+         * is mandatory so as to ensure that one issue type can be 
+         * distinguished from another.</p> <p>A coded value that is 
+         * used to distinguish between different kinds of issues. Types 
+         * of issue include: unrecognized identifiers, permission 
+         * issues, drug-drug contraindications, drug-allergy alerts, 
+         * duplicate therapies, suspect fraud etc.</p> Un-merged 
+         * Business Name: IssueType Relationship: 
+         * PORX_MT060340CA.DetectedIssueEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Identifies what 
+         * kind of issue was detected or is being managed.</p><p>This 
+         * is mandatory so as to ensure that one issue type can be 
+         * distinguished from another.</p> <p>A coded value that is 
+         * used to distinguish between different kinds of issues. Types 
+         * of issue include: unrecognized identifiers, permission 
+         * issues, drug-drug contraindications, drug-allergy alerts, 
+         * duplicate therapies, suspect fraud etc.</p> Un-merged 
+         * Business Name: IssueType Relationship: 
+         * COCT_MT260012CA.DetectedIssueEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) 
+         * <p>Contraindication.crossSensitive (if code is related 
+         * reaction dected issue then crossSensitive is 'True')</p> 
+         * <p>Distinguishes between DAI, DDI, DosageCheck, DPD, and 
+         * Duplicate Therapy Contraindications</p> 
+         * <p>Contraindication.DosageContraType</p> 
+         * <p>OverrideReason.reasonDomain</p> <p>ZP3.3</p> <p>E06(for 
+         * contraindications errors are handled at transmission or 
+         * controlAct wrapper level)</p> <p>05.03D</p> <p>DUR Response 
+         * Codes</p> <p>Interaction Type</p> <p>ZPS.7.1</p> 
+         * <p>ZDU.9.1(PLYPHRM)</p> <p>ZDU.10.1 (PLYDOC)</p> 
+         * <p>ZDU.6.2</p> <p>ZDU.6.4</p> <p>ZDU.7.3</p> 
+         * <p>DRU.100-01</p> <p>DUR/PPS.439-E4</p> 
+         * <p>A_DetectedMedicationIssue</p> <p>Identifies what kind of 
+         * issue was detected or is being managed.</p><p>This is 
+         * mandatory so as to ensure that one issue type can be 
+         * distinguished from another.</p> <p>A coded value that is 
+         * used to distinguish between different kinds of issues. Types 
+         * of issue include: unrecognized identifiers, permission 
+         * issues, drug-drug contraindications, drug-allergy alerts, 
+         * duplicate therapies, etc.</p> Un-merged Business Name: 
+         * IssueType Relationship: 
+         * PORX_MT060190CA.DetectedIssueEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Identifies what 
+         * kind of issue was detected or is being managed.</p><p>This 
+         * is mandatory so as to ensure that one issue type can be 
+         * distinguished from another.</p> <p>A coded value that is 
+         * used to distinguish between different kinds of issues. Types 
+         * of issue include: unrecognized identifiers, permission 
+         * issues, drug-drug contraindications, drug-allergy alerts, 
+         * duplicate therapies, suspect fraud etc.</p> Un-merged 
+         * Business Name: IssueType Relationship: 
+         * PORX_MT060040CA.DetectedIssueEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Identifies what 
+         * kind of issue was detected or is being managed.</p><p>This 
+         * is mandatory so as to ensure that one issue type can be 
+         * distinguished from another.</p> <p>A coded value that is 
+         * used to distinguish between different kinds of issues. Types 
+         * of issue include: unrecognized identifiers, permission 
+         * issues, drug-drug contraindications, drug-allergy alerts, 
+         * duplicate therapies, suspect fraud etc.</p> Un-merged 
+         * Business Name: IssueType Relationship: 
+         * COCT_MT260010CA.DetectedIssueEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) 
+         * <p>Contraindication.crossSensitive (if code is related 
+         * reaction dected issue then crossSensitive is 'True')</p> 
+         * <p>Distinguishes between DAI, DDI, DosageCheck, DPD, and 
+         * Duplicate Therapy Contraindications</p> 
+         * <p>Contraindication.DosageContraType</p> 
+         * <p>OverrideReason.reasonDomain</p> <p>ZP3.3</p> <p>E06(for 
+         * contraindications errors are handled at transmission or 
+         * controlAct wrapper level)</p> <p>05.03D</p> <p>DUR Response 
+         * Codes</p> <p>Interaction Type</p> <p>ZPS.7.1</p> 
+         * <p>ZDU.9.1(PLYPHRM)</p> <p>ZDU.10.1 (PLYDOC)</p> 
+         * <p>ZDU.6.2</p> <p>ZDU.6.4</p> <p>ZDU.7.3</p> 
+         * <p>DRU.100-01</p> <p>DUR/PPS.439-E4</p> 
+         * <p>A_DetectedMedicationIssue</p> <p>Identifies what kind of 
+         * issue was detected or is being managed.</p><p>This is 
+         * mandatory so as to ensure that one issue type can be 
+         * distinguished from another.</p> <p>A coded value that is 
+         * used to distinguish between different kinds of issues. Types 
+         * of issue include: unrecognized identifiers, permission 
+         * issues, drug-drug contraindications, drug-allergy alerts, 
+         * duplicate therapies, etc.</p> Un-merged Business Name: 
+         * IssueType Relationship: 
+         * PORX_MT060060CA.DetectedIssueEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Identifies what 
+         * kind of issue was detected or is being managed and is 
+         * therefore mandatory.</p> <p>A coded value that is used to 
          * distinguish between different kinds of issues. Types of 
          * issue include: unrecognized identifiers, permission issues, 
          * drug-drug contraindications, drug-allergy alerts, duplicate 
-         * therapies, suspect fraud etc.</p> <p>Identifies what kind of 
-         * issue was detected or is being managed.</p><p>This is 
-         * mandatory so as to ensure that one issue type can be 
-         * distinguished from another.</p> <p>Identifies what kind of 
-         * issue was detected or is being managed.</p><p>This is 
-         * mandatory so as to ensure that one issue type can be 
-         * distinguished from another.</p> Issue Type <p>A coded value 
-         * that is used to distinguish between different kinds of 
-         * issues. Types of issue include: unrecognized identifiers, 
-         * permission issues, drug-drug contraindications, drug-allergy 
-         * alerts, duplicate therapies, suspect fraud etc.</p> 
-         * <p>Identifies what kind of issue was detected or is being 
-         * managed and is therefore mandatory.</p> A:Issue Type <p>A 
-         * coded value that is used to distinguish between different 
-         * kinds of issues. Types of issue include: unrecognized 
-         * identifiers, permission issues, drug-drug contraindications, 
-         * drug-allergy alerts, duplicate therapies, etc.</p> 
-         * <p>Contraindication.crossSensitive (if code is related 
-         * reaction dected issue then crossSensitive is 
-         * 'True')</p><p>Distinguishes between DAI, DDI, DosageCheck, 
-         * DPD, and Duplicate Therapy 
-         * Contraindications</p><p>Contraindication.DosageContraType</p><p>OverrideReason.reasonDomain</p><p>ZP3.3</p><p>E06(for 
-         * contraindications errors are handled at transmission or 
-         * controlAct wrapper level)</p><p>05.03D</p><p>DUR Response 
-         * Codes</p><p>Interaction 
-         * Type</p><p>ZPS.7.1</p><p>ZDU.9.1(PLYPHRM)</p><p>ZDU.10.1 
-         * (PLYDOC)</p><p>ZDU.6.2</p><p>ZDU.6.4</p><p>ZDU.7.3</p><p>DRU.100-01</p><p>DUR/PPS.439-E4</p><p>A_DetectedMedicationIssue</p> 
-         * <p>Contraindication.crossSensitive (if code is related 
-         * reaction dected issue then crossSensitive is 
-         * 'True')</p><p>Distinguishes between DAI, DDI, DosageCheck, 
-         * DPD, and Duplicate Therapy 
-         * Contraindications</p><p>Contraindication.DosageContraType</p><p>OverrideReason.reasonDomain</p><p>ZP3.3</p><p>E06(for 
-         * contraindications errors are handled at transmission or 
-         * controlAct wrapper level)</p><p>05.03D</p><p>DUR Response 
-         * Codes</p><p>Interaction 
-         * Type</p><p>ZPS.7.1</p><p>ZDU.9.1(PLYPHRM)</p><p>ZDU.10.1 
-         * (PLYDOC)</p><p>ZDU.6.2</p><p>ZDU.6.4</p><p>ZDU.7.3</p><p>DRU.100-01</p><p>DUR/PPS.439-E4</p><p>A_DetectedMedicationIssue</p> 
-         * <p>Contraindication.crossSensitive (if code is related 
-         * reaction dected issue then crossSensitive is 
-         * 'True')</p><p>Distinguishes between DAI, DDI, DosageCheck, 
-         * DPD, and Duplicate Therapy 
-         * Contraindications</p><p>Contraindication.DosageContraType</p><p>OverrideReason.reasonDomain</p><p>ZP3.3</p><p>E06(for 
-         * contraindications errors are handled at transmission or 
-         * controlAct wrapper level)</p><p>05.03D</p><p>DUR Response 
-         * Codes</p><p>Interaction 
-         * Type</p><p>ZPS.7.1</p><p>ZDU.9.1(PLYPHRM)</p><p>ZDU.10.1 
-         * (PLYDOC)</p><p>ZDU.6.2</p><p>ZDU.6.4</p><p>ZDU.7.3</p><p>DRU.100-01</p><p>DUR/PPS.439-E4</p><p>A_DetectedMedicationIssue</p> 
-         * <p>Contraindication.crossSensitive (if code is related 
-         * reaction dected issue then crossSensitive is 
-         * 'True')</p><p>Distinguishes between DAI, DDI, DosageCheck, 
-         * DPD, and Duplicate Therapy 
-         * Contraindications</p><p>Contraindication.DosageContraType</p><p>OverrideReason.reasonDomain</p><p>ZP3.3</p><p>E06(for 
-         * contraindications errors are handled at transmission or 
-         * controlAct wrapper level)</p><p>05.03D</p><p>DUR Response 
-         * Codes</p><p>Interaction 
-         * Type</p><p>ZPS.7.1</p><p>ZDU.9.1(PLYPHRM)</p><p>ZDU.10.1 
-         * (PLYDOC)</p><p>ZDU.6.2</p><p>ZDU.6.4</p><p>ZDU.7.3</p><p>DRU.100-01</p><p>DUR/PPS.439-E4</p><p>A_DetectedMedicationIssue</p> 
-         * <p>Contraindication.crossSensitive (if code is related 
-         * reaction dected issue then crossSensitive is 
-         * 'True')</p><p>Distinguishes between DAI, DDI, DosageCheck, 
-         * DPD, and Duplicate Therapy 
-         * Contraindications</p><p>Contraindication.DosageContraType</p><p>OverrideReason.reasonDomain</p><p>ZP3.3</p><p>E06(for 
-         * contraindications errors are handled at transmission or 
-         * controlAct wrapper level)</p><p>05.03D</p><p>DUR Response 
-         * Codes</p><p>Interaction 
-         * Type</p><p>ZPS.7.1</p><p>ZDU.9.1(PLYPHRM)</p><p>ZDU.10.1 
-         * (PLYDOC)</p><p>ZDU.6.2</p><p>ZDU.6.4</p><p>ZDU.7.3</p><p>DRU.100-01</p><p>DUR/PPS.439-E4</p><p>A_DetectedMedicationIssue</p> 
-         * <p>Contraindication.crossSensitive (if code is related 
-         * reaction dected issue then crossSensitive is 
-         * 'True')</p><p>Distinguishes between DAI, DDI, DosageCheck, 
-         * DPD, and Duplicate Therapy 
-         * Contraindications</p><p>Contraindication.DosageContraType</p><p>OverrideReason.reasonDomain</p><p>ZP3.3</p><p>E06(for 
-         * contraindications errors are handled at transmission or 
-         * controlAct wrapper level)</p><p>05.03D</p><p>DUR Response 
-         * Codes</p><p>Interaction 
-         * Type</p><p>ZPS.7.1</p><p>ZDU.9.1(PLYPHRM)</p><p>ZDU.10.1 
-         * (PLYDOC)</p><p>ZDU.6.2</p><p>ZDU.6.4</p><p>ZDU.7.3</p><p>DRU.100-01</p><p>DUR/PPS.439-E4</p><p>A_DetectedMedicationIssue</p> 
-         * <p>Contraindication.crossSensitive (if code is related 
-         * reaction dected issue then crossSensitive is 
-         * 'True')</p><p>Distinguishes between DAI, DDI, DosageCheck, 
-         * DPD, and Duplicate Therapy 
-         * Contraindications</p><p>Contraindication.DosageContraType</p><p>OverrideReason.reasonDomain</p><p>ZP3.3</p><p>E06(for 
-         * contraindications errors are handled at transmission or 
-         * controlAct wrapper level)</p><p>05.03D</p><p>DUR Response 
-         * Codes</p><p>Interaction 
-         * Type</p><p>ZPS.7.1</p><p>ZDU.9.1(PLYPHRM)</p><p>ZDU.10.1 
-         * (PLYDOC)</p><p>ZDU.6.2</p><p>ZDU.6.4</p><p>ZDU.7.3</p><p>DRU.100-01</p><p>DUR/PPS.439-E4</p><p>A_DetectedMedicationIssue</p> 
-         * <p>Contraindication.crossSensitive (if code is related 
-         * reaction dected issue then crossSensitive is 
-         * 'True')</p><p>Distinguishes between DAI, DDI, DosageCheck, 
-         * DPD, and Duplicate Therapy 
-         * Contraindications</p><p>Contraindication.DosageContraType</p><p>OverrideReason.reasonDomain</p><p>ZP3.3</p><p>E06(for 
-         * contraindications errors are handled at transmission or 
-         * controlAct wrapper level)</p><p>05.03D</p><p>DUR Response 
-         * Codes</p><p>Interaction 
-         * Type</p><p>ZPS.7.1</p><p>ZDU.9.1(PLYPHRM)</p><p>ZDU.10.1 
-         * (PLYDOC)</p><p>ZDU.6.2</p><p>ZDU.6.4</p><p>ZDU.7.3</p><p>DRU.100-01</p><p>DUR/PPS.439-E4</p><p>A_DetectedMedicationIssue</p> 
-         * <p>Contraindication.crossSensitive (if code is related 
-         * reaction dected issue then crossSensitive is 
-         * 'True')</p><p>Distinguishes between DAI, DDI, DosageCheck, 
-         * DPD, and Duplicate Therapy 
-         * Contraindications</p><p>Contraindication.DosageContraType</p><p>OverrideReason.reasonDomain</p><p>ZP3.3</p><p>E06(for 
-         * contraindications errors are handled at transmission or 
-         * controlAct wrapper level)</p><p>05.03D</p><p>DUR Response 
-         * Codes</p><p>Interaction 
-         * Type</p><p>ZPS.7.1</p><p>ZDU.9.1(PLYPHRM)</p><p>ZDU.10.1 
-         * (PLYDOC)</p><p>ZDU.6.2</p><p>ZDU.6.4</p><p>ZDU.7.3</p><p>DRU.100-01</p><p>DUR/PPS.439-E4</p><p>A_DetectedMedicationIssue</p> 
-         * <p>Contraindication.crossSensitive (if code is related 
-         * reaction dected issue then crossSensitive is 
-         * 'True')</p><p>Distinguishes between DAI, DDI, DosageCheck, 
-         * DPD, and Duplicate Therapy 
-         * Contraindications</p><p>Contraindication.DosageContraType</p><p>OverrideReason.reasonDomain</p><p>ZP3.3</p><p>E06(for 
-         * contraindications errors are handled at transmission or 
-         * controlAct wrapper level)</p><p>05.03D</p><p>DUR Response 
-         * Codes</p><p>Interaction 
-         * Type</p><p>ZPS.7.1</p><p>ZDU.9.1(PLYPHRM)</p><p>ZDU.10.1 
-         * (PLYDOC)</p><p>ZDU.6.2</p><p>ZDU.6.4</p><p>ZDU.7.3</p><p>DRU.100-01</p><p>DUR/PPS.439-E4</p><p>A_DetectedMedicationIssue</p> 
-         * <p>Contraindication.crossSensitive (if code is related 
-         * reaction dected issue then crossSensitive is 
-         * 'True')</p><p>Distinguishes between DAI, DDI, DosageCheck, 
-         * DPD, and Duplicate Therapy 
-         * Contraindications</p><p>Contraindication.DosageContraType</p><p>OverrideReason.reasonDomain</p><p>ZP3.3</p><p>E06(for 
-         * contraindications errors are handled at transmission or 
-         * controlAct wrapper level)</p><p>05.03D</p><p>DUR Response 
-         * Codes</p><p>Interaction 
-         * Type</p><p>ZPS.7.1</p><p>ZDU.9.1(PLYPHRM)</p><p>ZDU.10.1 
-         * (PLYDOC)</p><p>ZDU.6.2</p><p>ZDU.6.4</p><p>ZDU.7.3</p><p>DRU.100-01</p><p>DUR/PPS.439-E4</p><p>A_DetectedMedicationIssue</p> 
-         * <p>Contraindication.crossSensitive (if code is related 
-         * reaction dected issue then crossSensitive is 
-         * 'True')</p><p>Distinguishes between DAI,
-         * ... [rest of documentation truncated due to excessive length]
+         * therapies, suspect fraud etc.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public ActDetectedIssueCode Code {
@@ -244,36 +214,65 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged {
         }
 
         /**
-         * <summary>B:Issue Comment</summary>
+         * <summary>Un-merged Business Name: IssueComment</summary>
          * 
-         * <remarks><p>A free form textual description regarding the 
-         * issue of fraudulence. This may be specified in place of, or 
-         * in addition to the coded issue.</p> <p>Enables extra or more 
-         * detailed description of the alert</p> Issue Comment <p>A 
-         * free form textual description regarding the issue of 
-         * fraudulence. This may be specified in place of, or in 
-         * addition to the coded issue.</p> <p>Enables extra or more 
-         * detailed description of the alert</p> D:Issue Details <p>A 
-         * free form textual description of a detected issue. This 
+         * <remarks>Relationship: 
+         * PORX_MT030040CA.DetectedIssueEvent.text 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Enables extra or 
+         * more detailed description of the alert</p> <p>A free form 
+         * textual description regarding the issue of fraudulence. This 
+         * may be specified in place of, or in addition to the coded 
+         * issue.</p> Un-merged Business Name: IssueComment 
+         * Relationship: PORX_MT060160CA.DetectedIssueEvent.text 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Enables extra or 
+         * more detailed description of the alert</p> <p>A free form 
+         * textual description regarding the issue of fraudulence. This 
+         * may be specified in place of, or in addition to the coded 
+         * issue.</p> Un-merged Business Name: IssueComment 
+         * Relationship: PORX_MT060340CA.DetectedIssueEvent.text 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Enables extra or 
+         * more detailed description of the alert</p> <p>A free form 
+         * textual description regarding the issue of fraudulence. This 
+         * may be specified in place of, or in addition to the coded 
+         * issue.</p> Un-merged Business Name: IssueDetails 
+         * Relationship: COCT_MT260012CA.DetectedIssueEvent.text 
+         * Conformance/Cardinality: REQUIRED (0-1) 
+         * <p>Contraindication.DDIDescription</p> <p>E20(for 
+         * contraindication errors are handled at transmission or 
+         * controlact wrapper level)</p> <p>ZPE.4</p> <p>ZDU.11.1</p> 
+         * <p>Lets providers see textual explanation of the issue.</p> 
+         * <p>A free form textual description of a detected issue. This 
          * textual information is provided to either augment the coded 
          * information or in place of the coded information.</p> 
-         * <p>Contraindication.DDIDescription</p><p>E20(for 
+         * Un-merged Business Name: IssueComment Relationship: 
+         * PORX_MT060190CA.DetectedIssueEvent.text 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Enables extra or 
+         * more detailed description of the alert</p> <p>A free form 
+         * textual description regarding the issue of fraudulence. This 
+         * may be specified in place of, or in addition to the coded 
+         * issue.</p> Un-merged Business Name: IssueComment 
+         * Relationship: PORX_MT060040CA.DetectedIssueEvent.text 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Enables extra or 
+         * more detailed description of the alert</p> <p>A free form 
+         * textual description regarding the issue of fraudulence. This 
+         * may be specified in place of, or in addition to the coded 
+         * issue.</p> Un-merged Business Name: IssueDetails 
+         * Relationship: COCT_MT260010CA.DetectedIssueEvent.text 
+         * Conformance/Cardinality: REQUIRED (0-1) 
+         * <p>Contraindication.DDIDescription</p> <p>E20(for 
          * contraindication errors are handled at transmission or 
-         * controlact wrapper level)</p><p>ZPE.4</p><p>ZDU.11.1</p> 
-         * <p>Contraindication.DDIDescription</p><p>E20(for 
-         * contraindication errors are handled at transmission or 
-         * controlact wrapper level)</p><p>ZPE.4</p><p>ZDU.11.1</p> 
-         * <p>Contraindication.DDIDescription</p><p>E20(for 
-         * contraindication errors are handled at transmission or 
-         * controlact wrapper level)</p><p>ZPE.4</p><p>ZDU.11.1</p> 
-         * <p>Contraindication.DDIDescription</p><p>E20(for 
-         * contraindication errors are handled at transmission or 
-         * controlact wrapper level)</p><p>ZPE.4</p><p>ZDU.11.1</p> 
+         * controlact wrapper level)</p> <p>ZPE.4</p> <p>ZDU.11.1</p> 
          * <p>Lets providers see textual explanation of the issue.</p> 
-         * Issue Comment <p>A free form textual description regarding 
-         * the issue. This may be specified in place of, or in addition 
-         * to the coded issue.</p> <p>Enables extra or more detailed 
-         * description of the alert</p></remarks>
+         * <p>A free form textual description of a detected issue. This 
+         * textual information is provided to either augment the coded 
+         * information or in place of the coded information.</p> 
+         * Un-merged Business Name: IssueComment Relationship: 
+         * PORX_MT060060CA.DetectedIssueEvent.text 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Enables extra or 
+         * more detailed description of the alert</p> <p>A free form 
+         * textual description regarding the issue. This may be 
+         * specified in place of, or in addition to the coded 
+         * issue.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"text"})]
         public String Text {
@@ -282,16 +281,29 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged {
         }
 
         /**
-         * <summary>IssuePriority</summary>
+         * <summary>Business Name: IssuePriority</summary>
          * 
-         * <remarks>C:Issue Priority <p>A coded value denoting the 
-         * importance of a detectable issue. Valid codes are: I - for 
-         * Information, E - for Error, and W - for Warning.</p> 
-         * <p>Allows the provider to make informed decision on the 
-         * importance and criticality of an issue. May also be used by 
-         * the DIS to determine the order of returning issues. 
-         * Attribute is mandatory because every issue needs to be 
-         * prioritized.</p></remarks>
+         * <remarks>Un-merged Business Name: IssuePriority 
+         * Relationship: 
+         * COCT_MT260012CA.DetectedIssueEvent.priorityCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows the 
+         * provider to make informed decision on the importance and 
+         * criticality of an issue. May also be used by the DIS to 
+         * determine the order of returning issues. Attribute is 
+         * mandatory because every issue needs to be prioritized.</p> 
+         * <p>A coded value denoting the importance of a detectable 
+         * issue. Valid codes are: I - for Information, E - for Error, 
+         * and W - for Warning.</p> Un-merged Business Name: 
+         * IssuePriority Relationship: 
+         * COCT_MT260010CA.DetectedIssueEvent.priorityCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows the 
+         * provider to make informed decision on the importance and 
+         * criticality of an issue. May also be used by the DIS to 
+         * determine the order of returning issues. Attribute is 
+         * mandatory because every issue needs to be prioritized.</p> 
+         * <p>A coded value denoting the importance of a detectable 
+         * issue. Valid codes are: I - for Information, E - for Error, 
+         * and W - for Warning.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"priorityCode"})]
         public ActIssuePriority PriorityCode {
@@ -300,27 +312,61 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged {
         }
 
         /**
-         * <summary>MessageIssueLocation</summary>
+         * <summary>Business Name: MessageIssueLocation</summary>
          * 
-         * <remarks>Message Issue Location <p>Used to identify XPath 
-         * references that indicate which attributes from the message 
-         * instance were involved in the issue.</p></remarks>
+         * <remarks>Un-merged Business Name: MessageIssueLocation 
+         * Relationship: 
+         * COCT_MT260012CA.DetectedIssueEvent.targetSiteCode 
+         * Conformance/Cardinality: REQUIRED (0-5) <p>Used to identify 
+         * XPath references that indicate which attributes from the 
+         * message instance were involved in the issue.</p> Un-merged 
+         * Business Name: MessageIssueLocation Relationship: 
+         * COCT_MT260010CA.DetectedIssueEvent.targetSiteCode 
+         * Conformance/Cardinality: REQUIRED (0-5) <p>Used to identify 
+         * XPath references that indicate which attributes from the 
+         * message instance were involved in the issue.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"targetSiteCode"})]
         public ICollection<String> TargetSiteCode {
             get { return this.targetSiteCode.RawSet(); }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * COCT_MT260012CA.Mitigates.detectedIssueManagement 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * COCT_MT260010CA.Mitigates.detectedIssueManagement 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"mitigatedBy/detectedIssueManagement"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.IssueManagements_1> MitigatedByDetectedIssueManagement {
             get { return this.mitigatedByDetectedIssueManagement; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: COCT_MT260010CA.Subject2.causalActs 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subject/causalActs"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.ICausalActs> SubjectCausalActs {
             get { return this.subjectCausalActs; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * COCT_MT260010CA.Definition.detectedIssueDefinition 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"instantiation/detectedIssueDefinition"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.IssueDescription InstantiationDetectedIssueDefinition {
             get { return this.instantiationDetectedIssueDefinition; }
@@ -328,24 +374,19 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged {
         }
 
         /**
-         * <summary>SeverityCode</summary>
+         * <summary>Business Name: SeverityCode</summary>
          * 
-         * <remarks>B:Severity Code <p>A coded value denoting the 
-         * gravity of the detected issue.</p> 
-         * <p>Contraindication.severity</p><p>ZPE.3</p><p>MB.05.03A</p><p>Severity</p><p>ZDU.6.3</p><p>ZDU.8.4</p><p>A_DetectedMedicationIssue</p> 
-         * <p>Contraindication.severity</p><p>ZPE.3</p><p>MB.05.03A</p><p>Severity</p><p>ZDU.6.3</p><p>ZDU.8.4</p><p>A_DetectedMedicationIssue</p> 
-         * <p>Contraindication.severity</p><p>ZPE.3</p><p>MB.05.03A</p><p>Severity</p><p>ZDU.6.3</p><p>ZDU.8.4</p><p>A_DetectedMedicationIssue</p> 
-         * <p>Contraindication.severity</p><p>ZPE.3</p><p>MB.05.03A</p><p>Severity</p><p>ZDU.6.3</p><p>ZDU.8.4</p><p>A_DetectedMedicationIssue</p> 
-         * <p>Contraindication.severity</p><p>ZPE.3</p><p>MB.05.03A</p><p>Severity</p><p>ZDU.6.3</p><p>ZDU.8.4</p><p>A_DetectedMedicationIssue</p> 
-         * <p>Contraindication.severity</p><p>ZPE.3</p><p>MB.05.03A</p><p>Severity</p><p>ZDU.6.3</p><p>ZDU.8.4</p><p>A_DetectedMedicationIssue</p> 
-         * <p>Contraindication.severity</p><p>ZPE.3</p><p>MB.05.03A</p><p>Severity</p><p>ZDU.6.3</p><p>ZDU.8.4</p><p>A_DetectedMedicationIssue</p> 
-         * <p>May be used to determine which contraindications must be 
-         * managed and how.</p><p>This attribute is marked as 
+         * <remarks>Un-merged Business Name: SeverityCode Relationship: 
+         * COCT_MT260010CA.SeverityObservation.value 
+         * Conformance/Cardinality: MANDATORY (1) 
+         * <p>Contraindication.severity</p> <p>ZPE.3</p> 
+         * <p>MB.05.03A</p> <p>Severity</p> <p>ZDU.6.3</p> 
+         * <p>ZDU.8.4</p> <p>A_DetectedMedicationIssue</p> <p>May be 
+         * used to determine which contraindications must be managed 
+         * and how.</p><p>This attribute is marked as 
          * &quot;mandatory&quot; because the code denoting the level of 
-         * severity must be specified.</p> <p>May be used to determine 
-         * which contraindications must be managed and how.</p><p>This 
-         * attribute is marked as &quot;mandatory&quot; because the 
-         * code denoting the level of severity must be specified.</p></remarks>
+         * severity must be specified.</p> <p>A coded value denoting 
+         * the gravity of the detected issue.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf/severityObservation/value"})]
         public SeverityObservation SubjectOfSeverityObservationValue {

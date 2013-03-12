@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,12 +30,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Coct_mt260030
 
 
     /**
-     * <summary>Dispense</summary>
+     * <summary>Business Name: Dispense</summary>
      * 
-     * <remarks><p>Indicates a particular dispense event that 
-     * resulted in the issue.</p> <p>Used when the issue pertains 
-     * to the supply of the drug rather than the drug itself. E.g. 
-     * Duplicate pharmacy, refill too soon, etc.</p></remarks>
+     * <p>Indicates a particular dispense event that resulted in 
+     * the issue.</p> <p>Used when the issue pertains to the supply 
+     * of the drug rather than the drug itself. E.g. Duplicate 
+     * pharmacy, refill too soon, etc.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"COCT_MT260030CA.SupplyEvent"})]
     public class Dispense : MessagePartBean, Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.ICausalActs {
@@ -54,12 +54,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Coct_mt260030
             this.confidentialityCode = new CVImpl();
         }
         /**
-         * <summary>A:Prescription Dispense Number</summary>
+         * <summary>Business Name: A:Prescription Dispense Number</summary>
          * 
-         * <remarks><p>Unique identifier of the dispensed event that 
-         * triggered the issue.</p> <p>Allows provider to drill down 
-         * and retrieve additional information about the dispense event 
-         * for consideration in their issue management decision.</p></remarks>
+         * <remarks>Relationship: COCT_MT260030CA.SupplyEvent.id 
+         * Conformance/Cardinality: POPULATED (1) <p>Unique identifier 
+         * of the dispensed event that triggered the issue.</p> 
+         * <p>Allows provider to drill down and retrieve additional 
+         * information about the dispense event for consideration in 
+         * their issue management decision.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -68,17 +70,19 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Coct_mt260030
         }
 
         /**
-         * <summary>B:Dispense Status</summary>
+         * <summary>Business Name: B:Dispense Status</summary>
          * 
-         * <remarks><p>Indicates the status of the dispense record 
-         * created on the EHR/DIS. If 'Active' it means that the 
-         * dispense has been processed but not yet given to the 
-         * patient. If 'Complete', it indicates that the medication has 
-         * been delivered to the patient.</p> <p>Important in 
-         * understanding what medication the patient actually has on 
-         * hand, thus the attribute is mandatory. May also influence 
-         * the ability of a different pharmacy to dispense the 
-         * medication.</p></remarks>
+         * <remarks>Relationship: 
+         * COCT_MT260030CA.SupplyEvent.statusCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the 
+         * status of the dispense record created on the EHR/DIS. If 
+         * 'Active' it means that the dispense has been processed but 
+         * not yet given to the patient. If 'Complete', it indicates 
+         * that the medication has been delivered to the patient.</p> 
+         * <p>Important in understanding what medication the patient 
+         * actually has on hand, thus the attribute is mandatory. May 
+         * also influence the ability of a different pharmacy to 
+         * dispense the medication.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"statusCode"})]
         public ActStatus StatusCode {
@@ -87,15 +91,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Coct_mt260030
         }
 
         /**
-         * <summary>B:Dispensed Date</summary>
+         * <summary>Business Name: B:Dispensed Date</summary>
          * 
-         * <remarks><p>The date and time on which the product was 
-         * issued to the patient.</p> <p>ZDU.4.5</p> <p>Allows 
-         * evaluation of 'refill too soon' and similar 
-         * issues.</p><p>Attribute is marked as &quot;populated&quot; 
-         * as a dispense record may not exist without processing 
-         * date.</p> <p>Allows evaluation of 'refill too soon' and 
+         * <remarks>Relationship: 
+         * COCT_MT260030CA.SupplyEvent.effectiveTime 
+         * Conformance/Cardinality: POPULATED (1) <p>The date and time 
+         * on which the product was issued to the patient.</p> 
+         * <p>ZDU.4.5</p> <p>Allows evaluation of 'refill too soon' and 
          * similar issues.</p><p>Attribute is marked as 
+         * &quot;populated&quot; as a dispense record may not exist 
+         * without processing date.</p> <p>Allows evaluation of 'refill 
+         * too soon' and similar issues.</p><p>Attribute is marked as 
          * &quot;populated&quot; as a dispense record may not exist 
          * without processing date.</p> <p>Applications should specify 
          * a null flavor of &quot;Not Applicable&quot; for dispenses 
@@ -108,15 +114,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Coct_mt260030
         }
 
         /**
-         * <summary>C:Dispense Masking Indicator</summary>
+         * <summary>Business Name: C:Dispense Masking Indicator</summary>
          * 
-         * <remarks><p>An indication of sensitivity surrounding the 
-         * related drug, and thus defines the required sensitivity for 
-         * the detected issue.</p> <p>Conveys the patient's wishes 
-         * relating to the sensitivity of the drug 
-         * information.</p><p>The attribute is optional because not all 
-         * systems will support masking.</p> <p>Conveys the patient's 
-         * wishes relating to the sensitivity of the drug 
+         * <remarks>Relationship: 
+         * COCT_MT260030CA.SupplyEvent.confidentialityCode 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>An indication of 
+         * sensitivity surrounding the related drug, and thus defines 
+         * the required sensitivity for the detected issue.</p> 
+         * <p>Conveys the patient's wishes relating to the sensitivity 
+         * of the drug information.</p><p>The attribute is optional 
+         * because not all systems will support masking.</p> <p>Conveys 
+         * the patient's wishes relating to the sensitivity of the drug 
          * information.</p><p>The attribute is optional because not all 
          * systems will support masking.</p></remarks>
          */
@@ -126,12 +134,22 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Coct_mt260030
             set { this.confidentialityCode.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: COCT_MT260030CA.SupplyEvent.product</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"product"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.Dispensed_2 Product {
             get { return this.product; }
             set { this.product = value; }
         }
 
+        /**
+         * <summary>Relationship: COCT_MT260030CA.SupplyEvent.location</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"location"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.CreatedAt Location {
             get { return this.location; }

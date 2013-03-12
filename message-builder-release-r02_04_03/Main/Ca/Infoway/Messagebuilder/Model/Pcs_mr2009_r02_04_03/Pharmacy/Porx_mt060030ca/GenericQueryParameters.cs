@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,11 +29,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Porx_mt0
 
 
     /**
-     * <summary>Generic Query Parameters</summary>
+     * <summary>Business Name: Generic Query Parameters</summary>
      * 
-     * <remarks><p>Defines the set of parameters that may be used 
-     * to filter the query response.</p> <p>Root class for query 
-     * definition</p></remarks>
+     * <p>Root class for query definition</p> <p>Defines the set of 
+     * parameters that may be used to filter the query 
+     * response.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"PORX_MT060030CA.ParameterList"})]
     public class GenericQueryParameters : MessagePartBean {
@@ -50,19 +50,20 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Porx_mt0
             this.usageEffectivePeriodValue = new IVLImpl<TS, Interval<PlatformDate>>();
         }
         /**
-         * <summary>Issue Filter Code</summary>
+         * <summary>Business Name: Issue Filter Code</summary>
          * 
-         * <remarks><p>Indicates whether records to be returned (e.g. 
+         * <remarks>Relationship: PORX_MT060030CA.IssueFilterCode.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>By filtering 
+         * returned records to include only those which have unmanaged 
+         * issues or any issues at all, allows a provider to focus on 
+         * those aspects of care where extra attention is needed. 
+         * Because the attribute must be known, it is mandatory.</p> 
+         * <p>Indicates whether records to be returned (e.g. 
          * prescription order, prescription dispense and/or other 
          * medication) should be filtered to those with at least one 
          * persistent un-managed issue (against the record), with at 
          * least one persistent issues or should return all records, 
-         * independent of the presence of persistent issues.</p> <p>By 
-         * filtering returned records to include only those which have 
-         * unmanaged issues or any issues at all, allows a provider to 
-         * focus on those aspects of care where extra attention is 
-         * needed. Because the attribute must be known, it is 
-         * mandatory.</p></remarks>
+         * independent of the presence of persistent issues.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"issueFilterCode/value"})]
         public IssueFilterCode IssueFilterCodeValue {
@@ -71,23 +72,21 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Porx_mt0
         }
 
         /**
-         * <summary>Most Recent By Device Indicator</summary>
+         * <summary>Business Name: Most Recent By Device Indicator</summary>
          * 
-         * <remarks><p>Indicates whether or not the records are to be 
-         * retrieved based on the most recent by Device Code. If true, 
-         * only the most recent prescription or dispense or for the 
-         * specified device type will be returned. The default is 
-         * 'FALSE' indicating that retrieval of prescription and 
-         * dispense records should not be limited to one per device 
-         * type.</p> <p>Helps decrease the volume of records returned, 
-         * while still maintaining information on all devices that the 
-         * patient is using.</p><p>The element is mandatory because the 
-         * query recipient must know whether the value is true or 
-         * false.</p> <p>Helps decrease the volume of records returned, 
-         * while still maintaining information on all devices that the 
-         * patient is using.</p><p>The element is mandatory because the 
-         * query recipient must know whether the value is true or 
-         * false.</p></remarks>
+         * <remarks>Relationship: 
+         * PORX_MT060030CA.MostRecentByDeviceIndicator.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Helps decrease the 
+         * volume of records returned, while still maintaining 
+         * information on all devices that the patient is 
+         * using.</p><p>The element is mandatory because the query 
+         * recipient must know whether the value is true or false.</p> 
+         * <p>Indicates whether or not the records are to be retrieved 
+         * based on the most recent by Device Code. If true, only the 
+         * most recent prescription or dispense or for the specified 
+         * device type will be returned. The default is 'FALSE' 
+         * indicating that retrieval of prescription and dispense 
+         * records should not be limited to one per device type.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"mostRecentByDeviceIndicator/value"})]
         public bool? MostRecentByDeviceIndicatorValue {
@@ -96,38 +95,23 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Porx_mt0
         }
 
         /**
-         * <summary>Most Recent Dispense for each Rx Indicator</summary>
+         * <summary>Business Name: Most Recent Dispense for each Rx 
+         * Indicator</summary>
          * 
-         * <remarks><p>Indicates whether or not prescription dispenses 
-         * returned on a query should be limited to only the most 
-         * recent dispense for a prescription order.</p><p>Allows for 
-         * the returning of at most one prescription dispense record 
-         * per a prescription.</p><p>The default is 'TRUE' indicating 
-         * that retrieval should be for only the most recent dispense 
-         * for a prescription is to be included in a query result.</p> 
+         * <remarks>Relationship: 
+         * PORX_MT060030CA.MostRecentDispenseForEachRxIndicator.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Helps to trim down 
+         * volume of query response by eliminating multiple 
+         * prescription dispenses for the same prescription 
+         * order.</p><p>The element is mandatory because the query 
+         * recipient must know whether the value is true or false.</p> 
          * <p>Indicates whether or not prescription dispenses returned 
          * on a query should be limited to only the most recent 
          * dispense for a prescription order.</p><p>Allows for the 
          * returning of at most one prescription dispense record per a 
          * prescription.</p><p>The default is 'TRUE' indicating that 
          * retrieval should be for only the most recent dispense for a 
-         * prescription is to be included in a query result.</p> 
-         * <p>Indicates whether or not prescription dispenses returned 
-         * on a query should be limited to only the most recent 
-         * dispense for a prescription order.</p><p>Allows for the 
-         * returning of at most one prescription dispense record per a 
-         * prescription.</p><p>The default is 'TRUE' indicating that 
-         * retrieval should be for only the most recent dispense for a 
-         * prescription is to be included in a query result.</p> 
-         * <p>Helps to trim down volume of query response by 
-         * eliminating multiple prescription dispenses for the same 
-         * prescription order.</p><p>The element is mandatory because 
-         * the query recipient must know whether the value is true or 
-         * false.</p> <p>Helps to trim down volume of query response by 
-         * eliminating multiple prescription dispenses for the same 
-         * prescription order.</p><p>The element is mandatory because 
-         * the query recipient must know whether the value is true or 
-         * false.</p></remarks>
+         * prescription is to be included in a query result.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"mostRecentDispenseForEachRxIndicator/value"})]
         public bool? MostRecentDispenseForEachRxIndicatorValue {
@@ -136,22 +120,20 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Porx_mt0
         }
 
         /**
-         * <summary>D:Usage Effective Period</summary>
+         * <summary>Business Name: D:Usage Effective Period</summary>
          * 
-         * <remarks><p>Indicates the usage period for which the 
-         * request/query applies.</p><p>Filter the result set to 
+         * <remarks>Relationship: 
+         * PORX_MT060030CA.UsageEffectivePeriod.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows the 
+         * requester to specify the usage period of interest for the 
+         * retrieval. Useful to avoid run-away queries.</p> <p>The 
+         * determination for applicability for inclusion in the query 
+         * response should be considered to be the 'Pick up date plus 
+         * the days supply'</p> <p>Indicates the usage period for which 
+         * the request/query applies.</p><p>Filter the result set to 
          * include only those records (prescription order and 
          * prescription dispense) for which the patient was deemed to 
-         * be using the device within the specified period.</p> 
-         * <p>Indicates the usage period for which the request/query 
-         * applies.</p><p>Filter the result set to include only those 
-         * records (prescription order and prescription dispense) for 
-         * which the patient was deemed to be using the device within 
-         * the specified period.</p> <p>Allows the requester to specify 
-         * the usage period of interest for the retrieval. Useful to 
-         * avoid run-away queries.</p> <p>The determination for 
-         * applicability for inclusion in the query response should be 
-         * considered to be the 'Pick up date plus the days supply'</p></remarks>
+         * be using the device within the specified period.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"usageEffectivePeriod/value"})]
         public Interval<PlatformDate> UsageEffectivePeriodValue {

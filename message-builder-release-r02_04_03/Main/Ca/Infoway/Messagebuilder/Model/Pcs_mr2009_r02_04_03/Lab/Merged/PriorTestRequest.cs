@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,26 +28,26 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Merged {
 
 
     /**
-     * <summary>PriorTestRequest</summary>
+     * <summary>Business Name: PriorTestRequest</summary>
      * 
      * <remarks>POLB_MT001999CA.PriorActRequest: Prior Test Request 
-     * <p>Must contain a value assigned by the order-placing 
-     * organization that uniquely identifies this test request 
-     * among all test requests in the receiving application.</p> 
-     * <p>This is used primarily for Order referrals.</p> 
+     * <p>This is used primarily for Order referrals.</p> <p>Must 
+     * contain a value assigned by the order-placing organization 
+     * that uniquely identifies this test request among all test 
+     * requests in the receiving application.</p> 
      * POLB_MT001010CA.PriorActRequest: Prior Test Request <p>The 
      * classCode shall carry one of ACT, BATTERY or OBS according 
-     * to the parent order classCode.</p> <p>Must contain a value 
-     * assigned by the order-placing organization that uniquely 
-     * identifies this test request among all test requests in the 
-     * receiving application.</p> <p>This is used primarily for 
-     * Order referrals.</p> POLB_MT001001CA.PriorActRequest: Prior 
-     * Test Request <p>The classCode shall carry one of ACT, 
-     * BATTERY or OBS according to the parent order classCode.</p> 
-     * <p>Must contain a value assigned by the order-placing 
-     * organization that uniquely identifies this test request 
-     * among all test requests in the receiving application.</p> 
-     * <p>This is used primarily for Order referrals.</p></remarks>
+     * to the parent order classCode.</p> <p>This is used primarily 
+     * for Order referrals.</p> <p>Must contain a value assigned by 
+     * the order-placing organization that uniquely identifies this 
+     * test request among all test requests in the receiving 
+     * application.</p> POLB_MT001001CA.PriorActRequest: Prior Test 
+     * Request <p>The classCode shall carry one of ACT, BATTERY or 
+     * OBS according to the parent order classCode.</p> <p>This is 
+     * used primarily for Order referrals.</p> <p>Must contain a 
+     * value assigned by the order-placing organization that 
+     * uniquely identifies this test request among all test 
+     * requests in the receiving application.</p></remarks>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"POLB_MT001000CA.PriorActRequest","POLB_MT001001CA.PriorActRequest","POLB_MT001010CA.PriorActRequest","POLB_MT001999CA.PriorActRequest"})]
     public class PriorTestRequest : MessagePartBean {
@@ -60,14 +60,32 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Merged {
             this.statusCode = new CSImpl();
         }
         /**
-         * <summary>PriorTestIdentifier</summary>
+         * <summary>Business Name: PriorTestIdentifier</summary>
          * 
-         * <remarks>Prior Test Identifier <p>Uniquely identifies this 
-         * test request among all test requests in the receiving 
-         * application.</p> <p>Used for order referrals. This attribute 
+         * <remarks>Un-merged Business Name: PriorTestIdentifier 
+         * Relationship: POLB_MT001000CA.PriorActRequest.id 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: PriorTestIdentifier Relationship: 
+         * POLB_MT001999CA.PriorActRequest.id Conformance/Cardinality: 
+         * MANDATORY (1) <p>Used for order referrals. This attribute 
          * communicates the identifier of the original test request 
          * (target) from which the (source) referral request 
-         * originated.</p> Prior Test Identifier</remarks>
+         * originated.</p> <p>Uniquely identifies this test request 
+         * among all test requests in the receiving application.</p> 
+         * Un-merged Business Name: PriorTestIdentifier Relationship: 
+         * POLB_MT001001CA.PriorActRequest.id Conformance/Cardinality: 
+         * MANDATORY (1) <p>Used for order referrals. This attribute 
+         * communicates the identifier of the original test request 
+         * (target) from which the (source) referral request 
+         * originated.</p> <p>Uniquely identifies this test request 
+         * among all test requests in the receiving application.</p> 
+         * Un-merged Business Name: PriorTestIdentifier Relationship: 
+         * POLB_MT001010CA.PriorActRequest.id Conformance/Cardinality: 
+         * MANDATORY (1) <p>Used for order referrals. This attribute 
+         * communicates the identifier of the original test request 
+         * (target) from which the (source) referral request 
+         * originated.</p> <p>Uniquely identifies this test request 
+         * among all test requests in the receiving application.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -76,11 +94,23 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Merged {
         }
 
         /**
-         * <summary>PriorTestStatus</summary>
+         * <summary>Business Name: PriorTestStatus</summary>
          * 
-         * <remarks>Prior Test Status Prior Test Status <p>The status 
-         * of the prior test request.</p> <p>Used for order 
-         * referrals.</p></remarks>
+         * <remarks>Un-merged Business Name: PriorTestStatus 
+         * Relationship: POLB_MT001000CA.PriorActRequest.statusCode 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: PriorTestStatus Relationship: 
+         * POLB_MT001999CA.PriorActRequest.statusCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>Used for order 
+         * referrals.</p> <p>The status of the prior test request.</p> 
+         * Un-merged Business Name: PriorTestStatus Relationship: 
+         * POLB_MT001001CA.PriorActRequest.statusCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>Used for order 
+         * referrals.</p> <p>The status of the prior test request.</p> 
+         * Un-merged Business Name: PriorTestStatus Relationship: 
+         * POLB_MT001010CA.PriorActRequest.statusCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>Used for order 
+         * referrals.</p> <p>The status of the prior test request.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"statusCode"})]
         public ActStatus StatusCode {

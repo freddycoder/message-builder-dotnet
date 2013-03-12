@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,9 +38,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Qucr_mt830
             this.reference = new List<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Qucr_mt830201ca.AdjudicationResultReference>();
         }
         /**
-         * <summary>Adjudication ID</summary>
+         * <summary>Business Name: Adjudication ID</summary>
          * 
-         * <remarks><p>Unique identifier for this adjudication</p></remarks>
+         * <remarks>Relationship: QUCR_MT830201CA.AdjudicationResult.id 
+         * Conformance/Cardinality: POPULATED (1) <p>Unique identifier 
+         * for this adjudication</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -48,6 +50,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Qucr_mt830
             set { this.id.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * QUCR_MT830201CA.AdjudicationResult.reference</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1-10)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"reference"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Qucr_mt830201ca.AdjudicationResultReference> Reference {
             get { return this.reference; }

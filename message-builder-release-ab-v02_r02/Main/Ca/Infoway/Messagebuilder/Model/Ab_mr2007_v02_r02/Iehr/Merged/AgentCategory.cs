@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Iehr.Merged {
 
 
     /**
-     * <summary>AgentCategory</summary>
+     * <summary>Business Name: AgentCategory</summary>
      * 
      * <remarks>REPC_MT000006CA.MaterialKind: Agent Category 
      * <p>Category of material or agent to which the patient was 
@@ -53,10 +53,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Iehr.Merged {
             this.name = new STImpl();
         }
         /**
-         * <summary>ExposedMaterialType</summary>
+         * <summary>Business Name: ExposedMaterialType</summary>
          * 
-         * <remarks>A:Exposed Material Type <p>Indicates the type of 
-         * agent that the patient was exposed to which caused the 
+         * <remarks>Un-merged Business Name: ExposedMaterialType 
+         * Relationship: REPC_MT000006CA.MaterialKind.code 
+         * Conformance/Cardinality: POPULATED (1) <p>Indicates the type 
+         * of agent that the patient was exposed to which caused the 
          * adverse reaction. This includes Drug, Food, Latex, Dust, 
          * etc.</p> <p>Allows different kinds of reaction agents to be 
          * distinguished. Coding strength is set to CWE because the 
@@ -64,8 +66,21 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Iehr.Merged {
          * attribute is populated because there is little point in 
          * communicating about the exposure to an agent if it is not 
          * known what the agent is, however it may not always be 
-         * coded.</p> A:Exposed Material Type <p>Indicates the type of 
-         * agent that the patient was exposed to which caused the 
+         * coded.</p> Un-merged Business Name: ExposedMaterialType 
+         * Relationship: REPC_MT000012CA.MaterialKind.code 
+         * Conformance/Cardinality: POPULATED (1) <p>Indicates the type 
+         * of agent that the patient was exposed to which caused the 
+         * adverse reaction. This includes Drug, Food, Latex, Dust, 
+         * etc.</p> <p>Allows different kinds of reaction agents to be 
+         * distinguished. Coding strength is set to CWE because the 
+         * exposure agent type may not always be codified. The 
+         * attribute is populated because there is little point in 
+         * communicating about the exposure to an agent if it is not 
+         * known what the agent is, however it may not always be 
+         * coded.</p> Un-merged Business Name: ExposedMaterialType 
+         * Relationship: REPC_MT000002CA.MaterialKind.code 
+         * Conformance/Cardinality: POPULATED (1) <p>Indicates the type 
+         * of agent that the patient was exposed to which caused the 
          * adverse reaction. This includes Drug, Food, Latex, Dust, 
          * etc.</p> <p>Allows different kinds of reaction agents to be 
          * distinguished. Coding strength is set to CWE because the 
@@ -83,18 +98,24 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Iehr.Merged {
         }
 
         /**
-         * <summary>ExposedMaterialName</summary>
+         * <summary>Business Name: ExposedMaterialName</summary>
          * 
-         * <remarks>Exposed Material Name <p>Indicates the name of the 
-         * agent identified by MaterialKind.code</p> <p>Provides a 
-         * human-readable name in circumstances where the agent is 
-         * captured as code.</p> Exposed Material Name <p>Indicates the 
-         * name of the agent identified by MaterialKind.code.</p> 
-         * <p>Proivdes a human-readable name in circumstances where the 
-         * agent is captured as a code.</p> Exposed Material Name 
-         * <p>Indicates the name of the agent identified by 
-         * MaterialKind.code</p> <p>Provides a human-readable name in 
-         * circumstances where the agent is captured as a code.</p></remarks>
+         * <remarks>Un-merged Business Name: ExposedMaterialName 
+         * Relationship: REPC_MT000006CA.MaterialKind.name 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
+         * name of the agent identified by MaterialKind.code</p> 
+         * <p>Provides a human-readable name in circumstances where the 
+         * agent is captured as code.</p> Un-merged Business Name: 
+         * ExposedMaterialName Relationship: 
+         * REPC_MT000012CA.MaterialKind.name Conformance/Cardinality: 
+         * REQUIRED (0-1) <p>Indicates the name of the agent identified 
+         * by MaterialKind.code.</p> <p>Proivdes a human-readable name 
+         * in circumstances where the agent is captured as a code.</p> 
+         * Un-merged Business Name: ExposedMaterialName Relationship: 
+         * REPC_MT000002CA.MaterialKind.name Conformance/Cardinality: 
+         * REQUIRED (0-1) <p>Indicates the name of the agent identified 
+         * by MaterialKind.code</p> <p>Provides a human-readable name 
+         * in circumstances where the agent is captured as a code.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"name"})]
         public String Name {

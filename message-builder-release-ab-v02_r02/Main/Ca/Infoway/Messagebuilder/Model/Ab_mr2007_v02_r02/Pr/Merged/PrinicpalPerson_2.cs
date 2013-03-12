@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Merged {
 
 
     /**
-     * <summary>PrinicpalPerson</summary>
+     * <summary>Business Name: PrinicpalPerson</summary>
      * 
      * <remarks>PRPM_MT306051CA.PrincipalPerson: Prinicpal Person 
      * <p>Identification of playing entity is required (0..1) to 
@@ -68,13 +68,23 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Merged {
             this.languageCommunication = new List<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.LanguageOfCommunication>();
         }
         /**
-         * <summary>PrincipalPersonAggregateIdentifier</summary>
+         * <summary>Business Name: PrincipalPersonAggregateIdentifier</summary>
          * 
-         * <remarks>Principal Person Aggregate Identifier <p>A unique 
-         * identifier for the person who may play various healthcare 
-         * provider roles. This identifier is specific to the person 
-         * not their roles.</p> <p>Required attribute supports the 
-         * identification of the healthcare provider</p></remarks>
+         * <remarks>Un-merged Business Name: 
+         * PrincipalPersonAggregateIdentifier Relationship: 
+         * PRPM_MT306051CA.PrincipalPerson.id Conformance/Cardinality: 
+         * REQUIRED (0-10) <p>A unique identifier for the person who 
+         * may play various healthcare provider roles. This identifier 
+         * is specific to the person not their roles.</p> <p>Required 
+         * attribute supports the identification of the healthcare 
+         * provider</p> Un-merged Business Name: 
+         * PrincipalPersonAggregateIdentifier Relationship: 
+         * PRPM_MT306011CA.PrincipalPerson.id Conformance/Cardinality: 
+         * REQUIRED (0-10) <p>A unique identifier for the person who 
+         * may play various healthcare provider roles. This identifier 
+         * is specific to the person not their roles.</p> <p>Required 
+         * attribute supports the identification of the healthcare 
+         * provider</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public ICollection<Identifier> Id {
@@ -82,17 +92,22 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Merged {
         }
 
         /**
-         * <summary>PrincipalPersonName</summary>
+         * <summary>Business Name: PrincipalPersonName</summary>
          * 
-         * <remarks>Principal Person Name <p>The 
+         * <remarks>Un-merged Business Name: PrincipalPersonName 
+         * Relationship: PRPM_MT306051CA.PrincipalPerson.name 
+         * Conformance/Cardinality: REQUIRED (0-5) <p>The 
+         * person&#226;&#128;&#153;s name independent of any role they 
+         * may play.</p> <p>Required attribute supports the 
+         * identification of the healthcare provider</p> Un-merged 
+         * Business Name: PrincipalPersonName Relationship: 
+         * PRPM_MT306011CA.PrincipalPerson.name 
+         * Conformance/Cardinality: REQUIRED (0-5) <p>The 
          * person&#226;&#128;&#153;s name independent of any role they 
          * may play.</p> <p>Required attribute supports the 
          * identification of the healthcare provider</p> <p>If 
          * Principal Person is included in the message, then Person 
-         * Name Must Exist.</p> Principal Person Name <p>The 
-         * person&#226;&#128;&#153;s name independent of any role they 
-         * may play.</p> <p>Required attribute supports the 
-         * identification of the healthcare provider</p></remarks>
+         * Name Must Exist.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"name"})]
         public IList<PersonName> Name {
@@ -100,9 +115,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Merged {
         }
 
         /**
-         * <summary>PrincipalPersonGender</summary>
+         * <summary>Business Name: PrincipalPersonGender</summary>
          * 
-         * <remarks>Principal Person Gender <p>The principal 
+         * <remarks>Un-merged Business Name: PrincipalPersonGender 
+         * Relationship: 
+         * PRPM_MT306011CA.PrincipalPerson.administrativeGenderCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The principal 
          * person&#226;&#128;&#153;s gender.</p> <p>Required attribute 
          * supports the identification of the healthcare provider</p> 
          * <p>If Principal Person is included in the message, then 
@@ -115,9 +133,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Merged {
         }
 
         /**
-         * <summary>PrincipalPersonDateOfBirth</summary>
+         * <summary>Business Name: PrincipalPersonDateOfBirth</summary>
          * 
-         * <remarks>Principal Person Date of Birth <p>The principal 
+         * <remarks>Un-merged Business Name: PrincipalPersonDateOfBirth 
+         * Relationship: PRPM_MT306011CA.PrincipalPerson.birthTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The principal 
          * person&#226;&#128;&#153;s date of birth.</p> <p>Required 
          * attribute supports the identification of the healthcare 
          * provider</p> <p>If Principal Person is included in the 
@@ -131,12 +151,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Merged {
         }
 
         /**
-         * <summary>PrincipalPersonDeceasedIndicator</summary>
+         * <summary>Business Name: PrincipalPersonDeceasedIndicator</summary>
          * 
-         * <remarks>Principal Person Deceased Indicator <p>An 
-         * indication that the principal person is deceased.</p> 
-         * <p>Required attribute supports the identification of the 
-         * healthcare provider</p></remarks>
+         * <remarks>Un-merged Business Name: 
+         * PrincipalPersonDeceasedIndicator Relationship: 
+         * PRPM_MT306011CA.PrincipalPerson.deceasedInd 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>An indication 
+         * that the principal person is deceased.</p> <p>Required 
+         * attribute supports the identification of the healthcare 
+         * provider</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"deceasedInd"})]
         public bool? DeceasedInd {
@@ -145,9 +168,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Merged {
         }
 
         /**
-         * <summary>PrincipalPersonDeceasedDate</summary>
+         * <summary>Business Name: PrincipalPersonDeceasedDate</summary>
          * 
-         * <remarks>Principal Person Deceased Date <p>The date and time 
+         * <remarks>Un-merged Business Name: 
+         * PrincipalPersonDeceasedDate Relationship: 
+         * PRPM_MT306011CA.PrincipalPerson.deceasedTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The date and time 
          * that a healthcare provider's death occurred.</p> <p>Required 
          * attribute supports verification of death from official 
          * source such as Vital Statistics.</p></remarks>
@@ -159,11 +185,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Merged {
         }
 
         /**
-         * <summary>BirthplaceAddress</summary>
+         * <summary>Business Name: BirthplaceAddress</summary>
          * 
-         * <remarks>Birthplace Address <p>Principal person's address at 
-         * time of birth</p> <p>Mandatory attribute supports the 
-         * identification of the healthcare provider</p> <p>If 
+         * <remarks>Un-merged Business Name: BirthplaceAddress 
+         * Relationship: PRPM_MT306011CA.Birthplace.addr 
+         * Conformance/Cardinality: MANDATORY (1) <p>Principal person's 
+         * address at time of birth</p> <p>Mandatory attribute supports 
+         * the identification of the healthcare provider</p> <p>If 
          * Birthplace is included in the message, then Address is 
          * Expected to Exist.</p></remarks>
          */
@@ -173,6 +201,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Merged {
             set { this.birthplaceAddr.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PRPM_MT306011CA.PrincipalPerson.languageCommunication 
+         * Conformance/Cardinality: REQUIRED (0-10)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"languageCommunication"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.LanguageOfCommunication> LanguageCommunication {
             get { return this.languageCommunication; }

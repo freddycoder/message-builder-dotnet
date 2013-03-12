@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,10 +30,10 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Merged {
      * <summary>PORX_MT010110CA.SupplementalFillInformation: (no 
      * business name)</summary>
      * 
-     * <remarks><p>Contains additional information related to the 
-     * number of authorized fills and fill quantities.</p> 
      * <p>Information required by the EHR when applying 
-     * prescription rules.</p></remarks>
+     * prescription rules.</p> <p>Contains additional information 
+     * related to the number of authorized fills and fill 
+     * quantities.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"PORX_MT010110CA.SupplementalFillInformation","PORX_MT060040CA.SupplementalFillInformation"})]
     public class SupplementalFillInformation : MessagePartBean {
@@ -46,11 +46,21 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Merged {
             this.quantity = new INTImpl();
         }
         /**
-         * <summary>NumberOfFills</summary>
+         * <summary>Business Name: NumberOfFills</summary>
          * 
-         * <remarks>Number of Fills <p>Allows the prescriber to specify 
-         * the number of fills authorized by this prescription.</p> 
-         * <p>A prescription can authorize multiple fills.</p></remarks>
+         * <remarks>Un-merged Business Name: NumberOfFills 
+         * Relationship: 
+         * PORX_MT010110CA.SupplementalFillInformation.repeatNumber 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>A prescription 
+         * can authorize multiple fills.</p> <p>Allows the prescriber 
+         * to specify the number of fills authorized by this 
+         * prescription.</p> Un-merged Business Name: NumberOfFills 
+         * Relationship: 
+         * PORX_MT060040CA.SupplementalFillInformation.repeatNumber 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>A prescription 
+         * can authorize multiple fills.</p> <p>Allows the prescriber 
+         * to specify the number of fills authorized by this 
+         * prescription.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"repeatNumber"})]
         public int? RepeatNumber {
@@ -59,11 +69,18 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Merged {
         }
 
         /**
-         * <summary>FillQuantity</summary>
+         * <summary>Business Name: FillQuantity</summary>
          * 
-         * <remarks>Fill Quantity <p>Specifies the quantity for each 
-         * fill.</p> <p>The prescription is usually authorized for a 
-         * specific quantity for each fill.</p></remarks>
+         * <remarks>Un-merged Business Name: FillQuantity Relationship: 
+         * PORX_MT010110CA.SupplementalFillInformation.quantity 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The prescription 
+         * is usually authorized for a specific quantity for each 
+         * fill.</p> <p>Specifies the quantity for each fill.</p> 
+         * Un-merged Business Name: FillQuantity Relationship: 
+         * PORX_MT060040CA.SupplementalFillInformation.quantity 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The prescription 
+         * is usually authorized for a specific quantity for each 
+         * fill.</p> <p>Specifies the quantity for each fill.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"quantity"})]
         public int? Quantity {

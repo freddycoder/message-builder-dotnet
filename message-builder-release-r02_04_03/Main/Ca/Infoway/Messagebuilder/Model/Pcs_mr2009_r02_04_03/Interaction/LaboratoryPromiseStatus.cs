@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,23 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt002000ca;
 
 
+    /**
+     * <summary>Business Name: POLB_IN222000CA: Laboratory Promise 
+     * Status</summary>
+     * 
+     * <p>This interaction is a Promise Status without Receiver 
+     * Responsibilities (i.e., the sending system utilizes messages 
+     * that do not require application-level responses). This 
+     * interaction is used to communicate the status of a promise. 
+     * It is typically used to communicate where the filler is in 
+     * the process of fulfilling an order.</p> Message: 
+     * MCCI_MT002100CA.Message Control Act: 
+     * MCAI_MT700210CA.ControlActEvent --> Payload: 
+     * POLB_MT002000CA.PromiseChoice ----> Payload Choice: 
+     * POLB_MT002000CA.PromiseGroup ----> Payload Choice: 
+     * POLB_MT002000CA.BatteryPromise ----> Payload Choice: 
+     * POLB_MT002000CA.ObservationPromise
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"POLB_IN222000CA"})]
     public class LaboratoryPromiseStatus : HL7Message_1<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Mcai_mt700210ca.TriggerEvent<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt002000ca.IPromiseChoice>>, IInteraction {
 

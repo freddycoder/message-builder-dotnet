@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,12 +31,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt004100
 
 
     /**
-     * <summary>Specimen Observation Cluster</summary>
+     * <summary>Business Name: Specimen Observation Cluster</summary>
      * 
-     * <remarks><p>This act groups all the communicated objects for 
-     * one or more isolate(s) including any antibiotic sensitivity 
-     * tests all performed on those isolate(s). Typically the 
-     * isolate determines the sensitivities to run.</p></remarks>
+     * <p>This act groups all the communicated objects for one or 
+     * more isolate(s) including any antibiotic sensitivity tests 
+     * all performed on those isolate(s). Typically the isolate 
+     * determines the sensitivities to run.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"POLB_MT004100CA.SpecimenObservationCluster"})]
     public class SpecimenObservationCluster : MessagePartBean {
@@ -59,10 +59,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt004100
             this.component3SensitivityBattery = new List<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt004100ca.SensitivityBattery>();
         }
         /**
-         * <summary>Cluster Comment</summary>
+         * <summary>Business Name: Cluster Comment</summary>
          * 
-         * <remarks><p>Comments associated with the Isolate 
-         * Cluster.</p></remarks>
+         * <remarks>Relationship: 
+         * POLB_MT004100CA.SpecimenObservationCluster.text 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Comments 
+         * associated with the Isolate Cluster.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"text"})]
         public String Text {
@@ -71,9 +73,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt004100
         }
 
         /**
-         * <summary>Cluster Status</summary>
+         * <summary>Business Name: Cluster Status</summary>
          * 
-         * <remarks><p>Status associated with the isolate cluster.</p></remarks>
+         * <remarks>Relationship: 
+         * POLB_MT004100CA.SpecimenObservationCluster.statusCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Status associated 
+         * with the isolate cluster.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"statusCode"})]
         public ActStatus StatusCode {
@@ -82,10 +87,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt004100
         }
 
         /**
-         * <summary>Cluster Effective Time</summary>
+         * <summary>Business Name: Cluster Effective Time</summary>
          * 
-         * <remarks><p>Effective time associated with the Isolate 
-         * Cluster.</p></remarks>
+         * <remarks>Relationship: 
+         * POLB_MT004100CA.SpecimenObservationCluster.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Effective time 
+         * associated with the Isolate Cluster.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"effectiveTime"})]
         public Interval<PlatformDate> EffectiveTime {
@@ -93,27 +100,57 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt004100
             set { this.effectiveTime.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * POLB_MT004100CA.SpecimenObservationCluster.performer</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1-2)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"performer"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Merged.WasPerformedBy> Performer {
             get { return this.performer; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * POLB_MT004100CA.Component3.isolateObservationEvent</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"component1/isolateObservationEvent"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt004100ca.IsolateObservations> Component1IsolateObservationEvent {
             get { return this.component1IsolateObservationEvent; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * POLB_MT004100CA.SpecimenObservationCluster.component2</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"component2"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt004100ca.HasComponent Component2 {
             get { return this.component2; }
             set { this.component2 = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * POLB_MT004100CA.Component5.sensitivityBattery</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"component3/sensitivityBattery"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt004100ca.SensitivityBattery> Component3SensitivityBattery {
             get { return this.component3SensitivityBattery; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * POLB_MT004100CA.Subject3.resultStatusProcessStep</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf/resultStatusProcessStep"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Merged.ResultStatusProcessStep SubjectOfResultStatusProcessStep {
             get { return this.subjectOfResultStatusProcessStep; }

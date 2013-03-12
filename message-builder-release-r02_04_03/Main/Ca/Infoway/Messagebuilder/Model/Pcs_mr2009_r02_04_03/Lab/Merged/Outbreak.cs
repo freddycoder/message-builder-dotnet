@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,29 +27,29 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Merged {
 
 
     /**
-     * <summary>Outbreak</summary>
+     * <summary>Business Name: Outbreak</summary>
      * 
-     * <remarks>POLB_MT004100CA.OutbreakEvent: Outbreak 
+     * <remarks>POLB_MT004100CA.OutbreakEvent: Outbreak <p>Used as 
+     * an indicator to public health that this lab result may 
+     * indicate the subject is a part of an outbreak. This does not 
+     * confirm that lab result is an outbreak subject, only that 
+     * the potential exists and public health should 
+     * disposition.</p> <p>Identifies an outbreak which the 
+     * reporting lab suspects this result might be a part of.</p> 
+     * POLB_MT004200CA.OutbreakEvent: Outbreak <p>Used as an 
+     * indicator to public health that this lab result may indicate 
+     * the subject is a part of an outbreak. This does not confirm 
+     * that lab result is an outbreak subject, only that the 
+     * potential exists and public health should disposition.</p> 
      * <p>Identifies an outbreak which the reporting lab suspects 
-     * this result might be a part of.</p> <p>Used as an indicator 
-     * to public health that this lab result may indicate the 
-     * subject is a part of an outbreak. This does not confirm that 
-     * lab result is an outbreak subject, only that the potential 
-     * exists and public health should disposition.</p> 
-     * POLB_MT004200CA.OutbreakEvent: Outbreak <p>Identifies an 
-     * outbreak which the reporting lab suspects this result might 
-     * be a part of.</p> <p>Used as an indicator to public health 
-     * that this lab result may indicate the subject is a part of 
-     * an outbreak. This does not confirm that lab result is an 
-     * outbreak subject, only that the potential exists and public 
-     * health should disposition.</p> 
-     * POLB_MT004000CA.OutbreakEvent: Outbreak <p>Identifies an 
-     * outbreak which the reporting lab suspects this result might 
-     * be a part of.</p> <p>Used as an indicator to public health 
-     * that this lab result may indicate the subject is a part of 
-     * an outbreak. This does not confirm that lab result is an 
-     * outbreak subject, only that the potential exists and public 
-     * health should disposition.</p></remarks>
+     * this result might be a part of.</p> 
+     * POLB_MT004000CA.OutbreakEvent: Outbreak <p>Used as an 
+     * indicator to public health that this lab result may indicate 
+     * the subject is a part of an outbreak. This does not confirm 
+     * that lab result is an outbreak subject, only that the 
+     * potential exists and public health should disposition.</p> 
+     * <p>Identifies an outbreak which the reporting lab suspects 
+     * this result might be a part of.</p></remarks>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"POLB_MT001000CA.OutbreakEvent","POLB_MT001010CA.OutbreakEvent","POLB_MT001999CA.OutbreakEvent","POLB_MT002000CA.OutbreakEvent","POLB_MT004000CA.OutbreakEvent","POLB_MT004100CA.OutbreakEvent","POLB_MT004200CA.OutbreakEvent"})]
     public class Outbreak : MessagePartBean {
@@ -60,17 +60,49 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Merged {
             this.id = new IIImpl();
         }
         /**
-         * <summary>OutbreakIdentifier</summary>
+         * <summary>Business Name: OutbreakIdentifier</summary>
          * 
-         * <remarks>Outbreak Identifier <p>Identifies an outbreak which 
-         * the reporting lab suspects this result might be a part 
-         * of.</p> <p>Used as an indicator to public health that this 
-         * lab result may indicate the subject is a part of an 
+         * <remarks>Un-merged Business Name: OutbreakIdentifier 
+         * Relationship: POLB_MT002000CA.OutbreakEvent.id 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: OutbreakIdentifier Relationship: 
+         * POLB_MT004100CA.OutbreakEvent.id Conformance/Cardinality: 
+         * MANDATORY (1) <p>Used as an indicator to public health that 
+         * this lab result may indicate the subject is a part of an 
          * outbreak. This does not confirm that lab result is an 
          * outbreak subject, only that the potential exists and public 
-         * health should disposition.</p> Outbreak Identifier <p>Allows 
-         * public health to identify an outbreak for which this test is 
-         * being conducted.</p> Outbreak Identifier</remarks>
+         * health should disposition.</p> <p>Identifies an outbreak 
+         * which the reporting lab suspects this result might be a part 
+         * of.</p> Un-merged Business Name: OutbreakIdentifier 
+         * Relationship: POLB_MT001010CA.OutbreakEvent.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows public 
+         * health to identify an outbreak for which this test is being 
+         * conducted.</p> Un-merged Business Name: OutbreakIdentifier 
+         * Relationship: POLB_MT004200CA.OutbreakEvent.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>Used as an 
+         * indicator to public health that this lab result may indicate 
+         * the subject is a part of an outbreak. This does not confirm 
+         * that lab result is an outbreak subject, only that the 
+         * potential exists and public health should disposition.</p> 
+         * <p>Identifies an outbreak which the reporting lab suspects 
+         * this result might be a part of.</p> Un-merged Business Name: 
+         * OutbreakIdentifier Relationship: 
+         * POLB_MT001000CA.OutbreakEvent.id Conformance/Cardinality: 
+         * MANDATORY (1) <p>Allows public health to identify an 
+         * outbreak for which this test is being conducted.</p> 
+         * Un-merged Business Name: OutbreakIdentifier Relationship: 
+         * POLB_MT004000CA.OutbreakEvent.id Conformance/Cardinality: 
+         * MANDATORY (1) <p>Used as an indicator to public health that 
+         * this lab result may indicate the subject is a part of an 
+         * outbreak. This does not confirm that lab result is an 
+         * outbreak subject, only that the potential exists and public 
+         * health should disposition.</p> <p>Identifies an outbreak 
+         * which the reporting lab suspects this result might be a part 
+         * of.</p> Un-merged Business Name: OutbreakIdentifier 
+         * Relationship: POLB_MT001999CA.OutbreakEvent.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows public 
+         * health to identify an outbreak for which this test is being 
+         * conducted.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {

@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,23 +38,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt50000
 
 
     /**
-     * <summary>Care Composition</summary>
+     * <summary>Business Name: Care Composition</summary>
      * 
-     * <remarks><p>A care composition is a record with two 
-     * purposes. It indicates that care of a given type has 
-     * occurred or is occurring. It also acts as a collector for 
-     * the events that happened during care, including who is 
-     * responsible for the care provided.</p><p>Care composition 
-     * messages may be sent during the course of care to describe 
-     * the progress of care or may be sent at the termination of 
-     * care to describe all the activities that occurred during the 
-     * provision of care. Note that this record merely captures the 
-     * existence of care and the locations and people involved. The 
-     * actual discrete events and any care summary documentation 
-     * that results are captured using other 
-     * messages.</p><p>Examples include: encounters, 
-     * condition-related care (episodes) and longer-term care 
-     * collections such as &quot;gynecological care&quot;.</p> <p>A 
+     * <p>Care compositions allow grouping together numerous 
+     * related records which aids searching and navigation. Also, 
+     * the mere knowledge that a type of care has occurred or is 
+     * occurring (e.g. an in-patient hospital encounter) can be 
+     * useful information when delivering subsequent care.</p> <p>A 
      * care composition is a record with two purposes. It indicates 
      * that care of a given type has occurred or is occurring. It 
      * also acts as a collector for the events that happened during 
@@ -69,26 +59,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt50000
      * captured using other messages.</p><p>Examples include: 
      * encounters, condition-related care (episodes) and 
      * longer-term care collections such as &quot;gynecological 
-     * care&quot;.</p> <p>A care composition is a record with two 
-     * purposes. It indicates that care of a given type has 
-     * occurred or is occurring. It also acts as a collector for 
-     * the events that happened during care, including who is 
-     * responsible for the care provided.</p><p>Care composition 
-     * messages may be sent during the course of care to describe 
-     * the progress of care or may be sent at the termination of 
-     * care to describe all the activities that occurred during the 
-     * provision of care. Note that this record merely captures the 
-     * existence of care and the locations and people involved. The 
-     * actual discrete events and any care summary documentation 
-     * that results are captured using other 
-     * messages.</p><p>Examples include: encounters, 
-     * condition-related care (episodes) and longer-term care 
-     * collections such as &quot;gynecological care&quot;.</p> 
-     * <p>Care compositions allow grouping together numerous 
-     * related records which aids searching and navigation. Also, 
-     * the mere knowledge that a type of care has occurred or is 
-     * occurring (e.g. an in-patient hospital encounter) can be 
-     * useful information when delivering subsequent care.</p></remarks>
+     * care&quot;.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"REPC_MT500001CA.PatientCareProvisionEvent"})]
     public class CareComposition : MessagePartBean {
@@ -130,13 +101,21 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt50000
             this.componentOfPatientCareProvisionEvent = new List<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.CareCompositions>();
         }
         /**
-         * <summary>B: Care Composition Type</summary>
+         * <summary>Business Name: B: Care Composition Type</summary>
          * 
-         * <remarks></p><p>Care Composition is the generic name given 
-         * to event 'containers' such as Encounters, 
-         * Health-Condition-based Collections (Episodes) and Care-based 
-         * Collections. The &quot;type&quot; of care composition places 
-         * constraints on what elements are 
+         * <remarks>Relationship: 
+         * REPC_MT500001CA.PatientCareProvisionEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p> <i>Care 
+         * Composition Type is used for searching and for organizing 
+         * Care Composition records as well as sorting them for 
+         * presentation.</i> </p><p> <i>This is a key attribute for 
+         * understanding the type of record and is therefore 
+         * mandatory.</i> </p> <p> <i>Identifies the type of Care 
+         * Composition represented by this record.</i> </p><p>Care 
+         * Composition is the generic name given to event 'containers' 
+         * such as Encounters, Health-Condition-based Collections 
+         * (Episodes) and Care-based Collections. The &quot;type&quot; 
+         * of care composition places constraints on what elements are 
          * supported.</p><p>Encounter-based collection: a series of 
          * health care events that occur during an interaction between 
          * one or more health care providers and one or more patients 
@@ -151,83 +130,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt50000
          * problem.</p><p>Care-based collection: a high level grouping 
          * of health events, encounters, and/or episodes related to a 
          * particular area of healthcare. e.g. Gynecology care, 
-         * Cardiology Care, etc.</p> </p><p>Care Composition is the 
-         * generic name given to event 'containers' such as Encounters, 
-         * Health-Condition-based Collections (Episodes) and Care-based 
-         * Collections. The &quot;type&quot; of care composition places 
-         * constraints on what elements are 
-         * supported.</p><p>Encounter-based collection: a series of 
-         * health care events that occur during an interaction between 
-         * one or more health care providers and one or more patients 
-         * where the providers and the patient remain in the same 
-         * location over a contiguous period of time; the providers and 
-         * patient may be at different locations (telehealth). e.g. 
-         * Inpatient encounter, Community 
-         * encounter.</p><p>Condition-based collection (Episode): a 
-         * series of interactions between a patient and one or more 
-         * health care providers over time in one or more locations and 
-         * tied together by a common diagnosis or 
-         * problem.</p><p>Care-based collection: a high level grouping 
-         * of health events, encounters, and/or episodes related to a 
-         * particular area of healthcare. e.g. Gynecology care, 
-         * Cardiology Care, etc.</p> </p><p>Care Composition is the 
-         * generic name given to event 'containers' such as Encounters, 
-         * Health-Condition-based Collections (Episodes) and Care-based 
-         * Collections. The &quot;type&quot; of care composition places 
-         * constraints on what elements are 
-         * supported.</p><p>Encounter-based collection: a series of 
-         * health care events that occur during an interaction between 
-         * one or more health care providers and one or more patients 
-         * where the providers and the patient remain in the same 
-         * location over a contiguous period of time; the providers and 
-         * patient may be at different locations (telehealth). e.g. 
-         * Inpatient encounter, Community 
-         * encounter.</p><p>Condition-based collection (Episode): a 
-         * series of interactions between a patient and one or more 
-         * health care providers over time in one or more locations and 
-         * tied together by a common diagnosis or 
-         * problem.</p><p>Care-based collection: a high level grouping 
-         * of health events, encounters, and/or episodes related to a 
-         * particular area of healthcare. e.g. Gynecology care, 
-         * Cardiology Care, etc.</p> </p><p>Care Composition is the 
-         * generic name given to event 'containers' such as Encounters, 
-         * Health-Condition-based Collections (Episodes) and Care-based 
-         * Collections. The &quot;type&quot; of care composition places 
-         * constraints on what elements are 
-         * supported.</p><p>Encounter-based collection: a series of 
-         * health care events that occur during an interaction between 
-         * one or more health care providers and one or more patients 
-         * where the providers and the patient remain in the same 
-         * location over a contiguous period of time; the providers and 
-         * patient may be at different locations (telehealth). e.g. 
-         * Inpatient encounter, Community 
-         * encounter.</p><p>Condition-based collection (Episode): a 
-         * series of interactions between a patient and one or more 
-         * health care providers over time in one or more locations and 
-         * tied together by a common diagnosis or 
-         * problem.</p><p>Care-based collection: a high level grouping 
-         * of health events, encounters, and/or episodes related to a 
-         * particular area of healthcare. e.g. Gynecology care, 
-         * Cardiology Care, etc.</p> </p><p>Care Composition is the 
-         * generic name given to event 'containers' such as Encounters, 
-         * Health-Condition-based Collections (Episodes) and Care-based 
-         * Collections. The &quot;type&quot; of care composition places 
-         * constraints on what elements are 
-         * supported.</p><p>Encounter-based collection: a series of 
-         * health care events that occur during an interaction between 
-         * one or more health care providers and one or more patients 
-         * where the providers and the patient remain in the same 
-         * location over a contiguous period of time; the providers and 
-         * patient may be at different locations (telehealth). e.g. 
-         * Inpatient encounter, Community 
-         * encounter.</p><p>Condition-based collection (Episode): a 
-         * series of interactions between a patient and one or more 
-         * health care providers over time in one or more locations and 
-         * tied together by a common diagnosis or 
-         * problem.</p><p>Care-based collection: a high level grouping 
-         * of health events, encounters, and/or episodes related to a 
-         * particular area of healthcare. e.g. Gynecology care, 
-         * Cardiology Care, etc.</p> </p> </p></remarks>
+         * Cardiology Care, etc.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public ActCareEventType Code {
@@ -236,11 +139,23 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt50000
         }
 
         /**
-         * <summary>D:Refuted Indicator</summary>
+         * <summary>Business Name: D:Refuted Indicator</summary>
          * 
-         * <remarks><p>Refuted Indicator cannot be specified unless 
-         * Care Composition Type is Encounter or a specialization 
-         * there-of.</p> </p> </p> </p></remarks>
+         * <remarks>Relationship: 
+         * REPC_MT500001CA.PatientCareProvisionEvent.negationInd 
+         * Conformance/Cardinality: MANDATORY (1) <p>Refuted Indicator 
+         * cannot be specified unless Care Composition Type is 
+         * Encounter or a specialization there-of.</p> <p> <i>This is 
+         * primarily used to supersede records where an assertion was 
+         * made that is subsequently determined to be false. It is 
+         * important to be able to make explicit statements that 
+         * something is known to not be true.</i> </p><p> <i>This 
+         * element is mandatory because it should always be known 
+         * whether the record is being refuted or not.</i> </p> <p> 
+         * <i>When set to true, specifically flags the Care Composition 
+         * record as &quot;did not occur&quot;. The default is false. 
+         * Additional details about the reasons for refuting the record 
+         * may be conveyed in notes.</i> </p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"negationInd"})]
         public bool? NegationInd {
@@ -249,9 +164,20 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt50000
         }
 
         /**
-         * <summary>C: Care Composition Status</summary>
+         * <summary>Business Name: C: Care Composition Status</summary>
          * 
-         * <remarks></p> </p> </p></remarks>
+         * <remarks>Relationship: 
+         * REPC_MT500001CA.PatientCareProvisionEvent.statusCode 
+         * Conformance/Cardinality: POPULATED (1) <p> <i>Status is 
+         * frequently used to filter query responses as well as to sort 
+         * records for presentation. It also affects how the Care 
+         * Composition record is interpreted.</i> </p><p> <i>Because 
+         * the status won't always be known, the attribute is marked as 
+         * 'populated' to allow the use of null flavors.</i> </p> <p> 
+         * <i>This identifies the current state of the Care Composition 
+         * record. Allowed status values are 'active' (the encounter, 
+         * episode or general delivery of care ongoing) and 'completed' 
+         * (the encounter, episode or general care has ended).</i> </p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"statusCode"})]
         public ActStatus StatusCode {
@@ -260,35 +186,24 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt50000
         }
 
         /**
-         * <summary>F: Care Composition Period</summary>
+         * <summary>Business Name: F: Care Composition Period</summary>
          * 
-         * <remarks><p>Represents the start and end of the date/time 
-         * interval during which the care described by the composition 
-         * was/is being provided.</p><p>E.g. The admission and 
-         * discharge date/time; the date on which the episode began and 
-         * ended; etc.</p><p>Please note that it is possible for many 
-         * episodes and care events to not have an end date; in these 
-         * situations, only the start date will be specified. Even 
-         * encounters will not have an end date until the encounter is 
-         * completed/patient is discharged.</p> <p>Represents the start 
-         * and end of the date/time interval during which the care 
-         * described by the composition was/is being 
-         * provided.</p><p>E.g. The admission and discharge date/time; 
-         * the date on which the episode began and ended; 
+         * <remarks>Relationship: 
+         * REPC_MT500001CA.PatientCareProvisionEvent.effectiveTime 
+         * Conformance/Cardinality: POPULATED (1) <p> <i>Identifies the 
+         * time-period of relevance to the record that is useful in 
+         * filtering and organizing &quot;time-view&quot; presentations 
+         * of data. Because the timing information won't always be 
+         * known, this attribute is marked as 'populated'.</i> </p> 
+         * <p>Represents the start and end of the date/time interval 
+         * during which the care described by the composition was/is 
+         * being provided.</p><p>E.g. The admission and discharge 
+         * date/time; the date on which the episode began and ended; 
          * etc.</p><p>Please note that it is possible for many episodes 
          * and care events to not have an end date; in these 
          * situations, only the start date will be specified. Even 
          * encounters will not have an end date until the encounter is 
-         * completed/patient is discharged.</p> <p>Represents the start 
-         * and end of the date/time interval during which the care 
-         * described by the composition was/is being 
-         * provided.</p><p>E.g. The admission and discharge date/time; 
-         * the date on which the episode began and ended; 
-         * etc.</p><p>Please note that it is possible for many episodes 
-         * and care events to not have an end date; in these 
-         * situations, only the start date will be specified. Even 
-         * encounters will not have an end date until the encounter is 
-         * completed/patient is discharged.</p> </p></remarks>
+         * completed/patient is discharged.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"effectiveTime"})]
         public Interval<PlatformDate> EffectiveTime {
@@ -297,53 +212,82 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt50000
         }
 
         /**
-         * <summary>E: Care Composition Masking Indicators</summary>
+         * <summary>Business Name: E: Care Composition Masking 
+         * Indicators</summary>
          * 
-         * <remarks></p><p>Masking a care composition record masks it 
-         * for all associated patients (i.e. all patients involved in 
-         * the care composition as a group).</p><p>Also, masking a care 
-         * composition implicitly masks all records associated with 
-         * that care composition.</p> </p><p>Masking a care composition 
-         * record masks it for all associated patients (i.e. all 
-         * patients involved in the care composition as a 
-         * group).</p><p>Also, masking a care composition implicitly 
-         * masks all records associated with that care composition.</p> 
+         * <remarks>Relationship: 
+         * REPC_MT500001CA.PatientCareProvisionEvent.confidentialityCode 
+         * Conformance/Cardinality: OPTIONAL (0-2) <p></p> <p> <i>The 
+         * value specified for a particular record may be overridden by 
+         * a higher level masking applied to an indication, a care 
+         * composition, a type of record or even all patient 
+         * records.</i> </p> <p> <i>Communicates the desire of the 
+         * patient to restrict access to this Care Composition record. 
+         * Provides support for additional confidentiality constraint, 
+         * giving patients a level of control over their information. 
+         * Methods for accessing masked event records will be governed 
+         * by each jurisdiction (e.g. court orders, shared 
+         * secret/consent, etc.).</i> </p><p> <i>Can also be used to 
+         * communicate that the information is deemed to be sensitive 
+         * and should not be communicated or exposed to the patient (at 
+         * least without the guidance of the authoring or other 
+         * responsible healthcare provider).</i> </p><p> <i>Valid 
+         * values are: 'normal' (denotes 'Not Masked'); 'restricted' 
+         * (denotes 'Masked') and 'taboo' (denotes 'patient 
+         * restricted'). The default is 'normal' signifying 'Not 
+         * Masked'. Either or both of the other codes can be asserted 
+         * to indicate masking by the patient from providers or masking 
+         * by a provider from the patient, respectively. 'normal' 
+         * should never be asserted with one of the other codes.</i> 
          * </p><p>Masking a care composition record masks it for all 
          * associated patients (i.e. all patients involved in the care 
          * composition as a group).</p><p>Also, masking a care 
          * composition implicitly masks all records associated with 
-         * that care composition.</p> </p><p>Masking a care composition 
-         * record masks it for all associated patients (i.e. all 
-         * patients involved in the care composition as a 
-         * group).</p><p>Also, masking a care composition implicitly 
-         * masks all records associated with that care composition.</p> 
-         * </p><p>Masking a care composition record masks it for all 
-         * associated patients (i.e. all patients involved in the care 
-         * composition as a group).</p><p>Also, masking a care 
-         * composition implicitly masks all records associated with 
-         * that care composition.</p> </p></remarks>
+         * that care composition.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"confidentialityCode"})]
         public ICollection<x_BasicConfidentialityKind> ConfidentialityCode {
             get { return this.confidentialityCode.RawSet<x_BasicConfidentialityKind>(); }
         }
 
+        /**
+         * <summary>Relationship: REPC_MT500001CA.Subject6.specimen</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subject1/specimen"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.SpecimenRole Subject1Specimen {
             get { return this.subject1Specimen; }
             set { this.subject1Specimen = value; }
         }
 
+        /**
+         * <summary>Relationship: REPC_MT500001CA.Subject7.patient</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subject2/patient"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt050202ca.Patient> Subject2Patient {
             get { return this.subject2Patient; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * REPC_MT500001CA.Performer3.actingPerson</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"performer/actingPerson"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt911108ca.IActingPerson> PerformerActingPerson {
             get { return this.performerActingPerson; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * REPC_MT500001CA.Informant.actingPerson</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"informant/actingPerson"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.IActingPerson InformantActingPerson {
             get { return this.informantActingPerson; }
@@ -371,6 +315,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt50000
             return (this.informantActingPerson is Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.Patient_2);
         }
 
+        /**
+         * <summary>Relationship: 
+         * REPC_MT500001CA.Discharger.actingPerson</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"discharger/actingPerson"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt911108ca.IActingPerson DischargerActingPerson {
             get { return this.dischargerActingPerson; }
@@ -398,48 +348,101 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt50000
             return (this.dischargerActingPerson is Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt910108ca.RelatedPerson);
         }
 
+        /**
+         * <summary>Relationship: 
+         * REPC_MT500001CA.PatientCareProvisionEvent.location</summary>
+         * 
+         * <remarks>Conformance/Cardinality: REQUIRED (0-100)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"location"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.OccurredAt> Location {
             get { return this.location; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * REPC_MT500001CA.Outcome.diagnosisEvent</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"outcome/diagnosisEvent"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged.DischargeDiagnosis> OutcomeDiagnosisEvent {
             get { return this.outcomeDiagnosisEvent; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * REPC_MT500001CA.InFulfillmentOf.actRequest</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"inFulfillmentOf/actRequest"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged.Request_1 InFulfillmentOfActRequest {
             get { return this.inFulfillmentOfActRequest; }
             set { this.inFulfillmentOfActRequest = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * REPC_MT500001CA.Predecessor.oldPatientCareProvisionEvent</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"predecessor/oldPatientCareProvisionEvent"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged.OldPatientCareProvisionEvent> PredecessorOldPatientCareProvisionEvent {
             get { return this.predecessorOldPatientCareProvisionEvent; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * REPC_MT500001CA.PatientCareProvisionEvent.reason</summary>
+         * 
+         * <remarks>Conformance/Cardinality: REQUIRED (0-10)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"reason"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.BecauseOf> Reason {
             get { return this.reason; }
         }
 
+        /**
+         * <summary>Relationship: REPC_MT500001CA.Component3.actEvent</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"component1/actEvent"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.ActEvent> Component1ActEvent {
             get { return this.component1ActEvent; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * REPC_MT500001CA.Component2.patientCareProvisionEventPortion</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"component2/patientCareProvisionEventPortion"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged.ParticipantGroupings> Component2PatientCareProvisionEventPortion {
             get { return this.component2PatientCareProvisionEventPortion; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * REPC_MT500001CA.PatientCareProvisionEvent.subjectOf</summary>
+         * 
+         * <remarks>Conformance/Cardinality: REQUIRED (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.Includes SubjectOf {
             get { return this.subjectOf; }
             set { this.subjectOf = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * REPC_MT500001CA.Component.patientCareProvisionEvent</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"componentOf/patientCareProvisionEvent"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.CareCompositions> ComponentOfPatientCareProvisionEvent {
             get { return this.componentOfPatientCareProvisionEvent; }

@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -45,7 +45,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt490
             this.pertinentInformationHealthDocumentAttachment = new List<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Merged.HealthDocumentAttachment_1>();
         }
         /**
-         * <summary>Additional Information Response ID</summary>
+         * <summary>Business Name: Additional Information Response ID</summary>
+         * 
+         * <remarks>Relationship: 
+         * FICR_MT490103CA.SpecialAuthorizationAdditionalInformationResponse.id 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -54,7 +58,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt490
         }
 
         /**
-         * <summary>Additional Information Answer</summary>
+         * <summary>Business Name: Additional Information Answer</summary>
+         * 
+         * <remarks>Relationship: 
+         * FICR_MT490103CA.SpecialAuthorizationAdditionalInformationResponse.text 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"text"})]
         public String Text {
@@ -62,17 +70,35 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt490
             set { this.text.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * FICR_MT490103CA.InFulfillmentOf2.specialAuthorizationAdditionalInformationRequest</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"inFulfillmentOf/specialAuthorizationAdditionalInformationRequest"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Merged.SpecialAuthorizationAdditionalInformationRequest InFulfillmentOfSpecialAuthorizationAdditionalInformationRequest {
             get { return this.inFulfillmentOfSpecialAuthorizationAdditionalInformationRequest; }
             set { this.inFulfillmentOfSpecialAuthorizationAdditionalInformationRequest = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * FICR_MT490103CA.Support.specialAuthorizationCriteria</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"support/specialAuthorizationCriteria"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Merged.SpecialAuthorizationCriteria> SupportSpecialAuthorizationCriteria {
             get { return this.supportSpecialAuthorizationCriteria; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * FICR_MT490103CA.PertinentInformation2.healthDocumentAttachment</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"pertinentInformation/healthDocumentAttachment"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Merged.HealthDocumentAttachment_1> PertinentInformationHealthDocumentAttachment {
             get { return this.pertinentInformationHealthDocumentAttachment; }

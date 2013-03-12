@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,11 +28,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Porx_mt0
 
 
     /**
-     * <summary>Generic Query Parameters</summary>
+     * <summary>Business Name: Generic Query Parameters</summary>
      * 
-     * <remarks><p>Defines the set of parameters that may be used 
-     * to filter the query response.</p> <p>Root class for query 
-     * definition</p></remarks>
+     * <p>Root class for query definition</p> <p>Defines the set of 
+     * parameters that may be used to filter the query 
+     * response.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"PORX_MT050010CA.ParameterList"})]
     public class GenericQueryParameters : MessagePartBean {
@@ -43,37 +43,21 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Porx_mt0
             this.drugCodeValue = new List<CV>();
         }
         /**
-         * <summary>Drug Codes</summary>
+         * <summary>Business Name: Drug Codes</summary>
          * 
-         * <remarks><p>Indicates that the result set is to be filtered 
-         * to include only those contraindications involving the 
-         * specified drugs.</p><p>The codes may refer to administerable 
-         * medications, orderable medications or higher level drug 
-         * classifications.</p><p>The set of contraindication records 
-         * retrieved would include all potential DDI between and 
-         * amongst the drugs.</p> <p>Indicates that the result set is 
-         * to be filtered to include only those contraindications 
-         * involving the specified drugs.</p><p>The codes may refer to 
-         * administerable medications, orderable medications or higher 
-         * level drug classifications.</p><p>The set of 
-         * contraindication records retrieved would include all 
-         * potential DDI between and amongst the drugs.</p> 
-         * <p>Indicates that the result set is to be filtered to 
-         * include only those contraindications involving the specified 
-         * drugs.</p><p>The codes may refer to administerable 
-         * medications, orderable medications or higher level drug 
-         * classifications.</p><p>The set of contraindication records 
-         * retrieved would include all potential DDI between and 
-         * amongst the drugs.</p> <p>Allows for the retrieval of all 
-         * potential contraindications that would result from drug 
-         * profile scenarios.</p><p>This will most commonly be used by 
-         * providers to test the viability of prescribing/dispensing 
-         * medications into profile scenarios.</p> <p>Allows for the 
+         * <remarks>Relationship: PORX_MT050010CA.DrugCode.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows for the 
          * retrieval of all potential contraindications that would 
          * result from drug profile scenarios.</p><p>This will most 
          * commonly be used by providers to test the viability of 
          * prescribing/dispensing medications into profile 
-         * scenarios.</p></remarks>
+         * scenarios.</p> <p>Indicates that the result set is to be 
+         * filtered to include only those contraindications involving 
+         * the specified drugs.</p><p>The codes may refer to 
+         * administerable medications, orderable medications or higher 
+         * level drug classifications.</p><p>The set of 
+         * contraindication records retrieved would include all 
+         * potential DDI between and amongst the drugs.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"drugCode/value"})]
         public IList<ClinicalDrug> DrugCodeValue {

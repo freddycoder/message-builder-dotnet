@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,18 +38,30 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
             this.underwritingOrganizationName = new STImpl();
         }
         /**
-         * <summary>PayorIdentifier</summary>
+         * <summary>Business Name: PayorIdentifier</summary>
          * 
-         * <remarks>Payor Identifier <p>A unique identifier for the 
-         * payor organization responsible for the coverage 
-         * extension.</p> <p>Gives context to the coverage extension 
-         * identifier and therefore mandatory. Allows the dispensing 
-         * service delivery location to know where to send a claim.</p> 
-         * B:Payor Identifier <p>A unique identifier for the payor 
-         * organization responsible for the coverage extension.</p> 
-         * <p>Gives context to the coverage extension identifier and 
-         * therefore mandatory. Allows the dispensing service delivery 
-         * location to know where to send a claim.</p></remarks>
+         * <remarks>Un-merged Business Name: PayorIdentifier 
+         * Relationship: PORX_MT060040CA.Underwriter.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>A unique 
+         * identifier for the payor organization responsible for the 
+         * coverage extension.</p> <p>Gives context to the coverage 
+         * extension identifier and therefore mandatory. Allows the 
+         * dispensing service delivery location to know where to send a 
+         * claim.</p> Un-merged Business Name: PayorIdentifier 
+         * Relationship: PORX_MT010110CA.Underwriter.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>A unique 
+         * identifier for the payor organization responsible for the 
+         * coverage extension.</p> <p>Gives context to the coverage 
+         * extension identifier and therefore mandatory. Allows the 
+         * dispensing service delivery location to know where to send a 
+         * claim.</p> Un-merged Business Name: PayorIdentifier 
+         * Relationship: PORX_MT010120CA.Underwriter.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>A unique 
+         * identifier for the payor organization responsible for the 
+         * coverage extension.</p> <p>Gives context to the coverage 
+         * extension identifier and therefore mandatory. Allows the 
+         * dispensing service delivery location to know where to send a 
+         * claim.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -58,14 +70,22 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
         }
 
         /**
-         * <summary>PayorName</summary>
+         * <summary>Business Name: PayorName</summary>
          * 
-         * <remarks>C:Payor Name <p>The name of the organization 
-         * responsible for issuing the coverage extension</p> 
-         * <p>Mandatory for display purposes.</p> Payor Name <p>The 
-         * name of the organization responsible for issuing the 
-         * coverage extension.</p> <p>Mandatory for display 
-         * purposes.</p></remarks>
+         * <remarks>Un-merged Business Name: PayorName Relationship: 
+         * PORX_MT060040CA.Organization.name Conformance/Cardinality: 
+         * MANDATORY (1) <p>The name of the organization responsible 
+         * for issuing the coverage extension.</p> <p>Mandatory for 
+         * display purposes.</p> Un-merged Business Name: PayorName 
+         * Relationship: PORX_MT010110CA.Organization.name 
+         * Conformance/Cardinality: MANDATORY (1) <p>The name of the 
+         * organization responsible for issuing the coverage 
+         * extension</p> <p>Mandatory for display purposes.</p> 
+         * Un-merged Business Name: PayorName Relationship: 
+         * PORX_MT010120CA.Organization.name Conformance/Cardinality: 
+         * MANDATORY (1) <p>The name of the organization responsible 
+         * for issuing the coverage extension</p> <p>Mandatory for 
+         * display purposes.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"underwritingOrganization/name"})]
         public String UnderwritingOrganizationName {

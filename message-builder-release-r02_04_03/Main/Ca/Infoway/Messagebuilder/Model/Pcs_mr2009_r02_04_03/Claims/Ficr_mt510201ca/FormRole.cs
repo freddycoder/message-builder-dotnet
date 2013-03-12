@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,8 +24,8 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt510
 
 
     /**
-     * <summary><p>Print form specified for EOB statement when 
-     * provided to patient</p></summary>
+     * <p>Print form specified for EOB statement when provided to 
+     * patient</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"FICR_MT510201CA.FormRole"})]
     public class FormRole : MessagePartBean {
@@ -34,6 +34,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt510
 
         public FormRole() {
         }
+        /**
+         * <summary>Relationship: FICR_MT510201CA.FormRole.playingForm</summary>
+         * 
+         * <remarks>Conformance/Cardinality: REQUIRED (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"playingForm"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt510201ca.Form PlayingForm {
             get { return this.playingForm; }

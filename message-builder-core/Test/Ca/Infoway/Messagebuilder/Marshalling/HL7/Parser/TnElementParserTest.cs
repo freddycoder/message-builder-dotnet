@@ -1,3 +1,22 @@
+/**
+ * Copyright 2013 Canada Health Infoway, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Author:        $LastChangedBy: tmcgrady $
+ * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Revision:      $LastChangedRevision: 2623 $
+ */
 using System.Xml;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype;
@@ -105,7 +124,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			XmlNode node = CreateNode("<something use=\"L\"/>");
 			TrivialName result = (TrivialName)new TnElementParser().Parse(null, node, null).BareValue;
 			Assert.AreEqual(1, result.Uses.Count, "one use");
-			Assert.IsTrue(result.Uses.Contains(EntityNameUse.LEGAL), "contains LEGAL use");
+			Assert.IsTrue(result.Uses.Contains(Ca.Infoway.Messagebuilder.Domainvalue.Basic.EntityNameUse.LEGAL), "contains LEGAL use"
+				);
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -115,9 +135,12 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			XmlNode node = CreateNode("<something use=\"L C P\"/>");
 			TrivialName result = (TrivialName)new TnElementParser().Parse(null, node, null).BareValue;
 			Assert.AreEqual(3, result.Uses.Count, "one use");
-			Assert.IsTrue(result.Uses.Contains(EntityNameUse.LEGAL), "contains LEGAL use");
-			Assert.IsTrue(result.Uses.Contains(EntityNameUse.LICENSE), "contains LICENSE use");
-			Assert.IsTrue(result.Uses.Contains(EntityNameUse.PSEUDONYM), "contains PSEUDONYM use");
+			Assert.IsTrue(result.Uses.Contains(Ca.Infoway.Messagebuilder.Domainvalue.Basic.EntityNameUse.LEGAL), "contains LEGAL use"
+				);
+			Assert.IsTrue(result.Uses.Contains(Ca.Infoway.Messagebuilder.Domainvalue.Basic.EntityNameUse.LICENSE), "contains LICENSE use"
+				);
+			Assert.IsTrue(result.Uses.Contains(Ca.Infoway.Messagebuilder.Domainvalue.Basic.EntityNameUse.PSEUDONYM), "contains PSEUDONYM use"
+				);
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -125,7 +148,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		public virtual void TestUsesUnknownUse()
 		{
 			XmlNode node = CreateNode("<something use=\"XXX\"/>");
-			TrivialName result = (TrivialName)new TnElementParser().Parse(null, node, null).BareValue;
+			TrivialName result = (TrivialName)new TnElementParser().Parse(CreateContext(), node, this.xmlResult).BareValue;
 			Assert.AreEqual(0, result.Uses.Count, "no uses");
 		}
 	}

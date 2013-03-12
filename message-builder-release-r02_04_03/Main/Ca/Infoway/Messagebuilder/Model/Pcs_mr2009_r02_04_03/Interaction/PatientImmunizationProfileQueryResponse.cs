@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Poiz_mt070020ca;
 
 
+    /**
+     * <summary>Business Name: POIZ_IN070020CA: Patient 
+     * Immunization Profile Query Response</summary>
+     * 
+     * <remarks>Message: MCCI_MT002300CA.Message Control Act: 
+     * QUQI_MT120006CA.ControlActEvent --> Payload: 
+     * POIZ_MT070020CA.ImmunizationProfile --> Payload: 
+     * POIZ_MT070010CA.ParameterList</remarks>
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"POIZ_IN070020CA"})]
     public class PatientImmunizationProfileQueryResponse : HL7Message_1<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.TriggerEvent_6<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Poiz_mt070020ca.ImmunizationProfile,Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Poiz_mt070010ca.PatientForecastQueryParameters>>, IInteraction {
 

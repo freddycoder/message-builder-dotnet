@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
 
 
     /**
-     * <summary>AppearanceCharacteristics</summary>
+     * <summary>Business Name: AppearanceCharacteristics</summary>
      * 
      * <remarks>POME_MT010100CA.Characteristic: Appearance 
      * Characteristics <p>The characteristics of a manufactured 
@@ -53,21 +53,25 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
             this.value = new STImpl();
         }
         /**
-         * <summary>CharacteristicType</summary>
+         * <summary>Business Name: CharacteristicType</summary>
          * 
-         * <remarks>A:Characteristic Type <p>A coded value denoting the 
-         * type of physical characteristic being documented. Kinds of 
-         * characteristics include: Color, Shape, Markings, Size, 
-         * etc.</p> <p>Identifies what kind of characteristic is being 
-         * identified. This is mandatory as providing the 
-         * characteristic alone without specifying the type can result 
-         * in ambiguity.</p> Characteristic Type <p>A coded value 
+         * <remarks>Un-merged Business Name: CharacteristicType 
+         * Relationship: POME_MT010100CA.Characteristic.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>A coded value 
          * denoting the type of physical characteristic being 
          * documented. Kinds of characteristics include: Color, Shape, 
-         * Markings, Size.</p> <p>Identifies what kind of 
+         * Markings, Size, etc.</p> <p>Identifies what kind of 
          * characteristic is being identified. This is mandatory as 
          * providing the characteristic alone without specifying the 
-         * type can result in ambiguity</p></remarks>
+         * type can result in ambiguity.</p> Un-merged Business Name: 
+         * CharacteristicType Relationship: 
+         * POME_MT010040CA.Characteristic.code Conformance/Cardinality: 
+         * MANDATORY (1) <p>A coded value denoting the type of physical 
+         * characteristic being documented. Kinds of characteristics 
+         * include: Color, Shape, Markings, Size.</p> <p>Identifies 
+         * what kind of characteristic is being identified. This is 
+         * mandatory as providing the characteristic alone without 
+         * specifying the type can result in ambiguity</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public MedicationObservationType Code {
@@ -76,26 +80,30 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
         }
 
         /**
-         * <summary>Characteristic</summary>
+         * <summary>Business Name: Characteristic</summary>
          * 
-         * <remarks>E:Characteristic <p>Information pertaining to a 
-         * specific instance of drug characteristic (color, shape, 
-         * markings etc).</p> <p>Provides the 'value' part of the 
-         * name-value pair describing the drug product appearance 
-         * characteristic.</p><p>The attribute is marked as 
+         * <remarks>Un-merged Business Name: Characteristic 
+         * Relationship: POME_MT010100CA.Characteristic.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Information 
+         * pertaining to a specific instance of drug characteristic 
+         * (color, shape, markings etc).</p> <p>Provides the 'value' 
+         * part of the name-value pair describing the drug product 
+         * appearance characteristic.</p><p>The attribute is marked as 
          * &quot;mandatory&quot; as there must be a value for a 
          * mandatory code.</p> <p>Provides the 'value' part of the 
          * name-value pair describing the drug product appearance 
          * characteristic.</p><p>The attribute is marked as 
          * &quot;mandatory&quot; as there must be a value for a 
-         * mandatory code.</p> Characteristic <p>Information pertaining 
-         * to a specific instance of drug characteristic (color, shape, 
-         * markings etc)</p> <p>Provides the 'value' part of the 
-         * name-value pair describing the drug product appearance 
-         * characteristic.</p><p>The attribute is marked as 'mandatory' 
-         * as there must be a value for a mandatory code.</p> 
-         * <p>Provides the 'value' part of the name-value pair 
-         * describing the drug product appearance 
+         * mandatory code.</p> Un-merged Business Name: Characteristic 
+         * Relationship: POME_MT010040CA.Characteristic.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Information 
+         * pertaining to a specific instance of drug characteristic 
+         * (color, shape, markings etc)</p> <p>Provides the 'value' 
+         * part of the name-value pair describing the drug product 
+         * appearance characteristic.</p><p>The attribute is marked as 
+         * 'mandatory' as there must be a value for a mandatory 
+         * code.</p> <p>Provides the 'value' part of the name-value 
+         * pair describing the drug product appearance 
          * characteristic.</p><p>The attribute is marked as 'mandatory' 
          * as there must be a value for a mandatory code.</p></remarks>
          */

@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,23 +29,23 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lr.Merged {
 
 
     /**
-     * <summary>Has</summary>
+     * <summary>Business Name: Has</summary>
      * 
-     * <remarks>PRPA_MT202303CA.IdentifiedLocation: *k:has 
-     * <p>Provides additional identifiers by which the location may 
-     * be known.</p> <p>In a registry, it is often necessary to 
-     * link a location record to other registries or to commonly 
-     * used jurisdictional identifiers.</p> 
-     * PRPA_MT202302CA.IdentifiedLocation: *k:has <p>Provides 
-     * additional identifiers by which the location may be 
-     * known.</p> <p>In a registry, it is often necessary to link a 
-     * location record to other registries or to commonly used 
-     * jurisdictional identifiers.</p> 
-     * PRPA_MT202301CA.IdentifiedLocation: *k:has <p>Provides 
-     * additional identifiers by which the location may be 
-     * known.</p> <p>In a registry, it is often necessary to link a 
-     * location record to other registries or to commonly used 
-     * jurisdictional identifiers.</p></remarks>
+     * <remarks>PRPA_MT202303CA.IdentifiedLocation: *k:has <p>In a 
+     * registry, it is often necessary to link a location record to 
+     * other registries or to commonly used jurisdictional 
+     * identifiers.</p> <p>Provides additional identifiers by which 
+     * the location may be known.</p> 
+     * PRPA_MT202302CA.IdentifiedLocation: *k:has <p>In a registry, 
+     * it is often necessary to link a location record to other 
+     * registries or to commonly used jurisdictional 
+     * identifiers.</p> <p>Provides additional identifiers by which 
+     * the location may be known.</p> 
+     * PRPA_MT202301CA.IdentifiedLocation: *k:has <p>In a registry, 
+     * it is often necessary to link a location record to other 
+     * registries or to commonly used jurisdictional 
+     * identifiers.</p> <p>Provides additional identifiers by which 
+     * the location may be known.</p></remarks>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"PRPA_MT202301CA.IdentifiedLocation","PRPA_MT202302CA.IdentifiedLocation","PRPA_MT202303CA.IdentifiedLocation"})]
     public class Has : MessagePartBean {
@@ -60,14 +60,32 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lr.Merged {
             this.assigningIdentifierOrganizationName = new STImpl();
         }
         /**
-         * <summary>Identifier</summary>
+         * <summary>Business Name: Identifier</summary>
          * 
-         * <remarks>A: Identifier <p>An identifier by which the 
-         * location is known.</p> <p>Specifies the actual identifier 
-         * that can be used for searching or linking. The attribute is 
-         * mandatory because there is no point specifying an 
-         * &quot;Other Identifiers&quot; class if you are not going to 
-         * specify an identifier.</p></remarks>
+         * <remarks>Un-merged Business Name: Identifier Relationship: 
+         * PRPA_MT202303CA.IdentifiedLocation.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>Specifies the 
+         * actual identifier that can be used for searching or linking. 
+         * The attribute is mandatory because there is no point 
+         * specifying an &quot;Other Identifiers&quot; class if you are 
+         * not going to specify an identifier.</p> <p>An identifier by 
+         * which the location is known.</p> Un-merged Business Name: 
+         * Identifier Relationship: 
+         * PRPA_MT202301CA.IdentifiedLocation.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>Specifies the 
+         * actual identifier that can be used for searching or linking. 
+         * The attribute is mandatory because there is no point 
+         * specifying an &quot;Other Identifiers&quot; class if you are 
+         * not going to specify an identifier.</p> <p>An identifier by 
+         * which the location is known.</p> Un-merged Business Name: 
+         * Identifier Relationship: 
+         * PRPA_MT202302CA.IdentifiedLocation.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>Specifies the 
+         * actual identifier that can be used for searching or linking. 
+         * The attribute is mandatory because there is no point 
+         * specifying an &quot;Other Identifiers&quot; class if you are 
+         * not going to specify an identifier.</p> <p>An identifier by 
+         * which the location is known.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -76,13 +94,29 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lr.Merged {
         }
 
         /**
-         * <summary>IdentifierType</summary>
+         * <summary>Business Name: IdentifierType</summary>
          * 
-         * <remarks>B:Identifier Type <p>Specifies the kind of 
-         * identifier being communicated. For example, billing 
-         * identifier, regional identifier, public health identifier, 
-         * etc.</p> <p>Provides context around the appropriate use for 
-         * the identifier and is therefore mandatory.</p></remarks>
+         * <remarks>Un-merged Business Name: IdentifierType 
+         * Relationship: PRPA_MT202303CA.IdentifiedLocation.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Provides context 
+         * around the appropriate use for the identifier and is 
+         * therefore mandatory.</p> <p>Specifies the kind of identifier 
+         * being communicated. For example, billing identifier, 
+         * regional identifier, public health identifier, etc.</p> 
+         * Un-merged Business Name: IdentifierType Relationship: 
+         * PRPA_MT202301CA.IdentifiedLocation.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Provides context 
+         * around the appropriate use for the identifier and is 
+         * therefore mandatory.</p> <p>Specifies the kind of identifier 
+         * being communicated. For example, billing identifier, 
+         * regional identifier, public health identifier, etc.</p> 
+         * Un-merged Business Name: IdentifierType Relationship: 
+         * PRPA_MT202302CA.IdentifiedLocation.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Provides context 
+         * around the appropriate use for the identifier and is 
+         * therefore mandatory.</p> <p>Specifies the kind of identifier 
+         * being communicated. For example, billing identifier, 
+         * regional identifier, public health identifier, etc.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public LocationIdentifiedEntityRoleType Code {
@@ -91,16 +125,35 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lr.Merged {
         }
 
         /**
-         * <summary>IdentifyingOrganization</summary>
+         * <summary>Business Name: IdentifyingOrganization</summary>
          * 
-         * <remarks>C: Identifying Organization <p>This is the name of 
-         * the organization which issued and/or uses the identifier for 
-         * the location.</p> <p>Further qualifies how the identifier is 
-         * intended to be used. For example distinguishing a 
-         * health-region assigned identifier from a 
+         * <remarks>Un-merged Business Name: IdentifyingOrganization 
+         * Relationship: PRPA_MT202303CA.IdentifierOrganization.name 
+         * Conformance/Cardinality: MANDATORY (1) <p>Further qualifies 
+         * how the identifier is intended to be used. For example 
+         * distinguishing a health-region assigned identifier from a 
          * provincially-assigned identifier. Because it is important to 
          * understanding the identifier, the attribute is 
-         * mandatory.</p></remarks>
+         * mandatory.</p> <p>This is the name of the organization which 
+         * issued and/or uses the identifier for the location.</p> 
+         * Un-merged Business Name: IdentifyingOrganization 
+         * Relationship: PRPA_MT202301CA.IdentifierOrganization.name 
+         * Conformance/Cardinality: MANDATORY (1) <p>Further qualifies 
+         * how the identifier is intended to be used. For example 
+         * distinguishing a health-region assigned identifier from a 
+         * provincially-assigned identifier. Because it is important to 
+         * understanding the identifier, the attribute is 
+         * mandatory.</p> <p>This is the name of the organization which 
+         * issued and/or uses the identifier for the location.</p> 
+         * Un-merged Business Name: IdentifyingOrganization 
+         * Relationship: PRPA_MT202302CA.IdentifierOrganization.name 
+         * Conformance/Cardinality: MANDATORY (1) <p>Further qualifies 
+         * how the identifier is intended to be used. For example 
+         * distinguishing a health-region assigned identifier from a 
+         * provincially-assigned identifier. Because it is important to 
+         * understanding the identifier, the attribute is 
+         * mandatory.</p> <p>This is the name of the organization which 
+         * issued and/or uses the identifier for the location.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"assigningIdentifierOrganization/name"})]
         public String AssigningIdentifierOrganizationName {

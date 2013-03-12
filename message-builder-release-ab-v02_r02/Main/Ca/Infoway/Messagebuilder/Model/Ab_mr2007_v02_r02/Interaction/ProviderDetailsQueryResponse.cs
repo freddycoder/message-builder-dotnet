@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,6 +27,18 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt306011ca;
 
 
+    /**
+     * <summary>Business Name: PRPM_IN306011CA: Provider Details 
+     * Query Response</summary>
+     * 
+     * <remarks>Message: MCCI_MT002300CA.Message Control Act: 
+     * MFMI_MT700746CA.ControlActEvent --> Payload: 
+     * PRPM_MT306011CA.RoleChoice ----> Payload Choice: 
+     * PRPM_MT306011CA.AssignedEntity ----> Payload Choice: 
+     * PRPM_MT306011CA.QualifiedEntity ----> Payload Choice: 
+     * PRPM_MT306011CA.HealthCareProvider --> Payload: 
+     * PRPM_MT306010CA.ParameterList</remarks>
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"PRPM_IN306011CA"})]
     public class ProviderDetailsQueryResponse : HL7Message<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Mfmi_mt700746ca.TriggerEvent<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt306010ca.ParameterList,Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt306011ca.IRoleChoice>>, IInteraction {
 

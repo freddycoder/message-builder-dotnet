@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,11 +30,10 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt00000
 
 
     /**
-     * <summary>Allergy/Intolerance Query Parameters</summary>
+     * <summary>Business Name: Allergy/Intolerance Query Parameters</summary>
      * 
-     * <remarks><p>Defines the set of parameters that may be used 
-     * to filter the query response</p> <p>Root class for query 
-     * definition</p></remarks>
+     * <p>Root class for query definition</p> <p>Defines the set of 
+     * parameters that may be used to filter the query response</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"REPC_MT000004CA.ParameterList"})]
     public class AllergyIntoleranceQueryParameters : MessagePartBean {
@@ -57,14 +56,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt00000
             this.reactionTypeValue = new CVImpl();
         }
         /**
-         * <summary>G:Allergy/Intolerance Status</summary>
+         * <summary>Business Name: G:Allergy/Intolerance Status</summary>
          * 
-         * <remarks><p>Indicates that the result set should be filtered 
-         * to include only those allergy/intolerance records for the 
-         * specified status. Valid statuses include: ACTIVE or 
-         * COMPLETE.</p> <p>Allows for the selective retrieval of 
-         * allergy/intolerance records based on the status of the 
-         * record.</p></remarks>
+         * <remarks>Relationship: 
+         * REPC_MT000004CA.AllergyIntoleranceStatus.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows for the 
+         * selective retrieval of allergy/intolerance records based on 
+         * the status of the record.</p> <p>Indicates that the result 
+         * set should be filtered to include only those 
+         * allergy/intolerance records for the specified status. Valid 
+         * statuses include: ACTIVE or COMPLETE.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"allergyIntoleranceStatus/value"})]
         public ActStatus AllergyIntoleranceStatusValue {
@@ -73,13 +74,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt00000
         }
 
         /**
-         * <summary>H:Allergy/Intolerance Type</summary>
+         * <summary>Business Name: H:Allergy/Intolerance Type</summary>
          * 
-         * <remarks><p>A coded value indicating whether to return an 
-         * allergy record or an intolerance record. The result set will 
-         * be filtered to include only allergy records or intolerance 
-         * records accordingly.</p> <p>Allows allergy/intolerance 
-         * records to be selectively searched and retrieved.</p></remarks>
+         * <remarks>Relationship: 
+         * REPC_MT000004CA.AllergyIntoleranceType.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows 
+         * allergy/intolerance records to be selectively searched and 
+         * retrieved.</p> <p>A coded value indicating whether to return 
+         * an allergy record or an intolerance record. The result set 
+         * will be filtered to include only allergy records or 
+         * intolerance records accordingly.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"allergyIntoleranceType/value"})]
         public ObservationIntoleranceType AllergyIntoleranceTypeValue {
@@ -88,12 +92,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt00000
         }
 
         /**
-         * <summary>F:Allergy/Intolerance Change Period</summary>
+         * <summary>Business Name: F:Allergy/Intolerance Change Period</summary>
          * 
-         * <remarks><p>Filters the query response to only include 
+         * <remarks>Relationship: 
+         * REPC_MT000004CA.AlllergyIntoleranceChangePeriod.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Useful in 
+         * retrieving incremental changes to the patient's record.</p> 
+         * <p>Filters the query response to only include 
          * allergy/intolerance records which have been created or 
-         * modified within the date-range specified.</p> <p>Useful in 
-         * retrieving incremental changes to the patient's record.</p></remarks>
+         * modified within the date-range specified.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"alllergyIntoleranceChangePeriod/value"})]
         public Interval<PlatformDate> AlllergyIntoleranceChangePeriodValue {
@@ -102,9 +109,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt00000
         }
 
         /**
-         * <summary>Care Composition IDs</summary>
+         * <summary>Business Name: Care Composition IDs</summary>
          * 
-         * <remarks><p>Filters the records retrieved to only include 
+         * <remarks>Relationship: 
+         * REPC_MT000004CA.CareCompositionID.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows retrieving 
+         * all records associated with an encounter, episode or care 
+         * event.</p> <p>Filters the records retrieved to only include 
          * those associated with the specified encounter, episode or 
          * care event. If unspecified, no filter is 
          * applied.</p><p>Note: When matching on care composition id, 
@@ -113,17 +124,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt00000
          * When retrieving records associated with an encounter which 
          * includes a referral, the retrieved records should also 
          * include the care summary created in fulfillment of the 
-         * referral.</p> <p>Filters the records retrieved to only 
-         * include those associated with the specified encounter, 
-         * episode or care event. If unspecified, no filter is 
-         * applied.</p><p>Note: When matching on care composition id, 
-         * systems should also retrieve records with a fulfillment id 
-         * to requisitions associated with the care composition. E.g. 
-         * When retrieving records associated with an encounter which 
-         * includes a referral, the retrieved records should also 
-         * include the care summary created in fulfillment of the 
-         * referral.</p> <p>Allows retrieving all records associated 
-         * with an encounter, episode or care event.</p></remarks>
+         * referral.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"careCompositionID/value"})]
         public IList<Identifier> CareCompositionIDValue {
@@ -131,15 +132,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt00000
         }
 
         /**
-         * <summary>Care Composition Types</summary>
+         * <summary>Business Name: Care Composition Types</summary>
          * 
-         * <remarks><p>Filters the records retrieved to only include 
-         * those associated with the specified 'kind' of encounter, 
-         * episode or care event. If unspecified, no filter is 
-         * applied.</p> <p>Allows retrieving all records associated 
-         * with a particular type of encounter, episode or care event. 
-         * E.g.Orthopedic Clinic Encounter, ER encounter, Walk-in 
-         * encounter, etc.</p></remarks>
+         * <remarks>Relationship: 
+         * REPC_MT000004CA.CareCompositionType.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows retrieving 
+         * all records associated with a particular type of encounter, 
+         * episode or care event. E.g.Orthopedic Clinic Encounter, ER 
+         * encounter, Walk-in encounter, etc.</p> <p>Filters the 
+         * records retrieved to only include those associated with the 
+         * specified 'kind' of encounter, episode or care event. If 
+         * unspecified, no filter is applied.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"careCompositionType/value"})]
         public IList<ActCareEventType> CareCompositionTypeValue {
@@ -147,19 +150,18 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt00000
         }
 
         /**
-         * <summary>Include Notes Indicator</summary>
+         * <summary>Business Name: Include Notes Indicator</summary>
          * 
-         * <remarks><p>Indicates whether or not notes attached to the 
-         * allergy/intolerance records are to be returned along with 
-         * the detailed information.</p> <p>Allows for the flexibility 
-         * of omitting/including notes in the retrieval of information 
-         * for allergy/intolerance data.</p><p>Because the attribute is 
-         * boolean, it must explicitly indicate a 'TRUE' or 'FALSE', 
-         * and thus it is mandatory.</p> <p>Allows for the flexibility 
-         * of omitting/including notes in the retrieval of information 
-         * for allergy/intolerance data.</p><p>Because the attribute is 
-         * boolean, it must explicitly indicate a 'TRUE' or 'FALSE', 
-         * and thus it is mandatory.</p></remarks>
+         * <remarks>Relationship: 
+         * REPC_MT000004CA.IncludeNotesIndicator.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows for the 
+         * flexibility of omitting/including notes in the retrieval of 
+         * information for allergy/intolerance data.</p><p>Because the 
+         * attribute is boolean, it must explicitly indicate a 'TRUE' 
+         * or 'FALSE', and thus it is mandatory.</p> <p>Indicates 
+         * whether or not notes attached to the allergy/intolerance 
+         * records are to be returned along with the detailed 
+         * information.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"includeNotesIndicator/value"})]
         public bool? IncludeNotesIndicatorValue {
@@ -168,13 +170,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt00000
         }
 
         /**
-         * <summary>I:Reaction</summary>
+         * <summary>Business Name: I:Reaction</summary>
          * 
-         * <remarks><p>A coded value denoting a specific reaction. E.g. 
-         * Code for 'rash'. The result set will be filtered to include 
-         * only those allergy records or intolerance records pertaining 
-         * to the specified reaction.</p> <p>Allows allergy/intolerance 
-         * records to be selectively searched and retrieved.</p></remarks>
+         * <remarks>Relationship: REPC_MT000004CA.ReactionType.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows 
+         * allergy/intolerance records to be selectively searched and 
+         * retrieved.</p> <p>A coded value denoting a specific 
+         * reaction. E.g. Code for 'rash'. The result set will be 
+         * filtered to include only those allergy records or 
+         * intolerance records pertaining to the specified 
+         * reaction.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"reactionType/value"})]
         public SubjectReaction ReactionTypeValue {

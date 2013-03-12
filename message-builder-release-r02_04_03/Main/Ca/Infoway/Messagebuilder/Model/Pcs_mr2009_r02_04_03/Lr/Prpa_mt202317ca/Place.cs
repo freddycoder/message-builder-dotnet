@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,13 +38,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lr.Prpa_mt202317c
             this.mobileInd = new BLImpl();
         }
         /**
-         * <summary>E:Location Place Type</summary>
+         * <summary>Business Name: E:Location Place Type</summary>
          * 
-         * <remarks><p>Distinguishes different levels of location 
-         * granularity. E.g. Campus, building, floor, ward, room, 
-         * bed.</p> <p>Used for searching, as well as for understanding 
-         * what is meant by a particular location and is therefore 
-         * mandatory.</p></remarks>
+         * <remarks>Relationship: PRPA_MT202317CA.Place.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Used for 
+         * searching, as well as for understanding what is meant by a 
+         * particular location and is therefore mandatory.</p> 
+         * <p>Distinguishes different levels of location granularity. 
+         * E.g. Campus, building, floor, ward, room, bed.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public ServiceDeliveryLocationPlaceType Code {
@@ -53,16 +54,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lr.Prpa_mt202317c
         }
 
         /**
-         * <summary>F:Location Mobile Indicator</summary>
+         * <summary>Business Name: F:Location Mobile Indicator</summary>
          * 
-         * <remarks><p>An indication of whether a place has the 
-         * capability to move from one location to another. Example: 
-         * air and ground ambulances, mobile clinics.</p> <p>Allows 
-         * flagging that the location does not have a fixed physical 
+         * <remarks>Relationship: PRPA_MT202317CA.Place.mobileInd 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows flagging 
+         * that the location does not have a fixed physical 
          * location.</p><p>This element must always be known and is 
-         * therefore mandatory.</p> <p>Allows flagging that the 
-         * location does not have a fixed physical location.</p><p>This 
-         * element must always be known and is therefore mandatory.</p></remarks>
+         * therefore mandatory.</p> <p>An indication of whether a place 
+         * has the capability to move from one location to another. 
+         * Example: air and ground ambulances, mobile clinics.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"mobileInd"})]
         public bool? MobileInd {

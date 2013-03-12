@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,13 +24,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Coct_mt4
 
 
     /**
-     * <summary>Consent By Patient</summary>
+     * <summary>Business Name: Consent By Patient</summary>
      * 
-     * <remarks><p>Indicates that the consent or keyword has been 
-     * provided by the patient themselves (rather than a 
+     * <p>Indicates that the consent or keyword has been provided 
+     * by the patient themselves (rather than a 
      * representative.)</p> <p>Distinguishing whether consent is 
      * granted by the patient or a representative can be important 
-     * for audit purposes.</p></remarks>
+     * for audit purposes.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"COCT_MT470000CA.Patient"})]
     public class ConsentByPatient : MessagePartBean, Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.IConsenter {

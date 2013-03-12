@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,9 +27,9 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt300
 
 
     /**
-     * <summary>Drug form</summary>
+     * <summary>Business Name: Drug form</summary>
      * 
-     * <remarks><p>Kind of manufactured material</p></remarks>
+     * <p>Kind of manufactured material</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"COCT_MT300000CA.ManufacturedMaterialKind"})]
     public class DrugForm : MessagePartBean {
@@ -40,10 +40,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt300
             this.formCode = new CVImpl();
         }
         /**
-         * <summary>Drug Form</summary>
+         * <summary>Business Name: Drug Form</summary>
          * 
-         * <remarks><p>code for drug form</p> <p>required for 
-         * compounds</p></remarks>
+         * <remarks>Relationship: 
+         * COCT_MT300000CA.ManufacturedMaterialKind.formCode 
+         * Conformance/Cardinality: POPULATED (1) <p>required for 
+         * compounds</p> <p>code for drug form</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"formCode"})]
         public OrderableDrugForm FormCode {

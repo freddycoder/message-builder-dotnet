@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,14 +35,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Ra.Comt_mt400001c
             this.playingEntityKindCode = new CVImpl();
         }
         /**
-         * <summary>Maskable Material</summary>
+         * <summary>Business Name: Maskable Material</summary>
          * 
-         * <remarks><p>Indicates the materia (e.g drug) whose 
-         * associated records should be masked.</p> <p>Allows masking a 
+         * <remarks>Relationship: COMT_MT400001CA.EntityKind.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows masking a 
          * drug, avoiding the requirement to mask each prescription and 
          * dispense individually.</p> <p>Usually specified at the 
          * generic or therapeutic-equivalent level to ensure related 
-         * medications are also covered.</p></remarks>
+         * medications are also covered.</p> <p>Indicates the materia 
+         * (e.g drug) whose associated records should be masked.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"playingEntityKind/code"})]
         public MaskableMaterialEntityType PlayingEntityKindCode {

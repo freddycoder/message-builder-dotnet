@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,23 +33,23 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merg
 
 
     /**
-     * <summary>Immunizations</summary>
+     * <summary>Business Name: Immunizations</summary>
      * 
-     * <remarks>POIZ_MT060150CA.Immunization: Immunizations <p>A 
-     * record of products administered to a patient specific to 
-     * immunization.</p> <p>Necessary component of a person's 
-     * overall vaccine profile. Helps deal with outbreaks and also 
-     * vaccine contraindication checking.</p> 
-     * POIZ_MT030050CA.Immunization: Immunizations <p>A record of 
-     * products administered to a patient specific to 
-     * immunization.</p> <p>Necessary component of a person's 
-     * overall vaccine profile. Helps deal with outbreaks and also 
-     * vaccine contraindication checking.</p> 
-     * POIZ_MT030060CA.Immunization: Immunizations <p>A record of 
-     * products administered to a patient specific to 
-     * immunization.</p> <p>Necessary component of a person's 
-     * overall vaccine profile. Helps deal with outbreaks and also 
-     * vaccine contraindication checking.</p></remarks>
+     * <remarks>POIZ_MT060150CA.Immunization: Immunizations 
+     * <p>Necessary component of a person's overall vaccine 
+     * profile. Helps deal with outbreaks and also vaccine 
+     * contraindication checking.</p> <p>A record of products 
+     * administered to a patient specific to immunization.</p> 
+     * POIZ_MT030050CA.Immunization: Immunizations <p>Necessary 
+     * component of a person's overall vaccine profile. Helps deal 
+     * with outbreaks and also vaccine contraindication 
+     * checking.</p> <p>A record of products administered to a 
+     * patient specific to immunization.</p> 
+     * POIZ_MT030060CA.Immunization: Immunizations <p>Necessary 
+     * component of a person's overall vaccine profile. Helps deal 
+     * with outbreaks and also vaccine contraindication 
+     * checking.</p> <p>A record of products administered to a 
+     * patient specific to immunization.</p></remarks>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"POIZ_MT030050CA.Immunization","POIZ_MT030060CA.Immunization","POIZ_MT060150CA.Immunization"})]
     public class Immunizations : MessagePartBean {
@@ -97,12 +97,26 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merg
             this.cause2IntoleranceCondition = new List<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merged.IntoleranceCondition>();
         }
         /**
-         * <summary>ImmunizationEventID</summary>
+         * <summary>Business Name: ImmunizationEventID</summary>
          * 
-         * <remarks>A:Immunization Event ID <p>This is an identifier 
+         * <remarks>Un-merged Business Name: ImmunizationEventID 
+         * Relationship: POIZ_MT060150CA.Immunization.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows for the 
+         * unique referencing of a specific immunization record. Thus 
+         * the mandatory requirement.</p> <p>This is an identifier 
          * assigned to a unique instance of an immunization record.</p> 
-         * <p>Allows for the unique referencing of a specific 
-         * immunization record. Thus the mandatory requirement.</p></remarks>
+         * Un-merged Business Name: ImmunizationEventID Relationship: 
+         * POIZ_MT030050CA.Immunization.id Conformance/Cardinality: 
+         * MANDATORY (1) <p>Allows for the unique referencing of a 
+         * specific immunization record. Thus the mandatory 
+         * requirement.</p> <p>This is an identifier assigned to a 
+         * unique instance of an immunization record.</p> Un-merged 
+         * Business Name: ImmunizationEventID Relationship: 
+         * POIZ_MT030060CA.Immunization.id Conformance/Cardinality: 
+         * MANDATORY (1) <p>Allows for the unique referencing of a 
+         * specific immunization record. Thus the mandatory 
+         * requirement.</p> <p>This is an identifier assigned to a 
+         * unique instance of an immunization record.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -111,14 +125,32 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merg
         }
 
         /**
-         * <summary>NotImmunized</summary>
+         * <summary>Business Name: NotImmunized</summary>
          * 
-         * <remarks>Not Immunized? <p>An explicit indication that a 
+         * <remarks>Un-merged Business Name: NotImmunized Relationship: 
+         * POIZ_MT060150CA.Immunization.negationInd 
+         * Conformance/Cardinality: MANDATORY (1) <p>Tracking failures 
+         * to be immunized is also important in immunization reporting. 
+         * Marked as mandatory because it is not meaningful for this 
+         * flag to be 'unknown'.</p> <p>An explicit indication that a 
          * person has not been immunized with the specified vaccine at 
-         * the time indicated.</p> <p>Tracking failures to be immunized 
-         * is also important in immunization reporting. Marked as 
-         * mandatory because it is not meaningful for this flag to be 
-         * 'unknown'.</p></remarks>
+         * the time indicated.</p> Un-merged Business Name: 
+         * NotImmunized Relationship: 
+         * POIZ_MT030050CA.Immunization.negationInd 
+         * Conformance/Cardinality: MANDATORY (1) <p>Tracking failures 
+         * to be immunized is also important in immunization reporting. 
+         * Marked as mandatory because it is not meaningful for this 
+         * flag to be 'unknown'.</p> <p>An explicit indication that a 
+         * person has not been immunized with the specified vaccine at 
+         * the time indicated.</p> Un-merged Business Name: 
+         * NotImmunized Relationship: 
+         * POIZ_MT030060CA.Immunization.negationInd 
+         * Conformance/Cardinality: MANDATORY (1) <p>Tracking failures 
+         * to be immunized is also important in immunization reporting. 
+         * Marked as mandatory because it is not meaningful for this 
+         * flag to be 'unknown'.</p> <p>An explicit indication that a 
+         * person has not been immunized with the specified vaccine at 
+         * the time indicated.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"negationInd"})]
         public bool? NegationInd {
@@ -127,13 +159,30 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merg
         }
 
         /**
-         * <summary>ImmunizationEventStatus</summary>
+         * <summary>Business Name: ImmunizationEventStatus</summary>
          * 
-         * <remarks>Immunization Event Status <p>Status of the 
-         * immunization event</p> <p>Needed to differentiate between 
-         * valid, obsolete and invalid immunization events (e.g. 
-         * immunization event has been retracted or nullified) and is 
-         * therefore mandatory.</p> <p>Nullified=Retracted</p></remarks>
+         * <remarks>Un-merged Business Name: ImmunizationEventStatus 
+         * Relationship: POIZ_MT060150CA.Immunization.statusCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>Needed to 
+         * differentiate between valid, obsolete and invalid 
+         * immunization events (e.g. immunization event has been 
+         * retracted or nullified) and is therefore mandatory.</p> 
+         * <p>Nullified=Retracted</p> <p>Status of the immunization 
+         * event</p> Un-merged Business Name: ImmunizationEventStatus 
+         * Relationship: POIZ_MT030050CA.Immunization.statusCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>Needed to 
+         * differentiate between valid, obsolete and invalid 
+         * immunization events (e.g. immunization event has been 
+         * retracted or nullified) and is therefore mandatory.</p> 
+         * <p>Nullified=Retracted</p> <p>Status of the immunization 
+         * event</p> Un-merged Business Name: ImmunizationEventStatus 
+         * Relationship: POIZ_MT030060CA.Immunization.statusCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>Needed to 
+         * differentiate between valid, obsolete and invalid 
+         * immunization events (e.g. immunization event has been 
+         * retracted or nullified) and is therefore mandatory.</p> 
+         * <p>Nullified=Retracted</p> <p>Status of the immunization 
+         * event</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"statusCode"})]
         public ActStatus StatusCode {
@@ -142,13 +191,22 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merg
         }
 
         /**
-         * <summary>ImmunizationDate</summary>
+         * <summary>Business Name: ImmunizationDate</summary>
          * 
-         * <remarks>Immunization Date <p>The date the vaccine was 
-         * administered to the patient.</p> <p>Important information 
-         * for establishing the validity of the immunization records, 
-         * and therefore mandatory. Also used in the scheduling of 
-         * subsequent immunizations.</p></remarks>
+         * <remarks>Un-merged Business Name: ImmunizationDate 
+         * Relationship: POIZ_MT060150CA.Immunization.effectiveTime 
+         * Conformance/Cardinality: MANDATORY (1) <p>Important 
+         * information for establishing the validity of the 
+         * immunization records, and therefore mandatory. Also used in 
+         * the scheduling of subsequent immunizations.</p> <p>The date 
+         * the vaccine was administered to the patient.</p> Un-merged 
+         * Business Name: ImmunizationDate Relationship: 
+         * POIZ_MT030050CA.Immunization.effectiveTime 
+         * Conformance/Cardinality: MANDATORY (1) <p>Important 
+         * information for establishing the validity of the 
+         * immunization records, and therefore mandatory. Also used in 
+         * the scheduling of subsequent immunizations.</p> <p>The date 
+         * the vaccine was administered to the patient.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"effectiveTime"})]
         public PlatformDate EffectiveTime {
@@ -157,17 +215,32 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merg
         }
 
         /**
-         * <summary>ImmunizationMaskingIndicators</summary>
+         * <summary>Business Name: ImmunizationMaskingIndicators</summary>
          * 
-         * <remarks>Immunization Masking Indicators <p>Denotes access 
-         * restriction place on the immunization record.</p> 
-         * <p>Provides support for additional confidentiality 
-         * constraint to reflect the wishes of the patient.</p><p>The 
-         * attribute is optional because not all systems will support 
-         * masking.</p> <p>Provides support for additional 
-         * confidentiality constraint to reflect the wishes of the 
-         * patient.</p><p>The attribute is optional because not all 
-         * systems will support masking.</p></remarks>
+         * <remarks>Un-merged Business Name: 
+         * ImmunizationMaskingIndicators Relationship: 
+         * POIZ_MT060150CA.Immunization.confidentialityCode 
+         * Conformance/Cardinality: OPTIONAL (0-2) <p>Provides support 
+         * for additional confidentiality constraint to reflect the 
+         * wishes of the patient.</p><p>The attribute is optional 
+         * because not all systems will support masking.</p> <p>Denotes 
+         * access restriction place on the immunization record.</p> 
+         * Un-merged Business Name: ImmunizationMaskingIndicators 
+         * Relationship: 
+         * POIZ_MT030050CA.Immunization.confidentialityCode 
+         * Conformance/Cardinality: OPTIONAL (0-2) <p>Provides support 
+         * for additional confidentiality constraint to reflect the 
+         * wishes of the patient.</p><p>The attribute is optional 
+         * because not all systems will support masking.</p> <p>Denotes 
+         * access restriction place on the immunization record.</p> 
+         * Un-merged Business Name: ImmunizationMaskingIndicators 
+         * Relationship: 
+         * POIZ_MT030060CA.Immunization.confidentialityCode 
+         * Conformance/Cardinality: OPTIONAL (0-2) <p>Provides support 
+         * for additional confidentiality constraint to reflect the 
+         * wishes of the patient.</p><p>The attribute is optional 
+         * because not all systems will support masking.</p> <p>Denotes 
+         * access restriction place on the immunization record.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"confidentialityCode"})]
         public ICollection<x_BasicConfidentialityKind> ConfidentialityCode {
@@ -175,15 +248,35 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merg
         }
 
         /**
-         * <summary>UncertaintyCode</summary>
+         * <summary>Business Name: UncertaintyCode</summary>
          * 
-         * <remarks>Uncertainty Code <p>An indication of uncertainty 
-         * regarding an immunization event</p> <p>Allows for users of 
-         * information to determine the degree of uncertainty regarding 
-         * the details of an immunization event and is therefore 
-         * populated.</p> <p>Only populated when it is needed to 
-         * communicate a degree of uncertainty - i.e. historical 
-         * information.</p></remarks>
+         * <remarks>Un-merged Business Name: UncertaintyCode 
+         * Relationship: POIZ_MT060150CA.Immunization.uncertaintyCode 
+         * Conformance/Cardinality: POPULATED (1) <p>Allows for users 
+         * of information to determine the degree of uncertainty 
+         * regarding the details of an immunization event and is 
+         * therefore populated.</p> <p>Only populated when it is needed 
+         * to communicate a degree of uncertainty - i.e. historical 
+         * information.</p> <p>An indication of uncertainty regarding 
+         * an immunization event</p> Un-merged Business Name: 
+         * UncertaintyCode Relationship: 
+         * POIZ_MT030050CA.Immunization.uncertaintyCode 
+         * Conformance/Cardinality: POPULATED (1) <p>Allows for users 
+         * of information to determine the degree of uncertainty 
+         * regarding the details of an immunization event and is 
+         * therefore populated.</p> <p>Only populated when it is needed 
+         * to communicate a degree of uncertainty - i.e. historical 
+         * information.</p> <p>An indication of uncertainty regarding 
+         * an immunization event</p> Un-merged Business Name: 
+         * UncertaintyCode Relationship: 
+         * POIZ_MT030060CA.Immunization.uncertaintyCode 
+         * Conformance/Cardinality: POPULATED (1) <p>Allows for users 
+         * of information to determine the degree of uncertainty 
+         * regarding the details of an immunization event and is 
+         * therefore populated.</p> <p>Only populated when it is needed 
+         * to communicate a degree of uncertainty - i.e. historical 
+         * information.</p> <p>An indication of uncertainty regarding 
+         * an immunization event</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"uncertaintyCode"})]
         public ActUncertainty UncertaintyCode {
@@ -192,17 +285,32 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merg
         }
 
         /**
-         * <summary>RouteOfAdministration</summary>
+         * <summary>Business Name: RouteOfAdministration</summary>
          * 
-         * <remarks>Route of Administration <p>RouteCode is Required if 
-         * not using SNOMED.</p> <p>The route by which the drug was 
-         * administered to the patient, for example, sub-cutaneous, 
-         * intra-muscular</p> <p>Ensures consistency in description of 
-         * routes.</p><p>Attribute is marked 'optional' to allow for 
-         * use of pre-coordinated SNOMED Codes.</p> <p>Ensures 
-         * consistency in description of routes.</p><p>Attribute is 
-         * marked 'optional' to allow for use of pre-coordinated SNOMED 
-         * Codes.</p></remarks>
+         * <remarks>Un-merged Business Name: RouteOfAdministration 
+         * Relationship: POIZ_MT060150CA.Immunization.routeCode 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>RouteCode is 
+         * Required if not using SNOMED.</p> <p>Ensures consistency in 
+         * description of routes.</p><p>Attribute is marked 'optional' 
+         * to allow for use of pre-coordinated SNOMED Codes.</p> <p>The 
+         * route by which the drug was administered to the patient, for 
+         * example, sub-cutaneous, intra-muscular</p> Un-merged 
+         * Business Name: RouteOfAdministration Relationship: 
+         * POIZ_MT030050CA.Immunization.routeCode 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>RouteCode is 
+         * Required if not using SNOMED.</p> <p>Ensures consistency in 
+         * description of routes.</p><p>Attribute is marked 'optional' 
+         * to allow for use of pre-coordinated SNOMED Codes.</p> <p>The 
+         * route by which the drug was administered to the patient, for 
+         * example, sub-cutaneous, intra-muscular</p> Un-merged 
+         * Business Name: RouteOfAdministration Relationship: 
+         * POIZ_MT030060CA.Immunization.routeCode 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>RouteCode is 
+         * Required if not using SNOMED.</p> <p>Ensures consistency in 
+         * description of routes.</p><p>Attribute is marked 'optional' 
+         * to allow for use of pre-coordinated SNOMED Codes.</p> <p>The 
+         * route by which the drug was administered to the patient, for 
+         * example, sub-cutaneous, intra-muscular</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"routeCode"})]
         public RouteOfAdministration RouteCode {
@@ -211,21 +319,41 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merg
         }
 
         /**
-         * <summary>AnatomicalSite</summary>
+         * <summary>Business Name: AnatomicalSite</summary>
          * 
-         * <remarks>Anatomical Site <p>approachSiteCode is Required if 
-         * not using SNOMED</p> <p>A coded value denoting the body area 
-         * where the immunization was administered.</p> <p>Site of 
+         * <remarks>Un-merged Business Name: AnatomicalSite 
+         * Relationship: POIZ_MT060150CA.Immunization.approachSiteCode 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>approachSiteCode 
+         * is Required if not using SNOMED</p> <p>Site of 
          * administration is needed for follow up in case of an adverse 
          * event and in some jurisdictions is part of the minimum 
          * dataset per national standard and legal client 
          * record.</p><p>Attribute is marked &quot;optional&quot; to 
-         * allow for use of pre-coordinated SNOMED Codes.</p> <p>Site 
-         * of administration is needed for follow up in case of an 
-         * adverse event and in some jurisdictions is part of the 
-         * minimum dataset per national standard and legal client 
+         * allow for use of pre-coordinated SNOMED Codes.</p> <p>A 
+         * coded value denoting the body area where the immunization 
+         * was administered.</p> Un-merged Business Name: 
+         * AnatomicalSite Relationship: 
+         * POIZ_MT030050CA.Immunization.approachSiteCode 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>approachSiteCode 
+         * is Required if not using SNOMED</p> <p>Site of 
+         * administration is needed for follow up in case of an adverse 
+         * event and in some jurisdictions is part of the minimum 
+         * dataset per national standard and legal client 
          * record.</p><p>Attribute is marked &quot;optional&quot; to 
-         * allow for use of pre-coordinated SNOMED Codes.</p></remarks>
+         * allow for use of pre-coordinated SNOMED Codes.</p> <p>A 
+         * coded value denoting the body area where the immunization 
+         * was administered.</p> Un-merged Business Name: 
+         * AnatomicalSite Relationship: 
+         * POIZ_MT030060CA.Immunization.approachSiteCode 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>approachSiteCode 
+         * is Required if not using SNOMED</p> <p>Site of 
+         * administration is needed for follow up in case of an adverse 
+         * event and in some jurisdictions is part of the minimum 
+         * dataset per national standard and legal client 
+         * record.</p><p>Attribute is marked &quot;optional&quot; to 
+         * allow for use of pre-coordinated SNOMED Codes.</p> <p>A 
+         * coded value denoting the body area where the immunization 
+         * was administered.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"approachSiteCode"})]
         public HumanSubstanceAdministrationSite ApproachSiteCode {
@@ -234,18 +362,32 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merg
         }
 
         /**
-         * <summary>QuantityAdministered</summary>
+         * <summary>Business Name: QuantityAdministered</summary>
          * 
-         * <remarks>Quantity Administered <p>The amount of the drug 
-         * product administered to/by the patient.</p> <p>Useful for 
+         * <remarks>Un-merged Business Name: QuantityAdministered 
+         * Relationship: POIZ_MT060150CA.Immunization.doseQuantity 
+         * Conformance/Cardinality: POPULATED (1) <p>Useful for 
          * evaluating reaction, evaluating vaccine failure and for 
          * checking contraindication.</p><p>Attribute is populated to 
          * allow for situations where quantity may not be known and 
-         * thus null flavor must be specified.</p> <p>Useful for 
+         * thus null flavor must be specified.</p> <p>The amount of the 
+         * drug product administered to/by the patient.</p> Un-merged 
+         * Business Name: QuantityAdministered Relationship: 
+         * POIZ_MT030050CA.Immunization.doseQuantity 
+         * Conformance/Cardinality: POPULATED (1) <p>Useful for 
          * evaluating reaction, evaluating vaccine failure and for 
          * checking contraindication.</p><p>Attribute is populated to 
          * allow for situations where quantity may not be known and 
-         * thus null flavor must be specified.</p></remarks>
+         * thus null flavor must be specified.</p> <p>The amount of the 
+         * drug product administered to/by the patient.</p> Un-merged 
+         * Business Name: QuantityAdministered Relationship: 
+         * POIZ_MT030060CA.Immunization.doseQuantity 
+         * Conformance/Cardinality: POPULATED (1) <p>Useful for 
+         * evaluating reaction, evaluating vaccine failure and for 
+         * checking contraindication.</p><p>Attribute is populated to 
+         * allow for situations where quantity may not be known and 
+         * thus null flavor must be specified.</p> <p>The amount of the 
+         * drug product administered to/by the patient.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"doseQuantity"})]
         public PhysicalQuantity DoseQuantity {
@@ -253,82 +395,266 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merg
             set { this.doseQuantity.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: POIZ_MT060150CA.Immunization.subject 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * POIZ_MT030050CA.Immunization.subject 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * POIZ_MT030060CA.Immunization.subject 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subject"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merged.AdministeredTo Subject {
             get { return this.subject; }
             set { this.subject = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * POIZ_MT060150CA.AdministerableMedicine.administerableVaccine 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * POIZ_MT030050CA.AdministerableMedicine.administerableVaccine 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * POIZ_MT030060CA.AdministerableMedicine.administerableVaccine 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"consumable/administerableMedicine/administerableVaccine"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merged.Vaccine ConsumableAdministerableMedicineAdministerableVaccine {
             get { return this.consumableAdministerableMedicineAdministerableVaccine; }
             set { this.consumableAdministerableMedicineAdministerableVaccine = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * POIZ_MT060150CA.ResponsibleParty.assignedEntity 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * POIZ_MT030050CA.ResponsibleParty.assignedEntity 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * POIZ_MT030060CA.ResponsibleParty.assignedEntity 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"responsibleParty/assignedEntity"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.HealthcareWorker ResponsiblePartyAssignedEntity {
             get { return this.responsiblePartyAssignedEntity; }
             set { this.responsiblePartyAssignedEntity = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * POIZ_MT060150CA.Immunization.performer 
+         * Conformance/Cardinality: REQUIRED (0-1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * POIZ_MT030050CA.Immunization.performer 
+         * Conformance/Cardinality: REQUIRED (0-1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * POIZ_MT030060CA.Immunization.performer 
+         * Conformance/Cardinality: REQUIRED (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"performer"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.AdministeredBy Performer {
             get { return this.performer; }
             set { this.performer = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: POIZ_MT060150CA.Author.assignedEntity 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * POIZ_MT030050CA.Author.assignedEntity 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * POIZ_MT030060CA.Author.assignedEntity 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"author/assignedEntity"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.HealthcareWorker AuthorAssignedEntity {
             get { return this.authorAssignedEntity; }
             set { this.authorAssignedEntity = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * POIZ_MT060150CA.Immunization.informant 
+         * Conformance/Cardinality: REQUIRED (0-1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * POIZ_MT030050CA.Immunization.informant 
+         * Conformance/Cardinality: REQUIRED (0-1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * POIZ_MT030060CA.Immunization.informant 
+         * Conformance/Cardinality: REQUIRED (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"informant"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merged.Informant Informant {
             get { return this.informant; }
             set { this.informant = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * POIZ_MT060150CA.Authenticator.assignedEntity 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * POIZ_MT030050CA.Authenticator.assignedEntity 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * POIZ_MT030060CA.Authenticator.assignedEntity 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"authenticator/assignedEntity"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.HealthcareWorker AuthenticatorAssignedEntity {
             get { return this.authenticatorAssignedEntity; }
             set { this.authenticatorAssignedEntity = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: POIZ_MT060150CA.Immunization.location 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * POIZ_MT030050CA.Immunization.location 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * POIZ_MT030060CA.Immunization.location 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"location"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.OccurredAt Location {
             get { return this.location; }
             set { this.location = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * POIZ_MT060150CA.Immunization.inFulfillmentOf 
+         * Conformance/Cardinality: REQUIRED (0-1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * POIZ_MT030050CA.Immunization.inFulfillmentOf 
+         * Conformance/Cardinality: REQUIRED (0-1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * POIZ_MT030060CA.Immunization.inFulfillmentOf 
+         * Conformance/Cardinality: REQUIRED (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"inFulfillmentOf"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merged.InFulfillmentOf InFulfillmentOf {
             get { return this.inFulfillmentOf; }
             set { this.inFulfillmentOf = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: POIZ_MT060150CA.Immunization.reason 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * POIZ_MT030050CA.Immunization.reason Conformance/Cardinality: 
+         * POPULATED (1) Un-merged Business Name: (no business name 
+         * specified) Relationship: POIZ_MT030060CA.Immunization.reason 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"reason"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merged.Reason Reason {
             get { return this.reason; }
             set { this.reason = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: POIZ_MT060150CA.Authorization.consent 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * POIZ_MT030050CA.Authorization.consent 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * POIZ_MT030060CA.Authorization.consent 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"authorization/consent"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merged.Consent AuthorizationConsent {
             get { return this.authorizationConsent; }
             set { this.authorizationConsent = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * POIZ_MT060150CA.PertinentInformation.patientImmunizationObservations 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * POIZ_MT030050CA.PertinentInformation.patientImmunizationObservations 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * POIZ_MT030060CA.PertinentInformation.patientImmunizationObservations 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"pertinentInformation/patientImmunizationObservations"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merged.PatientImmunizationObservations> PertinentInformationPatientImmunizationObservations {
             get { return this.pertinentInformationPatientImmunizationObservations; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * POIZ_MT060150CA.Subject.detectedIssueEvent 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf1/detectedIssueEvent"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.Issues> SubjectOf1DetectedIssueEvent {
             get { return this.subjectOf1DetectedIssueEvent; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * POIZ_MT060150CA.Immunization.subjectOf2 
+         * Conformance/Cardinality: REQUIRED (0-99) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * POIZ_MT030050CA.Immunization.subjectOf 
+         * Conformance/Cardinality: REQUIRED (0-99) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * POIZ_MT030060CA.Immunization.subjectOf 
+         * Conformance/Cardinality: REQUIRED (0-99)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf","subjectOf2"})]
         [Hl7MapByPartType(Name="subjectOf", Type="POIZ_MT030050CA.Subject2")]
         [Hl7MapByPartType(Name="subjectOf", Type="POIZ_MT030060CA.Subject2")]
@@ -337,17 +663,59 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merg
             get { return this.subjectOf; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * POIZ_MT060150CA.CauseOf.investigationEvent 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * POIZ_MT030050CA.CauseOf.investigationEvent 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * POIZ_MT030060CA.CauseOf.investigationEvent 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"cause1/investigationEvent"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merged.InvestigationEvent Cause1InvestigationEvent {
             get { return this.cause1InvestigationEvent; }
             set { this.cause1InvestigationEvent = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * POIZ_MT060150CA.CauseOf2.intoleranceCondition 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * POIZ_MT030050CA.CauseOf2.intoleranceCondition 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * POIZ_MT030060CA.CauseOf2.intoleranceCondition 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"cause2/intoleranceCondition"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merged.IntoleranceCondition> Cause2IntoleranceCondition {
             get { return this.cause2IntoleranceCondition; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * POIZ_MT060150CA.Reference.healthDocument 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * POIZ_MT030050CA.Reference.healthDocument 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * POIZ_MT030060CA.Reference.healthDocument 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"referencedBy/healthDocument"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merged.HealthDocument ReferencedByHealthDocument {
             get { return this.referencedByHealthDocument; }

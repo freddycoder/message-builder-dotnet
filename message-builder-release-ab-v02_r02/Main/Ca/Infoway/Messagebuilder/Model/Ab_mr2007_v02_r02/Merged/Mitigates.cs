@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
 
 
     /**
-     * <summary>ManagedBy</summary>
+     * <summary>Business Name: ManagedBy</summary>
      * 
      * <remarks>PORX_MT980020CA.Mitigates: managed by <p>Indicates 
      * how the issue could be managed.</p> <p>Allows past or 
@@ -70,18 +70,62 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             this.typeCode = new CSImpl();
             this.contextControlCode = new CSImpl();
         }
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PORX_MT980020CA.Mitigates.detectedIssueManagement 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * COCT_MT260010CA.Mitigates.detectedIssueManagement 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT980030CA.Mitigates.detectedIssueManagement 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * COCT_MT260030CA.Mitigates.detectedIssueManagement 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * COCT_MT260022CA.Mitigates.detectedIssueManagement 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * COCT_MT260012CA.Mitigates.detectedIssueManagement 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * COCT_MT260020CA.Mitigates.detectedIssueManagement 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT980010CA.Mitigates.detectedIssueManagement 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"detectedIssueManagement"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.IssueManagements DetectedIssueManagement {
             get { return this.detectedIssueManagement; }
             set { this.detectedIssueManagement = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: COCT_MT260012CA.Mitigates.typeCode 
+         * Conformance/Cardinality: OPTIONAL (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"typeCode"})]
         public ActRelationshipType TypeCode {
             get { return (ActRelationshipType) this.typeCode.Value; }
             set { this.typeCode.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * COCT_MT260012CA.Mitigates.contextControlCode 
+         * Conformance/Cardinality: OPTIONAL (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"contextControlCode"})]
         public ContextControl ContextControlCode {
             get { return (ContextControl) this.contextControlCode.Value; }

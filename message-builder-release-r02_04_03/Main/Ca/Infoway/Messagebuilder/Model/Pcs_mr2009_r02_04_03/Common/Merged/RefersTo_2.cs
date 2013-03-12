@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,34 +27,28 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged {
 
 
     /**
-     * <summary>RefersTo</summary>
+     * <summary>Business Name: RefersTo</summary>
      * 
      * <remarks>MFMI_MT700711CA.Subject2: f:refers to <p>On 
      * creation interactions (where the state transition is 
      * null-&gt;active), this must be true otherwise it must be 
-     * false.</p> <p>Indicates the item(s) being acted upon by this 
-     * trigger event.</p><p>Will be mandatory in wrappers with 
-     * payload messages, otherwise not present.</p> <p>Indicates 
-     * the item(s) being acted upon by this trigger 
-     * event.</p><p>Will be mandatory in wrappers with payload 
-     * messages, otherwise not present.</p> <p>Provides information 
-     * about the thing being created, modified or removed.</p> 
-     * <p>If there are multiple subject items, the changes to all 
-     * of them must be either accepted or rejected as a single 
-     * action. I.e. One trigger event = 1 unit of work.</p> 
+     * false.</p> <p>Provides information about the thing being 
+     * created, modified or removed.</p> <p>If there are multiple 
+     * subject items, the changes to all of them must be either 
+     * accepted or rejected as a single action. I.e. One trigger 
+     * event = 1 unit of work.</p> <p>Indicates the item(s) being 
+     * acted upon by this trigger event.</p><p>Will be mandatory in 
+     * wrappers with payload messages, otherwise not present.</p> 
      * MFMI_MT700716CA.Subject2: f:refers to <p>On creation 
      * interactions (where the state transition is 
      * null-&gt;active), this must be true otherwise it must be 
-     * false.</p> <p>Indicates the item(s) being acted upon by this 
-     * trigger event.</p><p>Will be mandatory in wrappers with 
-     * payload messages, otherwise not present.</p> <p>Indicates 
-     * the item(s) being acted upon by this trigger 
-     * event.</p><p>Will be mandatory in wrappers with payload 
-     * messages, otherwise not present.</p> <p>Provides information 
-     * about the thing being created, modified or removed.</p> 
-     * <p>If there are multiple subject items, the changes to all 
-     * of them must be either accepted or rejected as a single 
-     * action. I.e. One trigger event = 1 unit of work.</p></remarks>
+     * false.</p> <p>Provides information about the thing being 
+     * created, modified or removed.</p> <p>If there are multiple 
+     * subject items, the changes to all of them must be either 
+     * accepted or rejected as a single action. I.e. One trigger 
+     * event = 1 unit of work.</p> <p>Indicates the item(s) being 
+     * acted upon by this trigger event.</p><p>Will be mandatory in 
+     * wrappers with payload messages, otherwise not present.</p></remarks>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"MFMI_MT700711CA.Subject2","MFMI_MT700716CA.Subject2"})]
     public class RefersTo_2<RR> : MessagePartBean {
@@ -68,51 +62,45 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged {
             this.contextConductionInd = new BLImpl();
         }
         /**
-         * <summary>CascadeResponsibilityIndicator</summary>
+         * <summary>Business Name: CascadeResponsibilityIndicator</summary>
          * 
-         * <remarks>Cascade Responsibility Indicator <p>Indicates 
-         * whether or not objects of the trigger event are to be 
-         * cascaded to the payload.</p><p>If true, associations in the 
-         * parent act are conducted across the ActRelationship to the 
-         * message payload (act). Conduction for each association is 
-         * specifically indicated by each associations' 
-         * contextControlCode value.</p><p>In other words, if the 
-         * &quot;subject&quot; act relationship has 
+         * <remarks>Un-merged Business Name: 
+         * CascadeResponsibilityIndicator Relationship: 
+         * MFMI_MT700711CA.Subject2.contextConductionInd 
+         * Conformance/Cardinality: MANDATORY (1) <p>Cascading of 
+         * trigger event objects allows different messages to employ 
+         * consistent and common objects.</p><p>Attribute is mandatory 
+         * to ensure that cascading will be specified one way or 
+         * another.</p> <p>Indicates whether or not objects of the 
+         * trigger event are to be cascaded to the payload.</p><p>If 
+         * true, associations in the parent act are conducted across 
+         * the ActRelationship to the message payload (act). Conduction 
+         * for each association is specifically indicated by each 
+         * associations' contextControlCode value.</p><p>In other 
+         * words, if the &quot;subject&quot; act relationship has 
          * contextConductionInd=true; THEN the subjectOf association is 
          * carried (to the regsitrationRequest act) according to the 
          * subjectOf.contextControlCode (AP = propogate to the reg 
          * request and add to any subject(s) (issues) already present 
-         * in the payload).</p> <p>Indicates whether or not objects of 
-         * the trigger event are to be cascaded to the 
-         * payload.</p><p>If true, associations in the parent act are 
-         * conducted across the ActRelationship to the message payload 
-         * (act). Conduction for each association is specifically 
-         * indicated by each associations' contextControlCode 
-         * value.</p><p>In other words, if the &quot;subject&quot; act 
-         * relationship has contextConductionInd=true; THEN the 
-         * subjectOf association is carried (to the regsitrationRequest 
-         * act) according to the subjectOf.contextControlCode (AP = 
-         * propogate to the reg request and add to any subject(s) 
-         * (issues) already present in the payload).</p> <p>Indicates 
-         * whether or not objects of the trigger event are to be 
-         * cascaded to the payload.</p><p>If true, associations in the 
-         * parent act are conducted across the ActRelationship to the 
-         * message payload (act). Conduction for each association is 
-         * specifically indicated by each associations' 
-         * contextControlCode value.</p><p>In other words, if the 
-         * &quot;subject&quot; act relationship has 
+         * in the payload).</p> Un-merged Business Name: 
+         * CascadeResponsibilityIndicator Relationship: 
+         * MFMI_MT700716CA.Subject2.contextConductionInd 
+         * Conformance/Cardinality: MANDATORY (1) <p>Cascading of 
+         * trigger event objects allows different messages to employ 
+         * consistent and common objects.</p><p>Attribute is mandatory 
+         * to ensure that cascading will be specified one way or 
+         * another.</p> <p>Indicates whether or not objects of the 
+         * trigger event are to be cascaded to the payload.</p><p>If 
+         * true, associations in the parent act are conducted across 
+         * the ActRelationship to the message payload (act). Conduction 
+         * for each association is specifically indicated by each 
+         * associations' contextControlCode value.</p><p>In other 
+         * words, if the &quot;subject&quot; act relationship has 
          * contextConductionInd=true; THEN the subjectOf association is 
          * carried (to the regsitrationRequest act) according to the 
          * subjectOf.contextControlCode (AP = propogate to the reg 
          * request and add to any subject(s) (issues) already present 
-         * in the payload).</p> <p>Cascading of trigger event objects 
-         * allows different messages to employ consistent and common 
-         * objects.</p><p>Attribute is mandatory to ensure that 
-         * cascading will be specified one way or another.</p> 
-         * <p>Cascading of trigger event objects allows different 
-         * messages to employ consistent and common 
-         * objects.</p><p>Attribute is mandatory to ensure that 
-         * cascading will be specified one way or another.</p></remarks>
+         * in the payload).</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"contextConductionInd"})]
         public bool? ContextConductionInd {
@@ -120,18 +108,51 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged {
             set { this.contextConductionInd.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * MFMI_MT700711CA.RegistrationRequest.subject 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MFMI_MT700716CA.RegistrationRequest.subject 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"registrationRequest/subject"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.RegisteredItem<RR> RegistrationRequestSubject {
             get { return this.registrationRequestSubject; }
             set { this.registrationRequestSubject = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * MFMI_MT700711CA.Custodian.assignedDevice 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MFMI_MT700716CA.Custodian.assignedDevice 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"registrationRequest/custodian/assignedDevice"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.EHRRepository RegistrationRequestCustodianAssignedDevice {
             get { return this.registrationRequestCustodianAssignedDevice; }
             set { this.registrationRequestCustodianAssignedDevice = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * MFMI_MT700711CA.ReplacementOf.priorRegistration 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MFMI_MT700716CA.ReplacementOf.priorRegistration 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"registrationRequest/replacementOf/priorRegistration"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.PriorRegistrationEvent RegistrationRequestReplacementOfPriorRegistration {
             get { return this.registrationRequestReplacementOfPriorRegistration; }

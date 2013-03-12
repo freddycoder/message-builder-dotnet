@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,9 +29,9 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Coct_mt11020
 
 
     /**
-     * <summary>Payee Person</summary>
+     * <summary>Business Name: Payee Person</summary>
      * 
-     * <remarks><p>Person receiving payment from Payor</p></remarks>
+     * <p>Person receiving payment from Payor</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"COCT_MT110200CA.PayeePerson"})]
     public class PayeePerson : MessagePartBean, Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Coct_mt110200ca.IPayeeChoice {
@@ -50,6 +50,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Coct_mt11020
             this.payeeLanguageModeCode = new CVImpl();
             this.payeeLanguagePreferenceInd = new BLImpl();
         }
+        /**
+         * <summary>Relationship: 
+         * COCT_MT110200CA.PayeeChoice.asPayeeRelationshipRole</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"asPayeeRelationshipRole"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Coct_mt110200ca.PayeeRelationshipRole AsPayeeRelationshipRole {
             get { return this.asPayeeRelationshipRole; }
@@ -57,9 +63,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Coct_mt11020
         }
 
         /**
-         * <summary>payee name</summary>
+         * <summary>Business Name: payee name</summary>
          * 
-         * <remarks><p>name of person who is the payee</p></remarks>
+         * <remarks>Relationship: COCT_MT110200CA.PayeePerson.name 
+         * Conformance/Cardinality: MANDATORY (1) <p>name of person who 
+         * is the payee</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"name"})]
         public PersonName Name {
@@ -68,7 +76,10 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Coct_mt11020
         }
 
         /**
-         * <summary>payee address</summary>
+         * <summary>Business Name: payee address</summary>
+         * 
+         * <remarks>Relationship: COCT_MT110200CA.PayeePerson.addr 
+         * Conformance/Cardinality: REQUIRED (0-1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"addr"})]
         public PostalAddress Addr {
@@ -76,6 +87,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Coct_mt11020
             set { this.addr.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * COCT_MT110200CA.PayeeLanguage.languageCode</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"payeeLanguage/languageCode"})]
         public HumanLanguage PayeeLanguageLanguageCode {
             get { return (HumanLanguage) this.payeeLanguageLanguageCode.Value; }
@@ -83,7 +100,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Coct_mt11020
         }
 
         /**
-         * <summary>Received Written</summary>
+         * <summary>Business Name: Received Written</summary>
+         * 
+         * <remarks>Relationship: 
+         * COCT_MT110200CA.PayeeLanguage.modeCode 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"payeeLanguage/modeCode"})]
         public LanguageAbilityMode PayeeLanguageModeCode {
@@ -91,6 +112,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Coct_mt11020
             set { this.payeeLanguageModeCode.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * COCT_MT110200CA.PayeeLanguage.preferenceInd</summary>
+         * 
+         * <remarks>Conformance/Cardinality: REQUIRED (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"payeeLanguage/preferenceInd"})]
         public bool? PayeeLanguagePreferenceInd {
             get { return this.payeeLanguagePreferenceInd.Value; }

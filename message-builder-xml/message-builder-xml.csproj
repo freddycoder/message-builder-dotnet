@@ -55,6 +55,9 @@
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>message-builder-xml.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\ConceptDomain.cs" />
@@ -127,6 +130,7 @@
     <Compile Include="Test\Ca\Infoway\Messagebuilder\Xml\MessageSetMarshallerTest.cs" />
     <Compile Include="Test\Ca\Infoway\Messagebuilder\Xml\Service\MessageDefinitionServiceFactoryTest.cs" />
     <Compile Include="Test\Ca\Infoway\Messagebuilder\Xml\Service\MockTestCaseMessageDefinitionService.cs" />
+    <Compile Include="Test\Ca\Infoway\Messagebuilder\Xml\Util\XmlWarningRendererTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\message-builder-compatibility\message-builder-compatibility.csproj">

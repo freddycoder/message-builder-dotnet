@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,10 +35,86 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged {
             this.id = new IIImpl();
         }
         /**
-         * <summary>ProtocolIds</summary>
+         * <summary>Business Name: ProtocolIds</summary>
          * 
-         * <remarks>E:Protocol Ids </p> </p> </p> G:Protocol Ids </p> 
-         * </p> </p> E:Protocol Ids </p> </p> </p> E:Protocol Ids</remarks>
+         * <remarks>Un-merged Business Name: ProtocolIds Relationship: 
+         * REPC_MT610001CA.ActDefinition.id Conformance/Cardinality: 
+         * MANDATORY (1) <p> <i>Allows linking together a series of 
+         * observations, procedures, drug administrations and other 
+         * clinical actions as part of a particular protocol. Useful in 
+         * clinical studies and may also provide context around why the 
+         * action was performed. The element also allows providers to 
+         * filter searches to only expose data related to a particular 
+         * protocol.</i> </p><p> <i>This element is optional because 
+         * the use of and need to reference protocols will not apply to 
+         * all healthcare providers. PoS applications should choose 
+         * whether to support the element based on the perceived needs 
+         * of their client base.</i> </p> <p> <i>Indicates that the 
+         * action described by the Professional Service record was 
+         * performed as part of a particular protocol.</i> </p> 
+         * Un-merged Business Name: ProtocolIds Relationship: 
+         * REPC_MT410003CA.ActDefinition.id Conformance/Cardinality: 
+         * MANDATORY (1) Un-merged Business Name: ProtocolIds 
+         * Relationship: REPC_MT420001CA.ActDefinition.id 
+         * Conformance/Cardinality: MANDATORY (1) <p> <i>Allows linking 
+         * together a series of observations, procedures, drug 
+         * administrations and other clinical actions as part of a 
+         * particular protocol. Useful in clinical studies and may also 
+         * provide context around why the action was performed. The 
+         * element also allows providers to filter searches to only 
+         * expose data related to a particular protocol.</i> </p><p> 
+         * <i>This element is optional because the use of and need to 
+         * reference protocols will not apply to all healthcare 
+         * providers. PoS applications should choose whether to support 
+         * the element based on the perceived needs of their client 
+         * base.</i> </p> <p> <i>Indicates that the action described by 
+         * the Coded Observation record was performed as part of a 
+         * particular protocol.</i> </p> Un-merged Business Name: 
+         * ProtocolIds Relationship: REPC_MT420003CA.ActDefinition.id 
+         * Conformance/Cardinality: MANDATORY (1) <p> <i>Allows linking 
+         * together a series of observations, procedures, drug 
+         * administrations and other clinical actions as part of a 
+         * particular protocol. Useful in clinical studies and may also 
+         * provide context around why the action was performed. The 
+         * element also allows providers to filter searches to only 
+         * expose data related to a particular protocol.</i> </p><p> 
+         * <i>This element is optional because the use of and need to 
+         * reference protocols will not apply to all healthcare 
+         * providers. PoS applications should choose whether to support 
+         * the element based on the perceived needs of their client 
+         * base.</i> </p> <p> <i>Indicates that the action described by 
+         * the Coded Observation record was performed as part of a 
+         * particular protocol.</i> </p> Un-merged Business Name: 
+         * ProtocolIds Relationship: REPC_MT410001CA.ActDefinition.id 
+         * Conformance/Cardinality: MANDATORY (1) <p> <i>Allows linking 
+         * together a series of observations, procedures, drug 
+         * administrations and other clinical actions as part of a 
+         * particular protocol. Useful in clinical studies and may also 
+         * provide context around why the action was performed. The 
+         * element also allows providers to filter searches to only 
+         * expose data related to a particular protocol.</i> </p><p> 
+         * <i>This element is optional because the use of and need to 
+         * reference protocols will not apply to all healthcare 
+         * providers. PoS applications should choose whether to support 
+         * the element based on the perceived needs of their client 
+         * base.</i> </p> <p> <i>Indicates that the action described by 
+         * the Measured Observation record was performed as part of a 
+         * particular protocol.</i> </p> Un-merged Business Name: 
+         * ProtocolIds Relationship: REPC_MT610002CA.ActDefinition.id 
+         * Conformance/Cardinality: MANDATORY (1) <p> <i>Allows linking 
+         * together a series of observations, procedures, drug 
+         * administrations and other clinical actions as part of a 
+         * particular protocol. Useful in clinical studies and may also 
+         * provide context around why the action was performed. The 
+         * element also allows providers to filter searches to only 
+         * expose data related to a particular protocol.</i> </p><p> 
+         * <i>This element is optional because the use of and need to 
+         * reference protocols will not apply to all healthcare 
+         * providers. PoS applications should choose whether to support 
+         * the element based on the perceived needs of their client 
+         * base.</i> </p> <p> <i>Indicates that the action described by 
+         * the Professional Service record was performed as part of a 
+         * particular protocol.</i> </p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {

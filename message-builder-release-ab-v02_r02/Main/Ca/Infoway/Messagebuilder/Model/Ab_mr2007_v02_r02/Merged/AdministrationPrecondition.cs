@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
 
 
     /**
-     * <summary>AdministrationPrecondition</summary>
+     * <summary>Business Name: AdministrationPrecondition</summary>
      * 
      * <remarks>COCT_MT270010CA.ActEventCriterion: Administration 
      * Precondition <p>This sets the conditions for which a 
@@ -60,16 +60,18 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             this.text = new STImpl();
         }
         /**
-         * <summary>DosageCondition</summary>
+         * <summary>Business Name: DosageCondition</summary>
          * 
-         * <remarks>A:Dosage Condition <p>A free-form textual 
-         * description of condition that must be met before the product 
-         * may be administered to/by the patient.</p><p>Example: When 
-         * pressure exceeds 150/90 - Take 2 tabs</p> <p>A free-form 
+         * <remarks>Un-merged Business Name: DosageCondition 
+         * Relationship: COCT_MT270010CA.ActEventCriterion.text 
+         * Conformance/Cardinality: MANDATORY (1) <p>A free-form 
          * textual description of condition that must be met before the 
          * product may be administered to/by the 
          * patient.</p><p>Example: When pressure exceeds 150/90 - Take 
-         * 2 tabs</p> <p>RepeatPattern.prn (true when 
+         * 2 tabs</p> <p>A free-form textual description of condition 
+         * that must be met before the product may be administered 
+         * to/by the patient.</p><p>Example: When pressure exceeds 
+         * 150/90 - Take 2 tabs</p> <p>RepeatPattern.prn (true when 
          * present)</p><p>ZDP.13.6 (true when 
          * present)</p><p>ZDP.13.7</p> <p>RepeatPattern.prn (true when 
          * present)</p><p>ZDP.13.6 (true when 
@@ -77,14 +79,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
          * present)</p><p>ZDP.13.6 (true when 
          * present)</p><p>ZDP.13.7</p> <p>Allows un-coded 
          * specifications of conditions in which the medication should 
-         * be taken.</p> A:Dosage Condition <p>A free-form textual 
-         * description of condition that must be met before the product 
-         * may be administered to/by the patient.</p><p>Example: When 
-         * pressure exceeds 150/90 - Take 2 tabs</p> <p>A free-form 
+         * be taken.</p> Un-merged Business Name: DosageCondition 
+         * Relationship: PORX_MT980040CA.ActEventCriterion.text 
+         * Conformance/Cardinality: MANDATORY (1) <p>A free-form 
          * textual description of condition that must be met before the 
          * product may be administered to/by the 
          * patient.</p><p>Example: When pressure exceeds 150/90 - Take 
-         * 2 tabs</p> <p>RepeatPattern.prn (true when 
+         * 2 tabs</p> <p>A free-form textual description of condition 
+         * that must be met before the product may be administered 
+         * to/by the patient.</p><p>Example: When pressure exceeds 
+         * 150/90 - Take 2 tabs</p> <p>RepeatPattern.prn (true when 
          * present)</p><p>ZDP.13.6 (true when 
          * present)</p><p>ZDP.13.7</p> <p>RepeatPattern.prn (true when 
          * present)</p><p>ZDP.13.6 (true when 

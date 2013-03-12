@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,11 +30,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Merged {
 
 
     /**
-     * <summary>ServiceDeliveryLocation</summary>
+     * <summary>Business Name: ServiceDeliveryLocation</summary>
      * 
      * <remarks>PRPM_MT306011CA.ServiceDeliveryLocation: Service 
-     * Delivery Location <p>A role played by a place at which 
-     * services may be provided. The RIM defines two 
+     * Delivery Location <p>Roleclass required to support the 
+     * identification of the physical location where healthcare 
+     * services are provided</p> <p>A role played by a place at 
+     * which services may be provided. The RIM defines two 
      * specializations of service delivery location: 1. incidental 
      * service delivery location - A role played by a place at 
      * which health care services may be provided without prior 
@@ -55,35 +57,33 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Merged {
      * its own attributes. For example, a Podiatric clinic and 
      * Research clinic may meet on alternate days in the same 
      * physical location; each clinic uses its own mailing address 
-     * and telephone number.</p> <p>Roleclass required to support 
-     * the identification of the physical location where healthcare 
-     * services are provided</p> 
+     * and telephone number.</p> 
      * PRPM_MT309000CA.ServiceDeliveryLocation: Service Delivery 
-     * Location <p>A role played by a place at which services may 
-     * be provided. The RIM defines two specializations of service 
-     * delivery location: 1. incidental service delivery location - 
-     * A role played by a place at which health care services may 
-     * be provided without prior designation or authorization and 
-     * 2. dedicated service delivery location - A role played by a 
-     * place that is intended to house the provision of services. 
-     * Scoper is the Entity (typically Organization) that provides 
-     * these services. This is not synonymous with 
-     * &quot;ownership&quot;. This can be further characterized by 
-     * a role code of: A)DedicatedClinicalLocationRoleType - A role 
-     * of a place that further classifies the clinical setting 
-     * (e.g., cardiology clinic, primary care clinic, 
-     * rehabilitation hospital, skilled nursing facility) in which 
-     * care is delivered during an encounter or 
-     * B)DedicatedNonClinicalLocationRoleType - A role of a place 
-     * that further classifies the setting in which non-clinical 
-     * services are delivered. A given physical place can play 
-     * multiple service delivery location roles each with its own 
-     * attributes. For example, a Podiatric clinic and Research 
-     * clinic may meet on alternate days in the same physical 
-     * location; each clinic uses its own mailing address and 
-     * telephone number.</p> <p>Roleclass required to support the 
-     * identification of the physical location where healthcare 
-     * services are provided</p></remarks>
+     * Location <p>Roleclass required to support the identification 
+     * of the physical location where healthcare services are 
+     * provided</p> <p>A role played by a place at which services 
+     * may be provided. The RIM defines two specializations of 
+     * service delivery location: 1. incidental service delivery 
+     * location - A role played by a place at which health care 
+     * services may be provided without prior designation or 
+     * authorization and 2. dedicated service delivery location - A 
+     * role played by a place that is intended to house the 
+     * provision of services. Scoper is the Entity (typically 
+     * Organization) that provides these services. This is not 
+     * synonymous with &quot;ownership&quot;. This can be further 
+     * characterized by a role code of: 
+     * A)DedicatedClinicalLocationRoleType - A role of a place that 
+     * further classifies the clinical setting (e.g., cardiology 
+     * clinic, primary care clinic, rehabilitation hospital, 
+     * skilled nursing facility) in which care is delivered during 
+     * an encounter or B)DedicatedNonClinicalLocationRoleType - A 
+     * role of a place that further classifies the setting in which 
+     * non-clinical services are delivered. A given physical place 
+     * can play multiple service delivery location roles each with 
+     * its own attributes. For example, a Podiatric clinic and 
+     * Research clinic may meet on alternate days in the same 
+     * physical location; each clinic uses its own mailing address 
+     * and telephone number.</p></remarks>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"PRPM_MT306011CA.ServiceDeliveryLocation","PRPM_MT309000CA.ServiceDeliveryLocation"})]
     public class ServiceDeliveryLocation : MessagePartBean, Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.IChoice {
@@ -104,16 +104,21 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Merged {
             this.locationName = new STImpl();
         }
         /**
-         * <summary>ServiceDeliveryLocationIdentifier</summary>
+         * <summary>Business Name: ServiceDeliveryLocationIdentifier</summary>
          * 
-         * <remarks>Service Delivery Location Identifier <p>A unique 
-         * identifier for the service delivery location.</p> 
-         * <p>Required attribute supports the validation and 
-         * identification of the service delivery location</p> Service 
-         * Delivery Location Identifier <p>A unique identifier for the 
-         * service delivery location.</p> <p>Mandatory attribute 
-         * supports the validation and identification of the service 
-         * delivery location</p></remarks>
+         * <remarks>Un-merged Business Name: 
+         * ServiceDeliveryLocationIdentifier Relationship: 
+         * PRPM_MT306011CA.ServiceDeliveryLocation.id 
+         * Conformance/Cardinality: REQUIRED (0-10) <p>Required 
+         * attribute supports the validation and identification of the 
+         * service delivery location</p> <p>A unique identifier for the 
+         * service delivery location.</p> Un-merged Business Name: 
+         * ServiceDeliveryLocationIdentifier Relationship: 
+         * PRPM_MT309000CA.ServiceDeliveryLocation.id 
+         * Conformance/Cardinality: MANDATORY (1-10) <p>Mandatory 
+         * attribute supports the validation and identification of the 
+         * service delivery location</p> <p>A unique identifier for the 
+         * service delivery location.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public ICollection<Identifier> Id {
@@ -121,12 +126,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Merged {
         }
 
         /**
-         * <summary>ServiceDeliveryLocationType</summary>
+         * <summary>Business Name: ServiceDeliveryLocationType</summary>
          * 
-         * <remarks>Service Delivery Location Type <p>The code 
-         * identifying the specific service delivery location</p> 
-         * <p>Populated attribute supports the validation and 
-         * identification of the service delivery location</p></remarks>
+         * <remarks>Un-merged Business Name: 
+         * ServiceDeliveryLocationType Relationship: 
+         * PRPM_MT306011CA.ServiceDeliveryLocation.code 
+         * Conformance/Cardinality: POPULATED (1) <p>Populated 
+         * attribute supports the validation and identification of the 
+         * service delivery location</p> <p>The code identifying the 
+         * specific service delivery location</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public ServiceDeliveryLocationRoleType Code {
@@ -135,12 +143,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Merged {
         }
 
         /**
-         * <summary>ServiceDeliveryLocationAddress</summary>
+         * <summary>Business Name: ServiceDeliveryLocationAddress</summary>
          * 
-         * <remarks>Service Delivery Location Address <p>Address of the 
-         * specific service delivery location</p> <p>Required attribute 
-         * supports the validation and identification of the service 
-         * delivery location</p></remarks>
+         * <remarks>Un-merged Business Name: 
+         * ServiceDeliveryLocationAddress Relationship: 
+         * PRPM_MT306011CA.ServiceDeliveryLocation.addr 
+         * Conformance/Cardinality: REQUIRED (0-5) <p>Required 
+         * attribute supports the validation and identification of the 
+         * service delivery location</p> <p>Address of the specific 
+         * service delivery location</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"addr"})]
         public IList<PostalAddress> Addr {
@@ -148,12 +159,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Merged {
         }
 
         /**
-         * <summary>ServiceDeliveryLocationTelecom</summary>
+         * <summary>Business Name: ServiceDeliveryLocationTelecom</summary>
          * 
-         * <remarks>Service Delivery Location Telecom <p>The telecom 
-         * for the specific service delivery location</p> <p>Required 
+         * <remarks>Un-merged Business Name: 
+         * ServiceDeliveryLocationTelecom Relationship: 
+         * PRPM_MT306011CA.ServiceDeliveryLocation.telecom 
+         * Conformance/Cardinality: REQUIRED (0-5) <p>Required 
          * attribute supports the validation and identification of the 
-         * service delivery location</p></remarks>
+         * service delivery location</p> <p>The telecom for the 
+         * specific service delivery location</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"telecom"})]
         public IList<TelecommunicationAddress> Telecom {
@@ -161,12 +175,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Merged {
         }
 
         /**
-         * <summary>ServiceDeliveryLocationEffectiveDate</summary>
+         * <summary>Business Name: ServiceDeliveryLocationEffectiveDate</summary>
          * 
-         * <remarks>Service Delivery Location Effective Date 
-         * <p>Effective date of the specific service delivery 
-         * location</p> <p>Required attribute supports the validation 
-         * and identification of the service delivery location</p></remarks>
+         * <remarks>Un-merged Business Name: 
+         * ServiceDeliveryLocationEffectiveDate Relationship: 
+         * PRPM_MT306011CA.ServiceDeliveryLocation.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Required 
+         * attribute supports the validation and identification of the 
+         * service delivery location</p> <p>Effective date of the 
+         * specific service delivery location</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"effectiveTime"})]
         public Interval<PlatformDate> EffectiveTime {
@@ -175,12 +192,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Merged {
         }
 
         /**
-         * <summary>ServiceDeliveryLocationName</summary>
+         * <summary>Business Name: ServiceDeliveryLocationName</summary>
          * 
-         * <remarks>Service Delivery Location Name <p>The name of the 
-         * service delivery location</p> <p>Mandatory attribute 
-         * supports the validation and identification of the service 
-         * delivery location</p></remarks>
+         * <remarks>Un-merged Business Name: 
+         * ServiceDeliveryLocationName Relationship: 
+         * PRPM_MT306011CA.Place.name Conformance/Cardinality: 
+         * MANDATORY (1) <p>Mandatory attribute supports the validation 
+         * and identification of the service delivery location</p> 
+         * <p>The name of the service delivery location</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"location/name"})]
         public String LocationName {

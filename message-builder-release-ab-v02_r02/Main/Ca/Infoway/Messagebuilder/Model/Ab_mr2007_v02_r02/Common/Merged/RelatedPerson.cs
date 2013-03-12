@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged {
 
 
     /**
-     * <summary>RelatedPerson</summary>
+     * <summary>Business Name: RelatedPerson</summary>
      * 
      * <remarks>COCT_MT910107CA.PersonalRelationship: Related 
      * Person <p>Describes a person (other than a health-care 
@@ -82,15 +82,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged {
             this.classCode = new CSImpl();
         }
         /**
-         * <summary>RelatedPersonIdentifier</summary>
+         * <summary>Business Name: RelatedPersonIdentifier</summary>
          * 
-         * <remarks>B:Related Person Identifier <p>A unique identifier 
-         * for the responsible person (as found in a client 
-         * registry).</p> <p>ZPB1.6 (Root)</p><p>ZPB1.7 
-         * (EXtension)</p><p>ZPB2.8 (Root)</p><p>ZPB2.9 
-         * (EXtension)</p><p>ZPB3.11 (Root)</p><p>ZPB3.12 
-         * (EXtension)</p><p>ZPB3.18 (Root)</p><p>ZPB3.19 
-         * (EXtension)</p><p>D60 (Root)</p><p>D61 
+         * <remarks>Un-merged Business Name: RelatedPersonIdentifier 
+         * Relationship: COCT_MT910107CA.PersonalRelationship.id 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>A unique 
+         * identifier for the related person. May include PHNs, drivers 
+         * license or other identifiers.</p> <p>ZPB1.6 
+         * (Root)</p><p>ZPB1.7 (EXtension)</p><p>ZPB2.8 
+         * (Root)</p><p>ZPB2.9 (EXtension)</p><p>ZPB3.11 
+         * (Root)</p><p>ZPB3.12 (EXtension)</p><p>ZPB3.18 
+         * (Root)</p><p>ZPB3.19 (EXtension)</p><p>D60 (Root)</p><p>D61 
          * (Extension)</p><p>D76</p><p>PVD.020-01 
          * (Extension)</p><p>PVD.020-02 
          * (Root)</p><p>PharmacyProvider.444-E9 
@@ -253,10 +255,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged {
          * (EXtension)</p><p>D60 (Root)</p><p>D61 
          * (Extension)</p><p>D76</p><p>PVD.020-01 
          * (Extension)</p><p>PVD.020-02 
-         * (Root)</p><p>PharmacyProvider.444-E9 
-         * (Extension)</p><p>PharmacyProvider.465-E7 
-         * (Root)</p><p>Prescriber.446-EZ 
-         * (Extension)</p><p>PharmacyProvider
+         * (Root)<
          * ... [rest of documentation truncated due to excessive length]
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
@@ -266,14 +265,60 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged {
         }
 
         /**
-         * <summary>C:Related Person Type</summary>
+         * <summary>Un-merged Business Name: RelatedPersonType</summary>
          * 
-         * <remarks><p>A coded value indicating how the related person 
-         * is related to the patient.</p> </p> </p> C:Responsible 
-         * Person Type <p>A coded value indicating how the responsible 
-         * person is related to the patient. If the code is 
-         * &quot;SELF&quot;, it indicates that the action was performed 
-         * by the patient themselves.</p> </p> </p></remarks>
+         * <remarks>Relationship: 
+         * COCT_MT910107CA.PersonalRelationship.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>A coded value 
+         * indicating how the related person is related to the 
+         * patient.</p> <p>Essential for understanding the authority to 
+         * perform certain actions as well as the context of the 
+         * information and is therefore mandatory. E.g. A 'friend' may 
+         * not be able to make consent decisions, but may be able to 
+         * pick up dispenses.</p><p> <i>The element uses CWE to allow 
+         * for the capture of Related Person Type concepts not 
+         * presently supported by the approved code system(s). In this 
+         * case, the human-to-human benefit of capturing additional 
+         * non-coded values outweighs the penalties of capturing some 
+         * information that will not be amenable to searching or 
+         * categorizing.</i> </p> <p>Essential for understanding the 
+         * authority to perform certain actions as well as the context 
+         * of the information and is therefore mandatory. E.g. A 
+         * 'friend' may not be able to make consent decisions, but may 
+         * be able to pick up dispenses.</p><p> <i>The element uses CWE 
+         * to allow for the capture of Related Person Type concepts not 
+         * presently supported by the approved code system(s). In this 
+         * case, the human-to-human benefit of capturing additional 
+         * non-coded values outweighs the penalties of capturing some 
+         * information that will not be amenable to searching or 
+         * categorizing.</i> </p> Un-merged Business Name: 
+         * ResponsiblePersonType Relationship: 
+         * COCT_MT910102CA.PersonalRelationship.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>A coded value 
+         * indicating how the responsible person is related to the 
+         * patient. If the code is &quot;SELF&quot;, it indicates that 
+         * the action was performed by the patient themselves.</p> 
+         * <p>Essential for understanding the authority to perform 
+         * certain actions as well as the context of the information 
+         * and is therefore mandatory. E.g. A 'friend' may not be able 
+         * to make consent decisions, but may be able to pick up 
+         * dispenses.</p><p> <i>The element uses CWE to allow for the 
+         * capture of Responsible Person Type concepts not presently 
+         * supported by the approved code system(s). In this case, the 
+         * human-to-human benefit of capturing additional non-coded 
+         * values outweighs the penalties of capturing some information 
+         * that will not be amenable to searching or categorizing.</i> 
+         * </p> <p>Essential for understanding the authority to perform 
+         * certain actions as well as the context of the information 
+         * and is therefore mandatory. E.g. A 'friend' may not be able 
+         * to make consent decisions, but may be able to pick up 
+         * dispenses.</p><p> <i>The element uses CWE to allow for the 
+         * capture of Responsible Person Type concepts not presently 
+         * supported by the approved code system(s). In this case, the 
+         * human-to-human benefit of capturing additional non-coded 
+         * values outweighs the penalties of capturing some information 
+         * that will not be amenable to searching or categorizing.</i> 
+         * </p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public x_SimplePersonalRelationship Code {
@@ -282,28 +327,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged {
         }
 
         /**
-         * <summary>RelatedPersonName</summary>
+         * <summary>Business Name: RelatedPersonName</summary>
          * 
-         * <remarks>A:Related Person Name <p>The name by which the 
-         * responsible person is known</p> <p>ZPB3.13</p><p>PVD.050-01 
-         * (PartType = Family)</p><p>PVD.050-02 (PartType = Given - 1st 
-         * rep)</p><p>PVD.050-03 PartType = Given - any rep other than 
-         * the first)</p><p>PVD.050-04 (PartType = 
-         * Suffix)</p><p>PVD.050-05 (PartType = 
-         * Prefix)</p><p>PVD.100-01 (PartType = Family; 
-         * author/performer when supervisor is also 
-         * specified)</p><p>PVD.100-02 (PartType = Given - 1st rep; 
-         * author/performer when supervisor is also specified 
-         * )</p><p>PVD.100-03 PartType = Given - any rep other than the 
-         * first; author/performer when supervisor is also 
-         * specified)</p><p>PVD.100-04 (PartType = Suffix; 
-         * author/performer when supervisor is also 
-         * specified)</p><p>PVD.100-05 (PartType = Prefix; 
-         * author/performer when supervisor is also 
-         * specified)</p><p>D1a</p><p>Practitioner's 
-         * Name</p><p>04.03</p><p>Prescriber.427-DR</p><p>Prescribing 
-         * Physician 
-         * Name</p><p>ZPS.18.3</p><p>ZPS.18.4</p><p>ZPS.18.5</p><p>ZPS.19.3</p><p>ZPS.19.4</p><p>ZPS.19.5</p><p>ZPS.10.3</p><p>ZPS.10.4</p><p>ZPS.10.5</p><p>ProviderPreviewInfo.ProviderName</p> 
+         * <remarks>Un-merged Business Name: RelatedPersonName 
+         * Relationship: COCT_MT910107CA.RelatedPerson.name 
+         * Conformance/Cardinality: MANDATORY (1) <p>The name by which 
+         * the responsible person is known</p> 
          * <p>ZPB3.13</p><p>PVD.050-01 (PartType = 
          * Family)</p><p>PVD.050-02 (PartType = Given - 1st 
          * rep)</p><p>PVD.050-03 PartType = Given - any rep other than 
@@ -436,7 +465,23 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged {
          * specified)</p><p>D1a</p><p>Practitioner's 
          * Name</p><p>04.03</p><p>Prescriber.427-DR</p><p>Prescribing 
          * Physician 
-         * Name</p><p>ZPS.18.3</p><p
+         * Name</p><p>ZPS.18.3</p><p>ZPS.18.4</p><p>ZPS.18.5</p><p>ZPS.19.3</p><p>ZPS.19.4</p><p>ZPS.19.5</p><p>ZPS.10.3</p><p>ZPS.10.4</p><p>ZPS.10.5</p><p>ProviderPreviewInfo.ProviderName</p> 
+         * <p>ZPB3.13</p><p>PVD.050-01 (PartType = 
+         * Family)</p><p>PVD.050-02 (PartType = Given - 1st 
+         * rep)</p><p>PVD.050-03 PartType = Given - any rep other than 
+         * the first)</p><p>PVD.050-04 (PartType = 
+         * Suffix)</p><p>PVD.050-05 (PartType = 
+         * Prefix)</p><p>PVD.100-01 (PartType = Family; 
+         * author/performer when supervisor is also 
+         * specified)</p><p>PVD.100-02 (PartType = Given - 1st rep; 
+         * author/performer when supervisor is also specified 
+         * )</p><p>PVD.100-03 PartType = Given - any rep other than the 
+         * first; author/performer when supervisor is also 
+         * specified)</p><p>PVD.100-04 (PartType = Suffix; 
+         * author/performer when supervisor is also 
+         * specified)</p><p>PVD.100-05 (PartType = Prefix; 
+         * author/performer when supervisor is also 
+         * specified)</
          * ... [rest of documentation truncated due to excessive length]
          */
         [Hl7XmlMappingAttribute(new string[] {"relationshipHolder/name"})]
@@ -446,9 +491,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged {
         }
 
         /**
-         * <summary>RelatedPersonPhonesAndEmails</summary>
+         * <summary>Business Name: RelatedPersonPhonesAndEmails</summary>
          * 
-         * <remarks>E:Related Person Phones and Emails <p>The phone 
+         * <remarks>Un-merged Business Name: 
+         * RelatedPersonPhonesAndEmails Relationship: 
+         * COCT_MT910107CA.RelatedPerson.telecom 
+         * Conformance/Cardinality: REQUIRED (0-5) <p>The phone 
          * number(s) and email address(s) by which a related person may 
          * be contacted.</p> <p>Used to contact the related person.</p></remarks>
          */
@@ -458,9 +506,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged {
         }
 
         /**
-         * <summary>RelatedPersonAddress</summary>
+         * <summary>Business Name: RelatedPersonAddress</summary>
          * 
-         * <remarks>D:Related Person Address <p>The mail and/or 
+         * <remarks>Un-merged Business Name: RelatedPersonAddress 
+         * Relationship: COCT_MT910107CA.RelatedPerson.addr 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The mail and/or 
          * physical address associated with a related person.</p> 
          * <p>Used to contact the related person.</p></remarks>
          */
@@ -470,6 +520,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged {
             set { this.relationshipHolderAddr.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * COCT_MT910102CA.PersonalRelationship.classCode 
+         * Conformance/Cardinality: OPTIONAL (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"classCode"})]
         public RoleClass ClassCode {
             get { return (RoleClass) this.classCode.Value; }

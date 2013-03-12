@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,10 +27,10 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt300
 
 
     /**
-     * <summary>Playing Prescribe Person</summary>
+     * <summary>Business Name: Playing Prescribe Person</summary>
      * 
-     * <remarks><p>ID cannot be mandatory as it may not be present 
-     * on a pre-determination</p></remarks>
+     * <p>ID cannot be mandatory as it may not be present on a 
+     * pre-determination</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"COCT_MT300000CA.PresriberRole"})]
     public class PlayingPrescribePerson : MessagePartBean {
@@ -42,11 +42,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt300
             this.id = new IIImpl();
         }
         /**
-         * <summary>Prescriber ID</summary>
+         * <summary>Business Name: Prescriber ID</summary>
          * 
-         * <remarks><p>Prescriber ID</p> <p>This is mandatory for 
-         * Invoices and required with nullFlavor for 
-         * Pre-Determinations.</p></remarks>
+         * <remarks>Relationship: COCT_MT300000CA.PresriberRole.id 
+         * Conformance/Cardinality: POPULATED (1) <p>This is mandatory 
+         * for Invoices and required with nullFlavor for 
+         * Pre-Determinations.</p> <p>Prescriber ID</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -54,6 +55,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt300
             set { this.id.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * COCT_MT300000CA.PresriberRole.playingPrescriberPerson</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"playingPrescriberPerson"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt300000ca.PersonPrescribing PlayingPrescriberPerson {
             get { return this.playingPrescriberPerson; }

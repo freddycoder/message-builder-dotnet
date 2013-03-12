@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,18 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Merged;
 
 
+    /**
+     * <summary>Business Name: PORX_IN020060CA: Record device 
+     * dispense processing request</summary>
+     * 
+     * <p>Requests that the device dispense processing (drug 
+     * preparation, packaging and contraindication checking) for a 
+     * particular quantity of devices against a prescription has 
+     * been performed and the medication is awaiting pickup ne 
+     * recorded.</p> Message: MCCI_MT002100CA.Message Control Act: 
+     * MCAI_MT700210CA.ControlActEvent --> Payload: 
+     * PORX_MT020060CA.DeviceDispense
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"PORX_IN020060CA"})]
     public class RecordDeviceDispenseProcessingRequest : HL7Message_1<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Mcai_mt700210ca.TriggerEvent<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Merged.PrescriptionDispense>>, IInteraction {
 

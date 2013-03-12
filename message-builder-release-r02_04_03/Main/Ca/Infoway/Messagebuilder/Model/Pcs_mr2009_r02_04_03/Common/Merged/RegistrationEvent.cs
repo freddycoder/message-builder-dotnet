@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,25 +28,24 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged {
      * <summary>MFMI_MT700717CA.RegistrationEvent: Registration 
      * Notification</summary>
      * 
-     * <remarks><p>This class contains information relevant to the 
-     * registration of the payload item(s) into the Master File or 
-     * Registry. This message is a notification of the 
-     * registration.</p> <p>The RegistrationProcess act is the 
-     * focal act of the message and therefore is mandatory</p> 
-     * MFMI_MT700746CA.RegistrationEvent: Registration Event 
-     * <p>This class contains information relevant to the 
-     * registration of the payload item(s) into the Master File or 
-     * Registry. This message is a response to a request to 
-     * register (therefore, the mood is an event).</p> <p>The 
+     * <p>The RegistrationProcess act is the focal act of the 
+     * message and therefore is mandatory</p> <p>This class 
+     * contains information relevant to the registration of the 
+     * payload item(s) into the Master File or Registry. This 
+     * message is a notification of the registration.</p> 
+     * MFMI_MT700746CA.RegistrationEvent: Registration Event <p>The 
      * RegistrationProcess act is the focal act of the message and 
-     * therefore is mandatory</p> 
-     * MFMI_MT700726CA.RegistrationEvent: Registration Event 
-     * <p>This class contains information relevant to the 
-     * registration of the payload item(s) into the Master File or 
-     * Registry. This message is a response to a request to 
-     * register (therefore, the mood is an event).</p> <p>The 
-     * RegistrationProcess act is the focal act of the message and 
-     * therefore is mandatory</p></remarks>
+     * therefore is mandatory</p> <p>This class contains 
+     * information relevant to the registration of the payload 
+     * item(s) into the Master File or Registry. This message is a 
+     * response to a request to register (therefore, the mood is an 
+     * event).</p> MFMI_MT700726CA.RegistrationEvent: Registration 
+     * Event <p>The RegistrationProcess act is the focal act of the 
+     * message and therefore is mandatory</p> <p>This class 
+     * contains information relevant to the registration of the 
+     * payload item(s) into the Master File or Registry. This 
+     * message is a response to a request to register (therefore, 
+     * the mood is an event).</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"MFMI_MT700717CA.RegistrationEvent","MFMI_MT700726CA.RegistrationEvent","MFMI_MT700746CA.RegistrationEvent"})]
     public class RegistrationEvent<RR> : MessagePartBean {
@@ -58,18 +57,60 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged {
         public RegistrationEvent() {
             this.replacementOfPriorRegistration = new List<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.PriorRegistrationEvent>();
         }
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * MFMI_MT700717CA.RegistrationEvent.subject 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MFMI_MT700746CA.RegistrationEvent.subject 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MFMI_MT700726CA.RegistrationEvent.subject 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subject"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.RegisteredItem<RR> Subject {
             get { return this.subject; }
             set { this.subject = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * MFMI_MT700717CA.Custodian.assignedDevice 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MFMI_MT700746CA.Custodian.assignedDevice 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MFMI_MT700726CA.Custodian.assignedDevice 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"custodian/assignedDevice"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.EHRRepository CustodianAssignedDevice {
             get { return this.custodianAssignedDevice; }
             set { this.custodianAssignedDevice = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * MFMI_MT700717CA.ReplacementOf.priorRegistration 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MFMI_MT700746CA.ReplacementOf.priorRegistration 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MFMI_MT700726CA.ReplacementOf.priorRegistration 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"replacementOf/priorRegistration"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.PriorRegistrationEvent> ReplacementOfPriorRegistration {
             get { return this.replacementOfPriorRegistration; }

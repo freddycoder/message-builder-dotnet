@@ -1,8 +1,28 @@
+/**
+ * Copyright 2013 Canada Health Infoway, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Author:        $LastChangedBy: tmcgrady $
+ * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Revision:      $LastChangedRevision: 2623 $
+ */
 using System.Collections.Generic;
 using System.Xml;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
+using Ca.Infoway.Messagebuilder.Datatype.Lang.Util;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser;
 using NUnit.Framework;
@@ -17,14 +37,15 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		public virtual void TestParseNullNode()
 		{
 			XmlNode node = CreateNode("<something nullFlavor=\"NI\" />");
-			PN pn = (PN)new PnElementParser().Parse(CreateContext(), node, null);
+			PN pn = (PN)new PnElementParser().Parse(CreateContext("PN.FULL", SpecificationVersion.R02_04_02), node, this.xmlResult);
+			Assert.IsTrue(this.xmlResult.IsValid());
 			Assert.IsNull(pn.Value, "PersonName");
 			Assert.AreEqual(Ca.Infoway.Messagebuilder.Domainvalue.Nullflavor.NullFlavor.NO_INFORMATION, pn.NullFlavor, "null flavor");
 		}
 
-		private ParseContext CreateContext()
+		private ParseContext CreateContext(string type, VersionNumber version)
 		{
-			return ParserContextImpl.Create("PN", typeof(PersonName), SpecificationVersion.V02R02, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
+			return ParserContextImpl.Create(type, typeof(PersonName), version, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
 				.POPULATED);
 		}
 
@@ -33,7 +54,11 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		public virtual void TestParseEmptyNode()
 		{
 			XmlNode node = CreateNode("<something/>");
-			PersonName personName = (PersonName)new PnElementParser().Parse(null, node, null).BareValue;
+			PersonName personName = (PersonName)new PnElementParser().Parse(CreateContext("PN.BASIC", SpecificationVersion.R02_04_02)
+				, node, this.xmlResult).BareValue;
+			Assert.IsFalse(this.xmlResult.IsValid());
+			Assert.AreEqual(1, this.xmlResult.GetHl7Errors().Count);
+			// use is mandatory
 			Assert.IsNotNull(personName, "PersonName");
 			Assert.AreEqual(0, personName.Parts.Count, "number of name parts");
 			Assert.AreEqual(0, personName.Uses.Count, "number of name uses");
@@ -44,26 +69,32 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		public virtual void TestParseSimpleNameNode()
 		{
 			XmlNode node = CreateNode("<something use=\"L\">John Doe</something>");
-			PersonName personName = (PersonName)new PnElementParser().Parse(null, node, null).BareValue;
+			PersonName personName = (PersonName)new PnElementParser().Parse(CreateContext("PN.SIMPLE", SpecificationVersion.R02_04_02
+				), node, this.xmlResult).BareValue;
+			Assert.IsTrue(this.xmlResult.IsValid());
 			Assert.IsNotNull(personName, "PersonName");
 			Assert.AreEqual(1, personName.Parts.Count, "number of name parts");
 			Assert.AreEqual("John Doe", personName.Parts[0].Value, "name");
 			Assert.IsNull(personName.Parts[0].Type);
-			ICollection<EntityNameUse> uses = personName.Uses;
+			ICollection<Ca.Infoway.Messagebuilder.Domainvalue.Basic.EntityNameUse> uses = personName.Uses;
 			Assert.AreEqual(1, uses.Count, "number of name uses");
-			Assert.AreEqual("L", new List<EntityNameUse>(uses)[0].CodeValue, "name use");
+			Assert.AreEqual("L", new List<Ca.Infoway.Messagebuilder.Domainvalue.Basic.EntityNameUse>(uses)[0].CodeValue, "name use");
 		}
 
 		/// <exception cref="System.Exception"></exception>
 		[Test]
 		public virtual void TestParsePrefixes()
 		{
-			XmlNode node = CreateNode("<something>" + "  <prefix>Mr.</prefix>" + "</something>");
-			PersonName personName = (PersonName)new PnElementParser().Parse(null, node, null).BareValue;
+			XmlNode node = CreateNode("<something use=\"L\">" + "  <prefix>Mr.</prefix>" + "</something>");
+			PersonName personName = (PersonName)new PnElementParser().Parse(CreateContext("PN.FULL", SpecificationVersion.R02_04_02), 
+				node, this.xmlResult).BareValue;
+			Assert.IsTrue(this.xmlResult.IsValid());
 			Assert.AreEqual(1, personName.Parts.Count, "number of name parts");
 			AssertNamePartAsExpected("prefix Mr", personName.Parts[0], PersonNamePartType.PREFIX, "Mr.", null);
-			node = CreateNode("<something>" + "  <prefix>Mr.</prefix>" + "  <prefix>Mrs.</prefix>" + "</something>");
-			personName = (PersonName)new PnElementParser().Parse(null, node, null).BareValue;
+			node = CreateNode("<something use=\"L\">" + "  <prefix>Mr.</prefix>" + "  <prefix>Mrs.</prefix>" + "</something>");
+			personName = (PersonName)new PnElementParser().Parse(CreateContext("PN.FULL", SpecificationVersion.R02_04_02), node, this
+				.xmlResult).BareValue;
+			Assert.IsTrue(this.xmlResult.IsValid());
 			Assert.AreEqual(2, personName.Parts.Count, "number of name partsd second time");
 			AssertNamePartAsExpected("prefix Mr", personName.Parts[0], PersonNamePartType.PREFIX, "Mr.", null);
 			AssertNamePartAsExpected("prefix Mrs", personName.Parts[1], PersonNamePartType.PREFIX, "Mrs.", null);
@@ -73,10 +104,12 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		[Test]
 		public virtual void TestParseAll()
 		{
-			XmlNode node = CreateNode("<something>" + "  <prefix>Mr.</prefix>" + "  <given qualifier=\"IN\">John</given>" + "  <given>Jimmy</given>"
-				 + "  <family qualifier=\"IN\">Jones</family>" + "  <suffix>ESQ</suffix>" + "</something>");
-			PersonName personName = (PersonName)new PnElementParser().Parse(null, node, null).BareValue;
-			Assert.AreEqual(0, personName.Uses.Count, "number of name uses");
+			XmlNode node = CreateNode("<something use=\"L\">" + "  <prefix>Mr.</prefix>" + "  <given qualifier=\"IN\">John</given>" +
+				 "  <given>Jimmy</given>" + "  <family qualifier=\"IN\">Jones</family>" + "  <suffix>ESQ</suffix>" + "</something>");
+			PersonName personName = (PersonName)new PnElementParser().Parse(CreateContext("PN.FULL", SpecificationVersion.R02_04_02), 
+				node, this.xmlResult).BareValue;
+			Assert.IsTrue(this.xmlResult.IsValid());
+			Assert.AreEqual(1, personName.Uses.Count, "number of name uses");
 			Assert.AreEqual(5, personName.Parts.Count, "number of name parts");
 			AssertNamePartAsExpected("prefix Mr", personName.Parts[0], PersonNamePartType.PREFIX, "Mr.", null);
 			AssertNamePartAsExpected("given John", personName.Parts[1], PersonNamePartType.GIVEN, "John", "IN");
@@ -92,7 +125,11 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			XmlNode node = CreateNode("<name use=\"L\">Prime Minister of Canada" + "  <family>Landry</family>" + "  <prefix>MR.</prefix>"
 				 + "  <suffix>III</suffix>" + "  <given>Chris</given>" + "  <given>William</given>" + "  <given qualifier=\"IN\">A.</given>"
 				 + "</name>");
-			PersonName personName = (PersonName)new PnElementParser().Parse(null, node, null).BareValue;
+			PersonName personName = (PersonName)new PnElementParser().Parse(CreateContext("PN.FULL", SpecificationVersion.R02_04_02), 
+				node, this.xmlResult).BareValue;
+			Assert.IsFalse(this.xmlResult.IsValid());
+			Assert.AreEqual(1, this.xmlResult.GetHl7Errors().Count);
+			// not allowed to have a simple name mixed in with parts
 			Assert.AreEqual(1, personName.Uses.Count, "number of name uses");
 			Assert.AreEqual(7, personName.Parts.Count, "number of name parts");
 			AssertNamePartAsExpected("Untyped Prime Minister of Canada", personName.Parts[0], null, "Prime Minister of Canada", null);
@@ -112,7 +149,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 				);
 			try
 			{
-				new PnElementParser().Parse(null, node, null);
+				new PnElementParser().Parse(CreateContext("PN.FULL", SpecificationVersion.R02_04_02), node, this.xmlResult);
 				Assert.Fail("expected exception");
 			}
 			catch (XmlToModelTransformationException e)
@@ -125,11 +162,13 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		[Test]
 		public virtual void TestParseEmptyPrefix()
 		{
-			XmlNode node = CreateNode("<something>" + "  <prefix></prefix>" + "</something>");
-			XmlToModelResult xmlResult = new XmlToModelResult();
-			PersonName personName = (PersonName)new PnElementParser().Parse(null, node, xmlResult).BareValue;
+			XmlNode node = CreateNode("<something use=\"L\">" + "  <prefix></prefix>" + "</something>");
+			PersonName personName = (PersonName)new PnElementParser().Parse(CreateContext("PN.FULL", SpecificationVersion.R02_04_02), 
+				node, this.xmlResult).BareValue;
+			Assert.IsFalse(this.xmlResult.IsValid());
+			Assert.AreEqual(2, this.xmlResult.GetHl7Errors().Count, "number of warnings");
+			// empty part; must provide at least one part
 			Assert.AreEqual(0, personName.Parts.Count, "number of name parts");
-			Assert.AreEqual(1, xmlResult.GetHl7Errors().Count, "number of warnings");
 			Assert.AreEqual("Expected PN child node \"prefix\" to have a text node", xmlResult.GetHl7Errors()[0].GetMessage(), "warnings"
 				);
 			Assert.AreEqual("/something/prefix", xmlResult.GetHl7Errors()[0].GetPath(), "warnings");

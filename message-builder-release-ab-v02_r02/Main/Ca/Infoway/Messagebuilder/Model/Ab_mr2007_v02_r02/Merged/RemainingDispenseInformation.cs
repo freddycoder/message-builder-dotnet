@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
 
 
     /**
-     * <summary>RemainingDispenseInformation</summary>
+     * <summary>Business Name: RemainingDispenseInformation</summary>
      * 
      * <remarks>PORX_MT030040CA.SupplyEventFutureSummary: Remaining 
      * Dispense Information <p>At least one of quantity and 
@@ -66,25 +66,36 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             this.quantity = new PQImpl();
         }
         /**
-         * <summary>A:Fills Remaining</summary>
+         * <summary>Un-merged Business Name: FillsRemaining</summary>
          * 
-         * <remarks><p>Indicates the number of remaining dispenses 
-         * estimated, assuming that each fill is equal to the quantity 
-         * prescribed for a single fill, rounding up.</p> <p>Indicates 
-         * the number of dispenses that may still occur.</p> Fills 
-         * Remaining <p>Indicates the number of remaining dispenses 
-         * estimated, assuming that each fill is equal to the quantity 
-         * prescribed for a single fill, rounding up.</p> <p>Indicates 
-         * the number of dispenses that may still occur.</p> A:Fills 
-         * Remaining <p>Indicates the number of remaining dispenses 
-         * estimated, assuming that each fill is equal to the quantity 
-         * prescribed for a single fill, rounding up.</p> <p>Indicates 
-         * the number of dispenses that may still occur.</p> A:Total 
-         * Fills Remaining <p>Indicates the number of remaining 
-         * dispenses estimated, assuming that each fill is equal to the 
-         * quantity prescribed for a single fill, rounding up.</p> 
-         * <p>Indicates the number of dispenses that may still 
-         * occur.</p></remarks>
+         * <remarks>Relationship: 
+         * PORX_MT030040CA.SupplyEventFutureSummary.repeatNumber 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
+         * number of remaining dispenses estimated, assuming that each 
+         * fill is equal to the quantity prescribed for a single fill, 
+         * rounding up.</p> <p>Indicates the number of dispenses that 
+         * may still occur.</p> Un-merged Business Name: FillsRemaining 
+         * Relationship: 
+         * PORX_MT060340CA.SupplyEventFutureSummary.repeatNumber 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
+         * number of remaining dispenses estimated, assuming that each 
+         * fill is equal to the quantity prescribed for a single fill, 
+         * rounding up.</p> <p>Indicates the number of dispenses that 
+         * may still occur.</p> Un-merged Business Name: 
+         * TotalFillsRemaining Relationship: 
+         * PORX_MT060160CA.SupplyEventFutureSummary.repeatNumber 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
+         * number of remaining dispenses estimated, assuming that each 
+         * fill is equal to the quantity prescribed for a single fill, 
+         * rounding up.</p> <p>Indicates the number of dispenses that 
+         * may still occur.</p> Un-merged Business Name: FillsRemaining 
+         * Relationship: 
+         * PORX_MT060190CA.SupplyEventFutureSummary.repeatNumber 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
+         * number of remaining dispenses estimated, assuming that each 
+         * fill is equal to the quantity prescribed for a single fill, 
+         * rounding up.</p> <p>Indicates the number of dispenses that 
+         * may still occur.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"repeatNumber"})]
         public int? RepeatNumber {
@@ -93,18 +104,29 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>Remaining Total Quantity</summary>
+         * <summary>Un-merged Business Name: RemainingTotalQuantity</summary>
          * 
-         * <remarks><p>Indicates the total remaining undispensed 
-         * quantity authorized against the prescription.</p> 
-         * <p>Indicates how much can still be dispensed.</p> 
-         * B:Remaining Total Quantity <p>Indicates the total remaining 
-         * undispensed quantity authorized against the 
-         * prescription.</p> <p>Indicates how much can still be 
-         * dispensed.</p> B:Total Quantity Remaining <p>Indicates the 
+         * <remarks>Relationship: 
+         * PORX_MT030040CA.SupplyEventFutureSummary.quantity 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
          * total remaining undispensed quantity authorized against the 
          * prescription.</p> <p>Indicates how much can still be 
-         * dispensed.</p> B:Remaining Total Quantity <p>Indicates the 
+         * dispensed.</p> Un-merged Business Name: 
+         * RemainingTotalQuantity Relationship: 
+         * PORX_MT060340CA.SupplyEventFutureSummary.quantity 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
+         * total remaining undispensed quantity authorized against the 
+         * prescription.</p> <p>Indicates how much can still be 
+         * dispensed.</p> Un-merged Business Name: 
+         * TotalQuantityRemaining Relationship: 
+         * PORX_MT060160CA.SupplyEventFutureSummary.quantity 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
+         * total remaining undispensed quantity authorized against the 
+         * prescription.</p> <p>Indicates how much can still be 
+         * dispensed.</p> Un-merged Business Name: 
+         * RemainingTotalQuantity Relationship: 
+         * PORX_MT060190CA.SupplyEventFutureSummary.quantity 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
          * total remaining undispensed quantity authorized against the 
          * prescription.</p> <p>Indicates how much can still be 
          * dispensed.</p></remarks>

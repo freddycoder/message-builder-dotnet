@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
 
 
     /**
-     * <summary>RecommendedDosage</summary>
+     * <summary>Business Name: RecommendedDosage</summary>
      * 
      * <remarks>COCT_MT260030CA.SubstanceAdministrationEventCriterion: 
      * Recommended Dosage <p>Identifies the outer dosage boundaries 
@@ -87,12 +87,41 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             this.componentObservationEventCriterion = new List<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.DosagePreconditions>();
         }
         /**
-         * <summary>DoseDuration</summary>
+         * <summary>Business Name: DoseDuration</summary>
          * 
-         * <remarks>A:Dose Duration <p>Indicates the recommended 
-         * duration for drug therapy that was exceeded or not met.</p> 
-         * <p>Recommended Duration (width)</p> <p>Allows calculation of 
-         * amount under or over.</p> A:Dose Duration <p>Indicates the 
+         * <remarks>Un-merged Business Name: DoseDuration Relationship: 
+         * COCT_MT260010CA.SubstanceAdministrationEventCriterion.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
+         * recommended duration for drug therapy that was exceeded or 
+         * not met.</p> <p>Recommended Duration (width)</p> <p>Allows 
+         * calculation of amount under or over.</p> Un-merged Business 
+         * Name: DoseDuration Relationship: 
+         * COCT_MT260030CA.SubstanceAdministrationEventCriterion.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
+         * recommended duration for drug therapy that was exceeded or 
+         * not met.</p> <p>Recommended Duration (width)</p> <p>Allows 
+         * calculation of amount under or over.</p> Un-merged Business 
+         * Name: DoseDuration Relationship: 
+         * PORX_MT980030CA.SubstanceAdministrationEventCriterion.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
+         * recommended duration for drug therapy that was exceeded or 
+         * not met.</p> <p>Recommended Duration (width)</p> <p>Allows 
+         * calculation of amount under or over.</p> Un-merged Business 
+         * Name: DoseDuration Relationship: 
+         * PORX_MT980020CA.SubstanceAdministrationEventCriterion.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
+         * recommended duration for drug therapy that was exceeded or 
+         * not met.</p> <p>Recommended Duration (width)</p> <p>Allows 
+         * calculation of amount under or over.</p> Un-merged Business 
+         * Name: DoseDuration Relationship: 
+         * PORX_MT980010CA.SubstanceAdministrationEventCriterion.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
+         * recommended duration for drug therapy that was exceeded or 
+         * not met.</p> <p>Recommended Duration (width)</p> <p>Allows 
+         * calculation of amount under or over.</p> Un-merged Business 
+         * Name: DoseDuration Relationship: 
+         * COCT_MT260020CA.SubstanceAdministrationEventCriterion.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
          * recommended duration for drug therapy that was exceeded or 
          * not met.</p> <p>Recommended Duration (width)</p> <p>Allows 
          * calculation of amount under or over.</p></remarks>
@@ -104,20 +133,77 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>DosageRange</summary>
+         * <summary>Business Name: DosageRange</summary>
          * 
-         * <remarks>B:Dosage Range <p>This is a specification of the 
-         * range of quantity of medication (Min/Max figures) that is 
-         * recommended for the drug to avoid triggering of dosage 
-         * issues.</p> 
+         * <remarks>Un-merged Business Name: DosageRange Relationship: 
+         * COCT_MT260010CA.SubstanceAdministrationEventCriterion.doseQuantity 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>This is a 
+         * specification of the range of quantity of medication 
+         * (Min/Max figures) that is recommended for the drug to avoid 
+         * triggering of dosage issues.</p> 
          * <p>ContraIndication.recommendedRange</p><p>Maximum Dosage 
          * Level (high)</p><p>Minimum Dosage Level (low)</p> 
          * <p>ContraIndication.recommendedRange</p><p>Maximum Dosage 
          * Level (high)</p><p>Minimum Dosage Level (low)</p> 
          * <p>ContraIndication.recommendedRange</p><p>Maximum Dosage 
          * Level (high)</p><p>Minimum Dosage Level (low)</p> <p>Allows 
-         * calculation of amount over/under.</p> B:Dosage Range <p>This 
-         * is a specification of the range of quantity of medication 
+         * calculation of amount over/under.</p> Un-merged Business 
+         * Name: DosageRange Relationship: 
+         * COCT_MT260030CA.SubstanceAdministrationEventCriterion.doseQuantity 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>This is a 
+         * specification of the range of quantity of medication 
+         * (Min/Max figures) that is recommended for the drug to avoid 
+         * triggering of dosage issues.</p> 
+         * <p>ContraIndication.recommendedRange</p><p>Maximum Dosage 
+         * Level (high)</p><p>Minimum Dosage Level (low)</p> 
+         * <p>ContraIndication.recommendedRange</p><p>Maximum Dosage 
+         * Level (high)</p><p>Minimum Dosage Level (low)</p> 
+         * <p>ContraIndication.recommendedRange</p><p>Maximum Dosage 
+         * Level (high)</p><p>Minimum Dosage Level (low)</p> <p>Allows 
+         * calculation of amount over/under.</p> Un-merged Business 
+         * Name: DosageRange Relationship: 
+         * PORX_MT980030CA.SubstanceAdministrationEventCriterion.doseQuantity 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>This is a 
+         * specification of the range of quantity of medication 
+         * (Min/Max figures) that is recommended for the drug to avoid 
+         * triggering of dosage issues.</p> 
+         * <p>ContraIndication.recommendedRange</p><p>Maximum Dosage 
+         * Level (high)</p><p>Minimum Dosage Level (low)</p> 
+         * <p>ContraIndication.recommendedRange</p><p>Maximum Dosage 
+         * Level (high)</p><p>Minimum Dosage Level (low)</p> 
+         * <p>ContraIndication.recommendedRange</p><p>Maximum Dosage 
+         * Level (high)</p><p>Minimum Dosage Level (low)</p> <p>Allows 
+         * calculation of amount over/under.</p> Un-merged Business 
+         * Name: DosageRange Relationship: 
+         * PORX_MT980020CA.SubstanceAdministrationEventCriterion.doseQuantity 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>This is a 
+         * specification of the range of quantity of medication 
+         * (Min/Max figures) that is recommended for the drug to avoid 
+         * triggering of dosage issues.</p> 
+         * <p>ContraIndication.recommendedRange</p><p>Maximum Dosage 
+         * Level (high)</p><p>Minimum Dosage Level (low)</p> 
+         * <p>ContraIndication.recommendedRange</p><p>Maximum Dosage 
+         * Level (high)</p><p>Minimum Dosage Level (low)</p> 
+         * <p>ContraIndication.recommendedRange</p><p>Maximum Dosage 
+         * Level (high)</p><p>Minimum Dosage Level (low)</p> <p>Allows 
+         * calculation of amount over/under.</p> Un-merged Business 
+         * Name: DosageRange Relationship: 
+         * PORX_MT980010CA.SubstanceAdministrationEventCriterion.doseQuantity 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>This is a 
+         * specification of the range of quantity of medication 
+         * (Min/Max figures) that is recommended for the drug to avoid 
+         * triggering of dosage issues.</p> 
+         * <p>ContraIndication.recommendedRange</p><p>Maximum Dosage 
+         * Level (high)</p><p>Minimum Dosage Level (low)</p> 
+         * <p>ContraIndication.recommendedRange</p><p>Maximum Dosage 
+         * Level (high)</p><p>Minimum Dosage Level (low)</p> 
+         * <p>ContraIndication.recommendedRange</p><p>Maximum Dosage 
+         * Level (high)</p><p>Minimum Dosage Level (low)</p> <p>Allows 
+         * calculation of amount over/under.</p> Un-merged Business 
+         * Name: DosageRange Relationship: 
+         * COCT_MT260020CA.SubstanceAdministrationEventCriterion.doseQuantity 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>This is a 
+         * specification of the range of quantity of medication 
          * (Min/Max figures) that is recommended for the drug to avoid 
          * triggering of dosage issues.</p> 
          * <p>ContraIndication.recommendedRange</p><p>Maximum Dosage 
@@ -134,6 +220,29 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             set { this.doseQuantity.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * COCT_MT260010CA.Component2.observationEventCriterion 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * COCT_MT260030CA.Component2.observationEventCriterion 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT980030CA.Component2.observationEventCriterion 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT980020CA.Component2.observationEventCriterion 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT980010CA.Component2.observationEventCriterion 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * COCT_MT260020CA.Component2.observationEventCriterion 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"component/observationEventCriterion"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.DosagePreconditions> ComponentObservationEventCriterion {
             get { return this.componentObservationEventCriterion; }

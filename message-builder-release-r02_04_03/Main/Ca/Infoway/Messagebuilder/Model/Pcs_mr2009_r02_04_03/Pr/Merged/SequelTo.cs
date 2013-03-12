@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,12 +36,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Merged {
             this.sequenceNumber = new INTImpl();
         }
         /**
-         * <summary>OrderOfInformRequests</summary>
+         * <summary>Business Name: OrderOfInformRequests</summary>
          * 
-         * <remarks>Order of Inform Requests <p>Allows each Inform 
-         * Request to be sequentially listed.</p> Order of Inform 
-         * Requests <p>Allows each Inform Request to be sequentially 
-         * listed.</p> <p>Required</p></remarks>
+         * <remarks>Un-merged Business Name: OrderOfInformRequests 
+         * Relationship: PRPM_MT301010CA.SequelTo.sequenceNumber 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Required</p> 
+         * <p>Allows each Inform Request to be sequentially listed.</p> 
+         * Un-merged Business Name: OrderOfInformRequests Relationship: 
+         * PRPM_MT303010CA.SequelTo.sequenceNumber 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Allows each 
+         * Inform Request to be sequentially listed.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"sequenceNumber"})]
         public int? SequenceNumber {
@@ -49,6 +53,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Merged {
             set { this.sequenceNumber.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PRPM_MT301010CA.SequelTo.informRequest 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PRPM_MT303010CA.SequelTo.informRequest 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"informRequest"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Merged.InformRequest InformRequest {
             get { return this.informRequest; }

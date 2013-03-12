@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,28 +24,28 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Merged {
 
 
     /**
-     * <summary>Includes</summary>
+     * <summary>Business Name: Includes</summary>
      * 
      * <remarks>PORX_MT020070CA.Component2: (no business name) 
-     * <p>Includes additional detailed information about the 
-     * prescription.</p> <p>Useful to the providers and the EHR</p> 
-     * PORX_MT020060CA.Component2: (no business name) <p>Includes 
+     * <p>Useful to the providers and the EHR</p> <p>Includes 
      * additional detailed information about the prescription.</p> 
-     * <p>Useful to the providers and the EHR</p> 
-     * PORX_MT060190CA.Component6: f:includes <p>Identifies the 
-     * instructions for how the prescribed medication should be 
-     * dispensed to the patient.</p> <p>An essential part of most 
-     * prescriptions is the authorization to dispense. Multiple 
-     * repetitions are included to accommodate circumstances where 
-     * multiple drug products may need to be dispensed to complete 
-     * a therapy. E.g. 100 x 20mg tablets and 50 x 10mg tablets. 
-     * The association is marked as Populated because the 
-     * authorization to dispense is a critical portion of a 
-     * prescription. However the association is allowed to be 
+     * PORX_MT020060CA.Component2: (no business name) <p>Useful to 
+     * the providers and the EHR</p> <p>Includes additional 
+     * detailed information about the prescription.</p> 
+     * PORX_MT060190CA.Component6: f:includes <p>An essential part 
+     * of most prescriptions is the authorization to dispense. 
+     * Multiple repetitions are included to accommodate 
+     * circumstances where multiple drug products may need to be 
+     * dispensed to complete a therapy. E.g. 100 x 20mg tablets and 
+     * 50 x 10mg tablets. The association is marked as Populated 
+     * because the authorization to dispense is a critical portion 
+     * of a prescription. However the association is allowed to be 
      * 'null' when the order is for a medication which requires no 
      * dispense authorization (e.g. over-the-counter medications), 
      * or when the patient already has sufficient supply of the 
-     * medication on hand to complete the therapy.</p></remarks>
+     * medication on hand to complete the therapy.</p> 
+     * <p>Identifies the instructions for how the prescribed 
+     * medication should be dispensed to the patient.</p></remarks>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"PORX_MT020060CA.Component2","PORX_MT020070CA.Component2","PORX_MT060190CA.Component6"})]
     public class Component2 : MessagePartBean {
@@ -54,6 +54,20 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Merged {
 
         public Component2() {
         }
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PORX_MT020070CA.Component2.supplyRequest 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT020060CA.Component2.supplyRequest 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060190CA.Component6.supplyRequest 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"supplyRequest"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Merged.SupplyRequest SupplyRequest {
             get { return this.supplyRequest; }

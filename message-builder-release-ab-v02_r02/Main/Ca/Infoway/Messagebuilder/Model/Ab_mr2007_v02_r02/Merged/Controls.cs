@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -45,41 +45,99 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             this.informDefinitionMoodCode = new CSImpl();
             this.informDefinitionSubject = new List<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.Subject3>();
         }
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: COCT_MT470002CA.Subject2.typeCode 
+         * Conformance/Cardinality: OPTIONAL (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"typeCode"})]
         public ActRelationshipType TypeCode {
             get { return (ActRelationshipType) this.typeCode.Value; }
             set { this.typeCode.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * COCT_MT470002CA.Subject2.contextControlCode 
+         * Conformance/Cardinality: OPTIONAL (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"contextControlCode"})]
         public ContextControl ContextControlCode {
             get { return (ContextControl) this.contextControlCode.Value; }
             set { this.contextControlCode.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * COCT_MT470002CA.InformDefinition.classCode 
+         * Conformance/Cardinality: OPTIONAL (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"informDefinition/classCode"})]
         public ActClass InformDefinitionClassCode {
             get { return (ActClass) this.informDefinitionClassCode.Value; }
             set { this.informDefinitionClassCode.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * COCT_MT470002CA.InformDefinition.moodCode 
+         * Conformance/Cardinality: OPTIONAL (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"informDefinition/moodCode"})]
         public ActMood InformDefinitionMoodCode {
             get { return (ActMood) this.informDefinitionMoodCode.Value; }
             set { this.informDefinitionMoodCode.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * COCT_MT470002CA.InformDefinition.receiver 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"informDefinition/receiver"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.ConsentGivenTo InformDefinitionReceiver {
             get { return this.informDefinitionReceiver; }
             set { this.informDefinitionReceiver = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * COCT_MT470002CA.InformDefinition.subject 
+         * Conformance/Cardinality: MANDATORY (1-10)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"informDefinition/subject"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.Subject3> InformDefinitionSubject {
             get { return this.informDefinitionSubject; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * COCT_MT470000CA.Subject2.informDefinition 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * COCT_MT470012CA.Subject2.informDefinition 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"informDefinition"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.AccessType InformDefinition {
             get { return this.informDefinition; }

@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Merged {
 
 
     /**
-     * <summary>PatientMeasurableObservations</summary>
+     * <summary>Business Name: PatientMeasurableObservations</summary>
      * 
      * <remarks>PORX_MT980010CA.ObservationMeasurableEvent: Patient 
      * Measurable Observations <p>This is the recorded observation 
@@ -64,20 +64,39 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Merged {
             this.value = new PQImpl();
         }
         /**
-         * <summary>ObservationIdentifier</summary>
+         * <summary>Business Name: ObservationIdentifier</summary>
          * 
-         * <remarks>A:Observation Identifier <p>Unique identifier for 
-         * the record of the observation (e.g. height, weight or lab 
-         * test/result) that contributed to the issue.</p> <p>Allows 
-         * lookup of the specific observation (e.g. height, weight, or 
-         * lab record) for additional details when evaluating 
-         * appropriateness of issue management.</p><p>The attribute is 
-         * only marked as 'populated' because it may be masked.</p> 
+         * <remarks>Un-merged Business Name: ObservationIdentifier 
+         * Relationship: PORX_MT980010CA.ObservationMeasurableEvent.id 
+         * Conformance/Cardinality: POPULATED (1) <p>Unique identifier 
+         * for the record of the observation (e.g. height, weight or 
+         * lab test/result) that contributed to the issue.</p> 
+         * <p>Allows lookup of the specific observation (e.g. height, 
+         * weight, or lab record) for additional details when 
+         * evaluating appropriateness of issue management.</p><p>The 
+         * attribute is marked as populated because it may be 
+         * masked.</p> <p>Allows lookup of the specific observation 
+         * (e.g. height, weight, or lab record) for additional details 
+         * when evaluating appropriateness of issue 
+         * management.</p><p>The attribute is marked as populated 
+         * because it may be masked.</p> Un-merged Business Name: 
+         * ObservationIdentifier Relationship: 
+         * PORX_MT980020CA.ObservationMeasurableEvent.id 
+         * Conformance/Cardinality: POPULATED (1) <p>Unique identifier 
+         * for the record of the observation (e.g. height, weight or 
+         * lab test/result) that contributed to the issue.</p> 
          * <p>Allows lookup of the specific observation (e.g. height, 
          * weight, or lab record) for additional details when 
          * evaluating appropriateness of issue management.</p><p>The 
          * attribute is only marked as 'populated' because it may be 
-         * masked.</p> A:Observation Identifier <p>Unique identifier 
+         * masked.</p> <p>Allows lookup of the specific observation 
+         * (e.g. height, weight, or lab record) for additional details 
+         * when evaluating appropriateness of issue 
+         * management.</p><p>The attribute is only marked as 
+         * 'populated' because it may be masked.</p> Un-merged Business 
+         * Name: ObservationIdentifier Relationship: 
+         * PORX_MT980030CA.ObservationMeasurableEvent.id 
+         * Conformance/Cardinality: POPULATED (1) <p>Unique identifier 
          * for the record of the observation (e.g. height, weight or 
          * lab test/result) that contributed to the issue.</p> 
          * <p>Allows lookup of the specific observation (e.g. height, 
@@ -97,19 +116,37 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Merged {
         }
 
         /**
-         * <summary>ObservationType</summary>
+         * <summary>Business Name: ObservationType</summary>
          * 
-         * <remarks>B:Observation Type <p>Distinguishes between the 
-         * kinds of measurable observation that could be the trigger 
-         * for clinical issue detection. Measurable observation types 
+         * <remarks>Un-merged Business Name: ObservationType 
+         * Relationship: 
+         * PORX_MT980010CA.ObservationMeasurableEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Distinguishes 
+         * between the kinds of measurable observation that could be 
+         * the trigger for clinical issue detection. Measurable 
+         * observation types include: Lab Result, Height, Weight, and 
+         * other measurable information about a person that may be 
+         * deemed as a possible trigger for clinical issue 
+         * detection.</p> <p>Indicates the type of observation record 
+         * being referenced. The attribute is mandatory because it is 
+         * essential to interpreting the rest of the information on the 
+         * class.</p> Un-merged Business Name: ObservationType 
+         * Relationship: 
+         * PORX_MT980020CA.ObservationMeasurableEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Distinguishes 
+         * between the kinds of measurable observations that can 
+         * trigger clinical issues. Measurable observation types 
          * include: Lab Result, Height, Weight, and other measurable 
          * information about a person that may be deemed as a possible 
          * trigger for clinical issue detection.</p> <p>Indicates the 
          * type of observation record being referenced. The attribute 
          * is mandatory because it is essential to interpreting the 
-         * rest of the information on the class.</p> B:Observation Type 
-         * <p>Distinguishes between the kinds of measurable 
-         * observations that can trigger clinical issues. Measurable 
+         * rest of the information on the class.</p> Un-merged Business 
+         * Name: ObservationType Relationship: 
+         * PORX_MT980030CA.ObservationMeasurableEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Distinguishes 
+         * between the kinds of measurable observation that could be 
+         * the trigger for clinical issue detection. Measurable 
          * observation types include: Lab Result, Height, Weight, and 
          * other measurable information about a person that may be 
          * deemed as a possible trigger for clinical issue 
@@ -125,37 +162,30 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Merged {
         }
 
         /**
-         * <summary>D:Observation Masking Indicator</summary>
+         * <summary>Un-merged Business Name: 
+         * ObservationMaskingIndicator</summary>
          * 
-         * <remarks><p>An indication of sensitivity surrounding the 
-         * related measurable observation, and thus defines the 
-         * required sensitivity for the detected issue.</p> 
-         * <p>Contraindication.intractingSourceMasked (Normal=false; 
-         * Restricted or Very Restricted = True); (Information is 
-         * withheld because the prescription is masked will be given a 
-         * NULL flavour of 'Masked')</p> <p>Conveys the patients wishes 
-         * relating to the sensitivity of the observation 
-         * information.</p><p>The attribute is optional because not all 
-         * systems will support masking.</p> <p>Conveys the patients 
-         * wishes relating to the sensitivity of the observation 
-         * information.</p><p>The attribute is optional because not all 
-         * systems will support masking.</p> D:Observation Masking 
-         * Indicator <p>An indication of sensitivity surrounding the 
-         * related measurable observation, and thus defines the 
-         * required sensitivity for the detected issue.</p> 
-         * <p>Contraindication.intractingSourceMasked (Normal=false; 
-         * Restricted or Very Restricted = True); (Information is 
-         * withheld because the prescription is masked will be given a 
-         * NULL flavour of 'Masked')</p> <p>Conveys the patient's 
-         * wishes relating to the sensitivity of the observation 
-         * information.</p><p>The attribute is optional because not all 
-         * systems will support masking.</p> <p>Conveys the patient's 
-         * wishes relating to the sensitivity of the observation 
-         * information.</p><p>The attribute is optional because not all 
-         * systems will support masking.</p> D:Observation Masked 
-         * Indicator <p>An indication of sensitivity surrounding the 
-         * offending measurable observation, and thus defines the 
-         * required sensitivity for the detected issue.</p> 
+         * <remarks>Relationship: 
+         * PORX_MT980010CA.ObservationMeasurableEvent.confidentialityCode 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>An indication of 
+         * sensitivity surrounding the related measurable observation, 
+         * and thus defines the required sensitivity for the detected 
+         * issue.</p> <p>Contraindication.intractingSourceMasked 
+         * (Normal=false; Restricted or Very Restricted = True); 
+         * (Information is withheld because the prescription is masked 
+         * will be given a NULL flavour of 'Masked')</p> <p>Conveys the 
+         * patient's wishes relating to the sensitivity of the 
+         * observation information.</p><p>The attribute is optional 
+         * because not all systems will support masking.</p> <p>Conveys 
+         * the patient's wishes relating to the sensitivity of the 
+         * observation information.</p><p>The attribute is optional 
+         * because not all systems will support masking.</p> Un-merged 
+         * Business Name: ObservationMaskedIndicator Relationship: 
+         * PORX_MT980020CA.ObservationMeasurableEvent.confidentialityCode 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>An indication of 
+         * sensitivity surrounding the offending measurable 
+         * observation, and thus defines the required sensitivity for 
+         * the detected issue.</p> 
          * <p>Contraindication.intractingSourceMasked (Normal=false; 
          * Restricted or Very Restricted = True); (Information is 
          * withheld because the prescription is masked will be given a 
@@ -165,7 +195,22 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Merged {
          * systems will support masking.</p> <p>Conveys the patient's 
          * wishes relating to the sensitivity of the 
          * observation.</p><p>The attribute is optional because not all 
-         * systems will support masking.</p></remarks>
+         * systems will support masking.</p> Un-merged Business Name: 
+         * ObservationMaskingIndicator Relationship: 
+         * PORX_MT980030CA.ObservationMeasurableEvent.confidentialityCode 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>An indication of 
+         * sensitivity surrounding the related measurable observation, 
+         * and thus defines the required sensitivity for the detected 
+         * issue.</p> <p>Contraindication.intractingSourceMasked 
+         * (Normal=false; Restricted or Very Restricted = True); 
+         * (Information is withheld because the prescription is masked 
+         * will be given a NULL flavour of 'Masked')</p> <p>Conveys the 
+         * patients wishes relating to the sensitivity of the 
+         * observation information.</p><p>The attribute is optional 
+         * because not all systems will support masking.</p> <p>Conveys 
+         * the patients wishes relating to the sensitivity of the 
+         * observation information.</p><p>The attribute is optional 
+         * because not all systems will support masking.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"confidentialityCode"})]
         public x_VeryBasicConfidentialityKind ConfidentialityCode {
@@ -174,16 +219,30 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Merged {
         }
 
         /**
-         * <summary>ObservationValue</summary>
+         * <summary>Business Name: ObservationValue</summary>
          * 
-         * <remarks>C:Observation Value <p>Denotes a specific 
-         * measurable observation made about a person that might have 
-         * trigger the clinical issue detection.</p> <p>Provides 
-         * unambiguous reference to the related measurable 
-         * observation.</p> C:Observation Value <p>Denotes a specific 
-         * measurable observation made about a person that triggered 
-         * the clinical issue detection.</p> <p>Provides unambiguous 
-         * reference to the implicated measurable observation.</p></remarks>
+         * <remarks>Un-merged Business Name: ObservationValue 
+         * Relationship: 
+         * PORX_MT980010CA.ObservationMeasurableEvent.value 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Denotes a 
+         * specific measurable observation made about a person that 
+         * might have trigger the clinical issue detection.</p> 
+         * <p>Provides unambiguous reference to the related measurable 
+         * observation.</p> Un-merged Business Name: ObservationValue 
+         * Relationship: 
+         * PORX_MT980020CA.ObservationMeasurableEvent.value 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Denotes a 
+         * specific measurable observation made about a person that 
+         * triggered the clinical issue detection.</p> <p>Provides 
+         * unambiguous reference to the implicated measurable 
+         * observation.</p> Un-merged Business Name: ObservationValue 
+         * Relationship: 
+         * PORX_MT980030CA.ObservationMeasurableEvent.value 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Denotes a 
+         * specific measurable observation made about a person that 
+         * might have trigger the clinical issue detection.</p> 
+         * <p>Provides unambiguous reference to the related measurable 
+         * observation.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"value"})]
         public PhysicalQuantity Value {

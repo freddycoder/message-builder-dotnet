@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
 
 
     /**
-     * <summary>AdditionalSIGInstruction</summary>
+     * <summary>Business Name: AdditionalSIGInstruction</summary>
      * 
      * <remarks>COCT_MT270010CA.SupplementalInstruction: Additional 
      * SIG Instruction <p>- moodCode must be DEFN for drug 
@@ -60,12 +60,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             this.text = new STImpl();
         }
         /**
-         * <summary>DosageUsageContext</summary>
+         * <summary>Business Name: DosageUsageContext</summary>
          * 
-         * <remarks>Dosage Usage Context <p>Indicates the context of 
-         * the administration.</p><p>moodCode = RQO, for administration 
-         * instruction on orders</p><p>moodCode = EVN, for 
-         * administration instruction on dispenses</p><p>moodCode = 
+         * <remarks>Un-merged Business Name: DosageUsageContext 
+         * Relationship: 
+         * COCT_MT270010CA.SupplementalInstruction.moodCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the 
+         * context of the administration.</p><p>moodCode = RQO, for 
+         * administration instruction on orders</p><p>moodCode = EVN, 
+         * for administration instruction on dispenses</p><p>moodCode = 
          * DEF, for administration instruction on medication definition 
          * documents/references (typically, monographs).</p> 
          * <p>Indicates the context of the 
@@ -86,11 +89,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
          * administration instruction on dispenses</p><p>moodCode = 
          * DEF, for administration instruction on medication definition 
          * documents/references (typically, monographs).</p> <p>Puts 
-         * the class in context, and is therefore mandatory.</p> Dosage 
-         * Usage Context <p>Indicates the context of the 
-         * administration.</p><p>moodCode = RQO, for administration 
-         * instruction on orders</p><p>moodCode = EVN, for 
-         * administration instruction on dispenses</p><p>moodCode = 
+         * the class in context, and is therefore mandatory.</p> 
+         * Un-merged Business Name: DosageUsageContext Relationship: 
+         * PORX_MT980040CA.SupplementalInstruction.moodCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the 
+         * context of the administration.</p><p>moodCode = RQO, for 
+         * administration instruction on orders</p><p>moodCode = EVN, 
+         * for administration instruction on dispenses</p><p>moodCode = 
          * DEF, for administration instruction on medication definition 
          * documents/references (typically, monographs).</p> 
          * <p>Indicates the context of the 
@@ -120,9 +125,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>AdditionalDosageInstruction</summary>
+         * <summary>Business Name: AdditionalDosageInstruction</summary>
          * 
-         * <remarks>F:Additional Dosage Instruction <p>A free form 
+         * <remarks>Un-merged Business Name: 
+         * AdditionalDosageInstruction Relationship: 
+         * COCT_MT270010CA.SupplementalInstruction.text 
+         * Conformance/Cardinality: MANDATORY (1) <p>A free form 
          * textual description of extended instruction regarding the 
          * administration of the drug.</p> <p>ZDP.13.8</p> <p>Allows 
          * for expression of non-codable qualifiers such as: 'on an 
@@ -134,19 +142,22 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
          * stomach', 'add water' etc; which do not affect calculations 
          * of frequencies or quantity.</p><p>This attribute is marked 
          * as 'mandatory' as it is the only information that can be 
-         * specified here.</p> F:Additional Dosage Instruction <p>A 
-         * free form textual description of extended instruction 
-         * regarding the administration of the drug.</p> 
-         * <p>ZDP.13.8</p> <p>Allows for expression of non-codable 
-         * qualifiers such as: 'on an empty stomach', 'add water' etc; 
-         * which do not affect calculations of frequencies or 
-         * quantity.</p><p>This attribute is marked as 'mandatory' as 
-         * it is the only information that can be specified here.</p> 
-         * <p>Allows for expression of non-codable qualifiers such as: 
-         * 'on an empty stomach', 'add water' etc; which do not affect 
+         * specified here.</p> Un-merged Business Name: 
+         * AdditionalDosageInstruction Relationship: 
+         * PORX_MT980040CA.SupplementalInstruction.text 
+         * Conformance/Cardinality: MANDATORY (1) <p>A free form 
+         * textual description of extended instruction regarding the 
+         * administration of the drug.</p> <p>ZDP.13.8</p> <p>Allows 
+         * for expression of non-codable qualifiers such as: 'on an 
+         * empty stomach', 'add water' etc; which do not affect 
          * calculations of frequencies or quantity.</p><p>This 
          * attribute is marked as 'mandatory' as it is the only 
-         * information that can be specified here.</p></remarks>
+         * information that can be specified here.</p> <p>Allows for 
+         * expression of non-codable qualifiers such as: 'on an empty 
+         * stomach', 'add water' etc; which do not affect calculations 
+         * of frequencies or quantity.</p><p>This attribute is marked 
+         * as 'mandatory' as it is the only information that can be 
+         * specified here.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"text"})]
         public String Text {

@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Author:        $LastChangedBy: sdoxsee $
- * Last modified: $LastChangedDate: 2012-04-04 19:33:43 -0400 (Wed, 04 Apr 2012) $
- * Revision:      $LastChangedRevision: 5828 $
+ * Author:        $LastChangedBy: tmcgrady $
+ * Last modified: $LastChangedDate: 2013-03-08 11:06:36 -0500 (Fri, 08 Mar 2013) $
+ * Revision:      $LastChangedRevision: 6699 $
  */
 
 using System.Reflection;
@@ -49,8 +49,8 @@ using Ca.Infoway.Messagebuilder.Annotation;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion("1.2.9.0")]
-[assembly: AssemblyFileVersion("1.2.9.0")]
+[assembly: AssemblyVersion("1.4.6.0")]
+[assembly: AssemblyFileVersion("1.4.6.0")]
 
 [assembly: MbtModelVersionNumber("NEWFOUNDLAND 2")]
 [assembly: MbtMessageSet("/messageSet_r02_04_02.xml")]

@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,7 +37,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Coct_mt68000
             this.adjudicatorRolePlayingAdjudicatorDeviceSoftwareName = new STImpl();
         }
         /**
-         * <summary><p>EOB signature</p></summary>
+         * <summary>Relationship: 
+         * COCT_MT680000CA.AdjudicatedInvoiceAuthor.signatureText</summary>
+         * 
+         * <remarks>Conformance/Cardinality: REQUIRED (0-1) <p>EOB 
+         * signature</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"signatureText"})]
         public String SignatureText {
@@ -46,11 +50,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Coct_mt68000
         }
 
         /**
-         * <summary>Adjudicator Device Software Name</summary>
+         * <summary>Business Name: Adjudicator Device Software Name</summary>
          * 
-         * <remarks><p>(COB Source. Which s/w rules were used to create 
-         * the COB CMET such as CPhA, NeCST. Use modifier for Invoice 
-         * or PreDet</p></remarks>
+         * <remarks>Relationship: 
+         * COCT_MT680000CA.AdjudicatorDevice.softwareName 
+         * Conformance/Cardinality: MANDATORY (1) <p>(COB Source. Which 
+         * s/w rules were used to create the COB CMET such as CPhA, 
+         * NeCST. Use modifier for Invoice or PreDet</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"adjudicatorRole/playingAdjudicatorDevice/softwareName"})]
         public String AdjudicatorRolePlayingAdjudicatorDeviceSoftwareName {

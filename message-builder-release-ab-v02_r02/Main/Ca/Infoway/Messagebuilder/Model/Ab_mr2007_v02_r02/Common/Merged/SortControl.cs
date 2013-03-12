@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged {
 
 
     /**
-     * <summary>SortControl</summary>
+     * <summary>Business Name: SortControl</summary>
      * 
      * <remarks>MFMI_MT700751CA.SortControl: Sort Control <p>Holds 
      * specification of sort order for instance matches to a 
@@ -53,13 +53,22 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged {
             this.directionCode = new CSImpl();
         }
         /**
-         * <summary>SequenceNumber</summary>
+         * <summary>Business Name: SequenceNumber</summary>
          * 
-         * <remarks>Sequence Number <p>When more than one sort control 
-         * is specified, this is the order of this sort element amongst 
-         * the others.</p> <p>This number determines which sort element 
-         * is using primarily, secondary, etc. and is therefore 
-         * mandatory.</p></remarks>
+         * <remarks>Un-merged Business Name: SequenceNumber 
+         * Relationship: MFMI_MT700751CA.SortControl.sequenceNumber 
+         * Conformance/Cardinality: MANDATORY (1) <p>When more than one 
+         * sort control is specified, this is the order of this sort 
+         * element amongst the others.</p> <p>This number determines 
+         * which sort element is using primarily, secondary, etc. and 
+         * is therefore mandatory.</p> Un-merged Business Name: 
+         * SequenceNumber Relationship: 
+         * MFMI_MT700746CA.SortControl.sequenceNumber 
+         * Conformance/Cardinality: MANDATORY (1) <p>When more than one 
+         * sort control is specified, this is the order of this sort 
+         * element amongst the others.</p> <p>This number determines 
+         * which sort element is using primarily, secondary, etc. and 
+         * is therefore mandatory.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"sequenceNumber"})]
         public int? SequenceNumber {
@@ -68,10 +77,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged {
         }
 
         /**
-         * <summary>SortElementName</summary>
+         * <summary>Business Name: SortElementName</summary>
          * 
-         * <remarks>Sort Element Name <p>Name of the element to 
-         * sort.</p> <p>The name of the element is mandatory.</p></remarks>
+         * <remarks>Un-merged Business Name: SortElementName 
+         * Relationship: MFMI_MT700751CA.SortControl.elementName 
+         * Conformance/Cardinality: MANDATORY (1) <p>Name of the 
+         * element to sort.</p> <p>The name of the element is 
+         * mandatory.</p> Un-merged Business Name: SortElementName 
+         * Relationship: MFMI_MT700746CA.SortControl.elementName 
+         * Conformance/Cardinality: MANDATORY (1) <p>Name of the 
+         * element to sort.</p> <p>The name of the element is 
+         * mandatory.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"elementName"})]
         public String ElementName {
@@ -80,11 +96,18 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged {
         }
 
         /**
-         * <summary>SortControlDirection</summary>
+         * <summary>Business Name: SortControlDirection</summary>
          * 
-         * <remarks>Sort Control Direction <p>Sets the ascending or 
-         * descending nature of the sort request.</p> <p>This element 
-         * is required.</p></remarks>
+         * <remarks>Un-merged Business Name: SortControlDirection 
+         * Relationship: MFMI_MT700751CA.SortControl.directionCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Sets the 
+         * ascending or descending nature of the sort request.</p> 
+         * <p>This element is required.</p> Un-merged Business Name: 
+         * SortControlDirection Relationship: 
+         * MFMI_MT700746CA.SortControl.directionCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Sets the 
+         * ascending or descending nature of the sort request.</p> 
+         * <p>This element is required.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"directionCode"})]
         public Sequencing DirectionCode {

@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,13 +33,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Iehr.Merged {
      * <summary>REPC_MT000012CA.CausalityAssessment: Reaction 
      * Assessments</summary>
      * 
-     * <remarks><p>If code is SNOMED, value is not permitted. 
-     * Otherise code must be 
-     * &#226;&#128;&#156;RXNASSESS&#226;&#128;&#157; and value must 
-     * be &#226;&#128;&#156;RELATED&#226;&#128;&#157;</p> <p>This 
-     * is a recording of the exposures and causality assessment 
-     * deemed to be related to the reaction.</p> <p>Indicates both 
-     * the product and how related they are determined to be to the 
+     * <p>If code is SNOMED, value is not permitted. Otherise code 
+     * must be &#226;&#128;&#156;RXNASSESS&#226;&#128;&#157; and 
+     * value must be 
+     * &#226;&#128;&#156;RELATED&#226;&#128;&#157;</p> <p>This is a 
+     * recording of the exposures and causality assessment deemed 
+     * to be related to the reaction.</p> <p>Indicates both the 
+     * product and how related they are determined to be to the 
      * reaction.</p> REPC_MT000006CA.CausalityAssessment: Reaction 
      * Assessments <p>Value is mandatory if not using 
      * SNOMED</p><p>Code is fixed to RXNASSESS if not using 
@@ -141,7 +141,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Iehr.Merged {
      * REPC_MT000013CA.ObservationEvent: (no business name) <p>If 
      * code is SNOMED, value is not permitted, otherwise it is 
      * mandatory and code must be 
-     * &#226;&#128;&#156;DX&#226;&#128;&#157;</p></remarks>
+     * &#226;&#128;&#156;DX&#226;&#128;&#157;</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"REPC_MT000001CA.CausalityAssessment","REPC_MT000001CA.ObservationEvent","REPC_MT000002CA.CausalityAssessment","REPC_MT000005CA.CausalityAssessment","REPC_MT000005CA.ObservationEvent","REPC_MT000006CA.CausalityAssessment","REPC_MT000009CA.CausalityAssessment","REPC_MT000009CA.ObservationEvent","REPC_MT000012CA.CausalityAssessment","REPC_MT000013CA.CausalityAssessment","REPC_MT000013CA.ObservationEvent"})]
     public class ReportedReactions : MessagePartBean, Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Iehr.Merged.IRecords {
@@ -165,28 +165,104 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Iehr.Merged {
             this.effectiveTime = new IVLImpl<TS, Interval<PlatformDate>>();
         }
         /**
-         * <summary>Assessment Type</summary>
+         * <summary>Un-merged Business Name: AssessmentType</summary>
          * 
-         * <remarks><p>Indicates the type of assessment being made</p> 
-         * <p>Communicates the relatedness assessment of the exposure 
-         * to the reaction and is therefore mandatory. For SNOMED this 
-         * will communicate the full assessment. It is expressed as a 
-         * CD to allow for SNOMED post-coordination.</p> <p>For SNOMED 
-         * this will include the actual assessment. For non-SNOMED, 
-         * this should be fixed to RXNASSES.</p> Diagnosis Type 
-         * <p>Indicates the type of diagnosis being captured.</p> 
-         * <p>Indicates that the observation is actually a diagnosis 
-         * and is therefore mandatory. The datatype is CD to support 
-         * SNOMED post-coordination.</p> <p>If using SNOMED, this will 
-         * contain the diagnosis. Otherwise it will be a fixed value of 
-         * 'DX'.</p> Assessment Type <p>Indicates the type of 
-         * assessment being made</p> <p>Communicates the relatedness 
+         * <remarks>Relationship: 
+         * REPC_MT000006CA.CausalityAssessment.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the type 
+         * of assessment being made</p> <p>Communicates the relatedness 
          * assessment of the exposure to the reaction and is therefore 
          * mandatory. For SNOMED this will communicate the full 
          * assessment. It is expressed as a CD to allow for SNOMED 
          * post-coordination.</p> <p>For SNOMED this will include the 
          * actual assessment. For non-SNOMED, this should be fixed to 
-         * RXNASSESS.</p></remarks>
+         * RXNASSESS.</p> Un-merged Business Name: AssessmentType 
+         * Relationship: REPC_MT000012CA.CausalityAssessment.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the type 
+         * of assessment being made</p> <p>Communicates the relatedness 
+         * assessment of the exposure to the reaction and is therefore 
+         * mandatory. For SNOMED this will communicate the full 
+         * assessment. It is expressed as a CD to allow for SNOMED 
+         * post-coordination.</p> <p>For SNOMED this will include the 
+         * actual assessment. For non-SNOMED, this should be fixed to 
+         * RXNASSES.</p> Un-merged Business Name: DiagnosisType 
+         * Relationship: REPC_MT000005CA.ObservationEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the type 
+         * of diagnosis being captured.</p> <p>Indicates that the 
+         * observation is actually a diagnosis and is therefore 
+         * mandatory. The datatype is CD to support SNOMED 
+         * post-coordination.</p> <p>If using SNOMED, this will contain 
+         * the diagnosis. Otherwise it will be a fixed value of 
+         * 'DX'.</p> Un-merged Business Name: AssessmentType 
+         * Relationship: REPC_MT000013CA.CausalityAssessment.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the type 
+         * of assessment being made</p> <p>Communicates the relatedness 
+         * assessment of the exposure to the reaction and is therefore 
+         * mandatory. For SNOMED this will communicate the full 
+         * assessment. It is expressed as a CD to allow for SNOMED 
+         * post-coordination.</p> <p>For SNOMED this will include the 
+         * actual assessment. For non-SNOMED, this should be fixed to 
+         * RXNASSES.</p> Un-merged Business Name: AssessmentType 
+         * Relationship: REPC_MT000002CA.CausalityAssessment.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the type 
+         * of assessment being made</p> <p>Communicates the relatedness 
+         * assessment of the exposure to the reaction and is therefore 
+         * mandatory. For SNOMED this will communicate the full 
+         * assessment. It is expressed as a CD to allow for SNOMED 
+         * post-coordination.</p> <p>For SNOMED this will include the 
+         * actual assessment. For non-SNOMED, this should be fixed to 
+         * RXNASSES.</p> Un-merged Business Name: AssessmentType 
+         * Relationship: REPC_MT000001CA.CausalityAssessment.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the type 
+         * of assessment being made</p> <p>Communicates the relatedness 
+         * assessment of the exposure to the reaction and is therefore 
+         * mandatory. For SNOMED this will communicate the full 
+         * assessment. It is expressed as a CD to allow for SNOMED 
+         * post-coordination.</p> <p>For SNOMED this will include the 
+         * actual assessment. For non-SNOMED, this should be fixed to 
+         * RXNASSES.</p> Un-merged Business Name: AssessmentType 
+         * Relationship: REPC_MT000009CA.CausalityAssessment.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the type 
+         * of assessment being made</p> <p>Communicates the relatedness 
+         * assessment of the exposure to the reaction and is therefore 
+         * mandatory. For SNOMED this will communicate the full 
+         * assessment. It is expressed as a CD to allow for SNOMED 
+         * post-coordination.</p> <p>For SNOMED this will include the 
+         * actual assessment. For non-SNOMED, this should be fixed to 
+         * RXNASSESS.</p> Un-merged Business Name: DiagnosisType 
+         * Relationship: REPC_MT000001CA.ObservationEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the type 
+         * of diagnosis being captured.</p> <p>Indicates that the 
+         * observation is actually a diagnosis and is therefore 
+         * mandatory. The datatype is CD to support SNOMED 
+         * post-coordination.</p> <p>If using SNOMED, this will contain 
+         * the diagnosis. Otherwise it will be a fixed value of 
+         * 'DX'.</p> Un-merged Business Name: AssessmentType 
+         * Relationship: REPC_MT000005CA.CausalityAssessment.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the type 
+         * of assessment being made</p> <p>Communicates the relatedness 
+         * assessment of the exposure to the reaction and is therefore 
+         * mandatory. For SNOMED this will communicate the full 
+         * assessment. It is expressed as a CD to allow for SNOMED 
+         * post-coordination.</p> <p>For SNOMED this will include the 
+         * actual assessment. For non-SNOMED, this should be fixed to 
+         * RXNASSESS.</p> Un-merged Business Name: DiagnosisType 
+         * Relationship: REPC_MT000009CA.ObservationEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the type 
+         * of diagnosis being captured.</p> <p>Indicates that the 
+         * observation is actually a diagnosis and is therefore 
+         * mandatory. The datatype is CD to support SNOMED 
+         * post-coordination.</p> <p>If using SNOMED, this will contain 
+         * the diagnosis. Otherwise it will be a fixed value of 
+         * 'DX'.</p> Un-merged Business Name: DiagnosisType 
+         * Relationship: REPC_MT000013CA.ObservationEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the type 
+         * of diagnosis being captured.</p> <p>Indicates that the 
+         * observation is actually a diagnosis and is therefore 
+         * mandatory. The datatype is CD to support SNOMED 
+         * post-coordination.</p> <p>If using SNOMED, this will contain 
+         * the diagnosis. Otherwise it will be a fixed value of 
+         * 'DX'.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public ActCode Code {
@@ -195,22 +271,112 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Iehr.Merged {
         }
 
         /**
-         * <summary>Relatedness Assessment</summary>
+         * <summary>Un-merged Business Name: RelatednessAssessment</summary>
          * 
-         * <remarks><p>Indicates whether the reaction is deemed to be 
-         * related to the exposure.</p> <p>Creates the link between the 
-         * exposure and the reaction. Because the details of the 
-         * assessment will be communicated in the 'code' attribute for 
-         * SNOMED, this element is optional.</p> <p>This attribute will 
-         * not be populated if using SNOMED. Otherwise it should have a 
-         * fixed value of &quot;RELATED&quot;.</p> B:Reaction 
-         * <p>Specifies the kind of reaction, as experienced by the 
-         * patient.</p> <p>Ensures consistency in tracking and 
-         * categorizing the reaction type. Helps ensure that only 
-         * proper allergies are categorized as allergy. The attribute 
-         * is optional because it will not be used for SNOMED. The 
-         * attribute is CWE because not all possible types of reactions 
-         * are expressible by coded values.</p></remarks>
+         * <remarks>Relationship: 
+         * REPC_MT000006CA.CausalityAssessment.value 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>Indicates whether 
+         * the reaction is deemed to be related to the exposure.</p> 
+         * <p>Creates the link between the exposure and the reaction. 
+         * Because the details of the assessment will be communicated 
+         * in the 'code' attribute for SNOMED, this element is 
+         * optional.</p> <p>This attribute will not be populated if 
+         * using SNOMED. Otherwise it should have a fixed value of 
+         * &quot;RELATED&quot;.</p> Un-merged Business Name: 
+         * RelatednessAssessment Relationship: 
+         * REPC_MT000012CA.CausalityAssessment.value 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>Indicates whether 
+         * the reaction is deemed to be related to the exposure.</p> 
+         * <p>Creates the link between the exposure and the reaction. 
+         * Because the details of the assessment will be communicated 
+         * in the 'code' attribute for SNOMED, this element is 
+         * optional.</p> <p>This attribute will not be populated if 
+         * using SNOMED. Otherwise it should have a fixed value of 
+         * &quot;RELATED&quot;.</p> Un-merged Business Name: Reaction 
+         * Relationship: REPC_MT000005CA.ObservationEvent.value 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>Specifies the 
+         * kind of reaction, as experienced by the patient.</p> 
+         * <p>Ensures consistency in tracking and categorizing the 
+         * reaction type. Helps ensure that only proper allergies are 
+         * categorized as allergy. The attribute is optional because it 
+         * will not be used for SNOMED. The attribute is CWE because 
+         * not all possible types of reactions are expressible by coded 
+         * values.</p> Un-merged Business Name: RelatednessAssessment 
+         * Relationship: REPC_MT000013CA.CausalityAssessment.value 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>Indicates whether 
+         * the reaction is deemed to be related to the exposure.</p> 
+         * <p>Creates the link between the exposure and the reaction. 
+         * Because the details of the assessment will be communicated 
+         * in the 'code' attribute for SNOMED, this element is 
+         * optional.</p> <p>This attribute will not be populated if 
+         * using SNOMED. Otherwise it should have a fixed value of 
+         * &quot;RELATED&quot;.</p> Un-merged Business Name: 
+         * RelatednessAssessment Relationship: 
+         * REPC_MT000002CA.CausalityAssessment.value 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>Indicates whether 
+         * the reaction is deemed to be related to the exposure.</p> 
+         * <p>Creates the link between the exposure and the reaction. 
+         * Because the details of the assessment will be communicated 
+         * in the 'code' attribute for SNOMED, this element is 
+         * optional.</p> <p>This attribute will not be populated if 
+         * using SNOMED. Otherwise it should have a fixed value of 
+         * &quot;RELATED&quot;.</p> Un-merged Business Name: 
+         * RelatednessAssessment Relationship: 
+         * REPC_MT000001CA.CausalityAssessment.value 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>Indicates whether 
+         * the reaction is deemed to be related to the exposure.</p> 
+         * <p>Creates the link between the exposure and the reaction. 
+         * Because the details of the assessment will be communicated 
+         * in the 'code' attribute for SNOMED, this element is 
+         * optional.</p> <p>This attribute will not be populated if 
+         * using SNOMED. Otherwise it should have a fixed value of 
+         * &quot;RELATED&quot;.</p> Un-merged Business Name: 
+         * RelatednessAssessment Relationship: 
+         * REPC_MT000009CA.CausalityAssessment.value 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>Indicates whether 
+         * the reaction is deemed to be related to the exposure.</p> 
+         * <p>Creates the link between the exposure and the reaction. 
+         * Because the details of the assessment will be communicated 
+         * in the 'code' attribute for SNOMED, this element is 
+         * optional.</p> <p>This attribute will not be populated if 
+         * using SNOMED. Otherwise it should have a fixed value of 
+         * &quot;RELATED&quot;.</p> Un-merged Business Name: Reaction 
+         * Relationship: REPC_MT000001CA.ObservationEvent.value 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>Specifies the 
+         * kind of reaction, as experienced by the patient.</p> 
+         * <p>Ensures consistency in tracking and categorizing the 
+         * reaction type. Helps ensure that only proper allergies are 
+         * categorized as allergy. The attribute is optional because it 
+         * will not be used for SNOMED. The attribute is CWE because 
+         * not all possible types of reactions are expressible by coded 
+         * values.</p> Un-merged Business Name: RelatednessAssessment 
+         * Relationship: REPC_MT000005CA.CausalityAssessment.value 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>Indicates whether 
+         * the reaction is deemed to be related to the exposure.</p> 
+         * <p>Creates the link between the exposure and the reaction. 
+         * Because the details of the assessment will be communicated 
+         * in the 'code' attribute for SNOMED, this element is 
+         * optional.</p> <p>This attribute will not be populated if 
+         * using SNOMED. Otherwise it should have a fixed value of 
+         * &quot;RELATED&quot;.</p> Un-merged Business Name: Reaction 
+         * Relationship: REPC_MT000009CA.ObservationEvent.value 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>Specifies the 
+         * kind of reaction, as experienced by the patient.</p> 
+         * <p>Ensures consistency in tracking and categorizing the 
+         * reaction type. Helps ensure that only proper allergies are 
+         * categorized as allergy. The attribute is optional because it 
+         * will not be used for SNOMED. The attribute is CWE because 
+         * not all possible types of reactions are expressible by coded 
+         * values.</p> Un-merged Business Name: Reaction Relationship: 
+         * REPC_MT000013CA.ObservationEvent.value 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>Specifies the 
+         * kind of reaction, as experienced by the patient.</p> 
+         * <p>Ensures consistency in tracking and categorizing the 
+         * reaction type. Helps ensure that only proper allergies are 
+         * categorized as allergy. The attribute is optional because it 
+         * will not be used for SNOMED. The attribute is CWE because 
+         * not all possible types of reactions are expressible by coded 
+         * values.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"value"})]
         public SubjectReaction Value {
@@ -218,12 +384,55 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Iehr.Merged {
             set { this.value.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * REPC_MT000006CA.StartsAfterStartOf.exposureEvent 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT000012CA.StartsAfterStartOf.exposureEvent 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT000013CA.StartsAfterStartOf.exposureEvent 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT000002CA.StartsAfterStartOf.exposureEvent 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT000001CA.StartsAfterStartOf.exposureEvent 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT000009CA.StartsAfterStartOf.exposureEvent 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT000005CA.StartsAfterStartOf.exposureEvent 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"startsAfterStartOf/exposureEvent"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Iehr.Merged.Exposures StartsAfterStartOfExposureEvent {
             get { return this.startsAfterStartOfExposureEvent; }
             set { this.startsAfterStartOfExposureEvent = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * REPC_MT000013CA.Subject6.observationEvent 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT000001CA.Subject6.observationEvent 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT000009CA.Subject6.observationEvent 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT000005CA.Subject6.observationEvent 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subject/observationEvent"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Iehr.Merged.ReportedReactions SubjectObservationEvent {
             get { return this.subjectObservationEvent; }
@@ -231,12 +440,31 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Iehr.Merged {
         }
 
         /**
-         * <summary>ReactionRecordId</summary>
+         * <summary>Business Name: ReactionRecordId</summary>
          * 
-         * <remarks>C:Reaction Record Id <p>An identifier assigned to 
-         * the record of the adverse reaction.</p> <p>Allows for direct 
-         * referencing of an adverse reaction record which was 
-         * previously recorded.</p></remarks>
+         * <remarks>Un-merged Business Name: ReactionRecordId 
+         * Relationship: REPC_MT000005CA.ObservationEvent.id 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>An identifier 
+         * assigned to the record of the adverse reaction.</p> 
+         * <p>Allows for direct referencing of an adverse reaction 
+         * record which was previously recorded.</p> Un-merged Business 
+         * Name: ReactionRecordId Relationship: 
+         * REPC_MT000001CA.ObservationEvent.id Conformance/Cardinality: 
+         * REQUIRED (0-1) <p>An identifier assigned to the record of 
+         * the adverse reaction.</p> <p>Allows for direct referencing 
+         * of an adverse reaction record which was previously 
+         * recorded.</p> Un-merged Business Name: ReactionRecordId 
+         * Relationship: REPC_MT000009CA.ObservationEvent.id 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>An identifier 
+         * assigned to the record of the adverse reaction.</p> 
+         * <p>Allows for direct referencing of an adverse reaction 
+         * record which was previously recorded.</p> Un-merged Business 
+         * Name: ReactionRecordId Relationship: 
+         * REPC_MT000013CA.ObservationEvent.id Conformance/Cardinality: 
+         * REQUIRED (0-1) <p>An identifier assigned to the record of 
+         * the adverse reaction.</p> <p>Allows for direct referencing 
+         * of an adverse reaction record which was previously 
+         * recorded.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -245,42 +473,50 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Iehr.Merged {
         }
 
         /**
-         * <summary>NoReactionOccurred</summary>
+         * <summary>Business Name: NoReactionOccurred</summary>
          * 
-         * <remarks>D:No reaction occurred <p>Indicates if there there 
-         * was an adverse reaction when the patient was exposed to the 
-         * agent to which an allergy/intolerance has been recorded.</p> 
-         * <p>Allows providers to confirm or eliminate specific agents 
-         * as being the cause for the allergy/intolerance. E.g. If a 
-         * reaction is recorded for Tylenol 3, but no reaction is 
-         * recorded for regular Tylenol or for coffee, this suggests 
-         * that the likely cause of the allergy is Codeine.</p><p>The 
-         * attribute is mandatory because it is essential to know 
-         * whether the reaction occurred or not.</p> <p>Allows 
-         * providers to confirm or eliminate specific agents as being 
-         * the cause for the allergy/intolerance. E.g. If a reaction is 
-         * recorded for Tylenol 3, but no reaction is recorded for 
-         * regular Tylenol or for coffee, this suggests that the likely 
-         * cause of the allergy is Codeine.</p><p>The attribute is 
-         * mandatory because it is essential to know whether the 
-         * reaction occurred or not.</p> D:No reaction occurred 
-         * <p>Indicates that there was no adverse reaction when the 
-         * patient was exposed to the agent to which an 
-         * allergy/intolerance has been recorded.</p> <p>Allows 
-         * providers to confirm or eliminate specific agents as being 
-         * the cause for the allergy/intolerance. E.g. If a reaction is 
-         * recorded for Tylenol 3, but no reaction is recorded for 
-         * regular Tylenol or for coffee, this suggests that the likely 
-         * cause of the allergy is Codeine.</p><p>Because it is 
-         * essential to know whether the reaction occurred or not, this 
-         * attribute is mandatory.</p> <p>Allows providers to confirm 
+         * <remarks>Un-merged Business Name: NoReactionOccurred 
+         * Relationship: REPC_MT000005CA.ObservationEvent.negationInd 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates if there 
+         * there was an adverse reaction when the patient was exposed 
+         * to the agent to which an allergy/intolerance has been 
+         * recorded.</p> <p>Allows providers to confirm or eliminate 
+         * specific agents as being the cause for the 
+         * allergy/intolerance. E.g. If a reaction is recorded for 
+         * Tylenol 3, but no reaction is recorded for regular Tylenol 
+         * or for coffee, this suggests that the likely cause of the 
+         * allergy is Codeine.</p><p>The attribute is mandatory because 
+         * it is essential to know whether the reaction occurred or 
+         * not.</p> <p>Allows providers to confirm or eliminate 
+         * specific agents as being the cause for the 
+         * allergy/intolerance. E.g. If a reaction is recorded for 
+         * Tylenol 3, but no reaction is recorded for regular Tylenol 
+         * or for coffee, this suggests that the likely cause of the 
+         * allergy is Codeine.</p><p>The attribute is mandatory because 
+         * it is essential to know whether the reaction occurred or 
+         * not.</p> Un-merged Business Name: NoReactionOccurred 
+         * Relationship: REPC_MT000001CA.ObservationEvent.negationInd 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates if there 
+         * was an there was no adverse reaction when the patient was 
+         * exposed to the agent to which an allergy/intolerance has 
+         * been recorded.</p> <p>Allows providers to confirm or 
+         * eliminate specific agents as being the cause for the 
+         * allergy/intolerance. E.g. If a reaction is recorded for 
+         * Tylenol 3, but no reaction is recorded for regular Tylenol 
+         * or for coffee, this suggests that the likely cause of the 
+         * allergy is Codeine.</p><p>The element is mandatory because 
+         * it is essential to know for a given record whether the 
+         * reaction occurred or not.</p> <p>Allows providers to confirm 
          * or eliminate specific agents as being the cause for the 
          * allergy/intolerance. E.g. If a reaction is recorded for 
          * Tylenol 3, but no reaction is recorded for regular Tylenol 
          * or for coffee, this suggests that the likely cause of the 
-         * allergy is Codeine.</p><p>Because it is essential to know 
-         * whether the reaction occurred or not, this attribute is 
-         * mandatory.</p> D:No reaction occurred <p>Indicates that 
+         * allergy is Codeine.</p><p>The element is mandatory because 
+         * it is essential to know for a given record whether the 
+         * reaction occurred or not.</p> Un-merged Business Name: 
+         * NoReactionOccurred Relationship: 
+         * REPC_MT000009CA.ObservationEvent.negationInd 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates that 
          * there was no adverse reaction when the patient was exposed 
          * to the agent to which an allergy/intolerance has been 
          * recorded.</p> <p>Allows providers to confirm or eliminate 
@@ -297,24 +533,27 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Iehr.Merged {
          * Tylenol or for coffee, this suggests that the likely cause 
          * of the allergy is Codeine.</p><p>Because it is essential to 
          * know whether the record reflects a reaction that did or did 
-         * not occur, this attribute is mandatory.</p> D:No reaction 
-         * occurred <p>Indicates if there was an there was no adverse 
-         * reaction when the patient was exposed to the agent to which 
-         * an allergy/intolerance has been recorded.</p> <p>Allows 
-         * providers to confirm or eliminate specific agents as being 
-         * the cause for the allergy/intolerance. E.g. If a reaction is 
-         * recorded for Tylenol 3, but no reaction is recorded for 
-         * regular Tylenol or for coffee, this suggests that the likely 
-         * cause of the allergy is Codeine.</p><p>The element is 
-         * mandatory because it is essential to know for a given record 
-         * whether the reaction occurred or not.</p> <p>Allows 
-         * providers to confirm or eliminate specific agents as being 
-         * the cause for the allergy/intolerance. E.g. If a reaction is 
-         * recorded for Tylenol 3, but no reaction is recorded for 
-         * regular Tylenol or for coffee, this suggests that the likely 
-         * cause of the allergy is Codeine.</p><p>The element is 
-         * mandatory because it is essential to know for a given record 
-         * whether the reaction occurred or not.</p></remarks>
+         * not occur, this attribute is mandatory.</p> Un-merged 
+         * Business Name: NoReactionOccurred Relationship: 
+         * REPC_MT000013CA.ObservationEvent.negationInd 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates that 
+         * there was no adverse reaction when the patient was exposed 
+         * to the agent to which an allergy/intolerance has been 
+         * recorded.</p> <p>Allows providers to confirm or eliminate 
+         * specific agents as being the cause for the 
+         * allergy/intolerance. E.g. If a reaction is recorded for 
+         * Tylenol 3, but no reaction is recorded for regular Tylenol 
+         * or for coffee, this suggests that the likely cause of the 
+         * allergy is Codeine.</p><p>Because it is essential to know 
+         * whether the reaction occurred or not, this attribute is 
+         * mandatory.</p> <p>Allows providers to confirm or eliminate 
+         * specific agents as being the cause for the 
+         * allergy/intolerance. E.g. If a reaction is recorded for 
+         * Tylenol 3, but no reaction is recorded for regular Tylenol 
+         * or for coffee, this suggests that the likely cause of the 
+         * allergy is Codeine.</p><p>Because it is essential to know 
+         * whether the reaction occurred or not, this attribute is 
+         * mandatory.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"negationInd"})]
         public bool? NegationInd {
@@ -323,11 +562,28 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Iehr.Merged {
         }
 
         /**
-         * <summary>Description</summary>
+         * <summary>Business Name: Description</summary>
          * 
-         * <remarks>G:Description <p>A free form description of the 
-         * reaction.</p> <p>Allows for flexibility in the recording and 
-         * reporting of the reaction.</p></remarks>
+         * <remarks>Un-merged Business Name: Description Relationship: 
+         * REPC_MT000005CA.ObservationEvent.text 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>A free form 
+         * description of the reaction.</p> <p>Allows for flexibility 
+         * in the recording and reporting of the reaction.</p> 
+         * Un-merged Business Name: Description Relationship: 
+         * REPC_MT000001CA.ObservationEvent.text 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>A free form 
+         * description of the reaction.</p> <p>Allows for flexibility 
+         * in the recording and reporting of the reaction.</p> 
+         * Un-merged Business Name: Description Relationship: 
+         * REPC_MT000009CA.ObservationEvent.text 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>A free form 
+         * description of the reaction.</p> <p>Allows for flexibility 
+         * in the recording and reporting of the reaction.</p> 
+         * Un-merged Business Name: Description Relationship: 
+         * REPC_MT000013CA.ObservationEvent.text 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>A free form 
+         * description of the reaction.</p> <p>Allows for flexibility 
+         * in the recording and reporting of the reaction.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"text"})]
         public String Text {
@@ -336,12 +592,32 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Iehr.Merged {
         }
 
         /**
-         * <summary>ReactionOnsetDate</summary>
+         * <summary>Business Name: ReactionOnsetDate</summary>
          * 
-         * <remarks>F:Reaction Onset Date <p>The date on which the 
-         * reaction occurrence began.</p> <p>Indicates when evidence of 
-         * the condition first appeared. May also provide information 
-         * on the duration of the reaction.</p></remarks>
+         * <remarks>Un-merged Business Name: ReactionOnsetDate 
+         * Relationship: REPC_MT000005CA.ObservationEvent.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The date on which 
+         * the reaction occurrence began.</p> <p>Indicates when 
+         * evidence of the condition first appeared. May also provide 
+         * information on the duration of the reaction.</p> Un-merged 
+         * Business Name: ReactionOnsetDate Relationship: 
+         * REPC_MT000001CA.ObservationEvent.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The date on which 
+         * the reaction occurrence began.</p> <p>Indicates when 
+         * evidence of the condition first appeared. May also provide 
+         * information on the duration of the reaction.</p> Un-merged 
+         * Business Name: ReactionOnsetDate Relationship: 
+         * REPC_MT000009CA.ObservationEvent.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The date on which 
+         * the reaction occurrence began.</p> <p>Indicates when 
+         * evidence of the condition first appeared. May also provide 
+         * information on the duration of the reaction.</p> Un-merged 
+         * Business Name: ReactionOnsetDate Relationship: 
+         * REPC_MT000013CA.ObservationEvent.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The date on which 
+         * the reaction occurrence began.</p> <p>Indicates when 
+         * evidence of the condition first appeared. May also provide 
+         * information on the duration of the reaction.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"effectiveTime"})]
         public Interval<PlatformDate> EffectiveTime {
@@ -349,6 +625,23 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Iehr.Merged {
             set { this.effectiveTime.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * REPC_MT000005CA.Subject.severityObservation 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT000001CA.Subject.severityObservation 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT000009CA.Subject.severityObservation 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT000013CA.Subject.severityObservation 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf/severityObservation"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.AllergyIntoleranceSeverityLevel SubjectOfSeverityObservation {
             get { return this.subjectOfSeverityObservation; }

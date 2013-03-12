@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -50,11 +50,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Mcci_mt002300
             this.deviceAgentAgentOrganizationId = new IIImpl();
         }
         /**
-         * <summary>JB:Receiver Network Address</summary>
+         * <summary>Business Name: JB:Receiver Network Address</summary>
          * 
-         * <remarks><p>The address to which this message is being 
-         * sent.</p> <p>soap:Header\wsa:To</p> <p>Indicates where the 
-         * message should be sent. This is optional because not all 
+         * <remarks>Relationship: MCCI_MT002300CA.Receiver.telecom 
+         * Conformance/Cardinality: OPTIONAL (0) <p>The address to 
+         * which this message is being sent.</p> 
+         * <p>soap:Header\wsa:To</p> <p>Indicates where the message 
+         * should be sent. This is optional because not all 
          * environments require network addresses. It is mandatory when 
          * communicating using SOAP.</p></remarks>
          */
@@ -64,12 +66,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Mcci_mt002300
         }
 
         /**
-         * <summary>JA:Receiver Application Identifier</summary>
+         * <summary>Business Name: JA:Receiver Application Identifier</summary>
          * 
-         * <remarks><p>The unique identifier of the application to 
-         * which the message is being sent.</p> 
-         * <p>soap:Header\wsa:To\@endpointID</p> <p>Used for routing 
-         * and for verification that &quot;yes, this message is 
+         * <remarks>Relationship: MCCI_MT002300CA.Device2.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>The unique 
+         * identifier of the application to which the message is being 
+         * sent.</p> <p>soap:Header\wsa:To\@endpointID</p> <p>Used for 
+         * routing and for verification that &quot;yes, this message is 
          * intended for me.&quot; This is mandatory because it is the 
          * key identifier of the receiving application.</p></remarks>
          */
@@ -80,10 +83,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Mcci_mt002300
         }
 
         /**
-         * <summary>JE:Receiver Application Name</summary>
+         * <summary>Business Name: JE:Receiver Application Name</summary>
          * 
-         * <remarks><p>Optional name of receiver application.</p> 
-         * <p>Optional application name.</p></remarks>
+         * <remarks>Relationship: MCCI_MT002300CA.Device2.name 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>Optional name of 
+         * receiver application.</p> <p>Optional application name.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"device/name"})]
         public String DeviceName {
@@ -91,18 +95,35 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Mcci_mt002300
             set { this.deviceName.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: MCCI_MT002300CA.Agent.classCode</summary>
+         * 
+         * <remarks>Conformance/Cardinality: OPTIONAL (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"device/agent/classCode"})]
         public RoleClass DeviceAgentClassCode {
             get { return (RoleClass) this.deviceAgentClassCode.Value; }
             set { this.deviceAgentClassCode.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * MCCI_MT002300CA.Organization.classCode</summary>
+         * 
+         * <remarks>Conformance/Cardinality: OPTIONAL (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"device/agent/agentOrganization/classCode"})]
         public EntityClass DeviceAgentAgentOrganizationClassCode {
             get { return (EntityClass) this.deviceAgentAgentOrganizationClassCode.Value; }
             set { this.deviceAgentAgentOrganizationClassCode.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * MCCI_MT002300CA.Organization.determinerCode</summary>
+         * 
+         * <remarks>Conformance/Cardinality: OPTIONAL (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"device/agent/agentOrganization/determinerCode"})]
         public EntityDeterminer DeviceAgentAgentOrganizationDeterminerCode {
             get { return (EntityDeterminer) this.deviceAgentAgentOrganizationDeterminerCode.Value; }
@@ -110,12 +131,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Mcci_mt002300
         }
 
         /**
-         * <summary>JK:Receiver Organization Identifier</summary>
+         * <summary>Business Name: JK:Receiver Organization Identifier</summary>
          * 
-         * <remarks><p>Organization intended to receive this 
-         * message</p> <p>Id is the only attribute in this class which 
-         * is non-structural and is therefore mandatory. The agent 
-         * association (from the receiver device) is optional.</p></remarks>
+         * <remarks>Relationship: MCCI_MT002300CA.Organization.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>Organization 
+         * intended to receive this message</p> <p>Id is the only 
+         * attribute in this class which is non-structural and is 
+         * therefore mandatory. The agent association (from the 
+         * receiver device) is optional.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"device/agent/agentOrganization/id"})]
         public Identifier DeviceAgentAgentOrganizationId {

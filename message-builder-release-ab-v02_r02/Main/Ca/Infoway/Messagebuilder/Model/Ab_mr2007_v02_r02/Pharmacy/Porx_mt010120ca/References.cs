@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,14 +28,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Porx_mt0101
 
 
     /**
-     * <summary>references</summary>
+     * <summary>Business Name: references</summary>
      * 
-     * <remarks><p>Enables the communication of a reference to a 
-     * protocol, study or guideline id, specific to the 
-     * jurisdiction;</p> <p>Provides support for non-traditional 
-     * therapies. Needed when seeking to prescribe 
-     * &#226;&#128;&#156;Special Access&#226;&#128;&#157; 
-     * medications, for example, Ontario Limited Use.</p></remarks>
+     * <p>Enables the communication of a reference to a protocol, 
+     * study or guideline id, specific to the jurisdiction;</p> 
+     * <p>Provides support for non-traditional therapies. Needed 
+     * when seeking to prescribe &#226;&#128;&#156;Special 
+     * Access&#226;&#128;&#157; medications, for example, Ontario 
+     * Limited Use.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"PORX_MT010120CA.Definition"})]
     public class References : MessagePartBean {
@@ -46,12 +46,24 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Porx_mt0101
         public References() {
             this.contextConductionInd = new BLImpl();
         }
+        /**
+         * <summary>Relationship: 
+         * PORX_MT010120CA.Definition.contextConductionInd</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"contextConductionInd"})]
         public bool? ContextConductionInd {
             get { return this.contextConductionInd.Value; }
             set { this.contextConductionInd.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PORX_MT010120CA.Definition.substanceAdministrationDefinition</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"substanceAdministrationDefinition"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.Protocols SubstanceAdministrationDefinition {
             get { return this.substanceAdministrationDefinition; }

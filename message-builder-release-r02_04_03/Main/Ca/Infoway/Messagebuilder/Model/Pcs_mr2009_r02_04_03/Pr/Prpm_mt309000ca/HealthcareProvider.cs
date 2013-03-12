@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,12 +30,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Prpm_mt309000c
 
 
     /**
-     * <summary>Healthcare Provider</summary>
+     * <summary>Business Name: Healthcare Provider</summary>
      * 
-     * <remarks><p>This roles the specific Healthcare provider role 
-     * such as a Physician, Nurse or other type of caregivers.</p> 
      * <p>Roleclass required to support the identification of 
-     * person responsible for providing healthcare services</p></remarks>
+     * person responsible for providing healthcare services</p> 
+     * <p>This roles the specific Healthcare provider role such as 
+     * a Physician, Nurse or other type of caregivers.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"PRPM_MT309000CA.HealthCareProvider"})]
     public class HealthcareProvider : MessagePartBean, Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Prpm_mt309000ca.IRoleChoice {
@@ -55,34 +55,51 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Prpm_mt309000c
             this.code = new CVImpl();
             this.name = new LISTImpl<PN, PersonName>(typeof(PNImpl));
         }
+        /**
+         * <summary>Relationship: 
+         * PRPM_MT309000CA.ResponsibleParty.privilege</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"responsibleFor/privilege"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Merged.Privilege> ResponsibleForPrivilege {
             get { return this.responsibleForPrivilege; }
         }
 
         /**
-         * <summary>Healthcare Provider Role Identification</summary>
+         * <summary>Business Name: Healthcare Provider Role 
+         * Identification</summary>
          * 
-         * <remarks><p>A unique identifier for a provider in a specific 
-         * healthcare role.</p> <p>Mandatory attribute supports the 
-         * identification of the healthcare provider</p></remarks>
+         * <remarks>Relationship: PRPM_MT309000CA.HealthCareProvider.id 
+         * Conformance/Cardinality: MANDATORY (1-10) <p>Mandatory 
+         * attribute supports the identification of the healthcare 
+         * provider</p> <p>A unique identifier for a provider in a 
+         * specific healthcare role.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public ICollection<Identifier> Id {
             get { return this.id.RawSet(); }
         }
 
+        /**
+         * <summary>Relationship: PRPM_MT309000CA.RelatedTo.roleChoice</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"relatedTo/roleChoice"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Prpm_mt309000ca.IRoleChoice> RelatedToRoleChoice {
             get { return this.relatedToRoleChoice; }
         }
 
         /**
-         * <summary>Healthcare Provider Role Type</summary>
+         * <summary>Business Name: Healthcare Provider Role Type</summary>
          * 
-         * <remarks><p>The code identifying the specific healthcare 
-         * provider role.</p> <p>Mandatory attribute supports the 
-         * identification of the healthcare provider</p></remarks>
+         * <remarks>Relationship: 
+         * PRPM_MT309000CA.HealthCareProvider.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Mandatory 
+         * attribute supports the identification of the healthcare 
+         * provider</p> <p>The code identifying the specific healthcare 
+         * provider role.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public HealthcareProviderRoleType Code {
@@ -91,23 +108,38 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Prpm_mt309000c
         }
 
         /**
-         * <summary>Healthcare Provider Role Name</summary>
+         * <summary>Business Name: Healthcare Provider Role Name</summary>
          * 
-         * <remarks><p>The providers name pertaining to the specific 
-         * healthcare provider role.</p> <p>Required attribute supports 
-         * the identification of the healthcare provider</p></remarks>
+         * <remarks>Relationship: 
+         * PRPM_MT309000CA.HealthCareProvider.name 
+         * Conformance/Cardinality: REQUIRED (0-10) <p>Required 
+         * attribute supports the identification of the healthcare 
+         * provider</p> <p>The providers name pertaining to the 
+         * specific healthcare provider role.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"name"})]
         public IList<PersonName> Name {
             get { return this.name.RawList(); }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PRPM_MT309000CA.HealthCareProvider.healthCarePrincipalPerson</summary>
+         * 
+         * <remarks>Conformance/Cardinality: REQUIRED (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"healthCarePrincipalPerson"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Prpm_mt309000ca.PrinicpalPerson HealthCarePrincipalPerson {
             get { return this.healthCarePrincipalPerson; }
             set { this.healthCarePrincipalPerson = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PRPM_MT309000CA.HealthCareProvider.issuingOrganization</summary>
+         * 
+         * <remarks>Conformance/Cardinality: OPTIONAL (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"issuingOrganization"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Prpm_mt309000ca.Organization IssuingOrganization {
             get { return this.issuingOrganization; }

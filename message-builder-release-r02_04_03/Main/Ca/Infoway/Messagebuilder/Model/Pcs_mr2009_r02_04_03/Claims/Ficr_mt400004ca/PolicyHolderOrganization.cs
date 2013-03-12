@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,7 +35,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt400
             this.name = new TNImpl();
         }
         /**
-         * <summary>Policy Holder Organization Name</summary>
+         * <summary>Business Name: Policy Holder Organization Name</summary>
+         * 
+         * <remarks>Relationship: 
+         * FICR_MT400004CA.PolicyHolderOrganization.name 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"name"})]
         public TrivialName Name {

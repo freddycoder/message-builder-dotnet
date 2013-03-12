@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,12 +36,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Pome_mt0
             this.effectiveTime = new IVLImpl<TS, Interval<PlatformDate>>();
         }
         /**
-         * <summary>Refill period</summary>
+         * <summary>Business Name: Refill period</summary>
          * 
-         * <remarks><p>The interval within which subsequent dispensing 
-         * can be made against a prescription, after the first/initial 
-         * fill.</p> <p>Certain prescribers have time limitations or 
-         * certain drugs must be filled in a finite period of time.</p></remarks>
+         * <remarks>Relationship: 
+         * POME_MT010040CA.SubsequentDispense.effectiveTime 
+         * Conformance/Cardinality: MANDATORY (1) <p>Certain 
+         * prescribers have time limitations or certain drugs must be 
+         * filled in a finite period of time.</p> <p>The interval 
+         * within which subsequent dispensing can be made against a 
+         * prescription, after the first/initial fill.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"effectiveTime"})]
         public Interval<PlatformDate> EffectiveTime {

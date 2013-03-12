@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,10 +27,10 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Ficr_mt60020
 
 
     /**
-     * <summary>Animal Patient</summary>
+     * <summary>Business Name: Animal Patient</summary>
      * 
-     * <remarks><p>Animal Patient</p> <p>Used when invoice is for 
-     * animal patient.</p></remarks>
+     * <p>Used when invoice is for animal patient.</p> <p>Animal 
+     * Patient</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"FICR_MT600201CA.CoveredPartyAsPatientAnimal"})]
     public class AnimalPatient : MessagePartBean, Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Ficr_mt600201ca.ICoveredPartyAsPatientChoice {
@@ -41,9 +41,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Ficr_mt60020
             this.name = new STImpl();
         }
         /**
-         * <summary>Name of the animal</summary>
+         * <summary>Business Name: Name of the animal</summary>
          * 
-         * <remarks><p>Name of animal</p></remarks>
+         * <remarks>Relationship: 
+         * FICR_MT600201CA.CoveredPartyAsPatientAnimal.name 
+         * Conformance/Cardinality: POPULATED (1) <p>Name of animal</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"name"})]
         public String Name {

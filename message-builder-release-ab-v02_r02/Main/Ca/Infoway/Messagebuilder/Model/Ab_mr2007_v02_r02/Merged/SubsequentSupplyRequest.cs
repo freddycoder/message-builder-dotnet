@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,11 +31,10 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
      * <summary>PORX_MT060160CA.SubsequentSupplyRequest: (no 
      * business name)</summary>
      * 
-     * <remarks><p>Dispensing instruction for all dispenses 
-     * subsequent to the first fill.</p> 
-     * PORX_MT060340CA.SubsequentSupplyRequest: (no business name) 
      * <p>Dispensing instruction for all dispenses subsequent to 
-     * the first fill.</p></remarks>
+     * the first fill.</p> PORX_MT060340CA.SubsequentSupplyRequest: 
+     * (no business name) <p>Dispensing instruction for all 
+     * dispenses subsequent to the first fill.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"PORX_MT010120CA.SubsequentSupplyRequest","PORX_MT060160CA.SubsequentSupplyRequest","PORX_MT060340CA.SubsequentSupplyRequest"})]
     public class SubsequentSupplyRequest : MessagePartBean {
@@ -52,13 +51,26 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             this.expectedUseTime = new IVLImpl<TS, Interval<PlatformDate>>();
         }
         /**
-         * <summary>DispenseInterval</summary>
+         * <summary>Business Name: DispenseInterval</summary>
          * 
-         * <remarks>F:Dispense Interval <p>Indicates a minimum amount 
-         * of time that must occur between dispenses.</p> <p>Helps the 
-         * prescriber ensure that the patient does not ever receive 
-         * more than the appropriate amount of medication in a 
-         * particular timeframe.</p> F:Dispense Interval <p>Indicates a 
+         * <remarks>Un-merged Business Name: DispenseInterval 
+         * Relationship: 
+         * PORX_MT060160CA.SubsequentSupplyRequest.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates a 
+         * minimum amount of time that must occur between 
+         * dispenses.</p> <p>Helps the prescriber ensure that the 
+         * patient does not ever receive more than the appropriate 
+         * amount of medication in a particular timeframe.</p> 
+         * Un-merged Business Name: DispenseInterval Relationship: 
+         * PORX_MT010120CA.SubsequentSupplyRequest.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates a 
+         * minimum amount of time that must occur between 
+         * dispenses.</p> <p>Helps the prescriber ensure that the 
+         * patient does not ever receive more than the appropriate 
+         * amount of medication in a particular timeframe.</p> 
+         * Un-merged Business Name: DispenseInterval Relationship: 
+         * PORX_MT060340CA.SubsequentSupplyRequest.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates a 
          * minimum amount of time that must occur between 
          * dispenses.</p> <p>Helps the prescriber ensure that the 
          * patient does not ever receive more than the appropriate 
@@ -71,20 +83,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>NumberOfFills</summary>
+         * <summary>Business Name: NumberOfFills</summary>
          * 
-         * <remarks>G:Number of Fills <p>The number of times the 
-         * prescribed quantity is to be dispensed including the initial 
-         * standard fill.</p> <p>Used to calculate total prescribed 
-         * quantity; and also used for compliance 
-         * checking.</p><p>Expressed as Number of Fills rather than 
-         * number of refills due to HL7 modeling constraints.</p> 
-         * <p>Used to calculate total prescribed quantity; and also 
-         * used for compliance checking.</p><p>Expressed as Number of 
-         * Fills rather than number of refills due to HL7 modeling 
-         * constraints.</p> G:Number of Fills <p>The number of times 
-         * the prescribed quantity is to be dispensed, including the 
-         * initial standard fill.</p> 
+         * <remarks>Un-merged Business Name: NumberOfFills 
+         * Relationship: 
+         * PORX_MT060160CA.SubsequentSupplyRequest.repeatNumber 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The number of 
+         * times the prescribed quantity is to be dispensed, including 
+         * the initial standard fill.</p> 
          * <p>D54.03</p><p>DRU.060-02</p><p>Claim,415-DF</p><p>ZDP.15.1</p><p>Prescription.numberOfRefills</p> 
          * <p>D54.03</p><p>DRU.060-02</p><p>Claim,415-DF</p><p>ZDP.15.1</p><p>Prescription.numberOfRefills</p> 
          * <p>D54.03</p><p>DRU.060-02</p><p>Claim,415-DF</p><p>ZDP.15.1</p><p>Prescription.numberOfRefills</p> 
@@ -97,9 +103,23 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
          * quantity; and also used for compliance 
          * checking.</p><p>Expressed as Number of Fills rather than 
          * number of refills due to HL7 modeling constraints.</p> 
-         * G:Number of Fills <p>The number of times the prescribed 
-         * quantity is to be dispensed including the initial standard 
-         * fill.</p> 
+         * Un-merged Business Name: NumberOfFills Relationship: 
+         * PORX_MT010120CA.SubsequentSupplyRequest.repeatNumber 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The number of 
+         * times the prescribed quantity is to be dispensed including 
+         * the initial standard fill.</p> <p>Used to calculate total 
+         * prescribed quantity; and also used for compliance 
+         * checking.</p><p>Expressed as Number of Fills rather than 
+         * number of refills due to HL7 modeling constraints.</p> 
+         * <p>Used to calculate total prescribed quantity; and also 
+         * used for compliance checking.</p><p>Expressed as Number of 
+         * Fills rather than number of refills due to HL7 modeling 
+         * constraints.</p> Un-merged Business Name: NumberOfFills 
+         * Relationship: 
+         * PORX_MT060340CA.SubsequentSupplyRequest.repeatNumber 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The number of 
+         * times the prescribed quantity is to be dispensed including 
+         * the initial standard fill.</p> 
          * <p>D54.03</p><p>DRU.060-02</p><p>Claim,415-DF</p><p>ZDP.15.1</p><p>Prescription.numberOfRefills</p> 
          * <p>D54.03</p><p>DRU.060-02</p><p>Claim,415-DF</p><p>ZDP.15.1</p><p>Prescription.numberOfRefills</p> 
          * <p>D54.03</p><p>DRU.060-02</p><p>Claim,415-DF</p><p>ZDP.15.1</p><p>Prescription.numberOfRefills</p> 
@@ -120,11 +140,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>FillQuantity</summary>
+         * <summary>Business Name: FillQuantity</summary>
          * 
-         * <remarks>D:Fill Quantity <p>The amount of medication to be 
-         * dispensed to the patient for each normal fill (excluding 
-         * trial or other special first fills).</p> 
+         * <remarks>Un-merged Business Name: FillQuantity Relationship: 
+         * PORX_MT060160CA.SubsequentSupplyRequest.quantity 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The amount of 
+         * medication to be dispensed to the patient for each normal 
+         * fill (excluding trial or other special first fills).</p> 
          * <p>Prescription.fillAmount</p><p>Prescription.maximumDispensedAmount 
          * (when SupplyRequest.effectiveTime id populated with an 
          * interval)</p><p>Quantity</p> 
@@ -135,11 +157,30 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
          * (when SupplyRequest.effectiveTime id populated with an 
          * interval)</p><p>Quantity</p> <p>Limits the quantity of 
          * medication in patient's possession at a time. Used in 
-         * compliance checking</p> D:Fill Quantity <p>The amount of 
+         * compliance checking</p> Un-merged Business Name: 
+         * FillQuantity Relationship: 
+         * PORX_MT010120CA.SubsequentSupplyRequest.quantity 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The amount of 
          * medication to be dispensed to the patient for each normal 
          * fill (excluding trial or other special first fills).</p> 
          * <p>Limits the quantity of medication in patient's possession 
-         * at a time. Used in compliance checking.</p></remarks>
+         * at a time. Used in compliance checking.</p> Un-merged 
+         * Business Name: FillQuantity Relationship: 
+         * PORX_MT060340CA.SubsequentSupplyRequest.quantity 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The amount of 
+         * medication to be dispensed to the patient for each normal 
+         * fill (excluding trial or other special first fills).</p> 
+         * <p>Prescription.fillAmount</p><p>Prescription.maximumDispensedAmount 
+         * (when SupplyRequest.effectiveTime id populated with an 
+         * interval)</p><p>Quantity</p> 
+         * <p>Prescription.fillAmount</p><p>Prescription.maximumDispensedAmount 
+         * (when SupplyRequest.effectiveTime id populated with an 
+         * interval)</p><p>Quantity</p> 
+         * <p>Prescription.fillAmount</p><p>Prescription.maximumDispensedAmount 
+         * (when SupplyRequest.effectiveTime id populated with an 
+         * interval)</p><p>Quantity</p> <p>Limits the quantity of 
+         * medication in patient's possession at a time. Used in 
+         * compliance checking</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"quantity"})]
         public PhysicalQuantity Quantity {
@@ -148,29 +189,47 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>DaysSupply</summary>
+         * <summary>Business Name: DaysSupply</summary>
          * 
-         * <remarks>E:Days Supply <p>The number of days that each 
-         * standard fill is expected to last. The dispenser must use 
-         * the administration instructions together with the Days 
-         * Supply to calculate the total quantity to dispense per fill. 
-         * May be specified in addition to quantity to indicate the 
-         * length of time a quantity of &quot;as needed&quot; 
+         * <remarks>Un-merged Business Name: DaysSupply Relationship: 
+         * PORX_MT060160CA.SubsequentSupplyRequest.expectedUseTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The number of 
+         * days that each standard fill is expected to last. The 
+         * dispenser must use the administration instructions together 
+         * with the Days Supply to calculate the total quantity to 
+         * dispense per fill. May be specified in addition to quantity 
+         * to indicate the length of time a quantity of 'as needed' 
          * medication is expected to last.</p> <p>Useful in determining 
          * and managing certain contraindications ('Fill-Too-Soon', 
          * 'Fill-Too-Late', and 'Duration of Therapy'). Also provides 
          * guidance to the pharmacy on how much to dispense. Also 
-         * useful in research</p> E:Days Supply <p>The number of days 
-         * that each standard fill is expected to last. The dispenser 
-         * must use the administration instructions together with the 
-         * Days Supply to calculate the total quantity to dispense per 
-         * fill. May be specified in addition to quantity to indicate 
-         * the length of time a quantity of 'as needed' medication is 
-         * expected to last.</p> <p>Useful in determining and managing 
-         * certain contraindications ('Fill-Too-Soon', 'Fill-Too-Late', 
-         * and 'Duration of Therapy'). Also provides guidance to the 
-         * pharmacy on how much to dispense. Also useful in 
-         * research.</p></remarks>
+         * useful in research.</p> Un-merged Business Name: DaysSupply 
+         * Relationship: 
+         * PORX_MT010120CA.SubsequentSupplyRequest.expectedUseTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The number of 
+         * days that each standard fill is expected to last. The 
+         * dispenser must use the administration instructions together 
+         * with the Days Supply to calculate the total quantity to 
+         * dispense per fill. May be specified in addition to quantity 
+         * to indicate the length of time a quantity of &quot;as 
+         * needed&quot; medication is expected to last.</p> <p>Useful 
+         * in determining and managing certain contraindications 
+         * ('Fill-Too-Soon', 'Fill-Too-Late', and 'Duration of 
+         * Therapy'). Also provides guidance to the pharmacy on how 
+         * much to dispense. Also useful in research</p> Un-merged 
+         * Business Name: DaysSupply Relationship: 
+         * PORX_MT060340CA.SubsequentSupplyRequest.expectedUseTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The number of 
+         * days that each standard fill is expected to last. The 
+         * dispenser must use the administration instructions together 
+         * with the Days Supply to calculate the total quantity to 
+         * dispense per fill. May be specified in addition to quantity 
+         * to indicate the length of time a quantity of 'as needed' 
+         * medication is expected to last.</p> <p>Useful in determining 
+         * and managing certain contraindications ('Fill-Too-Soon', 
+         * 'Fill-Too-Late', and 'Duration of Therapy'). Also provides 
+         * guidance to the pharmacy on how much to dispense. Also 
+         * useful in research.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"expectedUseTime"})]
         public Interval<PlatformDate> ExpectedUseTime {

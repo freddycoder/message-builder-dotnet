@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged {
 
 
     /**
-     * <summary>TriggerEvent</summary>
+     * <summary>Business Name: TriggerEvent</summary>
      * 
      * <remarks>MFMI_MT700711CA.ControlActEvent: Trigger Event 
      * <p>Identifies the action that resulted in this message being 
@@ -73,10 +73,22 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged {
             this.subjectOf = new List<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.Caused>();
         }
         /**
-         * <summary>EventIdentifier</summary>
+         * <summary>Business Name: EventIdentifier</summary>
          * 
-         * <remarks>B:Event Identifier <p>A unique identifier for this 
-         * particular event assigned by the system in which the event 
+         * <remarks>Un-merged Business Name: EventIdentifier 
+         * Relationship: MFMI_MT700711CA.ControlActEvent.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>A unique 
+         * identifier for this particular event assigned by the system 
+         * in which the event occurred.</p> <p>Allows the event to be 
+         * referenced (for undos) and also indicates whether multiple 
+         * interactions were caused by the same triggering event. Also 
+         * used for audit purposes.</p> <p>Identifier needs to be 
+         * persisted by receiving applications, except for queries 
+         * (queries cannot be retracted or undone).</p> Un-merged 
+         * Business Name: EventIdentifier Relationship: 
+         * MFMI_MT700716CA.ControlActEvent.id Conformance/Cardinality: 
+         * MANDATORY (1) <p>A unique identifier for this particular 
+         * event assigned by the system in which the event 
          * occurred.</p> <p>Allows the event to be referenced (for 
          * undos) and also indicates whether multiple interactions were 
          * caused by the same triggering event. Also used for audit 
@@ -91,11 +103,19 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged {
         }
 
         /**
-         * <summary>EventType</summary>
+         * <summary>Business Name: EventType</summary>
          * 
-         * <remarks>A:Event Type <p>Identifies the trigger event that 
-         * occurred.</p> <p>This is mandatory because it is essential 
-         * to understanding the meaning of the event.</p></remarks>
+         * <remarks>Un-merged Business Name: EventType Relationship: 
+         * MFMI_MT700711CA.ControlActEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Identifies the 
+         * trigger event that occurred.</p> <p>This is mandatory 
+         * because it is essential to understanding the meaning of the 
+         * event.</p> Un-merged Business Name: EventType Relationship: 
+         * MFMI_MT700716CA.ControlActEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Identifies the 
+         * trigger event that occurred.</p> <p>This is mandatory 
+         * because it is essential to understanding the meaning of the 
+         * event.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public HL7TriggerEventCode Code {
@@ -104,13 +124,23 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged {
         }
 
         /**
-         * <summary>EventEffectivePeriod</summary>
+         * <summary>Business Name: EventEffectivePeriod</summary>
          * 
-         * <remarks>C:Event Effective Period <p>Indicates the time the 
-         * event (e.g. query, change, activation) should begin and 
-         * occasionally when it should end.</p> <p>The time an event 
-         * becomes effective may differ from the time the event is 
-         * recorded (i.e. it may be in the future or the past). For 
+         * <remarks>Un-merged Business Name: EventEffectivePeriod 
+         * Relationship: MFMI_MT700711CA.ControlActEvent.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
+         * time the event (e.g. query, change, activation) should begin 
+         * and occasionally when it should end.</p> <p>The time an 
+         * event becomes effective may differ from the time the event 
+         * is recorded (i.e. it may be in the future or the past). For 
+         * events such as 'suspend', an intended end date may also be 
+         * indicated.</p> Un-merged Business Name: EventEffectivePeriod 
+         * Relationship: MFMI_MT700716CA.ControlActEvent.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
+         * time the event (e.g. query, change, activation) should begin 
+         * and occasionally when it should end.</p> <p>The time an 
+         * event becomes effective may differ from the time the event 
+         * is recorded (i.e. it may be in the future or the past). For 
          * events such as 'suspend', an intended end date may also be 
          * indicated.</p></remarks>
          */
@@ -121,14 +151,25 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged {
         }
 
         /**
-         * <summary>EventReason</summary>
+         * <summary>Business Name: EventReason</summary>
          * 
-         * <remarks>E:Event Reason <p>Identifies why this specific 
-         * message interaction (e.g. query, activation request, 
-         * modification request) occurred.</p> <p>Allows identifying a 
-         * reason for a specific action, such as 'reason for hold' or 
-         * 'reason for accessing information'.</p> <p>The domain 
-         * associated with this attribute will vary for each 
+         * <remarks>Un-merged Business Name: EventReason Relationship: 
+         * MFMI_MT700711CA.ControlActEvent.reasonCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Identifies why 
+         * this specific message interaction (e.g. query, activation 
+         * request, modification request) occurred.</p> <p>Allows 
+         * identifying a reason for a specific action, such as 'reason 
+         * for hold' or 'reason for accessing information'.</p> <p>The 
+         * domain associated with this attribute will vary for each 
+         * interaction and will be noted as part of the interaction 
+         * description.</p> Un-merged Business Name: EventReason 
+         * Relationship: MFMI_MT700716CA.ControlActEvent.reasonCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Identifies why 
+         * this specific message interaction (e.g. query, activation 
+         * request, modification request) occurred.</p> <p>Allows 
+         * identifying a reason for a specific action, such as 'reason 
+         * for hold' or 'reason for accessing information'.</p> <p>The 
+         * domain associated with this attribute will vary for each 
          * interaction and will be noted as part of the interaction 
          * description.</p></remarks>
          */
@@ -138,54 +179,131 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged {
             set { this.reasonCode.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * MFMI_MT700711CA.ResponsibleParty.assignedEntity 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"responsibleParty/assignedEntity"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.HealthcareWorker ResponsiblePartyAssignedEntity {
             get { return this.responsiblePartyAssignedEntity; }
             set { this.responsiblePartyAssignedEntity = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * MFMI_MT700711CA.ControlActEvent.author 
+         * Conformance/Cardinality: OPTIONAL (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"author"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged.CreatedBy Author {
             get { return this.author; }
             set { this.author = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * MFMI_MT700711CA.DataEnterer.entererChoice 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"dataEnterer/entererChoice"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged.IEntererChoice DataEntererEntererChoice {
             get { return this.dataEntererEntererChoice; }
             set { this.dataEntererEntererChoice = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * MFMI_MT700711CA.DataEntryLocation.serviceDeliveryLocation 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"dataEntryLocation/serviceDeliveryLocation"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.ServiceLocation DataEntryLocationServiceDeliveryLocation {
             get { return this.dataEntryLocationServiceDeliveryLocation; }
             set { this.dataEntryLocationServiceDeliveryLocation = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * MFMI_MT700711CA.ControlActEvent.location 
+         * Conformance/Cardinality: OPTIONAL (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"location"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.CreatedAt Location {
             get { return this.location; }
             set { this.location = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * MFMI_MT700711CA.ControlActEvent.subject 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MFMI_MT700716CA.ControlActEvent.subject 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subject"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged.RefersTo<RR> Subject {
             get { return this.subject; }
             set { this.subject = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * MFMI_MT700711CA.PertinentInformation.authorizationToken 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"pertinentInformation/authorizationToken"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged.AuthenticationToken PertinentInformationAuthorizationToken {
             get { return this.pertinentInformationAuthorizationToken; }
             set { this.pertinentInformationAuthorizationToken = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: MFMI_MT700711CA.Subject3.consentEvent 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf1/consentEvent"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.Consent SubjectOf1ConsentEvent {
             get { return this.subjectOf1ConsentEvent; }
             set { this.subjectOf1ConsentEvent = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * MFMI_MT700711CA.ControlActEvent.subjectOf2 
+         * Conformance/Cardinality: REQUIRED (0-50) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MFMI_MT700716CA.ControlActEvent.subjectOf 
+         * Conformance/Cardinality: REQUIRED (0-50)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf","subjectOf2"})]
         [Hl7MapByPartType(Name="subjectOf", Type="MFMI_MT700716CA.Subject")]
         [Hl7MapByPartType(Name="subjectOf2", Type="MFMI_MT700711CA.Subject")]

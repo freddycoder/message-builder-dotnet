@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,36 +27,27 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged {
 
 
     /**
-     * <summary>CreatedAt</summary>
+     * <summary>Business Name: CreatedAt</summary>
      * 
      * <remarks>MFMI_MT700751CA.Location: *a1:created at <p>If 
      * AuthorizationToken not specified, association is required. 
      * If AuthorizationToken specified, association is required if 
      * authorization does not cover this participation.</p> 
-     * <p>Indicates the service delivery location where the event 
-     * occurred.</p> <p>Indicates where paper records may be 
-     * located, and may be important to determining 
-     * authorization.</p><p>The association is optional because in 
-     * some jurisdictions this information will be conveyed as part 
-     * of the authentication token.</p> <p>Indicates where paper 
-     * records may be located, and may be important to determining 
-     * authorization.</p><p>The association is optional because in 
-     * some jurisdictions this information will be conveyed as part 
-     * of the authentication token.</p> MFMI_MT700711CA.Location: 
-     * *a1:created at <p>If AuthorizationToken not specified, 
-     * association is required. If AuthorizationToken specified, 
-     * association is required if authorization does not cover this 
-     * participation.</p> <p>Indicates the service delivery 
-     * location where the event occurred.</p> <p>Indicates where 
-     * paper records may be located, and may be important to 
-     * determining authorization.</p><p>The association is optional 
-     * because in some jurisdictions this information will be 
-     * conveyed as part of the authentication token.</p> 
      * <p>Indicates where paper records may be located, and may be 
      * important to determining authorization.</p><p>The 
      * association is optional because in some jurisdictions this 
      * information will be conveyed as part of the authentication 
-     * token.</p></remarks>
+     * token.</p> <p>Indicates the service delivery location where 
+     * the event occurred.</p> MFMI_MT700711CA.Location: 
+     * *a1:created at <p>If AuthorizationToken not specified, 
+     * association is required. If AuthorizationToken specified, 
+     * association is required if authorization does not cover this 
+     * participation.</p> <p>Indicates where paper records may be 
+     * located, and may be important to determining 
+     * authorization.</p><p>The association is optional because in 
+     * some jurisdictions this information will be conveyed as part 
+     * of the authentication token.</p> <p>Indicates the service 
+     * delivery location where the event occurred.</p></remarks>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"MFMI_MT700711CA.Location","MFMI_MT700751CA.Location","PRPM_MT301010CA.Location","PRPM_MT303010CA.Location","REPC_MT500001CA.Location2","REPC_MT500002CA.Location2","REPC_MT500004CA.Location2"})]
     public class CreatedAt : MessagePartBean {
@@ -67,6 +58,32 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged {
         public CreatedAt() {
             this.sequenceNumber = new INTImpl();
         }
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * REPC_MT500002CA.Location2.serviceDeliveryLocation 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MFMI_MT700751CA.Location.serviceDeliveryLocation 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PRPM_MT301010CA.Location.serviceDeliveryLocation 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT500001CA.Location2.serviceDeliveryLocation 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT500004CA.Location2.serviceDeliveryLocation 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MFMI_MT700711CA.Location.serviceDeliveryLocation 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PRPM_MT303010CA.Location.serviceDeliveryLocation 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"serviceDeliveryLocation"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.ServiceDeliveryLocation ServiceDeliveryLocation {
             get { return this.serviceDeliveryLocation; }
@@ -74,9 +91,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged {
         }
 
         /**
-         * <summary>OrderOfServiceDeliveryLocations</summary>
+         * <summary>Business Name: OrderOfServiceDeliveryLocations</summary>
          * 
-         * <remarks>Order of Service Delivery Locations <p>Allows each 
+         * <remarks>Un-merged Business Name: 
+         * OrderOfServiceDeliveryLocations Relationship: 
+         * PRPM_MT301010CA.Location.sequenceNumber 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Allows each 
+         * Service Delivery Location to be sequentially listed.</p> 
+         * Un-merged Business Name: OrderOfServiceDeliveryLocations 
+         * Relationship: PRPM_MT303010CA.Location.sequenceNumber 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Allows each 
          * Service Delivery Location to be sequentially listed.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"sequenceNumber"})]

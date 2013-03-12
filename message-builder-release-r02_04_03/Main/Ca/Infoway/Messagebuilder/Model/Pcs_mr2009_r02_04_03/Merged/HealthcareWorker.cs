@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,48 +32,48 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged {
     /**
      * <summary>REPC_MT210003CA.AssignedEntity: Provider</summary>
      * 
-     * <remarks><p>Player association must be present if and only 
-     * if id is present</p> <p>Identifies the service provider or 
-     * type of service provider who is being requested to deliver 
-     * services to the patient.</p> <p>Represents a key piece of 
-     * information about the referral. Included because the 
-     * referral may be routed to a different person than that 
-     * intended to actually deliver the service.</p> 
-     * POIZ_MT030060CA.AssignedEntity: Healthcare Worker <p>The 
-     * person organization assigned to carry out the associated 
-     * (linked by a participation) action and/or the organization 
-     * under whose authority they are acting.</p> <p>Critical to 
-     * tracking responsibility and performing follow-up. The CMET 
-     * supports both licensed providers as well as non-licensed 
-     * providers such as technicians, receptionists, etc.</p> 
-     * <p>All attributes other than the various identifiers are 
-     * expected to be retrieved from the provider registry.</p> 
-     * POIZ_MT030050CA.AssignedEntity: Healthcare Worker <p>The 
-     * person organization assigned to carry out the associated 
-     * (linked by a participation) action and/or the organization 
-     * under whose authority they are acting.</p> <p>Critical to 
-     * tracking responsibility and performing follow-up. The CMET 
-     * supports both licensed providers as well as non-licensed 
-     * providers such as technicians, receptionists, etc.</p> 
-     * <p>All attributes other than the various identifiers are 
-     * expected to be retrieved from the provider registry.</p> 
-     * REPC_MT210002CA.AssignedEntity: Provider <p>Player 
-     * association must be present if and only if id is present</p> 
-     * <p>Identifies the service provider or type of service 
-     * provider who is being requested to deliver services to the 
-     * patient.</p> <p>Represents a key piece of information about 
+     * <p>Player association must be present if and only if id is 
+     * present</p> <p>Represents a key piece of information about 
      * the referral. Included because the referral may be routed to 
      * a different person than that intended to actually deliver 
-     * the service.</p> POIZ_MT060150CA.AssignedEntity: Healthcare 
-     * Worker <p>The person organization assigned to carry out the 
-     * associated (linked by a participation) action and/or the 
-     * organization under whose authority they are acting.</p> 
+     * the service.</p> <p>Identifies the service provider or type 
+     * of service provider who is being requested to deliver 
+     * services to the patient.</p> POIZ_MT030060CA.AssignedEntity: 
+     * Healthcare Worker <p>Critical to tracking responsibility and 
+     * performing follow-up. The CMET supports both licensed 
+     * providers as well as non-licensed providers such as 
+     * technicians, receptionists, etc.</p> <p>All attributes other 
+     * than the various identifiers are expected to be retrieved 
+     * from the provider registry.</p> <p>The person organization 
+     * assigned to carry out the associated (linked by a 
+     * participation) action and/or the organization under whose 
+     * authority they are acting.</p> 
+     * POIZ_MT030050CA.AssignedEntity: Healthcare Worker 
      * <p>Critical to tracking responsibility and performing 
      * follow-up. The CMET supports both licensed providers as well 
      * as non-licensed providers such as technicians, 
      * receptionists, etc.</p> <p>All attributes other than the 
      * various identifiers are expected to be retrieved from the 
-     * provider registry.</p></remarks>
+     * provider registry.</p> <p>The person organization assigned 
+     * to carry out the associated (linked by a participation) 
+     * action and/or the organization under whose authority they 
+     * are acting.</p> REPC_MT210002CA.AssignedEntity: Provider 
+     * <p>Player association must be present if and only if id is 
+     * present</p> <p>Represents a key piece of information about 
+     * the referral. Included because the referral may be routed to 
+     * a different person than that intended to actually deliver 
+     * the service.</p> <p>Identifies the service provider or type 
+     * of service provider who is being requested to deliver 
+     * services to the patient.</p> POIZ_MT060150CA.AssignedEntity: 
+     * Healthcare Worker <p>Critical to tracking responsibility and 
+     * performing follow-up. The CMET supports both licensed 
+     * providers as well as non-licensed providers such as 
+     * technicians, receptionists, etc.</p> <p>All attributes other 
+     * than the various identifiers are expected to be retrieved 
+     * from the provider registry.</p> <p>The person organization 
+     * assigned to carry out the associated (linked by a 
+     * participation) action and/or the organization under whose 
+     * authority they are acting.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"POIZ_MT030050CA.AssignedEntity","POIZ_MT030060CA.AssignedEntity","POIZ_MT060150CA.AssignedEntity","REPC_MT210001CA.AssignedEntity","REPC_MT210002CA.AssignedEntity","REPC_MT210003CA.AssignedEntity"})]
     public class HealthcareWorker : MessagePartBean {
@@ -99,28 +99,65 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged {
             this.representedOrganizationAssignedOrganizationTelecom = new SETImpl<TEL, TelecommunicationAddress>(typeof(TELImpl));
         }
         /**
-         * <summary>A:Healthcare Worker Identifier</summary>
+         * <summary>Un-merged Business Name: HealthcareWorkerIdentifier</summary>
          * 
-         * <remarks><p>Unique identifier the person involved in the 
-         * action.</p> <p>Allows unique identification of the person 
+         * <remarks>Relationship: POIZ_MT030050CA.AssignedEntity.id 
+         * Conformance/Cardinality: POPULATED (1) <p>Allows unique 
+         * identification of the person which can be critical for 
+         * authentication, permissions, drill-down and traceability. 
+         * However the ID may not always be known and is therefore is 
+         * populated.</p> <p>Unique identifier the person involved in 
+         * the action.</p> Un-merged Business Name: 
+         * HealthcareWorkerIdentifier Relationship: 
+         * POIZ_MT030060CA.AssignedEntity.id Conformance/Cardinality: 
+         * POPULATED (1) <p>Allows unique identification of the person 
          * which can be critical for authentication, permissions, 
          * drill-down and traceability. However the ID may not always 
-         * be known and is therefore is populated.</p> F: Provider Id 
-         * <p>A unique provider identifier such as the MINC #; (a 
-         * unique lifetime identifier for physicians in Canada). Other 
-         * health care professions such as nursing and dietitians have 
-         * similar identifiers. For those providers (such as family 
-         * members, friends, neighbors and others who are part of the 
-         * patient's informal support network will not have 
-         * identifiers) the system will assign identifiers for the 
-         * purpose of linking information within the message.</p> 
-         * <p>For non-professional providers and others who do not have 
-         * unique provider numbers, applications must create 'internal' 
+         * be known and is therefore is populated.</p> <p>Unique 
+         * identifier the person involved in the action.</p> Un-merged 
+         * Business Name: ProviderId Relationship: 
+         * REPC_MT210001CA.AssignedEntity.id Conformance/Cardinality: 
+         * REQUIRED (0-1) Un-merged Business Name: ProviderId 
+         * Relationship: REPC_MT210003CA.AssignedEntity.id 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>For 
+         * non-professional providers and others who do not have unique 
+         * provider numbers, applications must create 'internal' 
          * identifiers to allow referencing of the provider within the 
          * message.</p> <p>An identifier is the best way of kinking a 
          * provider to information in a provider registry, and 
          * therefore will be required in the absence of a provider 
-         * name.</p> F: Provider Id</remarks>
+         * name.</p> <p>A unique provider identifier such as the MINC 
+         * #; (a unique lifetime identifier for physicians in Canada). 
+         * Other health care professions such as nursing and dietitians 
+         * have similar identifiers. For those providers (such as 
+         * family members, friends, neighbors and others who are part 
+         * of the patient's informal support network will not have 
+         * identifiers) the system will assign identifiers for the 
+         * purpose of linking information within the message.</p> 
+         * Un-merged Business Name: ProviderId Relationship: 
+         * REPC_MT210002CA.AssignedEntity.id Conformance/Cardinality: 
+         * REQUIRED (0-1) <p>For non-professional providers and others 
+         * who do not have unique provider numbers, applications must 
+         * create 'internal' identifiers to allow referencing of the 
+         * provider within the message.</p> <p>An identifier is the 
+         * best way of kinking a provider to information in a provider 
+         * registry, and therefore will be required in the absence of a 
+         * provider name.</p> <p>A unique provider identifier such as 
+         * the MINC #; (a unique lifetime identifier for physicians in 
+         * Canada). Other health care professions such as nursing and 
+         * dietitians have similar identifiers. For those providers 
+         * (such as family members, friends, neighbors and others who 
+         * are part of the patient's informal support network will not 
+         * have identifiers) the system will assign identifiers for the 
+         * purpose of linking information within the message.</p> 
+         * Un-merged Business Name: HealthcareWorkerIdentifier 
+         * Relationship: POIZ_MT060150CA.AssignedEntity.id 
+         * Conformance/Cardinality: POPULATED (1) <p>Allows unique 
+         * identification of the person which can be critical for 
+         * authentication, permissions, drill-down and traceability. 
+         * However the ID may not always be known and is therefore is 
+         * populated.</p> <p>Unique identifier the person involved in 
+         * the action.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -129,18 +166,44 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged {
         }
 
         /**
-         * <summary>G: Provider Type</summary>
+         * <summary>Un-merged Business Name: HealthcareWorkerType</summary>
          * 
-         * <remarks>B: Healthcare Worker Type <p>Indicates the 
+         * <remarks>Relationship: POIZ_MT030050CA.AssignedEntity.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Provides context 
+         * around the actions of the participant and is therefore 
+         * mandatory.</p> <p>Indicates the &quot;kind&quot; of 
+         * healthcare participant, such as &quot;physician&quot;, 
+         * &quot;dentist&quot;, &quot;lab technician&quot;, 
+         * &quot;receptionist&quot;, etc.</p> Un-merged Business Name: 
+         * HealthcareWorkerType Relationship: 
+         * POIZ_MT030060CA.AssignedEntity.code Conformance/Cardinality: 
+         * MANDATORY (1) <p>Provides context around the actions of the 
+         * participant and is therefore mandatory.</p> <p>Indicates the 
          * &quot;kind&quot; of healthcare participant, such as 
          * &quot;physician&quot;, &quot;dentist&quot;, &quot;lab 
          * technician&quot;, &quot;receptionist&quot;, etc.</p> 
-         * <p>Provides context around the actions of the participant 
-         * and is therefore mandatory.</p> G: Provider Type 
-         * <p>Indicates the medical discipline of the provider.</p> 
-         * <p>Provides important context to understanding information 
-         * recorded by a provider and work intended to be performed by 
-         * the provider.</p></remarks>
+         * Un-merged Business Name: ProviderType Relationship: 
+         * REPC_MT210001CA.AssignedEntity.code Conformance/Cardinality: 
+         * REQUIRED (0-1) Un-merged Business Name: ProviderType 
+         * Relationship: REPC_MT210003CA.AssignedEntity.code 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Provides 
+         * important context to understanding information recorded by a 
+         * provider and work intended to be performed by the 
+         * provider.</p> <p>Indicates the medical discipline of the 
+         * provider.</p> Un-merged Business Name: ProviderType 
+         * Relationship: REPC_MT210002CA.AssignedEntity.code 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Provides 
+         * important context to understanding information recorded by a 
+         * provider and work intended to be performed by the 
+         * provider.</p> <p>Indicates the medical discipline of the 
+         * provider.</p> Un-merged Business Name: HealthcareWorkerType 
+         * Relationship: POIZ_MT060150CA.AssignedEntity.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Provides context 
+         * around the actions of the participant and is therefore 
+         * mandatory.</p> <p>Indicates the &quot;kind&quot; of 
+         * healthcare participant, such as &quot;physician&quot;, 
+         * &quot;dentist&quot;, &quot;lab technician&quot;, 
+         * &quot;receptionist&quot;, etc.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public HealthcareProviderRoleType Code {
@@ -149,13 +212,23 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged {
         }
 
         /**
-         * <summary>ProviderName</summary>
+         * <summary>Business Name: ProviderName</summary>
          * 
-         * <remarks>C: Provider Name <p>The label by which a provider 
-         * is known and communicated with.</p> <p>Common way to 
+         * <remarks>Un-merged Business Name: ProviderName Relationship: 
+         * REPC_MT210001CA.Provider.name Conformance/Cardinality: 
+         * MANDATORY (1) Un-merged Business Name: ProviderName 
+         * Relationship: REPC_MT210003CA.Provider.name 
+         * Conformance/Cardinality: MANDATORY (1) <p>Common way to 
          * identify and communicate with a service provider in a 
-         * &quot;human readable&quot; and understood format.</p> C: 
-         * Provider Name</remarks>
+         * &quot;human readable&quot; and understood format.</p> <p>The 
+         * label by which a provider is known and communicated 
+         * with.</p> Un-merged Business Name: ProviderName 
+         * Relationship: REPC_MT210002CA.Provider.name 
+         * Conformance/Cardinality: MANDATORY (1) <p>Common way to 
+         * identify and communicate with a service provider in a 
+         * &quot;human readable&quot; and understood format.</p> <p>The 
+         * label by which a provider is known and communicated 
+         * with.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"assignedProvider/name"})]
         public PersonName AssignedProviderName {
@@ -164,19 +237,50 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged {
         }
 
         /**
-         * <summary>HealthcareWorkerPhoneAndEmails</summary>
+         * <summary>Business Name: HealthcareWorkerPhoneAndEmails</summary>
          * 
-         * <remarks>E: Healthcare Worker Phone and Emails <p>Indicates 
-         * phone and/or e-mail addresses at which the healthcare worker 
-         * can be reached.</p> <p>This is the most commonly used piece 
-         * of contact information and is returned here to avoid 
-         * unnecessary queries of the provider registry.</p></remarks>
+         * <remarks>Un-merged Business Name: 
+         * HealthcareWorkerPhoneAndEmails Relationship: 
+         * POIZ_MT030050CA.AssignedEntity.telecom 
+         * Conformance/Cardinality: REQUIRED (0-5) <p>This is the most 
+         * commonly used piece of contact information and is returned 
+         * here to avoid unnecessary queries of the provider 
+         * registry.</p> <p>Indicates phone and/or e-mail addresses at 
+         * which the healthcare worker can be reached.</p> Un-merged 
+         * Business Name: HealthcareWorkerPhoneAndEmails Relationship: 
+         * POIZ_MT030060CA.AssignedEntity.telecom 
+         * Conformance/Cardinality: REQUIRED (0-5) <p>This is the most 
+         * commonly used piece of contact information and is returned 
+         * here to avoid unnecessary queries of the provider 
+         * registry.</p> <p>Indicates phone and/or e-mail addresses at 
+         * which the healthcare worker can be reached.</p> Un-merged 
+         * Business Name: HealthcareWorkerPhoneAndEmails Relationship: 
+         * POIZ_MT060150CA.AssignedEntity.telecom 
+         * Conformance/Cardinality: REQUIRED (0-5) <p>This is the most 
+         * commonly used piece of contact information and is returned 
+         * here to avoid unnecessary queries of the provider 
+         * registry.</p> <p>Indicates phone and/or e-mail addresses at 
+         * which the healthcare worker can be reached.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"telecom"})]
         public ICollection<TelecommunicationAddress> Telecom {
             get { return this.telecom.RawSet(); }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * POIZ_MT030050CA.AssignedEntity.assignedPerson 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * POIZ_MT030060CA.AssignedEntity.assignedPerson 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * POIZ_MT060150CA.AssignedEntity.assignedPerson 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"assignedPerson"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.ActingPerson AssignedPerson {
             get { return this.assignedPerson; }
@@ -184,13 +288,29 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged {
         }
 
         /**
-         * <summary>OrganizationIdentifier</summary>
+         * <summary>Business Name: OrganizationIdentifier</summary>
          * 
-         * <remarks>F: Organization identifier <p>A unique identifier 
-         * for the organization</p> <p>Allows the organization to be 
-         * referenced when determining privileges and for drill-downs 
-         * to retrieve additional information. Because of its 
-         * importance, the attribute is mandatory.</p></remarks>
+         * <remarks>Un-merged Business Name: OrganizationIdentifier 
+         * Relationship: POIZ_MT030050CA.Organization.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows the 
+         * organization to be referenced when determining privileges 
+         * and for drill-downs to retrieve additional information. 
+         * Because of its importance, the attribute is mandatory.</p> 
+         * <p>A unique identifier for the organization</p> Un-merged 
+         * Business Name: OrganizationIdentifier Relationship: 
+         * POIZ_MT030060CA.Organization.id Conformance/Cardinality: 
+         * MANDATORY (1) <p>Allows the organization to be referenced 
+         * when determining privileges and for drill-downs to retrieve 
+         * additional information. Because of its importance, the 
+         * attribute is mandatory.</p> <p>A unique identifier for the 
+         * organization</p> Un-merged Business Name: 
+         * OrganizationIdentifier Relationship: 
+         * POIZ_MT060150CA.Organization.id Conformance/Cardinality: 
+         * MANDATORY (1) <p>Allows the organization to be referenced 
+         * when determining privileges and for drill-downs to retrieve 
+         * additional information. Because of its importance, the 
+         * attribute is mandatory.</p> <p>A unique identifier for the 
+         * organization</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"representedOrganization/id"})]
         public Identifier RepresentedOrganizationId {
@@ -199,12 +319,26 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged {
         }
 
         /**
-         * <summary>OrganizationName</summary>
+         * <summary>Business Name: OrganizationName</summary>
          * 
-         * <remarks>H: Organization Name <p>Identifies the name of the 
-         * organization</p> <p>Allows for human recognition of the 
+         * <remarks>Un-merged Business Name: OrganizationName 
+         * Relationship: POIZ_MT030050CA.Organization.name 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows for human 
+         * recognition of the organization as well as confirmation of 
+         * the identifier. As a result, the attribute is mandatory.</p> 
+         * <p>Identifies the name of the organization</p> Un-merged 
+         * Business Name: OrganizationName Relationship: 
+         * POIZ_MT030060CA.Organization.name Conformance/Cardinality: 
+         * MANDATORY (1) <p>Allows for human recognition of the 
          * organization as well as confirmation of the identifier. As a 
-         * result, the attribute is mandatory.</p></remarks>
+         * result, the attribute is mandatory.</p> <p>Identifies the 
+         * name of the organization</p> Un-merged Business Name: 
+         * OrganizationName Relationship: 
+         * POIZ_MT060150CA.Organization.name Conformance/Cardinality: 
+         * MANDATORY (1) <p>Allows for human recognition of the 
+         * organization as well as confirmation of the identifier. As a 
+         * result, the attribute is mandatory.</p> <p>Identifies the 
+         * name of the organization</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"representedOrganization/name"})]
         public String RepresentedOrganizationName {
@@ -213,12 +347,26 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged {
         }
 
         /**
-         * <summary>OrganizationType</summary>
+         * <summary>Business Name: OrganizationType</summary>
          * 
-         * <remarks>G: Organization Type <p>Identifies the type of 
-         * organization on whose behalf the action was taken. E.g. 
-         * Pharmacy, Clinic, Hospital, etc.</p> <p>Provides context to 
-         * the action and is therefore mandatory.</p></remarks>
+         * <remarks>Un-merged Business Name: OrganizationType 
+         * Relationship: POIZ_MT030050CA.AssignedOrganization.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Provides context 
+         * to the action and is therefore mandatory.</p> <p>Identifies 
+         * the type of organization on whose behalf the action was 
+         * taken. E.g. Pharmacy, Clinic, Hospital, etc.</p> Un-merged 
+         * Business Name: OrganizationType Relationship: 
+         * POIZ_MT030060CA.AssignedOrganization.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Provides context 
+         * to the action and is therefore mandatory.</p> <p>Identifies 
+         * the type of organization on whose behalf the action was 
+         * taken. E.g. Pharmacy, Clinic, Hospital, etc.</p> Un-merged 
+         * Business Name: OrganizationType Relationship: 
+         * POIZ_MT060150CA.AssignedOrganization.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Provides context 
+         * to the action and is therefore mandatory.</p> <p>Identifies 
+         * the type of organization on whose behalf the action was 
+         * taken. E.g. Pharmacy, Clinic, Hospital, etc.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"representedOrganization/assignedOrganization/code"})]
         public HealthcareOrganizationRoleType RepresentedOrganizationAssignedOrganizationCode {
@@ -227,13 +375,29 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged {
         }
 
         /**
-         * <summary>OrganizationPhoneAndEmails</summary>
+         * <summary>Business Name: OrganizationPhoneAndEmails</summary>
          * 
-         * <remarks>I: Organization Phone and Emails <p>Identifies 
-         * contact information for the responsible organization.</p> 
-         * <p>This is the most commonly used contact information and is 
-         * returned to avoid unnecessary queries against the client 
-         * registry.</p></remarks>
+         * <remarks>Un-merged Business Name: OrganizationPhoneAndEmails 
+         * Relationship: POIZ_MT030050CA.AssignedOrganization.telecom 
+         * Conformance/Cardinality: REQUIRED (0-5) <p>This is the most 
+         * commonly used contact information and is returned to avoid 
+         * unnecessary queries against the client registry.</p> 
+         * <p>Identifies contact information for the responsible 
+         * organization.</p> Un-merged Business Name: 
+         * OrganizationPhoneAndEmails Relationship: 
+         * POIZ_MT030060CA.AssignedOrganization.telecom 
+         * Conformance/Cardinality: REQUIRED (0-5) <p>This is the most 
+         * commonly used contact information and is returned to avoid 
+         * unnecessary queries against the client registry.</p> 
+         * <p>Identifies contact information for the responsible 
+         * organization.</p> Un-merged Business Name: 
+         * OrganizationPhoneAndEmails Relationship: 
+         * POIZ_MT060150CA.AssignedOrganization.telecom 
+         * Conformance/Cardinality: REQUIRED (0-5) <p>This is the most 
+         * commonly used contact information and is returned to avoid 
+         * unnecessary queries against the client registry.</p> 
+         * <p>Identifies contact information for the responsible 
+         * organization.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"representedOrganization/assignedOrganization/telecom"})]
         public ICollection<TelecommunicationAddress> RepresentedOrganizationAssignedOrganizationTelecom {

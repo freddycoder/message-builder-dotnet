@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
 
 
     /**
-     * <summary>PrescriptionReference</summary>
+     * <summary>Business Name: PrescriptionReference</summary>
      * 
      * <remarks>PORX_MT060010CA.SupplyRequest: Prescription 
      * Reference <p>A reference to the prescription order being 
@@ -53,21 +53,26 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
             this.authorTime = new TSImpl();
         }
         /**
-         * <summary>PrescriptionOrderNumber</summary>
+         * <summary>Business Name: PrescriptionOrderNumber</summary>
          * 
-         * <remarks>Prescription Order Number <p>This is an identifier 
-         * assigned to a specific medication order. The number remains 
-         * constant across the lifetime of the order, regardless of the 
-         * number of providers or pharmacies involved in fulfilling the 
-         * order.</p> <p>Allows prescriptions to be uniquely referenced 
-         * and associated with the dispense.</p><p>The ID is mandatory 
-         * because the DIS will always assign a Prescription Order 
-         * Number.</p> <p>Allows prescriptions to be uniquely 
-         * referenced and associated with the dispense.</p><p>The ID is 
-         * mandatory because the DIS will always assign a Prescription 
-         * Order Number.</p> Prescription Order Number <p>This is an 
+         * <remarks>Un-merged Business Name: PrescriptionOrderNumber 
+         * Relationship: PORX_MT060010CA.SupplyRequest.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>This is an 
          * identifier assigned to a specific device order. The number 
          * remains constant across the lifetime of the order, 
+         * regardless of the number of providers or pharmacies involved 
+         * in fulfilling the order.</p> <p>Allows prescriptions to be 
+         * uniquely referenced and associated with the 
+         * dispense.</p><p>The ID is mandatory because the DIS will 
+         * always assign a Prescription Order Number.</p> <p>Allows 
+         * prescriptions to be uniquely referenced and associated with 
+         * the dispense.</p><p>The ID is mandatory because the DIS will 
+         * always assign a Prescription Order Number.</p> Un-merged 
+         * Business Name: PrescriptionOrderNumber Relationship: 
+         * PORX_MT060090CA.SubstanceAdministrationRequest.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>This is an 
+         * identifier assigned to a specific medication order. The 
+         * number remains constant across the lifetime of the order, 
          * regardless of the number of providers or pharmacies involved 
          * in fulfilling the order.</p> <p>Allows prescriptions to be 
          * uniquely referenced and associated with the 
@@ -83,6 +88,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
             set { this.id.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PORX_MT060010CA.ResponsibleParty3.assignedEntity 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060090CA.ResponsibleParty3.assignedEntity 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"responsibleParty/assignedEntity"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.HealthcareWorker ResponsiblePartyAssignedEntity {
             get { return this.responsiblePartyAssignedEntity; }
@@ -90,26 +106,30 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
         }
 
         /**
-         * <summary>PrescriptionOrderDate</summary>
+         * <summary>Business Name: PrescriptionOrderDate</summary>
          * 
-         * <remarks>Prescription Order Date <p>The date at which the 
-         * drug was prescribed. This may differ from the date on which 
-         * the prescription becomes effective. E.g. A prescription 
-         * created today may not be valid to be dispensed or 
-         * administered for two weeks.</p> <p>Indicates when the action 
-         * was performed, and may influence expiry dates for the 
+         * <remarks>Un-merged Business Name: PrescriptionOrderDate 
+         * Relationship: PORX_MT060010CA.Author5.time 
+         * Conformance/Cardinality: POPULATED (1) <p>The date at which 
+         * the device was prescribed. This may differ from the date on 
+         * which the prescription becomes effective. E.g. A 
+         * prescription created today may not be valid to be dispensed 
+         * or used for two weeks.</p> <p>Indicates when the action was 
+         * performed, and may influence expiry dates for the 
          * order.</p><p>The attribute is populated because the creation 
          * date of the prescription shall always be known or absent for 
          * a reason.</p> <p>Indicates when the action was performed, 
          * and may influence expiry dates for the order.</p><p>The 
          * attribute is populated because the creation date of the 
          * prescription shall always be known or absent for a 
-         * reason.</p> Prescription Order Date <p>The date at which the 
-         * device was prescribed. This may differ from the date on 
+         * reason.</p> Un-merged Business Name: PrescriptionOrderDate 
+         * Relationship: PORX_MT060090CA.Author5.time 
+         * Conformance/Cardinality: POPULATED (1) <p>The date at which 
+         * the drug was prescribed. This may differ from the date on 
          * which the prescription becomes effective. E.g. A 
          * prescription created today may not be valid to be dispensed 
-         * or used for two weeks.</p> <p>Indicates when the action was 
-         * performed, and may influence expiry dates for the 
+         * or administered for two weeks.</p> <p>Indicates when the 
+         * action was performed, and may influence expiry dates for the 
          * order.</p><p>The attribute is populated because the creation 
          * date of the prescription shall always be known or absent for 
          * a reason.</p> <p>Indicates when the action was performed, 
@@ -124,6 +144,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
             set { this.authorTime.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PORX_MT060010CA.Author5.assignedEntity 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060090CA.Author5.assignedEntity 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"author/assignedEntity"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.HealthcareWorker AuthorAssignedEntity {
             get { return this.authorAssignedEntity; }

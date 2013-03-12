@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -97,15 +97,6 @@ namespace Ca.Infoway.Messagebuilder.Transport.Mohawk
                 Assert.Fail(e.Message);
             }
         }
-
-        [Test]
-        [ExpectedException(typeof(HttpTransportLayerException))]
-		//[Category("failing-in-nant")]
-        public virtual void ShouldThrowExceptionOnBadState()
-        {
-            transport.SendRequestAndGetResponse(null, SimpleRequestMessage.Create("<REPC_IN000012CA></REPC_IN000012CA>"));
-        }
-
 
 
         private sealed class _CredentialsProvider_35 : CredentialsProvider

@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,9 +37,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Merged {
             this.patientConsent = new BLImpl(false);
         }
         /**
-         * <summary>PatientKeyword</summary>
+         * <summary>Business Name: PatientKeyword</summary>
          * 
-         * <remarks>Patient Keyword</remarks>
+         * <remarks>Un-merged Business Name: PatientKeyword 
+         * Relationship: FICR_MT600201CA.Subject.signatureText 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: PatientKeyword Relationship: 
+         * FICR_MT500201CA.Subject.signatureText 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"signatureText"})]
         public String SignatureText {
@@ -47,6 +52,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Merged {
             set { this.signatureText.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * FICR_MT600201CA.Subject.patientConsent 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * FICR_MT500201CA.Subject.patientConsent 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"patientConsent"})]
         public bool? PatientConsent {
             get { return this.patientConsent.Value; }

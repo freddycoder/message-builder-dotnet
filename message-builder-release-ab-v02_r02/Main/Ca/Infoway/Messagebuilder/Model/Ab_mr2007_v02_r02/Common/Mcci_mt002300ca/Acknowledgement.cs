@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -48,12 +48,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Mcci_mt002300
             this.acknowledgementDetail = new List<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.ErrorsOrWarnings>();
         }
         /**
-         * <summary>GA:Acknowledgement Code</summary>
+         * <summary>Business Name: GA:Acknowledgement Code</summary>
          * 
-         * <remarks><p>Indicates whether the previous interaction was 
-         * successfully processed.</p> <p>Key to understanding whether 
-         * the interaction has been successful and is therefore 
-         * mandatory.</p></remarks>
+         * <remarks>Relationship: 
+         * MCCI_MT002300CA.Acknowledgement.typeCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates whether 
+         * the previous interaction was successfully processed.</p> 
+         * <p>Key to understanding whether the interaction has been 
+         * successful and is therefore mandatory.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"typeCode"})]
         public AcknowledgementType TypeCode {
@@ -62,14 +64,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Mcci_mt002300
         }
 
         /**
-         * <summary>GC:Number of Waiting Messages</summary>
+         * <summary>Business Name: GC:Number of Waiting Messages</summary>
          * 
-         * <remarks><p>For applications which support polling, 
-         * indicates the total number of messages waiting to be 
-         * retrieved.</p> <p>Indicates to a system how many polled 
-         * messages are available without the need so send a separate 
-         * query. The element is optional because not all systems will 
-         * support polling.</p></remarks>
+         * <remarks>Relationship: 
+         * MCCI_MT002300CA.Acknowledgement.messageWaitingNumber 
+         * Conformance/Cardinality: OPTIONAL (0) <p>For applications 
+         * which support polling, indicates the total number of 
+         * messages waiting to be retrieved.</p> <p>Indicates to a 
+         * system how many polled messages are available without the 
+         * need so send a separate query. The element is optional 
+         * because not all systems will support polling.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"messageWaitingNumber"})]
         public IList<int?> MessageWaitingNumber {
@@ -77,14 +81,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Mcci_mt002300
         }
 
         /**
-         * <summary>GD:Message Waiting Priority</summary>
+         * <summary>Business Name: GD:Message Waiting Priority</summary>
          * 
-         * <remarks><p>Indicates the priority of the highest-priority 
-         * message that is waiting on the poll queue for the system 
-         * being responded to.</p> <p>The priority of the waiting 
-         * message may influence how quickly the polling system may 
-         * choose to download queued messages. The element is optional 
-         * because not all systems will support polling.</p></remarks>
+         * <remarks>Relationship: 
+         * MCCI_MT002300CA.Acknowledgement.messageWaitingPriorityCode 
+         * Conformance/Cardinality: OPTIONAL (0) <p>Indicates the 
+         * priority of the highest-priority message that is waiting on 
+         * the poll queue for the system being responded to.</p> <p>The 
+         * priority of the waiting message may influence how quickly 
+         * the polling system may choose to download queued messages. 
+         * The element is optional because not all systems will support 
+         * polling.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"messageWaitingPriorityCode"})]
         public IList<Code> MessageWaitingPriorityCode {
@@ -92,14 +99,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Mcci_mt002300
         }
 
         /**
-         * <summary>BA:Acknowledged Message Id</summary>
+         * <summary>Business Name: BA:Acknowledged Message Id</summary>
          * 
-         * <remarks><p>References the identifier of the message this 
-         * current message is acknowledging.</p> 
-         * <p>soap:Header\wsa:RelatesTo</p> <p>Provides the necessary 
-         * link to complete a conversation for systems using 
-         * communication technologies which are not conversational. 
-         * This attribute is therefore mandatory.</p></remarks>
+         * <remarks>Relationship: MCCI_MT002300CA.TargetMessage.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>References the 
+         * identifier of the message this current message is 
+         * acknowledging.</p> <p>soap:Header\wsa:RelatesTo</p> 
+         * <p>Provides the necessary link to complete a conversation 
+         * for systems using communication technologies which are not 
+         * conversational. This attribute is therefore mandatory.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"targetMessage/id"})]
         public Identifier TargetMessageId {
@@ -107,6 +115,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Mcci_mt002300
             set { this.targetMessageId.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * MCCI_MT002300CA.Acknowledgement.acknowledgementDetail</summary>
+         * 
+         * <remarks>Conformance/Cardinality: REQUIRED (0-50)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"acknowledgementDetail"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.ErrorsOrWarnings> AcknowledgementDetail {
             get { return this.acknowledgementDetail; }

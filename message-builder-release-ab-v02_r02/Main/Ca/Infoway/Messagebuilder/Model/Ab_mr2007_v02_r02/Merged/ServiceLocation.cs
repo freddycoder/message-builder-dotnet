@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
 
 
     /**
-     * <summary>ServiceLocation</summary>
+     * <summary>Business Name: ServiceLocation</summary>
      * 
      * <remarks>COCT_MT240007CA.ServiceDeliveryLocation: Service 
      * Location <p>An identification of a service location (or 
@@ -95,11 +95,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             this.subjectOfPosition = new List<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Coct_mt960002ca.GeographicCoordinates>();
         }
         /**
-         * <summary>C:Service Location Identifier</summary>
+         * <summary>Un-merged Business Name: ServiceLocationIdentifier</summary>
          * 
-         * <remarks><p>Unique identifier for a healthcare service 
-         * location.</p> <p>PVD.020-01 (extension)</p><p>PVD.020-02 
-         * (root)</p><p>Dispensing Pharmacy number</p><p>Pharmacy 
+         * <remarks>Relationship: 
+         * COCT_MT240007CA.ServiceDeliveryLocation.id 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Unique identifier 
+         * for a healthcare service location.</p> <p>PVD.020-01 
+         * (extension)</p><p>PVD.020-02 (root)</p><p>Dispensing 
+         * Pharmacy number</p><p>Pharmacy 
          * Identifier</p><p>Facility.facilityKey</p><p>DispensedItem.facilityKey</p> 
          * <p>PVD.020-01 (extension)</p><p>PVD.020-02 
          * (root)</p><p>Dispensing Pharmacy number</p><p>Pharmacy 
@@ -116,18 +119,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
          * <p>PVD.020-01 (extension)</p><p>PVD.020-02 
          * (root)</p><p>Dispensing Pharmacy number</p><p>Pharmacy 
          * Identifier</p><p>Facility.facilityKey</p><p>DispensedItem.facilityKey</p> 
-         * <p>Allows for lookup and retrieval of detailed information 
-         * about a specific service location. Also ensures unique 
-         * identification of service location and is therefore 
-         * mandatory.</p><p>The identifier is mandatory because it is 
-         * the principal mechanism for uniquely identifying the 
-         * facility.</p> <p>Allows for lookup and retrieval of detailed 
-         * information about a specific service location. Also ensures 
-         * unique identification of service location and is therefore 
-         * mandatory.</p><p>The identifier is mandatory because it is 
-         * the principal mechanism for uniquely identifying the 
-         * facility.</p> C:Service Location Id <p>Unique identifier for 
-         * a healthcare service location.</p> <p>PVD.020-01 
+         * <p>Allows for a location to be uniquely referenced. However, 
+         * because this CMET is used for locations not necessarily 
+         * found in a registry, the attribute is only 'required'.</p> 
+         * Un-merged Business Name: ServiceLocationId Relationship: 
+         * COCT_MT240003CA.ServiceDeliveryLocation.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>Unique identifier 
+         * for a healthcare service location.</p> <p>PVD.020-01 
          * (extension)</p><p>PVD.020-02 (root)</p><p>Dispensing 
          * Pharmacy number</p><p>Pharmacy 
          * Identifier</p><p>Facility.facilityKey</p><p>DispensedItem.facilityKey</p> 
@@ -156,10 +154,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
          * unique identification of service location and is therefore 
          * mandatory.</p><p>The identifier is mandatory because it is 
          * the principal mechanism for uniquely identifying the 
-         * facility.</p> C:Service Location Identifier <p>Unique 
-         * identifier for a healthcare service location.</p> 
-         * <p>PVD.020-01 (extension)</p><p>PVD.020-02 
-         * (root)</p><p>Dispensing Pharmacy number</p><p>Pharmacy 
+         * facility.</p> Un-merged Business Name: 
+         * ServiceLocationIdentifier Relationship: 
+         * COCT_MT240002CA.ServiceDeliveryLocation.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>Unique identifier 
+         * for a healthcare service location.</p> <p>PVD.020-01 
+         * (extension)</p><p>PVD.020-02 (root)</p><p>Dispensing 
+         * Pharmacy number</p><p>Pharmacy 
          * Identifier</p><p>Facility.facilityKey</p><p>DispensedItem.facilityKey</p> 
          * <p>PVD.020-01 (extension)</p><p>PVD.020-02 
          * (root)</p><p>Dispensing Pharmacy number</p><p>Pharmacy 
@@ -176,9 +177,50 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
          * <p>PVD.020-01 (extension)</p><p>PVD.020-02 
          * (root)</p><p>Dispensing Pharmacy number</p><p>Pharmacy 
          * Identifier</p><p>Facility.facilityKey</p><p>DispensedItem.facilityKey</p> 
-         * <p>Allows for a location to be uniquely referenced. However, 
-         * because this CMET is used for locations not necessarily 
-         * found in a registry, the attribute is only 'required'.</p></remarks>
+         * <p>Allows for lookup and retrieval of detailed information 
+         * about a specific service location. Also ensures unique 
+         * identification of service location and is therefore 
+         * mandatory.</p><p>The identifier is mandatory because it is 
+         * the principal mechanism for uniquely identifying the 
+         * facility.</p> <p>Allows for lookup and retrieval of detailed 
+         * information about a specific service location. Also ensures 
+         * unique identification of service location and is therefore 
+         * mandatory.</p><p>The identifier is mandatory because it is 
+         * the principal mechanism for uniquely identifying the 
+         * facility.</p> Un-merged Business Name: 
+         * ServiceLocationIdentifier Relationship: 
+         * COCT_MT240012CA.ServiceDeliveryLocation.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>Unique identifier 
+         * for a healthcare service location.</p> <p>PVD.020-01 
+         * (extension)</p><p>PVD.020-02 (root)</p><p>Dispensing 
+         * Pharmacy number</p><p>Pharmacy 
+         * Identifier</p><p>Facility.facilityKey</p><p>DispensedItem.facilityKey</p> 
+         * <p>PVD.020-01 (extension)</p><p>PVD.020-02 
+         * (root)</p><p>Dispensing Pharmacy number</p><p>Pharmacy 
+         * Identifier</p><p>Facility.facilityKey</p><p>DispensedItem.facilityKey</p> 
+         * <p>PVD.020-01 (extension)</p><p>PVD.020-02 
+         * (root)</p><p>Dispensing Pharmacy number</p><p>Pharmacy 
+         * Identifier</p><p>Facility.facilityKey</p><p>DispensedItem.facilityKey</p> 
+         * <p>PVD.020-01 (extension)</p><p>PVD.020-02 
+         * (root)</p><p>Dispensing Pharmacy number</p><p>Pharmacy 
+         * Identifier</p><p>Facility.facilityKey</p><p>DispensedItem.facilityKey</p> 
+         * <p>PVD.020-01 (extension)</p><p>PVD.020-02 
+         * (root)</p><p>Dispensing Pharmacy number</p><p>Pharmacy 
+         * Identifier</p><p>Facility.facilityKey</p><p>DispensedItem.facilityKey</p> 
+         * <p>PVD.020-01 (extension)</p><p>PVD.020-02 
+         * (root)</p><p>Dispensing Pharmacy number</p><p>Pharmacy 
+         * Identifier</p><p>Facility.facilityKey</p><p>DispensedItem.facilityKey</p> 
+         * <p>Allows for lookup and retrieval of detailed information 
+         * about a specific service location. Also ensures unique 
+         * identification of service location and is therefore 
+         * mandatory.</p><p>The identifier is mandatory because it is 
+         * the principal mechanism for uniquely identifying the 
+         * facility.</p> <p>Allows for lookup and retrieval of detailed 
+         * information about a specific service location. Also ensures 
+         * unique identification of service location and is therefore 
+         * mandatory.</p><p>The identifier is mandatory because it is 
+         * the principal mechanism for uniquely identifying the 
+         * facility.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -187,10 +229,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>ServiceLocationType</summary>
+         * <summary>Business Name: ServiceLocationType</summary>
          * 
-         * <remarks>A: Service Location Type <p>Describes the basic 
-         * type or category of the service delivery location.</p> 
+         * <remarks>Un-merged Business Name: ServiceLocationType 
+         * Relationship: COCT_MT240007CA.ServiceDeliveryLocation.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Describes the 
+         * basic type or category of the service delivery location.</p> 
          * <p>Useful in providing context. May also be used for 
          * grouping and organizing data. Because this is a key element 
          * in understanding the location, it is mandatory.</p></remarks>
@@ -202,9 +246,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>ServiceLocationAddress</summary>
+         * <summary>Business Name: ServiceLocationAddress</summary>
          * 
-         * <remarks>D:Service Location Address <p>The information by 
+         * <remarks>Un-merged Business Name: ServiceLocationAddress 
+         * Relationship: COCT_MT240007CA.ServiceDeliveryLocation.addr 
+         * Conformance/Cardinality: POPULATED (1) <p>The information by 
          * which a service location may be contacted either physically 
          * or by mail.</p> <p>Identifies the physical location of a 
          * service location and also allows for the location to be 
@@ -216,19 +262,22 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
          * contacted.</p><p>The address is marked as 'populated' 
          * because it is considered a critical piece of information 
          * about the facility, but may not always be available or 
-         * meaningful.</p> D:Service Location Address <p>The 
-         * information by which a service location may be contacted 
-         * either physically or by mail.</p> <p>Identifies the physical 
-         * location of a service location and also allows for the 
-         * location to be contacted.</p><p>The address is marked as 
-         * 'populated' because it is considered a critical piece of 
-         * information about the facility, but may not always be 
-         * available or meaningful.</p> <p>Identifies the physical 
-         * location of a service location and also allows for the 
-         * location to be contacted.</p><p>The address is marked as 
-         * 'populated' because it is considered a critical piece of 
-         * information about the facility, but may not always be 
-         * available or meaningful.</p></remarks>
+         * meaningful.</p> Un-merged Business Name: 
+         * ServiceLocationAddress Relationship: 
+         * COCT_MT240003CA.ServiceDeliveryLocation.addr 
+         * Conformance/Cardinality: POPULATED (1) <p>The information by 
+         * which a service location may be contacted either physically 
+         * or by mail.</p> <p>Identifies the physical location of a 
+         * service location and also allows for the location to be 
+         * contacted.</p><p>The address is marked as 'populated' 
+         * because it is considered a critical piece of information 
+         * about the facility, but may not always be available or 
+         * meaningful.</p> <p>Identifies the physical location of a 
+         * service location and also allows for the location to be 
+         * contacted.</p><p>The address is marked as 'populated' 
+         * because it is considered a critical piece of information 
+         * about the facility, but may not always be available or 
+         * meaningful.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"addr"})]
         public PostalAddress Addr {
@@ -237,19 +286,25 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>ServiceLocationPhonesAndEMails</summary>
+         * <summary>Business Name: ServiceLocationPhonesAndEMails</summary>
          * 
-         * <remarks>E:Service Location Phones and E-mails <p>The phone 
+         * <remarks>Un-merged Business Name: 
+         * ServiceLocationPhonesAndEMails Relationship: 
+         * COCT_MT240007CA.ServiceDeliveryLocation.telecom 
+         * Conformance/Cardinality: POPULATED (1-5) <p>The phone 
          * numbers and/or electronic mail addresses by which a service 
          * location may be contacted.</p> <p>Allows a service location 
          * to be communicated with and is therefore important. Because 
          * a contact number won't always exist, the field is marked 
-         * 'populated'.</p> E:Service Location Phones and E-mails 
-         * <p>The phone numbers and/or electronic mail addresses by 
-         * which a service location may be contacted.</p> <p>Allows a 
-         * service location to be communicated with and is therefore 
-         * important. Because a contact number won't always exist, the 
-         * field is marked 'populated'.</p></remarks>
+         * 'populated'.</p> Un-merged Business Name: 
+         * ServiceLocationPhonesAndEMails Relationship: 
+         * COCT_MT240003CA.ServiceDeliveryLocation.telecom 
+         * Conformance/Cardinality: POPULATED (1-5) <p>The phone 
+         * numbers and/or electronic mail addresses by which a service 
+         * location may be contacted.</p> <p>Allows a service location 
+         * to be communicated with and is therefore important. Because 
+         * a contact number won't always exist, the field is marked 
+         * 'populated'.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"telecom"})]
         public ICollection<TelecommunicationAddress> Telecom {
@@ -257,22 +312,43 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>ServiceLocationName</summary>
+         * <summary>Business Name: ServiceLocationName</summary>
          * 
-         * <remarks>B:Service Location Name <p>The name assigned to the 
-         * service location.</p> <p>PVD.070</p><p>Dispensing Pharmacy 
-         * Name</p><p>Facility.name</p> <p>PVD.070</p><p>Dispensing 
+         * <remarks>Un-merged Business Name: ServiceLocationName 
+         * Relationship: COCT_MT240007CA.Place.name 
+         * Conformance/Cardinality: MANDATORY (1) <p>The name assigned 
+         * to the service location.</p> <p>PVD.070</p><p>Dispensing 
          * Pharmacy Name</p><p>Facility.name</p> 
          * <p>PVD.070</p><p>Dispensing Pharmacy 
-         * Name</p><p>Facility.name</p> <p>Used for human 
+         * Name</p><p>Facility.name</p> <p>PVD.070</p><p>Dispensing 
+         * Pharmacy Name</p><p>Facility.name</p> <p>Used for human 
          * communication, and for cross-checking of location Id and is 
-         * therefore mandatory</p> B:Service Location Name <p>The name 
-         * assigned to the service location.</p> 
-         * <p>PVD.070</p><p>Dispensing Pharmacy 
-         * Name</p><p>Facility.name</p> <p>PVD.070</p><p>Dispensing 
+         * therefore mandatory</p> Un-merged Business Name: 
+         * ServiceLocationName Relationship: COCT_MT240003CA.Place.name 
+         * Conformance/Cardinality: MANDATORY (1) <p>The name assigned 
+         * to the service location.</p> <p>PVD.070</p><p>Dispensing 
          * Pharmacy Name</p><p>Facility.name</p> 
          * <p>PVD.070</p><p>Dispensing Pharmacy 
-         * Name</p><p>Facility.name</p> <p>Used for human 
+         * Name</p><p>Facility.name</p> <p>PVD.070</p><p>Dispensing 
+         * Pharmacy Name</p><p>Facility.name</p> <p>Used for human 
+         * communication, and for cross-checking of location Id and is 
+         * therefore mandatory</p> Un-merged Business Name: 
+         * ServiceLocationName Relationship: COCT_MT240002CA.Place.name 
+         * Conformance/Cardinality: MANDATORY (1) <p>The name assigned 
+         * to the service location.</p> <p>PVD.070</p><p>Dispensing 
+         * Pharmacy Name</p><p>Facility.name</p> 
+         * <p>PVD.070</p><p>Dispensing Pharmacy 
+         * Name</p><p>Facility.name</p> <p>PVD.070</p><p>Dispensing 
+         * Pharmacy Name</p><p>Facility.name</p> <p>Used for human 
+         * communication, and for cross-checking of location Id and is 
+         * therefore mandatory</p> Un-merged Business Name: 
+         * ServiceLocationName Relationship: COCT_MT240012CA.Place.name 
+         * Conformance/Cardinality: MANDATORY (1) <p>The name assigned 
+         * to the service location.</p> <p>PVD.070</p><p>Dispensing 
+         * Pharmacy Name</p><p>Facility.name</p> 
+         * <p>PVD.070</p><p>Dispensing Pharmacy 
+         * Name</p><p>Facility.name</p> <p>PVD.070</p><p>Dispensing 
+         * Pharmacy Name</p><p>Facility.name</p> <p>Used for human 
          * communication, and for cross-checking of location Id and is 
          * therefore mandatory</p></remarks>
          */
@@ -282,6 +358,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             set { this.locationName.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: COCT_MT240007CA.Subject.position 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * COCT_MT240002CA.Subject.position Conformance/Cardinality: 
+         * POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf/position"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Coct_mt960002ca.GeographicCoordinates> SubjectOfPosition {
             get { return this.subjectOfPosition; }

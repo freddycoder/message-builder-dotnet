@@ -1,8 +1,28 @@
+/**
+ * Copyright 2013 Canada Health Infoway, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Author:        $LastChangedBy: tmcgrady $
+ * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Revision:      $LastChangedRevision: 2623 $
+ */
 using System.Xml;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Datatype.Impl;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
+using Ca.Infoway.Messagebuilder.Datatype.Lang.Util;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser;
 using Ca.Infoway.Messagebuilder.Util.Xml;
@@ -33,25 +53,24 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 	{
 		private static readonly string NAME_PART_TYPE_QUALIFIER = "qualifier";
 
+		private static readonly PnValidationUtils PN_VALIDATION_UTILS = new PnValidationUtils();
+
 		protected override BareANY DoCreateDataTypeInstance(string typeName)
 		{
 			return new PNImpl();
+		}
+
+		protected override void ValidateName(EntityName result, ParseContext context, XmlElement element, Hl7Errors errors)
+		{
+			PN_VALIDATION_UTILS.ValidatePersonName((PersonName)result, context.Type, context.GetVersion().GetBaseVersion(), element, 
+				null, errors);
 		}
 
 		/// <exception cref="Ca.Infoway.Messagebuilder.Marshalling.HL7.XmlToModelTransformationException"></exception>
 		protected override EntityName ParseNode(XmlNode node, XmlToModelResult xmlToModelResult)
 		{
 			PersonName result = new PersonName();
-			XmlNodeList childNodes = node.ChildNodes;
-			if (childNodes.Count == 1 && childNodes.Item(0) is XmlText)
-			{
-				// TODO - TM - this is most likely a PN.SIMPLE - need type passed in to be able to check
-				HandleSimpleName(node, result);
-			}
-			else
-			{
-				HandlePersonName(xmlToModelResult, result, childNodes);
-			}
+			HandlePersonName(xmlToModelResult, result, node.ChildNodes);
 			return result;
 		}
 
@@ -77,8 +96,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 					//GN: Added in fix similar to what was done for AD.BASIC.  Issue with XML containing mixture of elements and untyped text nodes.
 					if (IsNonBlankTextNode(childNode))
 					{
-						string value = childNode.Value.Trim();
-						result.AddNamePart(new EntityNamePart(value, null, null));
+						// validation will catch if this type does not allow for a free-form name
+						result.AddNamePart(new EntityNamePart(childNode.Value.Trim(), null));
 					}
 				}
 			}
@@ -88,15 +107,6 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		{
 			return childNode.Value != null && childNode.NodeType == System.Xml.XmlNodeType.Text && !StringUtils.IsBlank(childNode.Value
 				);
-		}
-
-		private void HandleSimpleName(XmlNode node, PersonName result)
-		{
-			string value = NodeUtil.GetTextValue(node);
-			if (StringUtils.IsNotBlank(value))
-			{
-				result.AddNamePart(new EntityNamePart(value, null));
-			}
 		}
 
 		/// <exception cref="Ca.Infoway.Messagebuilder.Marshalling.HL7.XmlToModelTransformationException"></exception>

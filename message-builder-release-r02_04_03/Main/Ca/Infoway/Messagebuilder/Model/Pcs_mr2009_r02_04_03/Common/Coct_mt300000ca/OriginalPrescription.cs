@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,10 +28,10 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt300
 
 
     /**
-     * <summary>Original Prescription</summary>
+     * <summary>Business Name: Original Prescription</summary>
      * 
-     * <remarks><p>When number of repeats is unlimited, specify 
-     * Null Flavour of positive infinity in expected_use_time</p></remarks>
+     * <p>When number of repeats is unlimited, specify Null Flavour 
+     * of positive infinity in expected_use_time</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"COCT_MT300000CA.SupplyOrder"})]
     public class OriginalPrescription : MessagePartBean {
@@ -44,10 +44,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt300
             this.repeatNumber = new INTImpl();
         }
         /**
-         * <summary>Last Allowed Dispense</summary>
+         * <summary>Business Name: Last Allowed Dispense</summary>
          * 
-         * <remarks><p>Only end date of effective_time can be 
-         * specified</p> <p>last allowed dispense</p></remarks>
+         * <remarks>Relationship: 
+         * COCT_MT300000CA.SupplyOrder.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Only end date of 
+         * effective_time can be specified</p> <p>last allowed 
+         * dispense</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"effectiveTime"})]
         public Interval<PlatformDate> EffectiveTime {
@@ -56,9 +59,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt300
         }
 
         /**
-         * <summary>Number of Refills + 1</summary>
+         * <summary>Business Name: Number of Refills + 1</summary>
          * 
-         * <remarks><p># refills + 1</p></remarks>
+         * <remarks>Relationship: 
+         * COCT_MT300000CA.SupplyOrder.repeatNumber 
+         * Conformance/Cardinality: REQUIRED (0-1) <p># refills + 1</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"repeatNumber"})]
         public int? RepeatNumber {

@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,12 +37,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
     /**
      * <summary>PORX_MT010110CA.DeviceRequest: Prescription</summary>
      * 
-     * <remarks><p>Information pertaining to a prescriber's 
-     * authorization for a device to be dispensed to a patient, as 
-     * well as the instruction on when and how the device is to be 
-     * used by the patient</p> <p>This is a 'core' class of the 
-     * medication model and is important for understanding what 
-     * devices the patient is intended to be receiving.</p> 
+     * <p>Information pertaining to a prescriber's authorization 
+     * for a device to be dispensed to a patient, as well as the 
+     * instruction on when and how the device is to be used by the 
+     * patient</p> <p>This is a 'core' class of the medication 
+     * model and is important for understanding what devices the 
+     * patient is intended to be receiving.</p> 
      * PORX_MT020070CA.SubstanceAdministrationRequest: Prescription 
      * Reference <p>The Prescriber Name must be specified only when 
      * the Prescription Order Number is Null.</p><p>Component MUST 
@@ -60,7 +60,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
      * <p>Information pertaining to the prescription for which a 
      * dispense is being created</p> <p>Dispenses for 
      * electronically created prescriptions must reference the 
-     * prescription.</p></remarks>
+     * prescription.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"PORX_MT010110CA.DeviceRequest","PORX_MT020060CA.DeviceRequest","PORX_MT020070CA.SubstanceAdministrationRequest"})]
     public class DeviceRequest_1 : MessagePartBean {
@@ -91,18 +91,24 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
             this.componentContextConductionInd = new BLImpl();
         }
         /**
-         * <summary>A: Prescription Number</summary>
+         * <summary>Un-merged Business Name: PrescriptionNumber</summary>
          * 
-         * <remarks><p>The Prescription Order Number is a globally 
-         * unique number assigned to a prescription by the EHR/DIS 
-         * irrespective of the source of the order</p><p>It is created 
-         * by the EHR/DIS once the prescription has passed all edits 
-         * and validation.</p> <p>The Prescription Order Number is a 
-         * globally unique number assigned to a prescription by the 
-         * EHR/DIS irrespective of the source of the order</p><p>It is 
-         * created by the EHR/DIS once the prescription has passed all 
-         * edits and validation.</p> <p>Allows for the situations where 
-         * the order is originating from the DIS.</p><p>Allows 
+         * <remarks>Relationship: PORX_MT010110CA.DeviceRequest.id 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>The Prescription 
+         * Order Number is a globally unique number assigned to a 
+         * prescription by the EHR/DIS irrespective of the source of 
+         * the order</p><p>It is created by the EHR/DIS once the 
+         * prescription has passed all edits and validation.</p> <p>The 
+         * Prescription Order Number is a globally unique number 
+         * assigned to a prescription by the EHR/DIS irrespective of 
+         * the source of the order</p><p>It is created by the EHR/DIS 
+         * once the prescription has passed all edits and 
+         * validation.</p> <p>Allows for the situations where the order 
+         * is originating from the DIS.</p><p>Allows prescriptions to 
+         * be uniquely referenced.</p><p>Because this attribute is not 
+         * used for prescriptions originating from a prescriber system, 
+         * the element is optional.</p> <p>Allows for the situations 
+         * where the order is originating from the DIS.</p><p>Allows 
          * prescriptions to be uniquely referenced.</p><p>Because this 
          * attribute is not used for prescriptions originating from a 
          * prescriber system, the element is optional.</p> <p>Allows 
@@ -110,21 +116,21 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
          * DIS.</p><p>Allows prescriptions to be uniquely 
          * referenced.</p><p>Because this attribute is not used for 
          * prescriptions originating from a prescriber system, the 
-         * element is optional.</p> <p>Allows for the situations where 
-         * the order is originating from the DIS.</p><p>Allows 
-         * prescriptions to be uniquely referenced.</p><p>Because this 
-         * attribute is not used for prescriptions originating from a 
-         * prescriber system, the element is optional.</p> 
-         * D:Prescription Order Number <p>The identifier of the 
-         * prescription for which a dispense is being created.</p> 
+         * element is optional.</p> Un-merged Business Name: 
+         * PrescriptionOrderNumber Relationship: 
+         * PORX_MT020070CA.SubstanceAdministrationRequest.id 
+         * Conformance/Cardinality: POPULATED (1) <p>The identifier of 
+         * the prescription for which a dispense is being created.</p> 
          * <p>Allows prescriptions to be uniquely referenced.</p><p>The 
          * ID is only 'populated' because in some cases the 
          * prescription will not yet exist electronically.</p> 
          * <p>Allows prescriptions to be uniquely referenced.</p><p>The 
          * ID is only 'populated' because in some cases the 
          * prescription will not yet exist electronically.</p> 
-         * D:Prescription Order Number <p>The identifier of the 
-         * prescription for which a dispense is beiing created.</p> 
+         * Un-merged Business Name: PrescriptionOrderNumber 
+         * Relationship: PORX_MT020060CA.DeviceRequest.id 
+         * Conformance/Cardinality: POPULATED (1) <p>The identifier of 
+         * the prescription for which a dispense is beiing created.</p> 
          * <p>Allows prescriptions to be uniquely referenced.</p><p>The 
          * ID is only 'populated' because in some cases the 
          * prescription will not yet exist electronically.</p> 
@@ -139,17 +145,19 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
         }
 
         /**
-         * <summary>PrescriptionStatus</summary>
+         * <summary>Business Name: PrescriptionStatus</summary>
          * 
-         * <remarks>C:Prescription Status <p>This denotes the state of 
-         * the prescription in the lifecycle of the prescription. Valid 
-         * statuses are: new, active, suspended, aborted, completed, 
-         * obsolete and nullified. Use 'active' when registering a new 
-         * prescription or converting a predetermination into a valid 
-         * prescription.</p> <p>Indicates what actions are allowed to 
-         * be performed against a prescription. This is a mandatory 
-         * field because every prescription needs to be in some 
-         * state.</p></remarks>
+         * <remarks>Un-merged Business Name: PrescriptionStatus 
+         * Relationship: PORX_MT010110CA.DeviceRequest.statusCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>This denotes the 
+         * state of the prescription in the lifecycle of the 
+         * prescription. Valid statuses are: new, active, suspended, 
+         * aborted, completed, obsolete and nullified. Use 'active' 
+         * when registering a new prescription or converting a 
+         * predetermination into a valid prescription.</p> <p>Indicates 
+         * what actions are allowed to be performed against a 
+         * prescription. This is a mandatory field because every 
+         * prescription needs to be in some state.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"statusCode"})]
         public ActStatus StatusCode {
@@ -158,10 +166,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
         }
 
         /**
-         * <summary>PrescriptionMaskingIndicators</summary>
+         * <summary>Business Name: PrescriptionMaskingIndicators</summary>
          * 
-         * <remarks>F:Prescription Masking Indicators <p>Communicates 
-         * the intent of the patient to restrict access to their 
+         * <remarks>Un-merged Business Name: 
+         * PrescriptionMaskingIndicators Relationship: 
+         * PORX_MT010110CA.DeviceRequest.confidentialityCode 
+         * Conformance/Cardinality: OPTIONAL (0-2) <p>Communicates the 
+         * intent of the patient to restrict access to their 
          * prescriptions. Provides support for additional 
          * confidentiality constraint, giving patients a level of 
          * control over their information.</p><p>Valid values are: 'N' 
@@ -214,70 +225,169 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
             get { return this.confidentialityCode.RawSet<x_NormalRestrictedTabooConfidentialityKind>(); }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PORX_MT010110CA.DirectTarget.manufacturedProduct 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"directTarget/manufacturedProduct"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Coct_mt141007ca.DeviceProduct DirectTargetManufacturedProduct {
             get { return this.directTargetManufacturedProduct; }
             set { this.directTargetManufacturedProduct = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PORX_MT010110CA.Predecessor.priorDeviceRequest 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"predecessor/priorDeviceRequest"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Porx_mt010110ca.PriorDeviceRequest PredecessorPriorDeviceRequest {
             get { return this.predecessorPriorDeviceRequest; }
             set { this.predecessorPriorDeviceRequest = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: PORX_MT010110CA.DeviceRequest.reason 
+         * Conformance/Cardinality: POPULATED (1-5)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"reason"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.PrescribedBecauseOf> Reason {
             get { return this.reason; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PORX_MT010110CA.Precondition.verificationEventCriterion 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"precondition/verificationEventCriterion"})]
         public bool? PreconditionVerificationEventCriterion {
             get { return this.preconditionVerificationEventCriterion.Value; }
             set { this.preconditionVerificationEventCriterion.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: PORX_MT010110CA.Coverage2.coverage 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"coverage/coverage"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged.CoverageExtensions> CoverageCoverage {
             get { return this.coverageCoverage; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PORX_MT010110CA.Component1.procedureRequest 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"component1/procedureRequest"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged.ProcedureRequest Component1ProcedureRequest {
             get { return this.component1ProcedureRequest; }
             set { this.component1ProcedureRequest = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PORX_MT010110CA.Component6.supplyRequest 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"component2/supplyRequest"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged.DispenseInstructions_1 Component2SupplyRequest {
             get { return this.component2SupplyRequest; }
             set { this.component2SupplyRequest = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: PORX_MT010110CA.Subject4.annotation 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf/annotation"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Coct_mt120600ca.Notes SubjectOfAnnotation {
             get { return this.subjectOfAnnotation; }
             set { this.subjectOfAnnotation = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PORX_MT020070CA.ResponsibleParty3.assignedEntity 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT020060CA.ResponsibleParty3.assignedEntity 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"responsibleParty/assignedEntity"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.HealthcareWorker ResponsiblePartyAssignedEntity {
             get { return this.responsiblePartyAssignedEntity; }
             set { this.responsiblePartyAssignedEntity = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PORX_MT020070CA.SubstanceAdministrationRequest.author 
+         * Conformance/Cardinality: REQUIRED (0-1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT020060CA.DeviceRequest.author 
+         * Conformance/Cardinality: REQUIRED (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"author"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.RefusedBy Author {
             get { return this.author; }
             set { this.author = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PORX_MT020070CA.Component2.contextConductionInd 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"component/contextConductionInd"})]
         public bool? ComponentContextConductionInd {
             get { return this.componentContextConductionInd.Value; }
             set { this.componentContextConductionInd.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PORX_MT020070CA.Component2.supplyRequest 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"component/supplyRequest"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged.DispenseInstructions_2 ComponentSupplyRequest {
             get { return this.componentSupplyRequest; }

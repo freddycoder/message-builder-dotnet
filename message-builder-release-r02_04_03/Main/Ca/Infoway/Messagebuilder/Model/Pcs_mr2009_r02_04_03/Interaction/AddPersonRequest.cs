@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,6 +25,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Cr.Prpa_mt101001ca;
 
 
+    /**
+     * <summary>Business Name: PRPA_IN101201CA: Add Person Request</summary>
+     * 
+     * <p>This interaction occurs when a new person is to be added 
+     * to a person registry.</p> Message: MCCI_MT002100CA.Message 
+     * Control Act: MFMI_MT700711CA.ControlActEvent --> Payload: 
+     * PRPA_MT101001CA.IdentifiedEntity
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"PRPA_IN101201CA"})]
     public class AddPersonRequest : HL7Message_1<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.TriggerEvent_4<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Cr.Prpa_mt101001ca.IdentifiedClient>>, IInteraction {
 

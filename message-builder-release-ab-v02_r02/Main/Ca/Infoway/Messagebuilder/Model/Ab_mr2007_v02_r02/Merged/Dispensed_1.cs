@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
 
 
     /**
-     * <summary>Dispensed</summary>
+     * <summary>Business Name: Dispensed</summary>
      * 
      * <remarks>PORX_MT980020CA.Product: *a:dispensed <p>Indicates 
      * the implicated drug that was dispensed.</p> <p>Important 
@@ -60,6 +60,21 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
 
         public Dispensed_1() {
         }
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: PORX_MT980020CA.Product.medication 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * COCT_MT260020CA.Product.medication Conformance/Cardinality: 
+         * POPULATED (1) Un-merged Business Name: (no business name 
+         * specified) Relationship: COCT_MT260010CA.Product.medication 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT980010CA.Product.medication Conformance/Cardinality: 
+         * POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"medication"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Coct_mt220200ca.DrugProduct Medication {
             get { return this.medication; }

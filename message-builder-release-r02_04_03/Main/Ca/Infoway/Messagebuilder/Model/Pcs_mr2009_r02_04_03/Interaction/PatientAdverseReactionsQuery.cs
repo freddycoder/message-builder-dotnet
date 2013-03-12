@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,6 +25,19 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged;
 
 
+    /**
+     * <summary>Business Name: REPC_IN000001CA: Patient adverse 
+     * reactions query</summary>
+     * 
+     * <p>Requests retrieval of the details about all adverse 
+     * reactions which have been recorded against a patient's 
+     * record, potentially filtered by reaction type, time-range of 
+     * the occurrence of the reaction and/or time-range in which 
+     * the adverse reaction information was last changed.</p> 
+     * Message: MCCI_MT002100CA.Message Control Act: 
+     * QUQI_MT020000CA.ControlActEvent --> Payload: 
+     * REPC_MT000016CA.ParameterList
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"REPC_IN000001CA"})]
     public class PatientAdverseReactionsQuery : HL7Message_1<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.TriggerEvent_5<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged.QueryDefinition>>, IInteraction {
 

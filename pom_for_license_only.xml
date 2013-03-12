@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright 2012 Canada Health Infoway, Inc.
+    Copyright 2013 Canada Health Infoway, Inc.
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -25,14 +25,14 @@
 	<groupId>ca.infoway.messagebuilder</groupId>
 	<artifactId>message-builder</artifactId>
 	<packaging>pom</packaging>
-	<version>1.2.9-SNAPSHOT</version>
+	<version>1.4.7-SNAPSHOT</version>
 	<name>Message Builder Parent</name>
         <scm>
-		<connection>scm:svn:https://svn.emri.infoway-inforoute.ca/internal/Projects/MessageBuilderTool/sourceCode/trunk
+		<connection>scm:svn:https://svnemri.infoway-inforoute.ca/internal/Projects/MessageBuilderTool/sourceCode/trunk
 		</connection>
-		<developerConnection>scm:svn:https://svn.emri.infoway-inforoute.ca/internal/Projects/MessageBuilderTool/sourceCode/trunk
+		<developerConnection>scm:svn:https://svnemri.infoway-inforoute.ca/internal/Projects/MessageBuilderTool/sourceCode/trunk
 		</developerConnection>
-		<url>https://svn.emri.infoway-inforoute.ca/internal/Projects/MessageBuilderTool/sourceCode/trunk
+		<url>https://svnemri.infoway-inforoute.ca/internal/Projects/MessageBuilderTool/sourceCode/trunk
 		</url>
 	</scm>
 	<build>
@@ -50,9 +50,9 @@
 			    <artifactId>maven-license-plugin</artifactId>
 			    <version>1.10.b1</version>
 			    <configuration>
-				<header>../../workspace/message-builder/etc/LICENSE_main.txt</header>
+				<header>../../../../etc/LICENSE_main.txt</header>
 				<validHeaders>
-				    <validHeader>../../workspace/message-builder/etc/LICENSE.txt</validHeader>
+				    <validHeader>../../../../etc/LICENSE_main.txt</validHeader>
 				</validHeaders>
 				<aggregate>true</aggregate>
 				<mapping>
@@ -60,7 +60,7 @@
 				    <mappingml>XML_STYLE</mappingml>
 				</mapping>
 				<properties>
-				    <year>2012</year>
+				    <year>2013</year>
 				</properties>
 			        <excludes>
 			            <exclude>**/LICENSE_main.txt</exclude>

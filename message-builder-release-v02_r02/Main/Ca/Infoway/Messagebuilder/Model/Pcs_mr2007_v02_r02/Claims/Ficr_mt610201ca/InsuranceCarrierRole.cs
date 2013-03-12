@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,9 +27,9 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Ficr_mt61020
 
 
     /**
-     * <summary>Insurance Carrier Role</summary>
+     * <summary>Business Name: Insurance Carrier Role</summary>
      * 
-     * <remarks><p>Role played by Insurance Carrier</p></remarks>
+     * <p>Role played by Insurance Carrier</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"FICR_MT610201CA.InsuranceCarrierRole"})]
     public class InsuranceCarrierRole : MessagePartBean {
@@ -40,10 +40,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Ficr_mt61020
             this.id = new IIImpl();
         }
         /**
-         * <summary>Adjudicator Insurance Carrier ID</summary>
+         * <summary>Business Name: Adjudicator Insurance Carrier ID</summary>
          * 
-         * <remarks><p>Adjudicator Insurance Carrier ID</p> <p>As 
-         * identified by the Adjudicator</p></remarks>
+         * <remarks>Relationship: 
+         * FICR_MT610201CA.InsuranceCarrierRole.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>As identified by 
+         * the Adjudicator</p> <p>Adjudicator Insurance Carrier ID</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {

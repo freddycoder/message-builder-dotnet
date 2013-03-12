@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
 
 
     /**
-     * <summary>Substitution</summary>
+     * <summary>Business Name: Substitution</summary>
      * 
      * <remarks>PORX_MT060160CA.SubstitutionMade: Substitution 
      * <p>An indication of what kind of substitution made, if 
@@ -57,20 +57,43 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             this.reasonCode = new CVImpl();
         }
         /**
-         * <summary>SubstitutionCode</summary>
+         * <summary>Business Name: SubstitutionCode</summary>
          * 
-         * <remarks>Substitution Code <p>A code signifying whether a 
-         * different drug was dispensed from what was prescribed.</p> 
-         * <p>Indicates that substitution was done (or not). This 
-         * attribute is mandatory because it is essential to 
-         * understanding the substitution.</p> Substitution Code <p>A 
-         * code signifying whether a different drug was dispensed from 
-         * what was prescribed.</p> 
+         * <remarks>Un-merged Business Name: SubstitutionCode 
+         * Relationship: PORX_MT060090CA.SubstitutionMade.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>A code signifying 
+         * whether a different drug was dispensed from what was 
+         * prescribed.</p> <p>Indicates that substitution was done (or 
+         * not). This attribute is mandatory because it is essential to 
+         * understanding the substitution.</p> Un-merged Business Name: 
+         * SubstitutionCode Relationship: 
+         * PORX_MT060160CA.SubstitutionMade.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>A code signifying 
+         * whether a different drug was dispensed from what was 
+         * prescribed.</p> 
          * <p>DRU.050</p><p>Claim.408-D8</p><p>A_BillablePharmacyDispense</p> 
          * <p>DRU.050</p><p>Claim.408-D8</p><p>A_BillablePharmacyDispense</p> 
          * <p>DRU.050</p><p>Claim.408-D8</p><p>A_BillablePharmacyDispense</p> 
          * <p>Indicates that substitution was done (or not). This 
          * attribute is mandatory because it is essential to 
+         * understanding the substitution.</p> Un-merged Business Name: 
+         * SubstitutionCode Relationship: 
+         * PORX_MT060340CA.SubstitutionMade.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>A code signifying 
+         * whether a different drug was dispensed from what was 
+         * prescribed.</p> 
+         * <p>DRU.050</p><p>Claim.408-D8</p><p>A_BillablePharmacyDispense</p> 
+         * <p>DRU.050</p><p>Claim.408-D8</p><p>A_BillablePharmacyDispense</p> 
+         * <p>DRU.050</p><p>Claim.408-D8</p><p>A_BillablePharmacyDispense</p> 
+         * <p>Indicates that substitution was done (or not). This 
+         * attribute is mandatory because it is essential to 
+         * understanding the substitution.</p> Un-merged Business Name: 
+         * SubstitutionCode Relationship: 
+         * PORX_MT020070CA.SubstitutionMade.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>A code signifying 
+         * whether a different drug was dispensed from what was 
+         * prescribed.</p> <p>Indicates that substitution was done (or 
+         * not). This attribute is mandatory because it is essential to 
          * understanding the substitution.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
@@ -80,26 +103,44 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>Product Selection Reason Code</summary>
+         * <summary>Un-merged Business Name: ProductSelectionReasonCode</summary>
          * 
-         * <remarks><p>Indicates the reason for the substitution of (or 
-         * failure to substitute) the medication from what was 
-         * prescribed.</p> <p>Standardized reasons for substitution 
-         * performed (or not performed). Useful in analysis of 
-         * dispensing patterns.</p> Product Selection Code <p>Indicates 
-         * the reason for the substitution of (or failure to 
-         * substitute) the medication from what was prescribed.</p> 
+         * <remarks>Relationship: 
+         * PORX_MT060090CA.SubstitutionMade.reasonCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
+         * reason for the substitution of (or failure to substitute) 
+         * the medication from what was prescribed.</p> <p>Standardized 
+         * reasons for substitution performed (or not performed). 
+         * Useful in analysis of dispensing patterns.</p> Un-merged 
+         * Business Name: ProductSelectionCode Relationship: 
+         * PORX_MT060160CA.SubstitutionMade.reasonCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
+         * reason for the substitution of (or failure to substitute) 
+         * the medication from what was prescribed.</p> 
          * <p>DispensedItem.productSelectionCode</p><p>D62</p><p>ZDP.12</p><p>A_BillablePharmacyDispense</p> 
          * <p>DispensedItem.productSelectionCode</p><p>D62</p><p>ZDP.12</p><p>A_BillablePharmacyDispense</p> 
          * <p>DispensedItem.productSelectionCode</p><p>D62</p><p>ZDP.12</p><p>A_BillablePharmacyDispense</p> 
          * <p>DispensedItem.productSelectionCode</p><p>D62</p><p>ZDP.12</p><p>A_BillablePharmacyDispense</p> 
          * <p>Standardized reasons for substitution performed (or not 
          * performed). Useful in analysis of dispensing patterns.</p> 
-         * Product Selection Reason Code <p>Indicates the reason for 
-         * the substitution of (or lack of substitution) from what was 
-         * prescribed.</p> <p>Standardized reasons for substitution 
-         * performed (or not performed). Useful in analysis of 
-         * dispensing patterns.</p></remarks>
+         * Un-merged Business Name: ProductSelectionCode Relationship: 
+         * PORX_MT060340CA.SubstitutionMade.reasonCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
+         * reason for the substitution of (or failure to substitute) 
+         * the medication from what was prescribed.</p> 
+         * <p>DispensedItem.productSelectionCode</p><p>D62</p><p>ZDP.12</p><p>A_BillablePharmacyDispense</p> 
+         * <p>DispensedItem.productSelectionCode</p><p>D62</p><p>ZDP.12</p><p>A_BillablePharmacyDispense</p> 
+         * <p>DispensedItem.productSelectionCode</p><p>D62</p><p>ZDP.12</p><p>A_BillablePharmacyDispense</p> 
+         * <p>DispensedItem.productSelectionCode</p><p>D62</p><p>ZDP.12</p><p>A_BillablePharmacyDispense</p> 
+         * <p>Standardized reasons for substitution performed (or not 
+         * performed). Useful in analysis of dispensing patterns.</p> 
+         * Un-merged Business Name: ProductSelectionReasonCode 
+         * Relationship: PORX_MT020070CA.SubstitutionMade.reasonCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
+         * reason for the substitution of (or lack of substitution) 
+         * from what was prescribed.</p> <p>Standardized reasons for 
+         * substitution performed (or not performed). Useful in 
+         * analysis of dispensing patterns.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"reasonCode"})]
         public SubstanceAdminSubstitutionReason ReasonCode {
@@ -107,6 +148,23 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             set { this.reasonCode.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PORX_MT060090CA.ResponsibleParty.agent 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060160CA.ResponsibleParty.agent 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060340CA.ResponsibleParty.agent 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT020070CA.ResponsibleParty.agent 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"responsibleParty/agent"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.Agent ResponsiblePartyAgent {
             get { return this.responsiblePartyAgent; }

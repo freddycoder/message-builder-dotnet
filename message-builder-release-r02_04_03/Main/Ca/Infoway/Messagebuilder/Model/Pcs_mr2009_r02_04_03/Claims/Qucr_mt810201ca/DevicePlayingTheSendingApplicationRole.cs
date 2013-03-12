@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,9 +27,10 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Qucr_mt810
 
 
     /**
-     * <summary>Device playing the Sending Application Role</summary>
+     * <summary>Business Name: Device playing the Sending 
+     * Application Role</summary>
      * 
-     * <remarks><p>Device playing the Sending Application Role</p></remarks>
+     * <p>Device playing the Sending Application Role</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"QUCR_MT810201CA.AdjudResultsSendingAppRole"})]
     public class DevicePlayingTheSendingApplicationRole : MessagePartBean {
@@ -40,9 +41,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Qucr_mt810
             this.playingAdjudResultsSendingAppDeviceId = new IIImpl();
         }
         /**
-         * <summary>Sending application identifier</summary>
+         * <summary>Business Name: Sending application identifier</summary>
          * 
-         * <remarks><p>Sending application identifier</p></remarks>
+         * <remarks>Relationship: 
+         * QUCR_MT810201CA.AdjudResultsSendingAppDevice.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>Sending 
+         * application identifier</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"playingAdjudResultsSendingAppDevice/id"})]
         public Identifier PlayingAdjudResultsSendingAppDeviceId {

@@ -1,3 +1,22 @@
+/**
+ * Copyright 2013 Canada Health Infoway, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Author:        $LastChangedBy: tmcgrady $
+ * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Revision:      $LastChangedRevision: 2623 $
+ */
 using System;
 using System.Xml;
 using Ca.Infoway.Messagebuilder;
@@ -13,29 +32,30 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 	[DataTypeHandler("PIVL<TS.DATETIME>")]
 	internal class PivlTsDateTimeElementParser : AbstractSingleElementParser<PeriodicIntervalTime>
 	{
-		/// <exception cref="Ca.Infoway.Messagebuilder.Marshalling.HL7.XmlToModelTransformationException"></exception>
 		protected override PeriodicIntervalTime ParseNonNullNode(ParseContext context, XmlNode node, BareANY result, Type expectedReturnType
 			, XmlToModelResult xmlToModelResult)
 		{
 			return ParseNonNullNode(context, (XmlElement)node, expectedReturnType, xmlToModelResult);
 		}
 
-		/// <exception cref="Ca.Infoway.Messagebuilder.Marshalling.HL7.XmlToModelTransformationException"></exception>
 		protected virtual PeriodicIntervalTime ParseNonNullNode(ParseContext context, XmlElement element, Type expectedReturnType
 			, XmlToModelResult xmlToModelResult)
 		{
-			ValidateNonAllowedChildNode(element, xmlToModelResult, "period");
+			PeriodicIntervalTime result = null;
 			ValidateNonAllowedChildNode(element, xmlToModelResult, "phase");
+			ValidateNonAllowedChildNode(element, xmlToModelResult, "period");
+			ValidateNonAllowedChildNode(element, xmlToModelResult, "alignment");
+			ValidateNonAllowedChildNode(element, xmlToModelResult, "institutionSpecified");
 			XmlElement frequency = (XmlElement)GetNamedChildNode(element, "frequency");
-			if (frequency != null)
+			if (frequency == null)
 			{
-				return ParseFrequency(context, frequency, expectedReturnType, xmlToModelResult);
+				CreateMandatoryChildElementHl7Error(element, "frequency", xmlToModelResult);
 			}
 			else
 			{
-				CreateMandatoryChildElementHl7Error(element, "frequency", xmlToModelResult);
-				return null;
+				result = ParseFrequency(context, frequency, expectedReturnType, xmlToModelResult);
 			}
+			return result;
 		}
 
 		private void CreateMandatoryChildElementHl7Error(XmlElement element, string name, XmlToModelResult xmlToModelResult)
@@ -44,7 +64,6 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 				));
 		}
 
-		/// <exception cref="Ca.Infoway.Messagebuilder.Marshalling.HL7.XmlToModelTransformationException"></exception>
 		protected virtual PeriodicIntervalTime ParseFrequency(ParseContext context, XmlElement element, Type expectedReturnType, 
 			XmlToModelResult xmlToModelResult)
 		{
@@ -53,7 +72,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			if (numerator != null && denominator != null)
 			{
 				Int32? repetitions = ParseNumerator(context, numerator, xmlToModelResult);
-				if (SpecificationVersion.IsVersion(SpecificationVersion.V01R04_2_SK, context.GetVersion()))
+				if (SpecificationVersion.IsExactVersion(SpecificationVersion.V01R04_2_SK, context.GetVersion()))
 				{
 					Interval<PhysicalQuantity> quantityInterval = ParseDenominatorSk(context, denominator, xmlToModelResult);
 					return PeriodicIntervalTimeSk.CreateFrequencySk(repetitions, quantityInterval == null ? null : quantityInterval.Low, quantityInterval
@@ -79,7 +98,6 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			}
 		}
 
-		/// <exception cref="Ca.Infoway.Messagebuilder.Marshalling.HL7.XmlToModelTransformationException"></exception>
 		private Int32? ParseNumerator(ParseContext context, XmlElement numerator, XmlToModelResult xmlToModelResult)
 		{
 			ElementParser parser = ParserRegistry.GetInstance().Get("INT.NONNEG");
@@ -88,7 +106,6 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			return (Int32?)parser.Parse(subContext, Arrays.AsList((XmlNode)numerator), xmlToModelResult).BareValue;
 		}
 
-		/// <exception cref="Ca.Infoway.Messagebuilder.Marshalling.HL7.XmlToModelTransformationException"></exception>
 		private PhysicalQuantity ParseDenominator(ParseContext context, XmlElement numerator, XmlToModelResult xmlToModelResult)
 		{
 			ElementParser parser = ParserRegistry.GetInstance().Get("PQ.TIME");
@@ -97,13 +114,13 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			return (PhysicalQuantity)parser.Parse(subContext, Arrays.AsList((XmlNode)numerator), xmlToModelResult).BareValue;
 		}
 
-		/// <exception cref="Ca.Infoway.Messagebuilder.Marshalling.HL7.XmlToModelTransformationException"></exception>
 		private Interval<PhysicalQuantity> ParseDenominatorSk(ParseContext context, XmlElement numerator, XmlToModelResult xmlToModelResult
 			)
 		{
-			ElementParser parser = ParserRegistry.GetInstance().Get("IVL<PQ>");
-			ParseContext subContext = ParserContextImpl.Create("IVL<PQ>", typeof(PhysicalQuantity), context.GetVersion(), context.GetDateTimeZone
-				(), context.GetDateTimeTimeZone(), Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY);
+			// TM - Unsure if SK is allowed to send in any kind of PQ, or only specific ones. Picked PQ.BASIC to cover most scenarios. 
+			ElementParser parser = ParserRegistry.GetInstance().Get("IVL<PQ.BASIC>");
+			ParseContext subContext = ParserContextImpl.Create("IVL<PQ.BASIC>", typeof(PhysicalQuantity), context.GetVersion(), context
+				.GetDateTimeZone(), context.GetDateTimeTimeZone(), Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY);
 			return (Interval<PhysicalQuantity>)parser.Parse(subContext, Arrays.AsList((XmlNode)numerator), xmlToModelResult).BareValue;
 		}
 

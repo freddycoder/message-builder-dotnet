@@ -1,3 +1,22 @@
+/**
+ * Copyright 2013 Canada Health Infoway, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Author:        $LastChangedBy: tmcgrady $
+ * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Revision:      $LastChangedRevision: 2623 $
+ */
 using System.Collections.Generic;
 using System.Text;
 using Ca.Infoway.Messagebuilder;
@@ -11,11 +30,11 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 {
 	public abstract class BaseCollectionPropertyFormatter : AbstractNullFlavorPropertyFormatter<ICollection<BareANY>>
 	{
-		/// <exception cref="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.ModelToXmlTransformationException"></exception>
 		protected virtual FormatContext CreateSubContext(FormatContext context)
 		{
-			return new FormatContextImpl(context.GetElementName(), GetSubType(context), context.GetConformanceLevel(), context.IsSpecializationType
-				(), context.GetVersion(), context.GetDateTimeZone(), context.GetDateTimeTimeZone());
+			return new FormatContextImpl(context.GetModelToXmlResult(), context.GetPropertyPath(), context.GetElementName(), GetSubType
+				(context), context.GetDomainType(), context.GetConformanceLevel(), context.IsSpecializationType(), context.GetVersion(), 
+				context.GetDateTimeZone(), context.GetDateTimeTimeZone(), true, null);
 		}
 
 		protected override ICollection<BareANY> ExtractBareValue(BareANY hl7Value)
@@ -24,7 +43,6 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			return collection.GetBareCollectionValue();
 		}
 
-		/// <exception cref="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.ModelToXmlTransformationException"></exception>
 		protected virtual string FormatAllElements(FormatContext subContext, ICollection<BareANY> collection, int indentLevel)
 		{
 			StringBuilder builder = new StringBuilder();
@@ -54,7 +72,6 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		/// <param name="context"></param>
 		/// <returns></returns>
 		/// <exception cref="ModelToXmlTransformationException"></exception>
-		/// <exception cref="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.ModelToXmlTransformationException"></exception>
 		private string GetSubType(FormatContext context)
 		{
 			string subType = Hl7DataTypeName.GetParameterizedType(context.Type);

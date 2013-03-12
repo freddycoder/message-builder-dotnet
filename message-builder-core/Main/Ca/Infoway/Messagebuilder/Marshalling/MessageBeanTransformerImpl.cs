@@ -1,3 +1,22 @@
+/**
+ * Copyright 2013 Canada Health Infoway, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Author:        $LastChangedBy: tmcgrady $
+ * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Revision:      $LastChangedRevision: 2623 $
+ */
 using System;
 using System.Xml;
 using Ca.Infoway.Messagebuilder;
@@ -14,11 +33,9 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 
 		private readonly RenderMode renderMode;
 
-		public MessageBeanTransformerImpl(MessageDefinitionService service, RenderMode renderMode)
-		{
-			this.service = service;
-			this.renderMode = renderMode;
-		}
+		private readonly TimeZone dateTimeZone;
+
+		private readonly TimeZone dateTimeTimeZone;
 
 		public MessageBeanTransformerImpl() : this(new MessageDefinitionServiceFactory().Create(), RenderMode.STRICT)
 		{
@@ -29,9 +46,23 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 		{
 		}
 
+		public MessageBeanTransformerImpl(MessageDefinitionService service, RenderMode renderMode) : this(service, renderMode, null
+			, null)
+		{
+		}
+
+		public MessageBeanTransformerImpl(MessageDefinitionService service, RenderMode renderMode, TimeZone dateTimeZone, TimeZone
+			 dateTimeTimeZone)
+		{
+			this.service = service;
+			this.renderMode = renderMode;
+			this.dateTimeZone = dateTimeZone;
+			this.dateTimeTimeZone = dateTimeTimeZone;
+		}
+
 		public virtual XmlToModelResult TransformFromHl7(VersionNumber version, XmlDocument hl7Message)
 		{
-			return TransformFromHl7(version, hl7Message, null, null);
+			return TransformFromHl7(version, hl7Message, this.dateTimeZone, this.dateTimeTimeZone);
 		}
 
 		public virtual XmlToModelResult TransformFromHl7(VersionNumber version, XmlDocument hl7Message, TimeZone dateTimeZone, TimeZone
@@ -55,7 +86,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 
 		public virtual ModelToXmlResult TransformToHl7AndReturnResult(VersionNumber version, IInteraction messageBean)
 		{
-			return TransformToHl7AndReturnResult(version, messageBean, null, null);
+			return TransformToHl7AndReturnResult(version, messageBean, this.dateTimeZone, this.dateTimeTimeZone);
 		}
 
 		public virtual ModelToXmlResult TransformToHl7AndReturnResult(VersionNumber version, IInteraction messageBean, TimeZone dateTimeZone

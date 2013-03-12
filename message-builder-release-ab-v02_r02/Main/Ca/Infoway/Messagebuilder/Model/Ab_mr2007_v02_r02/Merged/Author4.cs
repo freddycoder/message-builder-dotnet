@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
 
 
     /**
-     * <summary>PrescribedBy</summary>
+     * <summary>Business Name: PrescribedBy</summary>
      * 
      * <remarks>PORX_MT060040CA.Author4: *b:prescribed by <p>This 
      * is the provider who authorized the device to be dispensed to 
@@ -66,63 +66,29 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             this.signatureText = new EDImpl<String>();
         }
         /**
-         * <summary>PrescribedDate</summary>
+         * <summary>Business Name: PrescribedDate</summary>
          * 
-         * <remarks>Prescribed Date <p>The date and time at which the 
-         * drug was prescribed/dispensed. This may differ from the date 
-         * on which the prescription becomes effective. E.g. A 
+         * <remarks>Un-merged Business Name: PrescribedDate 
+         * Relationship: PORX_MT060040CA.Author4.time 
+         * Conformance/Cardinality: POPULATED (1) <p>The date at which 
+         * the device was prescribed/dispensed. This may differ from 
+         * the date on which the prescription becomes effective. E.g. A 
          * prescription created today may not be valid to be dispensed 
-         * or administered for two weeks.</p> 
-         * <p>Prescription.prescribedDate</p><p>Date prescription 
-         * written</p><p>ZDP.8</p><p>DRU.040-02 (low, qualifier=85, 
-         * format=102)</p><p>DRU.040-02 (low, qualifier=LO, format=102, 
-         * where filter type = most recent)</p><p>Claim:414-DE</p> 
-         * <p>Prescription.prescribedDate</p><p>Date prescription 
-         * written</p><p>ZDP.8</p><p>DRU.040-02 (low, qualifier=85, 
-         * format=102)</p><p>DRU.040-02 (low, qualifier=LO, format=102, 
-         * where filter type = most recent)</p><p>Claim:414-DE</p> 
-         * <p>Prescription.prescribedDate</p><p>Date prescription 
-         * written</p><p>ZDP.8</p><p>DRU.040-02 (low, qualifier=85, 
-         * format=102)</p><p>DRU.040-02 (low, qualifier=LO, format=102, 
-         * where filter type = most recent)</p><p>Claim:414-DE</p> 
-         * <p>Prescription.prescribedDate</p><p>Date prescription 
-         * written</p><p>ZDP.8</p><p>DRU.040-02 (low, qualifier=85, 
-         * format=102)</p><p>DRU.040-02 (low, qualifier=LO, format=102, 
-         * where filter type = most recent)</p><p>Claim:414-DE</p> 
-         * <p>Prescription.prescribedDate</p><p>Date prescription 
-         * written</p><p>ZDP.8</p><p>DRU.040-02 (low, qualifier=85, 
-         * format=102)</p><p>DRU.040-02 (low, qualifier=LO, format=102, 
-         * where filter type = most recent)</p><p>Claim:414-DE</p> 
-         * <p>Prescription.prescribedDate</p><p>Date prescription 
-         * written</p><p>ZDP.8</p><p>DRU.040-02 (low, qualifier=85, 
-         * format=102)</p><p>DRU.040-02 (low, qualifier=LO, format=102, 
-         * where filter type = most recent)</p><p>Claim:414-DE</p> 
-         * <p>Indicates when the action was performed, and may 
-         * influence expiry dates for the order.</p><p>The attribute is 
-         * populated because the creation datetime of the prescription 
-         * may not be known, as in the case of 'inferred 
-         * prescription'.</p> <p>Indicates when the action was 
+         * or used for two weeks.</p> <p>Indicates when the action was 
          * performed, and may influence expiry dates for the 
          * order.</p><p>The attribute is populated because the creation 
-         * datetime of the prescription may not be known, as in the 
-         * case of 'inferred prescription'.</p> Prescribed Date <p>The 
-         * date at which the device was prescribed/dispensed. This may 
-         * differ from the date on which the prescription becomes 
-         * effective. E.g. A prescription created today may not be 
-         * valid to be dispensed or used for two weeks.</p> 
-         * <p>Indicates when the action was performed, and may 
-         * influence expiry dates for the order.</p><p>The attribute is 
-         * populated because the creation date of the prescription will 
-         * always be known, except for inferred prescriptions.</p> 
-         * <p>Indicates when the action was performed, and may 
-         * influence expiry dates for the order.</p><p>The attribute is 
-         * populated because the creation date of the prescription will 
-         * always be known, except for inferred prescriptions.</p> 
-         * Prescribed Date <p>The date and time at which the drug was 
-         * prescribed/dispensed. This may differ from the date on which 
-         * the prescription becomes effective. E.g. A prescription 
-         * created today may not be valid to be dispensed or 
-         * administered for two weeks.</p> 
+         * date of the prescription will always be known, except for 
+         * inferred prescriptions.</p> <p>Indicates when the action was 
+         * performed, and may influence expiry dates for the 
+         * order.</p><p>The attribute is populated because the creation 
+         * date of the prescription will always be known, except for 
+         * inferred prescriptions.</p> Un-merged Business Name: 
+         * PrescribedDate Relationship: PORX_MT060340CA.Author4.time 
+         * Conformance/Cardinality: POPULATED (1) <p>The date and time 
+         * at which the drug was prescribed/dispensed. This may differ 
+         * from the date on which the prescription becomes effective. 
+         * E.g. A prescription created today may not be valid to be 
+         * dispensed or administered for two weeks.</p> 
          * <p>Prescription.prescribedDate</p><p>Date prescription 
          * written</p><p>ZDP.8</p><p>DRU.040-02 (low, qualifier=85, 
          * format=102)</p><p>DRU.040-02 (low, qualifier=LO, format=102, 
@@ -155,7 +121,47 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
          * performed, and may influence expiry dates for the 
          * order.</p><p>The attribute is populated because the creation 
          * datetime of the prescription will not always be known (as in 
-         * the case of 'inferred prescription').</p></remarks>
+         * the case of 'inferred prescription').</p> Un-merged Business 
+         * Name: PrescribedDate Relationship: 
+         * PORX_MT060160CA.Author4.time Conformance/Cardinality: 
+         * POPULATED (1) <p>The date and time at which the drug was 
+         * prescribed/dispensed. This may differ from the date on which 
+         * the prescription becomes effective. E.g. A prescription 
+         * created today may not be valid to be dispensed or 
+         * administered for two weeks.</p> 
+         * <p>Prescription.prescribedDate</p><p>Date prescription 
+         * written</p><p>ZDP.8</p><p>DRU.040-02 (low, qualifier=85, 
+         * format=102)</p><p>DRU.040-02 (low, qualifier=LO, format=102, 
+         * where filter type = most recent)</p><p>Claim:414-DE</p> 
+         * <p>Prescription.prescribedDate</p><p>Date prescription 
+         * written</p><p>ZDP.8</p><p>DRU.040-02 (low, qualifier=85, 
+         * format=102)</p><p>DRU.040-02 (low, qualifier=LO, format=102, 
+         * where filter type = most recent)</p><p>Claim:414-DE</p> 
+         * <p>Prescription.prescribedDate</p><p>Date prescription 
+         * written</p><p>ZDP.8</p><p>DRU.040-02 (low, qualifier=85, 
+         * format=102)</p><p>DRU.040-02 (low, qualifier=LO, format=102, 
+         * where filter type = most recent)</p><p>Claim:414-DE</p> 
+         * <p>Prescription.prescribedDate</p><p>Date prescription 
+         * written</p><p>ZDP.8</p><p>DRU.040-02 (low, qualifier=85, 
+         * format=102)</p><p>DRU.040-02 (low, qualifier=LO, format=102, 
+         * where filter type = most recent)</p><p>Claim:414-DE</p> 
+         * <p>Prescription.prescribedDate</p><p>Date prescription 
+         * written</p><p>ZDP.8</p><p>DRU.040-02 (low, qualifier=85, 
+         * format=102)</p><p>DRU.040-02 (low, qualifier=LO, format=102, 
+         * where filter type = most recent)</p><p>Claim:414-DE</p> 
+         * <p>Prescription.prescribedDate</p><p>Date prescription 
+         * written</p><p>ZDP.8</p><p>DRU.040-02 (low, qualifier=85, 
+         * format=102)</p><p>DRU.040-02 (low, qualifier=LO, format=102, 
+         * where filter type = most recent)</p><p>Claim:414-DE</p> 
+         * <p>Indicates when the action was performed, and may 
+         * influence expiry dates for the order.</p><p>The attribute is 
+         * populated because the creation datetime of the prescription 
+         * may not be known, as in the case of 'inferred 
+         * prescription'.</p> <p>Indicates when the action was 
+         * performed, and may influence expiry dates for the 
+         * order.</p><p>The attribute is populated because the creation 
+         * datetime of the prescription may not be known, as in the 
+         * case of 'inferred prescription'.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"time"})]
         public PlatformDate Time {
@@ -164,19 +170,34 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>PrescriptionTransmissionMethod</summary>
+         * <summary>Business Name: PrescriptionTransmissionMethod</summary>
          * 
-         * <remarks>Prescription Transmission Method <p>Indicates the 
-         * medium in which a prescription was transmitted to or 
-         * received by the person who entered it into the electronic 
-         * record.</p> <p>ZDP.4</p><p>Claim.419-DJ</p> 
+         * <remarks>Un-merged Business Name: 
+         * PrescriptionTransmissionMethod Relationship: 
+         * PORX_MT060040CA.Author4.modeCode Conformance/Cardinality: 
+         * REQUIRED (0-1) <p>Indicates the medium in which a 
+         * prescription was transmitted to or received by the person 
+         * who entered it into the electronic record.</p> <p>Some 
+         * jurisdictions have a requirement to track how an order was 
+         * received. May also be important when orders are entered into 
+         * a central repository from the pharmacy.</p> Un-merged 
+         * Business Name: PrescriptionTransmissionMethod Relationship: 
+         * PORX_MT060340CA.Author4.modeCode Conformance/Cardinality: 
+         * REQUIRED (0-1) <p>Indicates the medium in which a 
+         * prescription was transmitted to or received by the person 
+         * who entered it into the electronic record.</p> 
+         * <p>ZDP.4</p><p>Claim.419-DJ</p> 
          * <p>ZDP.4</p><p>Claim.419-DJ</p> <p>Some jurisdictions have a 
          * requirement to track how an order was received. May also be 
          * important when orders are entered into a central repository 
-         * from the pharmacy.</p> Prescription Transmission Method 
-         * <p>Indicates the medium in which a prescription was 
-         * transmitted to or received by the person who entered it into 
-         * the electronic record.</p> <p>Some jurisdictions have a 
+         * from the pharmacy.</p> Un-merged Business Name: 
+         * PrescriptionTransmissionMethod Relationship: 
+         * PORX_MT060160CA.Author4.modeCode Conformance/Cardinality: 
+         * REQUIRED (0-1) <p>Indicates the medium in which a 
+         * prescription was transmitted to or received by the person 
+         * who entered it into the electronic record.</p> 
+         * <p>ZDP.4</p><p>Claim.419-DJ</p> 
+         * <p>ZDP.4</p><p>Claim.419-DJ</p> <p>Some jurisdictions have a 
          * requirement to track how an order was received. May also be 
          * important when orders are entered into a central repository 
          * from the pharmacy.</p></remarks>
@@ -188,13 +209,25 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>Signature</summary>
+         * <summary>Business Name: Signature</summary>
          * 
-         * <remarks>Signature <p>An electronic signature of the 
-         * prescription by the prescriber.</p> <p>Allows for pure 
-         * electronic prescriptions without a trusted intermediary. The 
-         * attribute is optional because all jurisdictions may not 
-         * support digital signatures.</p> Signature <p>An electronic 
+         * <remarks>Un-merged Business Name: Signature Relationship: 
+         * PORX_MT060040CA.Author4.signatureText 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>An electronic 
+         * signature of the prescription by the prescriber.</p> 
+         * <p>Allows for pure electronic prescriptions without a 
+         * trusted intermediary. The attribute is optional because all 
+         * jurisdictions may not support digital signatures.</p> 
+         * Un-merged Business Name: Signature Relationship: 
+         * PORX_MT060340CA.Author4.signatureText 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>An electronic 
+         * signature of the prescription by the prescriber.</p> 
+         * <p>Signature</p> <p>Allows for pure electronic prescriptions 
+         * without a trusted intermediary. The attribute is optional 
+         * because all jurisdictions may not support digital 
+         * signatures.</p> Un-merged Business Name: Signature 
+         * Relationship: PORX_MT060160CA.Author4.signatureText 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>An electronic 
          * signature of the prescription by the prescriber.</p> 
          * <p>Signature</p> <p>Allows for pure electronic prescriptions 
          * without a trusted intermediary. The attribute is optional 
@@ -207,12 +240,31 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             set { this.signatureText.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PORX_MT060040CA.Author4.assignedEntity 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"assignedEntity"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.HealthcareWorker AssignedEntity {
             get { return this.assignedEntity; }
             set { this.assignedEntity = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PORX_MT060340CA.Author4.assignedPerson 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060160CA.Author4.assignedPerson 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"assignedPerson"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Coct_mt090107ca.Provider AssignedPerson {
             get { return this.assignedPerson; }

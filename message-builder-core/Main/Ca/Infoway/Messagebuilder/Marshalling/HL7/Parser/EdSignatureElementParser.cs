@@ -1,3 +1,22 @@
+/**
+ * Copyright 2013 Canada Health Infoway, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Author:        $LastChangedBy: tmcgrady $
+ * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Revision:      $LastChangedRevision: 2623 $
+ */
 using System;
 using System.Xml;
 using Ca.Infoway.Messagebuilder.Datatype;
@@ -31,15 +50,29 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 	{
 		private readonly StElementParser stElementParser = new StElementParser();
 
+		// Note that the behaviour for this datatype has not been fully defined by CHI. It is likely that the code below will need to be adjusted at some point.
 		/// <exception cref="Ca.Infoway.Messagebuilder.Marshalling.HL7.XmlToModelTransformationException"></exception>
 		protected override string ParseNonNullNode(ParseContext context, XmlNode node, BareANY parseResult, Type expectedReturnType
 			, XmlToModelResult xmlToModelResult)
 		{
+			ValidateUnallowedAttributes(context.Type, (XmlElement)node, xmlToModelResult, "compression");
+			ValidateUnallowedAttributes(context.Type, (XmlElement)node, xmlToModelResult, "language");
+			ValidateUnallowedAttributes(context.Type, (XmlElement)node, xmlToModelResult, "reference");
+			ValidateUnallowedAttributes(context.Type, (XmlElement)node, xmlToModelResult, "integrityCheck");
+			ValidateUnallowedAttributes(context.Type, (XmlElement)node, xmlToModelResult, "thumbnail");
+			ValidateMaxChildCount(context, node, 1);
+			if (!Ca.Infoway.Messagebuilder.Domainvalue.Basic.MediaType.XML_TEXT.CodeValue.Equals(GetAttributeValue(node, "mediaType")
+				))
+			{
+				xmlToModelResult.AddHl7Error(CreateHl7Error("Attribute mediaType must be included with a value of \"text/xml\" for ED.SIGNATURE"
+					, (XmlElement)node));
+			}
 			string result = null;
 			XmlNode signatureNode = GetNamedChildNode(node, "signature");
 			if (signatureNode == null || signatureNode.NodeType != System.Xml.XmlNodeType.Element)
 			{
-				xmlToModelResult.AddHl7Error(CreateHl7Error((XmlElement)node));
+				xmlToModelResult.AddHl7Error(CreateHl7Error("Expected ED.SIGNATURE node to have a child element named signature", (XmlElement
+					)node));
 			}
 			else
 			{
@@ -48,10 +81,9 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			return result;
 		}
 
-		private Hl7Error CreateHl7Error(XmlElement element)
+		private Hl7Error CreateHl7Error(string errorMessage, XmlElement element)
 		{
-			return new Hl7Error(Hl7ErrorCode.DATA_TYPE_ERROR, "Expected ED.SIGNATURE node to have a child element named signature", element
-				);
+			return new Hl7Error(Hl7ErrorCode.DATA_TYPE_ERROR, errorMessage, element);
 		}
 
 		protected override BareANY DoCreateDataTypeInstance(string typeName)

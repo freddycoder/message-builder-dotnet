@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,12 +33,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Porx_mt0601
 
 
     /**
-     * <summary>Dispense</summary>
+     * <summary>Business Name: Dispense</summary>
      * 
-     * <remarks><p>Describes the issuing of a drug in response to 
-     * an authorizing prescription.</p> <p>This is a 'core' class 
-     * of the medication model and is important for understanding 
-     * what drugs the patient is actually receiving.</p></remarks>
+     * <p>Describes the issuing of a drug in response to an 
+     * authorizing prescription.</p> <p>This is a 'core' class of 
+     * the medication model and is important for understanding what 
+     * drugs the patient is actually receiving.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"PORX_MT060100CA.MedicationDispense"})]
     public class Dispense : MessagePartBean {
@@ -64,19 +64,21 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Porx_mt0601
             this.subjectOf2AnnotationIndicator = new BLImpl(false);
         }
         /**
-         * <summary>A:Prescription Dispense Number</summary>
+         * <summary>Business Name: A:Prescription Dispense Number</summary>
          * 
-         * <remarks><p>The Prescription Dispense Number is a globally 
-         * unique number assigned to a prescription dispense by the 
-         * EHR/DIS irrespective of the source of the supply 
-         * event</p><p>It is created by the EHR/DIS once the dispense 
-         * has passed all edits and validation.</p> <p>The Prescription 
+         * <remarks>Relationship: PORX_MT060100CA.MedicationDispense.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>The Prescription 
          * Dispense Number is a globally unique number assigned to a 
          * prescription dispense by the EHR/DIS irrespective of the 
          * source of the supply event</p><p>It is created by the 
          * EHR/DIS once the dispense has passed all edits and 
-         * validation.</p> <p>Allows dispense events to be uniquely 
-         * referenced and is therefore mandatory.</p></remarks>
+         * validation.</p> <p>The Prescription Dispense Number is a 
+         * globally unique number assigned to a prescription dispense 
+         * by the EHR/DIS irrespective of the source of the supply 
+         * event</p><p>It is created by the EHR/DIS once the dispense 
+         * has passed all edits and validation.</p> <p>Allows dispense 
+         * events to be uniquely referenced and is therefore 
+         * mandatory.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -85,13 +87,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Porx_mt0601
         }
 
         /**
-         * <summary>C:Dispense Status</summary>
+         * <summary>Business Name: C:Dispense Status</summary>
          * 
-         * <remarks><p>Indicates whether the dispense has been picked 
-         * up ('complete') or has just been processed ('active').</p> 
-         * <p>Indicates how far along the process the dispense event 
-         * is. It should always be known and is therefore 
-         * mandatory.</p></remarks>
+         * <remarks>Relationship: 
+         * PORX_MT060100CA.MedicationDispense.statusCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates whether 
+         * the dispense has been picked up ('complete') or has just 
+         * been processed ('active').</p> <p>Indicates how far along 
+         * the process the dispense event is. It should always be known 
+         * and is therefore mandatory.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"statusCode"})]
         public ActStatus StatusCode {
@@ -100,16 +104,18 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Porx_mt0601
         }
 
         /**
-         * <summary>E:Prescription Masking Indicators</summary>
+         * <summary>Business Name: E:Prescription Masking Indicators</summary>
          * 
-         * <remarks><p>Communicates the intent of the patient to 
-         * restrict access to their prescriptions.</p><p>Provides 
-         * support for additional confidentiality constraint, giving 
-         * patients a level of control over their 
-         * information.</p><p>Allows a provider to request restricted 
-         * access by the patient</p><p>Valid values are: 'N' (normal - 
-         * denotes 'Not Masked'); 'R' (restricted - denotes 'Masked') 
-         * and 'T' (taboo - denotes 'Patient Access 
+         * <remarks>Relationship: 
+         * PORX_MT060100CA.MedicationDispense.confidentialityCode 
+         * Conformance/Cardinality: REQUIRED (0-2) <p>Communicates the 
+         * intent of the patient to restrict access to their 
+         * prescriptions.</p><p>Provides support for additional 
+         * confidentiality constraint, giving patients a level of 
+         * control over their information.</p><p>Allows a provider to 
+         * request restricted access by the patient</p><p>Valid values 
+         * are: 'N' (normal - denotes 'Not Masked'); 'R' (restricted - 
+         * denotes 'Masked') and 'T' (taboo - denotes 'Patient Access 
          * Restricted').</p><p>The default is 'normal' signifying 'Not 
          * Masked'.</p> <p>Communicates the intent of the patient to 
          * restrict access to their prescriptions.</p><p>Provides 
@@ -186,24 +192,48 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Porx_mt0601
             get { return this.confidentialityCode.RawSet<x_NormalRestrictedTabooConfidentialityKind>(); }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PORX_MT060100CA.ResponsibleParty.assignedEntity</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"responsibleParty/assignedEntity"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.HealthcareWorker ResponsiblePartyAssignedEntity {
             get { return this.responsiblePartyAssignedEntity; }
             set { this.responsiblePartyAssignedEntity = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PORX_MT060100CA.Performer.assignedEntity</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"performer/assignedEntity"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.HealthcareWorker PerformerAssignedEntity {
             get { return this.performerAssignedEntity; }
             set { this.performerAssignedEntity = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PORX_MT060100CA.MedicationDispense.location</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"location"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.CreatedAt Location {
             get { return this.location; }
             set { this.location = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PORX_MT060100CA.Component2.supplyEvent</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"component1/supplyEvent"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged.SupplyEvent Component1SupplyEvent {
             get { return this.component1SupplyEvent; }
@@ -211,36 +241,39 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Porx_mt0601
         }
 
         /**
-         * <summary>Rendered Dosage Instruction</summary>
+         * <summary>Business Name: Rendered Dosage Instruction</summary>
          * 
-         * <remarks><p>A free form textual specification generated from 
-         * the input specifications as created by the 
-         * provider.</p><p>This is made up of either an 'Ad-hoc dosage 
-         * instruction' or 'Textual rendition of the structured dosage 
-         * lines', plus route, dosage unit, and other pertinent 
-         * administration information specified by the provider.</p> 
-         * <p>A free form textual specification generated from the 
-         * input specifications as created by the provider.</p><p>This 
-         * is made up of either an 'Ad-hoc dosage instruction' or 
-         * 'Textual rendition of the structured dosage lines', plus 
-         * route, dosage unit, and other pertinent administration 
-         * information specified by the provider.</p> <p>Allows the 
-         * provider to verify the codified structured dosage 
-         * information entered and ensure that the exploded instruction 
-         * is consistent with the intended instructions.</p><p>Also 
-         * useful in bringing back administration instructions on query 
-         * responses. Because all prescriptions and dispenses have 
-         * dosage, this attribute is mandatory.</p> <p>Allows the 
-         * provider to verify the codified structured dosage 
-         * information entered and ensure that the exploded instruction 
-         * is consistent with the intended instructions.</p><p>Also 
-         * useful in bringing back administration instructions on query 
-         * responses. Because all prescriptions and dispenses have 
-         * dosage, this attribute is mandatory.</p> <p>For dosage 
-         * instructions which cannot be summarized in the space 
-         * allocated, a string such as &quot;Complex dose&quot; or 
-         * &quot;Scaling dose&quot; or something similar should be 
-         * sent. Dosage instructions should never be truncated.</p></remarks>
+         * <remarks>Relationship: 
+         * PORX_MT060100CA.AdministrationInstructions.text 
+         * Conformance/Cardinality: MANDATORY (1) <p>A free form 
+         * textual specification generated from the input 
+         * specifications as created by the provider.</p><p>This is 
+         * made up of either an 'Ad-hoc dosage instruction' or 'Textual 
+         * rendition of the structured dosage lines', plus route, 
+         * dosage unit, and other pertinent administration information 
+         * specified by the provider.</p> <p>A free form textual 
+         * specification generated from the input specifications as 
+         * created by the provider.</p><p>This is made up of either an 
+         * 'Ad-hoc dosage instruction' or 'Textual rendition of the 
+         * structured dosage lines', plus route, dosage unit, and other 
+         * pertinent administration information specified by the 
+         * provider.</p> <p>Allows the provider to verify the codified 
+         * structured dosage information entered and ensure that the 
+         * exploded instruction is consistent with the intended 
+         * instructions.</p><p>Also useful in bringing back 
+         * administration instructions on query responses. Because all 
+         * prescriptions and dispenses have dosage, this attribute is 
+         * mandatory.</p> <p>Allows the provider to verify the codified 
+         * structured dosage information entered and ensure that the 
+         * exploded instruction is consistent with the intended 
+         * instructions.</p><p>Also useful in bringing back 
+         * administration instructions on query responses. Because all 
+         * prescriptions and dispenses have dosage, this attribute is 
+         * mandatory.</p> <p>For dosage instructions which cannot be 
+         * summarized in the space allocated, a string such as 
+         * &quot;Complex dose&quot; or &quot;Scaling dose&quot; or 
+         * something similar should be sent. Dosage instructions should 
+         * never be truncated.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"component2/administrationInstructions/text"})]
         public String Component2AdministrationInstructionsText {
@@ -248,18 +281,36 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Porx_mt0601
             set { this.component2AdministrationInstructionsText.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PORX_MT060100CA.InFulfillmentOf.substanceAdministrationRequest</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"fulfillment/substanceAdministrationRequest"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged.SubstanceAdministrationRequest FulfillmentSubstanceAdministrationRequest {
             get { return this.fulfillmentSubstanceAdministrationRequest; }
             set { this.fulfillmentSubstanceAdministrationRequest = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PORX_MT060100CA.Subject4.detectedIssueIndicator</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf1/detectedIssueIndicator"})]
         public bool? SubjectOf1DetectedIssueIndicator {
             get { return this.subjectOf1DetectedIssueIndicator.Value; }
             set { this.subjectOf1DetectedIssueIndicator.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PORX_MT060100CA.Subject3.annotationIndicator</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf2/annotationIndicator"})]
         public bool? SubjectOf2AnnotationIndicator {
             get { return this.subjectOf2AnnotationIndicator.Value; }

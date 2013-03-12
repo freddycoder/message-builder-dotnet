@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,8 +32,8 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
     /**
      * <summary>COCT_MT090108CA.AssignedEntity: Healthcare Worker</summary>
      * 
-     * <remarks><p>The person organization assigned to carry out 
-     * the associated (linked by a participation) action and/or the 
+     * <p>The person organization assigned to carry out the 
+     * associated (linked by a participation) action and/or the 
      * organization under whose authority they are acting.</p> 
      * <p>Critical to tracking responsibility and performing 
      * follow-up. The CMET supports both licensed providers as well 
@@ -42,7 +42,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
      * various identifiers are expected to be retrieved from the 
      * provider registry.</p> COCT_MT090102CA.AssignedEntity: 
      * Assigned Person <p>The person assigned to carry out the 
-     * associated (linked by a participation) action.</p></remarks>
+     * associated (linked by a participation) action.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"COCT_MT090102CA.AssignedEntity","COCT_MT090108CA.AssignedEntity"})]
     public class HealthcareWorker : MessagePartBean, Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged.IEntererChoice, Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.IChoice, Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged.IActingPerson, Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.IChangedBy, Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged.IAuthorPerson, Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.IRecipient, Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Iehr.Merged.IParty {
@@ -69,16 +69,20 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             this.representedOrganizationAssignedOrganizationTelecom = new SETImpl<TEL, TelecommunicationAddress>(typeof(TELImpl));
         }
         /**
-         * <summary>Assigned Person Identifier</summary>
+         * <summary>Un-merged Business Name: HealthcareWorkerIdentifier</summary>
          * 
-         * <remarks><p>The identifier assigned to the person for this 
-         * role (in this participation).</p> <p>Identifies the person 
-         * in an assigned role (participating in the associated 
-         * act).</p> A:Healthcare Worker Identifier <p>Unique 
-         * identifier the person involved in the action.</p> <p>Allows 
-         * unique identification of the person which can be critical 
-         * for authentication, permissions, drill-down and traceability 
-         * and is therefore mandatory.</p></remarks>
+         * <remarks>Relationship: COCT_MT090108CA.AssignedEntity.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>Unique identifier 
+         * the person involved in the action.</p> <p>Allows unique 
+         * identification of the person which can be critical for 
+         * authentication, permissions, drill-down and traceability and 
+         * is therefore mandatory.</p> Un-merged Business Name: 
+         * AssignedPersonIdentifier Relationship: 
+         * COCT_MT090102CA.AssignedEntity.id Conformance/Cardinality: 
+         * MANDATORY (1) <p>The identifier assigned to the person for 
+         * this role (in this participation).</p> <p>Identifies the 
+         * person in an assigned role (participating in the associated 
+         * act).</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -87,9 +91,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>HealthcareWorkerType</summary>
+         * <summary>Business Name: HealthcareWorkerType</summary>
          * 
-         * <remarks>B: Healthcare Worker Type <p>Indicates the 
+         * <remarks>Un-merged Business Name: HealthcareWorkerType 
+         * Relationship: COCT_MT090108CA.AssignedEntity.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the 
          * &quot;kind&quot; of healthcare participant, such as 
          * &quot;physician&quot;, &quot;dentist&quot;, &quot;lab 
          * technician&quot;, &quot;receptionist&quot;, etc.</p> 
@@ -103,12 +109,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>HealthcareWorkerPhoneAndEmails</summary>
+         * <summary>Business Name: HealthcareWorkerPhoneAndEmails</summary>
          * 
-         * <remarks>E: Healthcare Worker Phone and Emails <p>Indicates 
-         * phone and/or e-mail addresses at which the healthcare worker 
-         * can be reached.</p> <p>This is the most commonly used piece 
-         * of contact information and is returned here to avoid 
+         * <remarks>Un-merged Business Name: 
+         * HealthcareWorkerPhoneAndEmails Relationship: 
+         * COCT_MT090108CA.AssignedEntity.telecom 
+         * Conformance/Cardinality: REQUIRED (0-5) <p>Indicates phone 
+         * and/or e-mail addresses at which the healthcare worker can 
+         * be reached.</p> <p>This is the most commonly used piece of 
+         * contact information and is returned here to avoid 
          * unnecessary queries of the provider registry.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"telecom"})]
@@ -117,13 +126,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>Assigned Person Name</summary>
+         * <summary>Un-merged Business Name: HealthcareWorkerName</summary>
          * 
-         * <remarks><p>The name of the assigned person.</p> C: 
-         * Healthcare Worker Name <p>The name of the participating 
-         * person.</p> <p>This is a human-readable name and is thus 
-         * essential for both display and validation of the person. As 
-         * a result, the attribute is mandatory.</p></remarks>
+         * <remarks>Relationship: COCT_MT090108CA.Person.name 
+         * Conformance/Cardinality: MANDATORY (1) <p>The name of the 
+         * participating person.</p> <p>This is a human-readable name 
+         * and is thus essential for both display and validation of the 
+         * person. As a result, the attribute is mandatory.</p> 
+         * Un-merged Business Name: AssignedPersonName Relationship: 
+         * COCT_MT090102CA.Person.name Conformance/Cardinality: 
+         * MANDATORY (1) <p>The name of the assigned person.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"assignedPerson/name"})]
         public PersonName AssignedPersonName {
@@ -132,22 +144,25 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>LicenseNumber</summary>
+         * <summary>Business Name: LicenseNumber</summary>
          * 
-         * <remarks>D: License Number <p>The license number issued to 
-         * the provider and relevant to the current action.</p> 
-         * <p>Allows lookup on college website, confirmation of 
-         * identity, etc. Regulations occasionally require license 
-         * numbers to be specified as part of clinical records.</p> 
-         * <p>If the identifier used in the root of the CMET is the 
-         * same as the license number, the license number should be 
-         * sent in both places.</p><p>Detailed information about the 
-         * status and effective period of licenses must be retrieved 
-         * from the provider registry.</p> <p>If the identifier used in 
-         * the root of the CMET is the same as the license number, the 
-         * license number should be sent in both places.</p><p>Detailed 
-         * information about the status and effective period of 
-         * licenses must be retrieved from the provider registry.</p></remarks>
+         * <remarks>Un-merged Business Name: LicenseNumber 
+         * Relationship: COCT_MT090108CA.HealthCareProvider.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>The license number 
+         * issued to the provider and relevant to the current 
+         * action.</p> <p>Allows lookup on college website, 
+         * confirmation of identity, etc. Regulations occasionally 
+         * require license numbers to be specified as part of clinical 
+         * records.</p> <p>If the identifier used in the root of the 
+         * CMET is the same as the license number, the license number 
+         * should be sent in both places.</p><p>Detailed information 
+         * about the status and effective period of licenses must be 
+         * retrieved from the provider registry.</p> <p>If the 
+         * identifier used in the root of the CMET is the same as the 
+         * license number, the license number should be sent in both 
+         * places.</p><p>Detailed information about the status and 
+         * effective period of licenses must be retrieved from the 
+         * provider registry.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"assignedPerson/asHealthCareProvider/id"})]
         public Identifier AssignedPersonAsHealthCareProviderId {
@@ -156,13 +171,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>OrganizationIdentifier</summary>
+         * <summary>Business Name: OrganizationIdentifier</summary>
          * 
-         * <remarks>F: Organization identifier <p>A unique identifier 
-         * for the organization</p> <p>Allows the organization to be 
-         * referenced when determining privileges and for drill-downs 
-         * to retrieve additional information. Because of its 
-         * importance, the attribute is mandatory.</p></remarks>
+         * <remarks>Un-merged Business Name: OrganizationIdentifier 
+         * Relationship: COCT_MT090108CA.Organization.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>A unique 
+         * identifier for the organization</p> <p>Allows the 
+         * organization to be referenced when determining privileges 
+         * and for drill-downs to retrieve additional information. 
+         * Because of its importance, the attribute is mandatory.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"representedOrganization/id"})]
         public Identifier RepresentedOrganizationId {
@@ -171,12 +188,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>OrganizationName</summary>
+         * <summary>Business Name: OrganizationName</summary>
          * 
-         * <remarks>H: Organization Name <p>Identifies the name of the 
-         * organization</p> <p>Allows for human recognition of the 
-         * organization as well as confirmation of the identifier. As a 
-         * result, the attribute is mandatory.</p></remarks>
+         * <remarks>Un-merged Business Name: OrganizationName 
+         * Relationship: COCT_MT090108CA.Organization.name 
+         * Conformance/Cardinality: MANDATORY (1) <p>Identifies the 
+         * name of the organization</p> <p>Allows for human recognition 
+         * of the organization as well as confirmation of the 
+         * identifier. As a result, the attribute is mandatory.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"representedOrganization/name"})]
         public String RepresentedOrganizationName {
@@ -185,12 +204,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>OrganizationType</summary>
+         * <summary>Business Name: OrganizationType</summary>
          * 
-         * <remarks>G: Organization Type <p>Identifies the type of 
-         * organization on whose behalf the action was taken. E.g. 
-         * Pharmacy, Clinic, Hospital, etc.</p> <p>Provides context to 
-         * the action and is therefore mandatory.</p></remarks>
+         * <remarks>Un-merged Business Name: OrganizationType 
+         * Relationship: COCT_MT090108CA.AssignedOrganization.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Identifies the 
+         * type of organization on whose behalf the action was taken. 
+         * E.g. Pharmacy, Clinic, Hospital, etc.</p> <p>Provides 
+         * context to the action and is therefore mandatory.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"representedOrganization/assignedOrganization/code"})]
         public HealthcareOrganizationRoleType RepresentedOrganizationAssignedOrganizationCode {
@@ -199,9 +220,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>OrganizationPhoneAndEmails</summary>
+         * <summary>Business Name: OrganizationPhoneAndEmails</summary>
          * 
-         * <remarks>I: Organization Phone and Emails <p>Identifies 
+         * <remarks>Un-merged Business Name: OrganizationPhoneAndEmails 
+         * Relationship: COCT_MT090108CA.AssignedOrganization.telecom 
+         * Conformance/Cardinality: REQUIRED (0-5) <p>Identifies 
          * contact information for the responsible organization.</p> 
          * <p>This is the most commonly used contact information and is 
          * returned to avoid unnecessary queries against the client 

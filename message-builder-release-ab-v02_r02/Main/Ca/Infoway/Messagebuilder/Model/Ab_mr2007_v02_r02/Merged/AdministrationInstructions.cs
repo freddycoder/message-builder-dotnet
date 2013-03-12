@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
 
 
     /**
-     * <summary>AdministrationInstructions</summary>
+     * <summary>Business Name: AdministrationInstructions</summary>
      * 
      * <remarks>PORX_MT980040CA.DosageInstruction: Administration 
      * Instructions <p>routeCode is mandatory and apporachSiteCode 
@@ -93,12 +93,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             this.component2 = new List<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.ConsistsOf>();
         }
         /**
-         * <summary>DosageUsageContext</summary>
+         * <summary>Business Name: DosageUsageContext</summary>
          * 
-         * <remarks>Dosage Usage Context <p>Indicates the context of 
-         * the administration.</p><p>moodCode = RQO, for administration 
-         * instruction on orders</p><p>moodCode = EVN, for 
-         * administration instruction on dispenses</p><p>moodCode = 
+         * <remarks>Un-merged Business Name: DosageUsageContext 
+         * Relationship: PORX_MT980040CA.DosageInstruction.moodCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the 
+         * context of the administration.</p><p>moodCode = RQO, for 
+         * administration instruction on orders</p><p>moodCode = EVN, 
+         * for administration instruction on dispenses</p><p>moodCode = 
          * DEF, for administration instruction on medication definition 
          * documents/references (typically, monographs).</p> 
          * <p>Indicates the context of the 
@@ -119,11 +121,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
          * administration instruction on dispenses</p><p>moodCode = 
          * DEF, for administration instruction on medication definition 
          * documents/references (typically, monographs).</p> <p>Puts 
-         * the class in context, and is therefore mandatory.</p> Dosage 
-         * Usage Context <p>Indicates the context of the 
-         * administration.</p><p>moodCode = RQO, for administration 
-         * instruction on orders</p><p>moodCode = EVN, for 
-         * administration instruction on dispenses</p><p>moodCode = 
+         * the class in context, and is therefore mandatory.</p> 
+         * Un-merged Business Name: DosageUsageContext Relationship: 
+         * COCT_MT270010CA.DosageInstruction.moodCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the 
+         * context of the administration.</p><p>moodCode = RQO, for 
+         * administration instruction on orders</p><p>moodCode = EVN, 
+         * for administration instruction on dispenses</p><p>moodCode = 
          * DEF, for administration instruction on medication definition 
          * documents/references (typically, monographs).</p> 
          * <p>Indicates the context of the 
@@ -153,14 +157,19 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>DosageType</summary>
+         * <summary>Business Name: DosageType</summary>
          * 
-         * <remarks>Dosage Type <p>Distinguishes types of dosage.</p> 
-         * <p>Distinguishes between types of dosage administration and 
-         * is therefore mandatory. Datatype is CD to allow for SNOMED 
-         * codes.</p> <p>For SNOMED this will pre-coordinate route, 
-         * body site and potentially drug. For non-SNOMED, this will be 
-         * a fixed value of DRUG.</p> Dosage Type <p>Distinguishes 
+         * <remarks>Un-merged Business Name: DosageType Relationship: 
+         * PORX_MT980040CA.DosageInstruction.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Distinguishes 
+         * types of dosage.</p> <p>Distinguishes between types of 
+         * dosage administration and is therefore mandatory. Datatype 
+         * is CD to allow for SNOMED codes.</p> <p>For SNOMED this will 
+         * pre-coordinate route, body site and potentially drug. For 
+         * non-SNOMED, this will be a fixed value of DRUG.</p> 
+         * Un-merged Business Name: DosageType Relationship: 
+         * COCT_MT270010CA.DosageInstruction.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Distinguishes 
          * types of dosage.</p> <p>Distinguishes between types of 
          * dosage administration and is therefore mandatory. Datatype 
          * is CD to allow for SNOMED codes.</p> <p>For SNOMED this will 
@@ -174,9 +183,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>RenderedDosageInstruction</summary>
+         * <summary>Business Name: RenderedDosageInstruction</summary>
          * 
-         * <remarks>C:Rendered Dosage Instruction <p>A free form 
+         * <remarks>Un-merged Business Name: RenderedDosageInstruction 
+         * Relationship: PORX_MT980040CA.DosageInstruction.text 
+         * Conformance/Cardinality: MANDATORY (1) <p>A free form 
          * textual specification generated from the input 
          * specifications as created by the provider.</p><p>This is 
          * made up of either an 'Ad-hoc dosage instruction' or 'Textual 
@@ -206,8 +217,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
          * intended instructions.</p><p>Also useful in bringing back 
          * administration instructions on query responses.</p><p>This 
          * is mandatory as dosage instructions must always be available 
-         * in rendered form.</p> C:Rendered Dosage Instruction <p>A 
-         * free form textual specification generated from the input 
+         * in rendered form.</p> Un-merged Business Name: 
+         * RenderedDosageInstruction Relationship: 
+         * COCT_MT270010CA.DosageInstruction.text 
+         * Conformance/Cardinality: MANDATORY (1) <p>A free form 
+         * textual specification generated from the input 
          * specifications as created by the provider.</p><p>This is 
          * made up of either an 'Ad-hoc dosage instruction' or 'Textual 
          * rendition of the structured dosage lines', plus route, 
@@ -245,14 +259,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>AdministrationPeriod</summary>
+         * <summary>Business Name: AdministrationPeriod</summary>
          * 
-         * <remarks>A:Administration Period <p>The time period (begin 
-         * and end dates) within which the dispensed medication is to 
-         * be completely administered to/by the patient. May differ 
-         * from date prescription was issued.</p> <p>Prescription.Admin 
-         * istrationStartDate (Low)</p><p>Prescription.Admin 
-         * istrationStopDate 
+         * <remarks>Un-merged Business Name: AdministrationPeriod 
+         * Relationship: 
+         * PORX_MT980040CA.DosageInstruction.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The time period 
+         * (begin and end dates) within which the dispensed medication 
+         * is to be completely administered to/by the patient. May 
+         * differ from date prescription was issued.</p> 
+         * <p>Prescription.Admin istrationStartDate 
+         * (Low)</p><p>Prescription.Admin istrationStopDate 
          * (High)</p><p>DispensedItem.expectedStartDate</p> 
          * <p>Prescription.Admin istrationStartDate 
          * (Low)</p><p>Prescription.Admin istrationStopDate 
@@ -280,11 +297,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
          * based on schedules of a facility).</p> <p>Frequently only 
          * the duration (width) component is specified. E.g. 100mg tid 
          * for 10 days. In that case, the start date is presumed to be 
-         * the date the prescription was written</p> A:Administration 
-         * Period <p>The time period (begin and end dates) within which 
-         * the dispensed medication is to be completely administered 
-         * to/by the patient. May differ from date prescription was 
-         * issued.</p> <p>Prescription.Admin istrationStartDate 
+         * the date the prescription was written</p> Un-merged Business 
+         * Name: AdministrationPeriod Relationship: 
+         * COCT_MT270010CA.DosageInstruction.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The time period 
+         * (begin and end dates) within which the dispensed medication 
+         * is to be completely administered to/by the patient. May 
+         * differ from date prescription was issued.</p> 
+         * <p>Prescription.Admin istrationStartDate 
          * (Low)</p><p>Prescription.Admin istrationStopDate 
          * (High)</p><p>DispensedItem.expectedStartDate</p> 
          * <p>Prescription.Admin istrationStartDate 
@@ -322,10 +342,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>RouteCode</summary>
+         * <summary>Business Name: RouteCode</summary>
          * 
-         * <remarks>A:Route Code <p>This is the means by which the 
-         * dispensed drug is to be administered to the patient.</p> 
+         * <remarks>Un-merged Business Name: RouteCode Relationship: 
+         * PORX_MT980040CA.DosageInstruction.routeCode 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>This is the means 
+         * by which the dispensed drug is to be administered to the 
+         * patient.</p> 
          * <p>Prescription.route</p><p>ZDP.14.2</p><p>Compound.452-E8</p><p>RXR.1</p> 
          * <p>Prescription.route</p><p>ZDP.14.2</p><p>Compound.452-E8</p><p>RXR.1</p> 
          * <p>Prescription.route</p><p>ZDP.14.2</p><p>Compound.452-E8</p><p>RXR.1</p> 
@@ -333,9 +356,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
          * <p>Ensures consistency in description of routes. Provides 
          * potential for cross-checking dosage form and route. Route is 
          * an optional because it is pre-coordinated with 
-         * SubstanceAdministration.code when using SNOMED.</p> A:Route 
-         * Code <p>This is the means by which the dispensed drug is to 
-         * be administered to the patient.</p> 
+         * SubstanceAdministration.code when using SNOMED.</p> 
+         * Un-merged Business Name: RouteCode Relationship: 
+         * COCT_MT270010CA.DosageInstruction.routeCode 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>This is the means 
+         * by which the dispensed drug is to be administered to the 
+         * patient.</p> 
          * <p>Prescription.route</p><p>ZDP.14.2</p><p>Compound.452-E8</p><p>RXR.1</p> 
          * <p>Prescription.route</p><p>ZDP.14.2</p><p>Compound.452-E8</p><p>RXR.1</p> 
          * <p>Prescription.route</p><p>ZDP.14.2</p><p>Compound.452-E8</p><p>RXR.1</p> 
@@ -352,30 +378,37 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>AdministrationSites</summary>
+         * <summary>Business Name: AdministrationSites</summary>
          * 
-         * <remarks>Administration Sites <p>A value denoting the body 
-         * area where the medicine should be administered. E.g. 'Right 
-         * Elbow', 'Left Ear'. When multiples sites are specified they 
-         * should be treated as 'AND'.</p> <p>Allows specificity when a 
-         * drug can potentially be applied to different parts of the 
-         * patien's body. Multiple repetitions are used when the 
-         * product should be administered to multiple parts of the 
-         * body. CWE is used because using a code system is not 
-         * essential for understanding or analyzing the prescription. 
-         * The attribute is optional because it can be pre-coordinated 
-         * with SubstanceAdministration.code when using SNOMED.</p> 
-         * Administration Sites <p>A value denoting the body area where 
-         * the medicine should be administered. E.g. 'Right Elbow', 
-         * 'Left Ear'. When multiples sites are specified they should 
-         * be treated as 'AND'.</p> <p>Allows specificity when a drug 
-         * can potentially be applied to different parts of the 
-         * patien's body. Multiple repetitions are used when the 
-         * product should be administered to multiple parts of the 
-         * body. CWE is used because using a code system is not 
-         * essential for understanding or analyzing the prescription. 
-         * The attribute is optional because it can be pre-coordinated 
-         * with SubstanceAdministration.code when using SNOMED.</p></remarks>
+         * <remarks>Un-merged Business Name: AdministrationSites 
+         * Relationship: 
+         * PORX_MT980040CA.DosageInstruction.approachSiteCode 
+         * Conformance/Cardinality: OPTIONAL (0-5) <p>A value denoting 
+         * the body area where the medicine should be administered. 
+         * E.g. 'Right Elbow', 'Left Ear'. When multiples sites are 
+         * specified they should be treated as 'AND'.</p> <p>Allows 
+         * specificity when a drug can potentially be applied to 
+         * different parts of the patien's body. Multiple repetitions 
+         * are used when the product should be administered to multiple 
+         * parts of the body. CWE is used because using a code system 
+         * is not essential for understanding or analyzing the 
+         * prescription. The attribute is optional because it can be 
+         * pre-coordinated with SubstanceAdministration.code when using 
+         * SNOMED.</p> Un-merged Business Name: AdministrationSites 
+         * Relationship: 
+         * COCT_MT270010CA.DosageInstruction.approachSiteCode 
+         * Conformance/Cardinality: OPTIONAL (0-5) <p>A value denoting 
+         * the body area where the medicine should be administered. 
+         * E.g. 'Right Elbow', 'Left Ear'. When multiples sites are 
+         * specified they should be treated as 'AND'.</p> <p>Allows 
+         * specificity when a drug can potentially be applied to 
+         * different parts of the patien's body. Multiple repetitions 
+         * are used when the product should be administered to multiple 
+         * parts of the body. CWE is used because using a code system 
+         * is not essential for understanding or analyzing the 
+         * prescription. The attribute is optional because it can be 
+         * pre-coordinated with SubstanceAdministration.code when using 
+         * SNOMED.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"approachSiteCode"})]
         public ICollection<HumanSubstanceAdministrationSite> ApproachSiteCode {
@@ -383,24 +416,29 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>D:Maximum Daily/Weekly Doses</summary>
+         * <summary>Un-merged Business Name: MaximumDosesPerPeriod</summary>
          * 
-         * <remarks><p>The maximum amount of the dispensed medication 
-         * to be administered to the patient in a 24-hr period (doses 
-         * per day) or in a 7 day period (doses per week).</p> 
-         * <p>ZPB3.5(denominator=1D)</p> <p>Sets an upper boundary for 
-         * the quantity of the drug to be administered over a specified 
-         * period of time. Particularly useful for PRN medications.</p> 
-         * <p>This field can only capture maximum doses based on 
-         * explicit time periods. Dosage maximums based on other 
-         * constraints such as patient lifetime, menstrual cycles must 
-         * be recorded using additional dosage instruction 
-         * comments.</p> D:Maximum Doses per Period <p>The maximum 
+         * <remarks>Relationship: 
+         * PORX_MT980040CA.DosageInstruction.maxDoseQuantity 
+         * Conformance/Cardinality: REQUIRED (0-2) <p>The maximum 
          * amount of the dispensed medication to be administered to the 
          * patient in a specified period of time. Examples include: per 
          * hour, 24-hr period (doses per day), 7 day period (doses per 
          * week), yearly.</p> <p>ZPB3.5(denominator=1D)</p> <p>Sets an 
          * upper boundary for the quantity of the drug to be 
+         * administered over a specified period of time. Particularly 
+         * useful for PRN medications.</p> <p>This field can only 
+         * capture maximum doses based on explicit time periods. Dosage 
+         * maximums based on other constraints such as patient 
+         * lifetime, menstrual cycles must be recorded using additional 
+         * dosage instruction comments.</p> Un-merged Business Name: 
+         * MaximumDailyWeeklyDoses Relationship: 
+         * COCT_MT270010CA.DosageInstruction.maxDoseQuantity 
+         * Conformance/Cardinality: REQUIRED (0-2) <p>The maximum 
+         * amount of the dispensed medication to be administered to the 
+         * patient in a 24-hr period (doses per day) or in a 7 day 
+         * period (doses per week).</p> <p>ZPB3.5(denominator=1D)</p> 
+         * <p>Sets an upper boundary for the quantity of the drug to be 
          * administered over a specified period of time. Particularly 
          * useful for PRN medications.</p> <p>This field can only 
          * capture maximum doses based on explicit time periods. Dosage 
@@ -414,21 +452,25 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>DosageUnit</summary>
+         * <summary>Business Name: DosageUnit</summary>
          * 
-         * <remarks>Dosage Unit <p>Identifies how the drug is measured 
-         * for administration.</p><p>Specified when not implicit from 
-         * the drug form (e.g. puff, inhalation, drops, etc.).</p> 
-         * <p>Identifies how the drug is measured for 
+         * <remarks>Un-merged Business Name: DosageUnit Relationship: 
+         * PORX_MT980040CA.DosageInstruction.administrationUnitCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Identifies how 
+         * the drug is measured for administration.</p><p>Specified 
+         * when not implicit from the drug form (e.g. puff, inhalation, 
+         * drops, etc.).</p> <p>Identifies how the drug is measured for 
          * administration.</p><p>Specified when not implicit from the 
          * drug form (e.g. puff, inhalation, drops, etc.).</p> 
          * <p>Needed when the dosage unit is not expressed as part of 
          * the dose quantity (mg, mL) or implicit as part of the drug 
          * form (capsules, tablets). Examples are Puffs, Actuations, 
-         * etc.</p> Dosage Unit <p>Identifies how the drug is measured 
-         * for administration.</p><p>Specified when not implicit from 
-         * the drug form (e.g. puff, inhalation, drops, etc.).</p> 
-         * <p>Identifies how the drug is measured for 
+         * etc.</p> Un-merged Business Name: DosageUnit Relationship: 
+         * COCT_MT270010CA.DosageInstruction.administrationUnitCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Identifies how 
+         * the drug is measured for administration.</p><p>Specified 
+         * when not implicit from the drug form (e.g. puff, inhalation, 
+         * drops, etc.).</p> <p>Identifies how the drug is measured for 
          * administration.</p><p>Specified when not implicit from the 
          * drug form (e.g. puff, inhalation, drops, etc.).</p> 
          * <p>Needed when the dosage unit is not expressed as part of 
@@ -442,18 +484,51 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             set { this.administrationUnitCode.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PORX_MT980040CA.Consumable1.medication1 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * COCT_MT270010CA.Consumable1.medication1 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"consumable/medication1"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.IMedication ConsumableMedication1 {
             get { return this.consumableMedication1; }
             set { this.consumableMedication1 = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PORX_MT980040CA.Component.supplementalInstruction 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * COCT_MT270010CA.Component.supplementalInstruction 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"component1/supplementalInstruction"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.AdditionalSIGInstruction Component1SupplementalInstruction {
             get { return this.component1SupplementalInstruction; }
             set { this.component1SupplementalInstruction = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PORX_MT980040CA.DosageInstruction.component2 
+         * Conformance/Cardinality: REQUIRED (0-20) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * COCT_MT270010CA.DosageInstruction.component2 
+         * Conformance/Cardinality: REQUIRED (0-20)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"component2"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.ConsistsOf> Component2 {
             get { return this.component2; }

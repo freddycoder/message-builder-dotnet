@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,9 +36,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Merged {
             this.sequenceNumber = new INTImpl();
         }
         /**
-         * <summary>OrderOfServiceDeliveryLocations</summary>
+         * <summary>Business Name: OrderOfServiceDeliveryLocations</summary>
          * 
-         * <remarks>Order of Service Delivery Locations <p>Allows each 
+         * <remarks>Un-merged Business Name: 
+         * OrderOfServiceDeliveryLocations Relationship: 
+         * PRPM_MT309000CA.Location.sequenceNumber 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>Allows each 
+         * Service Delivery Location to be sequentially listed.</p> 
+         * Un-merged Business Name: OrderOfServiceDeliveryLocations 
+         * Relationship: PRPM_MT306011CA.Location.sequenceNumber 
+         * Conformance/Cardinality: POPULATED (1) <p>Allows each 
          * Service Delivery Location to be sequentially listed.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"sequenceNumber"})]
@@ -47,6 +54,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Merged {
             set { this.sequenceNumber.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PRPM_MT309000CA.Location.serviceDeliveryLocation 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PRPM_MT306011CA.Location.serviceDeliveryLocation 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"serviceDeliveryLocation"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Merged.ServiceDeliveryLocation ServiceDeliveryLocation {
             get { return this.serviceDeliveryLocation; }

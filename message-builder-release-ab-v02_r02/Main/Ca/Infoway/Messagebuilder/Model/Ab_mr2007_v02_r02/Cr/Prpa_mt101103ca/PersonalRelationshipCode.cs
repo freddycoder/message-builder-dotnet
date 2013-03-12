@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,12 +35,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Cr.Prpa_mt101103ca {
             this.value = new CVImpl();
         }
         /**
-         * <summary>Client Next of Kin</summary>
+         * <summary>Business Name: Client Next of Kin</summary>
          * 
-         * <remarks><p>A code further specifying the kind of Role such 
-         * as Mother, Father, Natural Parent or Step Parent</p> 
-         * <p>Mandatory attribute that supports understanding the 
-         * relationship between the client and the ParentClient</p></remarks>
+         * <remarks>Relationship: 
+         * PRPA_MT101103CA.PersonalRelationshipCode.value 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>A code further 
+         * specifying the kind of Role such as Mother, Father, Natural 
+         * Parent or Step Parent</p> <p>Mandatory attribute that 
+         * supports understanding the relationship between the client 
+         * and the ParentClient</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"value"})]
         public QueryParameterValue Value {

@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -60,7 +60,7 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang.Util {
 				}
 				/* foreach */
 				foreach (EntityNamePart part  in  FilterParts(name,
-						Ca.Infoway.Messagebuilder.Datatype.Lang.PersonNamePartType.FAMILY)) {
+						Ca.Infoway.Messagebuilder.Datatype.Lang.Util.PersonNamePartType.FAMILY)) {
 					Append(builder, part);
 				}
 				return builder.ToString();
@@ -83,7 +83,7 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang.Util {
 		public abstract String Format(PersonName name);
 	
 		protected internal EntityNamePart GetFirstGivenName(PersonName name) {
-			return GetFirstPart(name, Ca.Infoway.Messagebuilder.Datatype.Lang.PersonNamePartType.GIVEN);
+			return GetFirstPart(name, Ca.Infoway.Messagebuilder.Datatype.Lang.Util.PersonNamePartType.GIVEN);
 		}
 	
 		private EntityNamePart GetFirstPart(PersonName name, PersonNamePartType type) {

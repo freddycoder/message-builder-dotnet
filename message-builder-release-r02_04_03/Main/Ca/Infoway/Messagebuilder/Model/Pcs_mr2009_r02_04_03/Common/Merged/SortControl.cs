@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,38 +28,38 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged {
 
 
     /**
-     * <summary>SortControl</summary>
+     * <summary>Business Name: SortControl</summary>
      * 
      * <remarks>QUQI_MT120006CA.SortControl: Sort Control <p>Please 
      * consult the implementation guide for further constraints on 
-     * using this class</p> <p>Holds specification of sort order 
-     * for instance matches to a query.</p> <p>Optional for systems 
-     * which can receive query requests and sort the results before 
-     * returning to the query requestor.</p> 
+     * using this class</p> <p>Optional for systems which can 
+     * receive query requests and sort the results before returning 
+     * to the query requestor.</p> <p>Holds specification of sort 
+     * order for instance matches to a query.</p> 
      * QUQI_MT120008CA.SortControl: Sort Control <p>Please consult 
      * the implementation guide for further constraints on using 
-     * this class</p> <p>Holds specification of sort order for 
-     * instance matches to a query.</p> <p>Optional for systems 
-     * which can receive query requests and sort the results before 
-     * returning to the query requestor.</p> 
+     * this class</p> <p>Optional for systems which can receive 
+     * query requests and sort the results before returning to the 
+     * query requestor.</p> <p>Holds specification of sort order 
+     * for instance matches to a query.</p> 
      * QUQI_MT020002CA.SortControl: Sort Control <p>Please consult 
      * the implementation guide for further constraints on using 
-     * this class</p> <p>Holds specification of sort order for 
-     * instance matches to a query.</p> <p>Optional for systems 
-     * which can receive query requests and sort the results before 
-     * returning to the query requestor.</p> 
+     * this class</p> <p>Optional for systems which can receive 
+     * query requests and sort the results before returning to the 
+     * query requestor.</p> <p>Holds specification of sort order 
+     * for instance matches to a query.</p> 
      * MFMI_MT700751CA.SortControl: Sort Control <p>Please consult 
      * the implementation guide for further constraints on using 
-     * this class</p> <p>Holds specification of sort order for 
-     * instance matches to a query.</p> <p>Optional for systems 
-     * which can receive query requests and sort the results before 
-     * returning to the query requestor.</p> 
+     * this class</p> <p>Optional for systems which can receive 
+     * query requests and sort the results before returning to the 
+     * query requestor.</p> <p>Holds specification of sort order 
+     * for instance matches to a query.</p> 
      * MFMI_MT700746CA.SortControl: Sort Control <p>Please consult 
      * the implementation guide for further constraints on using 
-     * this class</p> <p>Holds specification of sort order for 
-     * instance matches to a query.</p> <p>Optional for systems 
-     * which can receive query requests and sort the results before 
-     * returning to the query requestor.</p></remarks>
+     * this class</p> <p>Optional for systems which can receive 
+     * query requests and sort the results before returning to the 
+     * query requestor.</p> <p>Holds specification of sort order 
+     * for instance matches to a query.</p></remarks>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"MFMI_MT700746CA.SortControl","MFMI_MT700751CA.SortControl","QUQI_MT020000CA.SortControl","QUQI_MT020002CA.SortControl","QUQI_MT120006CA.SortControl","QUQI_MT120008CA.SortControl"})]
     public class SortControl : MessagePartBean {
@@ -74,13 +74,50 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged {
             this.directionCode = new CSImpl();
         }
         /**
-         * <summary>SequenceNumber</summary>
+         * <summary>Business Name: SequenceNumber</summary>
          * 
-         * <remarks>Sequence Number <p>When more than one sort control 
-         * is specified, this is the order of this sort element amongst 
-         * the others.</p> <p>This number determines which sort element 
-         * is using primarily, secondary, etc. and is therefore 
-         * mandatory.</p></remarks>
+         * <remarks>Un-merged Business Name: SequenceNumber 
+         * Relationship: QUQI_MT120006CA.SortControl.sequenceNumber 
+         * Conformance/Cardinality: MANDATORY (1) <p>This number 
+         * determines which sort element is using primarily, secondary, 
+         * etc. and is therefore mandatory.</p> <p>When more than one 
+         * sort control is specified, this is the order of this sort 
+         * element amongst the others.</p> Un-merged Business Name: 
+         * SequenceNumber Relationship: 
+         * QUQI_MT020002CA.SortControl.sequenceNumber 
+         * Conformance/Cardinality: MANDATORY (1) <p>This number 
+         * determines which sort element is using primarily, secondary, 
+         * etc. and is therefore mandatory.</p> <p>When more than one 
+         * sort control is specified, this is the order of this sort 
+         * element amongst the others.</p> Un-merged Business Name: 
+         * SequenceNumber Relationship: 
+         * QUQI_MT120008CA.SortControl.sequenceNumber 
+         * Conformance/Cardinality: MANDATORY (1) <p>This number 
+         * determines which sort element is using primarily, secondary, 
+         * etc. and is therefore mandatory.</p> <p>When more than one 
+         * sort control is specified, this is the order of this sort 
+         * element amongst the others.</p> Un-merged Business Name: 
+         * SequenceNumber Relationship: 
+         * MFMI_MT700751CA.SortControl.sequenceNumber 
+         * Conformance/Cardinality: MANDATORY (1) <p>This number 
+         * determines which sort element is using primarily, secondary, 
+         * etc. and is therefore mandatory.</p> <p>When more than one 
+         * sort control is specified, this is the order of this sort 
+         * element amongst the others.</p> Un-merged Business Name: 
+         * SequenceNumber Relationship: 
+         * QUQI_MT020000CA.SortControl.sequenceNumber 
+         * Conformance/Cardinality: MANDATORY (1) <p>This number 
+         * determines which sort element is using primarily, secondary, 
+         * etc. and is therefore mandatory.</p> <p>When more than one 
+         * sort control is specified, this is the order of this sort 
+         * element amongst the others.</p> Un-merged Business Name: 
+         * SequenceNumber Relationship: 
+         * MFMI_MT700746CA.SortControl.sequenceNumber 
+         * Conformance/Cardinality: MANDATORY (1) <p>This number 
+         * determines which sort element is using primarily, secondary, 
+         * etc. and is therefore mandatory.</p> <p>When more than one 
+         * sort control is specified, this is the order of this sort 
+         * element amongst the others.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"sequenceNumber"})]
         public int? SequenceNumber {
@@ -89,10 +126,33 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged {
         }
 
         /**
-         * <summary>SortElementName</summary>
+         * <summary>Business Name: SortElementName</summary>
          * 
-         * <remarks>Sort Element Name <p>Name of the element to 
-         * sort.</p> <p>The name of the element is mandatory.</p></remarks>
+         * <remarks>Un-merged Business Name: SortElementName 
+         * Relationship: QUQI_MT120006CA.SortControl.elementName 
+         * Conformance/Cardinality: MANDATORY (1) <p>The name of the 
+         * element is mandatory.</p> <p>Name of the element to 
+         * sort.</p> Un-merged Business Name: SortElementName 
+         * Relationship: QUQI_MT020002CA.SortControl.elementName 
+         * Conformance/Cardinality: MANDATORY (1) <p>The name of the 
+         * element is mandatory.</p> <p>Name of the element to 
+         * sort.</p> Un-merged Business Name: SortElementName 
+         * Relationship: QUQI_MT120008CA.SortControl.elementName 
+         * Conformance/Cardinality: MANDATORY (1) <p>The name of the 
+         * element is mandatory.</p> <p>Name of the element to 
+         * sort.</p> Un-merged Business Name: SortElementName 
+         * Relationship: MFMI_MT700751CA.SortControl.elementName 
+         * Conformance/Cardinality: MANDATORY (1) <p>The name of the 
+         * element is mandatory.</p> <p>Name of the element to 
+         * sort.</p> Un-merged Business Name: SortElementName 
+         * Relationship: QUQI_MT020000CA.SortControl.elementName 
+         * Conformance/Cardinality: MANDATORY (1) <p>The name of the 
+         * element is mandatory.</p> <p>Name of the element to 
+         * sort.</p> Un-merged Business Name: SortElementName 
+         * Relationship: MFMI_MT700746CA.SortControl.elementName 
+         * Conformance/Cardinality: MANDATORY (1) <p>The name of the 
+         * element is mandatory.</p> <p>Name of the element to 
+         * sort.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"elementName"})]
         public String ElementName {
@@ -101,11 +161,38 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged {
         }
 
         /**
-         * <summary>SortControlDirection</summary>
+         * <summary>Business Name: SortControlDirection</summary>
          * 
-         * <remarks>Sort Control Direction <p>Sets the ascending or 
-         * descending nature of the sort request.</p> <p>This element 
-         * is required.</p></remarks>
+         * <remarks>Un-merged Business Name: SortControlDirection 
+         * Relationship: QUQI_MT120006CA.SortControl.directionCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>This element is 
+         * required.</p> <p>Sets the ascending or descending nature of 
+         * the sort request.</p> Un-merged Business Name: 
+         * SortControlDirection Relationship: 
+         * QUQI_MT020002CA.SortControl.directionCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>This element is 
+         * required.</p> <p>Sets the ascending or descending nature of 
+         * the sort request.</p> Un-merged Business Name: 
+         * SortControlDirection Relationship: 
+         * QUQI_MT120008CA.SortControl.directionCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>This element is 
+         * required.</p> <p>Sets the ascending or descending nature of 
+         * the sort request.</p> Un-merged Business Name: 
+         * SortControlDirection Relationship: 
+         * MFMI_MT700751CA.SortControl.directionCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>This element is 
+         * required.</p> <p>Sets the ascending or descending nature of 
+         * the sort request.</p> Un-merged Business Name: 
+         * SortControlDirection Relationship: 
+         * QUQI_MT020000CA.SortControl.directionCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>This element is 
+         * required.</p> <p>Sets the ascending or descending nature of 
+         * the sort request.</p> Un-merged Business Name: 
+         * SortControlDirection Relationship: 
+         * MFMI_MT700746CA.SortControl.directionCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>This element is 
+         * required.</p> <p>Sets the ascending or descending nature of 
+         * the sort request.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"directionCode"})]
         public Sequencing DirectionCode {

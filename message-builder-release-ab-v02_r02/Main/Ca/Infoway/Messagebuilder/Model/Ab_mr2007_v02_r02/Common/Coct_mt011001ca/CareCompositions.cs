@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,16 +28,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Coct_mt011001
 
 
     /**
-     * <summary>Care Compositions</summary>
+     * <summary>Business Name: Care Compositions</summary>
      * 
-     * <remarks><p>A care composition is a record with two 
-     * purposes. It indicates that care of a given type has 
-     * occurred or is occurring. It also acts as a collector for 
-     * the events that happened during care, including who is 
-     * responsible for the care provided.</p> <p>Allows linking 
-     * records to encounters, condition and care-based 
-     * compositions. Useful for searching and navigation of the 
-     * patient's record.</p></remarks>
+     * <p>A care composition is a record with two purposes. It 
+     * indicates that care of a given type has occurred or is 
+     * occurring. It also acts as a collector for the events that 
+     * happened during care, including who is responsible for the 
+     * care provided.</p> <p>Allows linking records to encounters, 
+     * condition and care-based compositions. Useful for searching 
+     * and navigation of the patient's record.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"COCT_MT011001CA.PatientCareProvisionEvent"})]
     public class CareCompositions : MessagePartBean {
@@ -50,13 +49,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Coct_mt011001
             this.code = new CVImpl();
         }
         /**
-         * <summary>B: Care Composition Identifier</summary>
+         * <summary>Business Name: B: Care Composition Identifier</summary>
          * 
-         * <remarks><p>Unique identifier of an encounter, condition or 
-         * care-based collection.</p> <p>IMMUNIZATION 
-         * INTERPRETATION.REFERENCED DATA</p> <p>Allows care 
-         * compositions to be uniquely identified and referenced, and 
-         * is therefore mandatory</p></remarks>
+         * <remarks>Relationship: 
+         * COCT_MT011001CA.PatientCareProvisionEvent.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>Unique identifier 
+         * of an encounter, condition or care-based collection.</p> 
+         * <p>IMMUNIZATION INTERPRETATION.REFERENCED DATA</p> <p>Allows 
+         * care compositions to be uniquely identified and referenced, 
+         * and is therefore mandatory</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -65,19 +66,22 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Coct_mt011001
         }
 
         /**
-         * <summary>A: Care Composition Type</summary>
+         * <summary>Business Name: A: Care Composition Type</summary>
          * 
-         * <remarks><p>Identifies the kind of composition represented. 
-         * Examples include encounters (&quot;Emergency 
-         * Encounter&quot;, &quot;Long Term Care Encounter&quot;, etc), 
-         * health condition (episode)-based collections (e.g. 
-         * &quot;Diabetes&quot;, &quot;Hypertension&quot;, etc) and 
-         * general care-based collections such as &quot;gynecological 
-         * care&quot;.</p> <p>IMMUNIZATION INTERPRETATION.REFERENCED 
-         * DATA</p> <p>EPHS: vocab concepts needed for LAB ID, Special 
-         * Considerations ID etc.</p> <p>Allows care compositions to be 
-         * captured and categorized at different levels of abstraction, 
-         * and is therefore mandatory.</p></remarks>
+         * <remarks>Relationship: 
+         * COCT_MT011001CA.PatientCareProvisionEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Identifies the 
+         * kind of composition represented. Examples include encounters 
+         * (&quot;Emergency Encounter&quot;, &quot;Long Term Care 
+         * Encounter&quot;, etc), health condition (episode)-based 
+         * collections (e.g. &quot;Diabetes&quot;, 
+         * &quot;Hypertension&quot;, etc) and general care-based 
+         * collections such as &quot;gynecological care&quot;.</p> 
+         * <p>IMMUNIZATION INTERPRETATION.REFERENCED DATA</p> <p>EPHS: 
+         * vocab concepts needed for LAB ID, Special Considerations ID 
+         * etc.</p> <p>Allows care compositions to be captured and 
+         * categorized at different levels of abstraction, and is 
+         * therefore mandatory.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public ActCareEventType Code {

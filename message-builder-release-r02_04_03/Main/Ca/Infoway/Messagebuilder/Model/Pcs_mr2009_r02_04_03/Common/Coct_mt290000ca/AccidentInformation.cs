@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,11 +36,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt290
             this.sequenceNumber = new INTImpl();
         }
         /**
-         * <summary>Injury coding priority</summary>
+         * <summary>Business Name: Injury coding priority</summary>
          * 
-         * <remarks><p>Sets of injury observations are tied together 
-         * with the same sequence number</p> <p>Used for more than one 
-         * set of injury coding.</p></remarks>
+         * <remarks>Relationship: 
+         * COCT_MT290000CA.AccidentInformation.sequenceNumber 
+         * Conformance/Cardinality: MANDATORY (1) <p>Sets of injury 
+         * observations are tied together with the same sequence 
+         * number</p> <p>Used for more than one set of injury 
+         * coding.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"sequenceNumber"})]
         public int? SequenceNumber {
@@ -48,6 +51,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt290
             set { this.sequenceNumber.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * COCT_MT290000CA.AccidentInformation.accidentInjuryCoding</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"accidentInjuryCoding"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt290000ca.AccidentInjuryCoding AccidentInjuryCoding {
             get { return this.accidentInjuryCoding; }

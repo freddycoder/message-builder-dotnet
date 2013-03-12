@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,6 +27,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lr.Prpa_mt202317ca;
 
 
+    /**
+     * <summary>Business Name: PRPA_IN202011CA: Location summary 
+     * query response</summary>
+     * 
+     * <p>Returns a summary list of Service Delivery Locations 
+     * based on search criteria.</p> Message: 
+     * MCCI_MT002300CA.Message Control Act: 
+     * MFMI_MT700746CA.ControlActEvent --> Payload: 
+     * PRPA_MT202317CA.ServiceDeliveryLocation --> Payload: 
+     * PRPA_MT202306CA.ParameterList
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"PRPA_IN202011CA"})]
     public class LocationSummaryQueryResponse : HL7Message_1<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Mfmi_mt700746ca.TriggerEvent<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lr.Merged.QueryDefinition,Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lr.Prpa_mt202317ca.Location>>, IInteraction {
 

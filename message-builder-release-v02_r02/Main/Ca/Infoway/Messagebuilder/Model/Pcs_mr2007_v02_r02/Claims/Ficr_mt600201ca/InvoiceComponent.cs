@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,21 +28,18 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Ficr_mt60020
 
 
     /**
-     * <summary>Invoice Component</summary>
+     * <summary>Business Name: Invoice Component</summary>
      * 
-     * <remarks><p>At most 5 levels of recursion, with n children 
-     * at each level. Root level counts as level 1.</p> <p>This 
-     * allows for an Invoice Grouping to be composed of one or more 
+     * <p>At most 5 levels of recursion, with n children at each 
+     * level. Root level counts as level 1.</p> <p>At most 5 levels 
+     * of recursion, with n children at each level. Root level 
+     * counts as level 1.</p><p>The number of children for each 
+     * group cannot and should not be limited.</p> <p>This allows 
+     * for an Invoice Grouping to be composed of one or more 
      * invoice element groups and/or details. There must be one 
      * leaf detail.Sequence number used to sequence invoice 
      * elements in an Invoice Grouping and will not be included in 
-     * Adjudication Results.</p> <p>At most 5 levels of recursion, 
-     * with n children at each level. Root level counts as level 
-     * 1.</p><p>The number of children for each group cannot and 
-     * should not be limited.</p> <p>At most 5 levels of recursion, 
-     * with n children at each level. Root level counts as level 
-     * 1.</p><p>The number of children for each group cannot and 
-     * should not be limited.</p></remarks>
+     * Adjudication Results.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"FICR_MT600201CA.InvoiceElementComponent"})]
     public class InvoiceComponent : MessagePartBean {
@@ -53,12 +50,24 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Ficr_mt60020
         public InvoiceComponent() {
             this.sequenceNumber = new INTImpl();
         }
+        /**
+         * <summary>Relationship: 
+         * FICR_MT600201CA.InvoiceElementComponent.sequenceNumber</summary>
+         * 
+         * <remarks>Conformance/Cardinality: REQUIRED (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"sequenceNumber"})]
         public int? SequenceNumber {
             get { return this.sequenceNumber.Value; }
             set { this.sequenceNumber.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * FICR_MT600201CA.InvoiceElementComponent.invoiceElementChoice</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"invoiceElementChoice"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Ficr_mt600201ca.IInvoiceElementChoice InvoiceElementChoice {
             get { return this.invoiceElementChoice; }

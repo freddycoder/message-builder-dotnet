@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,6 +25,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Merged;
 
 
+    /**
+     * <summary>Business Name: COMT_IN900040AB: Renew logon request</summary>
+     * 
+     * <remarks>Message: MCCI_MT000100CA.Message Control Act: 
+     * MCAI_MT700210CA.ControlActEvent --> Payload: 
+     * COMT_MT900002AB.ActPermission</remarks>
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"COMT_IN900040AB"})]
     public class RenewLogonRequest : HL7Message<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Mcai_mt700210ca.TriggerEvent<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Merged.Logoff>>, IInteraction {
 

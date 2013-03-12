@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Merged {
 
 
     /**
-     * <summary>CoverageExtensions</summary>
+     * <summary>Business Name: CoverageExtensions</summary>
      * 
      * <remarks>PORX_MT060160CA.Coverage: Coverage Extensions <p>An 
      * authorization issued by a payor to cover a drug not 
@@ -52,18 +52,22 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Merged {
             this.id = new IIImpl();
         }
         /**
-         * <summary>ExtensionGrantedIndicator</summary>
+         * <summary>Business Name: ExtensionGrantedIndicator</summary>
          * 
-         * <remarks>Extension Granted Indicator <p>If set to 'EVN', 
-         * then coverage has been granted. Otherwise it has merely been 
-         * requested.</p> <p>Indicates to the pharmacy whether they 
-         * need to check the status of coverage prior to dispensing. 
-         * The element is mandatory to satisfy HL7 rules.</p> Extension 
-         * Granted Indicator <p>If set to 'EVN', then coverage has been 
-         * requested. Otherwise it has merely been requested.</p> 
+         * <remarks>Un-merged Business Name: ExtensionGrantedIndicator 
+         * Relationship: PORX_MT060160CA.Coverage.moodCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>If set to 'EVN', 
+         * then coverage has been requested. Otherwise it has merely 
+         * been requested.</p> <p>Indicates to the pharmacy whether 
+         * they need to check the status of coverage prior to 
+         * dispensing. Mandatory due to HL7 rules.</p> Un-merged 
+         * Business Name: ExtensionGrantedIndicator Relationship: 
+         * PORX_MT060340CA.Coverage.moodCode Conformance/Cardinality: 
+         * MANDATORY (1) <p>If set to 'EVN', then coverage has been 
+         * granted. Otherwise it has merely been requested.</p> 
          * <p>Indicates to the pharmacy whether they need to check the 
-         * status of coverage prior to dispensing. Mandatory due to HL7 
-         * rules.</p></remarks>
+         * status of coverage prior to dispensing. The element is 
+         * mandatory to satisfy HL7 rules.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"moodCode"})]
         public x_ActMoodOrderEvent MoodCode {
@@ -72,10 +76,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Merged {
         }
 
         /**
-         * <summary>CoverageExtensionId</summary>
+         * <summary>Business Name: CoverageExtensionId</summary>
          * 
-         * <remarks>A:Coverage Extension Id <p>Unique identification 
-         * for a specific coverage extension.</p> <p>Allows for 
+         * <remarks>Un-merged Business Name: CoverageExtensionId 
+         * Relationship: PORX_MT060160CA.Coverage.id 
+         * Conformance/Cardinality: POPULATED (1) <p>Unique 
+         * identification for a specific coverage extension.</p> 
+         * <p>Allows for referencing of a specific coverage 
+         * extension.</p><p>This identifier may be needed on claims 
+         * against the coverage.</p><p>At times when the ID will not be 
+         * available (such as when the request has just been 
+         * submitted), the attribute is 'populated'.</p> <p>Allows for 
          * referencing of a specific coverage extension.</p><p>This 
          * identifier may be needed on claims against the 
          * coverage.</p><p>At times when the ID will not be available 
@@ -85,12 +96,9 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Merged {
          * needed on claims against the coverage.</p><p>At times when 
          * the ID will not be available (such as when the request has 
          * just been submitted), the attribute is 'populated'.</p> 
-         * <p>Allows for referencing of a specific coverage 
-         * extension.</p><p>This identifier may be needed on claims 
-         * against the coverage.</p><p>At times when the ID will not be 
-         * available (such as when the request has just been 
-         * submitted), the attribute is 'populated'.</p> A:Coverage 
-         * Extension Id <p>Unique identification for a specific 
+         * Un-merged Business Name: CoverageExtensionId Relationship: 
+         * PORX_MT060340CA.Coverage.id Conformance/Cardinality: 
+         * POPULATED (1) <p>Unique identification for a specific 
          * coverage extension.</p> <p>Allows for referencing of a 
          * specific coverage extension.</p><p>This identifier may be 
          * needed on claims against the coverage.</p><p>At times the ID 
@@ -112,6 +120,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Merged {
             set { this.id.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: PORX_MT060160CA.Author2.carrierRole 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060340CA.Author2.carrierRole Conformance/Cardinality: 
+         * MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"author/carrierRole"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Merged.CarrierRole AuthorCarrierRole {
             get { return this.authorCarrierRole; }

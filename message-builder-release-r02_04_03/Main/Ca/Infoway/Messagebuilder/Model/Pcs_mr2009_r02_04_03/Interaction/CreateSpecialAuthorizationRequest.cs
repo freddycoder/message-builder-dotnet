@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged;
 
 
+    /**
+     * <summary>Business Name: FICR_IN400001CA: Create Special 
+     * Authorization Request</summary>
+     * 
+     * <p>Requests that a Special Authorization for full coverage 
+     * of a non or partial benefit drug be applied to a patient 
+     * record.</p> Message: MCCI_MT002100CA.Message Control Act: 
+     * MCAI_MT700211CA.ControlActEvent --> Payload: 
+     * FICR_MT400001CA.SpecialAuthorizationRequest
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"FICR_IN400001CA"})]
     public class CreateSpecialAuthorizationRequest : HL7Message_1<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Mcai_mt700211ca.TriggerEvent<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Merged.SpecialAuthorizationRequest>>, IInteraction {
 

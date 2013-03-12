@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,9 +29,9 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt110
 
 
     /**
-     * <summary>Payee Person</summary>
+     * <summary>Business Name: Payee Person</summary>
      * 
-     * <remarks><p>Person receiving payment from Payor</p></remarks>
+     * <p>Person receiving payment from Payor</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"COCT_MT110200CA.PayeePerson"})]
     public class PayeePerson : MessagePartBean, Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt110200ca.IPayeeChoice {
@@ -50,6 +50,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt110
             this.payeeLanguageModeCode = new CVImpl();
             this.payeeLanguagePreferenceInd = new BLImpl();
         }
+        /**
+         * <summary>Relationship: COCT_MT110200CA.PayeeChoice.asRole</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"asRole"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt110200ca.PayeeRelationshipRole AsRole {
             get { return this.asRole; }
@@ -57,9 +62,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt110
         }
 
         /**
-         * <summary>payee name</summary>
+         * <summary>Business Name: payee name</summary>
          * 
-         * <remarks><p>name of person who is the payee</p></remarks>
+         * <remarks>Relationship: COCT_MT110200CA.PayeePerson.name 
+         * Conformance/Cardinality: MANDATORY (1) <p>name of person who 
+         * is the payee</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"name"})]
         public PersonName Name {
@@ -68,7 +75,10 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt110
         }
 
         /**
-         * <summary>payee address</summary>
+         * <summary>Business Name: payee address</summary>
+         * 
+         * <remarks>Relationship: COCT_MT110200CA.PayeePerson.addr 
+         * Conformance/Cardinality: REQUIRED (0-1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"addr"})]
         public PostalAddress Addr {
@@ -77,7 +87,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt110
         }
 
         /**
-         * <summary>Payee Person Language</summary>
+         * <summary>Business Name: Payee Person Language</summary>
+         * 
+         * <remarks>Relationship: 
+         * COCT_MT110200CA.PayeeLanguage.languageCode 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"payeeLanguage/languageCode"})]
         public HumanLanguage PayeeLanguageLanguageCode {
@@ -86,10 +100,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt110
         }
 
         /**
-         * <summary>Language of Communication</summary>
+         * <summary>Business Name: Language of Communication</summary>
          * 
-         * <remarks><p>A value presenting the method of expression of 
-         * the language.</p></remarks>
+         * <remarks>Relationship: 
+         * COCT_MT110200CA.PayeeLanguage.modeCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>A value presenting 
+         * the method of expression of the language.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"payeeLanguage/modeCode"})]
         public LanguageAbilityMode PayeeLanguageModeCode {
@@ -98,7 +114,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt110
         }
 
         /**
-         * <summary>Preferred Language Indicator</summary>
+         * <summary>Business Name: Preferred Language Indicator</summary>
+         * 
+         * <remarks>Relationship: 
+         * COCT_MT110200CA.PayeeLanguage.preferenceInd 
+         * Conformance/Cardinality: REQUIRED (0-1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"payeeLanguage/preferenceInd"})]
         public bool? PayeeLanguagePreferenceInd {

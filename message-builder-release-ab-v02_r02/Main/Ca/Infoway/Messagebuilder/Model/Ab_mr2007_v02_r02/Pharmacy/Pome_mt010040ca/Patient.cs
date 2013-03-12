@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,11 +27,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Pome_mt0100
 
 
     /**
-     * <summary>Patient</summary>
+     * <summary>Business Name: Patient</summary>
      * 
-     * <remarks><p>Indicates the type of patient for whom the 
-     * dosage instruction applies.</p> <p>Important for qualifying 
-     * and filtering dosage specifications.</p></remarks>
+     * <p>Indicates the type of patient for whom the dosage 
+     * instruction applies.</p> <p>Important for qualifying and 
+     * filtering dosage specifications.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"POME_MT010040CA.Patient"})]
     public class Patient : MessagePartBean {
@@ -42,11 +42,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Pome_mt0100
             this.patientLivingSubjectKindAdministrativeGenderCode = new CVImpl();
         }
         /**
-         * <summary>Patient Gender</summary>
+         * <summary>Business Name: Patient Gender</summary>
          * 
-         * <remarks><p>Indicates the gender of patient to whom the 
-         * dosage specification applies.</p> <p>Some dosage 
-         * specifications are gender-specific.</p></remarks>
+         * <remarks>Relationship: 
+         * POME_MT010040CA.LivingSubjectKind.administrativeGenderCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the 
+         * gender of patient to whom the dosage specification 
+         * applies.</p> <p>Some dosage specifications are 
+         * gender-specific.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"patientLivingSubjectKind/administrativeGenderCode"})]
         public AdministrativeGender PatientLivingSubjectKindAdministrativeGenderCode {

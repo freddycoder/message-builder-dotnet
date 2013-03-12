@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,16 +29,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Pome_mt0100
 
 
     /**
-     * <summary>Formularies</summary>
+     * <summary>Business Name: Formularies</summary>
      * 
-     * <remarks><p>At least One of Id or Title must be 
-     * specified</p> <p>List of drugs available from (or carried 
-     * by) a particular organization. For example, University 
-     * Hospital formulary, East Side Long Term Care formulary, 
-     * Alberta Blue Cross formulary</p> <p>Used to ascertain/ensure 
-     * what drugs can be prescribed/dispensed within a specific 
-     * jurisdiction or which will be covered by a patient's 
-     * insurance.</p></remarks>
+     * <p>At least One of Id or Title must be specified</p> <p>List 
+     * of drugs available from (or carried by) a particular 
+     * organization. For example, University Hospital formulary, 
+     * East Side Long Term Care formulary, Alberta Blue Cross 
+     * formulary</p> <p>Used to ascertain/ensure what drugs can be 
+     * prescribed/dispensed within a specific jurisdiction or which 
+     * will be covered by a patient's insurance.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"POME_MT010040CA.PotentialSupply"})]
     public class Formularies : MessagePartBean {
@@ -52,11 +51,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Pome_mt0100
             this.title = new STImpl();
         }
         /**
-         * <summary>Formulary Id</summary>
+         * <summary>Business Name: Formulary Id</summary>
          * 
-         * <remarks><p>A unique identifier for a specific 
-         * formulary.</p> <p>Allows the formulary to be unambiguously 
-         * referenced</p></remarks>
+         * <remarks>Relationship: POME_MT010040CA.PotentialSupply.id 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>A unique 
+         * identifier for a specific formulary.</p> <p>Allows the 
+         * formulary to be unambiguously referenced</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -65,11 +65,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Pome_mt0100
         }
 
         /**
-         * <summary>Formulary Name</summary>
+         * <summary>Business Name: Formulary Name</summary>
          * 
-         * <remarks><p>The name by which the formulary is commonly 
-         * known.</p> <p>Gives a provider-recognizable label for the 
-         * formulary.</p></remarks>
+         * <remarks>Relationship: POME_MT010040CA.PotentialSupply.title 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The name by which 
+         * the formulary is commonly known.</p> <p>Gives a 
+         * provider-recognizable label for the formulary.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"title"})]
         public String Title {
@@ -77,6 +78,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Pome_mt0100
             set { this.title.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * POME_MT010040CA.Performer.assignedEntity</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"performer/assignedEntity"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged.AssignedEntity3 PerformerAssignedEntity {
             get { return this.performerAssignedEntity; }

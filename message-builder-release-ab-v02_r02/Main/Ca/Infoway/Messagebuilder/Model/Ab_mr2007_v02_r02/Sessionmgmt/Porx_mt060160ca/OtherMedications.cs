@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,11 +35,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Porx_mt0
 
 
     /**
-     * <summary>Other Medications</summary>
+     * <summary>Business Name: Other Medications</summary>
      * 
-     * <remarks><p>routeCode must not be used when code is SNOMED 
-     * and is mandatory otherwise</p><p>Status can only be ACTIVE 
-     * or COMPLETED</p><p>Reported Issue is only permitted if Issue 
+     * <p>routeCode must not be used when code is SNOMED and is 
+     * mandatory otherwise</p><p>Status can only be ACTIVE or 
+     * COMPLETED</p><p>Reported Issue is only permitted if Issue 
      * Indicator is not present and vice versa</p><p>Annotation is 
      * only permitted if Annotation Indicator is not present and 
      * vice versa</p> <p>routeCode must not be used when code is 
@@ -71,7 +71,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Porx_mt0
      * administered or out-of-jurisdiction prescriptions) will also 
      * be recorded here.</p> <p>Necessary component of a person's 
      * overall medication profile. Allows DUR checking against a 
-     * more complete drug profile.</p></remarks>
+     * more complete drug profile.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"PORX_MT060160CA.OtherMedication"})]
     public class OtherMedications : MessagePartBean, Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.IMedicationRecord {
@@ -109,12 +109,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Porx_mt0
             this.subjectOf5DetectedIssueEvent = new List<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.Issues>();
         }
         /**
-         * <summary>A:Administration Record Id</summary>
+         * <summary>Business Name: A:Administration Record Id</summary>
          * 
-         * <remarks><p>This is an identifier assigned to a unique 
-         * instance of an other medication record.</p> <p>Allows for 
-         * the unique referencing of a specific active medication 
-         * record. Thus the mandatory requirement. .</p></remarks>
+         * <remarks>Relationship: PORX_MT060160CA.OtherMedication.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>This is an 
+         * identifier assigned to a unique instance of an other 
+         * medication record.</p> <p>Allows for the unique referencing 
+         * of a specific active medication record. Thus the mandatory 
+         * requirement. .</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -123,18 +125,19 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Porx_mt0
         }
 
         /**
-         * <summary>Other Medication Type</summary>
+         * <summary>Business Name: Other Medication Type</summary>
          * 
-         * <remarks><p>Must be 'DRUG' unless using SNOMED</p> 
-         * <p>Indicates that the record is a drug administration rather 
-         * than an immunization or other type of administration. For 
-         * SNOMED, may also include route, drug and other 
-         * information.</p> <p>Needed to convey the meaning of this 
-         * class and is therefore mandatory.</p><p>The element allows 
-         * 'CD' to provide support for SNOMED.</p> <p>Needed to convey 
-         * the meaning of this class and is therefore 
-         * mandatory.</p><p>The element allows 'CD' to provide support 
-         * for SNOMED.</p></remarks>
+         * <remarks>Relationship: PORX_MT060160CA.OtherMedication.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Must be 'DRUG' 
+         * unless using SNOMED</p> <p>Indicates that the record is a 
+         * drug administration rather than an immunization or other 
+         * type of administration. For SNOMED, may also include route, 
+         * drug and other information.</p> <p>Needed to convey the 
+         * meaning of this class and is therefore mandatory.</p><p>The 
+         * element allows 'CD' to provide support for SNOMED.</p> 
+         * <p>Needed to convey the meaning of this class and is 
+         * therefore mandatory.</p><p>The element allows 'CD' to 
+         * provide support for SNOMED.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public ActCode Code {
@@ -143,11 +146,22 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Porx_mt0
         }
 
         /**
-         * <summary>B:Other Medication Status</summary>
+         * <summary>Business Name: B:Other Medication Status</summary>
          * 
-         * <remarks><p>Indicates the status of the other medication 
-         * record created on the EHR/DIS. Valid statuses for other 
-         * medication records are: ACTIVE, COMPLETE.</p> <p>Used to 
+         * <remarks>Relationship: 
+         * PORX_MT060160CA.OtherMedication.statusCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the 
+         * status of the other medication record created on the 
+         * EHR/DIS. Valid statuses for other medication records are: 
+         * ACTIVE, COMPLETE.</p> <p>Used to determine whether the 
+         * medication should be considered in performing DUR 
+         * checking.</p><p>Attribute is mandatory to ensure that a 
+         * medication recorded in EHR/DIS is in some state.</p><p>Note 
+         * ------ The provider might know that the patient is not 
+         * taking the medication but not necessarily when the patient 
+         * stopped it. Thus the status of the medication could be set 
+         * to 'COMPLETED' by the provider without necessarily setting 
+         * an End Date on the medication record.</p> <p>Used to 
          * determine whether the medication should be considered in 
          * performing DUR checking.</p><p>Attribute is mandatory to 
          * ensure that a medication recorded in EHR/DIS is in some 
@@ -164,16 +178,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Porx_mt0
          * taking the medication but not necessarily when the patient 
          * stopped it. Thus the status of the medication could be set 
          * to 'COMPLETED' by the provider without necessarily setting 
-         * an End Date on the medication record.</p> <p>Used to 
-         * determine whether the medication should be considered in 
-         * performing DUR checking.</p><p>Attribute is mandatory to 
-         * ensure that a medication recorded in EHR/DIS is in some 
-         * state.</p><p>Note ------ The provider might know that the 
-         * patient is not taking the medication but not necessarily 
-         * when the patient stopped it. Thus the status of the 
-         * medication could be set to 'COMPLETED' by the provider 
-         * without necessarily setting an End Date on the medication 
-         * record.</p></remarks>
+         * an End Date on the medication record.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"statusCode"})]
         public ActStatus StatusCode {
@@ -182,11 +187,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Porx_mt0
         }
 
         /**
-         * <summary>C:Drug Active Period</summary>
+         * <summary>Business Name: C:Drug Active Period</summary>
          * 
-         * <remarks><p>Indicates the time-period in which the patient 
-         * has been taking or is expected to be taking the other 
-         * medication.</p> 
+         * <remarks>Relationship: 
+         * PORX_MT060160CA.OtherMedication.effectiveTime 
+         * Conformance/Cardinality: POPULATED (1) <p>Indicates the 
+         * time-period in which the patient has been taking or is 
+         * expected to be taking the other medication.</p> 
          * <p>ZDP.13.2.2</p><p>ZDP.13.3</p><p>ZDP.13.4</p><p>ZDP.13.5</p> 
          * <p>ZDP.13.2.2</p><p>ZDP.13.3</p><p>ZDP.13.4</p><p>ZDP.13.5</p> 
          * <p>ZDP.13.2.2</p><p>ZDP.13.3</p><p>ZDP.13.4</p><p>ZDP.13.5</p> 
@@ -202,19 +209,21 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Porx_mt0
         }
 
         /**
-         * <summary>D:Other Medication Masking Indicator</summary>
+         * <summary>Business Name: D:Other Medication Masking Indicator</summary>
          * 
-         * <remarks><p>Denotes access restriction place on the other 
-         * active medication record. Methods for accessing masked 
-         * active medications will be governed by each jurisdiction 
-         * (e.g. court orders, shared secret/consent, etc.).</p> 
-         * <p>Provides support for additional confidentiality 
-         * constraint to reflect the wishes of the patient.</p><p>The 
-         * attribute is optional because not all systems will support 
-         * masking.</p> <p>Provides support for additional 
-         * confidentiality constraint to reflect the wishes of the 
-         * patient.</p><p>The attribute is optional because not all 
-         * systems will support masking.</p></remarks>
+         * <remarks>Relationship: 
+         * PORX_MT060160CA.OtherMedication.confidentialityCode 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>Denotes access 
+         * restriction place on the other active medication record. 
+         * Methods for accessing masked active medications will be 
+         * governed by each jurisdiction (e.g. court orders, shared 
+         * secret/consent, etc.).</p> <p>Provides support for 
+         * additional confidentiality constraint to reflect the wishes 
+         * of the patient.</p><p>The attribute is optional because not 
+         * all systems will support masking.</p> <p>Provides support 
+         * for additional confidentiality constraint to reflect the 
+         * wishes of the patient.</p><p>The attribute is optional 
+         * because not all systems will support masking.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"confidentialityCode"})]
         public x_VeryBasicConfidentialityKind ConfidentialityCode {
@@ -223,15 +232,18 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Porx_mt0
         }
 
         /**
-         * <summary>E:Route of Administration</summary>
+         * <summary>Business Name: E:Route of Administration</summary>
          * 
-         * <remarks><p>This is the means by which the patient is taking 
-         * the medication.</p> <p>RXR.1</p><p>Route of 
-         * administration</p> <p>RXR.1</p><p>Route of 
-         * administration</p> <p>Ensures consistency in description of 
-         * routes. Provides potential for cross-checking dosage form 
-         * and route. Because this information is pre-coordinated into 
-         * 'code' for SNOMED, it is marked as optional.</p></remarks>
+         * <remarks>Relationship: 
+         * PORX_MT060160CA.OtherMedication.routeCode 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>This is the means 
+         * by which the patient is taking the medication.</p> 
+         * <p>RXR.1</p><p>Route of administration</p> 
+         * <p>RXR.1</p><p>Route of administration</p> <p>Ensures 
+         * consistency in description of routes. Provides potential for 
+         * cross-checking dosage form and route. Because this 
+         * information is pre-coordinated into 'code' for SNOMED, it is 
+         * marked as optional.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"routeCode"})]
         public RouteOfAdministration RouteCode {
@@ -239,63 +251,126 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Porx_mt0
             set { this.routeCode.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: PORX_MT060160CA.Subject10.patient</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subject/patient"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.Patient SubjectPatient {
             get { return this.subjectPatient; }
             set { this.subjectPatient = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PORX_MT060160CA.Consumable2.medication</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"consumable/medication"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Coct_mt220110ca.DrugProduct ConsumableMedication {
             get { return this.consumableMedication; }
             set { this.consumableMedication = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PORX_MT060160CA.ResponsibleParty4.assignedPerson</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"responsibleParty/assignedPerson"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Coct_mt090107ca.Provider ResponsiblePartyAssignedPerson {
             get { return this.responsiblePartyAssignedPerson; }
             set { this.responsiblePartyAssignedPerson = value; }
         }
 
+        /**
+         * <summary>Relationship: PORX_MT060160CA.Author.assignedPerson</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"author/assignedPerson"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Coct_mt090107ca.Provider AuthorAssignedPerson {
             get { return this.authorAssignedPerson; }
             set { this.authorAssignedPerson = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PORX_MT060160CA.OtherMedication.location</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"location"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.CreatedAt Location {
             get { return this.location; }
             set { this.location = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PORX_MT060160CA.Component5.dosageInstruction</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"component/dosageInstruction"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.AdministrationInstructions> ComponentDosageInstruction {
             get { return this.componentDosageInstruction; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PORX_MT060160CA.Subject11.controlActEvent</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf1/controlActEvent"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Merged.StatusChanges> SubjectOf1ControlActEvent {
             get { return this.subjectOf1ControlActEvent; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PORX_MT060160CA.Subject9.detectedIssueIndicator</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf2/detectedIssueIndicator"})]
         public bool? SubjectOf2DetectedIssueIndicator {
             get { return this.subjectOf2DetectedIssueIndicator.Value; }
             set { this.subjectOf2DetectedIssueIndicator.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: PORX_MT060160CA.Subject14.annotation</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf3/annotation"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Coct_mt120600ca.Notes> SubjectOf3Annotation {
             get { return this.subjectOf3Annotation; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PORX_MT060160CA.Subject15.annotationIndicator</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf4/annotationIndicator"})]
         public bool? SubjectOf4AnnotationIndicator {
             get { return this.subjectOf4AnnotationIndicator.Value; }
             set { this.subjectOf4AnnotationIndicator.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PORX_MT060160CA.Subject17.detectedIssueEvent</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf5/detectedIssueEvent"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.Issues> SubjectOf5DetectedIssueEvent {
             get { return this.subjectOf5DetectedIssueEvent; }

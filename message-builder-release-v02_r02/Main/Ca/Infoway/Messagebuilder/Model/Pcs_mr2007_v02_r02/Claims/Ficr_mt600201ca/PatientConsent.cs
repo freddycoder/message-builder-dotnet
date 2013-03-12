@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,9 +27,9 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Ficr_mt60020
 
 
     /**
-     * <summary>Patient consent</summary>
+     * <summary>Business Name: Patient consent</summary>
      * 
-     * <remarks><p>Information about the patient's consent.</p></remarks>
+     * <p>Information about the patient's consent.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"FICR_MT600201CA.Subject"})]
     public class PatientConsent : MessagePartBean {
@@ -42,10 +42,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Ficr_mt60020
             this.patientConsentValue = new BLImpl(false);
         }
         /**
-         * <summary>Patient Keyword</summary>
+         * <summary>Business Name: Patient Keyword</summary>
          * 
-         * <remarks><p>Patient Keyword</p> <p>The keyword used by the 
-         * Patient to indicate signature or consent.</p></remarks>
+         * <remarks>Relationship: FICR_MT600201CA.Subject.signatureText 
+         * Conformance/Cardinality: MANDATORY (1) <p>The keyword used 
+         * by the Patient to indicate signature or consent.</p> 
+         * <p>Patient Keyword</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"signatureText"})]
         public String SignatureText {
@@ -53,6 +55,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Ficr_mt60020
             set { this.signatureText.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * FICR_MT600201CA.Subject.patientConsent</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"patientConsent"})]
         public bool? PatientConsentValue {
             get { return this.patientConsentValue.Value; }

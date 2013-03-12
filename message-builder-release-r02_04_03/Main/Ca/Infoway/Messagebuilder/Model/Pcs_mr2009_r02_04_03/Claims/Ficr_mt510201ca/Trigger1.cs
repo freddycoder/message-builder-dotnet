@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,9 +28,9 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt510
 
 
     /**
-     * <summary><p>Select association below for required acts that 
-     * do not have associated adjudication reason &amp; 
-     * adjudication information codes.</p></summary>
+     * <p>Select association below for required acts that do not 
+     * have associated adjudication reason &amp; adjudication 
+     * information codes.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"FICR_MT510201CA.Trigger1"})]
     public class Trigger1 : MessagePartBean {
@@ -41,12 +41,23 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt510
         public Trigger1() {
             this.negationInd = new BLImpl();
         }
+        /**
+         * <summary>Relationship: FICR_MT510201CA.Trigger1.negationInd</summary>
+         * 
+         * <remarks>Conformance/Cardinality: OPTIONAL (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"negationInd"})]
         public bool? NegationInd {
             get { return this.negationInd.Value; }
             set { this.negationInd.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * FICR_MT510201CA.Trigger1.adjudicationResultRequiredAct</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"adjudicationResultRequiredAct"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Merged.AdjudicationResultRequiredAct AdjudicationResultRequiredAct {
             get { return this.adjudicationResultRequiredAct; }

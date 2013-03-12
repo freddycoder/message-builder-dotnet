@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,13 +27,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Merged {
      * <summary>COCT_MT680000CA.AdjudicationResultReference: (no 
      * business name)</summary>
      * 
-     * <remarks><p>Each submitted invoice element must have 1 
+     * <p>Each submitted invoice element must have 1 
      * AdjudicationResults instance unless its parent is 
      * adjudicated as submitted</p> <p>Multiple references to 
      * submitted invoice elements provides support for code 
      * substitution where the number of submitted fee items is 
      * consolidated on the adjudication results (e.g. 3 items to 
-     * 1)</p></remarks>
+     * 1)</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"COCT_MT680000CA.AdjudicationResultReference","FICR_MT610201CA.AdjudicationResultReference"})]
     public class AdjudicationResultReference : MessagePartBean {
@@ -42,6 +42,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Merged {
 
         public AdjudicationResultReference() {
         }
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * COCT_MT680000CA.AdjudicationResultReference.invoiceElementChoice 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * FICR_MT610201CA.AdjudicationResultReference.invoiceElementChoice 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"invoiceElementChoice"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Merged.IInvoiceElementChoice InvoiceElementChoice {
             get { return this.invoiceElementChoice; }

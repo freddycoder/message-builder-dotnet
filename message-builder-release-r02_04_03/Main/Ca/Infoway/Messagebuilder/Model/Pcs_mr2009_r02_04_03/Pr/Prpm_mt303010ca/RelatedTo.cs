@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,10 +37,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Prpm_mt303010c
             this.effectiveTime = new IVLImpl<TS, Interval<PlatformDate>>();
         }
         /**
-         * <summary>Relationship Effective Date and Time</summary>
+         * <summary>Business Name: Relationship Effective Date and Time</summary>
          * 
-         * <remarks><p>Effective date and time of the role 
-         * relationships.</p></remarks>
+         * <remarks>Relationship: 
+         * PRPM_MT303010CA.RelatedTo.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Effective date 
+         * and time of the role relationships.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"effectiveTime"})]
         public Interval<PlatformDate> EffectiveTime {
@@ -48,6 +50,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Prpm_mt303010c
             set { this.effectiveTime.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: PRPM_MT303010CA.RelatedTo.roleChoice</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"roleChoice"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Prpm_mt303010ca.IRoleChoice RoleChoice {
             get { return this.roleChoice; }

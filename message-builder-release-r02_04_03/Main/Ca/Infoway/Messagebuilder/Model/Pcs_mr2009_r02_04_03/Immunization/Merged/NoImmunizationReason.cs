@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,10 +31,9 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merg
      * <summary>POIZ_MT030060CA.NoImmunizationReason: (no business 
      * name)</summary>
      * 
-     * <remarks><p>Identifies the reason why an immunization event 
-     * did not occur.</p> <p>Needed for explicitly communicating 
-     * the reason why a patient was not administered as 
-     * vaccine.</p></remarks>
+     * <p>Needed for explicitly communicating the reason why a 
+     * patient was not administered as vaccine.</p> <p>Identifies 
+     * the reason why an immunization event did not occur.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"POIZ_MT030050CA.NoImmunizationReason","POIZ_MT030060CA.NoImmunizationReason","POIZ_MT060150CA.NoImmunizationReason"})]
     public class NoImmunizationReason : MessagePartBean, Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.IChoice {
@@ -47,14 +46,23 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merg
             this.reasonCode = new CVImpl();
         }
         /**
-         * <summary>ImmunizationRefusalReasonText</summary>
+         * <summary>Business Name: ImmunizationRefusalReasonText</summary>
          * 
-         * <remarks>Immunization Refusal Reason Text <p>A textual or 
-         * multimedia description (or reference to a description) of 
-         * the reason.</p> <p>Provides additional context and 
-         * description relating to the reason for not immunizing. Not 
-         * all implementations will support text. As a result, this 
-         * attribute is optional.</p> Immunization Refusal Reason Text</remarks>
+         * <remarks>Un-merged Business Name: 
+         * ImmunizationRefusalReasonText Relationship: 
+         * POIZ_MT030060CA.NoImmunizationReason.text 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>Provides 
+         * additional context and description relating to the reason 
+         * for not immunizing. Not all implementations will support 
+         * text. As a result, this attribute is optional.</p> <p>A 
+         * textual or multimedia description (or reference to a 
+         * description) of the reason.</p> Un-merged Business Name: 
+         * ImmunizationRefusalReasonText Relationship: 
+         * POIZ_MT030050CA.NoImmunizationReason.text 
+         * Conformance/Cardinality: OPTIONAL (0-1) Un-merged Business 
+         * Name: ImmunizationRefusalReasonText Relationship: 
+         * POIZ_MT060150CA.NoImmunizationReason.text 
+         * Conformance/Cardinality: OPTIONAL (0-1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"text"})]
         public String Text {
@@ -63,20 +71,25 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merg
         }
 
         /**
-         * <summary>ImmunizationRefusalReason</summary>
+         * <summary>Business Name: ImmunizationRefusalReason</summary>
          * 
-         * <remarks>Immunization Refusal Reason <p>A coded value 
-         * denoting a patient's reason for refusing to be 
-         * immunized.</p><p>Typical reasons include: Parental decision, 
-         * Religious exemption, Patient decision, previous adverse 
-         * event etc.</p> <p>A coded value denoting a patient's reason 
-         * for refusing to be immunized.</p><p>Typical reasons include: 
-         * Parental decision, Religious exemption, Patient decision, 
-         * previous adverse event etc.</p> <p>Allows sorting and 
+         * <remarks>Un-merged Business Name: ImmunizationRefusalReason 
+         * Relationship: 
+         * POIZ_MT030060CA.NoImmunizationReason.reasonCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows sorting and 
          * categorizing different kinds of refusal reasons. Ensures 
          * that reasons are gathered in a consistent analyzable manner. 
-         * As a result, this attribute is mandatory.</p> Immunization 
-         * Refusal Reason</remarks>
+         * As a result, this attribute is mandatory.</p> <p>A coded 
+         * value denoting a patient's reason for refusing to be 
+         * immunized.</p><p>Typical reasons include: Parental decision, 
+         * Religious exemption, Patient decision, previous adverse 
+         * event etc.</p> Un-merged Business Name: 
+         * ImmunizationRefusalReason Relationship: 
+         * POIZ_MT030050CA.NoImmunizationReason.reasonCode 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: ImmunizationRefusalReason Relationship: 
+         * POIZ_MT060150CA.NoImmunizationReason.reasonCode 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"reasonCode"})]
         public ActNoImmunizationReason ReasonCode {

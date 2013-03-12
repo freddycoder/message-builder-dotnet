@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged;
 
 
+    /**
+     * <summary>Business Name: COMT_IN300101CA: Deprecate patient 
+     * note request</summary>
+     * 
+     * <p>Requests that the specified patient annotation be marked 
+     * as no longer applicable.</p> Message: 
+     * MCCI_MT002100CA.Message Control Act: 
+     * MCAI_MT700210CA.ControlActEvent --> Payload: 
+     * COMT_MT001101CA.ActRequest
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"COMT_IN300101CA"})]
     public class DeprecatePatientNoteRequest : HL7Message_1<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Mcai_mt700210ca.TriggerEvent<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.ActRequest>>, IInteraction {
 

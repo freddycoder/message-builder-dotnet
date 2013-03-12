@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,12 +35,22 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt309000ca {
         public RelatedTo() {
             this.typeCode = new CSImpl();
         }
+        /**
+         * <summary>Relationship: PRPM_MT309000CA.RelatedTo.typeCode</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"typeCode"})]
         public RoleLinkType TypeCode {
             get { return (RoleLinkType) this.typeCode.Value; }
             set { this.typeCode.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: PRPM_MT309000CA.RelatedTo.roleChoice</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"roleChoice"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt309000ca.IRoleChoice RoleChoice {
             get { return this.roleChoice; }

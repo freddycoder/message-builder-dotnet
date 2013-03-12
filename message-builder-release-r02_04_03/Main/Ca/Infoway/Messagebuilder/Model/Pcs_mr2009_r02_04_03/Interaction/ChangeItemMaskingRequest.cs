@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,18 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Ra.Comt_mt400001ca;
 
 
+    /**
+     * <summary>Business Name: COMT_IN400001CA: Change item masking 
+     * request</summary>
+     * 
+     * <p>Requests that an identified item, group of items 
+     * (identified by act type, medication, indication) or all 
+     * items for a particular patient should have their 
+     * confidentiality code changed to the specified value.</p> 
+     * Message: MCCI_MT002100CA.Message Control Act: 
+     * MCAI_MT700210CA.ControlActEvent --> Payload: 
+     * COMT_MT400001CA.MaskableActType
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"COMT_IN400001CA"})]
     public class ChangeItemMaskingRequest : HL7Message_1<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Mcai_mt700210ca.TriggerEvent<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Ra.Comt_mt400001ca.MaskableRecord>>, IInteraction {
 

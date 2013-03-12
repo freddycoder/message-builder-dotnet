@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Merged {
 
 
     /**
-     * <summary>Logon</summary>
+     * <summary>Business Name: Logon</summary>
      * 
      * <remarks>COMT_MT900001AB.ActPermissionRequest: Logon 
      * <p>Represents a request to being given permission to access 
@@ -68,23 +68,26 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Merged {
             this.performer2AssignedEntityId = new IIImpl();
         }
         /**
-         * <summary>LogonApplication</summary>
+         * <summary>Business Name: LogonApplication</summary>
          * 
-         * <remarks>A:Logon Application <p>This must be the 
+         * <remarks>Un-merged Business Name: LogonApplication 
+         * Relationship: COMT_MT900001AB.Device.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>This must be the 
          * &quot;receiving application&quot; from the transmission 
          * wrapper</p> <p>Indicates the application to which the user 
          * is logging on.</p> <p>This is mandatory, as logons must be 
          * associated with a particular application. Note that the 
          * application might be a &quot;logical&quot; construct 
          * providing access to numerous physical systems, or might only 
-         * provide access to a part of a physical system.</p> A:Logon 
-         * Application <p>Indicates the application to which the 
-         * password change applies</p> <p>This is mandatory, as 
-         * passwords must be associated with a particular application. 
-         * Note that the application might be a &quot;logical&quot; 
-         * construct providing access to numerous physical systems, or 
-         * might only provide access to a part of a physical 
-         * system.</p></remarks>
+         * provide access to a part of a physical system.</p> Un-merged 
+         * Business Name: LogonApplication Relationship: 
+         * COMT_MT900003AB.Device.id Conformance/Cardinality: MANDATORY 
+         * (1) <p>Indicates the application to which the password 
+         * change applies</p> <p>This is mandatory, as passwords must 
+         * be associated with a particular application. Note that the 
+         * application might be a &quot;logical&quot; construct 
+         * providing access to numerous physical systems, or might only 
+         * provide access to a part of a physical system.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"subject/assignedDevice/assignedDevice/id"})]
         public Identifier SubjectAssignedDeviceAssignedDeviceId {
@@ -93,13 +96,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Merged {
         }
 
         /**
-         * <summary>Password</summary>
+         * <summary>Business Name: Password</summary>
          * 
-         * <remarks>C:Password <p>This is the current password 
-         * associated with the user id used to authenticate the user to 
-         * the application.</p> <p>This element is mandatory because 
-         * validating identity is the key function of the logon 
-         * transaction.</p></remarks>
+         * <remarks>Un-merged Business Name: Password Relationship: 
+         * COMT_MT900001AB.Performer.signatureText 
+         * Conformance/Cardinality: MANDATORY (1) <p>This is the 
+         * current password associated with the user id used to 
+         * authenticate the user to the application.</p> <p>This 
+         * element is mandatory because validating identity is the key 
+         * function of the logon transaction.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"performer/signatureText"})]
         public String PerformerSignatureText {
@@ -108,11 +113,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Merged {
         }
 
         /**
-         * <summary>LogonUser</summary>
+         * <summary>Business Name: LogonUser</summary>
          * 
-         * <remarks>B:Logon User <p>Indicates the userid of the person 
-         * being logged on.</p> <p>This is mandatory because you can't 
-         * log someone on if you don't know who they are . . .</p></remarks>
+         * <remarks>Un-merged Business Name: LogonUser Relationship: 
+         * COMT_MT900001AB.AssignedEntity.id Conformance/Cardinality: 
+         * MANDATORY (1) <p>Indicates the userid of the person being 
+         * logged on.</p> <p>This is mandatory because you can't log 
+         * someone on if you don't know who they are . . .</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"performer/assignedEntity/id"})]
         public Identifier PerformerAssignedEntityId {
@@ -120,6 +127,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Merged {
             set { this.performerAssignedEntityId.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * COMT_MT900001AB.ActPermissionRequest.location 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"location"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.CreatedAt Location {
             get { return this.location; }
@@ -127,13 +142,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Merged {
         }
 
         /**
-         * <summary>OldPassword</summary>
+         * <summary>Business Name: OldPassword</summary>
          * 
-         * <remarks>C: Old Password <p>This is the original password 
-         * associated with the user id previously used to authenticate 
-         * the user to the application.</p> <p>This element is 
-         * mandatory to validate that the password is being changed by 
-         * the original user.</p></remarks>
+         * <remarks>Un-merged Business Name: OldPassword Relationship: 
+         * COMT_MT900003AB.Performer.signatureText 
+         * Conformance/Cardinality: MANDATORY (1) <p>This is the 
+         * original password associated with the user id previously 
+         * used to authenticate the user to the application.</p> 
+         * <p>This element is mandatory to validate that the password 
+         * is being changed by the original user.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"performer1/signatureText"})]
         public String Performer1SignatureText {
@@ -142,11 +159,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Merged {
         }
 
         /**
-         * <summary>LogonUser</summary>
+         * <summary>Business Name: LogonUser</summary>
          * 
-         * <remarks>B:Logon User <p>Indicates the userid of the person 
-         * being logged on.</p> <p>This is mandatory because you can't 
-         * log someone on if you don't know who they are . . .</p></remarks>
+         * <remarks>Un-merged Business Name: LogonUser Relationship: 
+         * COMT_MT900003AB.AssignedEntity.id Conformance/Cardinality: 
+         * MANDATORY (1) <p>Indicates the userid of the person being 
+         * logged on.</p> <p>This is mandatory because you can't log 
+         * someone on if you don't know who they are . . .</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"performer1/assignedEntity/id"})]
         public Identifier Performer1AssignedEntityId {
@@ -155,11 +174,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Merged {
         }
 
         /**
-         * <summary>NewPassword</summary>
+         * <summary>Business Name: NewPassword</summary>
          * 
-         * <remarks>New password <p>Indicates the value the password 
-         * should be changed to</p> <p>Mandatory because a null 
-         * password is not allowed</p></remarks>
+         * <remarks>Un-merged Business Name: NewPassword Relationship: 
+         * COMT_MT900003AB.Performer2.signatureText 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the 
+         * value the password should be changed to</p> <p>Mandatory 
+         * because a null password is not allowed</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"performer2/signatureText"})]
         public String Performer2SignatureText {
@@ -168,11 +189,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Merged {
         }
 
         /**
-         * <summary>LogonUser</summary>
+         * <summary>Business Name: LogonUser</summary>
          * 
-         * <remarks>B:Logon User <p>Indicates the userid of the person 
-         * being logged on.</p> <p>This is mandatory because you can't 
-         * log someone on if you don't know who they are . . .</p></remarks>
+         * <remarks>Un-merged Business Name: LogonUser Relationship: 
+         * COMT_MT900003AB.AssignedEntity.id Conformance/Cardinality: 
+         * MANDATORY (1) <p>Indicates the userid of the person being 
+         * logged on.</p> <p>This is mandatory because you can't log 
+         * someone on if you don't know who they are . . .</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"performer2/assignedEntity/id"})]
         public Identifier Performer2AssignedEntityId {

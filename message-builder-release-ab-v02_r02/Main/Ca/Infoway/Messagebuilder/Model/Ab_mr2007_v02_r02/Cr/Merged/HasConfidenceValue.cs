@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Cr.Merged {
 
 
     /**
-     * <summary>HasConfidenceValue</summary>
+     * <summary>Business Name: HasConfidenceValue</summary>
      * 
      * <remarks>PRPA_MT101104CA.Subject: *has confidence value 
      * <p>Associates the IDENT role with a required observation 
@@ -46,12 +46,33 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Cr.Merged {
         public HasConfidenceValue() {
             this.typeCode = new CSImpl();
         }
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: PRPA_MT101104CA.Subject.typeCode 
+         * Conformance/Cardinality: OPTIONAL (0-1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PRPA_MT101102CA.Subject.typeCode Conformance/Cardinality: 
+         * OPTIONAL (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"typeCode"})]
         public ParticipationType TypeCode {
             get { return (ParticipationType) this.typeCode.Value; }
             set { this.typeCode.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PRPA_MT101104CA.Subject.observationEvent 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PRPA_MT101102CA.Subject.observationEvent 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"observationEvent"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Cr.Merged.ConfidenceValue ObservationEvent {
             get { return this.observationEvent; }

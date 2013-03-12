@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,11 +28,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Porx_mt0600
 
 
     /**
-     * <summary>Generic Query Parameters</summary>
+     * <summary>Business Name: Generic Query Parameters</summary>
      * 
-     * <remarks><p>Defines the set of parameters that may be used 
-     * to filter the query response.</p> <p>Root class for query 
-     * definition</p></remarks>
+     * <p>Defines the set of parameters that may be used to filter 
+     * the query response.</p> <p>Root class for query 
+     * definition</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"PORX_MT060080CA.ParameterList"})]
     public class GenericQueryParameters : MessagePartBean {
@@ -45,19 +45,20 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Porx_mt0600
             this.prescriptionOrderNumberValue = new IIImpl();
         }
         /**
-         * <summary>Issue Filter Code</summary>
+         * <summary>Business Name: Issue Filter Code</summary>
          * 
-         * <remarks><p>Indicates whether records to be returned (e.g. 
-         * prescription order, prescription dispense and/or other 
-         * medication) should be filtered to those with at least one 
-         * persistent un-managed issue (against the record), with at 
-         * least one persistent issues or should return all records, 
-         * independent of the presence of persistent issues.</p> <p>By 
-         * filtering returned records to include only those which have 
-         * unmanaged issues or any issues at all, allows a provider to 
-         * focus on those aspects of care where extra attention is 
-         * needed. Because the attribute must be known, it is 
-         * mandatory.</p></remarks>
+         * <remarks>Relationship: PORX_MT060080CA.IssueFilterCode.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates whether 
+         * records to be returned (e.g. prescription order, 
+         * prescription dispense and/or other medication) should be 
+         * filtered to those with at least one persistent un-managed 
+         * issue (against the record), with at least one persistent 
+         * issues or should return all records, independent of the 
+         * presence of persistent issues.</p> <p>By filtering returned 
+         * records to include only those which have unmanaged issues or 
+         * any issues at all, allows a provider to focus on those 
+         * aspects of care where extra attention is needed. Because the 
+         * attribute must be known, it is mandatory.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"issueFilterCode/value"})]
         public IssueFilterCode IssueFilterCodeValue {
@@ -66,14 +67,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Porx_mt0600
         }
 
         /**
-         * <summary>D:Prescription Order Number</summary>
+         * <summary>Business Name: D:Prescription Order Number</summary>
          * 
-         * <remarks><p>Identifier of the prescription for which 
-         * detailed information is required.</p><p>The result set will 
-         * be filtered to only the specific prescription.</p> 
-         * <p>Identifier of the prescription for which detailed 
-         * information is required.</p><p>The result set will be 
-         * filtered to only the specific prescription.</p> 
+         * <remarks>Relationship: 
+         * PORX_MT060080CA.PrescriptionOrderNumber.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Identifier of the 
+         * prescription for which detailed information is 
+         * required.</p><p>The result set will be filtered to only the 
+         * specific prescription.</p> <p>Identifier of the prescription 
+         * for which detailed information is required.</p><p>The result 
+         * set will be filtered to only the specific prescription.</p> 
          * <p>Identifies the prescription that is to be retrieved and 
          * is therefore mandatory.</p></remarks>
          */

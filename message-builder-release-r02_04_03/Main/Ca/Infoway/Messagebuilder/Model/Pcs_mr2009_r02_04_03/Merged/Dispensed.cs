@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,31 +25,24 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged {
 
 
     /**
-     * <summary>Dispensed</summary>
+     * <summary>Business Name: Dispensed</summary>
      * 
      * <remarks>PORX_MT020070CA.Product2: *e:dispensed 
+     * <p>Identifies the drug as part of the patient's medication 
+     * profile. The drug is one of the most important parts of the 
+     * dispense record, and it is therefore mandatory.</p> 
      * <p>Identifies the product being dispensed.</p><p>Also 
      * provides information on compound ingredients and 
-     * instructions and packaging requirements</p> <p>Identifies 
-     * the product being dispensed.</p><p>Also provides information 
-     * on compound ingredients and instructions and packaging 
-     * requirements</p> <p>Identifies the drug as part of the 
-     * patient's medication profile. The drug is one of the most 
-     * important parts of the dispense record, and it is therefore 
-     * mandatory.</p> PORX_MT020050CA.Product2: *c:dispensed 
-     * <p>Identifies the product being dispensed.</p><p>Also 
-     * provides information on compound ingredients and 
-     * instructions and packaging requirements</p> <p>Identifies 
-     * the product being dispensed.</p><p>Also provides information 
-     * on compound ingredients and instructions and packaging 
-     * requirements</p> <p>The drug being supplied must be 
-     * identified and and is therefore mandatory.</p> 
-     * COCT_MT260010CA.Product: *a:dispensed <p>Indicates the drug 
-     * that was dispensed</p> <p>Important information for issue 
-     * management.</p><p>The association is marked as populated 
-     * because it may be masked.</p> <p>Important information for 
-     * issue management.</p><p>The association is marked as 
-     * populated because it may be masked.</p></remarks>
+     * instructions and packaging requirements</p> 
+     * PORX_MT020050CA.Product2: *c:dispensed <p>The drug being 
+     * supplied must be identified and and is therefore 
+     * mandatory.</p> <p>Identifies the product being 
+     * dispensed.</p><p>Also provides information on compound 
+     * ingredients and instructions and packaging requirements</p> 
+     * COCT_MT260010CA.Product: *a:dispensed <p>Important 
+     * information for issue management.</p><p>The association is 
+     * marked as populated because it may be masked.</p> 
+     * <p>Indicates the drug that was dispensed</p></remarks>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"COCT_MT260010CA.Product","COCT_MT260020CA.Product","PORX_MT020050CA.Product2","PORX_MT020070CA.Product2"})]
     public class Dispensed : MessagePartBean {
@@ -58,6 +51,21 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged {
 
         public Dispensed() {
         }
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: COCT_MT260020CA.Product.medication 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT020070CA.Product2.medication Conformance/Cardinality: 
+         * MANDATORY (1) Un-merged Business Name: (no business name 
+         * specified) Relationship: PORX_MT020050CA.Product2.medication 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * COCT_MT260010CA.Product.medication Conformance/Cardinality: 
+         * POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"medication"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt220200ca.DrugProduct Medication {
             get { return this.medication; }

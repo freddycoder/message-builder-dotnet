@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,19 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged;
 
 
+    /**
+     * <summary>Business Name: FICR_IN400011CA: Special 
+     * Authorization Result Notification</summary>
+     * 
+     * <p>Indicates that adjudication of a previously pended 
+     * Special Authorization has been completed. The Special 
+     * Authorization Request status will either be 
+     * &quot;&quot;active&quot;&quot; if approved or 
+     * &quot;&quot;aborted&quot;&quot; if not approved.</p> 
+     * Message: MCCI_MT002100CA.Message Control Act: 
+     * MCAI_MT700211CA.ControlActEvent --> Payload: 
+     * FICR_MT400003CA.SpecialAuthorizationRequest
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"FICR_IN400011CA"})]
     public class SpecialAuthorizationResultNotification : HL7Message_1<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Mcai_mt700211ca.TriggerEvent<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Merged.SpecialAuthorizationRequest>>, IInteraction {
 

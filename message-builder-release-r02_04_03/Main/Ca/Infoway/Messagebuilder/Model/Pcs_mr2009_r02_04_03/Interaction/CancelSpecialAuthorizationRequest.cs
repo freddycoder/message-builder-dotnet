@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,19 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged;
 
 
+    /**
+     * <summary>Business Name: FICR_IN400005CA: Cancel Special 
+     * Authorization Request</summary>
+     * 
+     * <p>The Cancel Special Authorization Request is submitted to 
+     * cancel processing of a previously submitted Special 
+     * Authorization Request. This interaction is typically 
+     * submitted when a provider determines that the requirement 
+     * for an SA Request is no longer appropriate.</p> Message: 
+     * MCCI_MT002100CA.Message Control Act: 
+     * MCAI_MT700211CA.ControlActEvent --> Payload: 
+     * COMT_MT001101CA.ActRequest
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"FICR_IN400005CA"})]
     public class CancelSpecialAuthorizationRequest : HL7Message_1<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Mcai_mt700211ca.TriggerEvent<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.ActRequest>>, IInteraction {
 

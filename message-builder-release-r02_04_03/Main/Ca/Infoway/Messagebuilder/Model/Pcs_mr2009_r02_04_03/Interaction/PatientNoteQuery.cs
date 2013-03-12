@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,6 +25,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Comt_mt300002ca;
 
 
+    /**
+     * <summary>Business Name: COMT_IN300201CA: Patient note query</summary>
+     * 
+     * <p>Requests retrieval of the notes that have been recorded 
+     * against a particular patient, potentially filtered by note 
+     * type and/or date.</p> Message: MCCI_MT002100CA.Message 
+     * Control Act: QUQI_MT020000CA.ControlActEvent --> Payload: 
+     * COMT_MT300002CA.ParameterList
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"COMT_IN300201CA"})]
     public class PatientNoteQuery : HL7Message_1<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.TriggerEvent_5<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Comt_mt300002ca.GenericQueryParameters>>, IInteraction {
 

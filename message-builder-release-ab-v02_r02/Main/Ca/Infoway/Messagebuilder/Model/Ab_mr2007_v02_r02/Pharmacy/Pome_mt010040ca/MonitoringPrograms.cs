@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,16 +29,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Pome_mt0100
 
 
     /**
-     * <summary>Monitoring Programs</summary>
+     * <summary>Business Name: Monitoring Programs</summary>
      * 
-     * <remarks><p>A system of additional business rules, 
-     * documentation or reporting associated with a particular drug 
-     * or group of drugs. These are typically instituted to detect 
-     * potential abuse, or to monitor prescribing and/or dispensing 
-     * patterns of a sensitive class of medications. Examples 
-     * include triplicate programs, antibiotic monitoring programs, 
+     * <p>A system of additional business rules, documentation or 
+     * reporting associated with a particular drug or group of 
+     * drugs. These are typically instituted to detect potential 
+     * abuse, or to monitor prescribing and/or dispensing patterns 
+     * of a sensitive class of medications. Examples include 
+     * triplicate programs, antibiotic monitoring programs, 
      * etc.</p> <p>Allows association of additional business 
-     * requirements with a particular drug</p></remarks>
+     * requirements with a particular drug</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"POME_MT010040CA.MonitoringProgram"})]
     public class MonitoringPrograms : MessagePartBean {
@@ -52,16 +52,19 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Pome_mt0100
             this.title = new STImpl();
         }
         /**
-         * <summary>Program Type</summary>
+         * <summary>Business Name: Program Type</summary>
          * 
-         * <remarks><p>A coded value denoting a specific kind of 
-         * monitoring program. For example, &quot;Drugs of potential 
-         * abuse&quot;, &quot;Antibiotics&quot;, etc.</p> <p>Used for 
-         * classifying and sorting monitoring programs.</p><p>This is 
-         * mandatory because, different program types have different 
-         * business rules.</p> <p>Used for classifying and sorting 
-         * monitoring programs.</p><p>This is mandatory because, 
-         * different program types have different business rules.</p></remarks>
+         * <remarks>Relationship: 
+         * POME_MT010040CA.MonitoringProgram.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>A coded value 
+         * denoting a specific kind of monitoring program. For example, 
+         * &quot;Drugs of potential abuse&quot;, 
+         * &quot;Antibiotics&quot;, etc.</p> <p>Used for classifying 
+         * and sorting monitoring programs.</p><p>This is mandatory 
+         * because, different program types have different business 
+         * rules.</p> <p>Used for classifying and sorting monitoring 
+         * programs.</p><p>This is mandatory because, different program 
+         * types have different business rules.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public ActMonitoringProtocolCode Code {
@@ -70,11 +73,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Pome_mt0100
         }
 
         /**
-         * <summary>Program Name</summary>
+         * <summary>Business Name: Program Name</summary>
          * 
-         * <remarks><p>A user-friendly label assigned to the monitoring 
-         * program.</p> <p>Provides a provider-recognizable label for 
-         * the program.</p></remarks>
+         * <remarks>Relationship: 
+         * POME_MT010040CA.MonitoringProgram.title 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>A user-friendly 
+         * label assigned to the monitoring program.</p> <p>Provides a 
+         * provider-recognizable label for the program.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"title"})]
         public String Title {
@@ -82,6 +87,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Pome_mt0100
             set { this.title.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * POME_MT010040CA.Custodian.assignedEntity</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"custodian/assignedEntity"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged.AssignedEntity3 CustodianAssignedEntity {
             get { return this.custodianAssignedEntity; }

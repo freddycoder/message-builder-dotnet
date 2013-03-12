@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,18 +28,18 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Mfmi_mt700746
 
 
     /**
-     * <summary>f:refers to</summary>
+     * <summary>Business Name: f:refers to</summary>
      * 
-     * <remarks><p>Indicates the item(s) being acted upon by this 
-     * trigger event.</p><p>Will be mandatory in wrappers with 
-     * payload messages, otherwise not present.</p> <p>Indicates 
-     * the item(s) being acted upon by this trigger 
+     * <p>Indicates the item(s) being acted upon by this trigger 
      * event.</p><p>Will be mandatory in wrappers with payload 
-     * messages, otherwise not present.</p> <p>Provides information 
-     * about the thing being created, modified or removed.</p> 
-     * <p>If there are multiple subject items, the changes to all 
-     * of them must be either accepted or rejected as a single 
-     * action. I.e. One trigger event = 1 unit of work.</p></remarks>
+     * messages, otherwise not present.</p> <p>Indicates the 
+     * item(s) being acted upon by this trigger event.</p><p>Will 
+     * be mandatory in wrappers with payload messages, otherwise 
+     * not present.</p> <p>Provides information about the thing 
+     * being created, modified or removed.</p> <p>If there are 
+     * multiple subject items, the changes to all of them must be 
+     * either accepted or rejected as a single action. I.e. One 
+     * trigger event = 1 unit of work.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"MFMI_MT700746CA.Subject2"})]
     public class RefersTo<RR> : MessagePartBean {
@@ -54,12 +54,23 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Mfmi_mt700746
             this.contextControlCode = new CSImpl();
             this.contextConductionInd = new BLImpl();
         }
+        /**
+         * <summary>Relationship: MFMI_MT700746CA.Subject2.typeCode</summary>
+         * 
+         * <remarks>Conformance/Cardinality: OPTIONAL (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"typeCode"})]
         public ActRelationshipType TypeCode {
             get { return (ActRelationshipType) this.typeCode.Value; }
             set { this.typeCode.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * MFMI_MT700746CA.Subject2.contextControlCode</summary>
+         * 
+         * <remarks>Conformance/Cardinality: OPTIONAL (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"contextControlCode"})]
         public ContextControl ContextControlCode {
             get { return (ContextControl) this.contextControlCode.Value; }
@@ -67,15 +78,18 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Mfmi_mt700746
         }
 
         /**
-         * <summary>Cascade Responsibility Indicator</summary>
+         * <summary>Business Name: Cascade Responsibility Indicator</summary>
          * 
-         * <remarks><p>Indicates whether or not objects of the trigger 
-         * event are to be cascaded to the payload.</p><p>If true, 
-         * associations in the parent act are conducted across the 
-         * ActRelationship to the message payload (act). Conduction for 
-         * each association is specifically indicated by each 
-         * associations' contextControlCode value.</p><p>In other 
-         * words, if the &quot;subject&quot; act relationship has 
+         * <remarks>Relationship: 
+         * MFMI_MT700746CA.Subject2.contextConductionInd 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>Indicates whether 
+         * or not objects of the trigger event are to be cascaded to 
+         * the payload.</p><p>If true, associations in the parent act 
+         * are conducted across the ActRelationship to the message 
+         * payload (act). Conduction for each association is 
+         * specifically indicated by each associations' 
+         * contextControlCode value.</p><p>In other words, if the 
+         * &quot;subject&quot; act relationship has 
          * contextConductionInd=true; THEN the subjectOf association is 
          * carried (to the regsitrationEvent act) according to the 
          * subjectOf.contextControlCode (AP = propogate to the reg 
@@ -117,6 +131,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Mfmi_mt700746
             set { this.contextConductionInd.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * MFMI_MT700746CA.Subject2.registrationEvent</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"registrationEvent"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Mfmi_mt700746ca.RegistrationEvent<RR> RegistrationEvent {
             get { return this.registrationEvent; }

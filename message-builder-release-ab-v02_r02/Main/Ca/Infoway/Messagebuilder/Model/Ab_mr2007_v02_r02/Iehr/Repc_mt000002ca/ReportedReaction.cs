@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,19 +34,19 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Iehr.Repc_mt000002ca
 
 
     /**
-     * <summary>Reported Reaction</summary>
+     * <summary>Business Name: Reported Reaction</summary>
      * 
-     * <remarks><p>Value is mandatory if not using 
-     * SNOMED</p><p>Code is fixed to DX if not using SNOMED</p> 
      * <p>Value is mandatory if not using SNOMED</p><p>Code is 
-     * fixed to DX if not using SNOMED</p> <p>This is a record of 
-     * an adverse reaction considered relevant to the patient's 
-     * clincal record.</p> <p>Useful in tracking reactions when it 
-     * is not known precisely what product they are associated with 
-     * and whether the reaction is due to an allergy or 
-     * intolerance, a drug interaction or some other cause. 
-     * Effectively gives a 'heads up' to clinicians using the drug 
-     * or combination of drugs.</p></remarks>
+     * fixed to DX if not using SNOMED</p> <p>Value is mandatory if 
+     * not using SNOMED</p><p>Code is fixed to DX if not using 
+     * SNOMED</p> <p>This is a record of an adverse reaction 
+     * considered relevant to the patient's clincal record.</p> 
+     * <p>Useful in tracking reactions when it is not known 
+     * precisely what product they are associated with and whether 
+     * the reaction is due to an allergy or intolerance, a drug 
+     * interaction or some other cause. Effectively gives a 'heads 
+     * up' to clinicians using the drug or combination of 
+     * drugs.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"REPC_MT000002CA.ReactionObservationEvent"})]
     public class ReportedReaction : MessagePartBean {
@@ -70,14 +70,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Iehr.Repc_mt000002ca
             this.subjectOf3CausalityAssessment = new List<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Iehr.Merged.ReportedReactions>();
         }
         /**
-         * <summary>Diagnosis Type</summary>
+         * <summary>Business Name: Diagnosis Type</summary>
          * 
-         * <remarks><p>Indicates the type of diagnosis being 
-         * captured.</p> <p>Indicates that the observation is actually 
-         * a diagnosis and is therefore mandatory. The datatype is CD 
-         * to support SNOMED post-coordination.</p> <p>If using SNOMED, 
-         * this will contain the diagnosis. Otherwise it will be a 
-         * fixed value of 'DX'.</p></remarks>
+         * <remarks>Relationship: 
+         * REPC_MT000002CA.ReactionObservationEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the type 
+         * of diagnosis being captured.</p> <p>Indicates that the 
+         * observation is actually a diagnosis and is therefore 
+         * mandatory. The datatype is CD to support SNOMED 
+         * post-coordination.</p> <p>If using SNOMED, this will contain 
+         * the diagnosis. Otherwise it will be a fixed value of 
+         * 'DX'.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public ActCode Code {
@@ -86,9 +89,21 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Iehr.Repc_mt000002ca
         }
 
         /**
-         * <summary>G:Description</summary>
+         * <summary>Business Name: G:Description</summary>
          * 
-         * <remarks><p>A free form description of the 
+         * <remarks>Relationship: 
+         * REPC_MT000002CA.ReactionObservationEvent.text 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>A free form 
+         * description of the reaction.</p><p>This is a specific 
+         * description of the reaction, as opposed to annotations on 
+         * the reaction.</p><p>Annotations and text are quite 
+         * different. Think of it from a user interface. Notes might be 
+         * things like &quot;patient didn't have the problem when the 
+         * took the medication two weeks earlier&quot; or &quot;patient 
+         * thinks it might have been related to the two bottles of 
+         * scotch they drank the night prior&quot;, which aren't 
+         * describing the reaction but are relevant to the reaction 
+         * record</p> <p>A free form description of the 
          * reaction.</p><p>This is a specific description of the 
          * reaction, as opposed to annotations on the 
          * reaction.</p><p>Annotations and text are quite different. 
@@ -107,18 +122,8 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Iehr.Repc_mt000002ca
          * &quot;patient thinks it might have been related to the two 
          * bottles of scotch they drank the night prior&quot;, which 
          * aren't describing the reaction but are relevant to the 
-         * reaction record</p> <p>A free form description of the 
-         * reaction.</p><p>This is a specific description of the 
-         * reaction, as opposed to annotations on the 
-         * reaction.</p><p>Annotations and text are quite different. 
-         * Think of it from a user interface. Notes might be things 
-         * like &quot;patient didn't have the problem when the took the 
-         * medication two weeks earlier&quot; or &quot;patient thinks 
-         * it might have been related to the two bottles of scotch they 
-         * drank the night prior&quot;, which aren't describing the 
-         * reaction but are relevant to the reaction record</p> 
-         * <p>Allows for flexibility in the recording and reporting of 
-         * the reaction.</p></remarks>
+         * reaction record</p> <p>Allows for flexibility in the 
+         * recording and reporting of the reaction.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"text"})]
         public String Text {
@@ -127,12 +132,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Iehr.Repc_mt000002ca
         }
 
         /**
-         * <summary>F:Reaction Onset Date</summary>
+         * <summary>Business Name: F:Reaction Onset Date</summary>
          * 
-         * <remarks><p>The date on which the reaction occurrence 
-         * began.</p> <p>Indicates when evidence of the condition first 
-         * appeared. May also provide information on the duration of 
-         * the reaction.</p></remarks>
+         * <remarks>Relationship: 
+         * REPC_MT000002CA.ReactionObservationEvent.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The date on which 
+         * the reaction occurrence began.</p> <p>Indicates when 
+         * evidence of the condition first appeared. May also provide 
+         * information on the duration of the reaction.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"effectiveTime"})]
         public Interval<PlatformDate> EffectiveTime {
@@ -141,16 +148,19 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Iehr.Repc_mt000002ca
         }
 
         /**
-         * <summary>G:Adverse Reaction Masking Indicators</summary>
+         * <summary>Business Name: G:Adverse Reaction Masking 
+         * Indicators</summary>
          * 
-         * <remarks><p>Communicates the intent of the patient to 
-         * restrict access to their adverse reactions.</p><p>Provides 
-         * support for additional confidentiality constraint, giving 
-         * patients a level of control over their 
-         * information.</p><p>Allows a provider to request restricted 
-         * access by the patient.</p><p>Valid values are: 'N' (normal - 
-         * denotes 'Not Masked'); 'R' (restricted - denotes 'Masked') 
-         * and 'T' (taboo - denotes 'Patient Access 
+         * <remarks>Relationship: 
+         * REPC_MT000002CA.ReactionObservationEvent.confidentialityCode 
+         * Conformance/Cardinality: OPTIONAL (0-2) <p>Communicates the 
+         * intent of the patient to restrict access to their adverse 
+         * reactions.</p><p>Provides support for additional 
+         * confidentiality constraint, giving patients a level of 
+         * control over their information.</p><p>Allows a provider to 
+         * request restricted access by the patient.</p><p>Valid values 
+         * are: 'N' (normal - denotes 'Not Masked'); 'R' (restricted - 
+         * denotes 'Masked') and 'T' (taboo - denotes 'Patient Access 
          * Restricted').</p><p>The default is 'normal' signifying 'Not 
          * Masked'.</p> <p>Communicates the intent of the patient to 
          * restrict access to their adverse reactions.</p><p>Provides 
@@ -222,15 +232,18 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Iehr.Repc_mt000002ca
         }
 
         /**
-         * <summary>B:Reaction</summary>
+         * <summary>Business Name: B:Reaction</summary>
          * 
-         * <remarks><p>Specifies the kind of reaction, as experienced 
-         * by the patient.</p> <p>B.1</p> <p>Ensures consistency in 
-         * tracking and categorizing the reaction type. Helps ensure 
-         * that only proper allergies are categorized as allergy. The 
-         * attribute is optional because it will not be used for 
-         * SNOMED. The attribute is CWE because not all possible types 
-         * of reactions are expressible by coded values.</p></remarks>
+         * <remarks>Relationship: 
+         * REPC_MT000002CA.ReactionObservationEvent.value 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>Specifies the 
+         * kind of reaction, as experienced by the patient.</p> 
+         * <p>B.1</p> <p>Ensures consistency in tracking and 
+         * categorizing the reaction type. Helps ensure that only 
+         * proper allergies are categorized as allergy. The attribute 
+         * is optional because it will not be used for SNOMED. The 
+         * attribute is CWE because not all possible types of reactions 
+         * are expressible by coded values.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"value"})]
         public SubjectReaction Value {
@@ -238,24 +251,47 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Iehr.Repc_mt000002ca
             set { this.value.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * REPC_MT000002CA.ReactionObservationEvent.informant</summary>
+         * 
+         * <remarks>Conformance/Cardinality: REQUIRED (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"informant"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Iehr.Merged.ReportedBy Informant {
             get { return this.informant; }
             set { this.informant = value; }
         }
 
+        /**
+         * <summary>Relationship: REPC_MT000002CA.Subject3.annotation</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf1/annotation"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Coct_mt120600ca.Notes SubjectOf1Annotation {
             get { return this.subjectOf1Annotation; }
             set { this.subjectOf1Annotation = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * REPC_MT000002CA.Subject1.severityObservation</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf2/severityObservation"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.AllergyIntoleranceSeverityLevel SubjectOf2SeverityObservation {
             get { return this.subjectOf2SeverityObservation; }
             set { this.subjectOf2SeverityObservation = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * REPC_MT000002CA.Subject6.causalityAssessment</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf3/causalityAssessment"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Iehr.Merged.ReportedReactions> SubjectOf3CausalityAssessment {
             get { return this.subjectOf3CausalityAssessment; }

@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,17 +35,35 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Poiz
         public ImmunizationProfile() {
             this.subject2ImmunizationForecast = new List<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Poiz_mt070020ca.ImmunizationForecast>();
         }
+        /**
+         * <summary>Relationship: 
+         * POIZ_MT070020CA.ImmunizationProfile.subject1</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subject1"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merged.AdministeredTo Subject1 {
             get { return this.subject1; }
             set { this.subject1 = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * POIZ_MT070020CA.Subject3.immunizationForecast</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subject2/immunizationForecast"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Poiz_mt070020ca.ImmunizationForecast> Subject2ImmunizationForecast {
             get { return this.subject2ImmunizationForecast; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * POIZ_MT070020CA.PertinentInformation.attachment</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"pertinentInformation/attachment"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Poiz_mt070020ca.Attachment PertinentInformationAttachment {
             get { return this.pertinentInformationAttachment; }

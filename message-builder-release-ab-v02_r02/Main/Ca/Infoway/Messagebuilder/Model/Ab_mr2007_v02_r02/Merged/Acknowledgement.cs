@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -46,16 +46,20 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             this.acknowledgementDetail = new List<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.ErrorsOrWarnings>();
         }
         /**
-         * <summary>AcknowledgementCode</summary>
+         * <summary>Business Name: AcknowledgementCode</summary>
          * 
-         * <remarks>GA:Acknowledgement Code <p>Indicates whether the 
-         * previous interaction was successfully processed.</p> <p>Key 
-         * to understanding whether the interaction has been successful 
-         * and is therefore mandatory.</p> GA:Acknowledgement Code 
-         * <p>Indicates whether the previous interaction was 
-         * successfully processed.</p> <p>Key to understanding whether 
-         * the interaction has been successful and is therefore 
-         * mandatory.</p></remarks>
+         * <remarks>Un-merged Business Name: AcknowledgementCode 
+         * Relationship: MCCI_MT000300CA.Acknowledgement.typeCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates whether 
+         * the previous interaction was successfully processed.</p> 
+         * <p>Key to understanding whether the interaction has been 
+         * successful and is therefore mandatory.</p> Un-merged 
+         * Business Name: AcknowledgementCode Relationship: 
+         * MCCI_MT002200CA.Acknowledgement.typeCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates whether 
+         * the previous interaction was successfully processed.</p> 
+         * <p>Key to understanding whether the interaction has been 
+         * successful and is therefore mandatory.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"typeCode"})]
         public AcknowledgementType TypeCode {
@@ -64,20 +68,25 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>NumberOfWaitingMessages</summary>
+         * <summary>Business Name: NumberOfWaitingMessages</summary>
          * 
-         * <remarks>GC:Number of Waiting Messages <p>For applications 
+         * <remarks>Un-merged Business Name: NumberOfWaitingMessages 
+         * Relationship: 
+         * MCCI_MT000300CA.Acknowledgement.messageWaitingNumber 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>For applications 
          * which support polling, indicates the total number of 
          * messages waiting to be retrieved.</p> <p>Indicates to a 
          * system how many polled messages are available without the 
          * need so send a separate query. The element is optional 
-         * because not all systems will support polling.</p> GC:Number 
-         * of Waiting Messages <p>For applications which support 
-         * polling, indicates the total number of messages waiting to 
-         * be retrieved.</p> <p>Indicates to a system how many polled 
-         * messages are available without the need so send a separate 
-         * query. The element is optional because not all systems will 
-         * support polling.</p></remarks>
+         * because not all systems will support polling.</p> Un-merged 
+         * Business Name: NumberOfWaitingMessages Relationship: 
+         * MCCI_MT002200CA.Acknowledgement.messageWaitingNumber 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>For applications 
+         * which support polling, indicates the total number of 
+         * messages waiting to be retrieved.</p> <p>Indicates to a 
+         * system how many polled messages are available without the 
+         * need so send a separate query. The element is optional 
+         * because not all systems will support polling.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"messageWaitingNumber"})]
         public int? MessageWaitingNumber {
@@ -86,15 +95,21 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>MessageWaitingPriority</summary>
+         * <summary>Business Name: MessageWaitingPriority</summary>
          * 
-         * <remarks>GD:Message Waiting Priority <p>Indicates the 
+         * <remarks>Un-merged Business Name: MessageWaitingPriority 
+         * Relationship: 
+         * MCCI_MT000300CA.Acknowledgement.messageWaitingPriorityCode 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>Indicates the 
          * priority of the highest-priority message that is waiting on 
          * the poll queue for the system being responded to.</p> <p>The 
          * priority of the waiting message may influence how quickly 
          * the polling system may choose to download queued messages. 
          * The element is optional because not all systems will support 
-         * polling.</p> GD:Message Waiting Priority <p>Indicates the 
+         * polling.</p> Un-merged Business Name: MessageWaitingPriority 
+         * Relationship: 
+         * MCCI_MT002200CA.Acknowledgement.messageWaitingPriorityCode 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>Indicates the 
          * priority of the highest-priority message that is waiting on 
          * the poll queue for the system being responded to.</p> <p>The 
          * priority of the waiting message may influence how quickly 
@@ -109,19 +124,24 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>AcknowledgedMessageId</summary>
+         * <summary>Business Name: AcknowledgedMessageId</summary>
          * 
-         * <remarks>BA:Acknowledged Message Id <p>References the 
+         * <remarks>Un-merged Business Name: AcknowledgedMessageId 
+         * Relationship: MCCI_MT000300CA.TargetMessage.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>References the 
          * identifier of the message this current message is 
-         * acknowledging.</p> <p>soap:Header\wsa:RelatesTo</p> 
-         * <p>Provides the necessary link to complete a conversation 
-         * for systems using communication technologies which are not 
-         * conversational. This attribute is therefore mandatory.</p> 
-         * BA:Acknowledged Message Id <p>References the identifier of 
-         * the message this current message is acknowledging.</p> 
-         * <p>Provides the necessary link to complete a conversation 
-         * for systems using communication technologies which are not 
-         * conversational. This attribute is therefore mandatory.</p></remarks>
+         * acknowledging.</p> <p>Provides the necessary link to 
+         * complete a conversation for systems using communication 
+         * technologies which are not conversational. This attribute is 
+         * therefore mandatory.</p> Un-merged Business Name: 
+         * AcknowledgedMessageId Relationship: 
+         * MCCI_MT002200CA.TargetMessage.id Conformance/Cardinality: 
+         * MANDATORY (1) <p>References the identifier of the message 
+         * this current message is acknowledging.</p> 
+         * <p>soap:Header\wsa:RelatesTo</p> <p>Provides the necessary 
+         * link to complete a conversation for systems using 
+         * communication technologies which are not conversational. 
+         * This attribute is therefore mandatory.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"targetMessage/id"})]
         public Identifier TargetMessageId {
@@ -129,6 +149,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             set { this.targetMessageId.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * MCCI_MT000300CA.Acknowledgement.acknowledgementDetail 
+         * Conformance/Cardinality: REQUIRED (0-50) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCCI_MT002200CA.Acknowledgement.acknowledgementDetail 
+         * Conformance/Cardinality: REQUIRED (0-50)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"acknowledgementDetail"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.ErrorsOrWarnings> AcknowledgementDetail {
             get { return this.acknowledgementDetail; }

@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,26 +27,26 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Merged {
 
 
     /**
-     * <summary>OrderSortKey</summary>
+     * <summary>Business Name: OrderSortKey</summary>
      * 
      * <remarks>POLB_MT001001CA.RequestSortKey: Order Sort Key 
-     * <p>String used for sorting of orders.</p> <p>OLIS needs an 
-     * alphanumeric sort key string to a test request to allow a 
+     * <p>OLIS needs an alphanumeric sort key string to a test 
+     * request to allow a laboratory to provide sorting information 
+     * for test requests within an order.</p> <p>String used for 
+     * sorting of orders.</p> POLB_MT001000CA.RequestSortKey: Order 
+     * Sort Key <p>OLIS needs an alphanumeric sort key string to a 
+     * test request to allow a laboratory to provide sorting 
+     * information for test requests within an order.</p> <p>String 
+     * used for sorting of orders.</p> 
+     * POLB_MT001999CA.RequestSortKey: Order Sort Key <p>OLIS needs 
+     * an alphanumeric sort key string to a test request to allow a 
      * laboratory to provide sorting information for test requests 
-     * within an order.</p> POLB_MT001000CA.RequestSortKey: Order 
-     * Sort Key <p>String used for sorting of orders.</p> <p>OLIS 
-     * needs an alphanumeric sort key string to a test request to 
-     * allow a laboratory to provide sorting information for test 
-     * requests within an order.</p> 
-     * POLB_MT001999CA.RequestSortKey: Order Sort Key <p>String 
-     * used for sorting of orders.</p> <p>OLIS needs an 
-     * alphanumeric sort key string to a test request to allow a 
-     * laboratory to provide sorting information for test requests 
-     * within an order.</p> POLB_MT001010CA.RequestSortKey: Order 
-     * Sort Key <p>String used for sorting of orders.</p> <p>OLIS 
-     * needs an alphanumeric sort key string to a test request to 
-     * allow a laboratory to provide sorting information for test 
-     * requests within an order.</p></remarks>
+     * within an order.</p> <p>String used for sorting of 
+     * orders.</p> POLB_MT001010CA.RequestSortKey: Order Sort Key 
+     * <p>OLIS needs an alphanumeric sort key string to a test 
+     * request to allow a laboratory to provide sorting information 
+     * for test requests within an order.</p> <p>String used for 
+     * sorting of orders.</p></remarks>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"POLB_MT001000CA.RequestSortKey","POLB_MT001001CA.RequestSortKey","POLB_MT001010CA.RequestSortKey","POLB_MT001999CA.RequestSortKey"})]
     public class OrderSortKey : MessagePartBean {
@@ -57,11 +57,24 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Merged {
             this.text = new STImpl();
         }
         /**
-         * <summary>SortKeyText</summary>
+         * <summary>Business Name: SortKeyText</summary>
          * 
-         * <remarks>N:Sort Key Text <p>Value used for sorting 
-         * orders.</p> <p>Attribute for communicating the actual sort 
-         * key value.</p></remarks>
+         * <remarks>Un-merged Business Name: SortKeyText Relationship: 
+         * POLB_MT001001CA.RequestSortKey.text Conformance/Cardinality: 
+         * MANDATORY (1) <p>Attribute for communicating the actual sort 
+         * key value.</p> <p>Value used for sorting orders.</p> 
+         * Un-merged Business Name: SortKeyText Relationship: 
+         * POLB_MT001000CA.RequestSortKey.text Conformance/Cardinality: 
+         * MANDATORY (1) <p>Attribute for communicating the actual sort 
+         * key value.</p> <p>Value used for sorting orders.</p> 
+         * Un-merged Business Name: SortKeyText Relationship: 
+         * POLB_MT001999CA.RequestSortKey.text Conformance/Cardinality: 
+         * MANDATORY (1) <p>Attribute for communicating the actual sort 
+         * key value.</p> <p>Value used for sorting orders.</p> 
+         * Un-merged Business Name: SortKeyText Relationship: 
+         * POLB_MT001010CA.RequestSortKey.text Conformance/Cardinality: 
+         * MANDATORY (1) <p>Attribute for communicating the actual sort 
+         * key value.</p> <p>Value used for sorting orders.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"text"})]
         public String Text {

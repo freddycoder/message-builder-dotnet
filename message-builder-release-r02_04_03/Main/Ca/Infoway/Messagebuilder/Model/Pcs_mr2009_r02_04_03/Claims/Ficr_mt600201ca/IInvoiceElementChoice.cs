@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,11 +25,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt600
 
 
     /**
-     * <summary><p>All Relationships to the InvoiceElementGroup can 
-     * only be associated with the root level instance</p></summary>
+     * <p>All Relationships to the InvoiceElementGroup can only be 
+     * associated with the root level instance</p>
      * 
-     * <remarks><p>Data centre and sequence number must be the same 
-     * for each complete group and detail hierarchy</p></remarks>
+     * <p>Data centre and sequence number must be the same for each 
+     * complete group and detail hierarchy</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"FICR_MT600201CA.InvoiceElementChoice"})]
     public interface IInvoiceElementChoice {

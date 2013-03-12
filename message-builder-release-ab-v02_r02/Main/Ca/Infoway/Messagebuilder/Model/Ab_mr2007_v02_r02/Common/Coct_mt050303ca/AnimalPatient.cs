@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,13 +29,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Coct_mt050303
 
 
     /**
-     * <summary>Animal Patient</summary>
+     * <summary>Business Name: Animal Patient</summary>
      * 
-     * <remarks><p>An animal that is receiving or may receive 
-     * healthcare services.</p> <p>Used when animal services are 
-     * attached to a human patient record. E.g. narcotics 
-     * prescribed for a pet may be attached to the owner's record 
-     * for monitoring of abuse.</p></remarks>
+     * <p>An animal that is receiving or may receive healthcare 
+     * services.</p> <p>Used when animal services are attached to a 
+     * human patient record. E.g. narcotics prescribed for a pet 
+     * may be attached to the owner's record for monitoring of 
+     * abuse.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"COCT_MT050303CA.Patient"})]
     public class AnimalPatient : MessagePartBean {
@@ -52,12 +52,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Coct_mt050303
             this.patientNonPersonLivingSubjectContactPartyContactPersonName = new PNImpl();
         }
         /**
-         * <summary>B:Animal name</summary>
+         * <summary>Business Name: B:Animal name</summary>
          * 
-         * <remarks><p>Name by which the animal patient is known.</p> 
-         * <p>ZPA.1 (partType=Given)</p><p>ZPA.2 
-         * (partType=Family)</p><p>ZPA.3 (partType=Given - all 
-         * repetitions except first)</p><p>C37 
+         * <remarks>Relationship: 
+         * COCT_MT050303CA.NonPersonLivingSubject.name 
+         * Conformance/Cardinality: MANDATORY (1) <p>Name by which the 
+         * animal patient is known.</p> <p>ZPA.1 
+         * (partType=Given)</p><p>ZPA.2 (partType=Family)</p><p>ZPA.3 
+         * (partType=Given - all repetitions except first)</p><p>C37 
          * (partType=Given)</p><p>C38 
          * (partType=Family)</p><p>PTT.030-01 
          * (partType=Family)</p><p>PTT.030-02 (partType=Given - 1st 
@@ -217,9 +219,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Coct_mt050303
          * occurrence)</p><p>PTT.030-03 (partType=Given - subsequen 
          * occurrences)</p><p>PTT.030-04 
          * (partType=Suffix)</p><p>PTT.030-05 
-         * (partType=Prefix)</p><p>patient 
-         * Initials</p><p>PID.5</p><p>Patient.310-CA 
-         * (partType=Given)</p><p>Patie
+ 
          * ... [rest of documentation truncated due to excessive length]
          */
         [Hl7XmlMappingAttribute(new string[] {"patientNonPersonLivingSubject/name"})]
@@ -229,11 +229,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Coct_mt050303
         }
 
         /**
-         * <summary>Owner address</summary>
+         * <summary>Business Name: Owner address</summary>
          * 
-         * <remarks><p>The mail and/or physical address associated with 
-         * the owner or contact person for the animal.</p> <p>Used to 
-         * contact the owner or contact person</p></remarks>
+         * <remarks>Relationship: COCT_MT050303CA.ContactParty.addr 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The mail and/or 
+         * physical address associated with the owner or contact person 
+         * for the animal.</p> <p>Used to contact the owner or contact 
+         * person</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"patientNonPersonLivingSubject/contactParty/addr"})]
         public PostalAddress PatientNonPersonLivingSubjectContactPartyAddr {
@@ -242,11 +244,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Coct_mt050303
         }
 
         /**
-         * <summary>Owner Phones and Emails</summary>
+         * <summary>Business Name: Owner Phones and Emails</summary>
          * 
-         * <remarks><p>The phone number(s) and email address(s) by 
-         * which the owner may be contacted.</p> <p>Used to contact the 
-         * owner or contact person</p></remarks>
+         * <remarks>Relationship: COCT_MT050303CA.ContactParty.telecom 
+         * Conformance/Cardinality: REQUIRED (0-5) <p>The phone 
+         * number(s) and email address(s) by which the owner may be 
+         * contacted.</p> <p>Used to contact the owner or contact 
+         * person</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"patientNonPersonLivingSubject/contactParty/telecom"})]
         public ICollection<TelecommunicationAddress> PatientNonPersonLivingSubjectContactPartyTelecom {
@@ -254,12 +258,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Coct_mt050303
         }
 
         /**
-         * <summary>Owner Name</summary>
+         * <summary>Business Name: Owner Name</summary>
          * 
-         * <remarks><p>The name by which the owner person is known</p> 
-         * <p>Used when contacting or addressing the owner person. 
-         * Because this will be the principle means of identifying the 
-         * owner person, it is mandatory.</p></remarks>
+         * <remarks>Relationship: COCT_MT050303CA.ContactPerson.name 
+         * Conformance/Cardinality: MANDATORY (1) <p>The name by which 
+         * the owner person is known</p> <p>Used when contacting or 
+         * addressing the owner person. Because this will be the 
+         * principle means of identifying the owner person, it is 
+         * mandatory.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"patientNonPersonLivingSubject/contactParty/contactPerson/name"})]
         public PersonName PatientNonPersonLivingSubjectContactPartyContactPersonName {

@@ -1,9 +1,28 @@
+/**
+ * Copyright 2013 Canada Health Infoway, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Author:        $LastChangedBy: tmcgrady $
+ * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Revision:      $LastChangedRevision: 2623 $
+ */
 using System.Collections.Generic;
 using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Domainvalue;
+using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter;
 using Ca.Infoway.Messagebuilder.Platform;
-using Ca.Infoway.Messagebuilder.Xml.Util;
 
 namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 {
@@ -16,16 +35,12 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 	/// </remarks>
 	public abstract class AbstractNullFlavorPropertyFormatter<V> : AbstractPropertyFormatter
 	{
-		private XmlWarningRenderer renderer = new XmlWarningRenderer();
-
 		protected AbstractNullFlavorPropertyFormatter()
 		{
 		}
 
-		/// <exception cref="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.ModelToXmlTransformationException"></exception>
 		public override string Format(FormatContext context, BareANY hl7Value, int indentLevel)
 		{
-			ValidateContext(context);
 			string result = string.Empty;
 			if (hl7Value != null)
 			{
@@ -35,7 +50,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 					result = CreateElement(context, CreateNullFlavorAttributes(hl7Value.NullFlavor), indentLevel, true, true);
 					if (context.GetConformanceLevel() == Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY)
 					{
-						result = CreateWarning(context, indentLevel) + result;
+						CreateMissingMandatoryWarning(context);
 					}
 				}
 				else
@@ -47,7 +62,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 							if (context.GetConformanceLevel() == Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY)
 							{
 								result = CreateElement(context, AbstractPropertyFormatter.EMPTY_ATTRIBUTE_MAP, indentLevel, true, true);
-								result = CreateWarning(context, indentLevel) + result;
+								CreateMissingMandatoryWarning(context);
 							}
 							else
 							{
@@ -69,13 +84,11 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			return (V)hl7Value.BareValue;
 		}
 
-		/// <exception cref="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.ModelToXmlTransformationException"></exception>
 		internal virtual string FormatNonNullDataType(FormatContext context, BareANY dataType, int indentLevel)
 		{
 			return FormatNonNullValue(context, ExtractBareValue(dataType), indentLevel);
 		}
 
-		/// <exception cref="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.ModelToXmlTransformationException"></exception>
 		internal abstract string FormatNonNullValue(FormatContext context, V t, int indentLevel);
 
 		protected virtual bool IsEmptyCollection(V value)
@@ -94,14 +107,10 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			return attributes;
 		}
 
-		protected virtual string CreateWarning(FormatContext context, int indentLevel)
+		protected virtual void CreateMissingMandatoryWarning(FormatContext context)
 		{
-			return CreateWarning(indentLevel, context.GetElementName() + " is a mandatory field, but no value is specified");
-		}
-
-		protected virtual string CreateWarning(int indentLevel, string text)
-		{
-			return this.renderer.CreateWarning(indentLevel, text);
+			context.GetModelToXmlResult().AddHl7Error(new Hl7Error(Hl7ErrorCode.DATA_TYPE_ERROR, context.GetElementName() + " is a mandatory field, but no value is specified"
+				, context.GetPropertyPath()));
 		}
 
 		protected virtual bool IsMandatoryOrPopulated(FormatContext context)

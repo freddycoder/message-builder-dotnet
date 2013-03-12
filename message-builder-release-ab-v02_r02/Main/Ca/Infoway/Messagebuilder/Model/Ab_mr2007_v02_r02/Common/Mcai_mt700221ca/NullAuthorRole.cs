@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,13 +27,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Mcai_mt700221
 
 
     /**
-     * <summary>Null Author Role</summary>
+     * <summary>Business Name: Null Author Role</summary>
      * 
-     * <remarks><p>This is a messaging artifact used by HL7 to 
-     * allow the time, signiture and method to be captured when the 
-     * author is not sent. This will happen in circumstances where 
-     * the author information is sent as part of the authentication 
-     * token.</p></remarks>
+     * <p>This is a messaging artifact used by HL7 to allow the 
+     * time, signiture and method to be captured when the author is 
+     * not sent. This will happen in circumstances where the author 
+     * information is sent as part of the authentication token.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"MCAI_MT700221CA.AuthorRole"})]
     public class NullAuthorRole : MessagePartBean, Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged.IAuthorPerson {
@@ -43,6 +42,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Mcai_mt700221
         public NullAuthorRole() {
             this.classCode = new CSImpl();
         }
+        /**
+         * <summary>Relationship: MCAI_MT700221CA.AuthorRole.classCode</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"classCode"})]
         public RoleClass ClassCode {
             get { return (RoleClass) this.classCode.Value; }

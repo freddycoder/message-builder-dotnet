@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged;
 
 
+    /**
+     * <summary>Business Name: FICR_IN620102CA: Invoice Nullify 
+     * Request, Rx</summary>
+     * 
+     * <p>The sender sends an Invoice Nullify Request message to 
+     * request the nullification of a previously submitted Invoice 
+     * Adjudication Request for Pharmacy services and/or 
+     * products.</p> Message: MCCI_MT002100CA.Message Control Act: 
+     * MCAI_MT700211CA.ControlActEvent --> Payload: 
+     * FICR_MT620000CA.InvoiceElementGroup
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"FICR_IN620102CA"})]
     public class InvoiceNullifyRequestRx : HL7Message_1<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Mcai_mt700211ca.TriggerEvent<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Merged.InvoiceType>>, IInteraction {
 

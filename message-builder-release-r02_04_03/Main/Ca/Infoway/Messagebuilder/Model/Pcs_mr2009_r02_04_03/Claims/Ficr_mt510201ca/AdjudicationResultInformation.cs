@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,13 +38,23 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt510
             this.triggerAdjudicationResultRequiredAct = new List<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Merged.AdjudicationResultRequiredAct>();
             this.value = new EDImpl<EncapsulatedData>();
         }
+        /**
+         * <summary>Relationship: 
+         * FICR_MT510201CA.Trigger2.adjudicationResultRequiredAct</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"trigger/adjudicationResultRequiredAct"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Merged.AdjudicationResultRequiredAct> TriggerAdjudicationResultRequiredAct {
             get { return this.triggerAdjudicationResultRequiredAct; }
         }
 
         /**
-         * <summary>Adjudicated Result Info.</summary>
+         * <summary>Business Name: Adjudicated Result Info.</summary>
+         * 
+         * <remarks>Relationship: 
+         * FICR_MT510201CA.AdjudicationResultInformation.value 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"value"})]
         public EncapsulatedData Value {

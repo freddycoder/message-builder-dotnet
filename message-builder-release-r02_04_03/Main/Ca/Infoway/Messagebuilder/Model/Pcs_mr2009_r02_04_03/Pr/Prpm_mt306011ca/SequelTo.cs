@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,10 +36,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Prpm_mt306011c
             this.sequenceNumber = new INTImpl();
         }
         /**
-         * <summary>Order of Inform Requests</summary>
+         * <summary>Business Name: Order of Inform Requests</summary>
          * 
-         * <remarks><p>Allows each Inform Request to be sequentially 
-         * listed.</p></remarks>
+         * <remarks>Relationship: 
+         * PRPM_MT306011CA.SequelTo.sequenceNumber 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>Allows each 
+         * Inform Request to be sequentially listed.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"sequenceNumber"})]
         public int? SequenceNumber {
@@ -47,6 +49,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Prpm_mt306011c
             set { this.sequenceNumber.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PRPM_MT306011CA.SequelTo.informRequest</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"informRequest"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Prpm_mt306011ca.InformRequest InformRequest {
             get { return this.informRequest; }

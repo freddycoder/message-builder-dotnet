@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Merged {
 
 
     /**
-     * <summary>ServiceDeliveryLocation</summary>
+     * <summary>Business Name: ServiceDeliveryLocation</summary>
      * 
      * <remarks>PRPM_MT306011CA.ServiceDeliveryLocation: Service 
      * Delivery Location <p>A role played by a place at which 
@@ -104,16 +104,21 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Merged {
             this.locationName = new STImpl();
         }
         /**
-         * <summary>ServiceDeliveryLocationIdentifier</summary>
+         * <summary>Business Name: ServiceDeliveryLocationIdentifier</summary>
          * 
-         * <remarks>Service Delivery Location Identifier <p>A unique 
+         * <remarks>Un-merged Business Name: 
+         * ServiceDeliveryLocationIdentifier Relationship: 
+         * PRPM_MT306011CA.ServiceDeliveryLocation.id 
+         * Conformance/Cardinality: REQUIRED (0-10) <p>A unique 
          * identifier for the service delivery location.</p> 
          * <p>Required attribute supports the validation and 
-         * identification of the service delivery location</p> Service 
-         * Delivery Location Identifier <p>A unique identifier for the 
-         * service delivery location.</p> <p>Mandatory attribute 
-         * supports the validation and identification of the service 
-         * delivery location</p></remarks>
+         * identification of the service delivery location</p> 
+         * Un-merged Business Name: ServiceDeliveryLocationIdentifier 
+         * Relationship: PRPM_MT309000CA.ServiceDeliveryLocation.id 
+         * Conformance/Cardinality: MANDATORY (1-10) <p>A unique 
+         * identifier for the service delivery location.</p> 
+         * <p>Mandatory attribute supports the validation and 
+         * identification of the service delivery location</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public ICollection<Identifier> Id {
@@ -121,9 +126,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Merged {
         }
 
         /**
-         * <summary>ServiceDeliveryLocationType</summary>
+         * <summary>Business Name: ServiceDeliveryLocationType</summary>
          * 
-         * <remarks>Service Delivery Location Type <p>The code 
+         * <remarks>Un-merged Business Name: 
+         * ServiceDeliveryLocationType Relationship: 
+         * PRPM_MT306011CA.ServiceDeliveryLocation.code 
+         * Conformance/Cardinality: POPULATED (1) <p>The code 
          * identifying the specific service delivery location</p> 
          * <p>Populated attribute supports the validation and 
          * identification of the service delivery location</p></remarks>
@@ -135,9 +143,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Merged {
         }
 
         /**
-         * <summary>ServiceDeliveryLocationAddress</summary>
+         * <summary>Business Name: ServiceDeliveryLocationAddress</summary>
          * 
-         * <remarks>Service Delivery Location Address <p>Address of the 
+         * <remarks>Un-merged Business Name: 
+         * ServiceDeliveryLocationAddress Relationship: 
+         * PRPM_MT306011CA.ServiceDeliveryLocation.addr 
+         * Conformance/Cardinality: REQUIRED (0-5) <p>Address of the 
          * specific service delivery location</p> <p>Required attribute 
          * supports the validation and identification of the service 
          * delivery location</p></remarks>
@@ -148,10 +159,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Merged {
         }
 
         /**
-         * <summary>ServiceDeliveryLocationTelecom</summary>
+         * <summary>Business Name: ServiceDeliveryLocationTelecom</summary>
          * 
-         * <remarks>Service Delivery Location Telecom <p>The telecom 
-         * for the specific service delivery location</p> <p>Required 
+         * <remarks>Un-merged Business Name: 
+         * ServiceDeliveryLocationTelecom Relationship: 
+         * PRPM_MT306011CA.ServiceDeliveryLocation.telecom 
+         * Conformance/Cardinality: REQUIRED (0-5) <p>The telecom for 
+         * the specific service delivery location</p> <p>Required 
          * attribute supports the validation and identification of the 
          * service delivery location</p></remarks>
          */
@@ -161,12 +175,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Merged {
         }
 
         /**
-         * <summary>ServiceDeliveryLocationEffectiveDate</summary>
+         * <summary>Business Name: ServiceDeliveryLocationEffectiveDate</summary>
          * 
-         * <remarks>Service Delivery Location Effective Date 
-         * <p>Effective date of the specific service delivery 
-         * location</p> <p>Required attribute supports the validation 
-         * and identification of the service delivery location</p></remarks>
+         * <remarks>Un-merged Business Name: 
+         * ServiceDeliveryLocationEffectiveDate Relationship: 
+         * PRPM_MT306011CA.ServiceDeliveryLocation.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Effective date of 
+         * the specific service delivery location</p> <p>Required 
+         * attribute supports the validation and identification of the 
+         * service delivery location</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"effectiveTime"})]
         public Interval<PlatformDate> EffectiveTime {
@@ -175,12 +192,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Merged {
         }
 
         /**
-         * <summary>ServiceDeliveryLocationName</summary>
+         * <summary>Business Name: ServiceDeliveryLocationName</summary>
          * 
-         * <remarks>Service Delivery Location Name <p>The name of the 
-         * service delivery location</p> <p>Mandatory attribute 
-         * supports the validation and identification of the service 
-         * delivery location</p></remarks>
+         * <remarks>Un-merged Business Name: 
+         * ServiceDeliveryLocationName Relationship: 
+         * PRPM_MT306011CA.Place.name Conformance/Cardinality: 
+         * MANDATORY (1) <p>The name of the service delivery 
+         * location</p> <p>Mandatory attribute supports the validation 
+         * and identification of the service delivery location</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"location/name"})]
         public String LocationName {

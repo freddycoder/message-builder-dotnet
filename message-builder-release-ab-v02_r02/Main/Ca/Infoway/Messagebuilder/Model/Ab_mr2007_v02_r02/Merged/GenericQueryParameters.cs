@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,8 +33,8 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
      * <summary>REPC_MT000016CA.ParameterList: Adverse Reactions 
      * Query Parameters</summary>
      * 
-     * <remarks><p>Defines the set of parameters that may be used 
-     * to filter the query response.</p> <p>Root class for query 
+     * <p>Defines the set of parameters that may be used to filter 
+     * the query response.</p> <p>Root class for query 
      * definition</p> PORX_MT060280CA.ParameterList: Drug 
      * Prescription Detail Query Parameters <p>Defines the set of 
      * parameters that may be used to filter the query 
@@ -45,7 +45,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
      * definition</p> PORX_MT060360CA.ParameterList: Generic Query 
      * Parameters <p>Defines the set of parameters that may be used 
      * to filter the query response.</p> <p>Root class for query 
-     * definition</p></remarks>
+     * definition</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"PORX_MT060280CA.ParameterList","PORX_MT060360CA.ParameterList","REPC_MT000004CA.ParameterList","REPC_MT000016CA.ParameterList"})]
     public class GenericQueryParameters : MessagePartBean {
@@ -82,10 +82,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             this.prescriptionDispenseNumberValue = new IIImpl();
         }
         /**
-         * <summary>CareCompositionIDs</summary>
+         * <summary>Business Name: CareCompositionIDs</summary>
          * 
-         * <remarks>Care Composition IDs <p>Desc: Filters the records 
-         * retrieved to only include those associated with the 
+         * <remarks>Un-merged Business Name: CareCompositionIDs 
+         * Relationship: PORX_MT060280CA.CareCompositionID.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Desc: Filters the 
+         * records retrieved to only include those associated with the 
          * specified encounter, episode or care event. If unspecified, 
          * no filter is applied.</p><p>Note: When matching on care 
          * composition id, systems should also retrieve records with a 
@@ -103,9 +105,20 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
          * which includes a referral, the retrieved records should also 
          * include the care summary created in fulfillment of the 
          * referral.</p> <p>Allows retrieving all records associated 
-         * with an encounter, episode or care event.</p> Care 
-         * Composition IDs <p>Filters the records retrieved to only 
-         * include those associated with the specified encounter, 
+         * with an encounter, episode or care event.</p> Un-merged 
+         * Business Name: CareCompositionIDs Relationship: 
+         * REPC_MT000016CA.CareCompositionID.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Filters the 
+         * records retrieved to only include those associated with the 
+         * specified encounter, episode or care event. If unspecified, 
+         * no filter is applied.</p><p>Note: When matching on care 
+         * composition id, systems should also retrieve records with a 
+         * fulfillment id to requisitions associated with the care 
+         * composition. E.g. When retrieving records associated with an 
+         * encounter which includes a referral, the retrieved records 
+         * should also include the care summary created in fulfillment 
+         * of the referral.</p> <p>Filters the records retrieved to 
+         * only include those associated with the specified encounter, 
          * episode or care event. If unspecified, no filter is 
          * applied.</p><p>Note: When matching on care composition id, 
          * systems should also retrieve records with a fulfillment id 
@@ -113,8 +126,21 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
          * When retrieving records associated with an encounter which 
          * includes a referral, the retrieved records should also 
          * include the care summary created in fulfillment of the 
-         * referral.</p> <p>Filters the records retrieved to only 
-         * include those associated with the specified encounter, 
+         * referral.</p> <p>Allows retrieving all records associated 
+         * with an encounter, episode or care event.</p> Un-merged 
+         * Business Name: CareCompositionIDs Relationship: 
+         * REPC_MT000004CA.CareCompositionID.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Filters the 
+         * records retrieved to only include those associated with the 
+         * specified encounter, episode or care event. If unspecified, 
+         * no filter is applied.</p><p>Note: When matching on care 
+         * composition id, systems should also retrieve records with a 
+         * fulfillment id to requisitions associated with the care 
+         * composition. E.g. When retrieving records associated with an 
+         * encounter which includes a referral, the retrieved records 
+         * should also include the care summary created in fulfillment 
+         * of the referral.</p> <p>Filters the records retrieved to 
+         * only include those associated with the specified encounter, 
          * episode or care event. If unspecified, no filter is 
          * applied.</p><p>Note: When matching on care composition id, 
          * systems should also retrieve records with a fulfillment id 
@@ -131,10 +157,30 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>CareCompositionTypes</summary>
+         * <summary>Business Name: CareCompositionTypes</summary>
          * 
-         * <remarks>Care Composition Types <p>Filters the records 
-         * retrieved to only include those associated with the 
+         * <remarks>Un-merged Business Name: CareCompositionTypes 
+         * Relationship: PORX_MT060280CA.CareCompositionType.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Filters the 
+         * records retrieved to only include those associated with the 
+         * specified 'kind' of encounter, episode or care event. If 
+         * unspecified, no filter is applied.</p> <p>Allows retrieving 
+         * all records associated with a particular type of encounter, 
+         * episode or care event. E.g.Orthopedic Clinic Encounter, ER 
+         * encounter, Walk-in encounter, etc.</p> Un-merged Business 
+         * Name: CareCompositionTypes Relationship: 
+         * REPC_MT000016CA.CareCompositionType.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Filters the 
+         * records retrieved to only include those associated with the 
+         * specified 'kind' of encounter, episode or care event. If 
+         * unspecified, no filter is applied.</p> <p>Allows retrieving 
+         * all records associated with a particular type of encounter, 
+         * episode or care event. E.g.Orthopedic Clinic Encounter, ER 
+         * encounter, Walk-in encounter, etc.</p> Un-merged Business 
+         * Name: CareCompositionTypes Relationship: 
+         * REPC_MT000004CA.CareCompositionType.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Filters the 
+         * records retrieved to only include those associated with the 
          * specified 'kind' of encounter, episode or care event. If 
          * unspecified, no filter is applied.</p> <p>Allows retrieving 
          * all records associated with a particular type of encounter, 
@@ -147,42 +193,25 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>IncludeNotesIndicator</summary>
+         * <summary>Business Name: IncludeNotesIndicator</summary>
          * 
-         * <remarks>Include Notes Indicator <p>Indicates whether or not 
-         * notes attached to the allergy/intolerance records are to be 
-         * returned along with the detailed information.</p> <p>Allows 
-         * for the flexibility of omitting/including notes in the 
-         * retrieval of information for allergy/intolerance 
+         * <remarks>Un-merged Business Name: IncludeNotesIndicator 
+         * Relationship: PORX_MT060280CA.IncludeNotesIndicator.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates whether 
+         * or not notes attached to the selected medication records are 
+         * to be returned along with the detailed information.</p> 
+         * <p>Allows for the flexibility of omitting/including notes in 
+         * the retrieval of information for medication 
          * data.</p><p>Because the attribute is boolean, it must 
          * explicitly indicate a 'TRUE' or 'FALSE', and thus it is 
          * mandatory.</p> <p>Allows for the flexibility of 
          * omitting/including notes in the retrieval of information for 
-         * allergy/intolerance data.</p><p>Because the attribute is 
-         * boolean, it must explicitly indicate a 'TRUE' or 'FALSE', 
-         * and thus it is mandatory.</p> Include Notes Indicator 
-         * <p>Indicates whether or not notes attached to the 
-         * prescription dispense record are to be returned along with 
-         * the detailed information.</p> <p>Allows for the flexibility 
-         * of omitting/including notes in the retrieval of information 
-         * for medication detail data.</p><p>Because the attribute is 
-         * boolean, it must explicitly indicate a 'TRUE' or 'FALSE', 
-         * and thus it is mandatory.</p> <p>Allows for the flexibility 
-         * of omitting/including notes in the retrieval of information 
-         * for medication detail data.</p><p>Because the attribute is 
-         * boolean, it must explicitly indicate a 'TRUE' or 'FALSE', 
-         * and thus it is mandatory.</p> Include Notes Indicator 
-         * <p>Indicates whether or not notes attached to the selected 
-         * medication records are to be returned along with the 
-         * detailed information.</p> <p>Allows for the flexibility of 
-         * omitting/including notes in the retrieval of information for 
          * medication data.</p><p>Because the attribute is boolean, it 
          * must explicitly indicate a 'TRUE' or 'FALSE', and thus it is 
-         * mandatory.</p> <p>Allows for the flexibility of 
-         * omitting/including notes in the retrieval of information for 
-         * medication data.</p><p>Because the attribute is boolean, it 
-         * must explicitly indicate a 'TRUE' or 'FALSE', and thus it is 
-         * mandatory.</p> Include Notes Indicator <p>Indicates whether 
+         * mandatory.</p> Un-merged Business Name: 
+         * IncludeNotesIndicator Relationship: 
+         * REPC_MT000016CA.IncludeNotesIndicator.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates whether 
          * or not notes attached to the adverse reactions records are 
          * to be returned along with the detailed information.</p> 
          * <p>Allows for the flexibility of omitting/including notes in 
@@ -193,6 +222,34 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
          * omitting/including notes in the retrieval of information for 
          * adverse reactions data.</p><p>Because the attribute is 
          * boolean, it must explicitly indicate a 'TRUE' or 'FALSE', 
+         * and thus it is mandatory.</p> Un-merged Business Name: 
+         * IncludeNotesIndicator Relationship: 
+         * PORX_MT060360CA.IncludeNotesIndicator.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates whether 
+         * or not notes attached to the prescription dispense record 
+         * are to be returned along with the detailed information.</p> 
+         * <p>Allows for the flexibility of omitting/including notes in 
+         * the retrieval of information for medication detail 
+         * data.</p><p>Because the attribute is boolean, it must 
+         * explicitly indicate a 'TRUE' or 'FALSE', and thus it is 
+         * mandatory.</p> <p>Allows for the flexibility of 
+         * omitting/including notes in the retrieval of information for 
+         * medication detail data.</p><p>Because the attribute is 
+         * boolean, it must explicitly indicate a 'TRUE' or 'FALSE', 
+         * and thus it is mandatory.</p> Un-merged Business Name: 
+         * IncludeNotesIndicator Relationship: 
+         * REPC_MT000004CA.IncludeNotesIndicator.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates whether 
+         * or not notes attached to the allergy/intolerance records are 
+         * to be returned along with the detailed information.</p> 
+         * <p>Allows for the flexibility of omitting/including notes in 
+         * the retrieval of information for allergy/intolerance 
+         * data.</p><p>Because the attribute is boolean, it must 
+         * explicitly indicate a 'TRUE' or 'FALSE', and thus it is 
+         * mandatory.</p> <p>Allows for the flexibility of 
+         * omitting/including notes in the retrieval of information for 
+         * allergy/intolerance data.</p><p>Because the attribute is 
+         * boolean, it must explicitly indicate a 'TRUE' or 'FALSE', 
          * and thus it is mandatory.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"includeNotesIndicator/value"})]
@@ -202,11 +259,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>ReactionPeriod</summary>
+         * <summary>Business Name: ReactionPeriod</summary>
          * 
-         * <remarks>F:Reaction Period <p>The period in which the 
-         * recorded adverse reaction occurred or was updated. I.e. 
-         * Filters the result-set to those reactions whose onset 
+         * <remarks>Un-merged Business Name: ReactionPeriod 
+         * Relationship: REPC_MT000016CA.ReactionPeriod.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>The period in 
+         * which the recorded adverse reaction occurred or was updated. 
+         * I.e. Filters the result-set to those reactions whose onset 
          * occurred within the time-range specified by this 
          * parameter.</p> <p>Allows the requester to specify the 
          * adverse reaction period of interest for retrieval of adverse 
@@ -219,19 +278,23 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>G:Reaction Type</summary>
+         * <summary>Un-merged Business Name: ReactionType</summary>
          * 
-         * <remarks><p>Indicates that the result set be filtered to 
-         * include only those allergy/intolerance records for which 
-         * specific type of reaction was recorded.</p><p>Reaction types 
-         * include: STEVEN JOHNSON, ANAPHYLAXIS, NAUSEA, etc</p> 
-         * <p>Indicates that the result set be filtered to include only 
-         * those allergy/intolerance records for which specific type of 
+         * <remarks>Relationship: REPC_MT000016CA.ReactionType.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates that the 
+         * result set be filtered to include only those 
+         * allergy/intolerance records for which specific type of 
+         * reaction was recorded.</p><p>Reaction types include: STEVEN 
+         * JOHNSON, ANAPHYLAXIS, NAUSEA, etc</p> <p>Indicates that the 
+         * result set be filtered to include only those 
+         * allergy/intolerance records for which specific type of 
          * reaction was recorded.</p><p>Reaction types include: STEVEN 
          * JOHNSON, ANAPHYLAXIS, NAUSEA, etc</p> <p>Allows the 
          * requester to retrieve only those allergy/intolerance records 
          * for which there was a specific type of reaction.</p> 
-         * I:Reaction <p>A coded value denoting a specific reaction. 
+         * Un-merged Business Name: Reaction Relationship: 
+         * REPC_MT000004CA.ReactionType.value Conformance/Cardinality: 
+         * MANDATORY (1) <p>A coded value denoting a specific reaction. 
          * E.g. Code for 'rash'. The result set will be filtered to 
          * include only those allergy records or intolerance records 
          * pertaining to the specified reaction.</p> <p>Allows 
@@ -245,9 +308,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>AmendedInTimeRange</summary>
+         * <summary>Business Name: AmendedInTimeRange</summary>
          * 
-         * <remarks>Amended in Time Range <p>Indicates that the 
+         * <remarks>Un-merged Business Name: AmendedInTimeRange 
+         * Relationship: PORX_MT060280CA.AmendedInTimeRange.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates that the 
          * returned records should be filtered to only include those 
          * which have been amended in some way (had status changed, 
          * been annotated, prescription was dispensed, etc.) within the 
@@ -267,11 +332,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>IncludeEventHistoryIndicator</summary>
+         * <summary>Business Name: IncludeEventHistoryIndicator</summary>
          * 
-         * <remarks>Include Event History Indicator <p>Indicates 
-         * whether or not history of selected medication records are to 
-         * be returned along with the detailed 
+         * <remarks>Un-merged Business Name: 
+         * IncludeEventHistoryIndicator Relationship: 
+         * PORX_MT060280CA.IncludeEventHistoryIndicator.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates whether 
+         * or not history of selected medication records are to be 
+         * returned along with the detailed 
          * information.</p><p>&quot;Pending&quot; changes will be 
          * returned regardless of the setting of this flag.</p> 
          * <p>Indicates whether or not history of selected medication 
@@ -293,10 +361,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>IncludeIssuesIndicator</summary>
+         * <summary>Business Name: IncludeIssuesIndicator</summary>
          * 
-         * <remarks>Include Issues Indicator <p>Indicates whether or 
-         * not issues (detected and/or managed) attached to the 
+         * <remarks>Un-merged Business Name: IncludeIssuesIndicator 
+         * Relationship: PORX_MT060280CA.IncludeIssuesIndicator.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates whether 
+         * or not issues (detected and/or managed) attached to the 
          * prescriptions, dispenses and other active medication records 
          * are to be returned along with the detailed information.</p> 
          * <p>Allows for the flexibility of omitting/including issues 
@@ -307,11 +377,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
          * omitting/including issues in the retrieval of medication 
          * detail profile data.</p><p>Because the attribute is boolean, 
          * it must explicitly indicate a 'TRUE' or 'FALSE', and thus it 
-         * is mandatory.</p> Include Issues Indicator <p>Indicates 
-         * whether or not Issues (detected and/or managed) attached to 
-         * the prescription dispense record to be returned along with 
-         * the detailed information.</p> <p>Allows for the flexibility 
-         * of omitting/including issues in the retrieval of patient 
+         * is mandatory.</p> Un-merged Business Name: 
+         * IncludeIssuesIndicator Relationship: 
+         * PORX_MT060360CA.IncludeIssuesIndicator.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates whether 
+         * or not Issues (detected and/or managed) attached to the 
+         * prescription dispense record to be returned along with the 
+         * detailed information.</p> <p>Allows for the flexibility of 
+         * omitting/including issues in the retrieval of patient 
          * medication data.</p><p>Because the attribute is boolean, it 
          * must explicitly indicate a 'TRUE' or 'FALSE', and thus it is 
          * mandatory.</p> <p>Allows for the flexibility of 
@@ -327,14 +400,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>IncludePendingChangesIndicator</summary>
+         * <summary>Business Name: IncludePendingChangesIndicator</summary>
          * 
-         * <remarks>Include Pending Changes Indicator <p>Indicates 
-         * whether to include future changes (e.g. status changes that 
-         * aren't effective yet) associated with a prescription order 
-         * and/or prescription dispense are to be returned along with 
-         * the detailed information.</p> <p>Allows for the flexibility 
-         * of omitting/including future events in the retrieval of the 
+         * <remarks>Un-merged Business Name: 
+         * IncludePendingChangesIndicator Relationship: 
+         * PORX_MT060280CA.IncludePendingChangesIndicator.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates whether 
+         * to include future changes (e.g. status changes that aren't 
+         * effective yet) associated with a prescription order and/or 
+         * prescription dispense are to be returned along with the 
+         * detailed information.</p> <p>Allows for the flexibility of 
+         * omitting/including future events in the retrieval of the 
          * requested information.</p><p>Because the attribute is 
          * boolean, it must explicitly indicate a 'TRUE' or 'FALSE', 
          * and thus it is mandatory.</p> <p>Allows for the flexibility 
@@ -350,9 +426,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>PrescriptionOrderNumber</summary>
+         * <summary>Business Name: PrescriptionOrderNumber</summary>
          * 
-         * <remarks>Prescription order Number <p>Identifier of the 
+         * <remarks>Un-merged Business Name: PrescriptionOrderNumber 
+         * Relationship: PORX_MT060280CA.PrescriptionOrderNumber.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Identifier of the 
          * prescription for which detailed information is 
          * required.</p><p>The result set will be filtered to only the 
          * specific prescription.</p> <p>Identifier of the prescription 
@@ -368,9 +446,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>AllergyIntoleranceStatus</summary>
+         * <summary>Business Name: AllergyIntoleranceStatus</summary>
          * 
-         * <remarks>G:Allergy/Intolerance Status <p>Indicates that the 
+         * <remarks>Un-merged Business Name: AllergyIntoleranceStatus 
+         * Relationship: REPC_MT000004CA.AllergyIntoleranceStatus.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates that the 
          * result set should be filtered to include only those 
          * allergy/intolerance records for the specified status. Valid 
          * statuses include: ACTIVE or COMPLETE.</p> <p>Allows for the 
@@ -384,9 +464,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>AllergyIntoleranceType</summary>
+         * <summary>Business Name: AllergyIntoleranceType</summary>
          * 
-         * <remarks>H:Allergy/Intolerance Type <p>A coded value 
+         * <remarks>Un-merged Business Name: AllergyIntoleranceType 
+         * Relationship: REPC_MT000004CA.AllergyIntoleranceType.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>A coded value 
          * indicating whether to return an allergy record or an 
          * intolerance record. The result set will be filtered to 
          * include only allergy records or intolerance records 
@@ -400,11 +482,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>AllergyIntoleranceChangePeriod</summary>
+         * <summary>Business Name: AllergyIntoleranceChangePeriod</summary>
          * 
-         * <remarks>F:Allergy/Intolerance Change Period <p>Filters the 
-         * query response to only include allergy/intolerance records 
-         * which have been created or modified within the date-range 
+         * <remarks>Un-merged Business Name: 
+         * AllergyIntoleranceChangePeriod Relationship: 
+         * REPC_MT000004CA.AlllergyIntoleranceChangePeriod.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Filters the query 
+         * response to only include allergy/intolerance records which 
+         * have been created or modified within the date-range 
          * specified.</p> <p>Useful in retrieving incremental changes 
          * to the patient's record.</p></remarks>
          */
@@ -415,9 +500,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>PrescriptionDispenseNumber</summary>
+         * <summary>Business Name: PrescriptionDispenseNumber</summary>
          * 
-         * <remarks>D:Prescription Dispense Number <p>Identifies which 
+         * <remarks>Un-merged Business Name: PrescriptionDispenseNumber 
+         * Relationship: 
+         * PORX_MT060360CA.PrescriptionDispenseNumber.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Identifies which 
          * prescription dispense record should be retrieved.</p> 
          * <p>Allows for the retrieval of medication records relating 
          * to a specific dispense record. A dispense cannot be 

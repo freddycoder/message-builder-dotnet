@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Mcai_mt700210ca;
 
 
+    /**
+     * <summary>Business Name: COMT_IN600001CA: Retract action 
+     * request</summary>
+     * 
+     * <remarks>Message: MCCI_MT002100CA.Message Control Act: 
+     * MCAI_MT700210CA.ControlActEvent --> Payload: 
+     * COMT_MT001103CA.ActEvent</remarks>
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"COMT_IN600001CA"})]
     public class RetractActionRequest : HL7Message<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Mcai_mt700210ca.TriggerEvent<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged.ReferencedRecord>>, IInteraction {
 

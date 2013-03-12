@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,22 +30,23 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lr.Merged {
 
 
     /**
-     * <summary>AvailableServices</summary>
+     * <summary>Business Name: AvailableServices</summary>
      * 
      * <remarks>PRPA_MT202301CA.ServiceDefinition: Available 
-     * Services <p>A list of available services provided by the 
-     * service delivery location.</p> <p>Useful when searching for 
-     * a location to provide a particular service. May be used to 
-     * filter query responses.</p> 
-     * PRPA_MT202302CA.ServiceDefinition: Available Services <p>A 
-     * list of available services provided by the service delivery 
-     * location.</p> <p>Useful when searching for a location to 
-     * provide a particular service. May be used to filter query 
-     * responses.</p> PRPA_MT202303CA.ServiceDefinition: Available 
-     * Services <p>A list of available services provided by the 
-     * service delivery location.</p> <p>Useful when searching for 
-     * a location to provide a particular service. May be used to 
-     * filter query responses.</p></remarks>
+     * Services <p>Useful when searching for a location to provide 
+     * a particular service. May be used to filter query 
+     * responses.</p> <p>A list of available services provided by 
+     * the service delivery location.</p> 
+     * PRPA_MT202302CA.ServiceDefinition: Available Services 
+     * <p>Useful when searching for a location to provide a 
+     * particular service. May be used to filter query 
+     * responses.</p> <p>A list of available services provided by 
+     * the service delivery location.</p> 
+     * PRPA_MT202303CA.ServiceDefinition: Available Services 
+     * <p>Useful when searching for a location to provide a 
+     * particular service. May be used to filter query 
+     * responses.</p> <p>A list of available services provided by 
+     * the service delivery location.</p></remarks>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"PRPA_MT202301CA.ServiceDefinition","PRPA_MT202302CA.ServiceDefinition","PRPA_MT202303CA.ServiceDefinition"})]
     public class AvailableServices : MessagePartBean {
@@ -60,12 +61,26 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lr.Merged {
             this.activityTime = new SETImpl<PIVL, PeriodicIntervalTime>(typeof(PIVLImpl));
         }
         /**
-         * <summary>ServiceType</summary>
+         * <summary>Business Name: ServiceType</summary>
          * 
-         * <remarks>A: Service Type <p>Describes the kind of 
-         * health-related service being offered.</p> <p>This is the 
+         * <remarks>Un-merged Business Name: ServiceType Relationship: 
+         * PRPA_MT202301CA.ServiceDefinition.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>This is the 
          * attribute that defines what the service is and is therefore 
-         * mandatory.</p></remarks>
+         * mandatory.</p> <p>Describes the kind of health-related 
+         * service being offered.</p> Un-merged Business Name: 
+         * ServiceType Relationship: 
+         * PRPA_MT202302CA.ServiceDefinition.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>This is the 
+         * attribute that defines what the service is and is therefore 
+         * mandatory.</p> <p>Describes the kind of health-related 
+         * service being offered.</p> Un-merged Business Name: 
+         * ServiceType Relationship: 
+         * PRPA_MT202303CA.ServiceDefinition.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>This is the 
+         * attribute that defines what the service is and is therefore 
+         * mandatory.</p> <p>Describes the kind of health-related 
+         * service being offered.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public ActServiceDeliveryLocationService Code {
@@ -74,24 +89,44 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lr.Merged {
         }
 
         /**
-         * <summary>ServiceAvailability</summary>
+         * <summary>Business Name: ServiceAvailability</summary>
          * 
-         * <remarks>B: Service Availability <p>Indicates the 
-         * availability of the health-related service within the 
-         * location (as known by the registry/repository). e.g. active 
-         * (currently offered), suspended (may have been offered in the 
-         * past and may again be offered in the future, but not 
-         * available right now).</p> <p>Services may not be always 
-         * available; it is important to know whether a service is 
-         * currently available when making decisions about where to 
-         * send a patient.</p><p>Because not all jurisdictions will 
-         * support capturing availability time, this element is being 
-         * made optional.</p> <p>Services may not be always available; 
-         * it is important to know whether a service is currently 
-         * available when making decisions about where to send a 
-         * patient.</p><p>Because not all jurisdictions will support 
-         * capturing availability time, this element is being made 
-         * optional.</p></remarks>
+         * <remarks>Un-merged Business Name: ServiceAvailability 
+         * Relationship: PRPA_MT202301CA.ServiceDefinition.statusCode 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>Services may not 
+         * be always available; it is important to know whether a 
+         * service is currently available when making decisions about 
+         * where to send a patient.</p><p>Because not all jurisdictions 
+         * will support capturing availability time, this element is 
+         * being made optional.</p> <p>Indicates the availability of 
+         * the health-related service within the location (as known by 
+         * the registry/repository). e.g. active (currently offered), 
+         * suspended (may have been offered in the past and may again 
+         * be offered in the future, but not available right now).</p> 
+         * Un-merged Business Name: ServiceAvailability Relationship: 
+         * PRPA_MT202302CA.ServiceDefinition.statusCode 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>Services may not 
+         * be always available; it is important to know whether a 
+         * service is currently available when making decisions about 
+         * where to send a patient.</p><p>Because not all jurisdictions 
+         * will support capturing availability time, this element is 
+         * being made optional.</p> <p>Indicates the availability of 
+         * the health-related service within the location (as known by 
+         * the registry/repository). e.g. active (currently offered), 
+         * suspended (may have been offered in the past and may again 
+         * be offered in the future, but not available right now).</p> 
+         * Un-merged Business Name: ServiceAvailability Relationship: 
+         * PRPA_MT202303CA.ServiceDefinition.statusCode 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>Services may not 
+         * be always available; it is important to know whether a 
+         * service is currently available when making decisions about 
+         * where to send a patient.</p><p>Because not all jurisdictions 
+         * will support capturing availability time, this element is 
+         * being made optional.</p> <p>Indicates the availability of 
+         * the health-related service within the location (as known by 
+         * the registry/repository). e.g. active (currently offered), 
+         * suspended (may have been offered in the past and may again 
+         * be offered in the future, but not available right now).</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"statusCode"})]
         public x_ActStatusActiveSuspended StatusCode {
@@ -100,15 +135,35 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lr.Merged {
         }
 
         /**
-         * <summary>ServiceAvailabilityTime</summary>
+         * <summary>Business Name: ServiceAvailabilityTime</summary>
          * 
-         * <remarks>C: Service Availability Time <p>Specifies the time 
-         * that a specific service is generally available. E.g. 8am to 
-         * 7pm, Monday through Friday.</p> <p>We'd like this to be 
-         * String, but need a datatype change to make that 
+         * <remarks>Un-merged Business Name: ServiceAvailabilityTime 
+         * Relationship: PRPA_MT202301CA.ServiceDefinition.activityTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>We'd like this to 
+         * be String, but need a datatype change to make that 
          * possible.</p> <p>Allows for a greater level of detail on 
          * service availability, i.e. hours of operation of a specific 
-         * service at this location.</p></remarks>
+         * service at this location.</p> <p>Specifies the time that a 
+         * specific service is generally available. E.g. 8am to 7pm, 
+         * Monday through Friday.</p> Un-merged Business Name: 
+         * ServiceAvailabilityTime Relationship: 
+         * PRPA_MT202302CA.ServiceDefinition.activityTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>We'd like this to 
+         * be String, but need a datatype change to make that 
+         * possible.</p> <p>Allows for a greater level of detail on 
+         * service availability, i.e. hours of operation of a specific 
+         * service at this location.</p> <p>Specifies the time that a 
+         * specific service is generally available. E.g. 8am to 7pm, 
+         * Monday through Friday.</p> Un-merged Business Name: 
+         * ServiceAvailabilityTime Relationship: 
+         * PRPA_MT202303CA.ServiceDefinition.activityTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>We'd like this to 
+         * be String, but need a datatype change to make that 
+         * possible.</p> <p>Allows for a greater level of detail on 
+         * service availability, i.e. hours of operation of a specific 
+         * service at this location.</p> <p>Specifies the time that a 
+         * specific service is generally available. E.g. 8am to 7pm, 
+         * Monday through Friday.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"activityTime"})]
         public ICollection<PeriodicIntervalTime> ActivityTime {

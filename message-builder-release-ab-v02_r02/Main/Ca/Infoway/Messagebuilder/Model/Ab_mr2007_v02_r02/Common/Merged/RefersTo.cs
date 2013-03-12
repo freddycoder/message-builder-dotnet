@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged {
 
 
     /**
-     * <summary>RefersTo</summary>
+     * <summary>Business Name: RefersTo</summary>
      * 
      * <remarks>MFMI_MT700711CA.Subject2: f:refers to <p>On 
      * &#226;&#128;&#152;creation&#226;&#128;&#153; interactions 
@@ -69,13 +69,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged {
             this.registrationRequestReplacementOf = new List<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged.Replaces>();
         }
         /**
-         * <summary>CascadeResponsibilityIndicator</summary>
+         * <summary>Business Name: CascadeResponsibilityIndicator</summary>
          * 
-         * <remarks>Cascade Responsibility Indicator <p>Indicates 
-         * whether or not objects of the trigger event are to be 
-         * cascaded to the payload.</p><p>If true, associations in the 
-         * parent act are conducted across the ActRelationship to the 
-         * message payload (act). Conduction for each association is 
+         * <remarks>Un-merged Business Name: 
+         * CascadeResponsibilityIndicator Relationship: 
+         * MFMI_MT700711CA.Subject2.contextConductionInd 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates whether 
+         * or not objects of the trigger event are to be cascaded to 
+         * the payload.</p><p>If true, associations in the parent act 
+         * are conducted across the ActRelationship to the message 
+         * payload (act). Conduction for each association is 
          * specifically indicated by each associations' 
          * contextControlCode value.</p><p>In other words, if the 
          * &quot;subject&quot; act relationship has 
@@ -113,8 +116,10 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged {
          * <p>Cascading of trigger event objects allows different 
          * messages to employ consistent and common 
          * objects.</p><p>Attribute is mandatory to ensure that 
-         * cascading will be specified one way or another.</p> Cascade 
-         * Responsibility Indicator <p>On 
+         * cascading will be specified one way or another.</p> 
+         * Un-merged Business Name: CascadeResponsibilityIndicator 
+         * Relationship: MFMI_MT700716CA.Subject2.contextConductionInd 
+         * Conformance/Cardinality: MANDATORY (1) <p>On 
          * &#226;&#128;&#152;creation&#226;&#128;&#153; interactions 
          * (where the state transition is null-&gt;active), this must 
          * be true otherwise it must be false.</p> <p>Indicates whether 
@@ -167,18 +172,51 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged {
             set { this.contextConductionInd.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * MFMI_MT700711CA.RegistrationRequest.subject 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MFMI_MT700716CA.RegistrationRequest.subject 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"registrationRequest/subject"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged.RegisteredItem<RR> RegistrationRequestSubject {
             get { return this.registrationRequestSubject; }
             set { this.registrationRequestSubject = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * MFMI_MT700711CA.Custodian.assignedDevice 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MFMI_MT700716CA.Custodian.assignedDevice 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"registrationRequest/custodian/assignedDevice"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.EHRRepository RegistrationRequestCustodianAssignedDevice {
             get { return this.registrationRequestCustodianAssignedDevice; }
             set { this.registrationRequestCustodianAssignedDevice = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * MFMI_MT700711CA.RegistrationRequest.replacementOf 
+         * Conformance/Cardinality: OPTIONAL (0-10) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MFMI_MT700716CA.RegistrationRequest.replacementOf 
+         * Conformance/Cardinality: OPTIONAL (0-10)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"registrationRequest/replacementOf"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged.Replaces> RegistrationRequestReplacementOf {
             get { return this.registrationRequestReplacementOf; }

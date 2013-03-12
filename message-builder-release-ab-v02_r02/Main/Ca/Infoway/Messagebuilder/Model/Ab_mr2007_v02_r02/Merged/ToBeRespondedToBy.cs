@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
 
 
     /**
-     * <summary>ToBeRespondedToBy</summary>
+     * <summary>Business Name: ToBeRespondedToBy</summary>
      * 
      * <remarks>MCCI_MT102001CA.RespondTo: to be responded to by 
      * <p>Indicates the interaction that should receive the 
@@ -103,19 +103,54 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             this.deviceAsLocatedEntityLocationId = new IIImpl();
         }
         /**
-         * <summary>RespondToNetworkAddress</summary>
+         * <summary>Business Name: RespondToNetworkAddress</summary>
          * 
-         * <remarks>KB:Respond to Network Address <p>Indicates the 
+         * <remarks>Un-merged Business Name: RespondToNetworkAddress 
+         * Relationship: MCCI_MT102001CA.RespondTo.telecom 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>Indicates the 
          * address to send acknowledgments of this message to.</p> 
          * <p>soap:Header\wsa:ReplyTo</p> <p>Needed when the address to 
          * respond to is different than that of the sender. This is 
          * optional because not all environments require network 
          * addresses. It is required when communicating using SOAP.</p> 
-         * KB:Respond to Network Address <p>Indicates the address to 
-         * send acknowledgments of this message to.</p> <p>Needed when 
-         * the address to respond to is different than that of the 
-         * sender. This is optional because not all environments 
-         * require network addresses.</p></remarks>
+         * Un-merged Business Name: RespondToNetworkAddress 
+         * Relationship: MCCI_MT000100CA.RespondTo.telecom 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>Indicates the 
+         * address to send acknowledgments of this message to.</p> 
+         * <p>Needed when the address to respond to is different than 
+         * that of the sender. This is optional because not all 
+         * environments require network addresses.</p> Un-merged 
+         * Business Name: RespondToNetworkAddress Relationship: 
+         * MCCI_MT002300CA.RespondTo.telecom Conformance/Cardinality: 
+         * OPTIONAL (0-1) <p>Indicates the address to send 
+         * acknowledgments of this message to.</p> 
+         * <p>soap:Header\wsa:ReplyTo</p> <p>Needed when the address to 
+         * respond to is different than that of the sender. This is 
+         * optional because not all environments require network 
+         * addresses. It is required when communicating using SOAP.</p> 
+         * Un-merged Business Name: RespondToNetworkAddress 
+         * Relationship: MCCI_MT002200CA.RespondTo.telecom 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>Indicates the 
+         * address to send acknowledgments of this message to.</p> 
+         * <p>soap:Header\wsa:ReplyTo</p> <p>Needed when the address to 
+         * respond to is different than that of the sender. This is 
+         * optional because not all environments require network 
+         * addresses. It is required when communicating using SOAP.</p> 
+         * Un-merged Business Name: RespondToNetworkAddress 
+         * Relationship: MCCI_MT000300CA.RespondTo.telecom 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>Indicates the 
+         * address to send acknowledgments of this message to.</p> 
+         * <p>Needed when the address to respond to is different than 
+         * that of the sender. This is optional because not all 
+         * environments require network addresses.</p> Un-merged 
+         * Business Name: RespondToNetworkAddress Relationship: 
+         * MCCI_MT002100CA.RespondTo.telecom Conformance/Cardinality: 
+         * OPTIONAL (0-1) <p>Indicates the address to send 
+         * acknowledgments of this message to.</p> 
+         * <p>soap:Header\wsa:ReplyTo</p> <p>Needed when the address to 
+         * respond to is different than that of the sender. This is 
+         * optional because not all environments require network 
+         * addresses. It is required when communicating using SOAP.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"telecom"})]
         public TelecommunicationAddress Telecom {
@@ -124,20 +159,62 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>RespondToApplicationIdentifier</summary>
+         * <summary>Business Name: RespondToApplicationIdentifier</summary>
          * 
-         * <remarks>KA:Respond to Application Identifier <p>The unique 
+         * <remarks>Un-merged Business Name: 
+         * RespondToApplicationIdentifier Relationship: 
+         * MCCI_MT102001CA.Device3.id Conformance/Cardinality: 
+         * MANDATORY (1) <p>The unique identifier of the applications 
+         * to which responses should be sent. Only populated when 
+         * different from the sending application id.</p> 
+         * <p>soap:Header\wsa:ReplyTo\@endpointID</p> <p>Allows unique 
+         * identification and routing to the application to be 
+         * responded to. This attribute is mandatory be cause it is the 
+         * principal identifier of the application to respond to.</p> 
+         * Un-merged Business Name: RespondToApplicationIdentifier 
+         * Relationship: MCCI_MT000100CA.Device3.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>The unique 
          * identifier of the applications to which responses should be 
          * sent. Only populated when different from the sending 
          * application id.</p> <p>Allows unique identification and 
          * routing to the application to be responded to. This 
          * attribute is mandatory be cause it is the principal 
-         * identifier of the application to respond to.</p> KA:Respond 
-         * to Application Identifier <p>The unique identifier of the 
-         * applications to which responses should be sent. Only 
-         * populated when different from the sending application 
-         * id.</p> <p>soap:Header\wsa:ReplyTo\@endpointID</p> <p>Allows 
-         * unique identification and routing to the application to be 
+         * identifier of the application to respond to.</p> Un-merged 
+         * Business Name: RespondToApplicationIdentifier Relationship: 
+         * MCCI_MT002300CA.Device3.id Conformance/Cardinality: 
+         * MANDATORY (1) <p>The unique identifier of the applications 
+         * to which responses should be sent. Only populated when 
+         * different from the sending application id.</p> 
+         * <p>soap:Header\wsa:ReplyTo\@endpointID</p> <p>Allows unique 
+         * identification and routing to the application to be 
+         * responded to. This attribute is mandatory be cause it is the 
+         * principal identifier of the application to respond to.</p> 
+         * Un-merged Business Name: RespondToApplicationIdentifier 
+         * Relationship: MCCI_MT002200CA.Device3.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>The unique 
+         * identifier of the applications to which responses should be 
+         * sent. Only populated when different from the sending 
+         * application id.</p> 
+         * <p>soap:Header\wsa:ReplyTo\@endpointID</p> <p>Allows unique 
+         * identification and routing to the application to be 
+         * responded to. This attribute is mandatory be cause it is the 
+         * principal identifier of the application to respond to.</p> 
+         * Un-merged Business Name: RespondToApplicationIdentifier 
+         * Relationship: MCCI_MT000300CA.Device3.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>The unique 
+         * identifier of the applications to which responses should be 
+         * sent. Only populated when different from the sending 
+         * application id.</p> <p>Allows unique identification and 
+         * routing to the application to be responded to. This 
+         * attribute is mandatory be cause it is the principal 
+         * identifier of the application to respond to.</p> Un-merged 
+         * Business Name: RespondToApplicationIdentifier Relationship: 
+         * MCCI_MT002100CA.Device3.id Conformance/Cardinality: 
+         * MANDATORY (1) <p>The unique identifier of the applications 
+         * to which responses should be sent. Only populated when 
+         * different from the sending application id.</p> 
+         * <p>soap:Header\wsa:ReplyTo\@endpointID</p> <p>Allows unique 
+         * identification and routing to the application to be 
          * responded to. This attribute is mandatory be cause it is the 
          * principal identifier of the application to respond to.</p></remarks>
          */
@@ -147,18 +224,40 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             set { this.deviceId.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: MCCI_MT002300CA.RespondTo.typeCode 
+         * Conformance/Cardinality: OPTIONAL (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"typeCode"})]
         public CommunicationFunctionType TypeCode {
             get { return (CommunicationFunctionType) this.typeCode.Value; }
             set { this.typeCode.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: MCCI_MT002300CA.Device3.classCode 
+         * Conformance/Cardinality: OPTIONAL (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"device/classCode"})]
         public EntityClass DeviceClassCode {
             get { return (EntityClass) this.deviceClassCode.Value; }
             set { this.deviceClassCode.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * MCCI_MT002300CA.Device3.determinerCode 
+         * Conformance/Cardinality: OPTIONAL (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"device/determinerCode"})]
         public EntityDeterminer DeviceDeterminerCode {
             get { return (EntityDeterminer) this.deviceDeterminerCode.Value; }
@@ -166,9 +265,19 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>RespondToOrganizationId</summary>
+         * <summary>Business Name: RespondToOrganizationId</summary>
          * 
-         * <remarks>KC:Respond to Organization Id <p>The unique 
+         * <remarks>Un-merged Business Name: RespondToOrganizationId 
+         * Relationship: MCCI_MT000100CA.Organization3.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>The unique 
+         * identifier of the application who is to be responsible for 
+         * responses to this message.</p> <p>Needed for circumstances 
+         * where the 'respond to' organization is different than the 
+         * sending organization. This attribute is optional because not 
+         * all environments require communicating this information.</p> 
+         * Un-merged Business Name: RespondToOrganizationId 
+         * Relationship: MCCI_MT000300CA.Organization3.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>The unique 
          * identifier of the application who is to be responsible for 
          * responses to this message.</p> <p>Needed for circumstances 
          * where the 'respond to' organization is different than the 
@@ -182,13 +291,22 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>RespondToFacilityId</summary>
+         * <summary>Business Name: RespondToFacilityId</summary>
          * 
-         * <remarks>KD:Respond to Facility Id <p>Indicates the clinic 
-         * or other facility to which responses to this interaction 
-         * should be sent.</p> <p>May affect the routing of a message. 
-         * This attribute is optional because not all environments 
-         * require communicating this information.</p></remarks>
+         * <remarks>Un-merged Business Name: RespondToFacilityId 
+         * Relationship: MCCI_MT000100CA.Place3.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the 
+         * clinic or other facility to which responses to this 
+         * interaction should be sent.</p> <p>May affect the routing of 
+         * a message. This attribute is optional because not all 
+         * environments require communicating this information.</p> 
+         * Un-merged Business Name: RespondToFacilityId Relationship: 
+         * MCCI_MT000300CA.Place3.id Conformance/Cardinality: MANDATORY 
+         * (1) <p>Indicates the clinic or other facility to which 
+         * responses to this interaction should be sent.</p> <p>May 
+         * affect the routing of a message. This attribute is optional 
+         * because not all environments require communicating this 
+         * information.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"device/asLocatedEntity/location/id"})]
         public Identifier DeviceAsLocatedEntityLocationId {

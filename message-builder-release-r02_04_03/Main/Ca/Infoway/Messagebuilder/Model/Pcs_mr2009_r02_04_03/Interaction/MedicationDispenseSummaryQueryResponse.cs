@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Porx_mt060110ca;
 
 
+    /**
+     * <summary>Business Name: PORX_IN060240CA: Medication dispense 
+     * summary query response</summary>
+     * 
+     * <p>Returns basic information about all medication dispenses 
+     * provided to a particular patient.</p> Message: 
+     * MCCI_MT002300CA.Message Control Act: 
+     * QUQI_MT120006CA.ControlActEvent --> Payload: 
+     * PORX_MT060100CA.MedicationDispense --> Payload: 
+     * PORX_MT060110CA.ParameterList
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"PORX_IN060240CA"})]
     public class MedicationDispenseSummaryQueryResponse : HL7Message_1<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.TriggerEvent_6<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Porx_mt060100ca.Dispense,Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Porx_mt060110ca.ParameterList>>, IInteraction {
 

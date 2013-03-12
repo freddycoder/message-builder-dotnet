@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,16 +25,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Ficr_mt61020
 
 
     /**
-     * <summary>Component Invoice element</summary>
+     * <summary>Business Name: Component Invoice element</summary>
      * 
-     * <remarks><p>At most 5 levels of recursion, with n children 
-     * at each level. Root level counts as level 1.</p> <p>Note: 
-     * Levels of nesting cannot be specified, as the maximum 
-     * cardinality only applies to immediate children of this act, 
-     * not the levels of nesting.</p> <p>Levels of nesting cannot 
-     * be specified, as the maximum cardinality only applies to 
-     * immediate children of this act, not the levels of 
-     * nesting.</p></remarks>
+     * <p>At most 5 levels of recursion, with n children at each 
+     * level. Root level counts as level 1.</p> <p>Note: Levels of 
+     * nesting cannot be specified, as the maximum cardinality only 
+     * applies to immediate children of this act, not the levels of 
+     * nesting.</p> <p>Levels of nesting cannot be specified, as 
+     * the maximum cardinality only applies to immediate children 
+     * of this act, not the levels of nesting.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"FICR_MT610201CA.AdjudicatedInvoiceElementComponent"})]
     public class ComponentInvoiceElement : MessagePartBean {
@@ -43,6 +42,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Ficr_mt61020
 
         public ComponentInvoiceElement() {
         }
+        /**
+         * <summary>Relationship: 
+         * FICR_MT610201CA.AdjudicatedInvoiceElementComponent.adjudicatedInvoiceElementChoice</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"adjudicatedInvoiceElementChoice"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Ficr_mt610201ca.IAdjudicatedInvoiceElementChoice AdjudicatedInvoiceElementChoice {
             get { return this.adjudicatedInvoiceElementChoice; }

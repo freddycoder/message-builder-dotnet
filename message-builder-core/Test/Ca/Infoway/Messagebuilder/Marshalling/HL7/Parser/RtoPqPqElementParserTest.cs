@@ -1,4 +1,22 @@
-using System;
+/**
+ * Copyright 2013 Canada Health Infoway, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Author:        $LastChangedBy: tmcgrady $
+ * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Revision:      $LastChangedRevision: 2623 $
+ */
 using System.Xml;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype;
@@ -26,8 +44,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 
 		private ParseContext CreateContext()
 		{
-			return ParserContextImpl.Create("RTO<PQ,PQ>", typeof(Ratio<object, object>), SpecificationVersion.V02R02, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
-				.POPULATED);
+			return ParserContextImpl.Create("RTO<PQ.DRUG,PQ.DRUG>", typeof(Ratio<object, object>), SpecificationVersion.V02R02, null, 
+				null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.POPULATED);
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -36,7 +54,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		{
 			XmlNode node = CreateNode("<something/>");
 			Ratio<PhysicalQuantity, PhysicalQuantity> ratio = (Ratio<PhysicalQuantity, PhysicalQuantity>)new RtoPqPqElementParser().Parse
-				(null, node, null).BareValue;
+				(CreateContext(), node, this.xmlResult).BareValue;
 			Assert.IsNotNull(ratio, "ratio");
 			Assert.IsNull(ratio.Numerator, "numerator");
 			Assert.IsNull(ratio.Denominator, "denominator");
@@ -46,20 +64,16 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		[Test]
 		public virtual void TestParseValidAttributes()
 		{
-			resolver.AddDomainValue(Ca.Infoway.Messagebuilder.Datatype.Lang.UnitsOfMeasureCaseSensitive.MILLIGRAM, typeof(Ca.Infoway.Messagebuilder.Domainvalue.UnitsOfMeasureCaseSensitive
-				));
-			resolver.AddDomainValue(Ca.Infoway.Messagebuilder.Datatype.Lang.UnitsOfMeasureCaseSensitive.MILLILITRE, typeof(Ca.Infoway.Messagebuilder.Domainvalue.UnitsOfMeasureCaseSensitive
-				));
 			XmlNode node = CreateNode("<something><numerator value=\"1234.45\" unit=\"mg\"/><denominator value=\"2345.67\" unit=\"ml\" /></something>"
 				);
 			Ratio<PhysicalQuantity, PhysicalQuantity> ratio = (Ratio<PhysicalQuantity, PhysicalQuantity>)new RtoPqPqElementParser().Parse
-				(null, node, null).BareValue;
+				(CreateContext(), node, this.xmlResult).BareValue;
 			Assert.IsNotNull(ratio, "ratio");
 			Assert.AreEqual(new BigDecimal("1234.45"), ratio.Numerator.Quantity, "numerator");
-			Assert.AreEqual(Ca.Infoway.Messagebuilder.Datatype.Lang.UnitsOfMeasureCaseSensitive.MILLIGRAM, ratio.Numerator.Unit, "numerator unit"
-				);
+			Assert.AreEqual(Ca.Infoway.Messagebuilder.Domainvalue.Basic.UnitsOfMeasureCaseSensitive.MILLIGRAM.CodeValue, ratio.Numerator
+				.Unit.CodeValue, "numerator unit");
 			Assert.AreEqual(new BigDecimal("2345.67"), ratio.Denominator.Quantity, "denominator");
-			Assert.AreEqual(Ca.Infoway.Messagebuilder.Datatype.Lang.UnitsOfMeasureCaseSensitive.MILLILITRE.CodeValue, ratio.Denominator
+			Assert.AreEqual(Ca.Infoway.Messagebuilder.Domainvalue.Basic.UnitsOfMeasureCaseSensitive.MILLILITRE.CodeValue, ratio.Denominator
 				.Unit.CodeValue, "denominator unit");
 		}
 
@@ -68,15 +82,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		public virtual void TestParseInvalidValueAttribute()
 		{
 			XmlNode node = CreateNode("<something><numerator value=\"monkey\" /><denominator value=\"2345.67\" /></something>");
-			try
-			{
-				new RtoPqPqElementParser().Parse(null, node, null);
-				Assert.Fail("expected exception");
-			}
-			catch (FormatException)
-			{
-			}
+			new RtoPqPqElementParser().Parse(CreateContext(), node, this.xmlResult);
+			Assert.AreEqual(1, this.xmlResult.GetHl7Errors().Count);
 		}
-		// expected
 	}
 }

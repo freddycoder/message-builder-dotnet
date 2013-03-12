@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Merged {
 
 
     /**
-     * <summary>PrivilegeCategorization</summary>
+     * <summary>Business Name: PrivilegeCategorization</summary>
      * 
      * <remarks>PRPM_MT306011CA.PrivilegeCategorization: Privilege 
      * Categorization <p>An act that is intended to result in new 
@@ -69,24 +69,35 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Merged {
             this.value = new CVImpl();
         }
         /**
-         * <summary>RestrictionsCategorizationType</summary>
+         * <summary>Business Name: RestrictionsCategorizationType</summary>
          * 
-         * <remarks>Restrictions Categorization Type <p>The code 
+         * <remarks>Un-merged Business Name: 
+         * RestrictionsCategorizationType Relationship: 
+         * PRPM_MT306011CA.PrivilegeCategorization.code 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The code 
+         * identifying the specific privilege and/or restrictions on 
+         * those privileges</p> <p>Required attribute supports the 
+         * validation and identification of the healthcare provider and 
+         * his/her given privileges</p> Un-merged Business Name: 
+         * RestrictionsCategorizationType Relationship: 
+         * PRPM_MT309000CA.PrivilegeCategorization.code 
+         * Conformance/Cardinality: POPULATED (1) <p>The code 
+         * identifying the specific privilege and/or restrictions on 
+         * those privileges</p> <p>Populated attribute supports the 
+         * validation and identification of the healthcare provider and 
+         * his/her given privileges</p> Un-merged Business Name: 
+         * RestrictionsCategorizationType Relationship: 
+         * PRPM_MT301010CA.PrivilegeCategorization.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>The code 
          * identifying the specific privilege and/or restrictions on 
          * those privileges</p> <p>Mandatory attribute supports the 
          * validation and identification of the healthcare provider and 
-         * his/her given privileges</p> Restrictions Categorization 
-         * Type <p>The code identifying the specific privilege and/or 
-         * restrictions on those privileges</p> <p>Required attribute 
-         * supports the validation and identification of the healthcare 
-         * provider and his/her given privileges</p> Restrictions 
-         * Categorization Type <p>Mandatory attribute supports the 
-         * validation and identification of the healthcare provider and 
-         * his/her given privileges</p> Restrictions Categorization 
-         * Type <p>The code identifying the specific privilege and/or 
-         * restrictions on those privileges</p> <p>Populated attribute 
-         * supports the validation and identification of the healthcare 
-         * provider and his/her given privileges</p></remarks>
+         * his/her given privileges</p> Un-merged Business Name: 
+         * RestrictionsCategorizationType Relationship: 
+         * PRPM_MT303010CA.PrivilegeCategorization.code 
+         * Conformance/Cardinality: POPULATED (1) <p>Mandatory 
+         * attribute supports the validation and identification of the 
+         * healthcare provider and his/her given privileges</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public ActPrivilegeCategorization Code {
@@ -95,17 +106,37 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Merged {
         }
 
         /**
-         * <summary>RestrictionsCategorizationValue</summary>
+         * <summary>Business Name: RestrictionsCategorizationValue</summary>
          * 
-         * <remarks>Restrictions Categorization Value <p>The value 
+         * <remarks>Un-merged Business Name: 
+         * RestrictionsCategorizationValue Relationship: 
+         * PRPM_MT306011CA.PrivilegeCategorization.value 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The value 
+         * identifying the specific privilege and/or restrictions on 
+         * those privileges</p> <p>Required attribute supports the 
+         * validation and identification of the healthcare provider and 
+         * his/her given privileges</p> Un-merged Business Name: 
+         * RestrictionsCategorizationValue Relationship: 
+         * PRPM_MT309000CA.PrivilegeCategorization.value 
+         * Conformance/Cardinality: POPULATED (1) <p>The value 
          * identifying the specific privilege and/or restrictions on 
          * those privileges</p> <p>Populated attribute supports the 
          * validation and identification of the healthcare provider and 
-         * his/her given privileges</p> Restrictions Categorization 
-         * Value <p>The value identifying the specific privilege and/or 
-         * restrictions on those privileges</p> <p>Required attribute 
-         * supports the validation and identification of the healthcare 
-         * provider and his/her given privileges</p></remarks>
+         * his/her given privileges</p> Un-merged Business Name: 
+         * RestrictionsCategorizationValue Relationship: 
+         * PRPM_MT301010CA.PrivilegeCategorization.value 
+         * Conformance/Cardinality: POPULATED (1) <p>The value 
+         * identifying the specific privilege and/or restrictions on 
+         * those privileges</p> <p>Populated attribute supports the 
+         * validation and identification of the healthcare provider and 
+         * his/her given privileges</p> Un-merged Business Name: 
+         * RestrictionsCategorizationValue Relationship: 
+         * PRPM_MT303010CA.PrivilegeCategorization.value 
+         * Conformance/Cardinality: POPULATED (1) <p>The value 
+         * identifying the specific privilege and/or restrictions on 
+         * those privileges</p> <p>Populated attribute supports the 
+         * validation and identification of the healthcare provider and 
+         * his/her given privileges</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"value"})]
         public ObservationValue Value {

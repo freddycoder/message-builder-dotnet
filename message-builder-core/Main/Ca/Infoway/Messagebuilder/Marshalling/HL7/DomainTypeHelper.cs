@@ -1,4 +1,24 @@
+/**
+ * Copyright 2013 Canada Health Infoway, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Author:        $LastChangedBy: tmcgrady $
+ * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Revision:      $LastChangedRevision: 2623 $
+ */
 using System;
+using System.Text;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Domainvalue;
 using Ca.Infoway.Messagebuilder.Marshalling;
@@ -10,11 +30,16 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7
 	{
 		public static Type GetReturnType(Relationship relationship, VersionNumber version)
 		{
-			Type type = GetReturnType(relationship);
+			return GetReturnType(relationship.DomainType, version);
+		}
+
+		public static Type GetReturnType(string domainType, VersionNumber version)
+		{
+			Type type = GetReturnType(domainType);
 			if (type == typeof(Code))
 			{
-				string domainType = relationship.DomainType;
-				Type codeType = MessageBeanRegistry.GetInstance().GetCodeType(domainType, version.VersionLiteral);
+				string sanitizedDomainType = Sanitize(domainType);
+				Type codeType = MessageBeanRegistry.GetInstance().GetCodeType(sanitizedDomainType, version.VersionLiteral);
 				if (codeType != null)
 				{
 					type = codeType;
@@ -23,26 +48,26 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7
 			return type;
 		}
 
-		private static Type GetReturnType(Relationship relationship)
+		private static Type GetReturnType(string domainType)
 		{
-			string domainType = relationship.DomainType;
-			if (ClassUtils.GetShortClassName(typeof(HealthcareProviderRoleType)).EqualsIgnoreCase(domainType))
+			string sanitizedDomainType = Sanitize(domainType);
+			if (ClassUtils.GetShortClassName(typeof(HealthcareProviderRoleType)).EqualsIgnoreCase(sanitizedDomainType))
 			{
-				domainType = ClassUtils.GetShortClassName(typeof(HealthcareProviderRoleType));
+				sanitizedDomainType = ClassUtils.GetShortClassName(typeof(HealthcareProviderRoleType));
 			}
 			else
 			{
-				if (ClassUtils.GetShortClassName(typeof(OtherIDsRoleCode)).Equals(domainType))
+				if (ClassUtils.GetShortClassName(typeof(OtherIDsRoleCode)).Equals(sanitizedDomainType))
 				{
-					domainType = ClassUtils.GetShortClassName(typeof(OtherIdentifierRoleType));
+					sanitizedDomainType = ClassUtils.GetShortClassName(typeof(OtherIdentifierRoleType));
 				}
 			}
-			if (StringUtils.IsNotBlank(domainType))
+			if (StringUtils.IsNotBlank(sanitizedDomainType))
 			{
 				try
 				{
 					return (Type)Ca.Infoway.Messagebuilder.Runtime.GetType(ClassUtils.GetPackageName(typeof(Ca.Infoway.Messagebuilder.Domainvalue.ActCode
-						)) + "." + domainType);
+						)) + "." + sanitizedDomainType);
 				}
 				catch (TypeLoadException)
 				{
@@ -75,8 +100,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7
 		public static string GetCompatibleDomainType(Relationship relationship1, Relationship relationship2)
 		{
 			// null will be returned for relationships that do not have a domain type
-			Type code1 = GetReturnType(relationship1);
-			Type code2 = GetReturnType(relationship2);
+			Type code1 = GetReturnType(relationship1.DomainType);
+			Type code2 = GetReturnType(relationship2.DomainType);
 			string result = null;
 			if (code1 != null && code2 != null)
 			{
@@ -107,6 +132,32 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7
 		public static bool HasDomainType(Relationship relationship, string domainType)
 		{
 			return relationship != null && StringUtils.Equals(relationship.DomainType, domainType);
+		}
+
+		public static string Sanitize(string domainName)
+		{
+			if (domainName == null)
+			{
+				return null;
+			}
+			else
+			{
+				StringBuilder builder = new StringBuilder();
+				bool capitalize = false;
+				foreach (char c in domainName.ToCharArray())
+				{
+					if ("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_".IndexOf(c) >= 0)
+					{
+						builder.Append(capitalize ? System.Char.ToUpper(c) : c);
+						capitalize = false;
+					}
+					else
+					{
+						capitalize = true;
+					}
+				}
+				return builder.ToString();
+			}
 		}
 	}
 }

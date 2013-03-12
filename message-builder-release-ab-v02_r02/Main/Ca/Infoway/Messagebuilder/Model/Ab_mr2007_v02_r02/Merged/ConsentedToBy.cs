@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
 
 
     /**
-     * <summary>ConsentedToBy</summary>
+     * <summary>Business Name: ConsentedToBy</summary>
      * 
      * <remarks>COCT_MT470000CA.Author: b:consented to by 
      * <p>Indicates that the consent was provided by the patient or 
@@ -63,14 +63,23 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             this.signatureText = new STImpl();
         }
         /**
-         * <summary>PatientConsentMechanism</summary>
+         * <summary>Business Name: PatientConsentMechanism</summary>
          * 
-         * <remarks>Patient Consent Mechanism <p>Indicates whether the 
-         * patient's consent is written or verbal.</p> <p>Verbal 
-         * consents may trigger a higher level of auditing.</p> Patient 
-         * Consent Mechanism <p>Indicates whether the patient's consent 
-         * is written or verbal.</p> <p>Verbal consents may trigger a 
-         * higher level of auditing.</p></remarks>
+         * <remarks>Un-merged Business Name: PatientConsentMechanism 
+         * Relationship: COCT_MT470000CA.Author.modeCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates whether 
+         * the patient's consent is written or verbal.</p> <p>Verbal 
+         * consents may trigger a higher level of auditing.</p> 
+         * Un-merged Business Name: PatientConsentMechanism 
+         * Relationship: RCMR_MT010001CA.Author.modeCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates whether 
+         * the patient's consent is written or verbal.</p> <p>Verbal 
+         * consents may trigger a higher level of auditing.</p> 
+         * Un-merged Business Name: PatientConsentMechanism 
+         * Relationship: COCT_MT470012CA.Author.modeCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates whether 
+         * the patient's consent is written or verbal.</p> <p>Verbal 
+         * consents may trigger a higher level of auditing.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"modeCode"})]
         public x_PhysicalVerbalParticipationMode ModeCode {
@@ -79,12 +88,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>Keyword</summary>
+         * <summary>Business Name: Keyword</summary>
          * 
-         * <remarks>Keyword <p>Indicates the keyword appropriate to the 
-         * action being performed by the message.</p> <p>Allows 
-         * providers who know the keyword to access information 
-         * protected by patient keywords.</p> Keyword <p>Indicates the 
+         * <remarks>Un-merged Business Name: Keyword Relationship: 
+         * COCT_MT470000CA.Author.signatureText 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
+         * keyword appropriate to the action being performed by the 
+         * message.</p> <p>Allows providers who know the keyword to 
+         * access information protected by patient keywords.</p> 
+         * Un-merged Business Name: Keyword Relationship: 
+         * COCT_MT470012CA.Author.signatureText 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
          * keyword appropriate to the action being performed by the 
          * message.</p> <p>Allows providers who know the keyword to 
          * access information protected by patient keywords.</p></remarks>
@@ -95,12 +109,30 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             set { this.signatureText.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: COCT_MT470000CA.Author.consenter 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * RCMR_MT010001CA.Author.consenter Conformance/Cardinality: 
+         * POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"consenter"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.IConsenter Consenter {
             get { return this.consenter; }
             set { this.consenter = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * COCT_MT470012CA.Author.personalRelationship 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"personalRelationship"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged.RelatedPerson PersonalRelationship {
             get { return this.personalRelationship; }

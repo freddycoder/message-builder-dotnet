@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,12 +28,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt610
 
 
     /**
-     * <summary><p>Coverage must be specified for Root Adjudicated 
-     * Invoice Element Group and may not be specified for any other 
-     * Adjudicated Invoice Element Group.</p></summary>
+     * <p>Coverage must be specified for Root Adjudicated Invoice 
+     * Element Group and may not be specified for any other 
+     * Adjudicated Invoice Element Group.</p>
      * 
-     * <remarks><p>Allows Payor to adj &amp; pay on different 
-     * policy</p></remarks>
+     * <p>Allows Payor to adj &amp; pay on different policy</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"FICR_MT610201CA.AdjudicatedInvoiceCoverage"})]
     public class AdjudicatedInvoiceCoverage : MessagePartBean {
@@ -45,7 +44,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt610
             this.sequenceNumber = new INTImpl();
         }
         /**
-         * <summary>COB Sequence as Adjudicated</summary>
+         * <summary>Business Name: COB Sequence as Adjudicated</summary>
+         * 
+         * <remarks>Relationship: 
+         * FICR_MT610201CA.AdjudicatedInvoiceCoverage.sequenceNumber 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"sequenceNumber"})]
         public int? SequenceNumber {
@@ -53,6 +56,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt610
             set { this.sequenceNumber.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * FICR_MT610201CA.AdjudicatedInvoiceCoverage.policyOrAccount</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"policyOrAccount"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Merged.PolicyOrAccount_2 PolicyOrAccount {
             get { return this.policyOrAccount; }

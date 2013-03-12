@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
 
 
     /**
-     * <summary>UnfilledPrescriptionQueryParameters</summary>
+     * <summary>Business Name: UnfilledPrescriptionQueryParameters</summary>
      * 
      * <remarks>PORX_MT060270CA.ParameterList: (no business name) 
      * <p>Defines the set of parameters that may be used to filter 
@@ -55,9 +55,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
             this.rxDispenseIndicatorValue = new CVImpl();
         }
         /**
-         * <summary>AdministrationEffectivePeriod</summary>
+         * <summary>Business Name: AdministrationEffectivePeriod</summary>
          * 
-         * <remarks>E:Administration Effective Period <p>Indicates the 
+         * <remarks>Un-merged Business Name: 
+         * AdministrationEffectivePeriod Relationship: 
+         * PORX_MT060270CA.AdministrationEffectivePeriod.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the 
          * administration period for which the request/query 
          * applies.</p><p>Filter the result set to include only those 
          * medication records (prescription order, prescription 
@@ -70,19 +73,21 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
          * the patient was deemed to be taking the drug within the 
          * specified period.</p> <p>Allows the requester to specify the 
          * administration period of interest for the retrieval. Useful 
-         * for constraining run-away queries.</p> D:Administration 
-         * Effective Period <p>Indicates the administration period for 
-         * which the request/query applies.</p><p>Filter the result set 
-         * to include only those medication records (prescription 
-         * order, prescription dispense and other active medication) 
-         * for which the patient was deemed to be taking the drug 
-         * within the specified period.</p> <p>Indicates the 
+         * for constraining run-away queries.</p> Un-merged Business 
+         * Name: AdministrationEffectivePeriod Relationship: 
+         * PORX_MT060240CA.AdministrationEffectivePeriod.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the 
          * administration period for which the request/query 
          * applies.</p><p>Filter the result set to include only those 
          * medication records (prescription order, prescription 
          * dispense and other active medication) for which the patient 
          * was deemed to be taking the drug within the specified 
-         * period.</p> <p>Allows the requester to specify the 
+         * period.</p> <p>Indicates the administration period for which 
+         * the request/query applies.</p><p>Filter the result set to 
+         * include only those medication records (prescription order, 
+         * prescription dispense and other active medication) for which 
+         * the patient was deemed to be taking the drug within the 
+         * specified period.</p> <p>Allows the requester to specify the 
          * administration period of interest for the retrieval. Useful 
          * for constraining run-away queries.</p></remarks>
          */
@@ -93,9 +98,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
         }
 
         /**
-         * <summary>PrescriberProviderID</summary>
+         * <summary>Business Name: PrescriberProviderID</summary>
          * 
-         * <remarks>D:Prescriber Provider ID <p>Identifier of the 
+         * <remarks>Un-merged Business Name: PrescriberProviderID 
+         * Relationship: PORX_MT060270CA.PrescriberProviderID.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Identifier of the 
          * prescriber who created and/or supervised the prescriptions 
          * being retrieved.</p><p>The result set will be filtered to 
          * only include records which were either directly created by 
@@ -115,9 +122,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
         }
 
         /**
-         * <summary>PrescriptionStatuses</summary>
+         * <summary>Business Name: PrescriptionStatuses</summary>
          * 
-         * <remarks>E:Prescription Statuses <p>Indicates that 
+         * <remarks>Un-merged Business Name: PrescriptionStatuses 
+         * Relationship: PORX_MT060240CA.PrescriptionStatus.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates that 
          * prescriptions of a specific statuses are to be included in 
          * the result set. Allowable prescription status codes are: 
          * 'ABORTED, ACTIVE', 'COMPLETED', and 'SUSPENDED'.</p> 
@@ -131,14 +140,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
         }
 
         /**
-         * <summary>RxDispenseIndicator</summary>
+         * <summary>Business Name: RxDispenseIndicator</summary>
          * 
-         * <remarks>Rx Dispense Indicator <p>A coded value indicating 
-         * the dispensing (fill) status of the prescription to be 
-         * included in the result set. The only allowable Rx Dispense 
-         * Indicators is ND (Never Dispensed).</p> <p>Allows for finer 
-         * sub-set of prescriptions to be retrieved based on the fill 
-         * status of the prescription.</p></remarks>
+         * <remarks>Un-merged Business Name: RxDispenseIndicator 
+         * Relationship: PORX_MT060240CA.RxDispenseIndicator.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>A coded value 
+         * indicating the dispensing (fill) status of the prescription 
+         * to be included in the result set. The only allowable Rx 
+         * Dispense Indicators is ND (Never Dispensed).</p> <p>Allows 
+         * for finer sub-set of prescriptions to be retrieved based on 
+         * the fill status of the prescription.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"rxDispenseIndicator/value"})]
         public PrescriptionDispenseFilterCode RxDispenseIndicatorValue {

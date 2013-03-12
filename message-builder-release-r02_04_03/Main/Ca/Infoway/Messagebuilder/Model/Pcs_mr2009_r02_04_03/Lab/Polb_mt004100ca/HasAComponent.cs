@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,10 +27,10 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt004100
 
 
     /**
-     * <summary>has a component</summary>
+     * <summary>Business Name: has a component</summary>
      * 
-     * <remarks><p>Associates a Culture with a 
-     * SpecimenObservationCluster.</p></remarks>
+     * <p>Associates a Culture with a 
+     * SpecimenObservationCluster.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"POLB_MT004100CA.Component2"})]
     public class HasAComponent : MessagePartBean {
@@ -41,12 +41,24 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt004100
         public HasAComponent() {
             this.contextConductionInd = new BLImpl();
         }
+        /**
+         * <summary>Relationship: 
+         * POLB_MT004100CA.Component2.contextConductionInd</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"contextConductionInd"})]
         public bool? ContextConductionInd {
             get { return this.contextConductionInd.Value; }
             set { this.contextConductionInd.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * POLB_MT004100CA.Component2.specimenObservationCluster</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"specimenObservationCluster"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt004100ca.SpecimenObservationCluster SpecimenObservationCluster {
             get { return this.specimenObservationCluster; }

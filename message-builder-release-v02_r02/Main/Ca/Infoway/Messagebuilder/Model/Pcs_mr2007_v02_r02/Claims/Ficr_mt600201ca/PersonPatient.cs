@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,9 +29,9 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Ficr_mt60020
 
 
     /**
-     * <summary>Person Patient</summary>
+     * <summary>Business Name: Person Patient</summary>
      * 
-     * <remarks><p>The information of the person patient.</p></remarks>
+     * <p>The information of the person patient.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"FICR_MT600201CA.CoveredPartyAsPatientPerson"})]
     public class PersonPatient : MessagePartBean, Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Ficr_mt600201ca.ICoveredPartyAsPatientChoice {
@@ -56,9 +56,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Ficr_mt60020
             this.parentOrGuardianRoleRelationshipHolderName = new PNImpl();
         }
         /**
-         * <summary>Patient Name</summary>
+         * <summary>Business Name: Patient Name</summary>
          * 
-         * <remarks><p>Person Name</p> <p>Name of the Patient</p></remarks>
+         * <remarks>Relationship: 
+         * FICR_MT600201CA.CoveredPartyAsPatientPerson.name 
+         * Conformance/Cardinality: MANDATORY (1) <p>Name of the 
+         * Patient</p> <p>Person Name</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"name"})]
         public PersonName Name {
@@ -67,23 +70,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Ficr_mt60020
         }
 
         /**
-         * <summary>Person Gender</summary>
+         * <summary>Business Name: Person Gender</summary>
          * 
-         * <remarks><p>The gender of the patient</p> <p>Administrative 
+         * <remarks>Relationship: 
+         * FICR_MT600201CA.CoveredPartyAsPatientPerson.administrativeGenderCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Administrative 
          * Gender is mandatory for Invoices without a policy identifier 
          * (e.g. WCB or Auto claim).</p><p>This would also be mandatory 
          * for active enrollment.</p><p>May not be provided based on 
          * privacy legislation, so cannot be mandatory and then NP'd 
-         * b</p> <p>Administrative Gender is mandatory for Invoices 
-         * without a policy identifier (e.g. WCB or Auto 
-         * claim).</p><p>This would also be mandatory for active 
-         * enrollment.</p><p>May not be provided based on privacy 
-         * legislation, so cannot be mandatory and then NP'd b</p> 
-         * <p>Administrative Gender is mandatory for Invoices without a 
-         * policy identifier (e.g. WCB or Auto claim).</p><p>This would 
-         * also be mandatory for active enrollment.</p><p>May not be 
-         * provided based on privacy legislation, so cannot be 
-         * mandatory and then NP'd b</p></remarks>
+         * b</p> <p>The gender of the patient</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"administrativeGenderCode"})]
         public AdministrativeGender AdministrativeGenderCode {
@@ -92,9 +88,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Ficr_mt60020
         }
 
         /**
-         * <summary>Person Date of birth</summary>
+         * <summary>Business Name: Person Date of birth</summary>
          * 
-         * <remarks><p>Patient Date of Birth</p> <p>Patient Date of 
+         * <remarks>Relationship: 
+         * FICR_MT600201CA.CoveredPartyAsPatientPerson.birthTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Patient Date of 
          * Birth + Patient Name and/or Patient Gender is used to help 
          * confirm the policy identifier.</p><p>Birth date is mandatory 
          * for Invoices without a policy identifier (e.g. WCB or Auto 
@@ -102,39 +100,8 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Ficr_mt60020
          * enrollment.</p><p>May not be provided based on privacy 
          * legislation, so cannot be mandatory and then NP'd by a 
          * benefit group (e.g. Rx).</p><p>Only date portion should be 
-         * specified.</p> <p>Patient Date of Birth + Patient Name 
-         * and/or Patient Gender is used to help confirm the policy 
-         * identifier.</p><p>Birth date is mandatory for Invoices 
-         * without a policy identifier (e.g. WCB or Auto 
-         * claim).</p><p>This would also be mandatory for active 
-         * enrollment.</p><p>May not be provided based on privacy 
-         * legislation, so cannot be mandatory and then NP'd by a 
-         * benefit group (e.g. Rx).</p><p>Only date portion should be 
-         * specified.</p> <p>Patient Date of Birth + Patient Name 
-         * and/or Patient Gender is used to help confirm the policy 
-         * identifier.</p><p>Birth date is mandatory for Invoices 
-         * without a policy identifier (e.g. WCB or Auto 
-         * claim).</p><p>This would also be mandatory for active 
-         * enrollment.</p><p>May not be provided based on privacy 
-         * legislation, so cannot be mandatory and then NP'd by a 
-         * benefit group (e.g. Rx).</p><p>Only date portion should be 
-         * specified.</p> <p>Patient Date of Birth + Patient Name 
-         * and/or Patient Gender is used to help confirm the policy 
-         * identifier.</p><p>Birth date is mandatory for Invoices 
-         * without a policy identifier (e.g. WCB or Auto 
-         * claim).</p><p>This would also be mandatory for active 
-         * enrollment.</p><p>May not be provided based on privacy 
-         * legislation, so cannot be mandatory and then NP'd by a 
-         * benefit group (e.g. Rx).</p><p>Only date portion should be 
-         * specified.</p> <p>Patient Date of Birth + Patient Name 
-         * and/or Patient Gender is used to help confirm the policy 
-         * identifier.</p><p>Birth date is mandatory for Invoices 
-         * without a policy identifier (e.g. WCB or Auto 
-         * claim).</p><p>This would also be mandatory for active 
-         * enrollment.</p><p>May not be provided based on privacy 
-         * legislation, so cannot be mandatory and then NP'd by a 
-         * benefit group (e.g. Rx).</p><p>Only date portion should be 
-         * specified.</p> <p>RxS1: Specify as YYYYMMDD.</p></remarks>
+         * specified.</p> <p>RxS1: Specify as YYYYMMDD.</p> <p>Patient 
+         * Date of Birth</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"birthTime"})]
         public PlatformDate BirthTime {
@@ -143,11 +110,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Ficr_mt60020
         }
 
         /**
-         * <summary>Person multiple birth indicator</summary>
+         * <summary>Business Name: Person multiple birth indicator</summary>
          * 
-         * <remarks><p>An indicator used to specify if the patient is 
-         * part of a multiple birth, as in a twin, triplet, etc.</p> 
-         * <p>RxS1: Not permitted for this scenario.</p></remarks>
+         * <remarks>Relationship: 
+         * FICR_MT600201CA.CoveredPartyAsPatientPerson.multipleBirthInd 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>RxS1: Not 
+         * permitted for this scenario.</p> <p>An indicator used to 
+         * specify if the patient is part of a multiple birth, as in a 
+         * twin, triplet, etc.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"multipleBirthInd"})]
         public bool? MultipleBirthInd {
@@ -156,13 +126,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Ficr_mt60020
         }
 
         /**
-         * <summary>Person multiple birth order number</summary>
+         * <summary>Business Name: Person multiple birth order number</summary>
          * 
-         * <remarks><p>The order of birth of the patient in the 
-         * situation that the patient is indicated as part of a 
-         * multiple birth.</p> <p>Valid only if MultipleBirthIndicator 
-         * set to positive</p> <p>RxS1: Not permitted for this 
-         * scenario.</p></remarks>
+         * <remarks>Relationship: 
+         * FICR_MT600201CA.CoveredPartyAsPatientPerson.multipleBirthOrderNumber 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Valid only if 
+         * MultipleBirthIndicator set to positive</p> <p>RxS1: Not 
+         * permitted for this scenario.</p> <p>The order of birth of 
+         * the patient in the situation that the patient is indicated 
+         * as part of a multiple birth.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"multipleBirthOrderNumber"})]
         public int? MultipleBirthOrderNumber {
@@ -171,24 +143,20 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Ficr_mt60020
         }
 
         /**
-         * <summary>Id of parent</summary>
+         * <summary>Business Name: Id of parent</summary>
          * 
-         * <remarks><p>The parent or guardian information of the 
-         * patient.</p> <p>Guardian or Parent of new born. For example, 
-         * use by FNIHB, as the newborn child under 1 is assumed to be 
-         * a covered party under the policy. This would allow the 
-         * specification of guardian, as this is not a familial 
-         * relationship.</p><p>Guardian information is typically noted 
-         * at time of claim enrollment (registration) and therefore may 
-         * not be required on an invoice by invoice basis.</p> 
-         * <p>Guardian or Parent of new born. For example, use by 
-         * FNIHB, as the newborn child under 1 is assumed to be a 
-         * covered party under the policy. This would allow the 
-         * specification of guardian, as this is not a familial 
-         * relationship.</p><p>Guardian information is typically noted 
-         * at time of claim enrollment (registration) and therefore may 
-         * not be required on an invoice by invoice basis.</p> <p>RxS1: 
-         * Not permitted for this scenario.</p></remarks>
+         * <remarks>Relationship: 
+         * FICR_MT600201CA.ParentOrGuardianRole.id 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Guardian or 
+         * Parent of new born. For example, use by FNIHB, as the 
+         * newborn child under 1 is assumed to be a covered party under 
+         * the policy. This would allow the specification of guardian, 
+         * as this is not a familial relationship.</p><p>Guardian 
+         * information is typically noted at time of claim enrollment 
+         * (registration) and therefore may not be required on an 
+         * invoice by invoice basis.</p> <p>RxS1: Not permitted for 
+         * this scenario.</p> <p>The parent or guardian information of 
+         * the patient.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"parentOrGuardianRole/id"})]
         public Identifier ParentOrGuardianRoleId {
@@ -197,15 +165,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Ficr_mt60020
         }
 
         /**
-         * <summary>Parent or Guardian Relationship to patient</summary>
+         * <summary>Business Name: Parent or Guardian Relationship to 
+         * patient</summary>
          * 
-         * <remarks><p>The relationship of the parent or the guardian 
-         * to the Patient. I.e.. Father, Mother, Aunt</p> <p>The 
-         * allowable values are PRN (parent), MTH (mother) and FTH 
+         * <remarks>Relationship: 
+         * FICR_MT600201CA.ParentOrGuardianRole.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>The allowable 
+         * values are PRN (parent), MTH (mother) and FTH 
          * (father).</p><p>RxS1: Not permitted for this scenario.</p> 
-         * <p>The allowable values are PRN (parent), MTH (mother) and 
-         * FTH (father).</p><p>RxS1: Not permitted for this 
-         * scenario.</p></remarks>
+         * <p>The relationship of the parent or the guardian to the 
+         * Patient. I.e.. Father, Mother, Aunt</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"parentOrGuardianRole/code"})]
         public PersonalRelationshipRoleType ParentOrGuardianRoleCode {
@@ -214,10 +183,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Ficr_mt60020
         }
 
         /**
-         * <summary>Name of Parent or Guardian</summary>
+         * <summary>Business Name: Name of Parent or Guardian</summary>
          * 
-         * <remarks><p>Name of Parent or Guardian</p> <p>RxS1: Not 
-         * permitted for this scenario.</p></remarks>
+         * <remarks>Relationship: FICR_MT600201CA.ParentOrGuardian.name 
+         * Conformance/Cardinality: MANDATORY (1) <p>RxS1: Not 
+         * permitted for this scenario.</p> <p>Name of Parent or 
+         * Guardian</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"parentOrGuardianRole/relationshipHolder/name"})]
         public PersonName ParentOrGuardianRoleRelationshipHolderName {

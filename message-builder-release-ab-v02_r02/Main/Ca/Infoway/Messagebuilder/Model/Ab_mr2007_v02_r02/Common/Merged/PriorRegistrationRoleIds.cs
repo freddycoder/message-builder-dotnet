@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged {
 
 
     /**
-     * <summary>PriorRegistrationRoleIds</summary>
+     * <summary>Business Name: PriorRegistrationRoleIds</summary>
      * 
      * <remarks>MFMI_MT700716CA.PriorRegisteredRole: Prior 
      * Registration Role Ids <p>Identifies &quot;duplicate&quot; 
@@ -57,6 +57,23 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged {
             this.classCode = new CSImpl();
             this.id = new IIImpl();
         }
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * MFMI_MT700716CA.PriorRegisteredRole.classCode 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MFMI_MT700711CA.PriorRegisteredRole.classCode 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MFMI_MT700746CA.PriorRegisteredRole.classCode 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MFMI_MT700726CA.PriorRegisteredRole.classCode 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"classCode"})]
         public RoleClass ClassCode {
             get { return (RoleClass) this.classCode.Value; }
@@ -64,9 +81,29 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged {
         }
 
         /**
-         * <summary>PriorRegisteredRoleIds</summary>
+         * <summary>Business Name: PriorRegisteredRoleIds</summary>
          * 
-         * <remarks>Prior Registered Role Ids <p>Identifies 
+         * <remarks>Un-merged Business Name: PriorRegisteredRoleIds 
+         * Relationship: MFMI_MT700716CA.PriorRegisteredRole.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>Identifies 
+         * &quot;duplicate&quot; records of the registered item that 
+         * have been superseded by this record.</p> <p>Provides support 
+         * for merges.</p> Un-merged Business Name: 
+         * PriorRegisteredRoleIds Relationship: 
+         * MFMI_MT700711CA.PriorRegisteredRole.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>Identifies 
+         * &quot;duplicate&quot; records of the registered item that 
+         * have been superseded by this record.</p> <p>Provides support 
+         * for merges.</p> Un-merged Business Name: 
+         * PriorRegisteredRoleIds Relationship: 
+         * MFMI_MT700746CA.PriorRegisteredRole.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>Identifies 
+         * &quot;duplicate&quot; records of the registered item that 
+         * have been superseded by this record.</p> <p>Provides support 
+         * for merges.</p> Un-merged Business Name: 
+         * PriorRegisteredRoleIds Relationship: 
+         * MFMI_MT700726CA.PriorRegisteredRole.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>Identifies 
          * &quot;duplicate&quot; records of the registered item that 
          * have been superseded by this record.</p> <p>Provides support 
          * for merges.</p></remarks>

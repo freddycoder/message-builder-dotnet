@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -49,14 +49,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Porx_mt0
             this.expectedUseTime = new IVLImpl<TS, Interval<PlatformDate>>();
         }
         /**
-         * <summary>Dispense Type</summary>
+         * <summary>Business Name: Dispense Type</summary>
          * 
-         * <remarks><p>Indicates the type of dispensing event that is 
-         * performed. Examples include: Trial Fill, Completion of 
-         * Trial, Partial Fill, Emergency Fill, Samples, etc.</p> 
-         * <p>Indicates reason for the size of dispense. Because it 
-         * defines what type of dispense is occurring, the attribute is 
-         * mandatory.</p></remarks>
+         * <remarks>Relationship: PORX_MT020070CA.SupplyEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates reason 
+         * for the size of dispense. Because it defines what type of 
+         * dispense is occurring, the attribute is mandatory.</p> 
+         * <p>Indicates the type of dispensing event that is performed. 
+         * Examples include: Trial Fill, Completion of Trial, Partial 
+         * Fill, Emergency Fill, Samples, etc.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public ActPharmacySupplyType Code {
@@ -65,20 +66,23 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Porx_mt0
         }
 
         /**
-         * <summary>Dispense Processing and Pickup Date</summary>
+         * <summary>Business Name: Dispense Processing and Pickup Date</summary>
          * 
-         * <remarks><p>Represents the date the dispense product was 
-         * prepared and when the product was picked up by or delivered 
-         * to the patient. The dispense processing date and pickup date 
-         * can be back dated to reflect when the actual processing and 
-         * pickup occurred. The lower-bound of the period signifies the 
+         * <remarks>Relationship: 
+         * PORX_MT020070CA.SupplyEvent.effectiveTime 
+         * Conformance/Cardinality: MANDATORY (1) <p>Used by the system 
+         * in calculating expected exhaustion time. Valuable in 
+         * compliance checking. This attribute is mandatory because an 
+         * existing dispense record must at least indicate the date it 
+         * was processed.</p> <p>Must be able to post-date a dispense 
+         * (enter retroactively) e.g. system failure.</p> <p>Represents 
+         * the date the dispense product was prepared and when the 
+         * product was picked up by or delivered to the patient. The 
+         * dispense processing date and pickup date can be back dated 
+         * to reflect when the actual processing and pickup occurred. 
+         * The lower-bound of the period signifies the 
          * dispense-processing date whereas the upper-bound signifies 
-         * the dispense-pickup date.</p> <p>Used by the system in 
-         * calculating expected exhaustion time. Valuable in compliance 
-         * checking. This attribute is mandatory because an existing 
-         * dispense record must at least indicate the date it was 
-         * processed.</p> <p>Must be able to post-date a dispense 
-         * (enter retroactively) e.g. system failure.</p></remarks>
+         * the dispense-pickup date.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"effectiveTime"})]
         public Interval<PlatformDate> EffectiveTime {
@@ -87,11 +91,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Porx_mt0
         }
 
         /**
-         * <summary>Number of remaining fills</summary>
+         * <summary>Business Name: Number of remaining fills</summary>
          * 
-         * <remarks><p>Indicates the number or remaining fills, if any, 
-         * for this prescription.</p> <p>The number of remaining fills 
-         * is used to evaluate the &quot;completed&quot; status of the 
+         * <remarks>Relationship: 
+         * PORX_MT020070CA.SupplyEvent.repeatNumber 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The number of 
+         * remaining fills is used to evaluate the 
+         * &quot;completed&quot; status of the prescription.</p> 
+         * <p>Indicates the number or remaining fills, if any, for this 
          * prescription.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"repeatNumber"})]
@@ -101,14 +108,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Porx_mt0
         }
 
         /**
-         * <summary>Dispensed Quantity</summary>
+         * <summary>Business Name: Dispensed Quantity</summary>
          * 
-         * <remarks><p>The amount of medication that has been 
-         * dispensed. Includes unit of measure.</p> <p>Critical in 
+         * <remarks>Relationship: PORX_MT020070CA.SupplyEvent.quantity 
+         * Conformance/Cardinality: MANDATORY (1) <p>Critical in 
          * understanding the patient's medication profile, both past 
          * and current, This is also mandatory to allow determination 
          * of the amount that remains to be dispensed against the 
-         * prescription.</p></remarks>
+         * prescription.</p> <p>The amount of medication that has been 
+         * dispensed. Includes unit of measure.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"quantity"})]
         public PhysicalQuantity Quantity {
@@ -117,15 +125,18 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Porx_mt0
         }
 
         /**
-         * <summary>Dispensed Days Supply</summary>
+         * <summary>Business Name: Dispensed Days Supply</summary>
          * 
-         * <remarks><p>The number of days that the dispensed quantity 
-         * is expected to last.</p> <p>Useful in monitoring patient 
-         * compliance. May also be useful in determining and managing 
-         * certain contraindications ('Fill-Too-Soon', 'Fill-Too-Late', 
-         * and 'Duration of Therapy'). Because 'Days Supply' may be 
-         * necessary to compute total dispensed quantity, it is made a 
-         * 'populated' field.</p></remarks>
+         * <remarks>Relationship: 
+         * PORX_MT020070CA.SupplyEvent.expectedUseTime 
+         * Conformance/Cardinality: POPULATED (1) <p>Useful in 
+         * monitoring patient compliance. May also be useful in 
+         * determining and managing certain contraindications 
+         * ('Fill-Too-Soon', 'Fill-Too-Late', and 'Duration of 
+         * Therapy'). Because 'Days Supply' may be necessary to compute 
+         * total dispensed quantity, it is made a 'populated' 
+         * field.</p> <p>The number of days that the dispensed quantity 
+         * is expected to last.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"expectedUseTime"})]
         public Interval<PlatformDate> ExpectedUseTime {
@@ -133,12 +144,23 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Porx_mt0
             set { this.expectedUseTime.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: PORX_MT020070CA.SupplyEvent.product</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"product"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.Dispensed Product {
             get { return this.product; }
             set { this.product = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PORX_MT020070CA.Destination2.serviceDeliveryLocation</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"destination/serviceDeliveryLocation"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Merged.DispenseShipToLocation DestinationServiceDeliveryLocation {
             get { return this.destinationServiceDeliveryLocation; }

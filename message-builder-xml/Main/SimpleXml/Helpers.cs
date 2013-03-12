@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,8 +14,8 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2012-01-18 21:44:35 -0500 (Wed, 18 Jan 2012) $
- * Revision:      $LastChangedRevision: 4352 $
+ * Last modified: $LastChangedDate: 2013-03-05 17:07:40 -0500 (Tue, 05 Mar 2013) $
+ * Revision:      $LastChangedRevision: 6681 $
  */
 
 using System;
@@ -234,7 +234,7 @@ namespace Platform.SimpleXml
             }
 
             if (null == desc.ValueSetter)
-                throw new Exception(String.Format("Unbale to find a way to populate value of {0} in {1}",
+                throw new Exception(String.Format("Unable to find a way to populate value of {0} in {1}",
                     desc.XmlName, null != contInst ? contInst.ToString() : "null"));
 
             written = InvokeSet(desc.ValueSetter, fieldValue, desc.ValueSetType, contInst);

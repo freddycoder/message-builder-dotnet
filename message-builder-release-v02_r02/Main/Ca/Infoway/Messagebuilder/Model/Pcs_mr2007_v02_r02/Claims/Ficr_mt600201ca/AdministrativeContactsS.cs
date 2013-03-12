@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -39,10 +39,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Ficr_mt60020
             this.code = new CVImpl();
         }
         /**
-         * <summary>Administrative Contact ID</summary>
+         * <summary>Business Name: Administrative Contact ID</summary>
          * 
-         * <remarks><p>Not permitted to facilitate real time 
-         * processing.</p></remarks>
+         * <remarks>Relationship: FICR_MT600201CA.ContactParty.id 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Not permitted to 
+         * facilitate real time processing.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -51,10 +52,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Ficr_mt60020
         }
 
         /**
-         * <summary>Administrative Contact Type</summary>
+         * <summary>Business Name: Administrative Contact Type</summary>
          * 
-         * <remarks><p>Not permitted to facilitate real time 
-         * processing.</p></remarks>
+         * <remarks>Relationship: FICR_MT600201CA.ContactParty.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Not permitted to 
+         * facilitate real time processing.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public AdministrativeContactRoleType Code {
@@ -62,6 +64,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Ficr_mt60020
             set { this.code.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * FICR_MT600201CA.ContactParty.contactPerson</summary>
+         * 
+         * <remarks>Conformance/Cardinality: REQUIRED (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"contactPerson"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Ficr_mt600201ca.AdministrativeContactPerson ContactPerson {
             get { return this.contactPerson; }

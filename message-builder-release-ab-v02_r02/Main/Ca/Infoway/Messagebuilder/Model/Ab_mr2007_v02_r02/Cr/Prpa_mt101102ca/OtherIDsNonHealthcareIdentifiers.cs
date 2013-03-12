@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,13 +30,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Cr.Prpa_mt101102ca {
 
 
     /**
-     * <summary>Other IDs Non Healthcare Identifiers</summary>
+     * <summary>Business Name: Other IDs Non Healthcare Identifiers</summary>
      * 
-     * <remarks><p>Identifiers used for the focal person by other 
+     * <p>Identifiers used for the focal person by other 
      * organizations are sent in the OtherIDs class. The other 
      * organization can be sent in the E_Organization Entity 
      * Class</p> <p>Provides the ability to capture additional 
-     * client identifiers that are not healthcare specific</p></remarks>
+     * client identifiers that are not healthcare specific</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"PRPA_MT101102CA.OtherIDs"})]
     public class OtherIDsNonHealthcareIdentifiers : MessagePartBean {
@@ -57,12 +57,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Cr.Prpa_mt101102ca {
             this.scopingIdOrganizationName = new STImpl();
         }
         /**
-         * <summary>NonHealthcare Identification</summary>
+         * <summary>Business Name: NonHealthcare Identification</summary>
          * 
-         * <remarks><p>Other non-healthcare identifiers for the Client 
-         * (e.g. Drivers License, RCMP, DND, Social Insurance 
-         * Number)</p> <p>Populated attribute supports the 
-         * identification of the client</p></remarks>
+         * <remarks>Relationship: PRPA_MT101102CA.OtherIDs.id 
+         * Conformance/Cardinality: POPULATED (1) <p>Other 
+         * non-healthcare identifiers for the Client (e.g. Drivers 
+         * License, RCMP, DND, Social Insurance Number)</p> 
+         * <p>Populated attribute supports the identification of the 
+         * client</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public ICollection<Identifier> Id {
@@ -70,12 +72,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Cr.Prpa_mt101102ca {
         }
 
         /**
-         * <summary>NonHealthcare Identification Code</summary>
+         * <summary>Business Name: NonHealthcare Identification Code</summary>
          * 
-         * <remarks><p>A pan Canadian code further specifying the kind 
-         * of Role such as Drivers License, RCMP, DND, Social Insurance 
-         * Number</p> <p>Populated attribute supports the 
-         * identification of the client</p></remarks>
+         * <remarks>Relationship: PRPA_MT101102CA.OtherIDs.code 
+         * Conformance/Cardinality: POPULATED (1) <p>A pan Canadian 
+         * code further specifying the kind of Role such as Drivers 
+         * License, RCMP, DND, Social Insurance Number</p> <p>Populated 
+         * attribute supports the identification of the client</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public OtherIDsRoleCode Code {
@@ -83,12 +86,24 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Cr.Prpa_mt101102ca {
             set { this.code.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PRPA_MT101102CA.IdOrganization.classCode</summary>
+         * 
+         * <remarks>Conformance/Cardinality: OPTIONAL (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"scopingIdOrganization/classCode"})]
         public EntityClass ScopingIdOrganizationClassCode {
             get { return (EntityClass) this.scopingIdOrganizationClassCode.Value; }
             set { this.scopingIdOrganizationClassCode.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PRPA_MT101102CA.IdOrganization.determinerCode</summary>
+         * 
+         * <remarks>Conformance/Cardinality: OPTIONAL (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"scopingIdOrganization/determinerCode"})]
         public EntityDeterminer ScopingIdOrganizationDeterminerCode {
             get { return (EntityDeterminer) this.scopingIdOrganizationDeterminerCode.Value; }
@@ -96,12 +111,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Cr.Prpa_mt101102ca {
         }
 
         /**
-         * <summary>NonHealthcare Organization Identifier</summary>
+         * <summary>Business Name: NonHealthcare Organization 
+         * Identifier</summary>
          * 
-         * <remarks><p>Unique identifier for the organization that 
-         * assigned the non-healthcare identifier for the client.</p> 
-         * <p>Mandatory attribute supports the identification of the 
-         * organization assigning the identifier to the client</p></remarks>
+         * <remarks>Relationship: PRPA_MT101102CA.IdOrganization.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>Unique identifier 
+         * for the organization that assigned the non-healthcare 
+         * identifier for the client.</p> <p>Mandatory attribute 
+         * supports the identification of the organization assigning 
+         * the identifier to the client</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"scopingIdOrganization/id"})]
         public Identifier ScopingIdOrganizationId {
@@ -110,11 +128,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Cr.Prpa_mt101102ca {
         }
 
         /**
-         * <summary>NonHealthcare Organization Name</summary>
+         * <summary>Business Name: NonHealthcare Organization Name</summary>
          * 
-         * <remarks><p>A name for the non-healthcare organization</p> 
-         * <p>Populated attribute supports the identification of the 
-         * organization assigning the identifier to the client</p></remarks>
+         * <remarks>Relationship: PRPA_MT101102CA.IdOrganization.name 
+         * Conformance/Cardinality: POPULATED (1) <p>A name for the 
+         * non-healthcare organization</p> <p>Populated attribute 
+         * supports the identification of the organization assigning 
+         * the identifier to the client</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"scopingIdOrganization/name"})]
         public String ScopingIdOrganizationName {

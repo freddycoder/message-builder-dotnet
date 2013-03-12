@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,6 +28,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt004200
     using Ca.Infoway.Messagebuilder.Model;
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt130001ca;
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged;
+    using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Domainvalue;
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Merged;
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged;
     using System;
@@ -35,16 +36,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt004200
 
 
     /**
-     * <summary>Report Header</summary>
+     * <summary>Business Name: Report Header</summary>
      * 
-     * <remarks><p>Report or result header information. Contains 
-     * associations to the appropriate patient, the order and/or 
-     * promise which this result fulfills, and any report-level 
-     * annotations.</p> <p>The header allows for report-level 
-     * observations, the association to the patient (in this model, 
-     * all results in one message pertain to one patient), and the 
-     * public health reportable test indicator and one or more 
-     * culture observation object complexes.</p></remarks>
+     * <p>The header allows for report-level observations, the 
+     * association to the patient (in this model, all results in 
+     * one message pertain to one patient), and the public health 
+     * reportable test indicator and one or more culture 
+     * observation object complexes.</p> <p>Report or result header 
+     * information. Contains associations to the appropriate 
+     * patient, the order and/or promise which this result 
+     * fulfills, and any report-level annotations.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"POLB_MT004200CA.ObservationReport"})]
     public class ReportHeader : MessagePartBean, Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt004200ca.IObservationChoice {
@@ -90,22 +91,36 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt004200
             this.component4ObservationChoice = new List<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt004200ca.IObservationChoice>();
             this.subjectOf2 = new List<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.Includes>();
         }
+        /**
+         * <summary>Relationship: 
+         * POLB_MT004200CA.ObservationChoice.specimen</summary>
+         * 
+         * <remarks>Conformance/Cardinality: REQUIRED (0-10)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"specimen"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Merged.ReportSectionSpecimen> Specimen {
             get { return this.specimen; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * POLB_MT004200CA.ObservationChoice.receiver</summary>
+         * 
+         * <remarks>Conformance/Cardinality: REQUIRED (0-20)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"receiver"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Merged.ElectronicResultReceiver> Receiver {
             get { return this.receiver; }
         }
 
         /**
-         * <summary>A: Observation Report Identifier</summary>
+         * <summary>Business Name: A: Observation Report Identifier</summary>
          * 
-         * <remarks><p>Unique identifier for this microbiology 
-         * result.</p> <p>Unique identifiers are required for 
-         * revisions, corrections, and cancel transactions.</p></remarks>
+         * <remarks>Relationship: POLB_MT004200CA.ObservationReport.id 
+         * Conformance/Cardinality: POPULATED (1) <p>Unique identifiers 
+         * are required for revisions, corrections, and cancel 
+         * transactions.</p> <p>Unique identifier for this microbiology 
+         * result.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -113,39 +128,63 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt004200
             set { this.id.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * POLB_MT004200CA.ObservationChoice.performer</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1-2)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"performer"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Merged.WasPerformedBy> Performer {
             get { return this.performer; }
         }
 
         /**
-         * <summary>Lab Observation Report Type</summary>
+         * <summary>Business Name: Lab Observation Report Type</summary>
          * 
-         * <remarks><p>The type of this report.</p></remarks>
+         * <remarks>Relationship: 
+         * POLB_MT004200CA.ObservationReport.code 
+         * Conformance/Cardinality: POPULATED (1) <p>The type of this 
+         * report.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
-        public Code Code {
-            get { return (Code) this.code.Value; }
+        public ObservationLabReportType Code {
+            get { return (ObservationLabReportType) this.code.Value; }
             set { this.code.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * POLB_MT004200CA.PrimaryInformationRecipient.assignedEntity</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"primaryInformationRecipient/assignedEntity"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.HealthcareWorker PrimaryInformationRecipientAssignedEntity {
             get { return this.primaryInformationRecipientAssignedEntity; }
             set { this.primaryInformationRecipientAssignedEntity = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * POLB_MT004200CA.InFulfillmentOf.fulfillmentChoice</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"inFulfillmentOf/fulfillmentChoice"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Merged.IFulfillmentChoice> InFulfillmentOfFulfillmentChoice {
             get { return this.inFulfillmentOfFulfillmentChoice; }
         }
 
         /**
-         * <summary>C:Observation Report Title</summary>
+         * <summary>Business Name: C:Observation Report Title</summary>
          * 
-         * <remarks><p>This allows the reporting lab to add a title to 
-         * this result.</p> <p>A report title describes or labels the 
-         * general content and/or context of the result.</p></remarks>
+         * <remarks>Relationship: 
+         * POLB_MT004200CA.ObservationReport.title 
+         * Conformance/Cardinality: POPULATED (1) <p>A report title 
+         * describes or labels the general content and/or context of 
+         * the result.</p> <p>This allows the reporting lab to add a 
+         * title to this result.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"title"})]
         public String Title {
@@ -153,6 +192,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt004200
             set { this.title.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * POLB_MT004200CA.PertinentInformation1.outbreakEvent</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"pertinentInformation1/outbreakEvent"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Merged.Outbreak PertinentInformation1OutbreakEvent {
             get { return this.pertinentInformation1OutbreakEvent; }
@@ -160,11 +205,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt004200
         }
 
         /**
-         * <summary>Rendered Report</summary>
+         * <summary>Business Name: Rendered Report</summary>
          * 
-         * <remarks><p>This attribute is used to send a Rendered Report 
-         * (or reference to) which includes only those elements in the 
-         * message in a displayable format.</p></remarks>
+         * <remarks>Relationship: 
+         * POLB_MT004200CA.ObservationReport.text 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>This attribute is 
+         * used to send a Rendered Report (or reference to) which 
+         * includes only those elements in the message in a displayable 
+         * format.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"text"})]
         public EncapsulatedData Text {
@@ -172,21 +220,30 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt004200
             set { this.text.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * POLB_MT004200CA.PertinentInformation2.supportingClinicalObservationEvent</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"pertinentInformation2/supportingClinicalObservationEvent"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Merged.SupportingClinicalInformation> PertinentInformation2SupportingClinicalObservationEvent {
             get { return this.pertinentInformation2SupportingClinicalObservationEvent; }
         }
 
         /**
-         * <summary>D:Observation Report Status</summary>
+         * <summary>Business Name: D:Observation Report Status</summary>
          * 
-         * <remarks><p>The status or state of the report. The 
-         * statusCode is not as fine-grained as lab reporting statuses 
-         * such as preliminary. A &quot;preliminary&quot; result is a 
-         * result whose statusCode=active and ProcessStep (procedure 
-         * event) valued &quot;preliminary&quot;.</p> <p>The statusCode 
+         * <remarks>Relationship: 
+         * POLB_MT004200CA.ObservationReport.statusCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>The statusCode 
          * represents the &quot;state&quot; of the act e.g. active=in 
-         * progress or not yet started, complete=final.</p></remarks>
+         * progress or not yet started, complete=final.</p> <p>The 
+         * status or state of the report. The statusCode is not as 
+         * fine-grained as lab reporting statuses such as preliminary. 
+         * A &quot;preliminary&quot; result is a result whose 
+         * statusCode=active and ProcessStep (procedure event) valued 
+         * &quot;preliminary&quot;.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"statusCode"})]
         public ActStatus StatusCode {
@@ -194,16 +251,24 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt004200
             set { this.statusCode.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * POLB_MT004200CA.Component2.reportableTestIndicator</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"component1/reportableTestIndicator"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Merged.ReportableHealthIndicator> Component1ReportableTestIndicator {
             get { return this.component1ReportableTestIndicator; }
         }
 
         /**
-         * <summary>Observation Report Date/Time</summary>
+         * <summary>Business Name: Observation Report Date/Time</summary>
          * 
-         * <remarks><p>The date and time the report was 
-         * &quot;released&quot;.</p></remarks>
+         * <remarks>Relationship: 
+         * POLB_MT004200CA.ObservationReport.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The date and time 
+         * the report was &quot;released&quot;.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"effectiveTime"})]
         public PlatformDate EffectiveTime {
@@ -211,6 +276,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt004200
             set { this.effectiveTime.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * POLB_MT004200CA.Component3.resultSortKey</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"component2/resultSortKey"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Merged.ResultSortKey Component2ResultSortKey {
             get { return this.component2ResultSortKey; }
@@ -218,50 +289,87 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt004200
         }
 
         /**
-         * <summary>Result Masking Indicator</summary>
+         * <summary>Business Name: Result Masking Indicator</summary>
          * 
-         * <remarks><p>Any piece of information is potentially subject 
-         * to 'masking', restricting it's availability from providers 
-         * who have not been specifically authorized. Additionally, 
-         * some clinical data requires the ability to mark as &quot;not 
-         * for direct disclosure to patient&quot;. The values in this 
-         * attribute enable the above masking to be represented and 
-         * messaged.</p> <p>This code allows for privacy control by 
-         * patients as well as flagged for 'not for disclosure to 
-         * patient' by care providers.</p></remarks>
+         * <remarks>Relationship: 
+         * POLB_MT004200CA.ObservationReport.confidentialityCode 
+         * Conformance/Cardinality: REQUIRED (0-2) <p>This code allows 
+         * for privacy control by patients as well as flagged for 'not 
+         * for disclosure to patient' by care providers.</p> <p>Any 
+         * piece of information is potentially subject to 'masking', 
+         * restricting it's availability from providers who have not 
+         * been specifically authorized. Additionally, some clinical 
+         * data requires the ability to mark as &quot;not for direct 
+         * disclosure to patient&quot;. The values in this attribute 
+         * enable the above masking to be represented and messaged.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"confidentialityCode"})]
         public ICollection<x_BasicConfidentialityKind> ConfidentialityCode {
             get { return this.confidentialityCode.RawSet<x_BasicConfidentialityKind>(); }
         }
 
+        /**
+         * <summary>Relationship: 
+         * POLB_MT004200CA.Component4.reportLevelObservationEvent</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"component3/reportLevelObservationEvent"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt004200ca.ReportSectionObservation> Component3ReportLevelObservationEvent {
             get { return this.component3ReportLevelObservationEvent; }
         }
 
+        /**
+         * <summary>Relationship: POLB_MT004200CA.RecordTarget.patient</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"recordTarget/patient"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.Patient_1 RecordTargetPatient {
             get { return this.recordTargetPatient; }
             set { this.recordTargetPatient = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * POLB_MT004200CA.Component1.observationChoice</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"component4/observationChoice"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt004200ca.IObservationChoice> Component4ObservationChoice {
             get { return this.component4ObservationChoice; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * POLB_MT004200CA.Subject1.controlActEvent</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf1/controlActEvent"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt130001ca.VersionInformation SubjectOf1ControlActEvent {
             get { return this.subjectOf1ControlActEvent; }
             set { this.subjectOf1ControlActEvent = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * POLB_MT004200CA.ObservationChoice.subjectOf2</summary>
+         * 
+         * <remarks>Conformance/Cardinality: REQUIRED (0-100)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf2"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.Includes> SubjectOf2 {
             get { return this.subjectOf2; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * POLB_MT004200CA.Subject3.resultStatusProcessStep</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf3/resultStatusProcessStep"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Merged.ResultStatusProcessStep SubjectOf3ResultStatusProcessStep {
             get { return this.subjectOf3ResultStatusProcessStep; }

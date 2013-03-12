@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,6 +35,20 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged {
         public PolicyUnderwriter() {
             this.carrierRoleId = new IIImpl();
         }
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * FICR_MT610201CA.PolicyUnderwriter.carrierRole 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * FICR_MT600201CA.PolicyUnderwriter.carrierRole 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * FICR_MT500201CA.PolicyUnderwriter.carrierRole 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"carrierRole"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.CarrierRole CarrierRole {
             get { return this.carrierRole; }
@@ -42,9 +56,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged {
         }
 
         /**
-         * <summary>CarrierRoleId</summary>
+         * <summary>Business Name: CarrierRoleId</summary>
          * 
-         * <remarks>Carrier Role Id</remarks>
+         * <remarks>Un-merged Business Name: CarrierRoleId 
+         * Relationship: COCT_MT680000CA.CarrierRole.id 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"carrierRole/id"})]
         public Identifier CarrierRoleId {

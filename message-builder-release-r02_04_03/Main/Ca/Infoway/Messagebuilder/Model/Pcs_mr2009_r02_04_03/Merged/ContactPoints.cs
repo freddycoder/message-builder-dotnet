@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,27 +29,27 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged {
 
 
     /**
-     * <summary>ContactPoints</summary>
+     * <summary>Business Name: ContactPoints</summary>
      * 
      * <remarks>PRPA_MT202302CA.ContactParty: Contact Points <p>At 
-     * least one of addr or telecom must be supplied.</p> 
-     * <p>Administrative contacts within a location, allowing for 
-     * communication with various departments or areas.</p> <p>One 
-     * of the most common reasons for looking up a service delivery 
+     * least one of addr or telecom must be supplied.</p> <p>One of 
+     * the most common reasons for looking up a service delivery 
      * location is to find contact information for the 
-     * location.</p> PRPA_MT202301CA.ContactParty: Contact Points 
+     * location.</p> <p>Administrative contacts within a location, 
+     * allowing for communication with various departments or 
+     * areas.</p> PRPA_MT202301CA.ContactParty: Contact Points 
      * <p>At least one of addr or telecom must be supplied.</p> 
-     * <p>Administrative contacts within a location, allowing for 
-     * communication with various departments or areas.</p> <p>One 
-     * of the most common reasons for looking up a service delivery 
-     * location is to find contact information for the 
-     * location.</p> PRPA_MT202303CA.ContactParty: Contact Points 
+     * <p>One of the most common reasons for looking up a service 
+     * delivery location is to find contact information for the 
+     * location.</p> <p>Administrative contacts within a location, 
+     * allowing for communication with various departments or 
+     * areas.</p> PRPA_MT202303CA.ContactParty: Contact Points 
      * <p>At least one of addr or telecom must be supplied.</p> 
-     * <p>Administrative contacts within a location, allowing for 
-     * communication with various departments or areas.</p> <p>One 
-     * of the most common reasons for looking up a service delivery 
-     * location is to find contact information for the 
-     * location.</p></remarks>
+     * <p>One of the most common reasons for looking up a service 
+     * delivery location is to find contact information for the 
+     * location.</p> <p>Administrative contacts within a location, 
+     * allowing for communication with various departments or 
+     * areas.</p></remarks>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"PRPA_MT202301CA.ContactParty","PRPA_MT202302CA.ContactParty","PRPA_MT202303CA.ContactParty"})]
     public class ContactPoints : MessagePartBean {
@@ -64,14 +64,32 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged {
             this.telecom = new SETImpl<TEL, TelecommunicationAddress>(typeof(TELImpl));
         }
         /**
-         * <summary>ContactType</summary>
+         * <summary>Business Name: ContactType</summary>
          * 
-         * <remarks>A: Contact Type <p>Identifies the general purpose 
+         * <remarks>Un-merged Business Name: ContactType Relationship: 
+         * PRPA_MT202302CA.ContactParty.code Conformance/Cardinality: 
+         * MANDATORY (1) <p>Helps the user to know which set of contact 
+         * information should be used in a particular circumstance. 
+         * This is a key differentiator of each contact point, and is 
+         * therefore mandatory.</p> <p>Identifies the general purpose 
          * for which this contact information is appropriate. E.g. 
-         * Admitting, billing, after-hours, etc.</p> <p>Helps the user 
-         * to know which set of contact information should be used in a 
-         * particular circumstance. This is a key differentiator of 
-         * each contact point, and is therefore mandatory.</p></remarks>
+         * Admitting, billing, after-hours, etc.</p> Un-merged Business 
+         * Name: ContactType Relationship: 
+         * PRPA_MT202301CA.ContactParty.code Conformance/Cardinality: 
+         * MANDATORY (1) <p>Helps the user to know which set of contact 
+         * information should be used in a particular circumstance. 
+         * This is a key differentiator of each contact point, and is 
+         * therefore mandatory.</p> <p>Identifies the general purpose 
+         * for which this contact information is appropriate. E.g. 
+         * Admitting, billing, after-hours, etc.</p> Un-merged Business 
+         * Name: ContactType Relationship: 
+         * PRPA_MT202303CA.ContactParty.code Conformance/Cardinality: 
+         * MANDATORY (1) <p>Helps the user to know which set of contact 
+         * information should be used in a particular circumstance. 
+         * This is a key differentiator of each contact point, and is 
+         * therefore mandatory.</p> <p>Identifies the general purpose 
+         * for which this contact information is appropriate. E.g. 
+         * Admitting, billing, after-hours, etc.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public AdministrativeContactRoleType Code {
@@ -80,12 +98,24 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged {
         }
 
         /**
-         * <summary>ContactAddress</summary>
+         * <summary>Business Name: ContactAddress</summary>
          * 
-         * <remarks>B: Contact Address <p>Provides a mailing address 
-         * for the location</p> <p>Used when communicating by post. 
-         * Physical addresses may also be used for courier-type 
-         * deliveries.</p></remarks>
+         * <remarks>Un-merged Business Name: ContactAddress 
+         * Relationship: PRPA_MT202302CA.ContactParty.addr 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Used when 
+         * communicating by post. Physical addresses may also be used 
+         * for courier-type deliveries.</p> <p>Provides a mailing 
+         * address for the location</p> Un-merged Business Name: 
+         * ContactAddress Relationship: 
+         * PRPA_MT202301CA.ContactParty.addr Conformance/Cardinality: 
+         * REQUIRED (0-1) <p>Used when communicating by post. Physical 
+         * addresses may also be used for courier-type deliveries.</p> 
+         * <p>Provides a mailing address for the location</p> Un-merged 
+         * Business Name: ContactAddress Relationship: 
+         * PRPA_MT202303CA.ContactParty.addr Conformance/Cardinality: 
+         * REQUIRED (0-1) <p>Used when communicating by post. Physical 
+         * addresses may also be used for courier-type deliveries.</p> 
+         * <p>Provides a mailing address for the location</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"addr"})]
         public PostalAddress Addr {
@@ -94,12 +124,24 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged {
         }
 
         /**
-         * <summary>ContactPhoneNumberAndEmails</summary>
+         * <summary>Business Name: ContactPhoneNumberAndEmails</summary>
          * 
-         * <remarks>C: Contact Phone Number and Emails <p>Information 
-         * used to communicate with the location by phone, fax or 
-         * e-mail.</p> <p>Used for more immediate contact 
-         * requirements</p></remarks>
+         * <remarks>Un-merged Business Name: 
+         * ContactPhoneNumberAndEmails Relationship: 
+         * PRPA_MT202302CA.ContactParty.telecom 
+         * Conformance/Cardinality: REQUIRED (0-3) <p>Used for more 
+         * immediate contact requirements</p> <p>Information used to 
+         * communicate with the location by phone, fax or e-mail.</p> 
+         * Un-merged Business Name: ContactPhoneNumberAndEmails 
+         * Relationship: PRPA_MT202301CA.ContactParty.telecom 
+         * Conformance/Cardinality: REQUIRED (0-3) <p>Used for more 
+         * immediate contact requirements</p> <p>Information used to 
+         * communicate with the location by phone, fax or e-mail.</p> 
+         * Un-merged Business Name: ContactPhoneNumberAndEmails 
+         * Relationship: PRPA_MT202303CA.ContactParty.telecom 
+         * Conformance/Cardinality: REQUIRED (0-3) <p>Used for more 
+         * immediate contact requirements</p> <p>Information used to 
+         * communicate with the location by phone, fax or e-mail.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"telecom"})]
         public ICollection<TelecommunicationAddress> Telecom {

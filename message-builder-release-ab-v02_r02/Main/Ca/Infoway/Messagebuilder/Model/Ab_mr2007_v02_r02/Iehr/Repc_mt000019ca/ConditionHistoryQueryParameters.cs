@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,11 +27,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Iehr.Repc_mt000019ca
 
 
     /**
-     * <summary>Condition History Query Parameters</summary>
+     * <summary>Business Name: Condition History Query Parameters</summary>
      * 
-     * <remarks><p>Defines the set of parameters that may be used 
-     * to filter the query response</p> <p>Root class for query 
-     * definition</p></remarks>
+     * <p>Defines the set of parameters that may be used to filter 
+     * the query response</p> <p>Root class for query 
+     * definition</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"REPC_MT000019CA.ParameterList"})]
     public class ConditionHistoryQueryParameters : MessagePartBean {
@@ -42,12 +42,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Iehr.Repc_mt000019ca
             this.allergyIntoleranceIDValue = new IIImpl();
         }
         /**
-         * <summary>F:Allergy Intolerance Identifier</summary>
+         * <summary>Business Name: F:Allergy Intolerance Identifier</summary>
          * 
-         * <remarks><p>Identifier of the Allergy Intolerance record to 
-         * be retrieved.</p> <p>Identifies the specific allergy 
-         * intolerance record to retrieve and is therefore 
-         * mandatory.</p></remarks>
+         * <remarks>Relationship: 
+         * REPC_MT000019CA.AllergyIntoleranceID.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Identifier of the 
+         * Allergy Intolerance record to be retrieved.</p> 
+         * <p>Identifies the specific allergy intolerance record to 
+         * retrieve and is therefore mandatory.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"allergyIntoleranceID/value"})]
         public Identifier AllergyIntoleranceIDValue {

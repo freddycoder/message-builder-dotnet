@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,18 +27,8 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Qucr_mt810
 
 
     /**
-     * <summary>Carrier or Third Party Administrator</summary>
+     * <summary>Business Name: Carrier or Third Party Administrator</summary>
      * 
-     * <remarks><p>An organization that establishes insurance 
-     * policies, determines eligibility and benefits under those 
-     * insurance policies, and underwrites payments for products 
-     * and/or services provided to a beneficiary (person or 
-     * organization).</p><p>A Carrier may retain a TPA (Third Party 
-     * Administrator) to perform some or all invoice validation, 
-     * adjudication and payment.</p><p>This may also be known as 
-     * the insurance company or public insurance carrier.</p><p>A 
-     * Carrier or TPA (Third Party Administrator) who performs some 
-     * or all invoice validation, adjudication and payment.</p> 
      * <p>An organization that establishes insurance policies, 
      * determines eligibility and benefits under those insurance 
      * policies, and underwrites payments for products and/or 
@@ -48,27 +38,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Qucr_mt810
      * adjudication and payment.</p><p>This may also be known as 
      * the insurance company or public insurance carrier.</p><p>A 
      * Carrier or TPA (Third Party Administrator) who performs some 
-     * or all invoice validation, adjudication and payment.</p> 
-     * <p>An organization that establishes insurance policies, 
-     * determines eligibility and benefits under those insurance 
-     * policies, and underwrites payments for products and/or 
-     * services provided to a beneficiary (person or 
-     * organization).</p><p>A Carrier may retain a TPA (Third Party 
-     * Administrator) to perform some or all invoice validation, 
-     * adjudication and payment.</p><p>This may also be known as 
-     * the insurance company or public insurance carrier.</p><p>A 
-     * Carrier or TPA (Third Party Administrator) who performs some 
-     * or all invoice validation, adjudication and payment.</p> 
-     * <p>An organization that establishes insurance policies, 
-     * determines eligibility and benefits under those insurance 
-     * policies, and underwrites payments for products and/or 
-     * services provided to a beneficiary (person or 
-     * organization).</p><p>A Carrier may retain a TPA (Third Party 
-     * Administrator) to perform some or all invoice validation, 
-     * adjudication and payment.</p><p>This may also be known as 
-     * the insurance company or public insurance carrier.</p><p>A 
-     * Carrier or TPA (Third Party Administrator) who performs some 
-     * or all invoice validation, adjudication and payment.</p></remarks>
+     * or all invoice validation, adjudication and payment.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"QUCR_MT810201CA.AdjudResultsCarrierRole"})]
     public class CarrierOrThirdPartyAdministrator : MessagePartBean {
@@ -79,7 +49,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Qucr_mt810
             this.id = new IIImpl();
         }
         /**
-         * <summary>Carrier Id</summary>
+         * <summary>Business Name: Carrier Id</summary>
+         * 
+         * <remarks>Relationship: 
+         * QUCR_MT810201CA.AdjudResultsCarrierRole.id 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {

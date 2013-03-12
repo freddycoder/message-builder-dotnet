@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,8 +24,10 @@
 /// ---------------------------------------------------------------------------------------------------
  
 namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
-	
-	using System;
+
+    using Ca.Infoway.Messagebuilder.Domainvalue;
+    using Ca.Infoway.Messagebuilder.Domainvalue.Basic;
+    using System;
 	using System.Collections;
 	using System.Collections.Generic;
 	using System.ComponentModel;
@@ -87,14 +89,14 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		/// </summary>
 		///
 		/// <returns>the media type</returns>
-		public override Ca.Infoway.Messagebuilder.Domainvalue.MediaType MediaType {
+		public override x_DocumentMediaType MediaType {
 		/// <summary>
 		/// Returns this object's media type. In this case, it is always plain text.
 		/// </summary>
 		///
 		/// <returns>the media type</returns>
 		  get {
-				return Ca.Infoway.Messagebuilder.Datatype.Lang.MediaType.PLAIN_TEXT;
+				return X_DocumentMediaType.PLAIN_TEXT;
 			}
 		}
 		

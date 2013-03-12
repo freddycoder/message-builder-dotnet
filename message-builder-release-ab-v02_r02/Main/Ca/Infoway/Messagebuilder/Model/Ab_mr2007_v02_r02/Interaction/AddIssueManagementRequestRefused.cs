@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,6 +25,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged;
 
 
+    /**
+     * <summary>Business Name: COMT_IN700003CA: Add issue 
+     * management request refused</summary>
+     * 
+     * <remarks>Message: MCCI_MT002300CA.Message Control Act: 
+     * MCAI_MT700236CA.ControlActEvent</remarks>
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"COMT_IN700003CA"})]
     public class AddIssueManagementRequestRefused : HL7Message<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.TriggerEvent>, IInteraction {
 

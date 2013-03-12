@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,20 +30,20 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Prpm_mt309000c
 
 
     /**
-     * <summary>Assigned Entity</summary>
+     * <summary>Business Name: Assigned Entity</summary>
      * 
-     * <remarks><p>The role class, assigned entity, captures the 
-     * critical information of the provider playing the role of 
-     * interest. This includes an identifier for the role, mailing 
-     * address, phone number, and the time within which the role is 
-     * played (may be open ended). The scooping organization, which 
-     * may be omitted if not needed, provides the organizational 
-     * context for the entity that actually plays the role. For 
-     * example, the role scoper will normally be the party that 
-     * assigns the identifier for the role.</p> <p>Roleclass 
-     * required to provide additional information for the person 
-     * responsible for providing healthcare services within a 
-     * specific healthcare setting</p></remarks>
+     * <p>Roleclass required to provide additional information for 
+     * the person responsible for providing healthcare services 
+     * within a specific healthcare setting</p> <p>The role class, 
+     * assigned entity, captures the critical information of the 
+     * provider playing the role of interest. This includes an 
+     * identifier for the role, mailing address, phone number, and 
+     * the time within which the role is played (may be open 
+     * ended). The scooping organization, which may be omitted if 
+     * not needed, provides the organizational context for the 
+     * entity that actually plays the role. For example, the role 
+     * scoper will normally be the party that assigns the 
+     * identifier for the role.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"PRPM_MT309000CA.AssignedEntity"})]
     public class AssignedEntity : MessagePartBean, Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Prpm_mt309000ca.IRoleChoice {
@@ -65,35 +65,49 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Prpm_mt309000c
             this.name = new LISTImpl<PN, PersonName>(typeof(PNImpl));
             this.performanceActDefinitionOrEvent = new List<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Merged.ActDefinitionOrEventName_2>();
         }
+        /**
+         * <summary>Relationship: 
+         * PRPM_MT309000CA.ResponsibleParty.privilege</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"responsibleFor/privilege"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Merged.Privilege> ResponsibleForPrivilege {
             get { return this.responsibleForPrivilege; }
         }
 
         /**
-         * <summary>Functional Role Identifier</summary>
+         * <summary>Business Name: Functional Role Identifier</summary>
          * 
-         * <remarks><p>Identifies specific functional role that a 
-         * provider may play within an organization.</p> <p>Required 
+         * <remarks>Relationship: PRPM_MT309000CA.AssignedEntity.id 
+         * Conformance/Cardinality: REQUIRED (0-10) <p>Required 
          * attribute supports the identification of the healthcare 
-         * provider</p></remarks>
+         * provider</p> <p>Identifies specific functional role that a 
+         * provider may play within an organization.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public ICollection<Identifier> Id {
             get { return this.id.RawSet(); }
         }
 
+        /**
+         * <summary>Relationship: PRPM_MT309000CA.RelatedTo.roleChoice</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"relatedTo/roleChoice"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Prpm_mt309000ca.IRoleChoice> RelatedToRoleChoice {
             get { return this.relatedToRoleChoice; }
         }
 
         /**
-         * <summary>Functional Role Type</summary>
+         * <summary>Business Name: Functional Role Type</summary>
          * 
-         * <remarks><p>The code identifying the specific functional 
-         * role.</p> <p>Mandatory attribute supports the identification 
-         * of the healthcare provider</p></remarks>
+         * <remarks>Relationship: PRPM_MT309000CA.AssignedEntity.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Mandatory 
+         * attribute supports the identification of the healthcare 
+         * provider</p> <p>The code identifying the specific functional 
+         * role.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public AssignedRoleType Code {
@@ -102,29 +116,49 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Prpm_mt309000c
         }
 
         /**
-         * <summary>Functional Role Name</summary>
+         * <summary>Business Name: Functional Role Name</summary>
          * 
-         * <remarks><p>The providers name pertaining to the specific 
-         * functional role.</p> <p>Required attribute supports the 
-         * identification of the healthcare provider</p></remarks>
+         * <remarks>Relationship: PRPM_MT309000CA.AssignedEntity.name 
+         * Conformance/Cardinality: REQUIRED (0-5) <p>Required 
+         * attribute supports the identification of the healthcare 
+         * provider</p> <p>The providers name pertaining to the 
+         * specific functional role.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"name"})]
         public IList<PersonName> Name {
             get { return this.name.RawList(); }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PRPM_MT309000CA.AssignedEntity.assignedPrincipalPerson</summary>
+         * 
+         * <remarks>Conformance/Cardinality: REQUIRED (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"assignedPrincipalPerson"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Prpm_mt309000ca.PrinicpalPerson AssignedPrincipalPerson {
             get { return this.assignedPrincipalPerson; }
             set { this.assignedPrincipalPerson = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PRPM_MT309000CA.AssignedEntity.representedOrganization</summary>
+         * 
+         * <remarks>Conformance/Cardinality: OPTIONAL (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"representedOrganization"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Prpm_mt309000ca.Organization RepresentedOrganization {
             get { return this.representedOrganization; }
             set { this.representedOrganization = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PRPM_MT309000CA.PrimaryPerformer3.actDefinitionOrEvent</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"performance/actDefinitionOrEvent"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Merged.ActDefinitionOrEventName_2> PerformanceActDefinitionOrEvent {
             get { return this.performanceActDefinitionOrEvent; }

@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,8 +24,10 @@
 /// ---------------------------------------------------------------------------------------------------
  
 namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
-	
-	using Ca.Infoway.Messagebuilder;
+
+    using Ca.Infoway.Messagebuilder.Datatype.Lang.Util;
+    using Ca.Infoway.Messagebuilder.Domainvalue;
+    using Ca.Infoway.Messagebuilder;
 	using System;
 	using System.Collections;
 	using System.Collections.Generic;
@@ -36,6 +38,7 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 	/// <summary>
 	/// This   datatype is used to back the HL7 datatype IVL.
 	/// This data type is used when a continuous range needs to be expressed.
+    /// Recommended to use the IntervalFactory class for object creation
 	/// </summary>
 	///
 	/// <param name="T"> the underlying   type of the interval (i.e. Date)</param>
@@ -45,23 +48,36 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		private readonly T high;
 		private readonly T centre;
 		private readonly Diff<T> width;
-		private readonly Representation representation;
-	
-		internal Interval(T low_0, T high_1, T centre_2, Diff<T> width_3,
-				Representation representation_4) {
+        private readonly NullFlavor lowNullFlavor;
+        private readonly NullFlavor highNullFlavor;
+        private readonly NullFlavor centreNullFlavor;
+        private readonly Representation representation;
+
+        public Interval(T low_0, T high_1, T centre_2, Diff<T> width_3, Representation representation_4)
+            : this(low_0, high_1, centre_2, width_3, representation_4, null, null, null, default(T))
+        {
+        }
+
+        public Interval(T low_0, T high_1, T centre_2, Diff<T> width_3, Representation representation_4,
+            NullFlavor lowNullFlavor_5, NullFlavor highNullFlavor_6, NullFlavor centreNullFlavor_7)
+            : this(low_0, high_1, centre_2, width_3, representation_4, lowNullFlavor_5, highNullFlavor_6, centreNullFlavor_7, default(T))
+        {
+        }
+
+        public Interval(T value_ren) : this(default(T), default(T), default(T), null, Representation.SIMPLE, null, null, null, value_ren)
+        {
+        }
+
+        internal Interval(T low_0, T high_1, T centre_2, Diff<T> width_3, Representation representation_4, 
+            NullFlavor lowNullFlavor_5, NullFlavor highNullFlavor_6, NullFlavor centreNullFlavor_7, T value_ren_8) : base(value_ren_8) {
 			this.low = low_0;
 			this.high = high_1;
 			this.centre = centre_2;
 			this.width = width_3;
 			this.representation = representation_4;
-		}
-	
-		internal Interval(T value_ren) : base(value_ren) {
-			this.low =  default(T)/* was: null */;
-			this.high =  default(T)/* was: null */;
-			this.centre =  default(T)/* was: null */;
-			this.width = null;
-			this.representation = Ca.Infoway.Messagebuilder.Datatype.Lang.Representation.SIMPLE;
+            this.lowNullFlavor = lowNullFlavor_5;
+            this.highNullFlavor = highNullFlavor_6;
+            this.centreNullFlavor = centreNullFlavor_7;
 		}
 	
 		/// <summary>
@@ -75,8 +91,8 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		public static Interval<TS> CreateLowHigh<TS>(TS low_0, TS high_1) {
 			Ca.Infoway.Messagebuilder.Validate.NotNull(low_0);
 			Ca.Infoway.Messagebuilder.Validate.NotNull(high_1);
-			return new Interval<TS>(low_0, high_1, Ca.Infoway.Messagebuilder.Datatype.Lang.GenericMath.Average(low_0, high_1),
-					Ca.Infoway.Messagebuilder.Datatype.Lang.GenericMath.Diff<TS>(low_0, high_1), Ca.Infoway.Messagebuilder.Datatype.Lang.Representation.LOW_HIGH);
+			return new Interval<TS>(low_0, high_1, Ca.Infoway.Messagebuilder.Datatype.Lang.Util.GenericMath.Average(low_0, high_1),
+                    Ca.Infoway.Messagebuilder.Datatype.Lang.Util.GenericMath.Diff<TS>(low_0, high_1), Representation.LOW_HIGH);
 		}
 	
 		/// <summary>
@@ -90,9 +106,9 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		public static Interval<TS> CreateLowWidth<TS>(TS low_0, Diff<TS> width_1) {
 			Ca.Infoway.Messagebuilder.Validate.NotNull(low_0);
 			Ca.Infoway.Messagebuilder.Validate.NotNull(width_1);
-			TS high_2 = Ca.Infoway.Messagebuilder.Datatype.Lang.GenericMath.Add(low_0, width_1);
-			return new Interval<TS>(low_0, high_2, Ca.Infoway.Messagebuilder.Datatype.Lang.GenericMath.Average(low_0, high_2),
-					width_1, Ca.Infoway.Messagebuilder.Datatype.Lang.Representation.LOW_WIDTH);
+            TS high_2 = Ca.Infoway.Messagebuilder.Datatype.Lang.Util.GenericMath.Add(low_0, width_1);
+            return new Interval<TS>(low_0, high_2, Ca.Infoway.Messagebuilder.Datatype.Lang.Util.GenericMath.Average(low_0, high_2),
+					width_1, Representation.LOW_WIDTH);
 		}
 	
 		/// <summary>
@@ -106,9 +122,9 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		public static Interval<TS> CreateWidthHigh<TS>(Diff<TS> width_0, TS high_1) {
 			Ca.Infoway.Messagebuilder.Validate.NotNull(width_0);
 			Ca.Infoway.Messagebuilder.Validate.NotNull(high_1);
-			TS low_2 = Ca.Infoway.Messagebuilder.Datatype.Lang.GenericMath.Diff<TS>(width_0.Value, high_1).Value;
-			return new Interval<TS>(low_2, high_1, Ca.Infoway.Messagebuilder.Datatype.Lang.GenericMath.Average(low_2, high_1),
-					width_0, Ca.Infoway.Messagebuilder.Datatype.Lang.Representation.WIDTH_HIGH);
+			TS low_2 = Ca.Infoway.Messagebuilder.Datatype.Lang.Util.GenericMath.Diff<TS>(width_0.Value, high_1).Value;
+            return new Interval<TS>(low_2, high_1, Ca.Infoway.Messagebuilder.Datatype.Lang.Util.GenericMath.Average(low_2, high_1),
+					width_0, Representation.WIDTH_HIGH);
 		}
 	
 		/// <summary>
@@ -122,11 +138,11 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		public static Interval<TS> CreateCentreWidth<TS>(TS centre_0, Diff<TS> width_1) {
 			Ca.Infoway.Messagebuilder.Validate.NotNull(centre_0);
 			Ca.Infoway.Messagebuilder.Validate.NotNull(width_1);
-			TS half = Ca.Infoway.Messagebuilder.Datatype.Lang.GenericMath.Half(width_1.Value);
-			TS low_2 = Ca.Infoway.Messagebuilder.Datatype.Lang.GenericMath.Diff<TS>(half, centre_0).Value;
-			TS high_3 = Ca.Infoway.Messagebuilder.Datatype.Lang.GenericMath.Add(low_2, width_1);
+            TS half = Ca.Infoway.Messagebuilder.Datatype.Lang.Util.GenericMath.Half(width_1.Value);
+            TS low_2 = Ca.Infoway.Messagebuilder.Datatype.Lang.Util.GenericMath.Diff<TS>(half, centre_0).Value;
+            TS high_3 = Ca.Infoway.Messagebuilder.Datatype.Lang.Util.GenericMath.Add(low_2, width_1);
 			return new Interval<TS>(low_2, high_3, centre_0, width_1,
-					Ca.Infoway.Messagebuilder.Datatype.Lang.Representation.CENTRE_WIDTH);
+					Representation.CENTRE_WIDTH);
 		}
 	
 		/// <summary>
@@ -138,7 +154,7 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		/// <returns>the constructed interval</returns>
 		public static Interval<TS> CreateLow<TS>(TS low_0) {
 			Ca.Infoway.Messagebuilder.Validate.NotNull(low_0);
-			return new Interval<TS>(low_0, default(TS), default(TS), null, Ca.Infoway.Messagebuilder.Datatype.Lang.Representation.LOW);
+			return new Interval<TS>(low_0, default(TS), default(TS), null, Representation.LOW);
 		}
 	
 		/// <summary>
@@ -150,7 +166,7 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		/// <returns>the constructed interval</returns>
 		public static Interval<TS> CreateWidth<TS>(Diff<TS> width_0) {
 			Ca.Infoway.Messagebuilder.Validate.NotNull(width_0);
-            return new Interval<TS>(default(TS), default(TS), default(TS), width_0, Ca.Infoway.Messagebuilder.Datatype.Lang.Representation.WIDTH);
+            return new Interval<TS>(default(TS), default(TS), default(TS), width_0, Representation.WIDTH);
 		}
 	
 		/// <summary>
@@ -162,7 +178,7 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		/// <returns>the constructed interval</returns>
 		public static Interval<TS> CreateHigh<TS>(TS high_0) {
 			Ca.Infoway.Messagebuilder.Validate.NotNull(high_0);
-            return new Interval<TS>(default(TS), high_0, default(TS), null, Ca.Infoway.Messagebuilder.Datatype.Lang.Representation.HIGH);
+            return new Interval<TS>(default(TS), high_0, default(TS), null, Representation.HIGH);
 		}
 	
 		/// <summary>
@@ -174,10 +190,23 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		/// <returns>the constructed interval</returns>
 		public static Interval<TS> CreateCentre<TS>(TS centre_0) {
 			Ca.Infoway.Messagebuilder.Validate.NotNull(centre_0);
-            return new Interval<TS>(default(TS), default(TS), centre_0, null, Ca.Infoway.Messagebuilder.Datatype.Lang.Representation.CENTRE);
+            return new Interval<TS>(default(TS), default(TS), centre_0, null, Representation.CENTRE);
 		}
-	
-		/// <summary>
+
+        /// <summary>
+        /// Constructs a simple interval based on a single value.
+        /// </summary>
+        ///
+        /// <param name="TS"> the type of the Interval</param>
+        /// <param name="value">the simple value for the Interval</param>
+        /// <returns>the constructed Interval</returns>
+        public static Interval<TS> CreateSimple<TS>(TS value_ren)
+        {
+            Ca.Infoway.Messagebuilder.Validate.NotNull(value_ren);
+            return new Interval<TS>(value_ren);
+        }
+        
+        /// <summary>
 		/// Returns the centre of this interval.
 		/// </summary>
 		///
@@ -260,18 +289,60 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 				return this.representation;
 			}
 		}
-		
+
+        /// <summary>
+        /// Returns the lowNullFlavor of this interval.
+        /// </summary>
+        ///
+        /// <returns>the lowNullFlavor of this interval.</returns>
+        public NullFlavor LowNullFlavor
+        {
+            /// <summary>
+            /// Returns the lowNullFlavor of this interval.
+            /// </summary>
+            ///
+            /// <returns>the lowNullFlavor of this interval.</returns>
+            get
+            {
+                return this.lowNullFlavor;
+            }
+        }
+
+        /// <summary>
+        /// Returns the highNullFlavor of this interval.
+        /// </summary>
+        ///
+        /// <returns>the highNullFlavor of this interval.</returns>
+        public NullFlavor HighNullFlavor
+        {
+            /// <summary>
+            /// Returns the highNullFlavor of this interval.
+            /// </summary>
+            ///
+            /// <returns>the highNullFlavor of this interval.</returns>
+            get
+            {
+                return this.highNullFlavor;
+            }
+        }
+
+        /// <summary>
+        /// Returns the centreNullFlavor of this interval.
+        /// </summary>
+        ///
+        /// <returns>the centreNullFlavor of this interval.</returns>
+        public NullFlavor CentreNullFlavor
+        {
+            /// <summary>
+            /// Returns the centreNullFlavor of this interval.
+            /// </summary>
+            ///
+            /// <returns>the centreNullFlavor of this interval.</returns>
+            get
+            {
+                return this.centreNullFlavor;
+            }
+        }
 	
-		/// <summary>
-		/// Constructs a simple interval based on a single value.
-		/// </summary>
-		///
-		/// <param name="TS"> the type of the Interval</param>
-		/// <param name="value">the simple value for the Interval</param>
-		/// <returns>the constructed Interval</returns>
-		public static Interval<TS> CreateSimple<TS>(TS value_ren) {
-			Ca.Infoway.Messagebuilder.Validate.NotNull(value_ren);
-			return new Interval<TS>(value_ren);
-		}
 	}
 }

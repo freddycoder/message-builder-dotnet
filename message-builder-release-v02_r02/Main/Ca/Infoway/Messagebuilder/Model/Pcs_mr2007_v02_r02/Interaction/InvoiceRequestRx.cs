@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,6 +25,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Common.Merged;
 
 
+    /**
+     * <summary>Business Name: FICR_IN600102CA: Invoice Request, Rx</summary>
+     * 
+     * <p>The sender sends an Invoice Adjudication Request message 
+     * for Pharmacy services and/or products.</p> Message: 
+     * MCCI_MT002100CA.Message Control Act: 
+     * MCAI_MT700211CA.ControlActEvent --> Payload: 
+     * FICR_MT600201CA.PaymentRequest
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"FICR_IN600102CA"})]
     public class InvoiceRequestRx : HL7Message_1<Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Common.Merged.TriggerEvent_1<Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Ficr_mt600201ca.InvoiceIdentifier>>, IInteraction {
 

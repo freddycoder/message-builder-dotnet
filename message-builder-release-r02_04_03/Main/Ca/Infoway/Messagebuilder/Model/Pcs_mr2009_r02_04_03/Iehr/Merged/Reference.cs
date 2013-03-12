@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,17 +35,62 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged {
             this.id = new IIImpl();
         }
         /**
-         * <summary>ReferenceRecordLinks</summary>
+         * <summary>Business Name: ReferenceRecordLinks</summary>
          * 
-         * <remarks>L:Reference Record Links L:Reference Record Links 
+         * <remarks>Un-merged Business Name: ReferenceRecordLinks 
+         * Relationship: REPC_MT220001CA.Reference.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>The external 
+         * references allow accessing discrete data for additional 
+         * analysis and manipulation such as graphing, automated 
+         * comparison or decision-support.</p> <p>For sections, the 
+         * links may refer specifically to records which have been 
+         * rendered as part of the section.</p> <p>These identifiers 
+         * allow for referencing other discrete records within the EHR 
+         * which are considered relevant to the document as a whole or 
+         * a particular section.</p> Un-merged Business Name: 
+         * ReferenceRecordLinks Relationship: 
+         * REPC_MT220003CA.Reference.id Conformance/Cardinality: 
+         * MANDATORY (1) <p>The external references allow accessing 
+         * discrete data for additional analysis and manipulation such 
+         * as graphing, automated comparison or decision-support.</p> 
+         * <p>For sections, the links may refer specifically to records 
+         * which have been rendered as part of the section.</p> 
          * <p>These identifiers allow for referencing other discrete 
          * records within the EHR which are considered relevant to the 
-         * document as a whole or a particular section.</p> <p>The 
-         * external references allow accessing discrete data for 
-         * additional analysis and manipulation such as graphing, 
-         * automated comparison or decision-support.</p> <p>For 
-         * sections, the links may refer specifically to records which 
-         * have been rendered as part of the section.</p></remarks>
+         * document as a whole or a particular section.</p> Un-merged 
+         * Business Name: ReferenceRecordLinks Relationship: 
+         * REPC_MT210003CA.Reference.id Conformance/Cardinality: 
+         * MANDATORY (1) <p>The external references allow accessing 
+         * discrete data for additional analysis and manipulation such 
+         * as graphing, automated comparison or decision-support.</p> 
+         * <p>For sections, the links may refer specifically to records 
+         * which have been rendered as part of the section.</p> 
+         * <p>These identifiers allow for referencing other discrete 
+         * records within the EHR which are considered relevant to the 
+         * document as a whole or a particular section.</p> Un-merged 
+         * Business Name: ReferenceRecordLinks Relationship: 
+         * REPC_MT230001CA.Reference.id Conformance/Cardinality: 
+         * MANDATORY (1) <p>The external references allow accessing 
+         * discrete data for additional analysis and manipulation such 
+         * as graphing, automated comparison or decision-support.</p> 
+         * <p>For sections, the links may refer specifically to records 
+         * which have been rendered as part of the section.</p> 
+         * <p>These identifiers allow for referencing other discrete 
+         * records within the EHR which are considered relevant to the 
+         * document as a whole or a particular section.</p> Un-merged 
+         * Business Name: ReferenceRecordLinks Relationship: 
+         * REPC_MT210001CA.Reference.id Conformance/Cardinality: 
+         * MANDATORY (1) Un-merged Business Name: ReferenceRecordLinks 
+         * Relationship: REPC_MT230003CA.Reference.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>The external 
+         * references allow accessing discrete data for additional 
+         * analysis and manipulation such as graphing, automated 
+         * comparison or decision-support.</p> <p>For sections, the 
+         * links may refer specifically to records which have been 
+         * rendered as part of the section.</p> <p>These identifiers 
+         * allow for referencing other discrete records within the EHR 
+         * which are considered relevant to the document as a whole or 
+         * a particular section.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {

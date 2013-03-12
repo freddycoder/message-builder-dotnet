@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,14 +29,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Porx_mt0
 
 
     /**
-     * <summary>Dispense Instructions</summary>
+     * <summary>Business Name: Dispense Instructions</summary>
      * 
-     * <remarks><p>Specification of how the prescribed medication 
-     * is to be dispensed to the patient. Dispensed instruction 
-     * information includes the quantity to be dispensed, how often 
-     * the quantity is to be dispensed, etc.</p> <p>Sets the 
-     * parameters within which the dispenser must operate in 
-     * dispensing the medication to the patient.</p></remarks>
+     * <p>Sets the parameters within which the dispenser must 
+     * operate in dispensing the medication to the patient.</p> 
+     * <p>Specification of how the prescribed medication is to be 
+     * dispensed to the patient. Dispensed instruction information 
+     * includes the quantity to be dispensed, how often the 
+     * quantity is to be dispensed, etc.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"PORX_MT030040CA.SupplyRequest"})]
     public class DispenseInstructions : MessagePartBean {
@@ -50,19 +50,19 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Porx_mt0
             this.quantity = new PQImpl();
         }
         /**
-         * <summary>A:Prescription Dispense Indicator</summary>
+         * <summary>Business Name: A:Prescription Dispense Indicator</summary>
          * 
-         * <remarks><p>This generally mirrors the status for the 
-         * prescription, but in some circumstances may be changed to 
-         * 'aborted' while the prescription is still active. When this 
-         * occurs, it means the prescription may no longer be 
-         * dispensed, though it may still be administered.</p> 
-         * <p>Allows a prescriber to say &quot;Finish what you have on 
-         * hand, but don't get any more.&quot;</p><p>Because the status 
-         * should always be known, this element is mandatory.</p> 
-         * <p>Allows a prescriber to say &quot;Finish what you have on 
-         * hand, but don't get any more.&quot;</p><p>Because the status 
-         * should always be known, this element is mandatory.</p></remarks>
+         * <remarks>Relationship: 
+         * PORX_MT030040CA.SupplyRequest.statusCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows a 
+         * prescriber to say &quot;Finish what you have on hand, but 
+         * don't get any more.&quot;</p><p>Because the status should 
+         * always be known, this element is mandatory.</p> <p>This 
+         * generally mirrors the status for the prescription, but in 
+         * some circumstances may be changed to 'aborted' while the 
+         * prescription is still active. When this occurs, it means the 
+         * prescription may no longer be dispensed, though it may still 
+         * be administered.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"statusCode"})]
         public ActStatus StatusCode {
@@ -71,24 +71,20 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Porx_mt0
         }
 
         /**
-         * <summary>B:Total Prescribed Quantity</summary>
+         * <summary>Business Name: B:Total Prescribed Quantity</summary>
          * 
-         * <remarks><p>The overall amount of amount medication to be 
-         * dispensed under this prescription. Includes any first fills 
-         * (trials, aligning quantities), the initial standard fill 
-         * plus all refills.</p> <p>Sets upper limit for medication to 
-         * be dispensed. Can be used to verify the intention of the 
-         * prescriber with respect to the overall medication. Used for 
-         * comparison when determining whether additional quantity may 
-         * be dispensed in the context of a part-fill 
-         * prescription.</p><p>Narcotics must always be specified as a 
-         * total quantity.</p> <p>Sets upper limit for medication to be 
-         * dispensed. Can be used to verify the intention of the 
-         * prescriber with respect to the overall medication. Used for 
-         * comparison when determining whether additional quantity may 
-         * be dispensed in the context of a part-fill 
-         * prescription.</p><p>Narcotics must always be specified as a 
-         * total quantity.</p></remarks>
+         * <remarks>Relationship: 
+         * PORX_MT030040CA.SupplyRequest.quantity 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Sets upper limit 
+         * for medication to be dispensed. Can be used to verify the 
+         * intention of the prescriber with respect to the overall 
+         * medication. Used for comparison when determining whether 
+         * additional quantity may be dispensed in the context of a 
+         * part-fill prescription.</p><p>Narcotics must always be 
+         * specified as a total quantity.</p> <p>The overall amount of 
+         * amount medication to be dispensed under this prescription. 
+         * Includes any first fills (trials, aligning quantities), the 
+         * initial standard fill plus all refills.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"quantity"})]
         public PhysicalQuantity Quantity {
@@ -96,6 +92,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Porx_mt0
             set { this.quantity.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PORX_MT030040CA.SupplyRequest.location</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"location"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.OccurredAt Location {
             get { return this.location; }

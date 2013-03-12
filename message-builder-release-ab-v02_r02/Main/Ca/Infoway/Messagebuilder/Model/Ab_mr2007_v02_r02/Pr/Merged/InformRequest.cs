@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Merged {
 
 
     /**
-     * <summary>InformRequest</summary>
+     * <summary>Business Name: InformRequest</summary>
      * 
      * <remarks>PRPM_MT301010CA.InformRequest: Inform Request <p>A 
      * record of something that is being done, has been done, can 
@@ -65,16 +65,20 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Merged {
             this.subjectModeCode = new CVImpl();
         }
         /**
-         * <summary>InformRequestCode</summary>
+         * <summary>Business Name: InformRequestCode</summary>
          * 
-         * <remarks>Inform Request Code <p>A code specifying the 
-         * particular kind of Act that the Act-instance represents 
-         * within its class. Ex. Document Type</p> <p>Populated 
-         * attribute supports the business requirement to provide coded 
-         * information about the Act being described</p> Inform Request 
-         * Code <p>A code specifying the particular kind of Act that 
-         * the Act-instance represents within its class. Ex. Document 
-         * Type</p> <p>Populated</p></remarks>
+         * <remarks>Un-merged Business Name: InformRequestCode 
+         * Relationship: PRPM_MT301010CA.InformRequest.code 
+         * Conformance/Cardinality: POPULATED (1) <p>A code specifying 
+         * the particular kind of Act that the Act-instance represents 
+         * within its class. Ex. Document Type</p> <p>Populated</p> 
+         * Un-merged Business Name: InformRequestCode Relationship: 
+         * PRPM_MT303010CA.InformRequest.code Conformance/Cardinality: 
+         * POPULATED (1) <p>A code specifying the particular kind of 
+         * Act that the Act-instance represents within its class. Ex. 
+         * Document Type</p> <p>Populated attribute supports the 
+         * business requirement to provide coded information about the 
+         * Act being described</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public ActCode Code {
@@ -83,9 +87,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Merged {
         }
 
         /**
-         * <summary>(no business name)</summary>
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
          * 
-         * <remarks><p>Populated</p></remarks>
+         * <remarks>Relationship: PRPM_MT301010CA.Subject.modeCode 
+         * Conformance/Cardinality: POPULATED (1) <p>Populated</p> 
+         * Un-merged Business Name: (no business name specified) 
+         * Relationship: PRPM_MT303010CA.Subject.modeCode 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"subject/modeCode"})]
         public ParticipationMode SubjectModeCode {
@@ -93,12 +102,33 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Merged {
             set { this.subjectModeCode.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PRPM_MT301010CA.Subject.serviceDeliveryLocation 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PRPM_MT303010CA.Subject.serviceDeliveryLocation 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subject/serviceDeliveryLocation"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.DispenseShipToLocation SubjectServiceDeliveryLocation {
             get { return this.subjectServiceDeliveryLocation; }
             set { this.subjectServiceDeliveryLocation = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: PRPM_MT301010CA.IndirectTarget.choice 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PRPM_MT303010CA.IndirectTarget.choice 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"indirectTarget/choice"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.IChoice IndirectTargetChoice {
             get { return this.indirectTargetChoice; }

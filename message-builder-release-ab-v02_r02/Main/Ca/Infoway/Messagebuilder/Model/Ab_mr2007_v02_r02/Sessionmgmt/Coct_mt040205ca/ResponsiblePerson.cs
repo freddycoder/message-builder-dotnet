@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,15 +29,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Coct_mt0
 
 
     /**
-     * <summary>Responsible Person</summary>
+     * <summary>Business Name: Responsible Person</summary>
      * 
-     * <remarks><p>Describes a person (other than a health-care 
-     * provider or patient) who is providing information and making 
-     * decision on behalf of the patient, in relation to the 
-     * delivery of healthcare for the patient. E.g. Patient's 
-     * mother.</p> <p>Important for tracking source of information 
-     * for decision making and other actions taken on behalf of a 
-     * patient.</p></remarks>
+     * <p>Describes a person (other than a health-care provider or 
+     * patient) who is providing information and making decision on 
+     * behalf of the patient, in relation to the delivery of 
+     * healthcare for the patient. E.g. Patient's mother.</p> 
+     * <p>Important for tracking source of information for decision 
+     * making and other actions taken on behalf of a patient.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"COCT_MT040205CA.ResponsibleParty"})]
     public class ResponsiblePerson : MessagePartBean, Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.IConsenter {
@@ -56,14 +55,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Coct_mt0
             this.agentPersonName = new PNImpl();
         }
         /**
-         * <summary>B:Responsible Person ID</summary>
+         * <summary>Business Name: B:Responsible Person ID</summary>
          * 
-         * <remarks><p>A unique identifier for the responsible 
-         * person.</p> <p>ZPB1.6 (Root)</p><p>ZPB1.7 
-         * (EXtension)</p><p>ZPB2.8 (Root)</p><p>ZPB2.9 
-         * (EXtension)</p><p>ZPB3.11 (Root)</p><p>ZPB3.12 
-         * (EXtension)</p><p>ZPB3.18 (Root)</p><p>ZPB3.19 
-         * (EXtension)</p><p>D60 (Root)</p><p>D61 
+         * <remarks>Relationship: COCT_MT040205CA.ResponsibleParty.id 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>A unique 
+         * identifier for the responsible person.</p> <p>ZPB1.6 
+         * (Root)</p><p>ZPB1.7 (EXtension)</p><p>ZPB2.8 
+         * (Root)</p><p>ZPB2.9 (EXtension)</p><p>ZPB3.11 
+         * (Root)</p><p>ZPB3.12 (EXtension)</p><p>ZPB3.18 
+         * (Root)</p><p>ZPB3.19 (EXtension)</p><p>D60 (Root)</p><p>D61 
          * (Extension)</p><p>D76</p><p>PVD.020-01 
          * (Extension)</p><p>PVD.020-02 
          * (Root)</p><p>PharmacyProvider.444-E9 
@@ -229,9 +229,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Coct_mt0
          * (Root)</p><p>PharmacyProvider.444-E9 
          * (Extension)</p><p>PharmacyProvider.465-E7 
          * (Root)</p><p>Prescriber.446-EZ 
-         * (Extension)</p><p>PharmacyProvider.411-DB 
-         * (Root)</p><p>ZDP.18.1 (Extension)</p><p>ZDP.18.2 
- 
+
          * ... [rest of documentation truncated due to excessive length]
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
@@ -241,14 +239,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Coct_mt0
         }
 
         /**
-         * <summary>C:Responsible Person Type</summary>
+         * <summary>Business Name: C:Responsible Person Type</summary>
          * 
-         * <remarks><p>A coded value indicating how the responsible 
-         * person is related to the person for whom they have accepted 
-         * responsibility.</p> <p>May be important for understanding 
-         * the authority to perform certain actions. E.g. A 'friend' 
-         * may not be able to make consent decisions, but may be able 
-         * to pick up dispenses.</p></remarks>
+         * <remarks>Relationship: COCT_MT040205CA.ResponsibleParty.code 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>A coded value 
+         * indicating how the responsible person is related to the 
+         * person for whom they have accepted responsibility.</p> 
+         * <p>May be important for understanding the authority to 
+         * perform certain actions. E.g. A 'friend' may not be able to 
+         * make consent decisions, but may be able to pick up 
+         * dispenses.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public x_SimplePersonalRelationship Code {
@@ -257,11 +257,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Coct_mt0
         }
 
         /**
-         * <summary>D:Responsible Person Address</summary>
+         * <summary>Business Name: D:Responsible Person Address</summary>
          * 
-         * <remarks><p>The mail and/or physical address associated with 
-         * a responsible person.</p> <p>PVD.080-01 
-         * (PartType=SAL)</p><p>PVD.080-02 
+         * <remarks>Relationship: COCT_MT040205CA.ResponsibleParty.addr 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The mail and/or 
+         * physical address associated with a responsible person.</p> 
+         * <p>PVD.080-01 (PartType=SAL)</p><p>PVD.080-02 
          * (PartType=CTY)</p><p>PVD.080-03 
          * (PartType=CNT)</p><p>PVD.080-04 
          * (PartType=ZIP)</p><p>D.1b</p><p>Shipping Address 
@@ -340,11 +341,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Coct_mt0
         }
 
         /**
-         * <summary>E:Responsible Person Phones and Emails</summary>
+         * <summary>Business Name: E:Responsible Person Phones and 
+         * Emails</summary>
          * 
-         * <remarks><p>The phone number(s) and email address(s) by 
-         * which a responsible person may be contacted.</p> 
-         * <p>PVD.090-01 (url)</p><p>PVD.090-02 
+         * <remarks>Relationship: 
+         * COCT_MT040205CA.ResponsibleParty.telecom 
+         * Conformance/Cardinality: REQUIRED (0-5) <p>The phone 
+         * number(s) and email address(s) by which a responsible person 
+         * may be contacted.</p> <p>PVD.090-01 (url)</p><p>PVD.090-02 
          * (url.scheme)</p><p>PVD.090-01 (use)</p><p>D.1c</p><p>Tell 
          * #</p><p>Fax #</p><p>Contact Tel #</p><p>Contact Fax 
          * #</p><p>Prescriber.498-PM</p><p>Prescroibing Physician Phone 
@@ -392,28 +396,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Coct_mt0
         }
 
         /**
-         * <summary>A:Responsible Person Name</summary>
+         * <summary>Business Name: A:Responsible Person Name</summary>
          * 
-         * <remarks><p>The name by which the responsible person is 
-         * known</p> <p>ZPB3.13</p><p>PVD.050-01 (PartType = 
-         * Family)</p><p>PVD.050-02 (PartType = Given - 1st 
-         * rep)</p><p>PVD.050-03 PartType = Given - any rep other than 
-         * the first)</p><p>PVD.050-04 (PartType = 
-         * Suffix)</p><p>PVD.050-05 (PartType = 
-         * Prefix)</p><p>PVD.100-01 (PartType = Family; 
-         * author/performer when supervisor is also 
-         * specified)</p><p>PVD.100-02 (PartType = Given - 1st rep; 
-         * author/performer when supervisor is also specified 
-         * )</p><p>PVD.100-03 PartType = Given - any rep other than the 
-         * first; author/performer when supervisor is also 
-         * specified)</p><p>PVD.100-04 (PartType = Suffix; 
-         * author/performer when supervisor is also 
-         * specified)</p><p>PVD.100-05 (PartType = Prefix; 
-         * author/performer when supervisor is also 
-         * specified)</p><p>D1a</p><p>Practitioner's 
-         * Name</p><p>04.03</p><p>Prescriber.427-DR</p><p>Prescribing 
-         * Physician 
-         * Name</p><p>ZPS.18.3</p><p>ZPS.18.4</p><p>ZPS.18.5</p><p>ZPS.19.3</p><p>ZPS.19.4</p><p>ZPS.19.5</p><p>ZPS.10.3</p><p>ZPS.10.4</p><p>ZPS.10.5</p><p>ProviderPreviewInfo.ProviderName</p> 
+         * <remarks>Relationship: COCT_MT040205CA.Person.name 
+         * Conformance/Cardinality: MANDATORY (1) <p>The name by which 
+         * the responsible person is known</p> 
          * <p>ZPB3.13</p><p>PVD.050-01 (PartType = 
          * Family)</p><p>PVD.050-02 (PartType = Given - 1st 
          * rep)</p><p>PVD.050-03 PartType = Given - any rep other than 
@@ -546,7 +533,24 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Coct_mt0
          * specified)</p><p>D1a</p><p>Practitioner's 
          * Name</p><p>04.03</p><p>Prescriber.427-DR</p><p>Prescribing 
          * Physician 
-         * Name</p><p>ZPS.18.3</p><p>ZPS.18.4</p><
+         * Name</p><p>ZPS.18.3</p><p>ZPS.18.4</p><p>ZPS.18.5</p><p>ZPS.19.3</p><p>ZPS.19.4</p><p>ZPS.19.5</p><p>ZPS.10.3</p><p>ZPS.10.4</p><p>ZPS.10.5</p><p>ProviderPreviewInfo.ProviderName</p> 
+         * <p>ZPB3.13</p><p>PVD.050-01 (PartType = 
+         * Family)</p><p>PVD.050-02 (PartType = Given - 1st 
+         * rep)</p><p>PVD.050-03 PartType = Given - any rep other than 
+         * the first)</p><p>PVD.050-04 (PartType = 
+         * Suffix)</p><p>PVD.050-05 (PartType = 
+         * Prefix)</p><p>PVD.100-01 (PartType = Family; 
+         * author/performer when supervisor is also 
+         * specified)</p><p>PVD.100-02 (PartType = Given - 1st rep; 
+         * author/performer when supervisor is also specified 
+         * )</p><p>PVD.100-03 PartType = Given - any rep other than the 
+         * first; author/performer when supervisor is also 
+         * specified)</p><p>PVD.100-04 (PartType = Suffix; 
+         * author/performer when supervisor is also 
+         * specified)</p><p>PVD.100-05 (PartType = Prefix; 
+         * author/performer when supervisor is also 
+         * specified)</p><p>D1a</p><p>Practitioner's 
+         * Name</p><p>0
          * ... [rest of documentation truncated due to excessive length]
          */
         [Hl7XmlMappingAttribute(new string[] {"agentPerson/name"})]

@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,17 +27,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt270
 
 
     /**
-     * <summary>Administration Precondition</summary>
+     * <summary>Business Name: Administration Precondition</summary>
      * 
-     * <remarks><p>This sets the conditions for which a specific 
-     * administration of the drug may be undertaken. Example: if 
-     * headache persists for 2hrs or more 'take 2 tabs.</p> 
      * <p>Indicates that prescription is a 'PRN' (as needed) 
      * prescription and that doses to be consumed cannot be 
      * accurately calculated. This has important compliance 
      * implications.</p> <p>To flag a prescription as PRN without 
      * specifying a condition, include the association but specify 
-     * a null flavor for the Dosage Condition.</p></remarks>
+     * a null flavor for the Dosage Condition.</p> <p>This sets the 
+     * conditions for which a specific administration of the drug 
+     * may be undertaken. Example: if headache persists for 2hrs or 
+     * more 'take 2 tabs.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"COCT_MT270010CA.ActEventCriterion"})]
     public class AdministrationPrecondition : MessagePartBean {
@@ -48,23 +48,18 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt270
             this.text = new STImpl();
         }
         /**
-         * <summary>A:Dosage Condition</summary>
+         * <summary>Business Name: A:Dosage Condition</summary>
          * 
-         * <remarks><p>A free-form textual description of condition 
-         * that must be met before the product may be administered 
-         * to/by the patient.</p><p>Example: When pressure exceeds 
-         * 150/90 - Take 2 tabs</p> <p>A free-form textual description 
-         * of condition that must be met before the product may be 
-         * administered to/by the patient.</p><p>Example: When pressure 
-         * exceeds 150/90 - Take 2 tabs</p> <p>RepeatPattern.prn (true 
-         * when present)</p><p>ZDP.13.6 (true when 
-         * present)</p><p>ZDP.13.7</p> <p>RepeatPattern.prn (true when 
-         * present)</p><p>ZDP.13.6 (true when 
-         * present)</p><p>ZDP.13.7</p> <p>RepeatPattern.prn (true when 
-         * present)</p><p>ZDP.13.6 (true when 
-         * present)</p><p>ZDP.13.7</p> <p>Allows un-coded 
-         * specifications of conditions in which the medication should 
-         * be taken.</p></remarks>
+         * <remarks>Relationship: 
+         * COCT_MT270010CA.ActEventCriterion.text 
+         * Conformance/Cardinality: MANDATORY (1) <p>RepeatPattern.prn 
+         * (true when present)</p> <p>ZDP.13.6 (true when present)</p> 
+         * <p>ZDP.13.7</p> <p>Allows un-coded specifications of 
+         * conditions in which the medication should be taken.</p> <p>A 
+         * free-form textual description of condition that must be met 
+         * before the product may be administered to/by the 
+         * patient.</p><p>Example: When pressure exceeds 150/90 - Take 
+         * 2 tabs</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"text"})]
         public String Text {

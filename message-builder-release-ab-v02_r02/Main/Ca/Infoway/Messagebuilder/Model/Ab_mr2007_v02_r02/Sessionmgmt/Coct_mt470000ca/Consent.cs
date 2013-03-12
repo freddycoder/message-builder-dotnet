@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,21 +32,21 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Coct_mt4
 
 
     /**
-     * <summary>Consent</summary>
+     * <summary>Business Name: Consent</summary>
      * 
-     * <remarks><p>One and only one of author2 (Consenter) and 
-     * author1 (Provider) must be specified.</p><p>If author1 
-     * (provider) is specified, reason code must be specified.</p> 
      * <p>One and only one of author2 (Consenter) and author1 
      * (Provider) must be specified.</p><p>If author1 (provider) is 
-     * specified, reason code must be specified.</p> <p>Information 
-     * pertaining to a patient's agreement/acceptance to have 
-     * his/her clinical information electronically stored and 
-     * shared.</p> <p>Provides authorization to record and/or view 
-     * patient information.</p><p>Indicates the consent or keyword 
-     * used to authorize access or update, including a reason for 
-     * access; May also be used to override access restriction to 
-     * the information ('break the glass') on a message by message 
+     * specified, reason code must be specified.</p> <p>One and 
+     * only one of author2 (Consenter) and author1 (Provider) must 
+     * be specified.</p><p>If author1 (provider) is specified, 
+     * reason code must be specified.</p> <p>Information pertaining 
+     * to a patient's agreement/acceptance to have his/her clinical 
+     * information electronically stored and shared.</p> 
+     * <p>Provides authorization to record and/or view patient 
+     * information.</p><p>Indicates the consent or keyword used to 
+     * authorize access or update, including a reason for access; 
+     * May also be used to override access restriction to the 
+     * information ('break the glass') on a message by message 
      * basis. May be required on a Prescription Request to indicate 
      * a keyword for DUR processing.</p> <p>Provides authorization 
      * to record and/or view patient information.</p><p>Indicates 
@@ -56,7 +56,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Coct_mt4
      * a message by message basis. May be required on a 
      * Prescription Request to indicate a keyword for DUR 
      * processing.</p> <p>The keywords will not be passed from 
-     * prescriber to dispenser by the DIS.</p></remarks>
+     * prescriber to dispenser by the DIS.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"COCT_MT470000CA.ConsentEvent"})]
     public class Consent : MessagePartBean {
@@ -75,11 +75,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Coct_mt4
             this.reasonCode = new CVImpl();
         }
         /**
-         * <summary>D:Consent Form Number</summary>
+         * <summary>Business Name: D:Consent Form Number</summary>
          * 
-         * <remarks><p>A unique identifier for a specific consent for a 
-         * patient.</p> <p>Authorization.formNumber</p> <p>Provides a 
-         * traceable audit link between a physical consent form and its 
+         * <remarks>Relationship: COCT_MT470000CA.ConsentEvent.id 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>A unique 
+         * identifier for a specific consent for a patient.</p> 
+         * <p>Authorization.formNumber</p> <p>Provides a traceable 
+         * audit link between a physical consent form and its 
          * electronic record</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
@@ -89,13 +91,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Coct_mt4
         }
 
         /**
-         * <summary>C:Consent Effective and End Time</summary>
+         * <summary>Business Name: C:Consent Effective and End Time</summary>
          * 
-         * <remarks><p>Indicates the time that the consent will expire. 
-         * 'Low' is effective time and 'High' is end time.</p> 
-         * <p>Authorization.endTime (high)</p> <p>Most consents are not 
-         * open-ended, to ensure the patient retains a level of 
-         * control.</p></remarks>
+         * <remarks>Relationship: 
+         * COCT_MT470000CA.ConsentEvent.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
+         * time that the consent will expire. 'Low' is effective time 
+         * and 'High' is end time.</p> <p>Authorization.endTime 
+         * (high)</p> <p>Most consents are not open-ended, to ensure 
+         * the patient retains a level of control.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"effectiveTime"})]
         public Interval<PlatformDate> EffectiveTime {
@@ -104,10 +108,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Coct_mt4
         }
 
         /**
-         * <summary>E:Consent Override Reason</summary>
+         * <summary>Business Name: E:Consent Override Reason</summary>
          * 
-         * <remarks><p>Indicates a reason for overriding a patient's 
-         * consent rules.</p> <p>Authorization.reason 
+         * <remarks>Relationship: 
+         * COCT_MT470000CA.ConsentEvent.reasonCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates a 
+         * reason for overriding a patient's consent rules.</p> 
+         * <p>Authorization.reason 
          * (mnemonic)</p><p>Authorization.comment (original text)</p> 
          * <p>Authorization.reason 
          * (mnemonic)</p><p>Authorization.comment (original text)</p> 
@@ -119,24 +126,45 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Coct_mt4
             set { this.reasonCode.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: COCT_MT470000CA.Subject.patient</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subject1/patient"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Coct_mt050202ca.Patient Subject1Patient {
             get { return this.subject1Patient; }
             set { this.subject1Patient = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * COCT_MT470000CA.Author2.assignedPerson</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"author1/assignedPerson"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Coct_mt090107ca.Provider Author1AssignedPerson {
             get { return this.author1AssignedPerson; }
             set { this.author1AssignedPerson = value; }
         }
 
+        /**
+         * <summary>Relationship: COCT_MT470000CA.ConsentEvent.author2</summary>
+         * 
+         * <remarks>Conformance/Cardinality: REQUIRED (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"author2"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.ConsentedToBy Author2 {
             get { return this.author2; }
             set { this.author2 = value; }
         }
 
+        /**
+         * <summary>Relationship: COCT_MT470000CA.ConsentEvent.subject2</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subject2"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.Controls Subject2 {
             get { return this.subject2; }

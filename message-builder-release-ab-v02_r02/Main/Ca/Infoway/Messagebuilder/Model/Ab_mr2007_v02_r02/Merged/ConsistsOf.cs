@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
 
 
     /**
-     * <summary>ConsistsOf</summary>
+     * <summary>Business Name: ConsistsOf</summary>
      * 
      * <remarks>PORX_MT980040CA.Component17: b:consists of 
      * <p>Dosage instructions may be given as textual information 
@@ -57,28 +57,33 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             this.sequenceNumber = new INTImpl();
         }
         /**
-         * <summary>DosageLineOrder</summary>
+         * <summary>Business Name: DosageLineOrder</summary>
          * 
-         * <remarks>A:Dosage Line Order <p>Indicates the order in which 
-         * dosage lines should be performed. Ensures that each step of 
-         * multiple and complex SIGs (e.g ramp up/down) is in the 
-         * desired order. Dosage lines with the same sequence number 
-         * should be performed in parallel. E.g. 2 tabs tid for 3 days 
-         * (sequence 1) and then 1 tab tid for 4 days (sequence 2) E.g. 
-         * 1 tab in the morning (sequence 1) and 2 tabs at bedtime 
-         * (sequence 1)</p> <p>ZDP.13.10</p> <p>Clearly expresses the 
-         * order of each dosage line to ensure the correct dosage is 
-         * given. Element is mandatory to ensure that dosage lines are 
-         * specified and followed in the order intended.</p> <p>Need 
-         * examples to illustrate use of sequence lines with 'ANDs' and 
-         * 'THENs'.</p> A:Dosage Line Order <p>Indicates the order in 
-         * which dosage lines should be performed. Ensures that each 
-         * step of multiple and complex SIGs (e.g ramp up/down) is in 
-         * the desired order. Dosage lines with the same sequence 
-         * number should be performed in parallel. E.g. 2 tabs tid for 
-         * 3 days (sequence 1) and then 1 tab tid for 4 days (sequence 
-         * 2) E.g. 1 tab in the morning (sequence 1) and 2 tabs at 
-         * bedtime (sequence 1)</p> <p>ZDP.13.10</p> <p>Clearly 
+         * <remarks>Un-merged Business Name: DosageLineOrder 
+         * Relationship: PORX_MT980040CA.Component17.sequenceNumber 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the 
+         * order in which dosage lines should be performed. Ensures 
+         * that each step of multiple and complex SIGs (e.g ramp 
+         * up/down) is in the desired order. Dosage lines with the same 
+         * sequence number should be performed in parallel. E.g. 2 tabs 
+         * tid for 3 days (sequence 1) and then 1 tab tid for 4 days 
+         * (sequence 2) E.g. 1 tab in the morning (sequence 1) and 2 
+         * tabs at bedtime (sequence 1)</p> <p>ZDP.13.10</p> <p>Clearly 
+         * expresses the order of each dosage line to ensure the 
+         * correct dosage is given. Element is mandatory to ensure that 
+         * dosage lines are specified and followed in the order 
+         * intended.</p> <p>Need examples to illustrate use of sequence 
+         * lines with 'ANDs' and 'THENs'.</p> Un-merged Business Name: 
+         * DosageLineOrder Relationship: 
+         * COCT_MT270010CA.Component17.sequenceNumber 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the 
+         * order in which dosage lines should be performed. Ensures 
+         * that each step of multiple and complex SIGs (e.g ramp 
+         * up/down) is in the desired order. Dosage lines with the same 
+         * sequence number should be performed in parallel. E.g. 2 tabs 
+         * tid for 3 days (sequence 1) and then 1 tab tid for 4 days 
+         * (sequence 2) E.g. 1 tab in the morning (sequence 1) and 2 
+         * tabs at bedtime (sequence 1)</p> <p>ZDP.13.10</p> <p>Clearly 
          * expresses the order of each dosage line to ensure the 
          * correct dosage is given. Element is mandatory to ensure that 
          * dosage lines are specified and followed in the order 
@@ -91,6 +96,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             set { this.sequenceNumber.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PORX_MT980040CA.Component17.dosageLine 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * COCT_MT270010CA.Component17.dosageLine 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"dosageLine"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.StructuredDosageLines DosageLine {
             get { return this.dosageLine; }

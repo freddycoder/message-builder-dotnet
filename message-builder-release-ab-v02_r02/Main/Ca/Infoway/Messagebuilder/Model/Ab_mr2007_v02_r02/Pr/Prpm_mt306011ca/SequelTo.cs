@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,18 +38,35 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt306011ca {
             this.typeCode = new CSImpl();
             this.sequenceNumber = new INTImpl();
         }
+        /**
+         * <summary>Relationship: PRPM_MT306011CA.SequelTo.typeCode</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"typeCode"})]
         public ActRelationshipType TypeCode {
             get { return (ActRelationshipType) this.typeCode.Value; }
             set { this.typeCode.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PRPM_MT306011CA.SequelTo.sequenceNumber</summary>
+         * 
+         * <remarks>Conformance/Cardinality: OPTIONAL (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"sequenceNumber"})]
         public int? SequenceNumber {
             get { return this.sequenceNumber.Value; }
             set { this.sequenceNumber.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PRPM_MT306011CA.SequelTo.informRequest</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"informRequest"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt306011ca.InformRequest InformRequest {
             get { return this.informRequest; }

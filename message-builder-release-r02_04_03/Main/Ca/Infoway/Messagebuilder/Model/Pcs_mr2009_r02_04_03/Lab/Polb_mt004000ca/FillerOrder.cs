@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,10 +27,10 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt004000
 
 
     /**
-     * <summary>Filler Order</summary>
+     * <summary>Business Name: Filler Order</summary>
      * 
-     * <remarks><p>The filler order communiates the intended 
-     * testing (as opposed to the requested tests).</p></remarks>
+     * <p>The filler order communiates the intended testing (as 
+     * opposed to the requested tests).</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"POLB_MT004000CA.ActPromise"})]
     public class FillerOrder : MessagePartBean, Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Merged.IFulfillmentChoice {
@@ -41,11 +41,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt004000
             this.id = new IIImpl();
         }
         /**
-         * <summary>Filler Order Identifier</summary>
+         * <summary>Business Name: Filler Order Identifier</summary>
          * 
-         * <remarks><p>The unique identfier for the filler order or 
-         * promise.</p> <p>The promise id is mandatory as it is 
-         * necessary to create the association (act relationship).</p></remarks>
+         * <remarks>Relationship: POLB_MT004000CA.ActPromise.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>The promise id is 
+         * mandatory as it is necessary to create the association (act 
+         * relationship).</p> <p>The unique identfier for the filler 
+         * order or promise.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {

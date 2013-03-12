@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Si.Comt_mt500001ca;
 
 
+    /**
+     * <summary>Business Name: COMT_IN500001CA: Broadcast Message</summary>
+     * 
+     * <p>Sends a broadcast message to all or a subset of users of 
+     * a given system; (Used for alerts regarding system outages or 
+     * other urgent messages).</p> Message: MCCI_MT002100CA.Message 
+     * Control Act: MCAI_MT700212CA.ControlActEvent --> Payload: 
+     * COMT_MT500001CA.InformEvent
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"COMT_IN500001CA"})]
     public class BroadcastMessage : HL7Message_1<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Mcai_mt700212ca.TriggerEvent<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Si.Comt_mt500001ca.BroadcastMessage>>, IInteraction {
 

@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,14 +30,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Mfmi_mt700746
 
 
     /**
-     * <summary>Registration Event</summary>
+     * <summary>Business Name: Registration Event</summary>
      * 
-     * <remarks><p>This class contains information relevant to the 
+     * <p>This class contains information relevant to the 
      * registration of the payload item(s) into the Master File or 
      * Registry. This message is a response to a request to 
      * register (therefore, the mood is an event).</p> <p>The 
      * RegistrationProcess act is the focal act of the message and 
-     * therefore is mandatory</p></remarks>
+     * therefore is mandatory</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"MFMI_MT700746CA.RegistrationEvent"})]
     public class RegistrationEvent<RR> : MessagePartBean {
@@ -59,48 +59,95 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Mfmi_mt700746
             this.custodianContextControlCode = new CSImpl();
             this.replacementOf = new List<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged.Replaces>();
         }
+        /**
+         * <summary>Relationship: 
+         * MFMI_MT700746CA.RegistrationEvent.classCode</summary>
+         * 
+         * <remarks>Conformance/Cardinality: OPTIONAL (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"classCode"})]
         public ActClass ClassCode {
             get { return (ActClass) this.classCode.Value; }
             set { this.classCode.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * MFMI_MT700746CA.RegistrationEvent.moodCode</summary>
+         * 
+         * <remarks>Conformance/Cardinality: OPTIONAL (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"moodCode"})]
         public ActMood MoodCode {
             get { return (ActMood) this.moodCode.Value; }
             set { this.moodCode.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * MFMI_MT700746CA.RegistrationEvent.statusCode</summary>
+         * 
+         * <remarks>Conformance/Cardinality: OPTIONAL (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"statusCode"})]
         public ActStatus StatusCode {
             get { return (ActStatus) this.statusCode.Value; }
             set { this.statusCode.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * MFMI_MT700746CA.RegistrationEvent.subject</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subject"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged.RegisteredItem<RR> Subject {
             get { return this.subject; }
             set { this.subject = value; }
         }
 
+        /**
+         * <summary>Relationship: MFMI_MT700746CA.Custodian.typeCode</summary>
+         * 
+         * <remarks>Conformance/Cardinality: OPTIONAL (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"custodian/typeCode"})]
         public ParticipationType CustodianTypeCode {
             get { return (ParticipationType) this.custodianTypeCode.Value; }
             set { this.custodianTypeCode.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * MFMI_MT700746CA.Custodian.contextControlCode</summary>
+         * 
+         * <remarks>Conformance/Cardinality: OPTIONAL (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"custodian/contextControlCode"})]
         public ContextControl CustodianContextControlCode {
             get { return (ContextControl) this.custodianContextControlCode.Value; }
             set { this.custodianContextControlCode.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * MFMI_MT700746CA.Custodian.assignedDevice</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"custodian/assignedDevice"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.EHRRepository CustodianAssignedDevice {
             get { return this.custodianAssignedDevice; }
             set { this.custodianAssignedDevice = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * MFMI_MT700746CA.RegistrationEvent.replacementOf</summary>
+         * 
+         * <remarks>Conformance/Cardinality: OPTIONAL (0-10)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"replacementOf"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged.Replaces> ReplacementOf {
             get { return this.replacementOf; }

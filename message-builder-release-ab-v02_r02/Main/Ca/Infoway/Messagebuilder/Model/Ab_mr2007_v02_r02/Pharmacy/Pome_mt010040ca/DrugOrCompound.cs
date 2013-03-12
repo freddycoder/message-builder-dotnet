@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,14 +32,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Pome_mt0100
 
 
     /**
-     * <summary>Drug or Compound</summary>
+     * <summary>Business Name: Drug or Compound</summary>
      * 
-     * <remarks><p>A catalog of drugs (manufactured material) from 
-     * which drugs may be selected for prescribing/dispensing. This 
+     * <p>A catalog of drugs (manufactured material) from which 
+     * drugs may be selected for prescribing/dispensing. This 
      * includes: TC - Therapeutic Class; GD - Generic Drug; GF - 
      * Generic Formulation; MD - Manufactured Drug; and CMP - 
      * Compound</p> <p>Provides a list of drugs available for 
-     * prescribing/dispensing.</p></remarks>
+     * prescribing/dispensing.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"POME_MT010040CA.Medicine"})]
     public class DrugOrCompound : MessagePartBean {
@@ -64,17 +64,18 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Pome_mt0100
             this.ingredient = new List<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.DrugContains>();
         }
         /**
-         * <summary>Drug Code</summary>
+         * <summary>Business Name: Drug Code</summary>
          * 
-         * <remarks><p>An identifier for a type of drug. Depending on 
-         * where the drug is being referenced, the drug may be 
-         * identified at different levels of abstraction. E.g. 
-         * Manufactured drug (including vaccines), generic formulation, 
-         * generic, therapeutic class, etc.</p> <p>Used to ensure clear 
-         * communication by uniquely identifying a particular drug 
-         * product when prescribing or dispensing. This attribute is 
-         * mandatory because querying by drug code can only return drug 
-         * codes.</p></remarks>
+         * <remarks>Relationship: POME_MT010040CA.Medicine.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>An identifier for 
+         * a type of drug. Depending on where the drug is being 
+         * referenced, the drug may be identified at different levels 
+         * of abstraction. E.g. Manufactured drug (including vaccines), 
+         * generic formulation, generic, therapeutic class, etc.</p> 
+         * <p>Used to ensure clear communication by uniquely 
+         * identifying a particular drug product when prescribing or 
+         * dispensing. This attribute is mandatory because querying by 
+         * drug code can only return drug codes.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public ClinicalDrug Code {
@@ -83,24 +84,26 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Pome_mt0100
         }
 
         /**
-         * <summary>Drug Names</summary>
+         * <summary>Business Name: Drug Names</summary>
          * 
-         * <remarks><p>The name assigned to a drug.</p> <p>Names are 
-         * used for human reference communication, to allow selection 
-         * from dropdowns and for local searching. Up to two names are 
+         * <remarks>Relationship: POME_MT010040CA.Medicine.name 
+         * Conformance/Cardinality: MANDATORY (1-2) <p>The name 
+         * assigned to a drug.</p> <p>Names are used for human 
+         * reference communication, to allow selection from dropdowns 
+         * and for local searching. Up to two names are supported: a 
+         * 'search name' which is fully formed with no abbreviations, 
+         * and a 'display name' which may contain abbreviations to fit 
+         * within a smaller area on the screen.</p><p>This attribute is 
+         * marked as 'mandatory' as drugs at any level of the drug 
+         * hierarchy is supposed to have a name.</p> <p>Names are used 
+         * for human reference communication, to allow selection from 
+         * dropdowns and for local searching. Up to two names are 
          * supported: a 'search name' which is fully formed with no 
          * abbreviations, and a 'display name' which may contain 
          * abbreviations to fit within a smaller area on the 
          * screen.</p><p>This attribute is marked as 'mandatory' as 
          * drugs at any level of the drug hierarchy is supposed to have 
-         * a name.</p> <p>Names are used for human reference 
-         * communication, to allow selection from dropdowns and for 
-         * local searching. Up to two names are supported: a 'search 
-         * name' which is fully formed with no abbreviations, and a 
-         * 'display name' which may contain abbreviations to fit within 
-         * a smaller area on the screen.</p><p>This attribute is marked 
-         * as 'mandatory' as drugs at any level of the drug hierarchy 
-         * is supposed to have a name.</p></remarks>
+         * a name.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"name"})]
         public ICollection<TrivialName> Name {
@@ -108,13 +111,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Pome_mt0100
         }
 
         /**
-         * <summary>Description</summary>
+         * <summary>Business Name: Description</summary>
          * 
-         * <remarks><p>A free form textual description of a drug. This 
-         * usually is only populated for custom compounds, providing 
-         * instructions on the composition and creation of the 
-         * compound.</p> <p>Allows description of compound ingredients 
-         * and/or recipe in free text form.</p></remarks>
+         * <remarks>Relationship: POME_MT010040CA.Medicine.desc 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>A free form 
+         * textual description of a drug. This usually is only 
+         * populated for custom compounds, providing instructions on 
+         * the composition and creation of the compound.</p> <p>Allows 
+         * description of compound ingredients and/or recipe in free 
+         * text form.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"desc"})]
         public String Desc {
@@ -123,13 +128,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Pome_mt0100
         }
 
         /**
-         * <summary>Drug Form</summary>
+         * <summary>Business Name: Drug Form</summary>
          * 
-         * <remarks><p>Indicates the form in which the drug product 
-         * must be, or has been manufactured or custom prepared.</p> 
-         * <p>Provides a constrained vocabulary for describing dose 
-         * forms. The form of the drug influences how it can be used by 
-         * the patient.</p></remarks>
+         * <remarks>Relationship: POME_MT010040CA.Medicine.formCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
+         * form in which the drug product must be, or has been 
+         * manufactured or custom prepared.</p> <p>Provides a 
+         * constrained vocabulary for describing dose forms. The form 
+         * of the drug influences how it can be used by the 
+         * patient.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"formCode"})]
         public OrderableDrugForm FormCode {
@@ -137,6 +144,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Pome_mt0100
             set { this.formCode.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * POME_MT010040CA.ManufacturedProduct.manufacturer</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"asManufacturedProduct/manufacturer"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.Manufacturer AsManufacturedProductManufacturer {
             get { return this.asManufacturedProductManufacturer; }
@@ -144,13 +157,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Pome_mt0100
         }
 
         /**
-         * <summary>Regulatory Status Code</summary>
+         * <summary>Business Name: Regulatory Status Code</summary>
          * 
-         * <remarks><p>Indicates whether the drug is approved for use 
-         * in Canada or not. (active = currently approved, terminated 
-         * or pending = not approved)</p> <p>Allows providers to 
-         * evaluate the validity of the medication for use in 
-         * Canada.</p></remarks>
+         * <remarks>Relationship: 
+         * POME_MT010040CA.RegulatedProduct.statusCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates whether 
+         * the drug is approved for use in Canada or not. (active = 
+         * currently approved, terminated or pending = not 
+         * approved)</p> <p>Allows providers to evaluate the validity 
+         * of the medication for use in Canada.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"asRegulatedProduct/statusCode"})]
         public RoleStatusNormal AsRegulatedProductStatusCode {
@@ -158,17 +173,33 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Pome_mt0100
             set { this.asRegulatedProductStatusCode.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: POME_MT010040CA.Medicine.asContent</summary>
+         * 
+         * <remarks>Conformance/Cardinality: REQUIRED (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"asContent"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged.DispensedIn AsContent {
             get { return this.asContent; }
             set { this.asContent = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * POME_MT010040CA.Medicine.asSpecializedKind</summary>
+         * 
+         * <remarks>Conformance/Cardinality: REQUIRED (0-5)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"asSpecializedKind"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged.GroupedWithin> AsSpecializedKind {
             get { return this.asSpecializedKind; }
         }
 
+        /**
+         * <summary>Relationship: POME_MT010040CA.Medicine.ingredient</summary>
+         * 
+         * <remarks>Conformance/Cardinality: REQUIRED (0-100)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"ingredient"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.DrugContains> Ingredient {
             get { return this.ingredient; }

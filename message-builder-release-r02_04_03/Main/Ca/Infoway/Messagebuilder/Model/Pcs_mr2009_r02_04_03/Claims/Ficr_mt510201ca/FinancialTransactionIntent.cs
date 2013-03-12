@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,22 +33,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt510
 
 
     /**
-     * <summary><p>Amt must be positive or 0 for</p><p>completed 
+     * <p>Amt must be positive or 0 for</p><p>completed 
      * Adjudication Results</p><p>messages</p><p>Amt must be 
-     * negative or 0 for Invoice Cancel Results messages</p></summary>
+     * negative or 0 for Invoice Cancel Results messages</p>
      * 
-     * <remarks><p>Amt must be positive or 0 for</p><p>completed 
-     * Adjudication Results</p><p>messages</p><p>Amt must be 
-     * negative or 0 for Invoice Cancel Results messages</p> <p>Amt 
-     * must be positive or 0 for</p><p>completed Adjudication 
-     * Results</p><p>messages</p><p>Amt must be negative or 0 for 
-     * Invoice Cancel Results messages</p> <p>Amt must be positive 
-     * or 0 for</p><p>completed Adjudication 
-     * Results</p><p>messages</p><p>Amt must be negative or 0 for 
-     * Invoice Cancel Results messages</p> <p>If an Adjudicator 
-     * adjudicates for multiple insurance policies (EOBs) for 
-     * multiple Payors and/or Payees, there would be more than 1 
-     * Payment Intent payload in the Results message</p></remarks>
+     * <p>If an Adjudicator adjudicates for multiple insurance 
+     * policies (EOBs) for multiple Payors and/or Payees, there 
+     * would be more than 1 Payment Intent payload in the Results 
+     * message</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"FICR_MT510201CA.FinancialTransactionIntent"})]
     public class FinancialTransactionIntent : MessagePartBean {
@@ -71,7 +63,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt510
             this.reasonOf = new List<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt510201ca.Reason2>();
         }
         /**
-         * <summary>Payment Intent Identifier</summary>
+         * <summary>Business Name: Payment Intent Identifier</summary>
+         * 
+         * <remarks>Relationship: 
+         * FICR_MT510201CA.FinancialTransactionIntent.id 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -80,7 +76,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt510
         }
 
         /**
-         * <summary>Payment Intent Status</summary>
+         * <summary>Business Name: Payment Intent Status</summary>
+         * 
+         * <remarks>Relationship: 
+         * FICR_MT510201CA.FinancialTransactionIntent.statusCode 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"statusCode"})]
         public ActStatus StatusCode {
@@ -89,7 +89,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt510
         }
 
         /**
-         * <summary>Payment Intent Date/Time</summary>
+         * <summary>Business Name: Payment Intent Date/Time</summary>
+         * 
+         * <remarks>Relationship: 
+         * FICR_MT510201CA.FinancialTransactionIntent.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"effectiveTime"})]
         public PlatformDate EffectiveTime {
@@ -98,7 +102,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt510
         }
 
         /**
-         * <summary>Total Amount of Payment Intent</summary>
+         * <summary>Business Name: Total Amount of Payment Intent</summary>
+         * 
+         * <remarks>Relationship: 
+         * FICR_MT510201CA.FinancialTransactionIntent.amt 
+         * Conformance/Cardinality: REQUIRED (0-1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"amt"})]
         public Money Amt {
@@ -106,23 +114,45 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt510
             set { this.amt.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: FICR_MT510201CA.Credit.account</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"credit/account"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt110200ca.PayeeAccount CreditAccount {
             get { return this.creditAccount; }
             set { this.creditAccount = value; }
         }
 
+        /**
+         * <summary>Relationship: FICR_MT510201CA.Debit.account</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"debit/account"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt110101ca.Account DebitAccount {
             get { return this.debitAccount; }
             set { this.debitAccount = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * FICR_MT510201CA.PertinentInformation2.adjudicatorBillingTaxAccount</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"pertinentInformation/adjudicatorBillingTaxAccount"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Merged.AdjudicatorBillingTaxAccount> PertinentInformationAdjudicatorBillingTaxAccount {
             get { return this.pertinentInformationAdjudicatorBillingTaxAccount; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * FICR_MT510201CA.FinancialTransactionIntent.reasonOf</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1-10)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"reasonOf"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt510201ca.Reason2> ReasonOf {
             get { return this.reasonOf; }

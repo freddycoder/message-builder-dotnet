@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -43,29 +43,35 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             this.actDefinitionMoodCode = new CSImpl();
         }
         /**
-         * <summary>ConsentInformationTypes</summary>
+         * <summary>Business Name: ConsentInformationTypes</summary>
          * 
-         * <remarks>B:Consent Information Types <p>The type of patient, 
-         * client, or provider information that can be accessed or 
-         * modified.</p> <p>Different consents (or even keywords) may 
-         * be needed to access different types of patient, client, or 
-         * provider information (e.g. demographics, medications, 
-         * allergies, lab results). Understanding the type of 
-         * information the consent applies to is critical, and 
-         * therefore the attribute is mandatory.</p> B:Consent 
-         * Information Types <p>The type of patient information that 
-         * can be accessed or modified.</p> <p>Different consents (or 
-         * even keywords) may be needed to access different types of 
-         * patient information (e.g. demographics, medications, 
-         * allergies, lab results). Understanding the type of 
-         * information the consent applies to is critical, and 
-         * therefore the attribute is mandatory.</p> B:Consent 
-         * Information Types <p>The type of patient information that 
-         * can be accessed or modified.</p> <p>Different consents (or 
-         * even keywords) may be needed to access different types of 
-         * patient information (e.g. demographics, medications, 
-         * allergies, lab results). Understanding the type of 
-         * information the consent applies to is critical, and 
+         * <remarks>Un-merged Business Name: ConsentInformationTypes 
+         * Relationship: COCT_MT470000CA.ActDefinition.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>The type of 
+         * patient information that can be accessed or modified.</p> 
+         * <p>Different consents (or even keywords) may be needed to 
+         * access different types of patient information (e.g. 
+         * demographics, medications, allergies, lab results). 
+         * Understanding the type of information the consent applies to 
+         * is critical, and therefore the attribute is mandatory.</p> 
+         * Un-merged Business Name: ConsentInformationTypes 
+         * Relationship: COCT_MT470002CA.ActDefinition.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>The type of 
+         * patient information that can be accessed or modified.</p> 
+         * <p>Different consents (or even keywords) may be needed to 
+         * access different types of patient information (e.g. 
+         * demographics, medications, allergies, lab results). 
+         * Understanding the type of information the consent applies to 
+         * is critical, and therefore the attribute is mandatory.</p> 
+         * Un-merged Business Name: ConsentInformationTypes 
+         * Relationship: COCT_MT470012CA.ActDefinition.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>The type of 
+         * patient, client, or provider information that can be 
+         * accessed or modified.</p> <p>Different consents (or even 
+         * keywords) may be needed to access different types of 
+         * patient, client, or provider information (e.g. demographics, 
+         * medications, allergies, lab results). Understanding the type 
+         * of information the consent applies to is critical, and 
          * therefore the attribute is mandatory.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"actDefinition/code"})]
@@ -74,24 +80,55 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             set { this.actDefinitionCode.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: COCT_MT470002CA.Subject3.typeCode 
+         * Conformance/Cardinality: OPTIONAL (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"typeCode"})]
         public ActRelationshipType TypeCode {
             get { return (ActRelationshipType) this.typeCode.Value; }
             set { this.typeCode.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * COCT_MT470002CA.Subject3.contextControlCode 
+         * Conformance/Cardinality: OPTIONAL (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"contextControlCode"})]
         public ContextControl ContextControlCode {
             get { return (ContextControl) this.contextControlCode.Value; }
             set { this.contextControlCode.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * COCT_MT470002CA.ActDefinition.classCode 
+         * Conformance/Cardinality: OPTIONAL (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"actDefinition/classCode"})]
         public ActClass ActDefinitionClassCode {
             get { return (ActClass) this.actDefinitionClassCode.Value; }
             set { this.actDefinitionClassCode.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * COCT_MT470002CA.ActDefinition.moodCode 
+         * Conformance/Cardinality: OPTIONAL (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"actDefinition/moodCode"})]
         public ActMood ActDefinitionMoodCode {
             get { return (ActMood) this.actDefinitionMoodCode.Value; }

@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Cr.Merged {
 
 
     /**
-     * <summary>PersonalRelationship</summary>
+     * <summary>Business Name: PersonalRelationship</summary>
      * 
      * <remarks>PRPA_MT101001CA.PersonalRelationship: Personal 
      * Relationship <p>Associations between persons in the Person 
@@ -114,13 +114,32 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Cr.Merged {
             this.relationshipHolderDeterminerCode = new CSImpl();
         }
         /**
-         * <summary>ClientNextOfKin</summary>
+         * <summary>Business Name: ClientNextOfKin</summary>
          * 
-         * <remarks>Client Next of Kin <p>A code further specifying the 
-         * kind of Role such as Mother, Father, Natural Parent or Step 
-         * Parent</p> <p>Mandatory attribute that supports 
-         * understanding the relationship between the client and the 
-         * Next of Kin</p> Client Next of Kin <p>A code further 
+         * <remarks>Un-merged Business Name: ClientNextOfKin 
+         * Relationship: PRPA_MT101001CA.PersonalRelationship.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>A code further 
+         * specifying the kind of Role such as Mother, Father, Natural 
+         * Parent or Step Parent</p> <p>Mandatory attribute that 
+         * supports understanding the relationship between the client 
+         * and the ParentClient</p> Un-merged Business Name: 
+         * ClientNextOfKin Relationship: 
+         * PRPA_MT101104CA.PersonalRelationship.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>A code further 
+         * specifying the kind of Role such as Mother, Father, Natural 
+         * Parent or Step Parent</p> <p>Mandatory attribute that 
+         * supports understanding the relationship between the client 
+         * and the Next of Kin</p> Un-merged Business Name: 
+         * ClientNextOfKin Relationship: 
+         * PRPA_MT101102CA.PersonalRelationship.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>A code further 
+         * specifying the kind of Role such as Mother, Father, Natural 
+         * Parent or Step Parent</p> <p>Mandatory attribute that 
+         * supports understanding the relationship between the client 
+         * and the Next of Kin</p> Un-merged Business Name: 
+         * ClientNextOfKin Relationship: 
+         * PRPA_MT101002CA.PersonalRelationship.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>A code further 
          * specifying the kind of Role such as Mother, Father, Natural 
          * Parent or Step Parent</p> <p>Mandatory attribute that 
          * supports understanding the relationship between the client 
@@ -133,11 +152,27 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Cr.Merged {
         }
 
         /**
-         * <summary>NextOfKinIdentifier</summary>
+         * <summary>Business Name: NextOfKinIdentifier</summary>
          * 
-         * <remarks>Next of Kin Identifier <p>A unique identifier for 
-         * the next of kin</p> <p>Mandatory attribute supports the 
-         * identification of the next of kin</p></remarks>
+         * <remarks>Un-merged Business Name: NextOfKinIdentifier 
+         * Relationship: PRPA_MT101001CA.ParentPerson.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>A unique 
+         * identifier for the next of kin</p> <p>Mandatory attribute 
+         * supports the identification of the next of kin</p> Un-merged 
+         * Business Name: NextOfKinIdentifier Relationship: 
+         * PRPA_MT101104CA.ParentPerson.id Conformance/Cardinality: 
+         * MANDATORY (1) <p>A unique identifier for the next of kin</p> 
+         * <p>Mandatory attribute supports the identification of the 
+         * next of kin</p> Un-merged Business Name: NextOfKinIdentifier 
+         * Relationship: PRPA_MT101102CA.ParentPerson.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>A unique 
+         * identifier for the next of kin</p> <p>Mandatory attribute 
+         * supports the identification of the next of kin</p> Un-merged 
+         * Business Name: NextOfKinIdentifier Relationship: 
+         * PRPA_MT101002CA.ParentPerson.id Conformance/Cardinality: 
+         * MANDATORY (1) <p>A unique identifier for the next of kin</p> 
+         * <p>Mandatory attribute supports the identification of the 
+         * next of kin</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"relationshipHolder/id"})]
         public Identifier RelationshipHolderId {
@@ -146,11 +181,25 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Cr.Merged {
         }
 
         /**
-         * <summary>NextOfKinName</summary>
+         * <summary>Business Name: NextOfKinName</summary>
          * 
-         * <remarks>Next of Kin Name <p>A name for the next of kin</p> 
-         * <p>Required attribute supports the identification of the 
-         * next of kin</p></remarks>
+         * <remarks>Un-merged Business Name: NextOfKinName 
+         * Relationship: PRPA_MT101001CA.ParentPerson.name 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>A name for the 
+         * next of kin</p> <p>Required attribute supports the 
+         * identification of the next of kin</p> Un-merged Business 
+         * Name: NextOfKinName Relationship: 
+         * PRPA_MT101104CA.ParentPerson.name Conformance/Cardinality: 
+         * REQUIRED (0-1) <p>A name for the next of kin</p> <p>Required 
+         * attribute supports the identification of the next of kin</p> 
+         * Un-merged Business Name: NextOfKinName Relationship: 
+         * PRPA_MT101102CA.ParentPerson.name Conformance/Cardinality: 
+         * REQUIRED (0-1) <p>A name for the next of kin</p> <p>Required 
+         * attribute supports the identification of the next of kin</p> 
+         * Un-merged Business Name: NextOfKinName Relationship: 
+         * PRPA_MT101002CA.ParentPerson.name Conformance/Cardinality: 
+         * REQUIRED (0-1) <p>A name for the next of kin</p> <p>Required 
+         * attribute supports the identification of the next of kin</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"relationshipHolder/name"})]
         public PersonName RelationshipHolderName {
@@ -159,15 +208,22 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Cr.Merged {
         }
 
         /**
-         * <summary>(no business name)</summary>
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
          * 
-         * <remarks><p>A code specifying the major category of a Role 
-         * as defined by HL7 vocabulary.</p> <p>Provides a means to 
-         * identify Roles played by entities</p> <p>Links two people in 
-         * a personal relationship. The character of the relationship 
-         * must be defined by a PersonalRelationshipRoleType code. The 
-         * player and scoper are determined by 
-         * PersonalRelationshipRoleType code as well.</p></remarks>
+         * <remarks>Relationship: 
+         * PRPA_MT101104CA.PersonalRelationship.classCode 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>A code specifying 
+         * the major category of a Role as defined by HL7 
+         * vocabulary.</p> <p>Provides a means to identify Roles played 
+         * by entities</p> <p>Links two people in a personal 
+         * relationship. The character of the relationship must be 
+         * defined by a PersonalRelationshipRoleType code. The player 
+         * and scoper are determined by PersonalRelationshipRoleType 
+         * code as well.</p> Un-merged Business Name: (no business name 
+         * specified) Relationship: 
+         * PRPA_MT101102CA.PersonalRelationship.classCode 
+         * Conformance/Cardinality: OPTIONAL (0-1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"classCode"})]
         public RoleClass ClassCode {
@@ -176,22 +232,29 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Cr.Merged {
         }
 
         /**
-         * <summary>(no business name)</summary>
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
          * 
-         * <remarks><p>An HL7 defined value representing the class or 
-         * category that the Entity instance 
-         * represents.</p><p>Examples: Person, Animal, Chemical 
-         * Substance, Group, Organization</p> <p>An HL7 defined value 
-         * representing the class or category that the Entity instance 
-         * represents.</p><p>Examples: Person, Animal, Chemical 
-         * Substance, Group, Organization</p> <p>Due to the extremely 
-         * large number of potential values for a code set representing 
-         * all physical things in the universe, the class code 
-         * indicates both the subtype branch of the Entity hierarchy 
-         * used as well as a high level classifier to represent the 
-         * instance of Entity. This can be used to constrain the 
-         * eligible value domains for the Entity.code attribute.</p> 
-         * <p>http://www.hl7.org/v3ballot/html/infrastructure/vocabulary/EntityClass.htm</p></remarks>
+         * <remarks>Relationship: 
+         * PRPA_MT101104CA.ParentPerson.classCode 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>An HL7 defined 
+         * value representing the class or category that the Entity 
+         * instance represents.</p><p>Examples: Person, Animal, 
+         * Chemical Substance, Group, Organization</p> <p>An HL7 
+         * defined value representing the class or category that the 
+         * Entity instance represents.</p><p>Examples: Person, Animal, 
+         * Chemical Substance, Group, Organization</p> <p>Due to the 
+         * extremely large number of potential values for a code set 
+         * representing all physical things in the universe, the class 
+         * code indicates both the subtype branch of the Entity 
+         * hierarchy used as well as a high level classifier to 
+         * represent the instance of Entity. This can be used to 
+         * constrain the eligible value domains for the Entity.code 
+         * attribute.</p> 
+         * <p>http://www.hl7.org/v3ballot/html/infrastructure/vocabulary/EntityClass.htm</p> 
+         * Un-merged Business Name: (no business name specified) 
+         * Relationship: PRPA_MT101102CA.ParentPerson.classCode 
+         * Conformance/Cardinality: OPTIONAL (0-1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"relationshipHolder/classCode"})]
         public EntityClass RelationshipHolderClassCode {
@@ -200,22 +263,28 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Cr.Merged {
         }
 
         /**
-         * <summary>(no business name)</summary>
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
          * 
-         * <remarks><p>An HL7 defined value representing whether the 
-         * Entity represents a kind-of or a specific 
-         * instance.</p><p>Examples: 1 human being (an instance), 3 
-         * syringes (quantified kind) or the population of Indianapolis 
-         * (kind of group)</p> <p>An HL7 defined value representing 
-         * whether the Entity represents a kind-of or a specific 
-         * instance.</p><p>Examples: 1 human being (an instance), 3 
-         * syringes (quantified kind) or the population of Indianapolis 
-         * (kind of group)</p> <p>An Entity may at times represent 
-         * information concerning a specific instance (the most 
-         * common), a quantifiable group with common characteristics or 
-         * a general type of Entity. This code distinguishes these 
-         * different representations.</p> 
-         * <p>http://www.hl7.org/v3ballot/html/infrastructure/vocabulary/EntityDeterminer.htm</p></remarks>
+         * <remarks>Relationship: 
+         * PRPA_MT101104CA.ParentPerson.determinerCode 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>An HL7 defined 
+         * value representing whether the Entity represents a kind-of 
+         * or a specific instance.</p><p>Examples: 1 human being (an 
+         * instance), 3 syringes (quantified kind) or the population of 
+         * Indianapolis (kind of group)</p> <p>An HL7 defined value 
+         * representing whether the Entity represents a kind-of or a 
+         * specific instance.</p><p>Examples: 1 human being (an 
+         * instance), 3 syringes (quantified kind) or the population of 
+         * Indianapolis (kind of group)</p> <p>An Entity may at times 
+         * represent information concerning a specific instance (the 
+         * most common), a quantifiable group with common 
+         * characteristics or a general type of Entity. This code 
+         * distinguishes these different representations.</p> 
+         * <p>http://www.hl7.org/v3ballot/html/infrastructure/vocabulary/EntityDeterminer.htm</p> 
+         * Un-merged Business Name: (no business name specified) 
+         * Relationship: PRPA_MT101102CA.ParentPerson.determinerCode 
+         * Conformance/Cardinality: OPTIONAL (0-1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"relationshipHolder/determinerCode"})]
         public EntityDeterminer RelationshipHolderDeterminerCode {

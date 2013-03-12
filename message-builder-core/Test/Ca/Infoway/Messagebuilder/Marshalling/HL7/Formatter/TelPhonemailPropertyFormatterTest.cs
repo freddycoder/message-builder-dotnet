@@ -1,4 +1,26 @@
+/**
+ * Copyright 2013 Canada Health Infoway, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Author:        $LastChangedBy: tmcgrady $
+ * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Revision:      $LastChangedRevision: 2623 $
+ */
 using System.Collections.Generic;
+using Ca.Infoway.Messagebuilder;
+using Ca.Infoway.Messagebuilder.Datatype;
+using Ca.Infoway.Messagebuilder.Datatype.Impl;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter;
@@ -9,16 +31,35 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 	[TestFixture]
 	public class TelPhonemailPropertyFormatterTest
 	{
+		private ModelToXmlResult xmlResult = new ModelToXmlResult();
+
+		[TearDown]
+		public virtual void Teardown()
+		{
+			this.xmlResult.ClearErrors();
+		}
+
 		/// <exception cref="System.Exception"></exception>
 		[Test]
 		public virtual void TestGetAttributeNameValuePairsNullValue()
 		{
-			IDictionary<string, string> result = new TelPhonemailPropertyFormatter().GetAttributeNameValuePairs(new FormatContextImpl
-				("name", null, null), null);
+			IDictionary<string, string> result = new TelPhonemailPropertyFormatter().GetAttributeNameValuePairs(CreateContext("TEL.PHONE"
+				), null, new TELImpl());
+			Assert.IsTrue(this.xmlResult.IsValid());
 			// a null value for TEL.PHONEMAIL elements results in a nullFlavor attribute
 			Assert.AreEqual(1, result.Count, "map size");
 			Assert.IsTrue(result.ContainsKey(AbstractPropertyFormatter.NULL_FLAVOR_ATTRIBUTE_NAME), "key as expected");
 			Assert.AreEqual(AbstractPropertyFormatter.NULL_FLAVOR_NO_INFORMATION, result.SafeGet("nullFlavor"), "value as expected");
+		}
+
+		private FormatContextImpl CreateContext(string type)
+		{
+			return CreateContext(type, SpecificationVersion.R02_04_03);
+		}
+
+		private FormatContextImpl CreateContext(string type, SpecificationVersion version)
+		{
+			return new FormatContextImpl(this.xmlResult, null, "name", type, null, false, version, null, null, null);
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -28,8 +69,76 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			TelecommunicationAddress address = new TelecommunicationAddress();
 			address.UrlScheme = CeRxDomainTestValues.TELEPHONE;
 			address.Address = "value";
-			IDictionary<string, string> result = new TelPhonemailPropertyFormatter().GetAttributeNameValuePairs(new FormatContextImpl
-				("name", null, null), address);
+			IDictionary<string, string> result = new TelPhonemailPropertyFormatter().GetAttributeNameValuePairs(CreateContext("TEL.PHONE"
+				), address, new TELImpl());
+			Assert.IsTrue(this.xmlResult.IsValid());
+			Assert.AreEqual(1, result.Count, "map size");
+			Assert.IsTrue(result.ContainsKey("value"), "key as expected");
+			Assert.AreEqual("tel:value", result.SafeGet("value"), "value as expected");
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void TestGetAttributeNameValuePairsTelPhonemailWithSpecializationType()
+		{
+			TelecommunicationAddress address = new TelecommunicationAddress();
+			address.UrlScheme = CeRxDomainTestValues.TELEPHONE;
+			address.Address = "value";
+			TELImpl bareAny = new TELImpl();
+			bareAny.DataType = StandardDataType.TEL_PHONE;
+			IDictionary<string, string> result = new TelPhonemailPropertyFormatter().GetAttributeNameValuePairs(CreateContext("TEL.PHONEMAIL"
+				), address, bareAny);
+			Assert.IsTrue(this.xmlResult.IsValid());
+			Assert.AreEqual(1, result.Count, "map size");
+			Assert.IsTrue(result.ContainsKey("value"), "key as expected");
+			Assert.AreEqual("tel:value", result.SafeGet("value"), "value as expected");
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void TestGetAttributeNameValuePairsTelPhonemailMissingSpecializationType()
+		{
+			TelecommunicationAddress address = new TelecommunicationAddress();
+			address.UrlScheme = CeRxDomainTestValues.TELEPHONE;
+			address.Address = "value";
+			IDictionary<string, string> result = new TelPhonemailPropertyFormatter().GetAttributeNameValuePairs(CreateContext("TEL.PHONEMAIL"
+				), address, new TELImpl());
+			Assert.IsFalse(this.xmlResult.IsValid());
+			Assert.AreEqual(1, this.xmlResult.GetHl7Errors().Count);
+			Assert.AreEqual(1, result.Count, "map size");
+			Assert.IsTrue(result.ContainsKey("value"), "key as expected");
+			Assert.AreEqual("tel:value", result.SafeGet("value"), "value as expected");
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void TestGetAttributeNameValuePairsTelAllMissingSpecializationType()
+		{
+			TelecommunicationAddress address = new TelecommunicationAddress();
+			address.UrlScheme = CeRxDomainTestValues.TELEPHONE;
+			address.Address = "value";
+			IDictionary<string, string> result = new TelPhonemailPropertyFormatter().GetAttributeNameValuePairs(CreateContext("TEL.ALL"
+				), address, new TELImpl());
+			Assert.IsFalse(this.xmlResult.IsValid());
+			Assert.AreEqual(1, this.xmlResult.GetHl7Errors().Count);
+			Assert.AreEqual(1, result.Count, "map size");
+			Assert.IsTrue(result.ContainsKey("value"), "key as expected");
+			Assert.AreEqual("tel:value", result.SafeGet("value"), "value as expected");
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void TestGetAttributeNameValuePairsTelPhonemailMissingSpecializationType2()
+		{
+			TelecommunicationAddress address = new TelecommunicationAddress();
+			address.UrlScheme = CeRxDomainTestValues.TELEPHONE;
+			address.Address = "value";
+			TELImpl bareAny = new TELImpl();
+			bareAny.DataType = null;
+			IDictionary<string, string> result = new TelPhonemailPropertyFormatter().GetAttributeNameValuePairs(CreateContext("TEL.PHONEMAIL"
+				), address, bareAny);
+			Assert.IsFalse(this.xmlResult.IsValid());
+			Assert.AreEqual(1, this.xmlResult.GetHl7Errors().Count);
 			Assert.AreEqual(1, result.Count, "map size");
 			Assert.IsTrue(result.ContainsKey("value"), "key as expected");
 			Assert.AreEqual("tel:value", result.SafeGet("value"), "value as expected");
@@ -39,23 +148,35 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		[Test]
 		public virtual void TestGetAttributeNameValuePairsPhonemailAllValidSchemes()
 		{
-			FormatterAssert.AssertValidUrlScheme(new TelPhonemailPropertyFormatter(), CeRxDomainTestValues.FAX, "fax:");
-			FormatterAssert.AssertValidUrlScheme(new TelPhonemailPropertyFormatter(), CeRxDomainTestValues.MAILTO, "mailto://");
-			FormatterAssert.AssertValidUrlScheme(new TelPhonemailPropertyFormatter(), CeRxDomainTestValues.TELEPHONE, "tel:");
+			FormatContextImpl context = CreateContext("TEL.PHONE");
+			FormatterAssert.AssertValidUrlScheme(new TelPhonemailPropertyFormatter(), CeRxDomainTestValues.FAX, context, "fax:");
+			FormatterAssert.AssertValidUrlScheme(new TelPhonemailPropertyFormatter(), CeRxDomainTestValues.TELEPHONE, context, "tel:"
+				);
+			context = CreateContext("TEL.EMAIL");
+			FormatterAssert.AssertValidUrlScheme(new TelPhonemailPropertyFormatter(), CeRxDomainTestValues.MAILTO, context, "mailto:"
+				);
 		}
 
 		/// <exception cref="System.Exception"></exception>
 		[Test]
 		public virtual void TestGetAttributeNameValuePairsAllInvalidSchemes()
 		{
-			FormatterAssert.AssertInvalidUrlScheme(new TelPhonemailPropertyFormatter(), CeRxDomainTestValues.FILE);
-			FormatterAssert.AssertInvalidUrlScheme(new TelPhonemailPropertyFormatter(), CeRxDomainTestValues.FTP);
-			FormatterAssert.AssertInvalidUrlScheme(new TelPhonemailPropertyFormatter(), CeRxDomainTestValues.HTTP);
-			FormatterAssert.AssertInvalidUrlScheme(new TelPhonemailPropertyFormatter(), CeRxDomainTestValues.HTTPS);
-			FormatterAssert.AssertInvalidUrlScheme(new TelPhonemailPropertyFormatter(), CeRxDomainTestValues.MLLP);
-			FormatterAssert.AssertInvalidUrlScheme(new TelPhonemailPropertyFormatter(), CeRxDomainTestValues.MODEM);
-			FormatterAssert.AssertInvalidUrlScheme(new TelPhonemailPropertyFormatter(), CeRxDomainTestValues.TELNET);
-			FormatterAssert.AssertInvalidUrlScheme(new TelPhonemailPropertyFormatter(), CeRxDomainTestValues.NFS);
+			FormatContextImpl context = CreateContext("TEL.PHONE");
+			FormatterAssert.AssertInvalidUrlScheme(new TelPhonemailPropertyFormatter(), CeRxDomainTestValues.FILE, context);
+			this.xmlResult.ClearErrors();
+			FormatterAssert.AssertInvalidUrlScheme(new TelPhonemailPropertyFormatter(), CeRxDomainTestValues.FTP, context);
+			this.xmlResult.ClearErrors();
+			FormatterAssert.AssertInvalidUrlScheme(new TelPhonemailPropertyFormatter(), CeRxDomainTestValues.HTTP, context);
+			this.xmlResult.ClearErrors();
+			FormatterAssert.AssertInvalidUrlScheme(new TelPhonemailPropertyFormatter(), CeRxDomainTestValues.HTTPS, context);
+			this.xmlResult.ClearErrors();
+			FormatterAssert.AssertInvalidUrlScheme(new TelPhonemailPropertyFormatter(), CeRxDomainTestValues.MLLP, context);
+			this.xmlResult.ClearErrors();
+			FormatterAssert.AssertInvalidUrlScheme(new TelPhonemailPropertyFormatter(), CeRxDomainTestValues.MODEM, context);
+			this.xmlResult.ClearErrors();
+			FormatterAssert.AssertInvalidUrlScheme(new TelPhonemailPropertyFormatter(), CeRxDomainTestValues.TELNET, context);
+			this.xmlResult.ClearErrors();
+			FormatterAssert.AssertInvalidUrlScheme(new TelPhonemailPropertyFormatter(), CeRxDomainTestValues.NFS, context);
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -66,16 +187,18 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			address.UrlScheme = CeRxDomainTestValues.TELEPHONE;
 			address.Address = "value";
 			address.AddAddressUse(CeRxDomainTestValues.HOME_ADDRESS);
-			IDictionary<string, string> result = new TelPhonemailPropertyFormatter().GetAttributeNameValuePairs(new FormatContextImpl
-				("name", null, null), address);
+			IDictionary<string, string> result = new TelPhonemailPropertyFormatter().GetAttributeNameValuePairs(CreateContext("TEL.PHONE"
+				), address, new TELImpl());
+			Assert.IsTrue(this.xmlResult.IsValid());
 			Assert.AreEqual(2, result.Count, "map size");
 			Assert.IsTrue(result.ContainsKey("value"), "key as expected");
 			Assert.AreEqual("tel:value", result.SafeGet("value"), "value as expected");
 			Assert.IsTrue(result.ContainsKey("use"), "use key as expected");
 			Assert.AreEqual("H", result.SafeGet("use"), "use as expected");
 			address.AddAddressUse(CeRxDomainTestValues.MOBILE_CONTACT);
-			result = new TelPhonemailPropertyFormatter().GetAttributeNameValuePairs(new FormatContextImpl("name", null, null), address
-				);
+			result = new TelPhonemailPropertyFormatter().GetAttributeNameValuePairs(CreateContext("TEL.PHONE"), address, new TELImpl(
+				));
+			Assert.IsTrue(this.xmlResult.IsValid());
 			Assert.AreEqual(2, result.Count, "map size");
 			Assert.IsTrue(result.ContainsKey("use"), "use key as expected");
 			ICollection<string> uses = FormatterAssert.ToSet(result.SafeGet("use"));
@@ -88,7 +211,6 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		{
 			AssertInvalidAddressUse(CeRxDomainTestValues.ANSWERING_SERVICE);
 			AssertInvalidAddressUse(CeRxDomainTestValues.BAD_ADDRESS);
-			AssertInvalidAddressUse(CeRxDomainTestValues.DIRECT);
 			AssertInvalidAddressUse(CeRxDomainTestValues.PRIMARY_HOME);
 			AssertInvalidAddressUse(CeRxDomainTestValues.PUBLIC);
 			AssertInvalidAddressUse(CeRxDomainTestValues.VACATION_HOME);
@@ -98,17 +220,14 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		{
 			TelecommunicationAddress address = new TelecommunicationAddress();
 			address.UrlScheme = CeRxDomainTestValues.FAX;
+			address.Address = "4167620032";
 			address.AddAddressUse(addressUse);
-			try
-			{
-				new TelPhonemailPropertyFormatter().GetAttributeNameValuePairs(new FormatContextImpl("name", null, null), address);
-				Assert.Fail("expected exception");
-			}
-			catch (ModelToXmlTransformationException e)
-			{
-				Assert.AreEqual("Telecommunication address use " + addressUse.CodeValue + " is not supported for TEL.PHONEMAIL data", e.Message
-					, "expected message");
-			}
+			this.xmlResult.ClearErrors();
+			new TelPhonemailPropertyFormatter().GetAttributeNameValuePairs(CreateContext("TEL.PHONE"), address, new TELImpl());
+			Assert.IsFalse(this.xmlResult.IsValid());
+			Assert.AreEqual(1, this.xmlResult.GetHl7Errors().Count);
+			Assert.AreEqual("TelecomAddressUse is not valid: " + addressUse.CodeValue, this.xmlResult.GetHl7Errors()[0].GetMessage(), 
+				"expected message");
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -129,11 +248,294 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			TelecommunicationAddress address = new TelecommunicationAddress();
 			address.UrlScheme = CeRxDomainTestValues.FAX;
 			address.AddAddressUse(addressUse);
-			IDictionary<string, string> result = new TelPhonemailPropertyFormatter().GetAttributeNameValuePairs(new FormatContextImpl
-				("name", null, null), address);
+			address.Address = "someAddress";
+			this.xmlResult.ClearErrors();
+			FormatContextImpl context = CreateContext("TEL.PHONE");
+			IDictionary<string, string> result = new TelPhonemailPropertyFormatter().GetAttributeNameValuePairs(context, address, new 
+				TELImpl());
+			Assert.IsTrue(this.xmlResult.IsValid());
 			Assert.AreEqual(2, result.Count, "map size");
 			Assert.IsTrue(result.ContainsKey("use"), "key as expected");
 			Assert.AreEqual(addressUse.CodeValue, result.SafeGet("use"), "value as expected");
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void TestTelEmailWithValidMaxLength()
+		{
+			TelecommunicationAddress address = new TelecommunicationAddress();
+			address.UrlScheme = CeRxDomainTestValues.MAILTO;
+			// mailto: + 43 = 50 (max)
+			address.Address = "1234567890123456789012345678901234567890123";
+			IDictionary<string, string> result = new TelUriPropertyFormatter().GetAttributeNameValuePairs(CreateContext("TEL.EMAIL"), 
+				address, new TELImpl());
+			Assert.IsTrue(this.xmlResult.IsValid());
+			Assert.AreEqual(1, result.Count, "map size");
+			Assert.IsTrue(result.ContainsKey("value"), "key as expected");
+			Assert.AreEqual("mailto:" + address.Address, result.SafeGet("value"), "value as expected");
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void TestTelEmailWithInvalidMaxLength()
+		{
+			TelecommunicationAddress address = new TelecommunicationAddress();
+			address.UrlScheme = CeRxDomainTestValues.MAILTO;
+			// mailto: + 44 = 51 (max+1)
+			address.Address = "12345678901234567890123456789012345678901234";
+			IDictionary<string, string> result = new TelUriPropertyFormatter().GetAttributeNameValuePairs(CreateContext("TEL.EMAIL"), 
+				address, new TELImpl());
+			Assert.IsFalse(this.xmlResult.IsValid());
+			Assert.AreEqual(1, this.xmlResult.GetHl7Errors().Count);
+			Assert.AreEqual(1, result.Count, "map size");
+			Assert.IsTrue(result.ContainsKey("value"), "key as expected");
+			Assert.AreEqual("mailto:" + address.Address, result.SafeGet("value"), "value as expected");
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void TestTelPhoneForMr2009WithValidMaxLength()
+		{
+			TelecommunicationAddress address = new TelecommunicationAddress();
+			address.UrlScheme = CeRxDomainTestValues.TELEPHONE;
+			// tel: + 36 = 40 (max)
+			address.Address = "123456789012345678901234567890123456";
+			IDictionary<string, string> result = new TelUriPropertyFormatter().GetAttributeNameValuePairs(CreateContext("TEL.PHONE", 
+				SpecificationVersion.R02_04_02), address, new TELImpl());
+			Assert.IsTrue(this.xmlResult.IsValid());
+			Assert.AreEqual(1, result.Count, "map size");
+			Assert.IsTrue(result.ContainsKey("value"), "key as expected");
+			Assert.AreEqual("tel:" + address.Address, result.SafeGet("value"), "value as expected");
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void TestTelPhoneForMr2009WithInvalidMaxLength()
+		{
+			TelecommunicationAddress address = new TelecommunicationAddress();
+			address.UrlScheme = CeRxDomainTestValues.TELEPHONE;
+			// tel: + 37 = 41 (max + 1)
+			address.Address = "1234567890123456789012345678901234567";
+			IDictionary<string, string> result = new TelUriPropertyFormatter().GetAttributeNameValuePairs(CreateContext("TEL.PHONE", 
+				SpecificationVersion.R02_04_02), address, new TELImpl());
+			Assert.IsFalse(this.xmlResult.IsValid());
+			Assert.AreEqual(1, this.xmlResult.GetHl7Errors().Count);
+			Assert.AreEqual(1, result.Count, "map size");
+			Assert.IsTrue(result.ContainsKey("value"), "key as expected");
+			Assert.AreEqual("tel:" + address.Address, result.SafeGet("value"), "value as expected");
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void TestTelPhoneForMr2007WithValidMaxLength()
+		{
+			TelecommunicationAddress address = new TelecommunicationAddress();
+			address.UrlScheme = CeRxDomainTestValues.TELEPHONE;
+			// tel: + 21 = 25 (max)
+			address.Address = "123456789012345678901";
+			IDictionary<string, string> result = new TelUriPropertyFormatter().GetAttributeNameValuePairs(CreateContext("TEL.PHONE", 
+				SpecificationVersion.V02R02), address, new TELImpl());
+			Assert.IsTrue(this.xmlResult.IsValid());
+			Assert.AreEqual(1, result.Count, "map size");
+			Assert.IsTrue(result.ContainsKey("value"), "key as expected");
+			Assert.AreEqual("tel:" + address.Address, result.SafeGet("value"), "value as expected");
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void TestTelPhoneForMr2007WithInvalidMaxLength()
+		{
+			TelecommunicationAddress address = new TelecommunicationAddress();
+			address.UrlScheme = CeRxDomainTestValues.TELEPHONE;
+			// tel: + 22 = 26 (max + 1)
+			address.Address = "1234567890123456789012";
+			IDictionary<string, string> result = new TelUriPropertyFormatter().GetAttributeNameValuePairs(CreateContext("TEL.PHONE", 
+				SpecificationVersion.V02R02), address, new TELImpl());
+			Assert.IsFalse(this.xmlResult.IsValid());
+			Assert.AreEqual(1, this.xmlResult.GetHl7Errors().Count);
+			Assert.AreEqual(1, result.Count, "map size");
+			Assert.IsTrue(result.ContainsKey("value"), "key as expected");
+			Assert.AreEqual("tel:" + address.Address, result.SafeGet("value"), "value as expected");
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void TestGetAttributeNameValuePairsAllInvalidUsesForEmail()
+		{
+			TelecommunicationAddress address = new TelecommunicationAddress();
+			address.UrlScheme = CeRxDomainTestValues.MAILTO;
+			address.Address = "value";
+			address.AddAddressUse(Ca.Infoway.Messagebuilder.Domainvalue.Basic.TelecommunicationAddressUse.ANSWERING_MACHINE);
+			// invalid
+			address.AddAddressUse(Ca.Infoway.Messagebuilder.Domainvalue.Basic.TelecommunicationAddressUse.BAD);
+			// invalid
+			address.AddAddressUse(Ca.Infoway.Messagebuilder.Domainvalue.Basic.TelecommunicationAddressUse.CONFIDENTIAL);
+			// invalid 
+			address.AddAddressUse(Ca.Infoway.Messagebuilder.Domainvalue.Basic.TelecommunicationAddressUse.DIRECT);
+			// invalid
+			address.AddAddressUse(Ca.Infoway.Messagebuilder.Domainvalue.Basic.TelecommunicationAddressUse.EMERGENCY_CONTACT);
+			address.AddAddressUse(Ca.Infoway.Messagebuilder.Domainvalue.Basic.TelecommunicationAddressUse.HOME);
+			address.AddAddressUse(Ca.Infoway.Messagebuilder.Domainvalue.Basic.TelecommunicationAddressUse.MOBILE);
+			address.AddAddressUse(Ca.Infoway.Messagebuilder.Domainvalue.Basic.TelecommunicationAddressUse.PAGER);
+			// invalid
+			address.AddAddressUse(Ca.Infoway.Messagebuilder.Domainvalue.Basic.TelecommunicationAddressUse.PRIMARY_HOME);
+			// invalid
+			address.AddAddressUse(Ca.Infoway.Messagebuilder.Domainvalue.Basic.TelecommunicationAddressUse.PUBLISHED);
+			// invalid
+			address.AddAddressUse(Ca.Infoway.Messagebuilder.Domainvalue.Basic.TelecommunicationAddressUse.TEMPORARY);
+			address.AddAddressUse(Ca.Infoway.Messagebuilder.Domainvalue.Basic.TelecommunicationAddressUse.VACATION_HOME);
+			// invalid
+			address.AddAddressUse(Ca.Infoway.Messagebuilder.Domainvalue.Basic.TelecommunicationAddressUse.WORKPLACE);
+			IDictionary<string, string> result = new TelPhonemailPropertyFormatter().GetAttributeNameValuePairs(CreateContext("TEL.EMAIL"
+				), address, new TELImpl());
+			Assert.IsFalse(this.xmlResult.IsValid());
+			Assert.AreEqual(9, this.xmlResult.GetHl7Errors().Count);
+			// 8 bad uses + 1 for too many
+			Assert.AreEqual(2, result.Count, "map size");
+			Assert.IsTrue(result.ContainsKey("value"), "key as expected");
+			Assert.AreEqual("mailto:value", result.SafeGet("value"), "value as expected");
+			ICollection<string> uses = FormatterAssert.ToSet(result.SafeGet("use"));
+			FormatterAssert.AssertContainsSame("uses", FormatterAssert.ToSet("EC H MC TMP WP"), uses);
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void TestGetAttributeNameValuePairsAllInvalidUsesForMr2009Phone()
+		{
+			TelecommunicationAddress address = new TelecommunicationAddress();
+			address.UrlScheme = CeRxDomainTestValues.FAX;
+			address.Address = "value";
+			address.AddAddressUse(Ca.Infoway.Messagebuilder.Domainvalue.Basic.TelecommunicationAddressUse.ANSWERING_MACHINE);
+			// invalid
+			address.AddAddressUse(Ca.Infoway.Messagebuilder.Domainvalue.Basic.TelecommunicationAddressUse.BAD);
+			// invalid
+			address.AddAddressUse(Ca.Infoway.Messagebuilder.Domainvalue.Basic.TelecommunicationAddressUse.CONFIDENTIAL);
+			address.AddAddressUse(Ca.Infoway.Messagebuilder.Domainvalue.Basic.TelecommunicationAddressUse.DIRECT);
+			address.AddAddressUse(Ca.Infoway.Messagebuilder.Domainvalue.Basic.TelecommunicationAddressUse.EMERGENCY_CONTACT);
+			address.AddAddressUse(Ca.Infoway.Messagebuilder.Domainvalue.Basic.TelecommunicationAddressUse.HOME);
+			address.AddAddressUse(Ca.Infoway.Messagebuilder.Domainvalue.Basic.TelecommunicationAddressUse.MOBILE);
+			address.AddAddressUse(Ca.Infoway.Messagebuilder.Domainvalue.Basic.TelecommunicationAddressUse.PAGER);
+			address.AddAddressUse(Ca.Infoway.Messagebuilder.Domainvalue.Basic.TelecommunicationAddressUse.PRIMARY_HOME);
+			// invalid
+			address.AddAddressUse(Ca.Infoway.Messagebuilder.Domainvalue.Basic.TelecommunicationAddressUse.PUBLISHED);
+			// invalid
+			address.AddAddressUse(Ca.Infoway.Messagebuilder.Domainvalue.Basic.TelecommunicationAddressUse.TEMPORARY);
+			address.AddAddressUse(Ca.Infoway.Messagebuilder.Domainvalue.Basic.TelecommunicationAddressUse.VACATION_HOME);
+			// invalid
+			address.AddAddressUse(Ca.Infoway.Messagebuilder.Domainvalue.Basic.TelecommunicationAddressUse.WORKPLACE);
+			IDictionary<string, string> result = new TelPhonemailPropertyFormatter().GetAttributeNameValuePairs(CreateContext("TEL.PHONE"
+				, SpecificationVersion.R02_04_02), address, new TELImpl());
+			Assert.IsFalse(this.xmlResult.IsValid());
+			Assert.AreEqual(6, this.xmlResult.GetHl7Errors().Count);
+			// 5 bad uses + 1 for too many
+			Assert.AreEqual(2, result.Count, "map size");
+			Assert.IsTrue(result.ContainsKey("value"), "key as expected");
+			Assert.AreEqual("fax:value", result.SafeGet("value"), "value as expected");
+			ICollection<string> uses = FormatterAssert.ToSet(result.SafeGet("use"));
+			FormatterAssert.AssertContainsSame("uses", FormatterAssert.ToSet("CONF DIR EC H MC PG TMP WP"), uses);
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void TestGetAttributeNameValuePairsAllInvalidUsesForMr2007Phone()
+		{
+			TelecommunicationAddress address = new TelecommunicationAddress();
+			address.UrlScheme = CeRxDomainTestValues.FAX;
+			address.Address = "value";
+			address.AddAddressUse(Ca.Infoway.Messagebuilder.Domainvalue.Basic.TelecommunicationAddressUse.ANSWERING_MACHINE);
+			// invalid
+			address.AddAddressUse(Ca.Infoway.Messagebuilder.Domainvalue.Basic.TelecommunicationAddressUse.BAD);
+			// invalid
+			address.AddAddressUse(Ca.Infoway.Messagebuilder.Domainvalue.Basic.TelecommunicationAddressUse.CONFIDENTIAL);
+			// invalid 
+			address.AddAddressUse(Ca.Infoway.Messagebuilder.Domainvalue.Basic.TelecommunicationAddressUse.DIRECT);
+			address.AddAddressUse(Ca.Infoway.Messagebuilder.Domainvalue.Basic.TelecommunicationAddressUse.EMERGENCY_CONTACT);
+			address.AddAddressUse(Ca.Infoway.Messagebuilder.Domainvalue.Basic.TelecommunicationAddressUse.HOME);
+			address.AddAddressUse(Ca.Infoway.Messagebuilder.Domainvalue.Basic.TelecommunicationAddressUse.MOBILE);
+			address.AddAddressUse(Ca.Infoway.Messagebuilder.Domainvalue.Basic.TelecommunicationAddressUse.PAGER);
+			address.AddAddressUse(Ca.Infoway.Messagebuilder.Domainvalue.Basic.TelecommunicationAddressUse.PRIMARY_HOME);
+			// invalid
+			address.AddAddressUse(Ca.Infoway.Messagebuilder.Domainvalue.Basic.TelecommunicationAddressUse.PUBLISHED);
+			// invalid
+			address.AddAddressUse(Ca.Infoway.Messagebuilder.Domainvalue.Basic.TelecommunicationAddressUse.TEMPORARY);
+			address.AddAddressUse(Ca.Infoway.Messagebuilder.Domainvalue.Basic.TelecommunicationAddressUse.VACATION_HOME);
+			// invalid
+			address.AddAddressUse(Ca.Infoway.Messagebuilder.Domainvalue.Basic.TelecommunicationAddressUse.WORKPLACE);
+			IDictionary<string, string> result = new TelPhonemailPropertyFormatter().GetAttributeNameValuePairs(CreateContext("TEL.PHONE"
+				, SpecificationVersion.V02R02), address, new TELImpl());
+			Assert.IsFalse(this.xmlResult.IsValid());
+			Assert.AreEqual(7, this.xmlResult.GetHl7Errors().Count);
+			// 6 bad uses + 1 for too many
+			Assert.AreEqual(2, result.Count, "map size");
+			Assert.IsTrue(result.ContainsKey("value"), "key as expected");
+			Assert.AreEqual("fax:value", result.SafeGet("value"), "value as expected");
+			ICollection<string> uses = FormatterAssert.ToSet(result.SafeGet("use"));
+			FormatterAssert.AssertContainsSame("uses", FormatterAssert.ToSet("DIR EC H MC PG TMP WP"), uses);
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void TestGetAttributeNameValuePairsAllInvalidUsesForCerxPhone()
+		{
+			TelecommunicationAddress address = new TelecommunicationAddress();
+			address.UrlScheme = CeRxDomainTestValues.FAX;
+			address.Address = "value";
+			address.AddAddressUse(Ca.Infoway.Messagebuilder.Domainvalue.Basic.TelecommunicationAddressUse.ANSWERING_MACHINE);
+			// invalid
+			address.AddAddressUse(Ca.Infoway.Messagebuilder.Domainvalue.Basic.TelecommunicationAddressUse.BAD);
+			// invalid
+			address.AddAddressUse(Ca.Infoway.Messagebuilder.Domainvalue.Basic.TelecommunicationAddressUse.CONFIDENTIAL);
+			// invalid 
+			address.AddAddressUse(Ca.Infoway.Messagebuilder.Domainvalue.Basic.TelecommunicationAddressUse.DIRECT);
+			// invalid
+			address.AddAddressUse(Ca.Infoway.Messagebuilder.Domainvalue.Basic.TelecommunicationAddressUse.EMERGENCY_CONTACT);
+			address.AddAddressUse(Ca.Infoway.Messagebuilder.Domainvalue.Basic.TelecommunicationAddressUse.HOME);
+			address.AddAddressUse(Ca.Infoway.Messagebuilder.Domainvalue.Basic.TelecommunicationAddressUse.MOBILE);
+			address.AddAddressUse(Ca.Infoway.Messagebuilder.Domainvalue.Basic.TelecommunicationAddressUse.PAGER);
+			address.AddAddressUse(Ca.Infoway.Messagebuilder.Domainvalue.Basic.TelecommunicationAddressUse.PRIMARY_HOME);
+			// invalid
+			address.AddAddressUse(Ca.Infoway.Messagebuilder.Domainvalue.Basic.TelecommunicationAddressUse.PUBLISHED);
+			// invalid
+			address.AddAddressUse(Ca.Infoway.Messagebuilder.Domainvalue.Basic.TelecommunicationAddressUse.TEMPORARY);
+			address.AddAddressUse(Ca.Infoway.Messagebuilder.Domainvalue.Basic.TelecommunicationAddressUse.VACATION_HOME);
+			// invalid
+			address.AddAddressUse(Ca.Infoway.Messagebuilder.Domainvalue.Basic.TelecommunicationAddressUse.WORKPLACE);
+			IDictionary<string, string> result = new TelPhonemailPropertyFormatter().GetAttributeNameValuePairs(CreateContext("TEL.PHONE"
+				, SpecificationVersion.V01R04_3), address, new TELImpl());
+			Assert.IsFalse(this.xmlResult.IsValid());
+			Assert.AreEqual(8, this.xmlResult.GetHl7Errors().Count);
+			// 7 bad uses + 1 for too many
+			Assert.AreEqual(2, result.Count, "map size");
+			Assert.IsTrue(result.ContainsKey("value"), "key as expected");
+			Assert.AreEqual("fax:value", result.SafeGet("value"), "value as expected");
+			ICollection<string> uses = FormatterAssert.ToSet(result.SafeGet("use"));
+			FormatterAssert.AssertContainsSame("uses", FormatterAssert.ToSet("EC H MC PG TMP WP"), uses);
+		}
+
+		[Test]
+		public virtual void TestCeRxDatatypeDetermination()
+		{
+			TelecommunicationAddress telecomAddress = new TelecommunicationAddress();
+			string type = "TEL.PHONEMAIL";
+			VersionNumber version = SpecificationVersion.V01R04_3;
+			Hl7Errors errors = this.xmlResult;
+			telecomAddress.UrlScheme = CeRxDomainTestValues.TELEPHONE;
+			Assert.AreEqual("TEL.PHONE", new TelValidationUtils().DetermineActualType(telecomAddress, type, null, version, null, null
+				, errors, true));
+			Assert.IsTrue(this.xmlResult.IsValid());
+			telecomAddress.UrlScheme = CeRxDomainTestValues.FAX;
+			Assert.AreEqual("TEL.PHONE", new TelValidationUtils().DetermineActualType(telecomAddress, type, null, version, null, null
+				, errors, true));
+			Assert.IsTrue(this.xmlResult.IsValid());
+			telecomAddress.UrlScheme = CeRxDomainTestValues.MAILTO;
+			Assert.AreEqual("TEL.EMAIL", new TelValidationUtils().DetermineActualType(telecomAddress, type, null, version, null, null
+				, errors, true));
+			Assert.IsTrue(this.xmlResult.IsValid());
+			telecomAddress.UrlScheme = CeRxDomainTestValues.FTP;
+			// this error will be caught elsewhere
+			Assert.AreEqual("TEL.PHONE", new TelValidationUtils().DetermineActualType(telecomAddress, type, null, version, null, null
+				, errors, true));
+			Assert.IsTrue(this.xmlResult.IsValid());
 		}
 	}
 }

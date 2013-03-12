@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,22 +34,22 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged {
 
 
     /**
-     * <summary>DischargeCareSummary</summary>
+     * <summary>Business Name: DischargeCareSummary</summary>
      * 
      * <remarks>REPC_MT220001CA.Document: Discharge-Care Summary 
-     * <p>Represents a particular health-related document 
-     * pertaining to a single patient.</p> <p>Allows the capture of 
-     * patient health data in an encapsulated, contextualized 
-     * manner with capability of displaying rendered content and 
-     * communication between simple systems.</p> 
-     * REPC_MT220003CA.Document: Discharge-Care Summary 
-     * <p>Annotation is only permitted if Annotation Indicator is 
-     * not present and vice versa</p> <p>Represents a particular 
-     * health-related document pertaining to a single patient.</p> 
      * <p>Allows the capture of patient health data in an 
      * encapsulated, contextualized manner with capability of 
      * displaying rendered content and communication between simple 
-     * systems.</p></remarks>
+     * systems.</p> <p>Represents a particular health-related 
+     * document pertaining to a single patient.</p> 
+     * REPC_MT220003CA.Document: Discharge-Care Summary 
+     * <p>Annotation is only permitted if Annotation Indicator is 
+     * not present and vice versa</p> <p>Allows the capture of 
+     * patient health data in an encapsulated, contextualized 
+     * manner with capability of displaying rendered content and 
+     * communication between simple systems.</p> <p>Represents a 
+     * particular health-related document pertaining to a single 
+     * patient.</p></remarks>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"REPC_MT220001CA.Document","REPC_MT220003CA.Document"})]
     public class DischargeCareSummary : MessagePartBean {
@@ -81,9 +81,29 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged {
             this.subjectOf2AnnotationIndicator = new BLImpl(false);
         }
         /**
-         * <summary>DocumentCategory</summary>
+         * <summary>Business Name: DocumentCategory</summary>
          * 
-         * <remarks>B: Document Category </p> </p> </p></remarks>
+         * <remarks>Un-merged Business Name: DocumentCategory 
+         * Relationship: REPC_MT220001CA.Document.code 
+         * Conformance/Cardinality: MANDATORY (1) <p> <i>Document 
+         * Category is used for searching and for organizing 
+         * Discharge-Care Summary records as well as sorting them for 
+         * presentation.</i> </p><p> <i>This is a key attribute for 
+         * understanding the type of record and is therefore 
+         * mandatory.</i> </p> <p> <i>Identifies the type of 
+         * Discharge-Care Summary represented by this record. e.g. 
+         * summarization of episode note; discharge summarization 
+         * note.</i> </p> Un-merged Business Name: DocumentCategory 
+         * Relationship: REPC_MT220003CA.Document.code 
+         * Conformance/Cardinality: MANDATORY (1) <p> <i>Document 
+         * Category is used for searching and for organizing 
+         * Discharge-Care Summary records as well as sorting them for 
+         * presentation.</i> </p><p> <i>This is a key attribute for 
+         * understanding the type of record and is therefore 
+         * mandatory.</i> </p> <p> <i>Identifies the type of 
+         * Discharge-Care Summary represented by this record. e.g. 
+         * summarization of episode note; discharge summarization 
+         * note.</i> </p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public CareSummaryDocumentType Code {
@@ -92,10 +112,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged {
         }
 
         /**
-         * <summary>DocumentTitle</summary>
+         * <summary>Business Name: DocumentTitle</summary>
          * 
-         * <remarks>J: Document Title <p>A human-readable label for 
-         * this particular document.</p> <p>This is a 
+         * <remarks>Un-merged Business Name: DocumentTitle 
+         * Relationship: REPC_MT220001CA.Document.title 
+         * Conformance/Cardinality: MANDATORY (1) <p>This is a 
          * human-recognizable name intended to be displayed on the 
          * screen in list transactions and is therefore mandatory. It 
          * provides a good indication of the content of the document at 
@@ -103,7 +124,20 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged {
          * unique, but should be precise-enough to give a pretty good 
          * idea of what the document contains. For example &quot;Right 
          * Knee Arthroscopy Report, Jan 3, 2006&quot; would represent a 
-         * good title. &quot;Surgery Report&quot; would not.</p></remarks>
+         * good title. &quot;Surgery Report&quot; would not.</p> <p>A 
+         * human-readable label for this particular document.</p> 
+         * Un-merged Business Name: DocumentTitle Relationship: 
+         * REPC_MT220003CA.Document.title Conformance/Cardinality: 
+         * MANDATORY (1) <p>This is a human-recognizable name intended 
+         * to be displayed on the screen in list transactions and is 
+         * therefore mandatory. It provides a good indication of the 
+         * content of the document at a quick glance.</p> <p>Titles do 
+         * not necessarily need to be unique, but should be 
+         * precise-enough to give a pretty good idea of what the 
+         * document contains. For example &quot;Right Knee Arthroscopy 
+         * Report, Jan 3, 2006&quot; would represent a good title. 
+         * &quot;Surgery Report&quot; would not.</p> <p>A 
+         * human-readable label for this particular document.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"title"})]
         public String Title {
@@ -112,37 +146,137 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged {
         }
 
         /**
-         * <summary>DocumentMaskingIndicators</summary>
+         * <summary>Business Name: DocumentMaskingIndicators</summary>
          * 
-         * <remarks>E: Document Masking Indicators </p> </p> </p> </p></remarks>
+         * <remarks>Un-merged Business Name: DocumentMaskingIndicators 
+         * Relationship: REPC_MT220001CA.Document.confidentialityCode 
+         * Conformance/Cardinality: OPTIONAL (0-2) <p></p> <p> <i>The 
+         * value specified for a particular record may be overridden by 
+         * a higher level masking applied to an indication, a care 
+         * composition, a type of record or even all patient 
+         * records.</i> </p> <p> <i>Communicates the desire of the 
+         * patient to restrict access to this Discharge-Care Summary 
+         * record. Provides support for additional confidentiality 
+         * constraint, giving patients a level of control over their 
+         * information. Methods for accessing masked event records will 
+         * be governed by each jurisdiction (e.g. court orders, shared 
+         * secret/consent, etc.).</i> </p><p> <i>Can also be used to 
+         * communicate that the information is deemed to be sensitive 
+         * and should not be communicated or exposed to the patient (at 
+         * least without the guidance of the authoring or other 
+         * responsible healthcare provider).</i> </p><p> <i>Valid 
+         * values are: 'normal' (denotes 'Not Masked'); 'restricted' 
+         * (denotes 'Masked') and 'taboo' (denotes 'patient 
+         * restricted'). The default is 'normal' signifying 'Not 
+         * Masked'. Either or both of the other codes can be asserted 
+         * to indicate masking by the patient from providers or masking 
+         * by a provider from the patient, respectively. 'normal' 
+         * should never be asserted with one of the other codes.</i> 
+         * </p> Un-merged Business Name: DocumentMaskingIndicators 
+         * Relationship: REPC_MT220003CA.Document.confidentialityCode 
+         * Conformance/Cardinality: REQUIRED (0-2) <p></p> <p> <i>The 
+         * value specified for a particular record may be overridden by 
+         * a higher level masking applied to an indication, a care 
+         * composition, a type of record or even all patient 
+         * records.</i> </p> <p> <i>Communicates the desire of the 
+         * patient to restrict access to this Discharge-Care Summary 
+         * record. Provides support for additional confidentiality 
+         * constraint, giving patients a level of control over their 
+         * information. Methods for accessing masked event records will 
+         * be governed by each jurisdiction (e.g. court orders, shared 
+         * secret/consent, etc.).</i> </p><p> <i>Can also be used to 
+         * communicate that the information is deemed to be sensitive 
+         * and should not be communicated or exposed to the patient (at 
+         * least without the guidance of the authoring or other 
+         * responsible healthcare provider).</i> </p><p> <i>Valid 
+         * values are: 'normal' (denotes 'Not Masked'); 'restricted' 
+         * (denotes 'Masked') and 'taboo' (denotes 'patient 
+         * restricted'). The default is 'normal' signifying 'Not 
+         * Masked'. Either or both of the other codes can be asserted 
+         * to indicate masking by the patient from providers or masking 
+         * by a provider from the patient, respectively. 'normal' 
+         * should never be asserted with one of the other codes.</i> 
+         * </p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"confidentialityCode"})]
         public ICollection<x_BasicConfidentialityKind> ConfidentialityCode {
             get { return this.confidentialityCode.RawSet<x_BasicConfidentialityKind>(); }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: REPC_MT220001CA.Document.author 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT220003CA.Document.author Conformance/Cardinality: 
+         * MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"author"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged.RequestedBy Author {
             get { return this.author; }
             set { this.author = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * REPC_MT220001CA.InformationRecipient.recipients 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT220003CA.InformationRecipient.recipients 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"primaryInformationRecipient/recipients"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged.IRecipients> PrimaryInformationRecipientRecipients {
             get { return this.primaryInformationRecipientRecipients; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * REPC_MT220001CA.Predecessor2.oldClinicalDocumentEvent 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT220003CA.Predecessor2.oldClinicalDocumentEvent 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"predecessor/oldClinicalDocumentEvent"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged.OldClinicalDocumentEvent> PredecessorOldClinicalDocumentEvent {
             get { return this.predecessorOldClinicalDocumentEvent; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: REPC_MT220001CA.Component3.section 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT220003CA.Component3.section Conformance/Cardinality: 
+         * MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"component/structuredBody/component/section"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged.Section ComponentStructuredBodyComponentSection {
             get { return this.componentStructuredBodyComponentSection; }
             set { this.componentStructuredBodyComponentSection = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: REPC_MT220001CA.Document.subjectOf 
+         * Conformance/Cardinality: REQUIRED (0-1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT220003CA.Document.subjectOf1 Conformance/Cardinality: 
+         * REQUIRED (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf","subjectOf1"})]
         [Hl7MapByPartType(Name="subjectOf", Type="REPC_MT220001CA.Subject4")]
         [Hl7MapByPartType(Name="subjectOf1", Type="REPC_MT220003CA.Subject4")]
@@ -151,45 +285,106 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged {
             set { this.subjectOf1 = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * REPC_MT220001CA.Component6.patientCareProvisionEvent 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT220003CA.Component6.patientCareProvisionEvent 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"componentOf/patientCareProvisionEvent"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.CareCompositions> ComponentOfPatientCareProvisionEvent {
             get { return this.componentOfPatientCareProvisionEvent; }
         }
 
         /**
-         * <summary>DocumentIdentifiers</summary>
+         * <summary>Business Name: DocumentIdentifiers</summary>
          * 
-         * <remarks>A: Document Identifiers </p> </p></remarks>
+         * <remarks>Un-merged Business Name: DocumentIdentifiers 
+         * Relationship: REPC_MT220003CA.Document.id 
+         * Conformance/Cardinality: MANDATORY (1-2) <p> <i>Allows for 
+         * unique identification of the Discharge-Care Summary and is 
+         * therefore mandatory. Supports drill-down queries, linking of 
+         * this record to other records, matching of EHR records to 
+         * locally-stored PoS records and is necessary when identifying 
+         * records for amending (revising)/directional linking 
+         * (superseding).</i> </p> <p> <i>A globally unique identifier 
+         * assigned by the EHR to the Discharge-Care Summary 
+         * record.</i> </p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public ICollection<Identifier> Id {
             get { return this.id.RawSet(); }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * REPC_MT220003CA.ResponsibleParty.actingPerson 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"responsibleParty/actingPerson"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt911108ca.IActingPerson ResponsiblePartyActingPerson {
             get { return this.responsiblePartyActingPerson; }
             set { this.responsiblePartyActingPerson = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * REPC_MT220003CA.Custodian2.serviceDeliveryLocation 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"custodian1/serviceDeliveryLocation"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.ServiceLocation Custodian1ServiceDeliveryLocation {
             get { return this.custodian1ServiceDeliveryLocation; }
             set { this.custodian1ServiceDeliveryLocation = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * REPC_MT220003CA.Custodian.assignedDevice 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"custodian2/assignedDevice"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.EHRRepository Custodian2AssignedDevice {
             get { return this.custodian2AssignedDevice; }
             set { this.custodian2AssignedDevice = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * REPC_MT220003CA.Predecessor.newClinicalDocumentEvent 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"successor/newClinicalDocumentEvent"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged.NewClinicalDocumentEvent SuccessorNewClinicalDocumentEvent {
             get { return this.successorNewClinicalDocumentEvent; }
             set { this.successorNewClinicalDocumentEvent = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * REPC_MT220003CA.Subject3.annotationIndicator 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf2/annotationIndicator"})]
         public bool? SubjectOf2AnnotationIndicator {
             get { return this.subjectOf2AnnotationIndicator.Value; }

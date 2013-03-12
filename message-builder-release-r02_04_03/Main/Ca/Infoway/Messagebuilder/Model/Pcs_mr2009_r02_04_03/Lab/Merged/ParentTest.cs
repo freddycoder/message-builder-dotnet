@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,27 +27,27 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Merged {
 
 
     /**
-     * <summary>ParentTest</summary>
+     * <summary>Business Name: ParentTest</summary>
      * 
      * <remarks>POLB_MT001999CA.ActParentPointer: Parent Test 
-     * <p>Communicates the parent order (id) in a repeating child 
-     * order.</p> <p>Associates a repeating child order with it's 
-     * parent order.</p> POLB_MT001010CA.ActParentPointer: Parent 
-     * Test <p>The classCode shall carry one of ACT, BATTERY or OBS 
-     * according to the parent order classCode.</p> <p>Communicates 
-     * the parent order (id) in a repeating child order.</p> 
      * <p>Associates a repeating child order with it's parent 
-     * order.</p> POLB_MT001001CA.ActParentPointer: Parent Test 
-     * <p>The classCode shall carry one of ACT, BATTERY or OBS 
-     * according to the parent order classCode.</p> <p>Communicates 
-     * the parent order (id) in a repeating child order.</p> 
+     * order.</p> <p>Communicates the parent order (id) in a 
+     * repeating child order.</p> POLB_MT001010CA.ActParentPointer: 
+     * Parent Test <p>The classCode shall carry one of ACT, BATTERY 
+     * or OBS according to the parent order classCode.</p> 
      * <p>Associates a repeating child order with it's parent 
-     * order.</p> POLB_MT001000CA.ActParentPointer: Parent Test 
-     * <p>The classCode shall carry one of ACT, BATTERY or OBS 
-     * according to the parent order classCode.</p> <p>Communicates 
-     * the parent order (id) in a repeating child order.</p> 
+     * order.</p> <p>Communicates the parent order (id) in a 
+     * repeating child order.</p> POLB_MT001001CA.ActParentPointer: 
+     * Parent Test <p>The classCode shall carry one of ACT, BATTERY 
+     * or OBS according to the parent order classCode.</p> 
      * <p>Associates a repeating child order with it's parent 
-     * order.</p></remarks>
+     * order.</p> <p>Communicates the parent order (id) in a 
+     * repeating child order.</p> POLB_MT001000CA.ActParentPointer: 
+     * Parent Test <p>The classCode shall carry one of ACT, BATTERY 
+     * or OBS according to the parent order classCode.</p> 
+     * <p>Associates a repeating child order with it's parent 
+     * order.</p> <p>Communicates the parent order (id) in a 
+     * repeating child order.</p></remarks>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"POLB_MT001000CA.ActParentPointer","POLB_MT001001CA.ActParentPointer","POLB_MT001010CA.ActParentPointer","POLB_MT001999CA.ActParentPointer"})]
     public class ParentTest : MessagePartBean {
@@ -58,11 +58,28 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Merged {
             this.id = new IIImpl();
         }
         /**
-         * <summary>ParentTestIdentifier</summary>
+         * <summary>Business Name: ParentTestIdentifier</summary>
          * 
-         * <remarks>Parent Test Identifier <p>Communicates the parent 
-         * order (id) in a repeating child order.</p> <p>Used to 
-         * associate a repeating child order with it's parent 
+         * <remarks>Un-merged Business Name: ParentTestIdentifier 
+         * Relationship: POLB_MT001010CA.ActParentPointer.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>Used to associate 
+         * a repeating child order with it's parent order.</p> 
+         * <p>Communicates the parent order (id) in a repeating child 
+         * order.</p> Un-merged Business Name: ParentTestIdentifier 
+         * Relationship: POLB_MT001999CA.ActParentPointer.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>Used to associate 
+         * a repeating child order with it's parent order.</p> 
+         * <p>Communicates the parent order (id) in a repeating child 
+         * order.</p> Un-merged Business Name: ParentTestIdentifier 
+         * Relationship: POLB_MT001001CA.ActParentPointer.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>Used to associate 
+         * a repeating child order with it's parent order.</p> 
+         * <p>Communicates the parent order (id) in a repeating child 
+         * order.</p> Un-merged Business Name: ParentTestIdentifier 
+         * Relationship: POLB_MT001000CA.ActParentPointer.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>Used to associate 
+         * a repeating child order with it's parent order.</p> 
+         * <p>Communicates the parent order (id) in a repeating child 
          * order.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]

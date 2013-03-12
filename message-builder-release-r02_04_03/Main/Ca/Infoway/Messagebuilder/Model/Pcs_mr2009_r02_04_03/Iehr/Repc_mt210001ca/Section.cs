@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -42,7 +42,10 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt21000
             this.component3Reference = new List<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged.Reference>();
         }
         /**
-         * <summary>M: Document Overview Content</summary>
+         * <summary>Business Name: M: Document Overview Content</summary>
+         * 
+         * <remarks>Relationship: REPC_MT210001CA.Section.text 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"text"})]
         public EncapsulatedData Text {
@@ -50,6 +53,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt21000
             set { this.text.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * REPC_MT210001CA.Component4.documentContent</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"component1/documentContent"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt210001ca.IDocumentContent Component1DocumentContent {
             get { return this.component1DocumentContent; }
@@ -63,11 +72,21 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt21000
             return (this.component1DocumentContent is Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged.Referral);
         }
 
+        /**
+         * <summary>Relationship: REPC_MT210001CA.Component.subSection</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"component2/subSection"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged.DocumentSections> Component2SubSection {
             get { return this.component2SubSection; }
         }
 
+        /**
+         * <summary>Relationship: REPC_MT210001CA.Component5.reference</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"component3/reference"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged.Reference> Component3Reference {
             get { return this.component3Reference; }

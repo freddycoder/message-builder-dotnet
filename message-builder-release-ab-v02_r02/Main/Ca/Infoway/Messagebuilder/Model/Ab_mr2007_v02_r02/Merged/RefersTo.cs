@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
 
 
     /**
-     * <summary>RefersTo</summary>
+     * <summary>Business Name: RefersTo</summary>
      * 
      * <remarks>QUQI_MT120006CA.Subject2: f:refers to <p>Indicates 
      * the item(s) being acted upon by this trigger 
@@ -168,13 +168,75 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             this.contextConductionInd = new BLImpl();
         }
         /**
-         * <summary>CascadeResponsibilityIndicator</summary>
+         * <summary>Business Name: CascadeResponsibilityIndicator</summary>
          * 
-         * <remarks>Cascade Responsibility Indicator <p>Indicates 
-         * whether or not objects of the trigger event are to be 
-         * cascaded to the payload.</p><p>If true, associations in the 
-         * parent act are conducted across the ActRelationship to the 
-         * message payload (act). Conduction for each association is 
+         * <remarks>Un-merged Business Name: 
+         * CascadeResponsibilityIndicator Relationship: 
+         * QUQI_MT120006CA.Subject2.contextConductionInd 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates whether 
+         * or not objects of the trigger event are to be cascaded to 
+         * the payload.</p><p>If true, associations in the parent act 
+         * are conducted across the ActRelationship to the message 
+         * payload (act). Conduction for each association is 
+         * specifically indicated by each associations' 
+         * contextControlCode value.</p><p>In other words, if the 
+         * &quot;subject&quot; act relationship has 
+         * contextConductionInd=true; THEN the subjectOf association is 
+         * carried (to the regsitrationEvent act) according to the 
+         * subjectOf.contextControlCode (AP = propogate to the reg 
+         * event and add to any subject(s) (issues) already 
+         * present).</p> <p>Indicates whether or not objects of the 
+         * trigger event are to be cascaded to the payload.</p><p>If 
+         * true, associations in the parent act are conducted across 
+         * the ActRelationship to the message payload (act). Conduction 
+         * for each association is specifically indicated by each 
+         * associations' contextControlCode value.</p><p>In other 
+         * words, if the &quot;subject&quot; act relationship has 
+         * contextConductionInd=true; THEN the subjectOf association is 
+         * carried (to the regsitrationEvent act) according to the 
+         * subjectOf.contextControlCode (AP = propogate to the reg 
+         * event and add to any subject(s) (issues) already 
+         * present).</p> <p>Indicates whether or not objects of the 
+         * trigger event are to be cascaded to the payload.</p><p>If 
+         * true, associations in the parent act are conducted across 
+         * the ActRelationship to the message payload (act). Conduction 
+         * for each association is specifically indicated by each 
+         * associations' contextControlCode value.</p><p>In other 
+         * words, if the &quot;subject&quot; act relationship has 
+         * contextConductionInd=true; THEN the subjectOf association is 
+         * carried (to the regsitrationEvent act) according to the 
+         * subjectOf.contextControlCode (AP = propogate to the reg 
+         * event and add to any subject(s) (issues) already 
+         * present).</p> <p>Cascading of trigger event objects allows 
+         * different messages to employ consistent and common 
+         * objects.</p><p>Attribute is mandatory to ensure that 
+         * cascading will be specified one way or another.</p> 
+         * <p>Cascading of trigger event objects allows different 
+         * messages to employ consistent and common 
+         * objects.</p><p>Attribute is mandatory to ensure that 
+         * cascading will be specified one way or another.</p> 
+         * Un-merged Business Name: CascadeResponsibilityIndicator 
+         * Relationship: MCAI_MT700210CA.Subject2.contextConductionInd 
+         * Conformance/Cardinality: MANDATORY (1) <p>On creation 
+         * interactions (where the state transition is 
+         * null-&gt;active), this must be true otherwise it must be 
+         * false.</p> <p>Indicates whether or not objects of the 
+         * trigger event are to be cascaded to the payload.</p> 
+         * <p>Cascading of trigger event objects allows different 
+         * messages to employ consistent and common 
+         * objects.</p><p>Attribute is mandatory to ensure that 
+         * cascading will be specified one way or another.</p> 
+         * <p>Cascading of trigger event objects allows different 
+         * messages to employ consistent and common 
+         * objects.</p><p>Attribute is mandatory to ensure that 
+         * cascading will be specified one way or another.</p> 
+         * Un-merged Business Name: CascadeResponsibilityIndicator 
+         * Relationship: MCAI_MT700216CA.Subject2.contextConductionInd 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates whether 
+         * or not objects of the trigger event are to be cascaded to 
+         * the payload.</p><p>If true, associations in the parent act 
+         * are conducted across the ActRelationship to the message 
+         * payload (act). Conduction for each association is 
          * specifically indicated by each associations' 
          * contextControlCode value.</p><p>In other words, if the 
          * &quot;subject&quot; act relationship has 
@@ -211,110 +273,50 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
          * <p>Cascading of trigger event objects allows different 
          * messages to employ consistent and common 
          * objects.</p><p>Attribute is mandatory to ensure that 
-         * cascading will be specified one way or another.</p> Cascade 
-         * Responsibility Indicator <p>On creation interactions (where 
-         * the state transition is null-&gt;active), this must be true 
-         * otherwise it must be false.</p> <p>Indicates whether or not 
-         * objects of the trigger event are to be cascaded to the 
-         * payload.</p> <p>Cascading of trigger event objects allows 
+         * cascading will be specified one way or another.</p> 
+         * Un-merged Business Name: CascadeResponsibilityIndicator 
+         * Relationship: QUQI_MT120008CA.Subject2.contextConductionInd 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates whether 
+         * or not objects of the trigger event are to be cascaded to 
+         * the payload.</p><p>If true, associations in the parent act 
+         * are conducted across the ActRelationship to the message 
+         * payload (act). Conduction for each association is 
+         * specifically indicated by each associations' 
+         * contextControlCode value.</p><p>In other words, if the 
+         * &quot;subject&quot; act relationship has 
+         * contextConductionInd=true; THEN the subjectOf association is 
+         * carried (to the regsitrationEvent act) according to the 
+         * subjectOf.contextControlCode (AP = propogate to the reg 
+         * event and add to any subject(s) (issues) already 
+         * present).</p> <p>Indicates whether or not objects of the 
+         * trigger event are to be cascaded to the payload.</p><p>If 
+         * true, associations in the parent act are conducted across 
+         * the ActRelationship to the message payload (act). Conduction 
+         * for each association is specifically indicated by each 
+         * associations' contextControlCode value.</p><p>In other 
+         * words, if the &quot;subject&quot; act relationship has 
+         * contextConductionInd=true; THEN the subjectOf association is 
+         * carried (to the regsitrationEvent act) according to the 
+         * subjectOf.contextControlCode (AP = propogate to the reg 
+         * event and add to any subject(s) (issues) already 
+         * present).</p> <p>Indicates whether or not objects of the 
+         * trigger event are to be cascaded to the payload.</p><p>If 
+         * true, associations in the parent act are conducted across 
+         * the ActRelationship to the message payload (act). Conduction 
+         * for each association is specifically indicated by each 
+         * associations' contextControlCode value.</p><p>In other 
+         * words, if the &quot;subject&quot; act relationship has 
+         * contextConductionInd=true; THEN the subjectOf association is 
+         * carried (to the regsitrationEvent act) according to the 
+         * subjectOf.contextControlCode (AP = propogate to the reg 
+         * event and add to any subject(s) (issues) already 
+         * present).</p> <p>Cascading of trigger event objects allows 
          * different messages to employ consistent and common 
          * objects.</p><p>Attribute is mandatory to ensure that 
          * cascading will be specified one way or another.</p> 
          * <p>Cascading of trigger event objects allows different 
          * messages to employ consistent and common 
-         * objects.</p><p>Attribute is mandatory to ensure that 
-         * cascading will be specified one way or another.</p> Cascade 
-         * Responsibility Indicator <p>Indicates whether or not objects 
-         * of the trigger event are to be cascaded to the 
-         * payload.</p><p>If true, associations in the parent act are 
-         * conducted across the ActRelationship to the message payload 
-         * (act). Conduction for each association is specifically 
-         * indicated by each associations' contextControlCode 
-         * value.</p><p>In other words, if the &quot;subject&quot; act 
-         * relationship has contextConductionInd=true; THEN the 
-         * subjectOf association is carried (to the regsitrationEvent 
-         * act) according to the subjectOf.contextControlCode (AP = 
-         * propogate to the reg event and add to any subject(s) 
-         * (issues) already present).</p> <p>Indicates whether or not 
-         * objects of the trigger event are to be cascaded to the 
-         * payload.</p><p>If true, associations in the parent act are 
-         * conducted across the ActRelationship to the message payload 
-         * (act). Conduction for each association is specifically 
-         * indicated by each associations' contextControlCode 
-         * value.</p><p>In other words, if the &quot;subject&quot; act 
-         * relationship has contextConductionInd=true; THEN the 
-         * subjectOf association is carried (to the regsitrationEvent 
-         * act) according to the subjectOf.contextControlCode (AP = 
-         * propogate to the reg event and add to any subject(s) 
-         * (issues) already present).</p> <p>Indicates whether or not 
-         * objects of the trigger event are to be cascaded to the 
-         * payload.</p><p>If true, associations in the parent act are 
-         * conducted across the ActRelationship to the message payload 
-         * (act). Conduction for each association is specifically 
-         * indicated by each associations' contextControlCode 
-         * value.</p><p>In other words, if the &quot;subject&quot; act 
-         * relationship has contextConductionInd=true; THEN the 
-         * subjectOf association is carried (to the regsitrationEvent 
-         * act) according to the subjectOf.contextControlCode (AP = 
-         * propogate to the reg event and add to any subject(s) 
-         * (issues) already present).</p> <p>Cascading of trigger event 
-         * objects allows different messages to employ consistent and 
-         * common objects.</p><p>Attribute is mandatory to ensure that 
-         * cascading will be specified one way or another.</p> 
-         * <p>Cascading of trigger event objects allows different 
-         * messages to employ consistent and common 
-         * objects.</p><p>Attribute is mandatory to ensure that 
-         * cascading will be specified one way or another.</p> Cascade 
-         * Responsibility Indicator <p>Indicates whether or not objects 
-         * of the trigger event are to be cascaded to the 
-         * payload.</p><p>If true, associations in the parent act are 
-         * conducted across the ActRelationship to the message payload 
-         * (act). Conduction for each association is specifically 
-         * indicated by each associations' contextControlCode 
-         * value.</p><p>In other words, if the &quot;subject&quot; act 
-         * relationship has contextConductionInd=true; THEN the 
-         * dataEnterer association is carried (to the payload) 
-         * according to the dataEnterer.contextControlCode (AP = 
-         * propogate to the payload and add to any data enterer(s) 
-         * already present in the payload).</p> <p>Indicates whether or 
-         * not objects of the trigger event are to be cascaded to the 
-         * payload.</p><p>If true, associations in the parent act are 
-         * conducted across the ActRelationship to the message payload 
-         * (act). Conduction for each association is specifically 
-         * indicated by each associations' contextControlCode 
-         * value.</p><p>In other words, if the &quot;subject&quot; act 
-         * relationship has contextConductionInd=true; THEN the 
-         * dataEnterer association is carried (to the payload) 
-         * according to the dataEnterer.contextControlCode (AP = 
-         * propogate to the payload and add to any data enterer(s) 
-         * already present in the payload).</p> <p>Indicates whether or 
-         * not objects of the trigger event are to be cascaded to the 
-         * payload.</p><p>If true, associations in the parent act are 
-         * conducted across the ActRelationship to the message payload 
-         * (act). Conduction for each association is specifically 
-         * indicated by each associations' contextControlCode 
-         * value.</p><p>In other words, if the &quot;subject&quot; act 
-         * relationship has contextConductionInd=true; THEN the 
-         * dataEnterer association is carried (to the payload) 
-         * according to the dataEnterer.contextControlCode (AP = 
-         * propogate to the payload and add to any data enterer(s) 
-         * already present in the payload).</p> <p>Cascading of trigger 
-         * event objects allows different messages to employ consistent 
-         * and common objects.</p><p>Attribute is mandatory to ensure 
-         * that cascading will be specified one way or another.</p> 
-         * <p>Cascading of trigger event objects allows different 
-         * messages to employ consistent and common 
-         * objects.</p><p>Attribute is mandatory to ensure that 
-         * cascading will be specified one way or another.</p> Cascade 
-         * Responsibility Indicator <p>On 
-         * &#226;&#128;&#152;creation&#226;&#128;&#153; interactions 
-         * where the state transition is null-&gt;active, 
-         * contextConductionInd must be true, otherwise it must be 
-         * false.</p> <p>Indicates whether or not objects of the 
-         * trigger event are to be cascaded to the payload.</p><p>If 
-         * true, associations in the parent act are conducted across 
-         * the ActRelationship to the message payload (act). Conduction 
-         * for each association is specifically indica
+         * objects.</p><p>Attribute is mandatory to ensure
          * ... [rest of documentation truncated due to excessive length]
          */
         [Hl7XmlMappingAttribute(new string[] {"contextConductionInd"})]
@@ -323,6 +325,41 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             set { this.contextConductionInd.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: QUQI_MT120006CA.Subject2.act 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCAI_MT700210CA.Subject2.act Conformance/Cardinality: 
+         * MANDATORY (1) Un-merged Business Name: (no business name 
+         * specified) Relationship: MCAI_MT700216CA.Subject2.act 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * QUQI_MT120008CA.Subject2.act Conformance/Cardinality: 
+         * POPULATED (1) Un-merged Business Name: (no business name 
+         * specified) Relationship: MCAI_MT700211CA.Subject2.act 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCAI_MT700221CA.Subject2.act Conformance/Cardinality: 
+         * MANDATORY (1) Un-merged Business Name: (no business name 
+         * specified) Relationship: MCAI_MT700212CA.Subject2.act 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCAI_MT700217CA.Subject2.act Conformance/Cardinality: 
+         * MANDATORY (1) Un-merged Business Name: (no business name 
+         * specified) Relationship: MCAI_MT700227CA.Subject2.act 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCAI_MT700218CA.Subject2.act Conformance/Cardinality: 
+         * MANDATORY (1) Un-merged Business Name: (no business name 
+         * specified) Relationship: MCAI_MT700220CA.Subject2.act 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCAI_MT700226CA.Subject2.act Conformance/Cardinality: 
+         * MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"act"})]
         public ACT Act {
             get { return this.act; }

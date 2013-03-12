@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,17 +30,23 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt510
 
         public Component() {
         }
+        /**
+         * <summary>Relationship: 
+         * FICR_MT510201CA.Component.adjudicatedInvoiceElementChoice</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"adjudicatedInvoiceElementChoice"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt510201ca.IAdjudicatedInvoiceElementChoice AdjudicatedInvoiceElementChoice {
             get { return this.adjudicatedInvoiceElementChoice; }
             set { this.adjudicatedInvoiceElementChoice = value; }
         }
 
-        public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt510201ca.FinancialTransactionIntent AdjudicatedInvoiceElementChoiceAsAdjudicatedInvoiceElementGroup {
-            get { return this.adjudicatedInvoiceElementChoice is Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt510201ca.FinancialTransactionIntent ? (Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt510201ca.FinancialTransactionIntent) this.adjudicatedInvoiceElementChoice : (Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt510201ca.FinancialTransactionIntent) null; }
+        public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt510201ca.AdjudicatedInvoiceElementGroup AdjudicatedInvoiceElementChoiceAsAdjudicatedInvoiceElementGroup {
+            get { return this.adjudicatedInvoiceElementChoice is Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt510201ca.AdjudicatedInvoiceElementGroup ? (Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt510201ca.AdjudicatedInvoiceElementGroup) this.adjudicatedInvoiceElementChoice : (Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt510201ca.AdjudicatedInvoiceElementGroup) null; }
         }
         public bool HasAdjudicatedInvoiceElementChoiceAsAdjudicatedInvoiceElementGroup() {
-            return (this.adjudicatedInvoiceElementChoice is Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt510201ca.FinancialTransactionIntent);
+            return (this.adjudicatedInvoiceElementChoice is Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt510201ca.AdjudicatedInvoiceElementGroup);
         }
 
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt510201ca.AdjudicatedInvoiceElementDetail AdjudicatedInvoiceElementChoiceAsAdjudicatedInvoiceElementDetail {

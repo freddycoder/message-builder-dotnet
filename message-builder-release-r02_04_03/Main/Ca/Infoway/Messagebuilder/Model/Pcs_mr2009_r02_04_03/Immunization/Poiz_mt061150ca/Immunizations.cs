@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,12 +30,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Poiz
 
 
     /**
-     * <summary>Immunizations</summary>
+     * <summary>Business Name: Immunizations</summary>
      * 
-     * <remarks><p>A record of products administered to a patient 
-     * specific to immunization.</p> <p>Necessary component of a 
-     * person's overall vaccine profile. Helps deal with outbreaks 
-     * and also vaccine contraindication checking.</p></remarks>
+     * <p>Necessary component of a person's overall vaccine 
+     * profile. Helps deal with outbreaks and also vaccine 
+     * contraindication checking.</p> <p>A record of products 
+     * administered to a patient specific to immunization.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"POIZ_MT061150CA.Immunization"})]
     public class Immunizations : MessagePartBean, Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Comt_mt111111ca.ISummary {
@@ -61,13 +61,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Poiz
             this.subjectOf2AnnotationIndicator = new BLImpl(false);
         }
         /**
-         * <summary>A:Immunization Record Id</summary>
+         * <summary>Business Name: A:Immunization Record Id</summary>
          * 
-         * <remarks><p>This is an identifier assigned to a unique 
-         * instance of an immunization record.</p> <p>Allows for the 
+         * <remarks>Relationship: POIZ_MT061150CA.Immunization.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows for the 
          * unique referencing of a specific immunization record. This 
          * should be known for query responses and is, therefore, 
-         * mandatory.</p></remarks>
+         * mandatory.</p> <p>This is an identifier assigned to a unique 
+         * instance of an immunization record.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -76,14 +77,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Poiz
         }
 
         /**
-         * <summary>Not Immunized?</summary>
+         * <summary>Business Name: Not Immunized?</summary>
          * 
-         * <remarks><p>An explicit indication that a person has not 
-         * been immunized with the specified vaccine at the time 
-         * indicated.</p> <p>Tracking failures to be immunized is also 
-         * important in immunization reporting. Marked as mandatory 
-         * because it is not meaningful for this flag to be 
-         * 'unknown'.</p></remarks>
+         * <remarks>Relationship: 
+         * POIZ_MT061150CA.Immunization.negationInd 
+         * Conformance/Cardinality: MANDATORY (1) <p>Tracking failures 
+         * to be immunized is also important in immunization reporting. 
+         * Marked as mandatory because it is not meaningful for this 
+         * flag to be 'unknown'.</p> <p>An explicit indication that a 
+         * person has not been immunized with the specified vaccine at 
+         * the time indicated.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"negationInd"})]
         public bool? NegationInd {
@@ -92,13 +95,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Poiz
         }
 
         /**
-         * <summary>Immunization Event Status</summary>
+         * <summary>Business Name: Immunization Event Status</summary>
          * 
-         * <remarks><p>Status of the immunization event</p> <p>Needed 
-         * to differentiate between valid, obsolete and invalid 
+         * <remarks>Relationship: 
+         * POIZ_MT061150CA.Immunization.statusCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>Needed to 
+         * differentiate between valid, obsolete and invalid 
          * immunization events (e.g. immunization event has been 
          * retracted or nullified) and is therefore mandatory.</p> 
-         * <p>Nullified=Retracted</p></remarks>
+         * <p>Nullified=Retracted</p> <p>Status of the immunization 
+         * event</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"statusCode"})]
         public ActStatus StatusCode {
@@ -107,13 +113,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Poiz
         }
 
         /**
-         * <summary>Immunization Date</summary>
+         * <summary>Business Name: Immunization Date</summary>
          * 
-         * <remarks><p>The date the vaccine was administered to the 
-         * patient.</p> <p>Important information for establishing the 
-         * validity of the immunization records, and therefore 
-         * mandatory. Also used in the scheduling of subsequent 
-         * immunizations.</p></remarks>
+         * <remarks>Relationship: 
+         * POIZ_MT061150CA.Immunization.effectiveTime 
+         * Conformance/Cardinality: MANDATORY (1) <p>Important 
+         * information for establishing the validity of the 
+         * immunization records, and therefore mandatory. Also used in 
+         * the scheduling of subsequent immunizations.</p> <p>The date 
+         * the vaccine was administered to the patient.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"effectiveTime"})]
         public PlatformDate EffectiveTime {
@@ -122,12 +130,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Poiz
         }
 
         /**
-         * <summary>Uncertainty Code</summary>
+         * <summary>Business Name: Uncertainty Code</summary>
          * 
-         * <remarks><p>An indication of uncertainty regarding an 
-         * immunization event</p> <p>Allows for users of information to 
-         * determine the degree of uncertainty regarding the details of 
-         * an immunization event and is therefore populated.</p></remarks>
+         * <remarks>Relationship: 
+         * POIZ_MT061150CA.Immunization.uncertaintyCode 
+         * Conformance/Cardinality: POPULATED (1) <p>Allows for users 
+         * of information to determine the degree of uncertainty 
+         * regarding the details of an immunization event and is 
+         * therefore populated.</p> <p>An indication of uncertainty 
+         * regarding an immunization event</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"uncertaintyCode"})]
         public ActUncertainty UncertaintyCode {
@@ -135,30 +146,59 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Poiz
             set { this.uncertaintyCode.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: POIZ_MT061150CA.Immunization.subject</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subject"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merged.AdministeredTo Subject {
             get { return this.subject; }
             set { this.subject = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * POIZ_MT061150CA.AdministerableMedicine.administerableVaccine</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"consumable/administerableMedicine/administerableVaccine"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Poiz_mt061150ca.Vaccine ConsumableAdministerableMedicineAdministerableVaccine {
             get { return this.consumableAdministerableMedicineAdministerableVaccine; }
             set { this.consumableAdministerableMedicineAdministerableVaccine = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * POIZ_MT061150CA.Subject5.detectedIssuesIndicator</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf1/detectedIssuesIndicator"})]
         public bool? SubjectOf1DetectedIssuesIndicator {
             get { return this.subjectOf1DetectedIssuesIndicator.Value; }
             set { this.subjectOf1DetectedIssuesIndicator.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * POIZ_MT061150CA.Subject2.annotationIndicator</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf2/annotationIndicator"})]
         public bool? SubjectOf2AnnotationIndicator {
             get { return this.subjectOf2AnnotationIndicator.Value; }
             set { this.subjectOf2AnnotationIndicator.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * POIZ_MT061150CA.CauseOf.investigationEvent</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"cause/investigationEvent"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merged.InvestigationEvent CauseInvestigationEvent {
             get { return this.causeInvestigationEvent; }

@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,6 +25,21 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Merged;
 
 
+    /**
+     * <summary>Business Name: PORX_IN060480CA: Unfilled prescr. by 
+     * prescriber query response</summary>
+     * 
+     * <p>Returns basic information about all prescriptions 
+     * provided to a single patient, prescribed by the specified 
+     * prescriber which have not yet been dispensed, optionally 
+     * filtered by date and status.</p> Message: 
+     * MCCI_MT002300CA.Message Control Act: 
+     * QUQI_MT120006CA.ControlActEvent --> Payload: 
+     * PORX_MT060300CA.Prescription ----> Payload Choice: 
+     * PORX_MT030040CA.CombinedMedicationRequest ----> Payload 
+     * Choice: PORX_MT060060CA.DevicePrescription --> Payload: 
+     * PORX_MT060270CA.ParameterList
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"PORX_IN060480CA"})]
     public class UnfilledPrescrByPrescriberQueryResponse : HL7Message_1<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.TriggerEvent_6<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Merged.IPrescription,Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Merged.UnfilledPrescriptionQueryParameters>>, IInteraction {
 

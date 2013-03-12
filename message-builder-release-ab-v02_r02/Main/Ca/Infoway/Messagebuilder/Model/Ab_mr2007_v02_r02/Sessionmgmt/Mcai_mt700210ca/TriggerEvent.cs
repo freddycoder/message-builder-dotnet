@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,14 +33,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Mcai_mt7
 
 
     /**
-     * <summary>Trigger Event</summary>
+     * <summary>Business Name: Trigger Event</summary>
      * 
-     * <remarks><p>Identifies the action that resulted in this 
-     * message being sent.</p> <p>Key to understanding what action 
-     * a message represents.</p> <p>There may be constraints on the 
-     * usage of the effectiveTime and reasonCode attributes in the 
+     * <p>Identifies the action that resulted in this message being 
+     * sent.</p> <p>Key to understanding what action a message 
+     * represents.</p> <p>There may be constraints on the usage of 
+     * the effectiveTime and reasonCode attributes in the 
      * definition of the interaction or the trigger events which 
-     * are conveyed with this wrapper.</p></remarks>
+     * are conveyed with this wrapper.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"MCAI_MT700210CA.ControlActEvent"})]
     public class TriggerEvent<ACT> : MessagePartBean {
@@ -66,14 +66,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Mcai_mt7
             this.subjectOf1 = new List<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.Caused>();
         }
         /**
-         * <summary>B:Event Identifier</summary>
+         * <summary>Business Name: B:Event Identifier</summary>
          * 
-         * <remarks><p>A unique identifier for this particular event 
-         * assigned by the system in which the event occurred.</p> 
-         * <p>Allows the event to be referenced (for undos) and also 
-         * indicates whether multiple interactions were caused by the 
-         * same triggering event. The attribute is therefore 
-         * mandatory.</p></remarks>
+         * <remarks>Relationship: MCAI_MT700210CA.ControlActEvent.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>A unique 
+         * identifier for this particular event assigned by the system 
+         * in which the event occurred.</p> <p>Allows the event to be 
+         * referenced (for undos) and also indicates whether multiple 
+         * interactions were caused by the same triggering event. The 
+         * attribute is therefore mandatory.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -82,11 +83,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Mcai_mt7
         }
 
         /**
-         * <summary>A:Event Type</summary>
+         * <summary>Business Name: A:Event Type</summary>
          * 
-         * <remarks><p>Identifies the trigger event that occurred.</p> 
-         * <p>This is mandatory because it is essential to 
-         * understanding the meaning of the event.</p></remarks>
+         * <remarks>Relationship: MCAI_MT700210CA.ControlActEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Identifies the 
+         * trigger event that occurred.</p> <p>This is mandatory 
+         * because it is essential to understanding the meaning of the 
+         * event.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public HL7TriggerEventCode Code {
@@ -95,16 +98,18 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Mcai_mt7
         }
 
         /**
-         * <summary>C:Event Effective Period</summary>
+         * <summary>Business Name: C:Event Effective Period</summary>
          * 
-         * <remarks><p>Indicates the time the change should begin (and 
-         * occasionally when it should end). If not specified, 
-         * assumption is that the event occurred at the same time the 
-         * message was constructed.</p> <p>The time a change becomes 
-         * effective may differ from the time the event is recorded. 
-         * (I.e. it may be in the future or the past). For changes such 
-         * as 'suspend', an intended end date may also be 
-         * indicated.</p></remarks>
+         * <remarks>Relationship: 
+         * MCAI_MT700210CA.ControlActEvent.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
+         * time the change should begin (and occasionally when it 
+         * should end). If not specified, assumption is that the event 
+         * occurred at the same time the message was constructed.</p> 
+         * <p>The time a change becomes effective may differ from the 
+         * time the event is recorded. (I.e. it may be in the future or 
+         * the past). For changes such as 'suspend', an intended end 
+         * date may also be indicated.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"effectiveTime"})]
         public Interval<PlatformDate> EffectiveTime {
@@ -113,13 +118,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Mcai_mt7
         }
 
         /**
-         * <summary>E:Event Reason</summary>
+         * <summary>Business Name: E:Event Reason</summary>
          * 
-         * <remarks><p>Identifies why this specific query, modification 
-         * request, or modification occurred.</p> <p>Allows identifying 
-         * a reason for a specific action, such as 'reason for hold'. 
-         * Also allows identifying reason for accessing information for 
-         * a query.</p></remarks>
+         * <remarks>Relationship: 
+         * MCAI_MT700210CA.ControlActEvent.reasonCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Identifies why 
+         * this specific query, modification request, or modification 
+         * occurred.</p> <p>Allows identifying a reason for a specific 
+         * action, such as 'reason for hold'. Also allows identifying 
+         * reason for accessing information for a query.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"reasonCode"})]
         public ControlActReason ReasonCode {
@@ -127,47 +134,94 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Mcai_mt7
             set { this.reasonCode.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * MCAI_MT700210CA.ResponsibleParty.assignedPerson</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"responsibleParty/assignedPerson"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Coct_mt090107ca.Provider ResponsiblePartyAssignedPerson {
             get { return this.responsiblePartyAssignedPerson; }
             set { this.responsiblePartyAssignedPerson = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * MCAI_MT700210CA.ControlActEvent.author</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"author"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.CreatedBy Author {
             get { return this.author; }
             set { this.author = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * MCAI_MT700210CA.DataEnterer.assignedPerson</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"dataEnterer/assignedPerson"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Coct_mt090107ca.Provider DataEntererAssignedPerson {
             get { return this.dataEntererAssignedPerson; }
             set { this.dataEntererAssignedPerson = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * MCAI_MT700210CA.DataEntryLocation.serviceDeliveryLocation</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"dataEntryLocation/serviceDeliveryLocation"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.ServiceLocation DataEntryLocationServiceDeliveryLocation {
             get { return this.dataEntryLocationServiceDeliveryLocation; }
             set { this.dataEntryLocationServiceDeliveryLocation = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * MCAI_MT700210CA.ControlActEvent.location</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"location"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.CreatedAt Location {
             get { return this.location; }
             set { this.location = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * MCAI_MT700210CA.ControlActEvent.subject</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subject"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.RefersTo<ACT> Subject {
             get { return this.subject; }
             set { this.subject = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * MCAI_MT700210CA.ControlActEvent.subjectOf1</summary>
+         * 
+         * <remarks>Conformance/Cardinality: REQUIRED (0-50)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf1"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.Caused> SubjectOf1 {
             get { return this.subjectOf1; }
         }
 
+        /**
+         * <summary>Relationship: MCAI_MT700210CA.Subject3.consentEvent</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf2/consentEvent"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Coct_mt470000ca.Consent SubjectOf2ConsentEvent {
             get { return this.subjectOf2ConsentEvent; }

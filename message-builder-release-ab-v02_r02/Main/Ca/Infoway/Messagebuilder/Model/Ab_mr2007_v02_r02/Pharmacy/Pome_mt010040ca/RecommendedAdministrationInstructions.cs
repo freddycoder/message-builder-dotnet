@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,12 +29,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Pome_mt0100
 
 
     /**
-     * <summary>Recommended Administration Instructions</summary>
+     * <summary>Business Name: Recommended Administration 
+     * Instructions</summary>
      * 
-     * <remarks><p>This comprises the route of administration, 
+     * <p>This comprises the route of administration, 
      * maximum/minimum daily dose, and overall use instructions for 
      * the drug.</p> <p>Gives guidance to prescribers on how the 
-     * drug might be/should be used</p></remarks>
+     * drug might be/should be used</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"POME_MT010040CA.AdministrationGuideline"})]
     public class RecommendedAdministrationInstructions : MessagePartBean {
@@ -51,6 +52,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Pome_mt0100
             this.reasonIndications = new List<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.IIndications>();
             this.preconditionObservationEventCriterion = new List<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Pome_mt010040ca.PatientCharacteristics>();
         }
+        /**
+         * <summary>Relationship: POME_MT010040CA.Subject.patient</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subject/patient"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Pome_mt010040ca.Patient SubjectPatient {
             get { return this.subjectPatient; }
@@ -58,12 +64,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Pome_mt0100
         }
 
         /**
-         * <summary>Recommending Authority Name</summary>
+         * <summary>Business Name: Recommending Authority Name</summary>
          * 
-         * <remarks><p>Indicates the name of the organization or agency 
-         * that created the dosage recommendation</p> <p>The source of 
-         * a recommendation may influence prescriber's willingness to 
-         * use the recommended dose and is therefore mandatory</p></remarks>
+         * <remarks>Relationship: POME_MT010040CA.Organization4.name 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the name 
+         * of the organization or agency that created the dosage 
+         * recommendation</p> <p>The source of a recommendation may 
+         * influence prescriber's willingness to use the recommended 
+         * dose and is therefore mandatory</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"author/assignedEntity/assignedOrganization/name"})]
         public String AuthorAssignedEntityAssignedOrganizationName {
@@ -71,16 +79,33 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Pome_mt0100
             set { this.authorAssignedEntityAssignedOrganizationName.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * POME_MT010040CA.Option.dosageInstruction</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"option/dosageInstruction"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.AdministrationInstructions> OptionDosageInstruction {
             get { return this.optionDosageInstruction; }
         }
 
+        /**
+         * <summary>Relationship: POME_MT010040CA.Reason.indications</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"reason/indications"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.IIndications> ReasonIndications {
             get { return this.reasonIndications; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * POME_MT010040CA.Precondition.observationEventCriterion</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"precondition/observationEventCriterion"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Pome_mt010040ca.PatientCharacteristics> PreconditionObservationEventCriterion {
             get { return this.preconditionObservationEventCriterion; }

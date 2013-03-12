@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,12 +24,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt309000ca {
 
 
     /**
-     * <summary>Organization</summary>
+     * <summary>Business Name: Organization</summary>
      * 
-     * <remarks><p>The scoping organization for the specified role 
-     * class</p> <p>Supports the requirement to supply additional 
-     * information regarding the assigning Organization of the 
-     * specified RoleClass</p></remarks>
+     * <p>The scoping organization for the specified role class</p> 
+     * <p>Supports the requirement to supply additional information 
+     * regarding the assigning Organization of the specified 
+     * RoleClass</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"PRPM_MT309000CA.Organization"})]
     public class Organization : MessagePartBean {
@@ -38,6 +38,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt309000ca {
 
         public Organization() {
         }
+        /**
+         * <summary>Relationship: 
+         * PRPM_MT309000CA.Organization.territorialAuthority</summary>
+         * 
+         * <remarks>Conformance/Cardinality: OPTIONAL (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"territorialAuthority"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt309000ca.TerritorialAuthority TerritorialAuthority {
             get { return this.territorialAuthority; }

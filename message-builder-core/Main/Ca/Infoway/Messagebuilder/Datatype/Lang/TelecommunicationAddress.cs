@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -197,7 +197,7 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 			URL_SCHEMES_REQUIRING_SLASHES.Add("ftp");
 			URL_SCHEMES_REQUIRING_SLASHES.Add("http");
 			URL_SCHEMES_REQUIRING_SLASHES.Add("https");
-			URL_SCHEMES_REQUIRING_SLASHES.Add("mailto");
+			//URL_SCHEMES_REQUIRING_SLASHES.Add("mailto");
 			URL_SCHEMES_REQUIRING_SLASHES.Add("nfs");
 		}
 	}

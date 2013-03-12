@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Iehr.Merged {
 
 
     /**
-     * <summary>ReportedBy</summary>
+     * <summary>Business Name: ReportedBy</summary>
      * 
      * <remarks>REPC_MT000005CA.Informant: d:reported by 
      * <p>Indicates where the information that led to the recording 
@@ -85,23 +85,47 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Iehr.Merged {
             this.time = new TSImpl();
         }
         /**
-         * <summary>Reported Date</summary>
+         * <summary>Un-merged Business Name: ReportedDate</summary>
          * 
-         * <remarks><p>The date on which the adverse reaction was 
-         * reported.</p> <p>Allows for establishment of timelines 
-         * between onset date, reported date and recorded date, and is 
-         * therefore mandatory.</p> Reported Timestamp <p>The date on 
-         * which the adverse reaction was reported.</p> <p>Allows for 
+         * <remarks>Relationship: REPC_MT000005CA.Informant.time 
+         * Conformance/Cardinality: MANDATORY (1) <p>The date on which 
+         * the allergy/intolerance was reported.</p> <p>Allows for 
          * establishment of timelines between onset date, reported date 
-         * and recorded date, and is therefore mandatory.</p> Reported 
-         * Date <p>The date on which the allergy/intolerance was 
+         * and recorded date, and is therefore mandatory.</p> Un-merged 
+         * Business Name: ReportedDate Relationship: 
+         * REPC_MT000001CA.Informant.time Conformance/Cardinality: 
+         * MANDATORY (1) <p>The date on which the allergy/intolerance 
+         * was reported.</p> <p>Allows for establishment of timelines 
+         * between onset date, reported date and recorded date, and is 
+         * therefore mandatory.</p> Un-merged Business Name: 
+         * ReportedDate Relationship: REPC_MT000013CA.Informant.time 
+         * Conformance/Cardinality: MANDATORY (1) <p>The date on which 
+         * the allergy/intolerance was reported.</p> <p>Allows for 
+         * establishment of timelines between onset date, reported date 
+         * and recorded date, and is therefore mandatory.</p> Un-merged 
+         * Business Name: ReportedTimestamp Relationship: 
+         * REPC_MT000006CA.Informant.time Conformance/Cardinality: 
+         * MANDATORY (1) <p>The date on which the adverse reaction was 
          * reported.</p> <p>Allows for establishment of timelines 
          * between onset date, reported date and recorded date, and is 
-         * therefore mandatory.</p> Reported date <p>The date on which 
+         * therefore mandatory.</p> Un-merged Business Name: 
+         * ReportedDate Relationship: REPC_MT000012CA.Informant.time 
+         * Conformance/Cardinality: MANDATORY (1) <p>The date on which 
          * the adverse reaction was reported.</p> <p>Allows for 
          * establishment of timelines between reaction onset date, 
          * reported date and recorded date, and is therefore 
-         * mandatory.</p></remarks>
+         * mandatory.</p> Un-merged Business Name: ReportedDate 
+         * Relationship: REPC_MT000009CA.Informant.time 
+         * Conformance/Cardinality: MANDATORY (1) <p>The date on which 
+         * the allergy/intolerance was reported.</p> <p>Allows for 
+         * establishment of timelines between onset date, reported date 
+         * and recorded date, and is therefore mandatory.</p> Un-merged 
+         * Business Name: ReportedDate Relationship: 
+         * REPC_MT000002CA.Informant.time Conformance/Cardinality: 
+         * MANDATORY (1) <p>The date on which the adverse reaction was 
+         * reported.</p> <p>Allows for establishment of timelines 
+         * between onset date, reported date and recorded date, and is 
+         * therefore mandatory.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"time"})]
         public PlatformDate Time {
@@ -109,12 +133,39 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Iehr.Merged {
             set { this.time.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: REPC_MT000005CA.Informant.party 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT000001CA.Informant.party Conformance/Cardinality: 
+         * POPULATED (1) Un-merged Business Name: (no business name 
+         * specified) Relationship: REPC_MT000013CA.Informant.party 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT000006CA.Informant.party Conformance/Cardinality: 
+         * POPULATED (1) Un-merged Business Name: (no business name 
+         * specified) Relationship: REPC_MT000009CA.Informant.party 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT000002CA.Informant.party Conformance/Cardinality: 
+         * POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"party"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Iehr.Merged.IParty Party {
             get { return this.party; }
             set { this.party = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: REPC_MT000012CA.Informant.choice 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"choice"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.IChoice Choice {
             get { return this.choice; }

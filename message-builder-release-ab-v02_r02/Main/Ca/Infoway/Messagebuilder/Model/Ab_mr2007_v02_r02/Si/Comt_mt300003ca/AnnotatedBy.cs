@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,13 +28,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Si.Comt_mt300003ca {
 
 
     /**
-     * <summary>*b:annotated by</summary>
+     * <summary>Business Name: *b:annotated by</summary>
      * 
-     * <remarks><p>Identifier of the provider who created the 
-     * patient note.</p> <p>Allows other providers to communicator 
-     * with the author of the note for follow-up enquiries. The 
-     * author of an annotation must always be known and is 
-     * therefore mandatory.</p></remarks>
+     * <p>Identifier of the provider who created the patient 
+     * note.</p> <p>Allows other providers to communicator with the 
+     * author of the note for follow-up enquiries. The author of an 
+     * annotation must always be known and is therefore 
+     * mandatory.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"COMT_MT300003CA.Author"})]
     public class AnnotatedBy : MessagePartBean {
@@ -46,16 +46,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Si.Comt_mt300003ca {
             this.time = new TSImpl();
         }
         /**
-         * <summary>B:Patient Note Date</summary>
+         * <summary>Business Name: B:Patient Note Date</summary>
          * 
-         * <remarks><p>The date on which the patient note was 
-         * created.</p> <p>Allows other provider to evaluate the 
-         * currency of the information contained in the note.</p><p>The 
-         * date of the note creation is always known and is therefore 
-         * mandatory.</p> <p>Allows other provider to evaluate the 
-         * currency of the information contained in the note.</p><p>The 
-         * date of the note creation is always known and is therefore 
-         * mandatory.</p></remarks>
+         * <remarks>Relationship: COMT_MT300003CA.Author.time 
+         * Conformance/Cardinality: MANDATORY (1) <p>The date on which 
+         * the patient note was created.</p> <p>Allows other provider 
+         * to evaluate the currency of the information contained in the 
+         * note.</p><p>The date of the note creation is always known 
+         * and is therefore mandatory.</p> <p>Allows other provider to 
+         * evaluate the currency of the information contained in the 
+         * note.</p><p>The date of the note creation is always known 
+         * and is therefore mandatory.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"time"})]
         public PlatformDate Time {
@@ -63,6 +64,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Si.Comt_mt300003ca {
             set { this.time.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: COMT_MT300003CA.Author.assignedEntity</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"assignedEntity"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.HealthcareWorker AssignedEntity {
             get { return this.assignedEntity; }

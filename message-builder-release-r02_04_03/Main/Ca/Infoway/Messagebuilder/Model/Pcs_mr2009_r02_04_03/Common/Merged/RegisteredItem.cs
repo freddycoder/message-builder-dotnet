@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,32 +24,32 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged {
 
 
     /**
-     * <summary>RegisteredItem</summary>
+     * <summary>Business Name: RegisteredItem</summary>
      * 
      * <remarks>MFMI_MT700746CA.Subject4: Registered Item 
-     * <p>Commonly called the Payload stub. Any interaction that 
-     * uses this ControlAct Wrapper will replace this class with a 
-     * Role-based domain Message Type</p> <p>Defines the content of 
-     * the registration and is therefore mandatory.</p> 
-     * MFMI_MT700717CA.Subject4: Registered Item <p>Commonly called 
-     * the Payload stub. Any interaction that uses this ControlAct 
-     * Wrapper will replace this class with a Role-based domain 
-     * Message Type</p> <p>Defines the content of the registration 
-     * and is therefore mandatory.</p> MFMI_MT700711CA.Subject4: 
-     * Registered Item <p>Commonly called the Payload stub. Any 
+     * <p>Defines the content of the registration and is therefore 
+     * mandatory.</p> <p>Commonly called the Payload stub. Any 
      * interaction that uses this ControlAct Wrapper will replace 
      * this class with a Role-based domain Message Type</p> 
-     * <p>Defines the content of the registration and is therefore 
-     * mandatory.</p> MFMI_MT700726CA.Subject4: Registered Item 
+     * MFMI_MT700717CA.Subject4: Registered Item <p>Defines the 
+     * content of the registration and is therefore mandatory.</p> 
      * <p>Commonly called the Payload stub. Any interaction that 
      * uses this ControlAct Wrapper will replace this class with a 
-     * Role-based domain Message Type</p> <p>Defines the content of 
-     * the registration and is therefore mandatory.</p> 
-     * MFMI_MT700716CA.Subject4: Registered Item <p>Commonly called 
-     * the Payload stub. Any interaction that uses this ControlAct 
+     * Role-based domain Message Type</p> MFMI_MT700711CA.Subject4: 
+     * Registered Item <p>Defines the content of the registration 
+     * and is therefore mandatory.</p> <p>Commonly called the 
+     * Payload stub. Any interaction that uses this ControlAct 
      * Wrapper will replace this class with a Role-based domain 
-     * Message Type</p> <p>Defines the content of the registration 
-     * and is therefore mandatory.</p></remarks>
+     * Message Type</p> MFMI_MT700726CA.Subject4: Registered Item 
+     * <p>Defines the content of the registration and is therefore 
+     * mandatory.</p> <p>Commonly called the Payload stub. Any 
+     * interaction that uses this ControlAct Wrapper will replace 
+     * this class with a Role-based domain Message Type</p> 
+     * MFMI_MT700716CA.Subject4: Registered Item <p>Defines the 
+     * content of the registration and is therefore mandatory.</p> 
+     * <p>Commonly called the Payload stub. Any interaction that 
+     * uses this ControlAct Wrapper will replace this class with a 
+     * Role-based domain Message Type</p></remarks>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"MFMI_MT700711CA.Subject4","MFMI_MT700716CA.Subject4","MFMI_MT700717CA.Subject4","MFMI_MT700726CA.Subject4","MFMI_MT700746CA.Subject4"})]
     public class RegisteredItem<RR> : MessagePartBean {
@@ -58,6 +58,26 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged {
 
         public RegisteredItem() {
         }
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * MFMI_MT700746CA.Subject4.registeredRole 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MFMI_MT700717CA.Subject4.registeredRole 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MFMI_MT700711CA.Subject4.registeredRole 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MFMI_MT700726CA.Subject4.registeredRole 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MFMI_MT700716CA.Subject4.registeredRole 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"registeredRole"})]
         public RR RegisteredRole {
             get { return this.registeredRole; }

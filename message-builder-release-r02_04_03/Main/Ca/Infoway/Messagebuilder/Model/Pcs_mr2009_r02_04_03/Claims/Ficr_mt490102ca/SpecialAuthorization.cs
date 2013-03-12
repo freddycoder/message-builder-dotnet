@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -51,7 +51,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt490
             this.subjectOf = new List<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.Includes>();
         }
         /**
-         * <summary>Special Authorization Status</summary>
+         * <summary>Business Name: Special Authorization Status</summary>
+         * 
+         * <remarks>Relationship: 
+         * FICR_MT490102CA.SpecialAuthorization.statusCode 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"statusCode"})]
         public ActStatus StatusCode {
@@ -60,7 +64,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt490
         }
 
         /**
-         * <summary>Special Authorization Effective Date</summary>
+         * <summary>Business Name: Special Authorization Effective Date</summary>
+         * 
+         * <remarks>Relationship: 
+         * FICR_MT490102CA.SpecialAuthorization.effectiveTime 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"effectiveTime"})]
         public Interval<PlatformDate> EffectiveTime {
@@ -68,35 +76,71 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt490
             set { this.effectiveTime.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * FICR_MT490102CA.Author3.assignedEntity</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"author/assignedEntity"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt090508ca.HealthcareOrganization AuthorAssignedEntity {
             get { return this.authorAssignedEntity; }
             set { this.authorAssignedEntity = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * FICR_MT490102CA.SpecialAuthorization.subject</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1-100)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subject"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Merged.Subject3> Subject {
             get { return this.subject; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * FICR_MT490102CA.Coverage2.policyOrAccount</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"coverage/policyOrAccount"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt490102ca.PolicyOrAccount CoveragePolicyOrAccount {
             get { return this.coveragePolicyOrAccount; }
             set { this.coveragePolicyOrAccount = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * FICR_MT490102CA.Limitation2.remainingLimits</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"limitation1/remainingLimits"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt490102ca.RemainingLimits Limitation1RemainingLimits {
             get { return this.limitation1RemainingLimits; }
             set { this.limitation1RemainingLimits = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * FICR_MT490102CA.Limitation.maximumLimits</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"limitation2/maximumLimits"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Merged.MaximumLimits Limitation2MaximumLimits {
             get { return this.limitation2MaximumLimits; }
             set { this.limitation2MaximumLimits = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * FICR_MT490102CA.SpecialAuthorization.subjectOf</summary>
+         * 
+         * <remarks>Conformance/Cardinality: REQUIRED (0-100)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.Includes> SubjectOf {
             get { return this.subjectOf; }

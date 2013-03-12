@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,6 +25,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Poiz_mt060140ca;
 
 
+    /**
+     * <summary>Business Name: POIZ_IN020010CA: Immunizations Query</summary>
+     * 
+     * <p>Requests retrieval of detailed information about a 
+     * patient's immunizations, potentially filtered by time-range 
+     * of the immunization, time-range the immunization was last 
+     * updated, and/or type of immunization.</p> Message: 
+     * MCCI_MT002100CA.Message Control Act: 
+     * QUQI_MT020000CA.ControlActEvent --> Payload: 
+     * POIZ_MT060140CA.ParameterList
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"POIZ_IN020010CA"})]
     public class ImmunizationsQuery : HL7Message_1<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.TriggerEvent_5<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Poiz_mt060140ca.ImmunizationQueryParameters>>, IInteraction {
 

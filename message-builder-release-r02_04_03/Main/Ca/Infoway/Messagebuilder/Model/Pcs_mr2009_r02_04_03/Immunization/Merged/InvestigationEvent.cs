@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,34 +29,35 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merg
 
 
     /**
-     * <summary>InvestigationEvent</summary>
+     * <summary>Business Name: InvestigationEvent</summary>
      * 
      * <remarks>POIZ_MT060150CA.InvestigationEvent: Investigation 
-     * Event <p>Provides information about an adverse event report 
-     * associated with the immunization event.</p> <p>Provides 
-     * additional information about the immunization event by 
-     * indicating an adverse event is associated and also provides 
-     * a mechanism for communicating information about the report 
-     * that was filed.</p> POIZ_MT030060CA.InvestigationEvent: 
-     * Investigation Event <p>Provides information about an adverse 
-     * event report associated with the immunization event.</p> 
+     * Event <p>Provides additional information about the 
+     * immunization event by indicating an adverse event is 
+     * associated and also provides a mechanism for communicating 
+     * information about the report that was filed.</p> <p>Provides 
+     * information about an adverse event report associated with 
+     * the immunization event.</p> 
+     * POIZ_MT030060CA.InvestigationEvent: Investigation Event 
      * <p>Provides additional information about the immunization 
      * event by indicating an adverse event is associated and also 
      * provides a mechanism for communicating information about the 
-     * report that was filed.</p> 
-     * POIZ_MT061150CA.InvestigationEvent: Investigation Event 
-     * <p>Provides information about an adverse event report 
-     * associated with the immunization event.</p> <p>Provides 
-     * additional information about the immunization event by 
-     * indicating an adverse event is associated and also provides 
-     * a mechanism for communicating information about the report 
-     * that was filed.</p> POIZ_MT030050CA.InvestigationEvent: 
-     * Investigation Event <p>Provides information about an adverse 
-     * event report associated with the immunization event.</p> 
+     * report that was filed.</p> <p>Provides information about an 
+     * adverse event report associated with the immunization 
+     * event.</p> POIZ_MT061150CA.InvestigationEvent: Investigation 
+     * Event <p>Provides additional information about the 
+     * immunization event by indicating an adverse event is 
+     * associated and also provides a mechanism for communicating 
+     * information about the report that was filed.</p> <p>Provides 
+     * information about an adverse event report associated with 
+     * the immunization event.</p> 
+     * POIZ_MT030050CA.InvestigationEvent: Investigation Event 
      * <p>Provides additional information about the immunization 
      * event by indicating an adverse event is associated and also 
      * provides a mechanism for communicating information about the 
-     * report that was filed.</p></remarks>
+     * report that was filed.</p> <p>Provides information about an 
+     * adverse event report associated with the immunization 
+     * event.</p></remarks>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"POIZ_MT030050CA.InvestigationEvent","POIZ_MT030060CA.InvestigationEvent","POIZ_MT060150CA.InvestigationEvent","POIZ_MT061150CA.InvestigationEvent"})]
     public class InvestigationEvent : MessagePartBean {
@@ -73,15 +74,40 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merg
             this.statusCode = new CSImpl();
         }
         /**
-         * <summary>AdverseEventReportID</summary>
+         * <summary>Business Name: AdverseEventReportID</summary>
          * 
-         * <remarks>Adverse Event Report ID <p>Identifier associated 
-         * with the Adverse Event Report. An example would be the 
-         * unique episode number assigned to the Report of Adverse 
-         * Events Following Immunization (AEFI).</p> <p>Provides 
-         * reference to the Adverse Event Report in the case that 
-         * follow up is needed. However, this ID may not always be 
-         * known.</p></remarks>
+         * <remarks>Un-merged Business Name: AdverseEventReportID 
+         * Relationship: POIZ_MT060150CA.InvestigationEvent.id 
+         * Conformance/Cardinality: POPULATED (1) <p>Provides reference 
+         * to the Adverse Event Report in the case that follow up is 
+         * needed. However, this ID may not always be known.</p> 
+         * <p>Identifier associated with the Adverse Event Report. An 
+         * example would be the unique episode number assigned to the 
+         * Report of Adverse Events Following Immunization (AEFI).</p> 
+         * Un-merged Business Name: AdverseEventReportID Relationship: 
+         * POIZ_MT030060CA.InvestigationEvent.id 
+         * Conformance/Cardinality: POPULATED (1) <p>Provides reference 
+         * to the Adverse Event Report in the case that follow up is 
+         * needed. However, this ID may not always be known.</p> 
+         * <p>Identifier associated with the Adverse Event Report. An 
+         * example would be the unique episode number assigned to the 
+         * Report of Adverse Events Following Immunization (AEFI).</p> 
+         * Un-merged Business Name: AdverseEventReportID Relationship: 
+         * POIZ_MT030050CA.InvestigationEvent.id 
+         * Conformance/Cardinality: POPULATED (1) <p>Provides reference 
+         * to the Adverse Event Report in the case that follow up is 
+         * needed. However, this ID may not always be known.</p> 
+         * <p>Identifier associated with the Adverse Event Report. An 
+         * example would be the unique episode number assigned to the 
+         * Report of Adverse Events Following Immunization (AEFI).</p> 
+         * Un-merged Business Name: AdverseEventReportID Relationship: 
+         * POIZ_MT061150CA.InvestigationEvent.id 
+         * Conformance/Cardinality: POPULATED (1) <p>Provides reference 
+         * to the Adverse Event Report in the case that follow up is 
+         * needed. However, this ID may not always be known.</p> 
+         * <p>Identifier associated with the Adverse Event Report. An 
+         * example would be the unique episode number assigned to the 
+         * Report of Adverse Events Following Immunization (AEFI).</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -90,11 +116,28 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merg
         }
 
         /**
-         * <summary>ReportType</summary>
+         * <summary>Business Name: ReportType</summary>
          * 
-         * <remarks>Report Type <p>A coded value that indicates the 
-         * type of report that was filed.</p> <p>Provides a mechanism 
-         * to categorizing the report.</p></remarks>
+         * <remarks>Un-merged Business Name: ReportType Relationship: 
+         * POIZ_MT060150CA.InvestigationEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Provides a 
+         * mechanism to categorizing the report.</p> <p>A coded value 
+         * that indicates the type of report that was filed.</p> 
+         * Un-merged Business Name: ReportType Relationship: 
+         * POIZ_MT030060CA.InvestigationEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Provides a 
+         * mechanism to categorizing the report.</p> <p>A coded value 
+         * that indicates the type of report that was filed.</p> 
+         * Un-merged Business Name: ReportType Relationship: 
+         * POIZ_MT030050CA.InvestigationEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Provides a 
+         * mechanism to categorizing the report.</p> <p>A coded value 
+         * that indicates the type of report that was filed.</p> 
+         * Un-merged Business Name: ReportType Relationship: 
+         * POIZ_MT061150CA.InvestigationEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Provides a 
+         * mechanism to categorizing the report.</p> <p>A coded value 
+         * that indicates the type of report that was filed.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public IndividualCaseSafetyReportType Code {
@@ -103,22 +146,36 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merg
         }
 
         /**
-         * <summary>Adverse Event Text</summary>
+         * <summary>Un-merged Business Name: AdverseEventReportText</summary>
          * 
-         * <remarks><p>Textual description of the Adverse Event 
-         * Following Immunization reported</p> <p>Provides information 
-         * about the adverse event in addition to an indication that an 
-         * adverse event occurred - information that would not 
-         * otherwise be known.</p> Adverse Event ReportText <p>Textual 
-         * description of the Adverse Event Following Immunization 
-         * reported</p> <p>Provides information about the adverse event 
-         * in addition to an indication that an adverse event occurred 
-         * - information that would not otherwise be known.</p> Adverse 
-         * Event Text <p>Textual description of the Adverse Event 
-         * Following Immunization reported</p> <p>Provides information 
-         * about the adverse event in addition to an indication that an 
-         * adverse event occurred - information that would not 
-         * otherwise be known</p></remarks>
+         * <remarks>Relationship: 
+         * POIZ_MT060150CA.InvestigationEvent.text 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Provides 
+         * information about the adverse event in addition to an 
+         * indication that an adverse event occurred - information that 
+         * would not otherwise be known.</p> <p>Textual description of 
+         * the Adverse Event Following Immunization reported</p> 
+         * Un-merged Business Name: AdverseEventText Relationship: 
+         * POIZ_MT030060CA.InvestigationEvent.text 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Provides 
+         * information about the adverse event in addition to an 
+         * indication that an adverse event occurred - information that 
+         * would not otherwise be known.</p> <p>Textual description of 
+         * the Adverse Event Following Immunization reported</p> 
+         * Un-merged Business Name: AdverseEventText Relationship: 
+         * POIZ_MT030050CA.InvestigationEvent.text 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Provides 
+         * information about the adverse event in addition to an 
+         * indication that an adverse event occurred - information that 
+         * would not otherwise be known.</p> <p>Textual description of 
+         * the Adverse Event Following Immunization reported</p> 
+         * Un-merged Business Name: AdverseEventText Relationship: 
+         * POIZ_MT061150CA.InvestigationEvent.text 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Provides 
+         * information about the adverse event in addition to an 
+         * indication that an adverse event occurred - information that 
+         * would not otherwise be known</p> <p>Textual description of 
+         * the Adverse Event Following Immunization reported</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"text"})]
         public String Text {
@@ -127,14 +184,40 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merg
         }
 
         /**
-         * <summary>ReportStatus</summary>
+         * <summary>Business Name: ReportStatus</summary>
          * 
-         * <remarks>Report Status <p>Code indicating the operative 
-         * status of the business process, which in this case is an 
-         * Adverse Event Report. Status examples: active, completed, 
-         * etc.</p> <p>Provides additional context to the receiver as 
-         * to the state of the referenced report. As a result, this 
-         * attribute is mandatory.</p></remarks>
+         * <remarks>Un-merged Business Name: ReportStatus Relationship: 
+         * POIZ_MT060150CA.InvestigationEvent.statusCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>Provides 
+         * additional context to the receiver as to the state of the 
+         * referenced report. As a result, this attribute is 
+         * mandatory.</p> <p>Code indicating the operative status of 
+         * the business process, which in this case is an Adverse Event 
+         * Report. Status examples: active, completed, etc.</p> 
+         * Un-merged Business Name: ReportStatus Relationship: 
+         * POIZ_MT030060CA.InvestigationEvent.statusCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>Provides 
+         * additional context to the receiver as to the state of the 
+         * referenced report. As a result, this attribute is 
+         * mandatory.</p> <p>Code indicating the operative status of 
+         * the business process, which in this case is an Adverse Event 
+         * Report. Status examples: active, completed, etc.</p> 
+         * Un-merged Business Name: ReportStatus Relationship: 
+         * POIZ_MT030050CA.InvestigationEvent.statusCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>Provides 
+         * additional context to the receiver as to the state of the 
+         * referenced report. As a result, this attribute is 
+         * mandatory.</p> <p>Code indicating the operative status of 
+         * the business process, which in this case is an Adverse Event 
+         * Report. Status examples: active, completed, etc.</p> 
+         * Un-merged Business Name: ReportStatus Relationship: 
+         * POIZ_MT061150CA.InvestigationEvent.statusCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>Provides 
+         * additional context to the receiver as to the state of the 
+         * referenced report. As a result, this attribute is 
+         * mandatory.</p> <p>Code indicating the operative status of 
+         * the business process, which in this case is an Adverse Event 
+         * Report. Status examples: active, completed, etc.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"statusCode"})]
         public ActStatus StatusCode {

@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,11 +27,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Comt_mt30000
 
 
     /**
-     * <summary>Generic Query Parameters</summary>
+     * <summary>Business Name: Generic Query Parameters</summary>
      * 
-     * <remarks><p>Defines the set of parameters that may be used 
-     * to filter the query response.</p> <p>Root class for query 
-     * definition</p></remarks>
+     * <p>Root class for query definition</p> <p>Defines the set of 
+     * parameters that may be used to filter the query 
+     * response.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"COMT_MT300002CA.ParameterList"})]
     public class GenericQueryParameters : MessagePartBean {
@@ -42,18 +42,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Comt_mt30000
             this.patientNoteCategoryCodeValue = new CVImpl();
         }
         /**
-         * <summary>Patient Note Category Code</summary>
+         * <summary>Business Name: Patient Note Category Code</summary>
          * 
-         * <remarks><p>Indicates that the result set is to be filtered 
-         * to include only those patient annotation pertaining to the 
-         * specified annotation category.</p><p>Valid patient note 
-         * categories include: General, Medication, Lab, DI, etc.</p> 
-         * <p>Indicates that the result set is to be filtered to 
-         * include only those patient annotation pertaining to the 
-         * specified annotation category.</p><p>Valid patient note 
-         * categories include: General, Medication, Lab, DI, etc.</p> 
-         * <p>Allows for the retrieval of all patient notes pertaining 
-         * to a specific note category.</p></remarks>
+         * <remarks>Relationship: 
+         * COMT_MT300002CA.PatientNoteCategoryCode.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows for the 
+         * retrieval of all patient notes pertaining to a specific note 
+         * category.</p> <p>Indicates that the result set is to be 
+         * filtered to include only those patient annotation pertaining 
+         * to the specified annotation category.</p><p>Valid patient 
+         * note categories include: General, Medication, Lab, DI, 
+         * etc.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"patientNoteCategoryCode/value"})]
         public ActPatientAnnotationCode PatientNoteCategoryCodeValue {

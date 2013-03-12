@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,13 +29,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt004000
 
 
     /**
-     * <summary>Reference Range</summary>
+     * <summary>Business Name: Reference Range</summary>
      * 
-     * <remarks><p>Reference ranges are generally presented as a 
-     * pair of values (Lo - Hi) of the same datatype as the 
-     * observation to which they apply (carried as an IVL). In some 
-     * cases there may only be a Lo or a Hi rather than a pair of 
-     * values.</p></remarks>
+     * <p>Reference ranges are generally presented as a pair of 
+     * values (Lo - Hi) of the same datatype as the observation to 
+     * which they apply (carried as an IVL). In some cases there 
+     * may only be a Lo or a Hi rather than a pair of values.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"POLB_MT004000CA.InterpretationRange"})]
     public class ReferenceRange : MessagePartBean {
@@ -50,15 +49,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt004000
             this.preconditionObservationEventCriterion = new List<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt004000ca.ReferenceRangeCriteria>();
         }
         /**
-         * <summary>Reference Range Value</summary>
+         * <summary>Business Name: Reference Range Value</summary>
          * 
-         * <remarks><p>Reference ranges are generally presented as a 
-         * pair of values (Lo - Hi) of the same datatype as the 
-         * observation to which they apply (carried as an IVL). In some 
-         * cases there may only be a single value (not a range or 
-         * interval). If a coded value applies, the value must be 
-         * selected from the LaboratoryResultCodeValue Concept 
-         * Domain.</p></remarks>
+         * <remarks>Relationship: 
+         * POLB_MT004000CA.InterpretationRange.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Reference ranges 
+         * are generally presented as a pair of values (Lo - Hi) of the 
+         * same datatype as the observation to which they apply 
+         * (carried as an IVL). In some cases there may only be a 
+         * single value (not a range or interval). If a coded value 
+         * applies, the value must be selected from the 
+         * LaboratoryResultCodeValue Concept Domain.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"value"})]
         public object Value {
@@ -67,10 +68,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt004000
         }
 
         /**
-         * <summary>Reference Range Interpretation Type</summary>
+         * <summary>Business Name: Reference Range Interpretation Type</summary>
          * 
-         * <remarks><p>Describes the type of range e.g. normal, high, 
-         * etc.</p></remarks>
+         * <remarks>Relationship: 
+         * POLB_MT004000CA.InterpretationRange.interpretationCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Describes the 
+         * type of range e.g. normal, high, etc.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"interpretationCode"})]
         public ObservationInterpretation InterpretationCode {
@@ -78,6 +81,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt004000
             set { this.interpretationCode.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * POLB_MT004000CA.Precondition.observationEventCriterion</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"precondition/observationEventCriterion"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt004000ca.ReferenceRangeCriteria> PreconditionObservationEventCriterion {
             get { return this.preconditionObservationEventCriterion; }

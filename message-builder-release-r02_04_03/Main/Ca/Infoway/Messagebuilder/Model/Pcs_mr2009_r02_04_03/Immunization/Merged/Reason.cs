@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,12 +27,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merg
     /**
      * <summary>POIZ_MT030060CA.Reason: (no business name)</summary>
      * 
-     * <remarks><p>Information about the reason why an immunization 
-     * event did or did not occur.</p> <p>Needed for explicit 
-     * declaration of the reasons behind a vaccine administration - 
-     * or why a vaccine was not administered. This information may 
-     * not always be known, but is expected in most circumstances. 
-     * As a result, this association is populated.</p></remarks>
+     * <p>Needed for explicit declaration of the reasons behind a 
+     * vaccine administration - or why a vaccine was not 
+     * administered. This information may not always be known, but 
+     * is expected in most circumstances. As a result, this 
+     * association is populated.</p> <p>Information about the 
+     * reason why an immunization event did or did not occur.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"POIZ_MT030050CA.Reason","POIZ_MT030060CA.Reason","POIZ_MT060150CA.Reason"})]
     public class Reason : MessagePartBean {
@@ -41,6 +41,18 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merg
 
         public Reason() {
         }
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: POIZ_MT030050CA.Reason.choice 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * POIZ_MT060150CA.Reason.choice Conformance/Cardinality: 
+         * POPULATED (1) Un-merged Business Name: (no business name 
+         * specified) Relationship: POIZ_MT030060CA.Reason.choice 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"choice"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.IChoice Choice {
             get { return this.choice; }

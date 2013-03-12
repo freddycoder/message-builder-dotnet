@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,9 +28,9 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt300
 
 
     /**
-     * <summary>Pharmacist Role</summary>
+     * <summary>Business Name: Pharmacist Role</summary>
      * 
-     * <remarks><p>Details of the pharmacist</p></remarks>
+     * <p>Details of the pharmacist</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"COCT_MT300000CA.PharmacistRole"})]
     public class PharmacistRole : MessagePartBean {
@@ -41,9 +41,10 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt300
             this.id = new SETImpl<II, Identifier>(typeof(IIImpl));
         }
         /**
-         * <summary>Pharmacist ID</summary>
+         * <summary>Business Name: Pharmacist ID</summary>
          * 
-         * <remarks><p>Pharmacist ID</p></remarks>
+         * <remarks>Relationship: COCT_MT300000CA.PharmacistRole.id 
+         * Conformance/Cardinality: POPULATED (1) <p>Pharmacist ID</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public ICollection<Identifier> Id {

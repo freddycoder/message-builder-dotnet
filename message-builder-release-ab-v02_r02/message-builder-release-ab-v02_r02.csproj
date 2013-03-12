@@ -178,6 +178,15 @@
     <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ab_mr2007_v02_r02\Cr\Prpa_mt101104ca\Person.cs" />
     <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ab_mr2007_v02_r02\Cr\Prpa_mt101106ca\ConfidenceValue.cs" />
     <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ab_mr2007_v02_r02\Cr\Prpa_mt101106ca\IdentifiedPerson.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ab_mr2007_v02_r02\domainvalue\AlbertaPrescriptionSource.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ab_mr2007_v02_r02\domainvalue\JurisdictionTypeCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ab_mr2007_v02_r02\domainvalue\ManagedParticipationStatus.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ab_mr2007_v02_r02\domainvalue\QueryRespo.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ab_mr2007_v02_r02\domainvalue\SpecimenIdentifierRoleType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ab_mr2007_v02_r02\domainvalue\SpecimenObservationCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ab_mr2007_v02_r02\domainvalue\SpecimenTypeCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ab_mr2007_v02_r02\domainvalue\SystemTransactionCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ab_mr2007_v02_r02\domainvalue\x_NormalRestricedTabooConfidentialityKind.cs" />
     <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ab_mr2007_v02_r02\Iehr\Merged\AgentCategory.cs" />
     <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ab_mr2007_v02_r02\Iehr\Merged\AllergyIntolerance.cs" />
     <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ab_mr2007_v02_r02\Iehr\Merged\AllergyTests.cs" />

@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,12 +30,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Ficr_mt60020
 
 
     /**
-     * <summary>Invoice Identifier</summary>
+     * <summary>Business Name: Invoice Identifier</summary>
      * 
-     * <remarks><p>Set of Identifiers that uniquely identify the 
-     * Invoice. Could reference an Invoice Number with associated 
-     * indentifers</p> <p>Details of the claim for which payment is 
-     * being requested.</p></remarks>
+     * <p>Details of the claim for which payment is being 
+     * requested.</p> <p>Set of Identifiers that uniquely identify 
+     * the Invoice. Could reference an Invoice Number with 
+     * associated indentifers</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"FICR_MT600201CA.PaymentRequest"})]
     public class InvoiceIdentifier : MessagePartBean {
@@ -55,83 +55,25 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Ficr_mt60020
             this.reasonOfInvoiceElementChoice = new List<Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Ficr_mt600201ca.IInvoiceElementChoice>();
         }
         /**
-         * <summary>Invoice Identifier</summary>
+         * <summary>Business Name: Invoice Identifier</summary>
          * 
-         * <remarks><p>Set of Identifiers that uniquely identify the 
-         * Invoice. Could reference an Invoice Number with associated 
-         * indentifers</p> <p>Invoice Identifier: Used for management 
-         * of payment request objects by adjudicators to help with 
-         * traceability of messages to their applications. This does 
-         * not need to be surfaced to the provider. Can also be used to 
-         * detect duplicate invoices.</p><p>There are some situations 
-         * where more than 1 identifier for this object can be included 
-         * in a message.</p><p>For example:</p><p>1. unique invoice 
+         * <remarks>Relationship: FICR_MT600201CA.PaymentRequest.id 
+         * Conformance/Cardinality: REQUIRED (0-5) <p>Invoice 
+         * Identifier: Used for management of payment request objects 
+         * by adjudicators to help with traceability of messages to 
+         * their applications. This does not need to be surfaced to the 
+         * provider. Can also be used to detect duplicate 
+         * invoices.</p><p>There are some situations where more than 1 
+         * identifier for this object can be included in a 
+         * message.</p><p>For example:</p><p>1. unique invoice 
          * identifier, independent of adjudicator recipient.</p><p>2. 
          * sequential invoice identifier by 
          * adjudicator.</p><p>Obligation on adjudicator is to return 
          * and communicate about this item with all identifiers (i.e. 
          * identifier 1. and 2.). At present, there are no messages 
-         * where this occurs (Jun 04)</p> <p>Invoice Identifier: Used 
-         * for management of payment request objects by adjudicators to 
-         * help with traceability of messages to their applications. 
-         * This does not need to be surfaced to the provider. Can also 
-         * be used to detect duplicate invoices.</p><p>There are some 
-         * situations where more than 1 identifier for this object can 
-         * be included in a message.</p><p>For example:</p><p>1. unique 
-         * invoice identifier, independent of adjudicator 
-         * recipient.</p><p>2. sequential invoice identifier by 
-         * adjudicator.</p><p>Obligation on adjudicator is to return 
-         * and communicate about this item with all identifiers (i.e. 
-         * identifier 1. and 2.). At present, there are no messages 
-         * where this occurs (Jun 04)</p> <p>Invoice Identifier: Used 
-         * for management of payment request objects by adjudicators to 
-         * help with traceability of messages to their applications. 
-         * This does not need to be surfaced to the provider. Can also 
-         * be used to detect duplicate invoices.</p><p>There are some 
-         * situations where more than 1 identifier for this object can 
-         * be included in a message.</p><p>For example:</p><p>1. unique 
-         * invoice identifier, independent of adjudicator 
-         * recipient.</p><p>2. sequential invoice identifier by 
-         * adjudicator.</p><p>Obligation on adjudicator is to return 
-         * and communicate about this item with all identifiers (i.e. 
-         * identifier 1. and 2.). At present, there are no messages 
-         * where this occurs (Jun 04)</p> <p>Invoice Identifier: Used 
-         * for management of payment request objects by adjudicators to 
-         * help with traceability of messages to their applications. 
-         * This does not need to be surfaced to the provider. Can also 
-         * be used to detect duplicate invoices.</p><p>There are some 
-         * situations where more than 1 identifier for this object can 
-         * be included in a message.</p><p>For example:</p><p>1. unique 
-         * invoice identifier, independent of adjudicator 
-         * recipient.</p><p>2. sequential invoice identifier by 
-         * adjudicator.</p><p>Obligation on adjudicator is to return 
-         * and communicate about this item with all identifiers (i.e. 
-         * identifier 1. and 2.). At present, there are no messages 
-         * where this occurs (Jun 04)</p> <p>Invoice Identifier: Used 
-         * for management of payment request objects by adjudicators to 
-         * help with traceability of messages to their applications. 
-         * This does not need to be surfaced to the provider. Can also 
-         * be used to detect duplicate invoices.</p><p>There are some 
-         * situations where more than 1 identifier for this object can 
-         * be included in a message.</p><p>For example:</p><p>1. unique 
-         * invoice identifier, independent of adjudicator 
-         * recipient.</p><p>2. sequential invoice identifier by 
-         * adjudicator.</p><p>Obligation on adjudicator is to return 
-         * and communicate about this item with all identifiers (i.e. 
-         * identifier 1. and 2.). At present, there are no messages 
-         * where this occurs (Jun 04)</p> <p>Invoice Identifier: Used 
-         * for management of payment request objects by adjudicators to 
-         * help with traceability of messages to their applications. 
-         * This does not need to be surfaced to the provider. Can also 
-         * be used to detect duplicate invoices.</p><p>There are some 
-         * situations where more than 1 identifier for this object can 
-         * be included in a message.</p><p>For example:</p><p>1. unique 
-         * invoice identifier, independent of adjudicator 
-         * recipient.</p><p>2. sequential invoice identifier by 
-         * adjudicator.</p><p>Obligation on adjudicator is to return 
-         * and communicate about this item with all identifiers (i.e. 
-         * identifier 1. and 2.). At present, there are no messages 
-         * where this occurs (Jun 04)</p></remarks>
+         * where this occurs (Jun 04)</p> <p>Set of Identifiers that 
+         * uniquely identify the Invoice. Could reference an Invoice 
+         * Number with associated indentifers</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public ICollection<Identifier> Id {
@@ -139,15 +81,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Ficr_mt60020
         }
 
         /**
-         * <summary>Total Billed Amount</summary>
+         * <summary>Business Name: Total Billed Amount</summary>
          * 
-         * <remarks><p>OID (object identifier) + unique number 
-         * generated by the pharmacy software for the complete 
-         * invoice.</p><p>Must not be the same identifier as the 
-         * InvoiceElementGroup.id.</p> <p>OID (object identifier) + 
-         * unique number generated by the pharmacy software for the 
-         * complete invoice.</p><p>Must not be the same identifier as 
-         * the InvoiceElementGroup.id.</p></remarks>
+         * <remarks>Relationship: FICR_MT600201CA.PaymentRequest.amt 
+         * Conformance/Cardinality: MANDATORY (1) <p>OID (object 
+         * identifier) + unique number generated by the pharmacy 
+         * software for the complete invoice.</p><p>Must not be the 
+         * same identifier as the InvoiceElementGroup.id.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"amt"})]
         public Money Amt {
@@ -155,29 +95,59 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Ficr_mt60020
             set { this.amt.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * FICR_MT600201CA.PaymentRequestAttention.contactParty</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"primaryPerformer/contactParty"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Ficr_mt600201ca.AdministrativeContactsS PrimaryPerformerContactParty {
             get { return this.primaryPerformerContactParty; }
             set { this.primaryPerformerContactParty = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * FICR_MT600201CA.PaymentRequestPayee.account</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"credit/account"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Coct_mt110200ca.PayeeAccount CreditAccount {
             get { return this.creditAccount; }
             set { this.creditAccount = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * FICR_MT600201CA.PaymentRequestPayor.account</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"debit/account"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Coct_mt110101ca.Account DebitAccount {
             get { return this.debitAccount; }
             set { this.debitAccount = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * FICR_MT600201CA.PertinentInformation.providerBillingTaxAccount</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"pertinentInformation/providerBillingTaxAccount"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Ficr_mt600201ca.TaxAccountOfProvider> PertinentInformationProviderBillingTaxAccount {
             get { return this.pertinentInformationProviderBillingTaxAccount; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * FICR_MT600201CA.PaymentRequestReason.invoiceElementChoice</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"reasonOf/invoiceElementChoice"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Ficr_mt600201ca.IInvoiceElementChoice> ReasonOfInvoiceElementChoice {
             get { return this.reasonOfInvoiceElementChoice; }

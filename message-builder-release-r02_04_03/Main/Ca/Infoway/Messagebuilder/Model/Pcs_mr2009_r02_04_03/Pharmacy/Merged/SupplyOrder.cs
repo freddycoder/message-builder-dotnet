@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,14 +34,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Merged {
      * <summary>PORX_MT060020CA.SupplyRequest: Prescription 
      * Reference</summary>
      * 
-     * <remarks><p>A reference to the prescription order being 
-     * dispensed</p> <p>Links a dispense with its parent 
-     * prescription.</p> PORX_MT020050CA.SupplyRequest: Supply 
-     * Order <p>Identification of the supply information. This 
-     * prescription will have a supply order portion but no 
-     * administration part.</p> <p>Ensures that dispenses to 
-     * offices (non-patient identifiable dispenses) follow the 
-     * normal dispensing rules.</p></remarks>
+     * <p>Links a dispense with its parent prescription.</p> <p>A 
+     * reference to the prescription order being dispensed</p> 
+     * PORX_MT020050CA.SupplyRequest: Supply Order <p>Ensures that 
+     * dispenses to offices (non-patient identifiable dispenses) 
+     * follow the normal dispensing rules.</p> <p>Identification of 
+     * the supply information. This prescription will have a supply 
+     * order portion but no administration part.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"PORX_MT020050CA.SupplyRequest","PORX_MT060020CA.SupplyRequest"})]
     public class SupplyOrder : MessagePartBean {
@@ -56,19 +55,18 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Merged {
             this.statusCode = new CSImpl();
         }
         /**
-         * <summary>PrescriptionIdentifier</summary>
+         * <summary>Business Name: PrescriptionIdentifier</summary>
          * 
-         * <remarks>A:Prescription Identifier <p>This is an identifier 
-         * assigned to a specific device order. The number remains 
-         * constant across the lifetime of the order, regardless of the 
-         * number of providers or pharmacies involved in fulfilling the 
-         * order.</p> <p>Allows prescriptions to be uniquely referenced 
-         * and associated with the dispense.</p><p>The ID is mandatory 
-         * because the DIS would always assign a Prescription 
-         * Number.</p> <p>Allows prescriptions to be uniquely 
-         * referenced and associated with the dispense.</p><p>The ID is 
-         * mandatory because the DIS would always assign a Prescription 
-         * Number.</p></remarks>
+         * <remarks>Un-merged Business Name: PrescriptionIdentifier 
+         * Relationship: PORX_MT060020CA.SupplyRequest.id 
+         * Conformance/Cardinality: MANDATORY (1-2) <p>Allows 
+         * prescriptions to be uniquely referenced and associated with 
+         * the dispense.</p><p>The ID is mandatory because the DIS 
+         * would always assign a Prescription Number.</p> <p>This is an 
+         * identifier assigned to a specific device order. The number 
+         * remains constant across the lifetime of the order, 
+         * regardless of the number of providers or pharmacies involved 
+         * in fulfilling the order.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public ICollection<Identifier> Id {
@@ -76,11 +74,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Merged {
         }
 
         /**
-         * <summary>PrescriptionStatus</summary>
+         * <summary>Business Name: PrescriptionStatus</summary>
          * 
-         * <remarks>Prescription Status <p>Provides the status of the 
-         * prescription without requiring additional queries</p> 
-         * <p>Needed in some jurisdictions</p></remarks>
+         * <remarks>Un-merged Business Name: PrescriptionStatus 
+         * Relationship: PORX_MT060020CA.SupplyRequest.statusCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Needed in some 
+         * jurisdictions</p> <p>Provides the status of the prescription 
+         * without requiring additional queries</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"statusCode"})]
         public ActStatus StatusCode {
@@ -88,12 +88,33 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Merged {
             set { this.statusCode.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PORX_MT060020CA.ResponsibleParty2.assignedEntity 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT020050CA.ResponsibleParty.assignedEntity 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"responsibleParty/assignedEntity"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.HealthcareWorker ResponsiblePartyAssignedEntity {
             get { return this.responsiblePartyAssignedEntity; }
             set { this.responsiblePartyAssignedEntity = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: PORX_MT060020CA.SupplyRequest.author 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT020050CA.SupplyRequest.author 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"author"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.PrescribedBy Author {
             get { return this.author; }

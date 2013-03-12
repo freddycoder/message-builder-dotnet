@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,14 +30,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Iehr.Repc_mt000009ca
 
 
     /**
-     * <summary>Allergy/Intolerance Status Changes</summary>
+     * <summary>Business Name: Allergy/Intolerance Status Changes</summary>
      * 
-     * <remarks><p>This records the history of changes that have 
-     * been made to the allergy/intolerance, including why the 
-     * changes were made, who made them and when.</p> <p>Provides a 
-     * record of a patient's allergy changes, providing deeper 
-     * clinical understanding, particularly of past clinical 
-     * decisions.</p></remarks>
+     * <p>This records the history of changes that have been made 
+     * to the allergy/intolerance, including why the changes were 
+     * made, who made them and when.</p> <p>Provides a record of a 
+     * patient's allergy changes, providing deeper clinical 
+     * understanding, particularly of past clinical decisions.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"REPC_MT000009CA.ControlActEvent"})]
     public class AllergyIntoleranceStatusChanges : MessagePartBean {
@@ -54,12 +53,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Iehr.Repc_mt000009ca
             this.reasonCode = new CVImpl();
         }
         /**
-         * <summary>A:Allergy/Intolerance Status Change Type</summary>
+         * <summary>Business Name: A:Allergy/Intolerance Status Change 
+         * Type</summary>
          * 
-         * <remarks><p>Identifies what kind of change occurred. 
-         * Allergy/Intolerance change types are Revise, Reactivate and 
-         * Complete.</p> <p>This attribute is mandatory to ensure that 
-         * change types are distinguishable.</p></remarks>
+         * <remarks>Relationship: REPC_MT000009CA.ControlActEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Identifies what 
+         * kind of change occurred. Allergy/Intolerance change types 
+         * are Revise, Reactivate and Complete.</p> <p>This attribute 
+         * is mandatory to ensure that change types are 
+         * distinguishable.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public HL7TriggerEventCode Code {
@@ -68,13 +70,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Iehr.Repc_mt000009ca
         }
 
         /**
-         * <summary>B:Allergy/intolerance Status Change Effective Date</summary>
+         * <summary>Business Name: B:Allergy/intolerance Status Change 
+         * Effective Date</summary>
          * 
-         * <remarks><p>The date on which the various changes of an 
-         * allergy/intolerance become valid and applicable.</p> 
-         * <p>Allows applications to sort and filter by time. The date 
-         * on which a change is effective should always be known and 
-         * thus is mandatory.</p></remarks>
+         * <remarks>Relationship: 
+         * REPC_MT000009CA.ControlActEvent.effectiveTime 
+         * Conformance/Cardinality: MANDATORY (1) <p>The date on which 
+         * the various changes of an allergy/intolerance become valid 
+         * and applicable.</p> <p>Allows applications to sort and 
+         * filter by time. The date on which a change is effective 
+         * should always be known and thus is mandatory.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"effectiveTime"})]
         public Interval<PlatformDate> EffectiveTime {
@@ -83,13 +88,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Iehr.Repc_mt000009ca
         }
 
         /**
-         * <summary>C:Allergy/Intolerance Status Change Reason</summary>
+         * <summary>Business Name: C:Allergy/Intolerance Status Change 
+         * Reason</summary>
          * 
-         * <remarks><p>Denotes the reason the the allergy/intolerance 
-         * was changed.</p> <p>Ensures consistent terminology in 
-         * capturing and interpreting reasons for change. Allows CWE 
-         * because not all reasons will correspond to a pre-defined 
-         * code.</p></remarks>
+         * <remarks>Relationship: 
+         * REPC_MT000009CA.ControlActEvent.reasonCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Denotes the 
+         * reason the the allergy/intolerance was changed.</p> 
+         * <p>Ensures consistent terminology in capturing and 
+         * interpreting reasons for change. Allows CWE because not all 
+         * reasons will correspond to a pre-defined code.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"reasonCode"})]
         public ControlActReason ReasonCode {
@@ -97,12 +105,24 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Iehr.Repc_mt000009ca
             set { this.reasonCode.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * REPC_MT000009CA.ResponsibleParty2.assignedEntity</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"responsibleParty/assignedEntity"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.HealthcareWorker ResponsiblePartyAssignedEntity {
             get { return this.responsiblePartyAssignedEntity; }
             set { this.responsiblePartyAssignedEntity = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * REPC_MT000009CA.ControlActEvent.author</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"author"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.Author1 Author {
             get { return this.author; }

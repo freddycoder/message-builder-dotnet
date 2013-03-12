@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,6 +24,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged;
 
 
+    /**
+     * <summary>Business Name: RCMR_IN010001CA: Record consent or 
+     * override request accepted</summary>
+     * 
+     * <p>Indicates that the requested consent, revocation of 
+     * consent or consent override has been successfully recorded 
+     * for a particular patient.</p> Message: 
+     * MCCI_MT002300CA.Message Control Act: 
+     * MCAI_MT700236CA.ControlActEvent
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"RCMR_IN010001CA"})]
     public class RecordConsentOrOverrideRequestAccepted : HL7Message_1<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.TriggerEvent_3>, IInteraction {
 

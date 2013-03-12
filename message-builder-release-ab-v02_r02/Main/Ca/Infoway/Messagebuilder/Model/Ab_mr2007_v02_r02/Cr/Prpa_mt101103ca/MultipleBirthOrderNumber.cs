@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,11 +35,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Cr.Prpa_mt101103ca {
             this.value = new INTImpl();
         }
         /**
-         * <summary>Client Multiple Birth Order Number</summary>
+         * <summary>Business Name: Client Multiple Birth Order Number</summary>
          * 
-         * <remarks><p>The order in which this client was born if part 
-         * of a multiple birth.</p> <p>Required attribute supports the 
-         * identification of the client</p></remarks>
+         * <remarks>Relationship: 
+         * PRPA_MT101103CA.MultipleBirthOrderNumber.value 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The order in 
+         * which this client was born if part of a multiple birth.</p> 
+         * <p>Required attribute supports the identification of the 
+         * client</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"value"})]
         public int? Value {

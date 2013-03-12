@@ -1,3 +1,22 @@
+/**
+ * Copyright 2013 Canada Health Infoway, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Author:        $LastChangedBy: tmcgrady $
+ * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Revision:      $LastChangedRevision: 2623 $
+ */
 using System.Xml;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
@@ -24,7 +43,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			base.SetUp();
 			this.result = new XmlToModelResult();
 			this.parser = new IvlTsElementParser();
-			CodeResolverRegistry.RegisterResolver(typeof(x_TimeUnitsOfMeasure), new EnumBasedCodeResolver(typeof(DefaultTimeUnit)));
+			CodeResolverRegistry.RegisterResolver(typeof(x_TimeUnitsOfMeasure), new EnumBasedCodeResolver(typeof(Ca.Infoway.Messagebuilder.Domainvalue.Basic.DefaultTimeUnit
+				)));
 		}
 
 		/// <exception cref="Ca.Infoway.Messagebuilder.Marshalling.HL7.XmlToModelTransformationException"></exception>
@@ -94,26 +114,23 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			Interval<PlatformDate> interval = Parse(node, "IVL<TS.FULLDATE>");
 			Assert.IsNull(interval, "null");
 			Assert.IsFalse(this.result.IsValid(), "not valid");
-			Assert.AreEqual(3, this.result.GetHl7Errors().Count, "error count");
-			Hl7Error hl7Error = this.result.GetHl7Errors()[0];
-			Assert.AreEqual("value \"1.d\" is not a valid decimal value (<width unit=\"d\" value=\"1.d\"/>)", hl7Error.GetMessage(), 
-				"message");
-			Assert.AreEqual(Hl7ErrorCode.DATA_TYPE_ERROR, hl7Error.GetHl7ErrorCode(), "error type");
+			// errors = need second value (low or high) to go with width; width value is not a number; width value must contain digits only
+			Assert.AreEqual(2, this.result.GetHl7Errors().Count, "error count");
 		}
 
 		/// <exception cref="System.Exception"></exception>
 		[Test]
 		public virtual void TestParseWidthFailureUnit()
 		{
-			resolver.AddDomainValue(null, typeof(Ca.Infoway.Messagebuilder.Domainvalue.UnitsOfMeasureCaseSensitive));
 			XmlNode node = CreateNode("<effectiveTime>" + "   <width unit=\"monkeys\" value=\"1\"/>" + "</effectiveTime>");
 			Interval<PlatformDate> interval = Parse(node, "IVL<TS.FULLDATE>");
 			Assert.IsNull(interval, "null");
 			Assert.IsFalse(this.result.IsValid(), "not valid");
-			Assert.AreEqual(3, this.result.GetHl7Errors().Count, "error count");
-			Hl7Error hl7Error = this.result.GetHl7Errors()[0];
-			Assert.AreEqual("Unit \"monkeys\" is not valid (<width unit=\"monkeys\" value=\"1\"/>)", hl7Error.GetMessage(), "message"
-				);
+			// errors: need one additional element (low or high); units are not valid
+			Assert.AreEqual(2, this.result.GetHl7Errors().Count, "error count");
+			Hl7Error hl7Error = this.result.GetHl7Errors()[1];
+			Assert.AreEqual("Unit \"monkeys\" is not valid for type PQ.TIME (<width unit=\"monkeys\" value=\"1\"/>)", hl7Error.GetMessage
+				(), "message");
 			Assert.AreEqual(Hl7ErrorCode.DATA_TYPE_ERROR, hl7Error.GetHl7ErrorCode(), "error type");
 		}
 
@@ -121,20 +138,12 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		[Test]
 		public virtual void TestParseWidthFailureValueAndUnit()
 		{
-			resolver.AddDomainValue(null, typeof(Ca.Infoway.Messagebuilder.Domainvalue.UnitsOfMeasureCaseSensitive));
 			XmlNode node = CreateNode("<effectiveTime>" + "   <width unit=\"monkey\" value=\"1.d\"/>" + "</effectiveTime>");
 			Interval<PlatformDate> interval = Parse(node, "IVL<TS.FULLDATE>");
 			Assert.IsNull(interval, "null");
 			Assert.IsFalse(this.result.IsValid(), "not valid");
-			Assert.AreEqual(4, this.result.GetHl7Errors().Count, "error count");
-			Hl7Error hl7Error = this.result.GetHl7Errors()[0];
-			Assert.AreEqual("value \"1.d\" is not a valid decimal value (<width unit=\"monkey\" value=\"1.d\"/>)", hl7Error.GetMessage
-				(), "message");
-			Assert.AreEqual(Hl7ErrorCode.DATA_TYPE_ERROR, hl7Error.GetHl7ErrorCode(), "error type");
-			hl7Error = this.result.GetHl7Errors()[1];
-			Assert.AreEqual("Unit \"monkey\" is not valid (<width unit=\"monkey\" value=\"1.d\"/>)", hl7Error.GetMessage(), "message"
-				);
-			Assert.AreEqual(Hl7ErrorCode.DATA_TYPE_ERROR, hl7Error.GetHl7ErrorCode(), "error type");
+			// errors: new one of high/low; value must only contain digits; monkey invalid units
+			Assert.AreEqual(3, this.result.GetHl7Errors().Count, "error count");
 		}
 
 		/// <exception cref="ILOG.J2CsMapping.Util.ParseException"></exception>

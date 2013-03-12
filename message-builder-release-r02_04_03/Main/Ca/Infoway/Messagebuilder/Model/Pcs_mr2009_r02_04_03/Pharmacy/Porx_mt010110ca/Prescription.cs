@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,14 +34,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Porx_mt0
 
 
     /**
-     * <summary>Prescription</summary>
+     * <summary>Business Name: Prescription</summary>
      * 
-     * <remarks><p>Information pertaining to a prescriber's 
-     * authorization for a device to be dispensed to a patient, as 
-     * well as the instruction on when and how the device is to be 
-     * used by the patient</p> <p>This is a 'core' class of the 
-     * medication model and is important for understanding what 
-     * devices the patient is intended to be receiving.</p></remarks>
+     * <p>This is a 'core' class of the medication model and is 
+     * important for understanding what devices the patient is 
+     * intended to be receiving.</p> <p>Information pertaining to a 
+     * prescriber's authorization for a device to be dispensed to a 
+     * patient, as well as the instruction on when and how the 
+     * device is to be used by the patient</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"PORX_MT010110CA.DeviceRequest"})]
     public class Prescription : MessagePartBean {
@@ -67,30 +67,19 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Porx_mt0
             this.coverageCoverage = new List<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Merged.CoverageExtensions_1>();
         }
         /**
-         * <summary>A: Prescription Number</summary>
+         * <summary>Business Name: A: Prescription Number</summary>
          * 
-         * <remarks><p>The Prescription Order Number is a globally 
-         * unique number assigned to a prescription by the EHR/DIS 
-         * irrespective of the source of the order</p><p>It is created 
-         * by the EHR/DIS once the prescription has passed all edits 
-         * and validation.</p> <p>The Prescription Order Number is a 
-         * globally unique number assigned to a prescription by the 
-         * EHR/DIS irrespective of the source of the order</p><p>It is 
-         * created by the EHR/DIS once the prescription has passed all 
-         * edits and validation.</p> <p>Allows for the situations where 
-         * the order is originating from the DIS.</p><p>Allows 
-         * prescriptions to be uniquely referenced.</p><p>Because this 
-         * attribute is not used for prescriptions originating from a 
-         * prescriber system, the element is optional.</p> <p>Allows 
-         * for the situations where the order is originating from the 
+         * <remarks>Relationship: PORX_MT010110CA.DeviceRequest.id 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>Allows for the 
+         * situations where the order is originating from the 
          * DIS.</p><p>Allows prescriptions to be uniquely 
          * referenced.</p><p>Because this attribute is not used for 
          * prescriptions originating from a prescriber system, the 
-         * element is optional.</p> <p>Allows for the situations where 
-         * the order is originating from the DIS.</p><p>Allows 
-         * prescriptions to be uniquely referenced.</p><p>Because this 
-         * attribute is not used for prescriptions originating from a 
-         * prescriber system, the element is optional.</p></remarks>
+         * element is optional.</p> <p>The Prescription Order Number is 
+         * a globally unique number assigned to a prescription by the 
+         * EHR/DIS irrespective of the source of the order</p><p>It is 
+         * created by the EHR/DIS once the prescription has passed all 
+         * edits and validation.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -99,17 +88,19 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Porx_mt0
         }
 
         /**
-         * <summary>C:Prescription Status</summary>
+         * <summary>Business Name: C:Prescription Status</summary>
          * 
-         * <remarks><p>This denotes the state of the prescription in 
-         * the lifecycle of the prescription. Valid statuses are: new, 
-         * active, suspended, aborted, completed, obsolete and 
-         * nullified. Use 'active' when registering a new prescription 
-         * or converting a predetermination into a valid 
-         * prescription.</p> <p>Indicates what actions are allowed to 
-         * be performed against a prescription. This is a mandatory 
-         * field because every prescription needs to be in some 
-         * state.</p></remarks>
+         * <remarks>Relationship: 
+         * PORX_MT010110CA.DeviceRequest.statusCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates what 
+         * actions are allowed to be performed against a prescription. 
+         * This is a mandatory field because every prescription needs 
+         * to be in some state.</p> <p>This denotes the state of the 
+         * prescription in the lifecycle of the prescription. Valid 
+         * statuses are: new, active, suspended, aborted, completed, 
+         * obsolete and nullified. Use 'active' when registering a new 
+         * prescription or converting a predetermination into a valid 
+         * prescription.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"statusCode"})]
         public ActStatus StatusCode {
@@ -118,106 +109,119 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Porx_mt0
         }
 
         /**
-         * <summary>F:Prescription Masking Indicators</summary>
+         * <summary>Business Name: F:Prescription Masking Indicators</summary>
          * 
-         * <remarks><p>Communicates the intent of the patient to 
-         * restrict access to their prescriptions. Provides support for 
-         * additional confidentiality constraint, giving patients a 
-         * level of control over their information.</p><p>Valid values 
-         * are: 'N' (normal - denotes 'Not Masked'); 'R' (restricted - 
-         * denotes 'Masked'); 'V' (very restricted - denotes very 
-         * restricted access as declared by the Privacy Officer of the 
-         * record holder) and 'T' (taboo - denotes 'Patient Access 
+         * <remarks>Relationship: 
+         * PORX_MT010110CA.DeviceRequest.confidentialityCode 
+         * Conformance/Cardinality: OPTIONAL (0-2) <p>Allows the 
+         * patient to have discrete control over access to their 
+         * prescription data.</p><p>Taboo allows the provider to 
+         * request restricted access to patient or their care 
+         * giver.</p><p>Constraint: Cant have both normal and one of 
+         * the other codes simultaneously.</p><p>The attribute is 
+         * optional because not all systems will support masking.</p> 
+         * <p>Communicates the intent of the patient to restrict access 
+         * to their prescriptions. Provides support for additional 
+         * confidentiality constraint, giving patients a level of 
+         * control over their information.</p><p>Valid values are: 'N' 
+         * (normal - denotes 'Not Masked'); 'R' (restricted - denotes 
+         * 'Masked'); 'V' (very restricted - denotes very restricted 
+         * access as declared by the Privacy Officer of the record 
+         * holder) and 'T' (taboo - denotes 'Patient Access 
          * Restricted').</p><p>The default is 'normal' signifying 'Not 
-         * Masked'.</p> <p>Communicates the intent of the patient to 
-         * restrict access to their prescriptions. Provides support for 
-         * additional confidentiality constraint, giving patients a 
-         * level of control over their information.</p><p>Valid values 
-         * are: 'N' (normal - denotes 'Not Masked'); 'R' (restricted - 
-         * denotes 'Masked'); 'V' (very restricted - denotes very 
-         * restricted access as declared by the Privacy Officer of the 
-         * record holder) and 'T' (taboo - denotes 'Patient Access 
-         * Restricted').</p><p>The default is 'normal' signifying 'Not 
-         * Masked'.</p> <p>Communicates the intent of the patient to 
-         * restrict access to their prescriptions. Provides support for 
-         * additional confidentiality constraint, giving patients a 
-         * level of control over their information.</p><p>Valid values 
-         * are: 'N' (normal - denotes 'Not Masked'); 'R' (restricted - 
-         * denotes 'Masked'); 'V' (very restricted - denotes very 
-         * restricted access as declared by the Privacy Officer of the 
-         * record holder) and 'T' (taboo - denotes 'Patient Access 
-         * Restricted').</p><p>The default is 'normal' signifying 'Not 
-         * Masked'.</p> <p>Allows the patient to have discrete control 
-         * over access to their prescription data.</p><p>Taboo allows 
-         * the provider to request restricted access to patient or 
-         * their care giver.</p><p>Constraint: Cant have both normal 
-         * and one of the other codes simultaneously.</p><p>The 
-         * attribute is optional because not all systems will support 
-         * masking.</p> <p>Allows the patient to have discrete control 
-         * over access to their prescription data.</p><p>Taboo allows 
-         * the provider to request restricted access to patient or 
-         * their care giver.</p><p>Constraint: Cant have both normal 
-         * and one of the other codes simultaneously.</p><p>The 
-         * attribute is optional because not all systems will support 
-         * masking.</p> <p>Allows the patient to have discrete control 
-         * over access to their prescription data.</p><p>Taboo allows 
-         * the provider to request restricted access to patient or 
-         * their care giver.</p><p>Constraint: Cant have both normal 
-         * and one of the other codes simultaneously.</p><p>The 
-         * attribute is optional because not all systems will support 
-         * masking.</p> <p>Allows the patient to have discrete control 
-         * over access to their prescription data.</p><p>Taboo allows 
-         * the provider to request restricted access to patient or 
-         * their care giver.</p><p>Constraint: Cant have both normal 
-         * and one of the other codes simultaneously.</p><p>The 
-         * attribute is optional because not all systems will support 
-         * masking.</p></remarks>
+         * Masked'.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"confidentialityCode"})]
         public ICollection<x_BasicConfidentialityKind> ConfidentialityCode {
             get { return this.confidentialityCode.RawSet<x_BasicConfidentialityKind>(); }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PORX_MT010110CA.DirectTarget.manufacturedProduct</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"directTarget/manufacturedProduct"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt141007ca.DeviceProduct DirectTargetManufacturedProduct {
             get { return this.directTargetManufacturedProduct; }
             set { this.directTargetManufacturedProduct = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PORX_MT010110CA.Predecessor.priorDeviceRequest</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"predecessor/priorDeviceRequest"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Porx_mt010110ca.PriorDeviceRequest PredecessorPriorDeviceRequest {
             get { return this.predecessorPriorDeviceRequest; }
             set { this.predecessorPriorDeviceRequest = value; }
         }
 
+        /**
+         * <summary>Relationship: PORX_MT010110CA.DeviceRequest.reason</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1-5)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"reason"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.BecauseOf> Reason {
             get { return this.reason; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PORX_MT010110CA.Precondition.verificationEventCriterion</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"precondition/verificationEventCriterion"})]
         public bool? PreconditionVerificationEventCriterion {
             get { return this.preconditionVerificationEventCriterion.Value; }
             set { this.preconditionVerificationEventCriterion.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: PORX_MT010110CA.Coverage2.coverage</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"coverage/coverage"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Merged.CoverageExtensions_1> CoverageCoverage {
             get { return this.coverageCoverage; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PORX_MT010110CA.Component1.procedureRequest</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"component1/procedureRequest"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Merged.ProcedureRequest Component1ProcedureRequest {
             get { return this.component1ProcedureRequest; }
             set { this.component1ProcedureRequest = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PORX_MT010110CA.Component6.supplyRequest</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"component2/supplyRequest"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Merged.DispenseInstructions Component2SupplyRequest {
             get { return this.component2SupplyRequest; }
             set { this.component2SupplyRequest = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PORX_MT010110CA.DeviceRequest.subjectOf</summary>
+         * 
+         * <remarks>Conformance/Cardinality: REQUIRED (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.Includes SubjectOf {
             get { return this.subjectOf; }

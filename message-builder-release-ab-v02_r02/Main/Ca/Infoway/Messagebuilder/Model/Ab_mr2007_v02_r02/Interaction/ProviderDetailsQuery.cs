@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt306010ca;
 
 
+    /**
+     * <summary>Business Name: PRPM_IN306010CA: Provider Details 
+     * Query</summary>
+     * 
+     * <remarks>Message: MCCI_MT002100CA.Message Control Act: 
+     * MFMI_MT700751CA.ControlActEvent --> Payload: 
+     * PRPM_MT306010CA.ParameterList</remarks>
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"PRPM_IN306010CA"})]
     public class ProviderDetailsQuery : HL7Message<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Mfmi_mt700751ca.TriggerEvent<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt306010ca.ParameterList>>, IInteraction {
 

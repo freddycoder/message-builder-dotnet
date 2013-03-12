@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,6 +24,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged;
 
 
+    /**
+     * <summary>Business Name: QUQI_IN000003CA: Query Continuation</summary>
+     * 
+     * <p>Message to indicate to the query responder to send the 
+     * next set of responses; continue the query.</p> Message: 
+     * MCCI_MT002100CA.Message Control Act: 
+     * QUQI_MT000001CA.ControlActEvent
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"QUQI_IN000003CA"})]
     public class QueryContinuation : HL7Message_1<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.TriggerEvent_3>, IInteraction {
 

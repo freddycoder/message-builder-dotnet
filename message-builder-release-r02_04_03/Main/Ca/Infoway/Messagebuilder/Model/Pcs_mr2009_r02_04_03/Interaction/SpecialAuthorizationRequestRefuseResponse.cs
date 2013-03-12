@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,6 +24,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged;
 
 
+    /**
+     * <summary>Business Name: FICR_IN400003CA: Special 
+     * Authorization Request Refuse Response</summary>
+     * 
+     * <p>Indicates that processing of the Create SA Request for a 
+     * specific product (e.g. drug), device or service was not 
+     * approved).</p> Message: MCCI_MT002300CA.Message Control Act: 
+     * MCAI_MT700237CA.ControlActEvent
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"FICR_IN400003CA"})]
     public class SpecialAuthorizationRequestRefuseResponse : HL7Message_1<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.TriggerEvent_3>, IInteraction {
 

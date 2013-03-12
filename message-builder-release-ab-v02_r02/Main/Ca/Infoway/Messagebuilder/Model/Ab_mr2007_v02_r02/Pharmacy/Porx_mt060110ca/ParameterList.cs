@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,10 +29,10 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Porx_mt0601
 
 
     /**
-     * <summary><p>Defines the set of parameters that may be used 
-     * to filter the query response.</p></summary>
+     * <p>Defines the set of parameters that may be used to filter 
+     * the query response.</p>
      * 
-     * <remarks><p>Root class for query definition</p></remarks>
+     * <p>Root class for query definition</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"PORX_MT060110CA.ParameterList"})]
     public class ParameterList : MessagePartBean {
@@ -49,21 +49,24 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Porx_mt0601
             this.mostRecentDispenseForEachRxIndicatorValue = new BLImpl();
         }
         /**
-         * <summary>D:Administration Effective Period</summary>
+         * <summary>Business Name: D:Administration Effective Period</summary>
          * 
-         * <remarks><p>Indicates the administration period for which 
+         * <remarks>Relationship: 
+         * PORX_MT060110CA.AdministrationEffectivePeriod.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the 
+         * administration period for which the request/query 
+         * applies.</p><p>Filter the result set to include only those 
+         * medication records (prescription order, prescription 
+         * dispense and other active medication) for which the patient 
+         * was deemed to be taking the drug within the specified 
+         * period.</p> <p>Indicates the administration period for which 
          * the request/query applies.</p><p>Filter the result set to 
          * include only those medication records (prescription order, 
          * prescription dispense and other active medication) for which 
          * the patient was deemed to be taking the drug within the 
-         * specified period.</p> <p>Indicates the administration period 
-         * for which the request/query applies.</p><p>Filter the result 
-         * set to include only those medication records (prescription 
-         * order, prescription dispense and other active medication) 
-         * for which the patient was deemed to be taking the drug 
-         * within the specified period.</p> <p>Allows the requester to 
-         * specify the administration period of interest for the 
-         * retrieval. Useful for constraining run-away queries.</p></remarks>
+         * specified period.</p> <p>Allows the requester to specify the 
+         * administration period of interest for the retrieval. Useful 
+         * for constraining run-away queries.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"administrationEffectivePeriod/value"})]
         public Interval<PlatformDate> AdministrationEffectivePeriodValue {
@@ -72,19 +75,20 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Porx_mt0601
         }
 
         /**
-         * <summary>Issue Filter Code</summary>
+         * <summary>Business Name: Issue Filter Code</summary>
          * 
-         * <remarks><p>Indicates whether records to be returned (e.g. 
-         * prescription order, prescription dispense and/or other 
-         * medication) should be filtered to those with at least one 
-         * persistent un-managed issue (against the record), with at 
-         * least one persistent issues or should return all records, 
-         * independent of the presence of persistent issues.</p> <p>By 
-         * filtering returned records to include only those which have 
-         * unmanaged issues or any issues at all, allows a provider to 
-         * focus on those aspects of care where extra attention is 
-         * needed. Because the attribute must be known, it is 
-         * mandatory.</p></remarks>
+         * <remarks>Relationship: PORX_MT060110CA.IssueFilterCode.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates whether 
+         * records to be returned (e.g. prescription order, 
+         * prescription dispense and/or other medication) should be 
+         * filtered to those with at least one persistent un-managed 
+         * issue (against the record), with at least one persistent 
+         * issues or should return all records, independent of the 
+         * presence of persistent issues.</p> <p>By filtering returned 
+         * records to include only those which have unmanaged issues or 
+         * any issues at all, allows a provider to focus on those 
+         * aspects of care where extra attention is needed. Because the 
+         * attribute must be known, it is mandatory.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"issueFilterCode/value"})]
         public IssueFilterCode IssueFilterCodeValue {
@@ -93,24 +97,27 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Porx_mt0601
         }
 
         /**
-         * <summary>Most Recent By Drug Indicator</summary>
+         * <summary>Business Name: Most Recent By Drug Indicator</summary>
          * 
-         * <remarks><p>Indicates whether or not the medication records 
-         * are to be retrieved based on the most recent by Drug Code. 
-         * If true, only the most recent prescription, dispense or 
-         * other active medication for a particular drug generic 
-         * classification will be returned. The default is 'FALSE' 
-         * indicating that retrieval of prescription, dispense and 
-         * other active medication records should not be limited to one 
-         * per drug.</p> <p>Helps decrease the volume of records 
+         * <remarks>Relationship: 
+         * PORX_MT060110CA.MostRecentByDrugIndicator.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates whether 
+         * or not the medication records are to be retrieved based on 
+         * the most recent by Drug Code. If true, only the most recent 
+         * prescription, dispense or other active medication for a 
+         * particular drug generic classification will be returned. The 
+         * default is 'FALSE' indicating that retrieval of 
+         * prescription, dispense and other active medication records 
+         * should not be limited to one per drug.</p> <p>Helps decrease 
+         * the volume of records returned, while still maintaining 
+         * information on all drugs that the patient is 
+         * on.</p><p>Because this is a boolean attribute whose value 
+         * must be known to evaluate the query, the attribute is 
+         * mandatory.</p> <p>Helps decrease the volume of records 
          * returned, while still maintaining information on all drugs 
          * that the patient is on.</p><p>Because this is a boolean 
          * attribute whose value must be known to evaluate the query, 
-         * the attribute is mandatory.</p> <p>Helps decrease the volume 
-         * of records returned, while still maintaining information on 
-         * all drugs that the patient is on.</p><p>Because this is a 
-         * boolean attribute whose value must be known to evaluate the 
-         * query, the attribute is mandatory.</p></remarks>
+         * the attribute is mandatory.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"mostRecentByDrugIndicator/value"})]
         public bool? MostRecentByDrugIndicatorValue {
@@ -119,38 +126,42 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Porx_mt0601
         }
 
         /**
-         * <summary>Most Recent Dispense for each Rx Indicator</summary>
+         * <summary>Business Name: Most Recent Dispense for each Rx 
+         * Indicator</summary>
          * 
-         * <remarks><p>Indicates whether or not prescription dispenses 
-         * returned on a query should be limited to only the most 
-         * recent dispense for a prescription order.</p><p>Allows for 
-         * the returning of at most one prescription dispense record 
-         * per a prescription.</p><p>The default is 'TRUE' indicating 
-         * that retrieval should be for only the most recent dispense 
-         * for a prescription is to be included in a query result.</p> 
-         * <p>Indicates whether or not prescription dispenses returned 
-         * on a query should be limited to only the most recent 
-         * dispense for a prescription order.</p><p>Allows for the 
-         * returning of at most one prescription dispense record per a 
-         * prescription.</p><p>The default is 'TRUE' indicating that 
-         * retrieval should be for only the most recent dispense for a 
-         * prescription is to be included in a query result.</p> 
-         * <p>Indicates whether or not prescription dispenses returned 
-         * on a query should be limited to only the most recent 
-         * dispense for a prescription order.</p><p>Allows for the 
-         * returning of at most one prescription dispense record per a 
-         * prescription.</p><p>The default is 'TRUE' indicating that 
-         * retrieval should be for only the most recent dispense for a 
-         * prescription is to be included in a query result.</p> 
-         * <p>Helps to trim down volume of query response by 
-         * eliminating multiple prescription dispenses for the same 
-         * prescription order.</p><p>Because this is a boolean 
-         * attribute whose value must be known to evaluate the query, 
-         * the attribute is mandatory.</p> <p>Helps to trim down volume 
+         * <remarks>Relationship: 
+         * PORX_MT060110CA.MostRecentDispenseForEachRxIndicator.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates whether 
+         * or not prescription dispenses returned on a query should be 
+         * limited to only the most recent dispense for a prescription 
+         * order.</p><p>Allows for the returning of at most one 
+         * prescription dispense record per a prescription.</p><p>The 
+         * default is 'TRUE' indicating that retrieval should be for 
+         * only the most recent dispense for a prescription is to be 
+         * included in a query result.</p> <p>Indicates whether or not 
+         * prescription dispenses returned on a query should be limited 
+         * to only the most recent dispense for a prescription 
+         * order.</p><p>Allows for the returning of at most one 
+         * prescription dispense record per a prescription.</p><p>The 
+         * default is 'TRUE' indicating that retrieval should be for 
+         * only the most recent dispense for a prescription is to be 
+         * included in a query result.</p> <p>Indicates whether or not 
+         * prescription dispenses returned on a query should be limited 
+         * to only the most recent dispense for a prescription 
+         * order.</p><p>Allows for the returning of at most one 
+         * prescription dispense record per a prescription.</p><p>The 
+         * default is 'TRUE' indicating that retrieval should be for 
+         * only the most recent dispense for a prescription is to be 
+         * included in a query result.</p> <p>Helps to trim down volume 
          * of query response by eliminating multiple prescription 
          * dispenses for the same prescription order.</p><p>Because 
          * this is a boolean attribute whose value must be known to 
-         * evaluate the query, the attribute is mandatory.</p></remarks>
+         * evaluate the query, the attribute is mandatory.</p> <p>Helps 
+         * to trim down volume of query response by eliminating 
+         * multiple prescription dispenses for the same prescription 
+         * order.</p><p>Because this is a boolean attribute whose value 
+         * must be known to evaluate the query, the attribute is 
+         * mandatory.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"mostRecentDispenseForEachRxIndicator/value"})]
         public bool? MostRecentDispenseForEachRxIndicatorValue {

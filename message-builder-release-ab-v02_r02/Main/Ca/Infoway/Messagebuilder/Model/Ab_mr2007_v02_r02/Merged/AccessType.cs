@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
 
 
     /**
-     * <summary>AccessType</summary>
+     * <summary>Business Name: AccessType</summary>
      * 
      * <remarks>COCT_MT470000CA.InformDefinition: Access Type 
      * <p>Defines the types of information permission is being 
@@ -45,12 +45,34 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         public AccessType() {
             this.subject = new List<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.Subject3>();
         }
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * COCT_MT470000CA.InformDefinition.receiver 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * COCT_MT470012CA.InformDefinition.receiver 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"receiver"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.ConsentGivenTo Receiver {
             get { return this.receiver; }
             set { this.receiver = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * COCT_MT470000CA.InformDefinition.subject 
+         * Conformance/Cardinality: MANDATORY (1-10) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * COCT_MT470012CA.InformDefinition.subject 
+         * Conformance/Cardinality: MANDATORY (1-10)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subject"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.Subject3> Subject {
             get { return this.subject; }

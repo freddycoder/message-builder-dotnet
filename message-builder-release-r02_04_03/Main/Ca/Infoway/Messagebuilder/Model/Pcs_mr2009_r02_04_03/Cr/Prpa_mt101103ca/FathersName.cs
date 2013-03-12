@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,17 +38,18 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Cr.Prpa_mt101103c
             this.semanticsText = new STImpl();
         }
         /**
-         * <summary>Father's Name</summary>
+         * <summary>Business Name: Father's Name</summary>
          * 
-         * <remarks><p>This query parameter item is the name of the 
-         * focal person's father.</p> <p>It is included as a parameter 
-         * item in order to further constrain the possible number of 
-         * responses and increase the match probability to a single 
-         * record.</p> <p>This parameter does not map to a single RIM 
-         * attribute, instead, in RIM terms Father's name is the person 
-         * name part of &quot;family&quot; for the person who is the 
-         * player in a PersonalRelationship of type of 
-         * &quot;father&quot; to the focal person.</p></remarks>
+         * <remarks>Relationship: PRPA_MT101103CA.FathersName.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>It is included as 
+         * a parameter item in order to further constrain the possible 
+         * number of responses and increase the match probability to a 
+         * single record.</p> <p>This parameter does not map to a 
+         * single RIM attribute, instead, in RIM terms Father's name is 
+         * the person name part of &quot;family&quot; for the person 
+         * who is the player in a PersonalRelationship of type of 
+         * &quot;father&quot; to the focal person.</p> <p>This query 
+         * parameter item is the name of the focal person's father.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"value"})]
         public PersonName Value {
@@ -56,6 +57,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Cr.Prpa_mt101103c
             set { this.value.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PRPA_MT101103CA.FathersName.semanticsText</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"semanticsText"})]
         public String SemanticsText {
             get { return this.semanticsText.Value; }

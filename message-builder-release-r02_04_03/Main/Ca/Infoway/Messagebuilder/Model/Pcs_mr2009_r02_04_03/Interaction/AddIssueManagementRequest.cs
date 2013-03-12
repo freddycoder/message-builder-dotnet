@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged;
 
 
+    /**
+     * <summary>Business Name: COMT_IN700001CA: Add issue 
+     * management request</summary>
+     * 
+     * <p>Requests that the specified issue be updated to include 
+     * the identified management(s).</p> Message: 
+     * MCCI_MT002100CA.Message Control Act: 
+     * MCAI_MT700210CA.ControlActEvent --> Payload: 
+     * COCT_MT260010CA.DetectedIssueEvent
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"COMT_IN700001CA"})]
     public class AddIssueManagementRequest : HL7Message_1<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Mcai_mt700210ca.TriggerEvent<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.Issues>>, IInteraction {
 

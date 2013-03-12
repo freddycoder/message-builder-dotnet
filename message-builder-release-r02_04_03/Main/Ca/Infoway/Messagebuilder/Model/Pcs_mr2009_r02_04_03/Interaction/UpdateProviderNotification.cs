@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,20 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Prpm_mt303010ca;
 
 
+    /**
+     * <summary>Business Name: PRPM_IN303030CA: Update Provider 
+     * Notification</summary>
+     * 
+     * <p>This interaction is used to send a notification that a 
+     * provider record has been updated in a provider registry 
+     * system. No response is expected from the recipient 
+     * system.</p> Message: MCCI_MT002100CA.Message Control Act: 
+     * MFMI_MT700717CA.ControlActEvent --> Payload: 
+     * PRPM_MT303010CA.RoleChoice ----> Payload Choice: 
+     * PRPM_MT303010CA.AssignedEntity ----> Payload Choice: 
+     * PRPM_MT303010CA.QualifiedEntity ----> Payload Choice: 
+     * PRPM_MT303010CA.HealthCareProvider
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"PRPM_IN303030CA"})]
     public class UpdateProviderNotification : HL7Message_1<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Mfmi_mt700717ca.TriggerEvent<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Prpm_mt303010ca.IRoleChoice>>, IInteraction {
 

@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -59,14 +59,41 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             this.deviceDeterminerCode = new CSImpl();
         }
         /**
-         * <summary>SendingNetworkAddress</summary>
+         * <summary>Business Name: SendingNetworkAddress</summary>
          * 
-         * <remarks>IB:Sending Network Address <p>The network address 
-         * of the application which sent the message.</p> <p>May be 
-         * important for sender validation. Usually also the address to 
-         * which responses are sent. This is optional because not all 
-         * environments require network addresses.</p> IB:Sending 
-         * Network Address <p>The network address of the application 
+         * <remarks>Un-merged Business Name: SendingNetworkAddress 
+         * Relationship: MCCI_MT000300CA.Sender.telecom 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>The network 
+         * address of the application which sent the message.</p> 
+         * <p>May be important for sender validation. Usually also the 
+         * address to which responses are sent. This is optional 
+         * because not all environments require network addresses.</p> 
+         * Un-merged Business Name: SendingNetworkAddress Relationship: 
+         * MCCI_MT002200CA.Sender.telecom Conformance/Cardinality: 
+         * OPTIONAL (0-1) <p>The network address of the application 
+         * which sent the message.</p> <p>soap:Header\wsa:From</p> 
+         * <p>May be important for sender validation. Usually also the 
+         * address to which responses are sent. This is optional 
+         * because not all environments require network addresses. It 
+         * is mandatory when communicating using SOAP.</p> Un-merged 
+         * Business Name: SendingNetworkAddress Relationship: 
+         * MCCI_MT102001CA.Sender.telecom Conformance/Cardinality: 
+         * OPTIONAL (0-1) <p>The network address of the application 
+         * which sent the message.</p> <p>soap:Header\wsa:From</p> 
+         * <p>May be important for sender validation. Usually also the 
+         * address to which responses are sent. This is optional 
+         * because not all environments require network addresses. It 
+         * is mandatory when communicating using SOAP.</p> Un-merged 
+         * Business Name: SendingNetworkAddress Relationship: 
+         * MCCI_MT000100CA.Sender.telecom Conformance/Cardinality: 
+         * OPTIONAL (0-1) <p>The network address of the application 
+         * which sent the message.</p> <p>May be important for sender 
+         * validation. Usually also the address to which responses are 
+         * sent. This is optional because not all environments require 
+         * network addresses.</p> Un-merged Business Name: 
+         * SendingNetworkAddress Relationship: 
+         * MCCI_MT002100CA.Sender.telecom Conformance/Cardinality: 
+         * OPTIONAL (0-1) <p>The network address of the application 
          * which sent the message.</p> <p>soap:Header\wsa:From</p> 
          * <p>May be important for sender validation. Usually also the 
          * address to which responses are sent. This is optional 
@@ -80,22 +107,42 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>SendingApplicationIdentifier</summary>
+         * <summary>Business Name: SendingApplicationIdentifier</summary>
          * 
-         * <remarks>IA:Sending Application Identifier <p>The unique 
-         * identifier of the application or system from where the 
-         * message is being sent.</p> <p>Because this is the key 
-         * identifier of where the message is coming from, this 
-         * attribute is mandatory.</p> IA:Sending Application 
-         * Identifier <p>The unique identifier of the application or 
+         * <remarks>Un-merged Business Name: 
+         * SendingApplicationIdentifier Relationship: 
+         * MCCI_MT000300CA.Device1.id Conformance/Cardinality: 
+         * MANDATORY (1) <p>The unique identifier of the application or 
+         * system to whom the message is being routed.</p> <p>Because 
+         * this is the key identifier of where the message is intended 
+         * to go, this attribute is mandatory.</p> Un-merged Business 
+         * Name: SendingApplicationIdentifier Relationship: 
+         * MCCI_MT002200CA.Device1.id Conformance/Cardinality: 
+         * MANDATORY (1) <p>The unique identifier of the application or 
          * system to whom the message is being routed.</p> 
          * <p>soap:Header\wsa:From\@endpointID</p> <p>Because this is 
          * the key identifier of where the message is intended to go, 
-         * this attribute is mandatory.</p> IA:Sending Application 
-         * Identifier <p>The unique identifier of the application or 
-         * system to whom the message is being routed.</p> <p>Because 
-         * this is the key identifier of where the message is intended 
-         * to go, this attribute is mandatory.</p></remarks>
+         * this attribute is mandatory.</p> Un-merged Business Name: 
+         * SendingApplicationIdentifier Relationship: 
+         * MCCI_MT102001CA.Device1.id Conformance/Cardinality: 
+         * MANDATORY (1) <p>The unique identifier of the application or 
+         * system to whom the message is being routed.</p> 
+         * <p>soap:Header\wsa:From\@endpointID</p> <p>Because this is 
+         * the key identifier of where the message is intended to go, 
+         * this attribute is mandatory.</p> Un-merged Business Name: 
+         * SendingApplicationIdentifier Relationship: 
+         * MCCI_MT000100CA.Device1.id Conformance/Cardinality: 
+         * MANDATORY (1) <p>The unique identifier of the application or 
+         * system from where the message is being sent.</p> <p>Because 
+         * this is the key identifier of where the message is coming 
+         * from, this attribute is mandatory.</p> Un-merged Business 
+         * Name: SendingApplicationIdentifier Relationship: 
+         * MCCI_MT002100CA.Device1.id Conformance/Cardinality: 
+         * MANDATORY (1) <p>The unique identifier of the application or 
+         * system to whom the message is being routed.</p> 
+         * <p>soap:Header\wsa:From\@endpointID</p> <p>Because this is 
+         * the key identifier of where the message is intended to go, 
+         * this attribute is mandatory.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"device/id"})]
         public Identifier DeviceId {
@@ -104,15 +151,34 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>SendingApplicationName</summary>
+         * <summary>Business Name: SendingApplicationName</summary>
          * 
-         * <remarks>IE:Sending Application Name <p>This is the name 
+         * <remarks>Un-merged Business Name: SendingApplicationName 
+         * Relationship: MCCI_MT000300CA.Device1.name 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>This is the name 
          * associated with the system or application sending the 
          * message.</p> <p>Provides useful information when 
-         * debugging.</p> IE:Sending Application Name <p>This is the 
-         * name associated with the system or application sending the 
-         * message.</p> <p>Provides useful information when 
-         * debugging.</p></remarks>
+         * debugging.</p> Un-merged Business Name: 
+         * SendingApplicationName Relationship: 
+         * MCCI_MT002200CA.Device1.name Conformance/Cardinality: 
+         * REQUIRED (0-1) <p>This is the name associated with the 
+         * system or application sending the message.</p> <p>Provides 
+         * useful information when debugging.</p> Un-merged Business 
+         * Name: SendingApplicationName Relationship: 
+         * MCCI_MT102001CA.Device1.name Conformance/Cardinality: 
+         * REQUIRED (0-1) <p>This is the name associated with the 
+         * system or application sending the message.</p> <p>Provides 
+         * useful information when debugging.</p> Un-merged Business 
+         * Name: SendingApplicationName Relationship: 
+         * MCCI_MT000100CA.Device1.name Conformance/Cardinality: 
+         * REQUIRED (0-1) <p>This is the name associated with the 
+         * system or application sending the message.</p> <p>Provides 
+         * useful information when debugging.</p> Un-merged Business 
+         * Name: SendingApplicationName Relationship: 
+         * MCCI_MT002100CA.Device1.name Conformance/Cardinality: 
+         * REQUIRED (0-1) <p>This is the name associated with the 
+         * system or application sending the message.</p> <p>Provides 
+         * useful information when debugging.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"device/name"})]
         public String DeviceName {
@@ -121,17 +187,42 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>SendingApplicationConfigurationInformation</summary>
+         * <summary>Business Name: 
+         * SendingApplicationConfigurationInformation</summary>
          * 
-         * <remarks>II:Sending Application Configuration Information 
-         * <p>Provides additional information about the configuration 
-         * of the sending application. Useful when debugging.</p> 
-         * <p>Provides additional information that may assist in 
-         * debugging interactions.</p> II:Sending Application 
-         * Configuration Information <p>Provides additional information 
-         * about the configuration of the sending application. Useful 
-         * when debugging.</p> <p>Provides additional information that 
-         * may assist in debugging interactions.</p></remarks>
+         * <remarks>Un-merged Business Name: 
+         * SendingApplicationConfigurationInformation Relationship: 
+         * MCCI_MT000300CA.Device1.desc Conformance/Cardinality: 
+         * REQUIRED (0-1) <p>Provides additional information about the 
+         * configuration of the sending application. Useful when 
+         * debugging.</p> <p>Provides additional information that may 
+         * assist in debugging interactions.</p> Un-merged Business 
+         * Name: SendingApplicationConfigurationInformation 
+         * Relationship: MCCI_MT002200CA.Device1.desc 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Provides 
+         * additional information about the configuration of the 
+         * sending application. Useful when debugging.</p> <p>Provides 
+         * additional information that may assist in debugging 
+         * interactions.</p> Un-merged Business Name: 
+         * SendingApplicationConfigurationInformation Relationship: 
+         * MCCI_MT102001CA.Device1.desc Conformance/Cardinality: 
+         * REQUIRED (0-1) <p>Provides additional information about the 
+         * configuration of the sending application. Useful when 
+         * debugging.</p> <p>Provides additional information that may 
+         * assist in debugging interactions.</p> Un-merged Business 
+         * Name: SendingApplicationConfigurationInformation 
+         * Relationship: MCCI_MT000100CA.Device1.desc 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Provides 
+         * additional information about the configuration of the 
+         * sending application. Useful when debugging.</p> <p>Provides 
+         * additional information that may assist in debugging 
+         * interactions.</p> Un-merged Business Name: 
+         * SendingApplicationConfigurationInformation Relationship: 
+         * MCCI_MT002100CA.Device1.desc Conformance/Cardinality: 
+         * REQUIRED (0-1) <p>Provides additional information about the 
+         * configuration of the sending application. Useful when 
+         * debugging.</p> <p>Provides additional information that may 
+         * assist in debugging interactions.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"device/desc"})]
         public String DeviceDesc {
@@ -140,15 +231,39 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>SendingApplicationVersionDate</summary>
+         * <summary>Business Name: SendingApplicationVersionDate</summary>
          * 
-         * <remarks>IH:Sending Application Version Date <p>Indicates 
-         * the last time the sending application was modified or 
+         * <remarks>Un-merged Business Name: 
+         * SendingApplicationVersionDate Relationship: 
+         * MCCI_MT000300CA.Device1.existenceTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
+         * last time the sending application was modified or 
          * reconfigured.</p> <p>Can help to isolate the source of a 
-         * problem when debugging.</p> IH:Sending Application Version 
-         * Date <p>Indicates the last time the sending application was 
-         * modified or reconfigured.</p> <p>Can help to isolate the 
-         * source of a problem when debugging.</p></remarks>
+         * problem when debugging.</p> Un-merged Business Name: 
+         * SendingApplicationVersionDate Relationship: 
+         * MCCI_MT002200CA.Device1.existenceTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
+         * last time the sending application was modified or 
+         * reconfigured.</p> <p>Can help to isolate the source of a 
+         * problem when debugging.</p> Un-merged Business Name: 
+         * SendingApplicationVersionDate Relationship: 
+         * MCCI_MT102001CA.Device1.existenceTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
+         * last time the sending application was modified or 
+         * reconfigured.</p> <p>Can help to isolate the source of a 
+         * problem when debugging.</p> Un-merged Business Name: 
+         * SendingApplicationVersionDate Relationship: 
+         * MCCI_MT000100CA.Device1.existenceTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
+         * last time the sending application was modified or 
+         * reconfigured.</p> <p>Can help to isolate the source of a 
+         * problem when debugging.</p> Un-merged Business Name: 
+         * SendingApplicationVersionDate Relationship: 
+         * MCCI_MT002100CA.Device1.existenceTime 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the last 
+         * time the sending application was modified or 
+         * reconfigured.</p> <p>Can help to isolate the source of a 
+         * problem when debugging.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"device/existenceTime"})]
         public Interval<PlatformDate> DeviceExistenceTime {
@@ -157,16 +272,39 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>SendingSoftwareVersionNumber</summary>
+         * <summary>Business Name: SendingSoftwareVersionNumber</summary>
          * 
-         * <remarks>IG:Sending Software Version Number <p>Indicates the 
+         * <remarks>Un-merged Business Name: 
+         * SendingSoftwareVersionNumber Relationship: 
+         * MCCI_MT000300CA.Device1.manufacturerModelName 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
          * version number of the piece of software used to construct 
          * the message.</p> <p>May be used to filter messages based on 
          * the compliance testing of the sending software.</p> 
-         * IG:Sending Software Version Number <p>Indicates the version 
-         * number of the piece of software used to construct the 
-         * message.</p> <p>May be used to filter messages based on the 
-         * compliance testing of the sending software.</p></remarks>
+         * Un-merged Business Name: SendingSoftwareVersionNumber 
+         * Relationship: MCCI_MT002200CA.Device1.manufacturerModelName 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
+         * version number of the piece of software used to construct 
+         * the message.</p> <p>May be used to filter messages based on 
+         * the compliance testing of the sending software.</p> 
+         * Un-merged Business Name: SendingSoftwareVersionNumber 
+         * Relationship: MCCI_MT102001CA.Device1.manufacturerModelName 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
+         * version number of the piece of software used to construct 
+         * the message.</p> <p>May be used to filter messages based on 
+         * the compliance testing of the sending software.</p> 
+         * Un-merged Business Name: SendingSoftwareVersionNumber 
+         * Relationship: MCCI_MT000100CA.Device1.manufacturerModelName 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
+         * version number of the piece of software used to construct 
+         * the message.</p> <p>May be used to filter messages based on 
+         * the compliance testing of the sending software.</p> 
+         * Un-merged Business Name: SendingSoftwareVersionNumber 
+         * Relationship: MCCI_MT002100CA.Device1.manufacturerModelName 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the 
+         * version number of the piece of software used to construct 
+         * the message.</p> <p>May be used to filter messages based on 
+         * the compliance testing of the sending software.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"device/manufacturerModelName"})]
         public String DeviceManufacturerModelName {
@@ -175,15 +313,39 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>SendingApplicationSoftwareName</summary>
+         * <summary>Business Name: SendingApplicationSoftwareName</summary>
          * 
-         * <remarks>IF:Sending Application Software Name <p>Indicates 
-         * the name of the software used to construct the message.</p> 
+         * <remarks>Un-merged Business Name: 
+         * SendingApplicationSoftwareName Relationship: 
+         * MCCI_MT000300CA.Device1.softwareName 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
+         * name of the software used to construct the message.</p> 
          * <p>May be used to filter messages based on sending 
-         * application compliance testing.</p> IF:Sending Application 
-         * Software Name <p>Indicates the name of the software used to 
-         * construct the message.</p> <p>May be used to filter messages 
-         * based on sending application compliance testing.</p></remarks>
+         * application compliance testing.</p> Un-merged Business Name: 
+         * SendingApplicationSoftwareName Relationship: 
+         * MCCI_MT002200CA.Device1.softwareName 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
+         * name of the software used to construct the message.</p> 
+         * <p>May be used to filter messages based on sending 
+         * application compliance testing.</p> Un-merged Business Name: 
+         * SendingApplicationSoftwareName Relationship: 
+         * MCCI_MT102001CA.Device1.softwareName 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
+         * name of the software used to construct the message.</p> 
+         * <p>May be used to filter messages based on sending 
+         * application compliance testing.</p> Un-merged Business Name: 
+         * SendingApplicationSoftwareName Relationship: 
+         * MCCI_MT000100CA.Device1.softwareName 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
+         * name of the software used to construct the message.</p> 
+         * <p>May be used to filter messages based on sending 
+         * application compliance testing.</p> Un-merged Business Name: 
+         * SendingApplicationSoftwareName Relationship: 
+         * MCCI_MT002100CA.Device1.softwareName 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the name 
+         * of the software used to construct the message.</p> <p>May be 
+         * used to filter messages based on sending application 
+         * compliance testing.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"device/softwareName"})]
         public String DeviceSoftwareName {
@@ -192,24 +354,40 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>SendingOrganizationIdentifier</summary>
+         * <summary>Business Name: SendingOrganizationIdentifier</summary>
          * 
-         * <remarks>IK:Sending Organization Identifier <p>Sending 
-         * organization unique identifier.</p> <p>The identifier is the 
-         * only non-structural attribute in this class and is therefore 
-         * mandatory. The association from sending device to agent is 
-         * optional.</p> IC:Sending Organization Identifier <p>Uniquely 
-         * identifies the legal entity responsible for the content of 
-         * the message.</p> <p>May be used for routing/filtering 
-         * purposes. Also allows tracking of the original responsible 
-         * party for messages which may undergo multiple routing or 
-         * translation steps. This attribute is optional because not 
-         * all environments require communicating this information.</p> 
-         * IK:Sending Organization Identifier <p>Sending organization 
-         * unique identifier.</p> <p>Identifier is the only 
-         * non-structure attribute in this class and is therefore 
-         * mandatory. The agent association from the sending device 
-         * (application) to the agent role is optional.</p></remarks>
+         * <remarks>Un-merged Business Name: 
+         * SendingOrganizationIdentifier Relationship: 
+         * MCCI_MT000300CA.Organization1.id Conformance/Cardinality: 
+         * MANDATORY (1) <p>Uniquely identifies the legal entity 
+         * responsible for the content of the message.</p> <p>May be 
+         * used for routing/filtering purposes. Also allows tracking of 
+         * the original responsible party for messages which may 
+         * undergo multiple routing or translation steps. This 
+         * attribute is optional because not all environments require 
+         * communicating this information.</p> Un-merged Business Name: 
+         * SendingOrganizationIdentifier Relationship: 
+         * MCCI_MT002200CA.Organization.id Conformance/Cardinality: 
+         * MANDATORY (1) <p>Sending organization unique identifier.</p> 
+         * <p>The identifier is the only non-structural attribute in 
+         * this class and is therefore mandatory. The association from 
+         * sending device to agent is optional.</p> Un-merged Business 
+         * Name: SendingOrganizationIdentifier Relationship: 
+         * MCCI_MT102001CA.Organization.id Conformance/Cardinality: 
+         * MANDATORY (1) <p>Sending organization unique identifier.</p> 
+         * <p>Identifier is the only non-structure attribute in this 
+         * class and is therefore mandatory. The agent association from 
+         * the sending device (application) to the agent role is 
+         * optional.</p> Un-merged Business Name: 
+         * SendingOrganizationIdentifier Relationship: 
+         * MCCI_MT000100CA.Organization1.id Conformance/Cardinality: 
+         * MANDATORY (1) <p>Uniquely identifies the legal entity 
+         * responsible for the content of the message.</p> <p>May be 
+         * used for routing/filtering purposes. Also allows tracking of 
+         * the original responsible party for messages which may 
+         * undergo multiple routing or translation steps. This 
+         * attribute is optional because not all environments require 
+         * communicating this information.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"device/agent/agentOrganization/id","device/asAgent/representedOrganization/id"})]
         [Hl7MapByPartType(Name="device", Type="MCCI_MT000100CA.Device1")]
@@ -230,14 +408,23 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>SendingFacilityIdentifier</summary>
+         * <summary>Business Name: SendingFacilityIdentifier</summary>
          * 
-         * <remarks>ICA:Sending Facility Identifier <p>The unique 
+         * <remarks>Un-merged Business Name: SendingFacilityIdentifier 
+         * Relationship: MCCI_MT000300CA.Place1.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>The unique 
          * identifier of the hospital, clinic or other facility which 
          * constructed the message.</p> <p>May be used for routing, or 
          * for configuration control. This attribute is optional 
          * because not all environments require communicating this 
-         * information.</p></remarks>
+         * information.</p> Un-merged Business Name: 
+         * SendingFacilityIdentifier Relationship: 
+         * MCCI_MT000100CA.Place1.id Conformance/Cardinality: MANDATORY 
+         * (1) <p>The unique identifier of the hospital, clinic or 
+         * other facility which constructed the message.</p> <p>May be 
+         * used for routing, or for configuration control. This 
+         * attribute is optional because not all environments require 
+         * communicating this information.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"device/asLocatedEntity/location/id"})]
         public Identifier DeviceAsLocatedEntityLocationId {
@@ -245,18 +432,40 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             set { this.deviceAsLocatedEntityLocationId.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: MCCI_MT002100CA.Sender.typeCode 
+         * Conformance/Cardinality: OPTIONAL (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"typeCode"})]
         public CommunicationFunctionType TypeCode {
             get { return (CommunicationFunctionType) this.typeCode.Value; }
             set { this.typeCode.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: MCCI_MT002100CA.Device1.classCode 
+         * Conformance/Cardinality: OPTIONAL (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"device/classCode"})]
         public EntityClass DeviceClassCode {
             get { return (EntityClass) this.deviceClassCode.Value; }
             set { this.deviceClassCode.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * MCCI_MT002100CA.Device1.determinerCode 
+         * Conformance/Cardinality: OPTIONAL (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"device/determinerCode"})]
         public EntityDeterminer DeviceDeterminerCode {
             get { return (EntityDeterminer) this.deviceDeterminerCode.Value; }

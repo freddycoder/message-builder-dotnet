@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Ra.Rcmr_mt010002ca;
 
 
+    /**
+     * <summary>Business Name: RCMR_IN010006CA: Update keyword 
+     * request</summary>
+     * 
+     * <p>Requests that the keyword used to control patient access 
+     * to a all or a portion of the patient's record be revised to 
+     * the specified value.</p> Message: MCCI_MT002100CA.Message 
+     * Control Act: MCAI_MT700211CA.ControlActEvent --> Payload: 
+     * RCMR_MT010002CA.KeywordEvent
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"RCMR_IN010006CA"})]
     public class UpdateKeywordRequest : HL7Message_1<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Mcai_mt700211ca.TriggerEvent<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Ra.Rcmr_mt010002ca.Keyword>>, IInteraction {
 

@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,20 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt004999ca;
 
 
+    /**
+     * <summary>Business Name: POLB_IN364006CA: Lab Results Query 
+     * Response Provider or Location</summary>
+     * 
+     * <p>This interaction is used in response to a lab result 
+     * query, by location or provider.</p> Message: 
+     * MCCI_MT002300CA.Message Control Act: 
+     * QUQI_MT120008CA.ControlActEvent --> Payload: 
+     * POLB_MT004999CA.ResultInstancePayloadChoice ----> Payload 
+     * Choice: POLB_MT004000CA.ResultChoice ----> Payload Choice: 
+     * POLB_MT004100CA.ObservationReport ----> Payload Choice: 
+     * POLB_MT004200CA.ObservationChoice --> Payload: 
+     * POLB_MT310000CA.ParameterList
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"POLB_IN364006CA"})]
     public class LabResultsQueryResponseProviderOrLocation : HL7Message_1<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.TriggerEvent_6<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt004999ca.IResultInstancePayloadChoice,Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Merged.ParameterList>>, IInteraction {
 

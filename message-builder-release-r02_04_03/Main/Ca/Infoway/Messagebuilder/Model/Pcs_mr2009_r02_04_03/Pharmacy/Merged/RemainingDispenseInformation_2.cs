@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,20 +27,21 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Merged {
 
 
     /**
-     * <summary>RemainingDispenseInformation</summary>
+     * <summary>Business Name: RemainingDispenseInformation</summary>
      * 
      * <remarks>PORX_MT060040CA.SupplyEventFutureSummary: Remaining 
      * Dispense Information <p>At least one of quantity and 
-     * repeatNumber must be specified.</p> <p>Provides summary 
-     * information about what dispenses remain to be performed 
-     * against the prescription</p> <p>Useful in understanding the 
-     * status of a prescription and in planning for renewals.</p> 
-     * PORX_MT060060CA.SupplyEventFutureSummary: Remaining Dispense 
-     * Information <p>At least one of quantity and repeatNumber 
-     * must be specified.</p> <p>Provides summary information about 
-     * what dispenses remain to be performed against the 
-     * prescription</p> <p>Useful in understanding the status of a 
-     * prescription and in planning for renewals.</p></remarks>
+     * repeatNumber must be specified.</p> <p>Useful in 
+     * understanding the status of a prescription and in planning 
+     * for renewals.</p> <p>Provides summary information about what 
+     * dispenses remain to be performed against the 
+     * prescription</p> PORX_MT060060CA.SupplyEventFutureSummary: 
+     * Remaining Dispense Information <p>At least one of quantity 
+     * and repeatNumber must be specified.</p> <p>Useful in 
+     * understanding the status of a prescription and in planning 
+     * for renewals.</p> <p>Provides summary information about what 
+     * dispenses remain to be performed against the 
+     * prescription</p></remarks>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"PORX_MT060040CA.SupplyEventFutureSummary","PORX_MT060060CA.SupplyEventFutureSummary"})]
     public class RemainingDispenseInformation_2 : MessagePartBean {
@@ -53,13 +54,23 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Merged {
             this.quantity = new INTImpl();
         }
         /**
-         * <summary>FillsRemaining</summary>
+         * <summary>Business Name: FillsRemaining</summary>
          * 
-         * <remarks>A:Fills Remaining <p>Indicates the number of 
-         * remaining dispenses estimated, assuming that each fill is 
-         * equal to the quantity prescribed for a single fill, rounding 
-         * up.</p> <p>Indicates the number of dispenses that may still 
-         * occur.</p></remarks>
+         * <remarks>Un-merged Business Name: FillsRemaining 
+         * Relationship: 
+         * PORX_MT060040CA.SupplyEventFutureSummary.repeatNumber 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
+         * number of dispenses that may still occur.</p> <p>Indicates 
+         * the number of remaining dispenses estimated, assuming that 
+         * each fill is equal to the quantity prescribed for a single 
+         * fill, rounding up.</p> Un-merged Business Name: 
+         * FillsRemaining Relationship: 
+         * PORX_MT060060CA.SupplyEventFutureSummary.repeatNumber 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
+         * number of dispenses that may still occur.</p> <p>Indicates 
+         * the number of remaining dispenses estimated, assuming that 
+         * each fill is equal to the quantity prescribed for a single 
+         * fill, rounding up.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"repeatNumber"})]
         public int? RepeatNumber {
@@ -68,12 +79,21 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Merged {
         }
 
         /**
-         * <summary>RemainingTotalQuantity</summary>
+         * <summary>Business Name: RemainingTotalQuantity</summary>
          * 
-         * <remarks>B:Remaining Total Quantity <p>Indicates the total 
+         * <remarks>Un-merged Business Name: RemainingTotalQuantity 
+         * Relationship: 
+         * PORX_MT060040CA.SupplyEventFutureSummary.quantity 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates how 
+         * much can still be dispensed.</p> <p>Indicates the total 
          * remaining undispensed quantity authorized against the 
-         * prescription.</p> <p>Indicates how much can still be 
-         * dispensed.</p></remarks>
+         * prescription.</p> Un-merged Business Name: 
+         * RemainingTotalQuantity Relationship: 
+         * PORX_MT060060CA.SupplyEventFutureSummary.quantity 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates how 
+         * much can still be dispensed.</p> <p>Indicates the total 
+         * remaining undispensed quantity authorized against the 
+         * prescription.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"quantity"})]
         public int? Quantity {

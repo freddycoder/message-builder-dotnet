@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,14 +31,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Porx_mt0101
 
 
     /**
-     * <summary>Dispense Instructions</summary>
+     * <summary>Business Name: Dispense Instructions</summary>
      * 
-     * <remarks><p>Specification of how the prescribed medication 
-     * is to be dispensed to the patient. Dispensed instruction 
-     * information includes the quantity to be dispensed, how often 
-     * the quantity is to be dispensed, etc.</p> <p>Sets the 
-     * parameters within which the dispenser must operate in 
-     * dispensing the medication to the patient.</p></remarks>
+     * <p>Specification of how the prescribed medication is to be 
+     * dispensed to the patient. Dispensed instruction information 
+     * includes the quantity to be dispensed, how often the 
+     * quantity is to be dispensed, etc.</p> <p>Sets the parameters 
+     * within which the dispenser must operate in dispensing the 
+     * medication to the patient.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"PORX_MT010120CA.SupplyRequest"})]
     public class DispenseInstructions : MessagePartBean {
@@ -55,28 +55,30 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Porx_mt0101
             this.componentSupplyRequestItem = new List<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Porx_mt010120ca.DrugDispenseInstructions>();
         }
         /**
-         * <summary>A:Dispensing Allowed Period</summary>
+         * <summary>Business Name: A:Dispensing Allowed Period</summary>
          * 
-         * <remarks><p>This indicates the validity period of a 
-         * prescription (stale dating the Prescription).</p><p>It 
-         * reflects the prescriber perspective for the validity of the 
-         * prescription. Dispenses must not be made against the 
-         * prescription outside of this period. The lower-bound of the 
-         * Prescription Effective Period signifies the earliest date 
-         * that the prescription can be filled for the first time. If 
-         * an upper-bound is not specified then the Prescription is 
-         * open-ended or will default to a stale-date based on 
-         * regulations.</p> <p>This indicates the validity period of a 
-         * prescription (stale dating the Prescription).</p><p>It 
-         * reflects the prescriber perspective for the validity of the 
-         * prescription. Dispenses must not be made against the 
-         * prescription outside of this period. The lower-bound of the 
-         * Prescription Effective Period signifies the earliest date 
-         * that the prescription can be filled for the first time. If 
-         * an upper-bound is not specified then the Prescription is 
-         * open-ended or will default to a stale-date based on 
-         * regulations.</p> <p>Indicates when the Prescription becomes 
-         * valid, and when it ceases to be a dispensable 
+         * <remarks>Relationship: 
+         * PORX_MT010120CA.SupplyRequest.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>This indicates 
+         * the validity period of a prescription (stale dating the 
+         * Prescription).</p><p>It reflects the prescriber perspective 
+         * for the validity of the prescription. Dispenses must not be 
+         * made against the prescription outside of this period. The 
+         * lower-bound of the Prescription Effective Period signifies 
+         * the earliest date that the prescription can be filled for 
+         * the first time. If an upper-bound is not specified then the 
+         * Prescription is open-ended or will default to a stale-date 
+         * based on regulations.</p> <p>This indicates the validity 
+         * period of a prescription (stale dating the 
+         * Prescription).</p><p>It reflects the prescriber perspective 
+         * for the validity of the prescription. Dispenses must not be 
+         * made against the prescription outside of this period. The 
+         * lower-bound of the Prescription Effective Period signifies 
+         * the earliest date that the prescription can be filled for 
+         * the first time. If an upper-bound is not specified then the 
+         * Prescription is open-ended or will default to a stale-date 
+         * based on regulations.</p> <p>Indicates when the Prescription 
+         * becomes valid, and when it ceases to be a dispensable 
          * Prescription.</p><p>Some jurisdictions place a 'stale date' 
          * on prescriptions that cause them to become invalid a certain 
          * amount of time after they are written. This time may vary by 
@@ -93,23 +95,47 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Porx_mt0101
             set { this.effectiveTime.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PORX_MT010120CA.Receiver.personalRelationship</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"receiver/personalRelationship"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged.RelatedPerson> ReceiverPersonalRelationship {
             get { return this.receiverPersonalRelationship; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PORX_MT010120CA.SupplyRequest.location</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"location"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.CreatedAt Location {
             get { return this.location; }
             set { this.location = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PORX_MT010120CA.Destination1.serviceDeliveryLocation</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"destination/serviceDeliveryLocation"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.DispenseShipToLocation DestinationServiceDeliveryLocation {
             get { return this.destinationServiceDeliveryLocation; }
             set { this.destinationServiceDeliveryLocation = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PORX_MT010120CA.Component.supplyRequestItem</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"component/supplyRequestItem"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Porx_mt010120ca.DrugDispenseInstructions> ComponentSupplyRequestItem {
             get { return this.componentSupplyRequestItem; }

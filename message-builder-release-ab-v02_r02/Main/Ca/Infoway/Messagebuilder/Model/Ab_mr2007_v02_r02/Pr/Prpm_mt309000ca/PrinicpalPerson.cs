@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,13 +30,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt309000ca {
 
 
     /**
-     * <summary>Prinicpal Person</summary>
+     * <summary>Business Name: Prinicpal Person</summary>
      * 
-     * <remarks><p>Identification of playing entity is required 
-     * (0..1) to support the case in which information directly 
-     * related to the playing party is not needed.</p> <p>Provides 
-     * additional information about the person playing the role of 
-     * Healthcare Provider</p></remarks>
+     * <p>Identification of playing entity is required (0..1) to 
+     * support the case in which information directly related to 
+     * the playing party is not needed.</p> <p>Provides additional 
+     * information about the person playing the role of Healthcare 
+     * Provider</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"PRPM_MT309000CA.PrincipalPerson"})]
     public class PrinicpalPerson : MessagePartBean {
@@ -61,13 +61,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt309000ca {
             this.languageCommunication = new List<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt309000ca.LanguageOfCommunication>();
         }
         /**
-         * <summary>Principal Person Aggregate Identifier</summary>
+         * <summary>Business Name: Principal Person Aggregate 
+         * Identifier</summary>
          * 
-         * <remarks><p>A unique identifier for the person who may play 
-         * various healthcare provider roles. This identifier is 
-         * specific to the person not their roles.</p> <p>Required 
-         * attribute supports the identification of the healthcare 
-         * provider</p></remarks>
+         * <remarks>Relationship: PRPM_MT309000CA.PrincipalPerson.id 
+         * Conformance/Cardinality: REQUIRED (0-5) <p>A unique 
+         * identifier for the person who may play various healthcare 
+         * provider roles. This identifier is specific to the person 
+         * not their roles.</p> <p>Required attribute supports the 
+         * identification of the healthcare provider</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public ICollection<Identifier> Id {
@@ -75,13 +77,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt309000ca {
         }
 
         /**
-         * <summary>Principal Person Name</summary>
+         * <summary>Business Name: Principal Person Name</summary>
          * 
-         * <remarks><p>The person&#226;&#128;&#153;s name independent 
-         * of any role they may play.</p> <p>Required attribute 
-         * supports the identification of the healthcare provider</p> 
-         * <p>If Principal Person is included in the message, then 
-         * Person Name Must Exist.</p></remarks>
+         * <remarks>Relationship: PRPM_MT309000CA.PrincipalPerson.name 
+         * Conformance/Cardinality: REQUIRED (0-5) <p>The 
+         * person&#226;&#128;&#153;s name independent of any role they 
+         * may play.</p> <p>Required attribute supports the 
+         * identification of the healthcare provider</p> <p>If 
+         * Principal Person is included in the message, then Person 
+         * Name Must Exist.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"name"})]
         public IList<PersonName> Name {
@@ -89,13 +93,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt309000ca {
         }
 
         /**
-         * <summary>Principal Person Gender</summary>
+         * <summary>Business Name: Principal Person Gender</summary>
          * 
-         * <remarks><p>The principal person&#226;&#128;&#153;s 
-         * gender.</p> <p>Required attribute supports the 
-         * identification of the healthcare provider</p> <p>If 
-         * Principal Person is included in the message, then Person 
-         * Gender is Expected to Exist.</p></remarks>
+         * <remarks>Relationship: 
+         * PRPM_MT309000CA.PrincipalPerson.administrativeGenderCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The principal 
+         * person&#226;&#128;&#153;s gender.</p> <p>Required attribute 
+         * supports the identification of the healthcare provider</p> 
+         * <p>If Principal Person is included in the message, then 
+         * Person Gender is Expected to Exist.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"administrativeGenderCode"})]
         public AdministrativeGender AdministrativeGenderCode {
@@ -104,13 +110,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt309000ca {
         }
 
         /**
-         * <summary>Principal Person Date of Birth</summary>
+         * <summary>Business Name: Principal Person Date of Birth</summary>
          * 
-         * <remarks><p>The principal person&#226;&#128;&#153;s date of 
-         * birth.</p> <p>Required attribute supports the identification 
-         * of the healthcare provider</p> <p>If Principal Person is 
-         * included in the message, then Prinicpal Person Date of Birth 
-         * is Expected to Exist.</p></remarks>
+         * <remarks>Relationship: 
+         * PRPM_MT309000CA.PrincipalPerson.birthTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The principal 
+         * person&#226;&#128;&#153;s date of birth.</p> <p>Required 
+         * attribute supports the identification of the healthcare 
+         * provider</p> <p>If Principal Person is included in the 
+         * message, then Prinicpal Person Date of Birth is Expected to 
+         * Exist.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"birthTime"})]
         public PlatformDate BirthTime {
@@ -119,11 +128,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt309000ca {
         }
 
         /**
-         * <summary>Principal Person Deceased Indicator</summary>
+         * <summary>Business Name: Principal Person Deceased Indicator</summary>
          * 
-         * <remarks><p>An indication that the principal person is 
-         * deceased.</p> <p>Required attribute supports the 
-         * identification of the healthcare provider</p></remarks>
+         * <remarks>Relationship: 
+         * PRPM_MT309000CA.PrincipalPerson.deceasedInd 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>An indication 
+         * that the principal person is deceased.</p> <p>Required 
+         * attribute supports the identification of the healthcare 
+         * provider</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"deceasedInd"})]
         public bool? DeceasedInd {
@@ -132,12 +144,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt309000ca {
         }
 
         /**
-         * <summary>Principal Person Deceased Date</summary>
+         * <summary>Business Name: Principal Person Deceased Date</summary>
          * 
-         * <remarks><p>The date and time that a healthcare provider's 
-         * death occurred.</p> <p>Required attribute supports 
-         * verification of death from official source such as Vital 
-         * Statistics.</p></remarks>
+         * <remarks>Relationship: 
+         * PRPM_MT309000CA.PrincipalPerson.deceasedTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The date and time 
+         * that a healthcare provider's death occurred.</p> <p>Required 
+         * attribute supports verification of death from official 
+         * source such as Vital Statistics.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"deceasedTime"})]
         public PlatformDate DeceasedTime {
@@ -146,12 +160,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt309000ca {
         }
 
         /**
-         * <summary>Birthplace Address</summary>
+         * <summary>Business Name: Birthplace Address</summary>
          * 
-         * <remarks><p>Principal person's address at time of birth</p> 
-         * <p>Mandatory attribute supports the identification of the 
-         * healthcare provider</p> <p>If Birthplace is included in the 
-         * message, then Address is Expected to Exist.</p></remarks>
+         * <remarks>Relationship: PRPM_MT309000CA.Birthplace.addr 
+         * Conformance/Cardinality: MANDATORY (1) <p>Principal person's 
+         * address at time of birth</p> <p>Mandatory attribute supports 
+         * the identification of the healthcare provider</p> <p>If 
+         * Birthplace is included in the message, then Address is 
+         * Expected to Exist.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"birthplace/addr"})]
         public PostalAddress BirthplaceAddr {
@@ -159,6 +175,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt309000ca {
             set { this.birthplaceAddr.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PRPM_MT309000CA.PrincipalPerson.languageCommunication</summary>
+         * 
+         * <remarks>Conformance/Cardinality: OPTIONAL (0-10)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"languageCommunication"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt309000ca.LanguageOfCommunication> LanguageCommunication {
             get { return this.languageCommunication; }

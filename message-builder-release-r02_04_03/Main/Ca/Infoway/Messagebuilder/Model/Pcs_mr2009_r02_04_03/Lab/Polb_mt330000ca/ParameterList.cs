@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,12 +29,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt330000
 
 
     /**
-     * <summary><p>Identifies the various parameters that act as 
-     * filters on the records to be retrieved.</p></summary>
+     * <p>Allows the user and/or point-of-service application to 
+     * constrain what EHR information to be retrieved.</p>
      * 
-     * <remarks><p>Allows the user and/or point-of-service 
-     * application to constrain what EHR information to be 
-     * retrieved.</p></remarks>
+     * <p>Identifies the various parameters that act as filters on 
+     * the records to be retrieved.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"POLB_MT330000CA.ParameterList"})]
     public class ParameterList : MessagePartBean {
@@ -69,11 +68,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt330000
             this.placerOrderNumberValue = new IIImpl();
         }
         /**
-         * <summary>Order Status Value</summary>
+         * <summary>Business Name: Order Status Value</summary>
          * 
-         * <remarks><p>Communicates the status of the order.</p> 
-         * <p>Allows for the selection of only &quot;active&quot; 
-         * orders or &quot;completed&quot; orders.</p></remarks>
+         * <remarks>Relationship: 
+         * POLB_MT330000CA.BatteryRequestStatus.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows for the 
+         * selection of only &quot;active&quot; orders or 
+         * &quot;completed&quot; orders.</p> <p>Communicates the status 
+         * of the order.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"batteryRequestStatus/value","observationRequestStatus/value"})]
         [Hl7MapByPartType(Name="batteryRequestStatus", Type="POLB_MT330000CA.BatteryRequestStatus")]
@@ -84,13 +86,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt330000
         }
 
         /**
-         * <summary>Include History Indicator</summary>
+         * <summary>Business Name: Include History Indicator</summary>
          * 
-         * <remarks><p>Indicates whether or not to include historical 
+         * <remarks>Relationship: 
+         * POLB_MT330000CA.IncludeHistoryIndicator.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Historical 
+         * (version) records are usable for audit, quality assurance, 
+         * etc.</p> <p>Indicates whether or not to include historical 
          * records (each change to a record, revisions, state changes, 
          * each trigger event). True=include records, the default is 
-         * false.</p> <p>Historical (version) records are usable for 
-         * audit, quality assurance, etc.</p></remarks>
+         * false.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"includeHistoryIndicator/value"})]
         public bool? IncludeHistoryIndicatorValue {
@@ -99,10 +104,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt330000
         }
 
         /**
-         * <summary>Include Nullified Orders Indicator</summary>
+         * <summary>Business Name: Include Nullified Orders Indicator</summary>
          * 
-         * <remarks><p>Indicates whether or not to include nullified 
-         * orders. True=include records, the default is false</p></remarks>
+         * <remarks>Relationship: 
+         * POLB_MT330000CA.IncludeNullifiedIndicator.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates whether 
+         * or not to include nullified orders. True=include records, 
+         * the default is false</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"includeNullifiedIndicator/value"})]
         public bool? IncludeNullifiedIndicatorValue {
@@ -111,11 +119,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt330000
         }
 
         /**
-         * <summary>Include Results Indicator</summary>
+         * <summary>Business Name: Include Results Indicator</summary>
          * 
-         * <remarks><p>Indicates whether or not to include results 
-         * (current if present) with each order. True=include records, 
-         * the default is false.</p></remarks>
+         * <remarks>Relationship: 
+         * POLB_MT330000CA.IncludeResultsIndicator.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates whether 
+         * or not to include results (current if present) with each 
+         * order. True=include records, the default is false.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"includeResultsIndicator/value"})]
         public bool? IncludeResultsIndicatorValue {
@@ -124,17 +134,21 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt330000
         }
 
         /**
-         * <summary>Observation Availability Effective Time Range</summary>
+         * <summary>Business Name: Observation Availability Effective 
+         * Time Range</summary>
          * 
-         * <remarks><p>Filters the set of records to be retrieved to 
-         * those which the observation availability date/time for the 
-         * patient within the time boundaries specified. Either the 
-         * lower bound or upper bound or both would be specified. If no 
-         * value is specified, no filter will be applied. If there is 
-         * any overlap between the specified time-range and the order 
-         * entry date/time, the record will be returned.</p> <p>Allows 
+         * <remarks>Relationship: 
+         * POLB_MT330000CA.ObservationAvailabilityDateTimeRange.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows 
          * constraining the retrieved records to those applicable at a 
-         * particular time.</p></remarks>
+         * particular time.</p> <p>Filters the set of records to be 
+         * retrieved to those which the observation availability 
+         * date/time for the patient within the time boundaries 
+         * specified. Either the lower bound or upper bound or both 
+         * would be specified. If no value is specified, no filter will 
+         * be applied. If there is any overlap between the specified 
+         * time-range and the order entry date/time, the record will be 
+         * returned.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"observationAvailabilityDateTimeRange/value"})]
         public Interval<PlatformDate> ObservationAvailabilityDateTimeRangeValue {
@@ -143,17 +157,19 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt330000
         }
 
         /**
-         * <summary>Order Entry Effective Time Range</summary>
+         * <summary>Business Name: Order Entry Effective Time Range</summary>
          * 
-         * <remarks><p>Filters the set of records to be retrieved to 
-         * those which the order entry date/time for the patient within 
-         * the time boundaries specified. Either the lower bound or 
-         * upper bound or both would be specified. If no value is 
-         * specified, no filter will be applied. If there is any 
-         * overlap between the specified time-range and the order entry 
-         * date/time, the record will be returned.</p> <p>Allows 
+         * <remarks>Relationship: 
+         * POLB_MT330000CA.OrderEnteredDateTimeRange.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows 
          * constraining the retrieved records to those applicable at a 
-         * particular time.</p></remarks>
+         * particular time.</p> <p>Filters the set of records to be 
+         * retrieved to those which the order entry date/time for the 
+         * patient within the time boundaries specified. Either the 
+         * lower bound or upper bound or both would be specified. If no 
+         * value is specified, no filter will be applied. If there is 
+         * any overlap between the specified time-range and the order 
+         * entry date/time, the record will be returned.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"orderEnteredDateTimeRange/value"})]
         public Interval<PlatformDate> OrderEnteredDateTimeRangeValue {
@@ -162,11 +178,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt330000
         }
 
         /**
-         * <summary>Order Test Code</summary>
+         * <summary>Business Name: Order Test Code</summary>
          * 
-         * <remarks><p>The code to describe the type of test requested 
-         * to be performed.</p> <p>Identifies the specific test to 
-         * perform.</p></remarks>
+         * <remarks>Relationship: POLB_MT330000CA.OrderTestCode.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Identifies the 
+         * specific test to perform.</p> <p>The code to describe the 
+         * type of test requested to be performed.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"orderTestCode/value"})]
         public ObservationOrderableLabType OrderTestCodeValue {
@@ -175,11 +192,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt330000
         }
 
         /**
-         * <summary>Ordering Provider Identifier</summary>
+         * <summary>Business Name: Ordering Provider Identifier</summary>
          * 
-         * <remarks><p>Select only those records for this ordering 
-         * provider.</p> <p>Allows constraining the retrieved records 
-         * to those applicable for a specific ordering provider.</p></remarks>
+         * <remarks>Relationship: 
+         * POLB_MT330000CA.OrderingProvider.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows 
+         * constraining the retrieved records to those applicable for a 
+         * specific ordering provider.</p> <p>Select only those records 
+         * for this ordering provider.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"orderingProvider/value"})]
         public Identifier OrderingProviderValue {
@@ -188,11 +208,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt330000
         }
 
         /**
-         * <summary>Patient DOB</summary>
+         * <summary>Business Name: Patient DOB</summary>
          * 
-         * <remarks><p>Patient's date of birth.</p> <p>Used to verify 
+         * <remarks>Relationship: 
+         * POLB_MT330000CA.PatientDateofBirth.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Used to verify 
          * patient identity (a check against the patient id 
-         * parameter).</p></remarks>
+         * parameter).</p> <p>Patient's date of birth.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"patientDateofBirth/value"})]
         public PlatformDate PatientDateofBirthValue {
@@ -201,11 +223,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt330000
         }
 
         /**
-         * <summary>Patient Gender</summary>
+         * <summary>Business Name: Patient Gender</summary>
          * 
-         * <remarks><p>Patient's administrative gender (sex) code.</p> 
-         * <p>Used to verify patient identity (a check against the 
-         * patient id parameter).</p></remarks>
+         * <remarks>Relationship: POLB_MT330000CA.PatientGender.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Used to verify 
+         * patient identity (a check against the patient id 
+         * parameter).</p> <p>Patient's administrative gender (sex) 
+         * code.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"patientGender/value"})]
         public AdministrativeGender PatientGenderValue {
@@ -214,11 +238,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt330000
         }
 
         /**
-         * <summary>Patient ID</summary>
+         * <summary>Business Name: Patient ID</summary>
          * 
-         * <remarks><p>A globally unique identifier for the patient 
-         * whose information is to be retrieved.</p> <p>Identifies the 
-         * patient whose information is to be retrieved.</p></remarks>
+         * <remarks>Relationship: POLB_MT330000CA.PatientID.value 
+         * Conformance/Cardinality: POPULATED (1) <p>Identifies the 
+         * patient whose information is to be retrieved.</p> <p>A 
+         * globally unique identifier for the patient whose information 
+         * is to be retrieved.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"patientID/value"})]
         public Identifier PatientIDValue {
@@ -227,11 +253,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt330000
         }
 
         /**
-         * <summary>Patient Name</summary>
+         * <summary>Business Name: Patient Name</summary>
          * 
-         * <remarks><p>Name for the patient.</p> <p>Used to verify 
+         * <remarks>Relationship: POLB_MT330000CA.PatientName.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Used to verify 
          * patient identity (a check against the patient id 
-         * parameter).</p></remarks>
+         * parameter).</p> <p>Name for the patient.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"patientName/value"})]
         public PersonName PatientNameValue {
@@ -240,12 +267,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt330000
         }
 
         /**
-         * <summary>Placer Order Number</summary>
+         * <summary>Business Name: Placer Order Number</summary>
          * 
-         * <remarks><p>Must contain a value assigned by the 
-         * order-placing organization that uniquely identifies the test 
-         * for query selection.</p> <p>Allows constraining the 
-         * retrieved records by identifier.</p></remarks>
+         * <remarks>Relationship: 
+         * POLB_MT330000CA.PlacerOrderNumber.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows 
+         * constraining the retrieved records by identifier.</p> 
+         * <p>Must contain a value assigned by the order-placing 
+         * organization that uniquely identifies the test for query 
+         * selection.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"placerOrderNumber/value"})]
         public Identifier PlacerOrderNumberValue {

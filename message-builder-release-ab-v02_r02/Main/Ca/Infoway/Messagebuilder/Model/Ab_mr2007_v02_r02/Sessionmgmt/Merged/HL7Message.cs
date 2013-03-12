@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Merged {
 
 
     /**
-     * <summary>HL7Message</summary>
+     * <summary>Business Name: HL7Message</summary>
      * 
      * <remarks>MCCI_MT000300CA.Message: HL7 Message <p>The root 
      * class of all messages.</p> <p>Conveys information about the 
@@ -70,12 +70,21 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Merged {
             this.attentionLine = new List<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.RoutingInstructionLines>();
         }
         /**
-         * <summary>MessageIdentifier</summary>
+         * <summary>Business Name: MessageIdentifier</summary>
          * 
-         * <remarks>A:Message Identifier <p>A unique identifier for the 
-         * message.</p> <p>Allows detection of duplicate messages, and 
-         * allows tying acknowledgments to the message they are 
-         * acknowledging. The attribute is therefore mandatory.</p></remarks>
+         * <remarks>Un-merged Business Name: MessageIdentifier 
+         * Relationship: MCCI_MT000300CA.Message.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>A unique 
+         * identifier for the message.</p> <p>Allows detection of 
+         * duplicate messages, and allows tying acknowledgments to the 
+         * message they are acknowledging. The attribute is therefore 
+         * mandatory.</p> Un-merged Business Name: MessageIdentifier 
+         * Relationship: MCCI_MT000100CA.Message.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>A unique 
+         * identifier for the message.</p> <p>Allows detection of 
+         * duplicate messages, and allows tying acknowledgments to the 
+         * message they are acknowledging. The attribute is therefore 
+         * mandatory.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -84,14 +93,24 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Merged {
         }
 
         /**
-         * <summary>MessageTimestamp</summary>
+         * <summary>Business Name: MessageTimestamp</summary>
          * 
-         * <remarks>G:Message Timestamp <p>Indicates the time this 
-         * particular message instance was constructed.</p> <p>Allows 
-         * identification of how current the information in a message 
-         * is. Also provides a baseline for identifying the time-zone 
-         * of other times within the message. As a result, the 
-         * attribute is mandatory.</p></remarks>
+         * <remarks>Un-merged Business Name: MessageTimestamp 
+         * Relationship: MCCI_MT000300CA.Message.creationTime 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the time 
+         * this particular message instance was constructed.</p> 
+         * <p>Allows identification of how current the information in a 
+         * message is. Also provides a baseline for identifying the 
+         * time-zone of other times within the message. As a result, 
+         * the attribute is mandatory.</p> Un-merged Business Name: 
+         * MessageTimestamp Relationship: 
+         * MCCI_MT000100CA.Message.creationTime 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the time 
+         * this particular message instance was constructed.</p> 
+         * <p>Allows identification of how current the information in a 
+         * message is. Also provides a baseline for identifying the 
+         * time-zone of other times within the message. As a result, 
+         * the attribute is mandatory.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"creationTime"})]
         public PlatformDate CreationTime {
@@ -100,13 +119,24 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Merged {
         }
 
         /**
-         * <summary>SecurityToken</summary>
+         * <summary>Business Name: SecurityToken</summary>
          * 
-         * <remarks>H:Security Token <p>A locally-defined field used to 
-         * maintain a session, identify a user, and/or perform some 
-         * other function related to authenticating the message 
-         * source.</p> <p>Allows jurisdictions and applications to 
-         * communicate authentication and session information. The 
+         * <remarks>Un-merged Business Name: SecurityToken 
+         * Relationship: MCCI_MT000300CA.Message.securityText 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>A locally-defined 
+         * field used to maintain a session, identify a user, and/or 
+         * perform some other function related to authenticating the 
+         * message source.</p> <p>Allows jurisdictions and applications 
+         * to communicate authentication and session information. The 
+         * attribute is optional because not all jurisdictions will 
+         * require this capability.</p> Un-merged Business Name: 
+         * SecurityToken Relationship: 
+         * MCCI_MT000100CA.Message.securityText 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>A locally-defined 
+         * field used to maintain a session, identify a user, and/or 
+         * perform some other function related to authenticating the 
+         * message source.</p> <p>Allows jurisdictions and applications 
+         * to communicate authentication and session information. The 
          * attribute is optional because not all jurisdictions will 
          * require this capability.</p></remarks>
          */
@@ -117,13 +147,21 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Merged {
         }
 
         /**
-         * <summary>HL7StandardVersion</summary>
+         * <summary>Business Name: HL7StandardVersion</summary>
          * 
-         * <remarks>C: HL7 Standard Version <p>Indicates the version of 
-         * the messaging standard being referenced.</p> <p>Needed to 
-         * know how to validate message definition, CMET definition, 
-         * vocabulary and other information and is therefore 
-         * mandatory.</p></remarks>
+         * <remarks>Un-merged Business Name: HL7StandardVersion 
+         * Relationship: MCCI_MT000300CA.Message.versionCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the 
+         * version of the messaging standard being referenced.</p> 
+         * <p>Needed to know how to validate message definition, CMET 
+         * definition, vocabulary and other information and is 
+         * therefore mandatory.</p> Un-merged Business Name: 
+         * HL7StandardVersion Relationship: 
+         * MCCI_MT000100CA.Message.versionCode Conformance/Cardinality: 
+         * MANDATORY (1) <p>Indicates the version of the messaging 
+         * standard being referenced.</p> <p>Needed to know how to 
+         * validate message definition, CMET definition, vocabulary and 
+         * other information and is therefore mandatory.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"versionCode"})]
         public HL7StandardVersionCode VersionCode {
@@ -132,12 +170,21 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Merged {
         }
 
         /**
-         * <summary>InteractionType</summary>
+         * <summary>Business Name: InteractionType</summary>
          * 
-         * <remarks>B:Interaction Type <p>Indicates the interaction 
-         * conveyed by this message.</p> <p>Identifies what the 
-         * receiving application should do, and how the message should 
-         * be validated. The attribute is therefore mandatory.</p></remarks>
+         * <remarks>Un-merged Business Name: InteractionType 
+         * Relationship: MCCI_MT000300CA.Message.interactionId 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the 
+         * interaction conveyed by this message.</p> <p>Identifies what 
+         * the receiving application should do, and how the message 
+         * should be validated. The attribute is therefore 
+         * mandatory.</p> Un-merged Business Name: InteractionType 
+         * Relationship: MCCI_MT000100CA.Message.interactionId 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the 
+         * interaction conveyed by this message.</p> <p>Identifies what 
+         * the receiving application should do, and how the message 
+         * should be validated. The attribute is therefore 
+         * mandatory.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"interactionId"})]
         public Identifier InteractionId {
@@ -146,13 +193,21 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Merged {
         }
 
         /**
-         * <summary>ConformanceProfileIdentifiers</summary>
+         * <summary>Business Name: ConformanceProfileIdentifiers</summary>
          * 
-         * <remarks>F:Conformance Profile Identifiers <p>Identifies the 
-         * conformance profile(s) this message complies with.</p> 
-         * <p>Indicates any additional validation that may be 
-         * appropriate. Also influences what extensions can be 
-         * processed.</p></remarks>
+         * <remarks>Un-merged Business Name: 
+         * ConformanceProfileIdentifiers Relationship: 
+         * MCCI_MT000300CA.Message.profileId Conformance/Cardinality: 
+         * REQUIRED (0-10) <p>Identifies the conformance profile(s) 
+         * this message complies with.</p> <p>Indicates any additional 
+         * validation that may be appropriate. Also influences what 
+         * extensions can be processed.</p> Un-merged Business Name: 
+         * ConformanceProfileIdentifiers Relationship: 
+         * MCCI_MT000100CA.Message.profileId Conformance/Cardinality: 
+         * REQUIRED (0-10) <p>Identifies the conformance profile(s) 
+         * this message complies with.</p> <p>Indicates any additional 
+         * validation that may be appropriate. Also influences what 
+         * extensions can be processed.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"profileId"})]
         public ICollection<Identifier> ProfileId {
@@ -160,12 +215,20 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Merged {
         }
 
         /**
-         * <summary>ProcessingCode</summary>
+         * <summary>Business Name: ProcessingCode</summary>
          * 
-         * <remarks>D:Processing Code <p>Indicates whether this message 
-         * is intended to be processed as production, test or debug 
-         * message.</p> <p>Indicates how the message should be handled 
-         * and is therefore mandatory.</p></remarks>
+         * <remarks>Un-merged Business Name: ProcessingCode 
+         * Relationship: MCCI_MT000300CA.Message.processingCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates whether 
+         * this message is intended to be processed as production, test 
+         * or debug message.</p> <p>Indicates how the message should be 
+         * handled and is therefore mandatory.</p> Un-merged Business 
+         * Name: ProcessingCode Relationship: 
+         * MCCI_MT000100CA.Message.processingCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates whether 
+         * this message is intended to be processed as production, test 
+         * or debug message.</p> <p>Indicates how the message should be 
+         * handled and is therefore mandatory.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"processingCode"})]
         public ProcessingID ProcessingCode {
@@ -174,9 +237,18 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Merged {
         }
 
         /**
-         * <summary>DesiredAcknowledgmentType</summary>
+         * <summary>Business Name: DesiredAcknowledgmentType</summary>
          * 
-         * <remarks>E:Desired Acknowledgment Type <p>Indicates how the 
+         * <remarks>Un-merged Business Name: DesiredAcknowledgmentType 
+         * Relationship: MCCI_MT000300CA.Message.acceptAckCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates how the 
+         * message is expected to be acknowledged.</p> <p>Provides 
+         * support for immediate, deferred and polling mode and 
+         * distinguishes which mode is desired. The attribute is 
+         * therefore mandatory.</p> Un-merged Business Name: 
+         * DesiredAcknowledgmentType Relationship: 
+         * MCCI_MT000100CA.Message.acceptAckCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates how the 
          * message is expected to be acknowledged.</p> <p>Provides 
          * support for immediate, deferred and polling mode and 
          * distinguishes which mode is desired. The attribute is 
@@ -188,35 +260,94 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Merged {
             set { this.acceptAckCode.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: MCCI_MT000300CA.Message.receiver 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCCI_MT000100CA.Message.receiver Conformance/Cardinality: 
+         * MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"receiver"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.Receiver Receiver {
             get { return this.receiver; }
             set { this.receiver = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: MCCI_MT000300CA.Message.respondTo 
+         * Conformance/Cardinality: OPTIONAL (0-1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCCI_MT000100CA.Message.respondTo Conformance/Cardinality: 
+         * OPTIONAL (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"respondTo"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.ToBeRespondedToBy RespondTo {
             get { return this.respondTo; }
             set { this.respondTo = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: MCCI_MT000300CA.Message.sender 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCCI_MT000100CA.Message.sender Conformance/Cardinality: 
+         * MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"sender"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.Sender Sender {
             get { return this.sender; }
             set { this.sender = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: MCCI_MT000300CA.Message.attentionLine 
+         * Conformance/Cardinality: OPTIONAL (0-5) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCCI_MT000100CA.Message.attentionLine 
+         * Conformance/Cardinality: OPTIONAL (0-5)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"attentionLine"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.RoutingInstructionLines> AttentionLine {
             get { return this.attentionLine; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * MCCI_MT000300CA.Message.acknowledgement 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"acknowledgement"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.Acknowledgement Acknowledgement {
             get { return this.acknowledgement; }
             set { this.acknowledgement = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * MCCI_MT000300CA.Message.controlActProcess 
+         * Conformance/Cardinality: REQUIRED (0-1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCCI_MT000100CA.Message.controlActProcess 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"controlActProcess"})]
         public CAP ControlActProcess {
             get { return this.controlActProcess; }

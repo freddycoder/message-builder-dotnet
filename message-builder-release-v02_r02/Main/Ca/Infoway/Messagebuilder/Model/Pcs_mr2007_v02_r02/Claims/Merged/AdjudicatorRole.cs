@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Merged {
 
 
     /**
-     * <summary>AdjudicatorRole</summary>
+     * <summary>Business Name: AdjudicatorRole</summary>
      * 
      * <remarks>FICR_MT610201CA.AdjudicatorRole: Adjudicator Role 
      * <p>Third Party appointed by carrier to adjudicate 
@@ -46,12 +46,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Merged {
             this.playingAdjudicatorPersonName = new PNImpl();
         }
         /**
-         * <summary>AdjudicatorID</summary>
+         * <summary>Business Name: AdjudicatorID</summary>
          * 
-         * <remarks>(no business name) <p>Set of identifiers that 
-         * uniquely identify the adjudicator of the invoice.</p> 
-         * Adjudicator ID <p>Adjudicator Id -Set of identifiers that 
-         * uniquely identify the adjudicator of the invoice.</p></remarks>
+         * <remarks>Un-merged Business Name: AdjudicatorID 
+         * Relationship: FICR_MT610201CA.AdjudicatorRole.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>Adjudicator Id 
+         * -Set of identifiers that uniquely identify the adjudicator 
+         * of the invoice.</p> Un-merged Business Name: (no business 
+         * name specified) Relationship: 
+         * QUCR_MT830201CA.AdjudicatorRole.id Conformance/Cardinality: 
+         * MANDATORY (1) <p>Set of identifiers that uniquely identify 
+         * the adjudicator of the invoice.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -60,9 +65,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Merged {
         }
 
         /**
-         * <summary>AdjudicatorPersonName</summary>
+         * <summary>Business Name: AdjudicatorPersonName</summary>
          * 
-         * <remarks>Adjudicator Person Name <p>Name of person 
+         * <remarks>Un-merged Business Name: AdjudicatorPersonName 
+         * Relationship: FICR_MT610201CA.AdjudicatorPerson.name 
+         * Conformance/Cardinality: POPULATED (1) <p>Name of person 
          * adjudicating the invoice.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"playingAdjudicatorPerson/name"})]
@@ -71,6 +78,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Merged {
             set { this.playingAdjudicatorPersonName.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * FICR_MT610201CA.DirectAuthorityOver.insuranceCarrierRole 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"directAuthority/insuranceCarrierRole"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Ficr_mt610201ca.InsuranceCarrierRole DirectAuthorityInsuranceCarrierRole {
             get { return this.directAuthorityInsuranceCarrierRole; }

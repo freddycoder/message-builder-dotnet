@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,17 +35,30 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged {
             this.id = new IIImpl();
         }
         /**
-         * <summary>ServiceReportReferenceId</summary>
+         * <summary>Business Name: ServiceReportReferenceId</summary>
          * 
-         * <remarks>K:Service Report Reference Id <p>An identifier for 
-         * a report associated with the procedure.</p> <p>Allows for a 
+         * <remarks>Un-merged Business Name: ServiceReportReferenceId 
+         * Relationship: REPC_MT610001CA.ClinicalDocumentEvent.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows for a 
          * direct link to a report that has been written on the 
          * procedure. Often surgical, and even psychological procedures 
          * can result in numerous observations, and other information 
          * generally captured in narrative form. When filled in, this 
          * attribute allows the user to drill down to the Clinical 
          * Observation Document record used to capture this additional 
-         * information.</p></remarks>
+         * information.</p> <p>An identifier for a report associated 
+         * with the procedure.</p> Un-merged Business Name: 
+         * ServiceReportReferenceId Relationship: 
+         * REPC_MT610002CA.ClinicalDocumentEvent.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows for a 
+         * direct link to a report that has been written on the 
+         * procedure. Often surgical, and even psychological procedures 
+         * can result in numerous observations, and other information 
+         * generally captured in narrative form. When filled in, this 
+         * attribute allows the user to drill down to the Clinical 
+         * Observation Document record used to capture this additional 
+         * information.</p> <p>An identifier for a report associated 
+         * with the procedure.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {

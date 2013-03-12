@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,6 +28,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt490
     using Ca.Infoway.Messagebuilder.Model;
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Merged;
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged;
+    using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Domainvalue;
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged;
     using System;
     using System.Collections.Generic;
@@ -63,7 +64,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt490
             this.subjectOf = new List<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.Includes>();
         }
         /**
-         * <summary>Special Authority Request ID</summary>
+         * <summary>Business Name: Special Authority Request ID</summary>
+         * 
+         * <remarks>Relationship: 
+         * FICR_MT490102CA.SpecialAuthorizationRequest.id 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -72,16 +77,25 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt490
         }
 
         /**
-         * <summary>Special Authorization Request Type</summary>
+         * <summary>Business Name: Special Authorization Request Type</summary>
+         * 
+         * <remarks>Relationship: 
+         * FICR_MT490102CA.SpecialAuthorizationRequest.code 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
-        public Code Code {
-            get { return (Code) this.code.Value; }
+        public ActSpecialAuthorizationCode Code {
+            get { return (ActSpecialAuthorizationCode) this.code.Value; }
             set { this.code.Value = value; }
         }
 
         /**
-         * <summary>Special Authorization Request Effective Date</summary>
+         * <summary>Business Name: Special Authorization Request 
+         * Effective Date</summary>
+         * 
+         * <remarks>Relationship: 
+         * FICR_MT490102CA.SpecialAuthorizationRequest.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"effectiveTime"})]
         public Interval<PlatformDate> EffectiveTime {
@@ -90,7 +104,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt490
         }
 
         /**
-         * <summary>Special Authorization Priority Code</summary>
+         * <summary>Business Name: Special Authorization Priority Code</summary>
+         * 
+         * <remarks>Relationship: 
+         * FICR_MT490102CA.SpecialAuthorizationRequest.priorityCode 
+         * Conformance/Cardinality: REQUIRED (0-1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"priorityCode"})]
         public ActPriority PriorityCode {
@@ -99,58 +117,116 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt490
         }
 
         /**
-         * <summary>Confidentiality Restriction(s</summary>
+         * <summary>Business Name: Confidentiality Restriction(s</summary>
+         * 
+         * <remarks>Relationship: 
+         * FICR_MT490102CA.SpecialAuthorizationRequest.confidentialityCode 
+         * Conformance/Cardinality: OPTIONAL (0-2)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"confidentialityCode"})]
         public ICollection<x_VeryBasicConfidentialityKind> ConfidentialityCode {
             get { return this.confidentialityCode.RawSet<x_VeryBasicConfidentialityKind>(); }
         }
 
+        /**
+         * <summary>Relationship: 
+         * FICR_MT490102CA.Author2.assignedEntity</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"author/assignedEntity"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.HealthcareWorker AuthorAssignedEntity {
             get { return this.authorAssignedEntity; }
             set { this.authorAssignedEntity = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * FICR_MT490102CA.Predecessor.specialAuthorizationRequestCrossReference</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"predecessor/specialAuthorizationRequestCrossReference"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Merged.SpecialAuthorizationRequestCrossReference PredecessorSpecialAuthorizationRequestCrossReference {
             get { return this.predecessorSpecialAuthorizationRequestCrossReference; }
             set { this.predecessorSpecialAuthorizationRequestCrossReference = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * FICR_MT490102CA.Support2.specialAuthorizationCriteria</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"support/specialAuthorizationCriteria"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt490102ca.SpecialAuthorizationCriteria> SupportSpecialAuthorizationCriteria {
             get { return this.supportSpecialAuthorizationCriteria; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * FICR_MT490102CA.SpecialAuthorizationRequest.subject1</summary>
+         * 
+         * <remarks>Conformance/Cardinality: REQUIRED (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subject1"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Merged.Subject3 Subject1 {
             get { return this.subject1; }
             set { this.subject1 = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * FICR_MT490102CA.SpecialAuthorizationRequest.subject2</summary>
+         * 
+         * <remarks>Conformance/Cardinality: REQUIRED (0-20)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subject2"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Merged.Subject5> Subject2 {
             get { return this.subject2; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * FICR_MT490102CA.Coverage.policyOrAccount</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"coverage/policyOrAccount"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt490102ca.PolicyOrAccount CoveragePolicyOrAccount {
             get { return this.coveragePolicyOrAccount; }
             set { this.coveragePolicyOrAccount = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * FICR_MT490102CA.PertinentInformation.healthDocumentAttachment</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"pertinentInformation/healthDocumentAttachment"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Merged.HealthDocumentAttachment_1> PertinentInformationHealthDocumentAttachment {
             get { return this.pertinentInformationHealthDocumentAttachment; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * FICR_MT490102CA.InFulfillmentOf.specialAuthorization</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"fulfillment/specialAuthorization"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt490102ca.SpecialAuthorization FulfillmentSpecialAuthorization {
             get { return this.fulfillmentSpecialAuthorization; }
             set { this.fulfillmentSpecialAuthorization = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * FICR_MT490102CA.SpecialAuthorizationRequest.subjectOf</summary>
+         * 
+         * <remarks>Conformance/Cardinality: REQUIRED (0-100)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.Includes> SubjectOf {
             get { return this.subjectOf; }

@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,18 +32,36 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt300
 
         public OriginalPrescriptionOrder() {
         }
+        /**
+         * <summary>Relationship: 
+         * COCT_MT300000CA.Prescriber.presriberRole</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"author/presriberRole"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt300000ca.PlayingPrescribePerson AuthorPresriberRole {
             get { return this.authorPresriberRole; }
             set { this.authorPresriberRole = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * COCT_MT300000CA.Component2.substitution</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"component1/substitution"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt300000ca.DispenseSubstitution Component1Substitution {
             get { return this.component1Substitution; }
             set { this.component1Substitution = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * COCT_MT300000CA.ComponentOrder.supplyOrder</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"component2/supplyOrder"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt300000ca.OriginalPrescription Component2SupplyOrder {
             get { return this.component2SupplyOrder; }

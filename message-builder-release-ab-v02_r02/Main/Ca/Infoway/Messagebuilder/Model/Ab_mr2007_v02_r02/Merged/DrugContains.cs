@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
 
 
     /**
-     * <summary>DrugContains</summary>
+     * <summary>Business Name: DrugContains</summary>
      * 
      * <remarks>POME_MT010040CA.Ingredient: drug contains 
      * <p>Identification of which ingredients are contained (or are 
@@ -92,12 +92,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             this.quantity = new PQImpl();
         }
         /**
-         * <summary>L:Does Not Contain Indicator</summary>
+         * <summary>Un-merged Business Name: DoesNotContainIndicator</summary>
          * 
-         * <remarks><p>An indication that a drug does not contain the 
-         * specified ingredient (active or inactive).</p> <p>Useful for 
-         * filtering searches. Allows providers to search for drugs not 
-         * containing a specific active ingredients or excipients. E.g. 
+         * <remarks>Relationship: 
+         * POME_MT010040CA.Ingredient.negationInd 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>An indication 
+         * that a drug does not contain the specified ingredient 
+         * (active or inactive).</p> <p>Useful for filtering searches. 
+         * Allows providers to search for drugs not containing a 
+         * specific active ingredients or excipients. E.g. 
          * lactose-free, gluten-free, etc.</p><p>Because product 
          * descriptions (particularly herbals) occasionally use the 
          * phrase &quot;may contain&quot;, this attribute allows null 
@@ -106,9 +109,27 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
          * active ingredients or excipients. E.g. lactose-free, 
          * gluten-free, etc.</p><p>Because product descriptions 
          * (particularly herbals) occasionally use the phrase &quot;may 
-         * contain&quot;, this attribute allows null values.</p> D:Drug 
-         * Does Not Contain Indicator <p>An indication that a drug does 
-         * not contain the specified ingredient (active or 
+         * contain&quot;, this attribute allows null values.</p> 
+         * Un-merged Business Name: DoesNotContainIndicator 
+         * Relationship: POME_MT010100CA.Ingredient.negationInd 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>An indication 
+         * that a drug does not contain the specified ingredient 
+         * (active or inactive).</p> <p>Useful for filtering searches. 
+         * Allows providers to search for drugs not containing a 
+         * specific active ingredients or excipients. E.g. 
+         * lactose-free, gluten-free, etc.</p><p>Because product 
+         * descriptions (particularly herbals) occasionally use the 
+         * phrase &quot;may contain&quot;, this attribute allows null 
+         * values.</p> <p>Useful for filtering searches. Allows 
+         * providers to search for drugs not containing a specific 
+         * active ingredients or excipients. E.g. lactose-free, 
+         * gluten-free, etc.</p><p>Because product descriptions 
+         * (particularly herbals) occasionally use the phrase &quot;may 
+         * contain&quot;, this attribute allows null values.</p> 
+         * Un-merged Business Name: DrugDoesNotContainIndicator 
+         * Relationship: COCT_MT220100CA.Ingredient.negationInd 
+         * Conformance/Cardinality: MANDATORY (1) <p>An indication that 
+         * a drug does not contain the specified ingredient (active or 
          * inactive).</p> <p>Useful for filtering searches. Allows 
          * providers to search for drugs not containing a specific 
          * active ingredients or excipients. E.g. lactose-free, 
@@ -120,36 +141,61 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
          * excipients. E.g. lactose-free, gluten-free, etc.</p><p>The 
          * attribute is 'mandatory' because the distinction between 
          * &quot;does/must contain&quot; and &quot;does/must not 
-         * contain&quot; is essential.</p> D:Drug Does Not Contain 
-         * Indicator <p>An indication that a drug does not contain the 
-         * specified ingredient (active or inactive).</p> <p>Useful for 
-         * filtering searches. Allows providers to search for drugs not 
-         * containing a specific active ingredients or excipients. E.g. 
-         * lactose-free, gluten-free, etc.</p><p>The attribute is 
-         * 'populated' because the distinction between &quot;does/must 
-         * contain&quot; and &quot;does/must not contain&quot; is 
-         * essential, however in some circumstances it is necessary to 
-         * say &quot;may contain&quot;.</p> <p>Useful for filtering 
-         * searches. Allows providers to search for drugs not 
-         * containing a specific active ingredients or excipients. E.g. 
-         * lactose-free, gluten-free, etc.</p><p>The attribute is 
-         * 'populated' because the distinction between &quot;does/must 
-         * contain&quot; and &quot;does/must not contain&quot; is 
-         * essential, however in some circumstances it is necessary to 
-         * say &quot;may contain&quot;.</p> Does Not Contain Indicator 
-         * <p>An indication that a drug does not contain the specified 
-         * ingredient (active or inactive).</p> <p>Useful for filtering 
-         * searches. Allows providers to search for drugs not 
-         * containing a specific active ingredients or excipients. E.g. 
-         * lactose-free, gluten-free, etc.</p><p>Because product 
-         * descriptions (particularly herbals) occasionally use the 
-         * phrase &quot;may contain&quot;, this attribute allows null 
-         * values.</p> <p>Useful for filtering searches. Allows 
+         * contain&quot; is essential.</p> Un-merged Business Name: 
+         * DrugDoesNotContainIndicator Relationship: 
+         * COCT_MT220200CA.Ingredient.negationInd 
+         * Conformance/Cardinality: MANDATORY (1) <p>An indication that 
+         * a drug does not contain the specified ingredient (active or 
+         * inactive).</p> <p>Useful for filtering searches. Allows 
          * providers to search for drugs not containing a specific 
          * active ingredients or excipients. E.g. lactose-free, 
-         * gluten-free, etc.</p><p>Because product descriptions 
-         * (particularly herbals) occasionally use the phrase &quot;may 
-         * contain&quot;, this attribute allows null values.</p></remarks>
+         * gluten-free, etc.</p><p>The attribute is 'mandatory' because 
+         * the distinction between &quot;does/must contain&quot; and 
+         * &quot;does/must not contain&quot; is essential.</p> 
+         * <p>Useful for filtering searches. Allows providers to search 
+         * for drugs not containing a specific active ingredients or 
+         * excipients. E.g. lactose-free, gluten-free, etc.</p><p>The 
+         * attribute is 'mandatory' because the distinction between 
+         * &quot;does/must contain&quot; and &quot;does/must not 
+         * contain&quot; is essential.</p> Un-merged Business Name: 
+         * DrugDoesNotContainIndicator Relationship: 
+         * COCT_MT220210CA.Ingredient.negationInd 
+         * Conformance/Cardinality: POPULATED (1) <p>An indication that 
+         * a drug does not contain the specified ingredient (active or 
+         * inactive).</p> <p>Useful for filtering searches. Allows 
+         * providers to search for drugs not containing a specific 
+         * active ingredients or excipients. E.g. lactose-free, 
+         * gluten-free, etc.</p><p>The attribute is 'populated' because 
+         * the distinction between &quot;does/must contain&quot; and 
+         * &quot;does/must not contain&quot; is essential, however in 
+         * some circumstances it is necessary to say &quot;may 
+         * contain&quot;.</p> <p>Useful for filtering searches. Allows 
+         * providers to search for drugs not containing a specific 
+         * active ingredients or excipients. E.g. lactose-free, 
+         * gluten-free, etc.</p><p>The attribute is 'populated' because 
+         * the distinction between &quot;does/must contain&quot; and 
+         * &quot;does/must not contain&quot; is essential, however in 
+         * some circumstances it is necessary to say &quot;may 
+         * contain&quot;.</p> Un-merged Business Name: 
+         * DrugDoesNotContainIndicator Relationship: 
+         * COCT_MT220110CA.Ingredient.negationInd 
+         * Conformance/Cardinality: POPULATED (1) <p>An indication that 
+         * a drug does not contain the specified ingredient (active or 
+         * inactive).</p> <p>Useful for filtering searches. Allows 
+         * providers to search for drugs not containing a specific 
+         * active ingredients or excipients. E.g. lactose-free, 
+         * gluten-free, etc.</p><p>The attribute is 'populated' because 
+         * the distinction between &quot;does/must contain&quot; and 
+         * &quot;does/must not contain&quot; is essential, however in 
+         * some circumstances it is necessary to say &quot;may 
+         * contain&quot;.</p> <p>Useful for filtering searches. Allows 
+         * providers to search for drugs not containing a specific 
+         * active ingredients or excipients. E.g. lactose-free, 
+         * gluten-free, etc.</p><p>The attribute is 'populated' because 
+         * the distinction between &quot;does/must contain&quot; and 
+         * &quot;does/must not contain&quot; is essential, however in 
+         * some circumstances it is necessary to say &quot;may 
+         * contain&quot;.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"negationInd"})]
         public bool? NegationInd {
@@ -158,16 +204,27 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>M:Ingredient Quantity</summary>
+         * <summary>Un-merged Business Name: IngredientQuantity</summary>
          * 
-         * <remarks><p>The quantity of the ingredient in a drug. This 
-         * is represented/measured in various forms/units including: 
-         * mg, mg/vol, %, etc.</p> <p>Essential for evaluating 
-         * appropriate dosage based on strength, as well as for 
-         * creating custom compounds with proper composition.</p> 
-         * C:Drug Ingredient Quantity <p>The quantity of the ingredient 
-         * in a drug. This is represented/measured in various 
-         * forms/units including: mg, mg/vol, %, etc.</p> 
+         * <remarks>Relationship: POME_MT010040CA.Ingredient.quantity 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The quantity of 
+         * the ingredient in a drug. This is represented/measured in 
+         * various forms/units including: mg, mg/vol, %, etc.</p> 
+         * <p>Essential for evaluating appropriate dosage based on 
+         * strength, as well as for creating custom compounds with 
+         * proper composition.</p> Un-merged Business Name: 
+         * IngredientQuantity Relationship: 
+         * POME_MT010100CA.Ingredient.quantity Conformance/Cardinality: 
+         * REQUIRED (0-1) <p>The quantity of the ingredient in a drug. 
+         * This is represented/measured in various forms/units 
+         * including: mg, mg/vol, %, etc.</p> <p>Essential for 
+         * evaluating appropriate dosage based on strength, as well as 
+         * for creating custom compounds with proper composition.</p> 
+         * Un-merged Business Name: DrugIngredientQuantity 
+         * Relationship: COCT_MT220100CA.Ingredient.quantity 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The quantity of 
+         * the ingredient in a drug. This is represented/measured in 
+         * various forms/units including: mg, mg/vol, %, etc.</p> 
          * <p>CompoundIngredient.amount(numerator)</p><p>CompoundIngredient.proportionOfFinal(e.g. 
          * 10% = 
          * .1mg/1mg)</p><p>ZPC.4(quantity)</p><p>ZPC.5(unit)</p><p>ZPJ1.4(quantity)</p><p>ZPJ1.5(unit)</p><p>ZPJ1.6(e.g. 
@@ -242,11 +299,60 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
          * (quantity)</p><p>Compound.451-EG (unit)</p> <p>Essential for 
          * evaluating appropriate dosage based on strength, as well as 
          * for creating custom compounds with proper composition.</p> 
-         * Ingredient Quantity <p>The quantity of the ingredient in a 
-         * drug. This is represented/measured in various forms/units 
-         * including: mg, mg/vol, %, etc.</p> <p>Essential for 
-         * evaluating appropriate dosage based on strength, as well as 
-         * for creating custom compounds with proper composition.</p></remarks>
+         * Un-merged Business Name: DrugIngredientQuantity 
+         * Relationship: COCT_MT220200CA.Ingredient.quantity 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The quantity of 
+         * the ingredient in a drug. This is represented/measured in 
+         * various forms/units including: mg, mg/vol, %, etc.</p> 
+         * <p>CompoundIngredient.amount(numerator)</p><p>CompoundIngredient.proportionOfFinal(e.g. 
+         * 10% = 
+         * .1mg/1mg)</p><p>ZPC.4(quantity)</p><p>ZPC.5(unit)</p><p>ZPJ1.4(quantity)</p><p>ZPJ1.5(unit)</p><p>ZPJ1.6(e.g. 
+         * 10% = 
+         * .1mg/1mg)</p><p>ZCP.3</p><p>ZDU.4.3</p><p>ZDU.6.1.2</p><p>Compound.448-ED 
+         * (quantity)</p><p>Compound.451-EG (unit)</p> 
+         * <p>CompoundIngredient.amount(numerator)</p><p>CompoundIngredient.proportionOfFinal(e.g. 
+         * 10% = 
+         * .1mg/1mg)</p><p>ZPC.4(quantity)</p><p>ZPC.5(unit)</p><p>ZPJ1.4(quantity)</p><p>ZPJ1.5(unit)</p><p>ZPJ1.6(e.g. 
+         * 10% = 
+         * .1mg/1mg)</p><p>ZCP.3</p><p>ZDU.4.3</p><p>ZDU.6.1.2</p><p>Compound.448-ED 
+         * (quantity)</p><p>Compound.451-EG (unit)</p> 
+         * <p>CompoundIngredient.amount(numerator)</p><p>CompoundIngredient.proportionOfFinal(e.g. 
+         * 10% = 
+         * .1mg/1mg)</p><p>ZPC.4(quantity)</p><p>ZPC.5(unit)</p><p>ZPJ1.4(quantity)</p><p>ZPJ1.5(unit)</p><p>ZPJ1.6(e.g. 
+         * 10% = 
+         * .1mg/1mg)</p><p>ZCP.3</p><p>ZDU.4.3</p><p>ZDU.6.1.2</p><p>Compound.448-ED 
+         * (quantity)</p><p>Compound.451-EG (unit)</p> 
+         * <p>CompoundIngredient.amount(numerator)</p><p>CompoundIngredient.proportionOfFinal(e.g. 
+         * 10% = 
+         * .1mg/1mg)</p><p>ZPC.4(quantity)</p><p>ZPC.5(unit)</p><p>ZPJ1.4(quantity)</p><p>ZPJ1.5(unit)</p><p>ZPJ1.6(e.g. 
+         * 10% = 
+         * .1mg/1mg)</p><p>ZCP.3</p><p>ZDU.4.3</p><p>ZDU.6.1.2</p><p>Compound.448-ED 
+         * (quantity)</p><p>Compound.451-EG (unit)</p> 
+         * <p>CompoundIngredient.amount(numerator)</p><p>CompoundIngredient.proportionOfFinal(e.g. 
+         * 10% = 
+         * .1mg/1mg)</p><p>ZPC.4(quantity)</p><p>ZPC.5(unit)</p><p>ZPJ1.4(quantity)</p><p>ZPJ1.5(unit)</p><p>ZPJ1.6(e.g. 
+         * 10% = 
+         * .1mg/1mg)</p><p>ZCP.3</p><p>ZDU.4.3</p><p>ZDU.6.1.2</p><p>Compound.448-ED 
+         * (quantity)</p><p>Compound.451-EG (unit)</p> 
+         * <p>CompoundIngredient.amount(numerator)</p><p>CompoundIngredient.proportionOfFinal(e.g. 
+         * 10% = 
+         * .1mg/1mg)</p><p>ZPC.4(quantity)</p><p>ZPC.5(unit)</p><p>ZPJ1.4(quantity)</p><p>ZPJ1.5(unit)</p><p>ZPJ1.6(e.g. 
+         * 10% = 
+         * .1mg/1mg)</p><p>ZCP.3</p><p>ZDU.4.3</p><p>ZDU.6.1.2</p><p>Compound.448-ED 
+         * (quantity)</p><p>Compound.451-EG (unit)</p> 
+         * <p>CompoundIngredient.amount(numerator)</p><p>CompoundIngredient.proportionOfFinal(e.g. 
+         * 10% = 
+         * .1mg/1mg)</p><p>ZPC.4(quantity)</p><p>ZPC.5(unit)</p><p>ZPJ1.4(quantity)</p><p>ZPJ1.5(unit)</p><p>ZPJ1.6(e.g. 
+         * 10% = 
+         * .1mg/1mg)</p><p>ZCP.3</p><p>ZDU.4.3</p><p>ZDU.6.1.2</p><p>Compound.448-ED 
+         * (quantity)</p><p>Compound.451-EG (unit)</p> 
+         * <p>CompoundIngredient.amount(numerator)</p><p>CompoundIngredient.proportionOfFinal(e.g. 
+         * 10% = 
+         * .1mg/1mg)</p><p>ZPC.4(quantity)</p><p>ZPC.5(unit)</p><p>ZPJ1.4(quantity)</p><p>ZPJ1.5(unit)</p><p>ZPJ1.6(e.g. 
+         * 10% = 
+         * .1mg/1mg)</p><p>ZCP.3</p><p>ZDU.4.3</p><p>ZDU.6.1.2</p><p>Compound.448-ED 
+         * (quantity)</p><p>Compound.451-EG (unit)</p
+         * ... [rest of documentation truncated due to excessive length]
          */
         [Hl7XmlMappingAttribute(new string[] {"quantity"})]
         public PhysicalQuantity Quantity {
@@ -254,6 +360,28 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             set { this.quantity.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: POME_MT010040CA.Ingredient.ingredient 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * POME_MT010100CA.Ingredient.ingredient 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * COCT_MT220100CA.Ingredient.ingredient 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * COCT_MT220200CA.Ingredient.ingredient 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * COCT_MT220210CA.Ingredient.ingredient 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * COCT_MT220110CA.Ingredient.ingredient 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"ingredient"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.DrugIngredients Ingredient {
             get { return this.ingredient; }

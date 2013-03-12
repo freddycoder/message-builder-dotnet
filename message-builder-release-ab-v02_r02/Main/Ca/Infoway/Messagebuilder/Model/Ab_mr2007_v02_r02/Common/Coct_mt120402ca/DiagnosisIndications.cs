@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,11 +27,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Coct_mt120402
 
 
     /**
-     * <summary>Diagnosis Indications</summary>
+     * <summary>Business Name: Diagnosis Indications</summary>
      * 
-     * <remarks><p>Describes diagnosis-related indications</p> 
-     * <p>Allows separation of conditions from symptoms from other 
-     * forms of indication.</p></remarks>
+     * <p>Describes diagnosis-related indications</p> <p>Allows 
+     * separation of conditions from symptoms from other forms of 
+     * indication.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"COCT_MT120402CA.ObservationCondition"})]
     public class DiagnosisIndications : MessagePartBean, Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.IIndications {
@@ -44,11 +44,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Coct_mt120402
             this.value = new CDImpl();
         }
         /**
-         * <summary>Diagnosis Type</summary>
+         * <summary>Business Name: Diagnosis Type</summary>
          * 
-         * <remarks><p>Identifies the type of condition described 
-         * (diagnosis or indication)</p> <p>Identifies this measurement 
-         * as a type of diagnosis and is therefore mandatory.</p></remarks>
+         * <remarks>Relationship: 
+         * COCT_MT120402CA.ObservationCondition.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Identifies the 
+         * type of condition described (diagnosis or indication)</p> 
+         * <p>Identifies this measurement as a type of diagnosis and is 
+         * therefore mandatory.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public ActCode Code {
@@ -57,10 +60,25 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Coct_mt120402
         }
 
         /**
-         * <summary>A:Diagnosis Code</summary>
+         * <summary>Business Name: A:Diagnosis Code</summary>
          * 
-         * <remarks><p>A coded form of the diagnosis that is the reason 
-         * for the current action.</p> </p> </p></remarks>
+         * <remarks>Relationship: 
+         * COCT_MT120402CA.ObservationCondition.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>A coded form of 
+         * the diagnosis that is the reason for the current action.</p> 
+         * <p>Allows cross-checking the use of a therapy against its 
+         * indication. Also allows analysis of best practices, etc. 
+         * This is the attribute that actually identifies the 
+         * indication and is therefore mandatory.</p><p> <i>This 
+         * element makes use of the CD datatype because some 
+         * terminologies used for the domain require use of 
+         * modifiers.</i> </p> <p>Allows cross-checking the use of a 
+         * therapy against its indication. Also allows analysis of best 
+         * practices, etc. This is the attribute that actually 
+         * identifies the indication and is therefore mandatory.</p><p> 
+         * <i>This element makes use of the CD datatype because some 
+         * terminologies used for the domain require use of 
+         * modifiers.</i> </p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"value"})]
         public DiagnosisValue Value {

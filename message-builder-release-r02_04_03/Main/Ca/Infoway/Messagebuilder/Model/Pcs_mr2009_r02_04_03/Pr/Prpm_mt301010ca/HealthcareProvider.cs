@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,12 +31,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Prpm_mt301010c
 
 
     /**
-     * <summary>Healthcare Provider</summary>
+     * <summary>Business Name: Healthcare Provider</summary>
      * 
-     * <remarks><p>This roles the specific Healthcare provider role 
-     * such as a Physician, Nurse or other type of caregivers.</p> 
      * <p>Roleclass required to support the identification of 
-     * person responsible for providing healthcare services.</p></remarks>
+     * person responsible for providing healthcare services.</p> 
+     * <p>This roles the specific Healthcare provider role such as 
+     * a Physician, Nurse or other type of caregivers.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"PRPM_MT301010CA.HealthCareProvider"})]
     public class HealthcareProvider : MessagePartBean, Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.IChoice, Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Prpm_mt301010ca.IRoleChoice {
@@ -64,17 +64,26 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Prpm_mt301010c
             this.statusCode = new CSImpl();
             this.effectiveTime = new IVLImpl<TS, Interval<PlatformDate>>();
         }
+        /**
+         * <summary>Relationship: 
+         * PRPM_MT301010CA.ResponsibleParty.privilege</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"responsibleFor/privilege"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Merged.Privilege> ResponsibleForPrivilege {
             get { return this.responsibleForPrivilege; }
         }
 
         /**
-         * <summary>Healthcare Provider Role Identification</summary>
+         * <summary>Business Name: Healthcare Provider Role 
+         * Identification</summary>
          * 
-         * <remarks><p>A unique identifier for a provider in a specific 
-         * healthcare role.</p> <p>Mandatory attribute supports the 
-         * identification of the healthcare provider</p></remarks>
+         * <remarks>Relationship: PRPM_MT301010CA.HealthCareProvider.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>Mandatory 
+         * attribute supports the identification of the healthcare 
+         * provider</p> <p>A unique identifier for a provider in a 
+         * specific healthcare role.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -82,17 +91,25 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Prpm_mt301010c
             set { this.id.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: PRPM_MT301010CA.RoleChoice.relatedTo</summary>
+         * 
+         * <remarks>Conformance/Cardinality: REQUIRED (0-100)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"relatedTo"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Prpm_mt301010ca.RelatedTo> RelatedTo {
             get { return this.relatedTo; }
         }
 
         /**
-         * <summary>Healthcare Provider Role Type</summary>
+         * <summary>Business Name: Healthcare Provider Role Type</summary>
          * 
-         * <remarks><p>The code identifying the specific healthcare 
-         * provider role.</p> <p>Mandatory attribute supports the 
-         * identification of the healthcare provider</p></remarks>
+         * <remarks>Relationship: 
+         * PRPM_MT301010CA.HealthCareProvider.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Mandatory 
+         * attribute supports the identification of the healthcare 
+         * provider</p> <p>The code identifying the specific healthcare 
+         * provider role.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public HealthcareProviderRoleType Code {
@@ -101,11 +118,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Prpm_mt301010c
         }
 
         /**
-         * <summary>Healthcare Provider Role Name</summary>
+         * <summary>Business Name: Healthcare Provider Role Name</summary>
          * 
-         * <remarks><p>The providers name pertaining to the specific 
-         * healthcare provider role.</p> <p>Mandatory attribute 
-         * supports the identification of the healthcare provider</p></remarks>
+         * <remarks>Relationship: 
+         * PRPM_MT301010CA.HealthCareProvider.name 
+         * Conformance/Cardinality: MANDATORY (1-5) <p>Mandatory 
+         * attribute supports the identification of the healthcare 
+         * provider</p> <p>The providers name pertaining to the 
+         * specific healthcare provider role.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"name"})]
         public IList<PersonName> Name {
@@ -113,11 +133,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Prpm_mt301010c
         }
 
         /**
-         * <summary>Healthcare Provider Role Address</summary>
+         * <summary>Business Name: Healthcare Provider Role Address</summary>
          * 
-         * <remarks><p>The address for the provider when playing the 
-         * role of healthcare provider.</p> <p>Required attribute 
-         * supports the identification of the healthcare provider</p></remarks>
+         * <remarks>Relationship: 
+         * PRPM_MT301010CA.HealthCareProvider.addr 
+         * Conformance/Cardinality: REQUIRED (0-5) <p>Required 
+         * attribute supports the identification of the healthcare 
+         * provider</p> <p>The address for the provider when playing 
+         * the role of healthcare provider.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"addr"})]
         public IList<PostalAddress> Addr {
@@ -125,11 +148,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Prpm_mt301010c
         }
 
         /**
-         * <summary>Healthcare Provider Role Telecom</summary>
+         * <summary>Business Name: Healthcare Provider Role Telecom</summary>
          * 
-         * <remarks><p>The telecom for the provider when playing the 
-         * role of healthcare provider.</p> <p>Required attribute 
-         * supports the identification of the healthcare provider</p></remarks>
+         * <remarks>Relationship: 
+         * PRPM_MT301010CA.HealthCareProvider.telecom 
+         * Conformance/Cardinality: REQUIRED (0-5) <p>Required 
+         * attribute supports the identification of the healthcare 
+         * provider</p> <p>The telecom for the provider when playing 
+         * the role of healthcare provider.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"telecom"})]
         public IList<TelecommunicationAddress> Telecom {
@@ -137,11 +163,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Prpm_mt301010c
         }
 
         /**
-         * <summary>Healthcare Provider Role Status Code</summary>
+         * <summary>Business Name: Healthcare Provider Role Status Code</summary>
          * 
-         * <remarks><p>The status of the provider in the healthcare 
-         * provider role i.e. Active</p> <p>Mandatory attribute 
-         * supports the identification of the healthcare provider</p></remarks>
+         * <remarks>Relationship: 
+         * PRPM_MT301010CA.HealthCareProvider.statusCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>Mandatory 
+         * attribute supports the identification of the healthcare 
+         * provider</p> <p>The status of the provider in the healthcare 
+         * provider role i.e. Active</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"statusCode"})]
         public RoleStatus StatusCode {
@@ -150,11 +179,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Prpm_mt301010c
         }
 
         /**
-         * <summary>Healthcare Provider Role Effective Date</summary>
+         * <summary>Business Name: Healthcare Provider Role Effective 
+         * Date</summary>
          * 
-         * <remarks><p>The effective date of the provider in the 
-         * healthcare provider role</p> <p>Mandatory attribute supports 
-         * the identification of the healthcare provider</p></remarks>
+         * <remarks>Relationship: 
+         * PRPM_MT301010CA.HealthCareProvider.effectiveTime 
+         * Conformance/Cardinality: MANDATORY (1) <p>Mandatory 
+         * attribute supports the identification of the healthcare 
+         * provider</p> <p>The effective date of the provider in the 
+         * healthcare provider role</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"effectiveTime"})]
         public Interval<PlatformDate> EffectiveTime {
@@ -162,12 +195,24 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Prpm_mt301010c
             set { this.effectiveTime.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PRPM_MT301010CA.HealthCareProvider.healthCarePrincipalPerson</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"healthCarePrincipalPerson"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Merged.PrinicpalPerson_1 HealthCarePrincipalPerson {
             get { return this.healthCarePrincipalPerson; }
             set { this.healthCarePrincipalPerson = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PRPM_MT301010CA.HealthCareProvider.issuingOrganization</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"issuingOrganization"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Prpm_mt301010ca.Organization IssuingOrganization {
             get { return this.issuingOrganization; }

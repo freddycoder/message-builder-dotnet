@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -54,13 +54,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Cr.Prpa_mt101103ca {
             this.personTelecomValue = new List<TEL>();
         }
         /**
-         * <summary>Client Gender</summary>
+         * <summary>Business Name: Client Gender</summary>
          * 
-         * <remarks><p>Gender of the Client, this is not to be confused 
-         * with Clinical Gender of a client. Administrative Gender is 
-         * typically restricted to Male (M), Female (F) or Unknown 
-         * (U)</p> <p>Mandatory attribute supports the identification 
-         * of the client</p></remarks>
+         * <remarks>Relationship: 
+         * PRPA_MT101103CA.AdministrativeGender.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Gender of the 
+         * Client, this is not to be confused with Clinical Gender of a 
+         * client. Administrative Gender is typically restricted to 
+         * Male (M), Female (F) or Unknown (U)</p> <p>Mandatory 
+         * attribute supports the identification of the client</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"administrativeGender/value"})]
         public AdministrativeGender AdministrativeGenderValue {
@@ -69,43 +71,76 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Cr.Prpa_mt101103ca {
         }
 
         /**
-         * <summary>Identification</summary>
+         * <summary>Business Name: (Client Healthcare Identification 
+         * Number And Or NonHealthcare Identification</summary>
          * 
-         * <remarks><p>Healthcare identiers may be assigned 
-         * jurisdictionally or by care facility and/or non-healthcare 
-         * identifiers for the Client (e.g. Passport, SIN, DND, DIAND, 
-         * Drivers License)</p> <p>Mandatory attribute supports the 
-         * identification of the client</p></remarks>
+         * <remarks>Relationship: PRPA_MT101103CA.ClientId.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Healthcare 
+         * identiers may be assigned jurisdictionally or by care 
+         * facility and/or non-healthcare identifiers for the Client 
+         * (e.g. Passport, SIN, DND, DIAND, Drivers License)</p> 
+         * <p>Mandatory attribute supports the identification of the 
+         * client</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"clientId/value"})]
         public IList<Identifier> ClientIdValue {
             get { return new RawListWrapper<II, Identifier>(clientIdValue, typeof(IIImpl)); }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PRPA_MT101103CA.ParameterList.deceasedIndicator</summary>
+         * 
+         * <remarks>Conformance/Cardinality: OPTIONAL (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"deceasedIndicator"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Cr.Prpa_mt101103ca.DeceasedIndicator DeceasedIndicator {
             get { return this.deceasedIndicator; }
             set { this.deceasedIndicator = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PRPA_MT101103CA.ParameterList.deceasedTime</summary>
+         * 
+         * <remarks>Conformance/Cardinality: REQUIRED (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"deceasedTime"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Cr.Prpa_mt101103ca.DeceasedTime DeceasedTime {
             get { return this.deceasedTime; }
             set { this.deceasedTime = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PRPA_MT101103CA.ParameterList.languageCode</summary>
+         * 
+         * <remarks>Conformance/Cardinality: REQUIRED (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"languageCode"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Cr.Prpa_mt101103ca.LanguageCode LanguageCode {
             get { return this.languageCode; }
             set { this.languageCode = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PRPA_MT101103CA.ParameterList.multipleBirthIndicator</summary>
+         * 
+         * <remarks>Conformance/Cardinality: REQUIRED (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"multipleBirthIndicator"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Cr.Prpa_mt101103ca.MultipleBirthIndicator MultipleBirthIndicator {
             get { return this.multipleBirthIndicator; }
             set { this.multipleBirthIndicator = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PRPA_MT101103CA.ParameterList.multipleBirthOrderNumber</summary>
+         * 
+         * <remarks>Conformance/Cardinality: REQUIRED (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"multipleBirthOrderNumber"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Cr.Prpa_mt101103ca.MultipleBirthOrderNumber MultipleBirthOrderNumber {
             get { return this.multipleBirthOrderNumber; }
@@ -113,10 +148,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Cr.Prpa_mt101103ca {
         }
 
         /**
-         * <summary>Client Address</summary>
+         * <summary>Business Name: Client Address</summary>
          * 
-         * <remarks><p>Address(es) of the Client</p> <p>Mandatory 
-         * attribute supports the identification of the client</p></remarks>
+         * <remarks>Relationship: PRPA_MT101103CA.PersonAddress.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Address(es) of the 
+         * Client</p> <p>Mandatory attribute supports the 
+         * identification of the client</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"personAddress/value"})]
         public IList<PostalAddress> PersonAddressValue {
@@ -124,10 +161,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Cr.Prpa_mt101103ca {
         }
 
         /**
-         * <summary>Client Date of Birth</summary>
+         * <summary>Business Name: Client Date of Birth</summary>
          * 
-         * <remarks><p>Date of birth of the Client</p> <p>Mandatory 
-         * attribute supports the identification of the client</p></remarks>
+         * <remarks>Relationship: PRPA_MT101103CA.PersonBirthtime.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Date of birth of 
+         * the Client</p> <p>Mandatory attribute supports the 
+         * identification of the client</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"personBirthtime/value"})]
         public PlatformDate PersonBirthtimeValue {
@@ -136,10 +175,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Cr.Prpa_mt101103ca {
         }
 
         /**
-         * <summary>Client Name</summary>
+         * <summary>Business Name: Client Name</summary>
          * 
-         * <remarks><p>Name(s) for the Client</p> <p>Mandatory 
-         * attribute supports the identification of the client</p></remarks>
+         * <remarks>Relationship: PRPA_MT101103CA.PersonName.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Name(s) for the 
+         * Client</p> <p>Mandatory attribute supports the 
+         * identification of the client</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"personName/value"})]
         public IList<PersonName> PersonNameValue {
@@ -147,17 +188,24 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Cr.Prpa_mt101103ca {
         }
 
         /**
-         * <summary>Client Telecom</summary>
+         * <summary>Business Name: Client Telecom</summary>
          * 
-         * <remarks><p>Provides information about telecom</p> 
-         * <p>Mandatory attribute supports the identification of the 
-         * client</p></remarks>
+         * <remarks>Relationship: PRPA_MT101103CA.PersonTelecom.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Provides 
+         * information about telecom</p> <p>Mandatory attribute 
+         * supports the identification of the client</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"personTelecom/value"})]
         public IList<TelecommunicationAddress> PersonTelecomValue {
             get { return new RawListWrapper<TEL, TelecommunicationAddress>(personTelecomValue, typeof(TELImpl)); }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PRPA_MT101103CA.ParameterList.personalRelationshipCode</summary>
+         * 
+         * <remarks>Conformance/Cardinality: REQUIRED (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"personalRelationshipCode"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Cr.Prpa_mt101103ca.PersonalRelationshipCode PersonalRelationshipCode {
             get { return this.personalRelationshipCode; }

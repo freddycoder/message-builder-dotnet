@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,16 +35,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Ficr_mt61020
             this.value = new STImpl();
         }
         /**
-         * <summary>AdjudicationInformationCode</summary>
+         * <summary>Business Name: AdjudicationInformationCode</summary>
          * 
-         * <remarks><p>Domain is 
+         * <remarks>Relationship: 
+         * FICR_MT610201CA.AdjudicationResultInformation.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Domain is 
          * ActAdjudicationInformationCode.</p><p>A subset of these 
          * codes may be included in the COB CMET for downstream 
-         * adjudicators due to privacy concerns/legislation.</p> 
-         * <p>Domain is ActAdjudicationInformationCode.</p><p>A subset 
-         * of these codes may be included in the COB CMET for 
-         * downstream adjudicators due to privacy 
-         * concerns/legislation.</p></remarks>
+         * adjudicators due to privacy concerns/legislation.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"value"})]
         public String Value {

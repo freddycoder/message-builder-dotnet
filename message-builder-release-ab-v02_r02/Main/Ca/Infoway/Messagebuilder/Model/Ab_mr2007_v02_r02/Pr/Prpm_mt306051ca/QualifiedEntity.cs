@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,17 +30,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt306051ca {
 
 
     /**
-     * <summary>Qualified Entity</summary>
+     * <summary>Business Name: Qualified Entity</summary>
      * 
-     * <remarks><p>This role describes specific qualifications that 
-     * may be held the provider as a result of training or 
-     * experience, but having no legal force. Example: a medical 
-     * degree or diploma. The current model does not include role 
-     * attributes such as name, addr and telecom because there are 
-     * no known use cases in this domain where this role is 
-     * contactable.</p> <p>Roleclass required to provide additional 
-     * information for the person responsible for providing 
-     * healthcare services</p></remarks>
+     * <p>This role describes specific qualifications that may be 
+     * held the provider as a result of training or experience, but 
+     * having no legal force. Example: a medical degree or diploma. 
+     * The current model does not include role attributes such as 
+     * name, addr and telecom because there are no known use cases 
+     * in this domain where this role is contactable.</p> 
+     * <p>Roleclass required to provide additional information for 
+     * the person responsible for providing healthcare services</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"PRPM_MT306051CA.QualifiedEntity"})]
     public class QualifiedEntity : MessagePartBean, Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt306051ca.IRoleChoice {
@@ -55,11 +54,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt306051ca {
             this.code = new CVImpl();
         }
         /**
-         * <summary>Expertise or Credentials Role Identifier</summary>
+         * <summary>Business Name: Expertise or Credentials Role 
+         * Identifier</summary>
          * 
-         * <remarks><p>Unique identifier for the Expertise or 
-         * Credential.</p> <p>Mandatory attribute supports the 
-         * identification of the healthcare provider</p></remarks>
+         * <remarks>Relationship: PRPM_MT306051CA.QualifiedEntity.id 
+         * Conformance/Cardinality: MANDATORY (1-50) <p>Unique 
+         * identifier for the Expertise or Credential.</p> <p>Mandatory 
+         * attribute supports the identification of the healthcare 
+         * provider</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public ICollection<Identifier> Id {
@@ -67,14 +69,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt306051ca {
         }
 
         /**
-         * <summary>Expertise or Credentials Role Type</summary>
+         * <summary>Business Name: Expertise or Credentials Role Type</summary>
          * 
-         * <remarks><p>A code for the degree or educational rank that 
-         * the credential specifies. May also apply to an Expertise 
-         * type.</p> <p>Required attribute supports the identification 
-         * of the healthcare provider</p> <p>If Expertise or 
-         * Credentials are included in the message, then Role Type Must 
-         * Exist.</p></remarks>
+         * <remarks>Relationship: PRPM_MT306051CA.QualifiedEntity.code 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>A code for the 
+         * degree or educational rank that the credential specifies. 
+         * May also apply to an Expertise type.</p> <p>Required 
+         * attribute supports the identification of the healthcare 
+         * provider</p> <p>If Expertise or Credentials are included in 
+         * the message, then Role Type Must Exist.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public AssignedRoleType Code {
@@ -82,12 +85,24 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt306051ca {
             set { this.code.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PRPM_MT306051CA.QualifiedEntity.qualifiedPrincipalPerson</summary>
+         * 
+         * <remarks>Conformance/Cardinality: REQUIRED (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"qualifiedPrincipalPerson"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Merged.PrinicpalPerson_2 QualifiedPrincipalPerson {
             get { return this.qualifiedPrincipalPerson; }
             set { this.qualifiedPrincipalPerson = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PRPM_MT306051CA.QualifiedEntity.qualificationGrantingOrganization</summary>
+         * 
+         * <remarks>Conformance/Cardinality: REQUIRED (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"qualificationGrantingOrganization"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt306051ca.Organization QualificationGrantingOrganization {
             get { return this.qualificationGrantingOrganization; }

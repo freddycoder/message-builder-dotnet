@@ -1,4 +1,25 @@
+/**
+ * Copyright 2013 Canada Health Infoway, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Author:        $LastChangedBy: tmcgrady $
+ * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Revision:      $LastChangedRevision: 2623 $
+ */
 using System.Collections.Generic;
+using Ca.Infoway.Messagebuilder.Datatype.Impl;
+using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter;
 using NUnit.Framework;
 
@@ -11,8 +32,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		[Test]
 		public virtual void TestGetAttributeNameValuePairsNullValue()
 		{
-			IDictionary<string, string> result = new BlPropertyFormatter().GetAttributeNameValuePairs(new FormatContextImpl("name", null
-				, null), null);
+			IDictionary<string, string> result = new BlPropertyFormatter().GetAttributeNameValuePairs(new FormatContextImpl(new ModelToXmlResult
+				(), null, "name", null, null), null, new BLImpl());
 			// a null value for BL elements results in a nullFlavor attribute
 			Assert.AreEqual(1, result.Count, "map size");
 			Assert.IsTrue(result.ContainsKey("nullFlavor"), "key as expected");
@@ -21,10 +42,24 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 
 		/// <exception cref="System.Exception"></exception>
 		[Test]
+		public virtual void TestGetAttributeNameValuePairsSpecifiedNullValue()
+		{
+			IDictionary<string, string> result = new BlPropertyFormatter().GetAttributeNameValuePairs(new FormatContextImpl(new ModelToXmlResult
+				(), null, "name", null, null), null, new BLImpl(Ca.Infoway.Messagebuilder.Domainvalue.Nullflavor.NullFlavor.NOT_APPLICABLE
+				));
+			// a null value for BL elements results in a nullFlavor attribute
+			Assert.AreEqual(1, result.Count, "map size");
+			Assert.IsTrue(result.ContainsKey("nullFlavor"), "key as expected");
+			Assert.AreEqual(Ca.Infoway.Messagebuilder.Domainvalue.Nullflavor.NullFlavor.NOT_APPLICABLE.CodeValue, result.SafeGet("nullFlavor"
+				), "value as expected");
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
 		public virtual void TestGetAttributeNameValuePairsBooleanTrue()
 		{
-			IDictionary<string, string> result = new BlPropertyFormatter().GetAttributeNameValuePairs(new FormatContextImpl("name", null
-				, null), true);
+			IDictionary<string, string> result = new BlPropertyFormatter().GetAttributeNameValuePairs(new FormatContextImpl(new ModelToXmlResult
+				(), null, "name", null, null), true, null);
 			Assert.AreEqual(1, result.Count, "map size");
 			Assert.IsTrue(result.ContainsKey("value"), "key as expected");
 			Assert.AreEqual("true", result.SafeGet("value"), "value as expected");
@@ -34,8 +69,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		[Test]
 		public virtual void TestGetAttributeNameValuePairsBooleanFalse()
 		{
-			IDictionary<string, string> result = new BlPropertyFormatter().GetAttributeNameValuePairs(new FormatContextImpl("name", null
-				, null), false);
+			IDictionary<string, string> result = new BlPropertyFormatter().GetAttributeNameValuePairs(new FormatContextImpl(new ModelToXmlResult
+				(), null, "name", null, null), false, null);
 			Assert.AreEqual(1, result.Count, "map size");
 			Assert.IsTrue(result.ContainsKey("value"), "key as expected");
 			Assert.AreEqual("false", result.SafeGet("value"), "value as expected");

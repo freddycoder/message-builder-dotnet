@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,12 +34,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Porx_mt0200
 
 
     /**
-     * <summary>Prescription Dispense</summary>
+     * <summary>Business Name: Prescription Dispense</summary>
      * 
-     * <remarks><p>This is the detailed information about a 
-     * medication dispense that has been performed on behalf a 
-     * patient.</p> <p>Dispensing is an integral part of the 
-     * overall medication process.</p></remarks>
+     * <p>This is the detailed information about a medication 
+     * dispense that has been performed on behalf a patient.</p> 
+     * <p>Dispensing is an integral part of the overall medication 
+     * process.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"PORX_MT020070CA.MedicationDispense"})]
     public class PrescriptionDispense : MessagePartBean {
@@ -60,12 +60,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Porx_mt0200
             this.component2DosageInstruction = new List<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.AdministrationInstructions>();
         }
         /**
-         * <summary>A:Local Dispense Id</summary>
+         * <summary>Business Name: A:Local Dispense Id</summary>
          * 
-         * <remarks><p>Identifier assigned by the dispensing 
-         * facility.</p> <p>Allows formal tracking of centrally 
-         * recorded dispenses to local records for audit and related 
-         * purposes.</p></remarks>
+         * <remarks>Relationship: PORX_MT020070CA.MedicationDispense.id 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Identifier 
+         * assigned by the dispensing facility.</p> <p>Allows formal 
+         * tracking of centrally recorded dispenses to local records 
+         * for audit and related purposes.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -74,89 +75,126 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Porx_mt0200
         }
 
         /**
-         * <summary>E:Prescription Masking Indicators</summary>
+         * <summary>Business Name: E:Prescription Masking Indicators</summary>
          * 
-         * <remarks><p>Communicates the intent that the dispense should 
-         * be masked if it is created; If the dispense is masked, this 
-         * makes the complete prescription and all dispenses 
-         * masked.</p> <p>Can be used to set a mask for a new dispense, 
-         * if present in a new dispense request.</p><p>Allows the 
-         * patient to have discrete control over access to their 
-         * prescription data.</p><p>Taboo allows the provider to 
-         * request restricted access to patient or their care 
-         * giver.</p><p>Constraint: Can&#226;&#128;&#153;t have both 
-         * normal and one of the other codes simultaneously.</p><p>The 
-         * attribute is optional because not all systems will support 
-         * masking.</p> <p>Can be used to set a mask for a new 
-         * dispense, if present in a new dispense request.</p><p>Allows 
-         * the patient to have discrete control over access to their 
-         * prescription data.</p><p>Taboo allows the provider to 
-         * request restricted access to patient or their care 
-         * giver.</p><p>Constraint: Can&#226;&#128;&#153;t have both 
-         * normal and one of the other codes simultaneously.</p><p>The 
-         * attribute is optional because not all systems will support 
-         * masking.</p> <p>Can be used to set a mask for a new 
-         * dispense, if present in a new dispense request.</p><p>Allows 
-         * the patient to have discrete control over access to their 
-         * prescription data.</p><p>Taboo allows the provider to 
-         * request restricted access to patient or their care 
-         * giver.</p><p>Constraint: Can&#226;&#128;&#153;t have both 
-         * normal and one of the other codes simultaneously.</p><p>The 
-         * attribute is optional because not all systems will support 
-         * masking.</p> <p>Can be used to set a mask for a new 
-         * dispense, if present in a new dispense request.</p><p>Allows 
-         * the patient to have discrete control over access to their 
-         * prescription data.</p><p>Taboo allows the provider to 
-         * request restricted access to patient or their care 
-         * giver.</p><p>Constraint: Can&#226;&#128;&#153;t have both 
-         * normal and one of the other codes simultaneously.</p><p>The 
-         * attribute is optional because not all systems will support 
-         * masking.</p> <p>Can be used to set a mask for a new 
-         * dispense, if present in a new dispense request.</p><p>Allows 
-         * the patient to have discrete control over access to their 
-         * prescription data.</p><p>Taboo allows the provider to 
-         * request restricted access to patient or their care 
-         * giver.</p><p>Constraint: Can&#226;&#128;&#153;t have both 
-         * normal and one of the other codes simultaneously.</p><p>The 
-         * attribute is optional because not all systems will support 
-         * masking.</p> <p>If a dispense is masked, it implicitly masks 
-         * the prescription being dispensed. (There's no point in 
-         * masking a dispense if the prescription is unmasked.)</p></remarks>
+         * <remarks>Relationship: 
+         * PORX_MT020070CA.MedicationDispense.confidentialityCode 
+         * Conformance/Cardinality: OPTIONAL (0-2) <p>Communicates the 
+         * intent that the dispense should be masked if it is created; 
+         * If the dispense is masked, this makes the complete 
+         * prescription and all dispenses masked.</p> <p>Can be used to 
+         * set a mask for a new dispense, if present in a new dispense 
+         * request.</p><p>Allows the patient to have discrete control 
+         * over access to their prescription data.</p><p>Taboo allows 
+         * the provider to request restricted access to patient or 
+         * their care giver.</p><p>Constraint: Can&#226;&#128;&#153;t 
+         * have both normal and one of the other codes 
+         * simultaneously.</p><p>The attribute is optional because not 
+         * all systems will support masking.</p> <p>Can be used to set 
+         * a mask for a new dispense, if present in a new dispense 
+         * request.</p><p>Allows the patient to have discrete control 
+         * over access to their prescription data.</p><p>Taboo allows 
+         * the provider to request restricted access to patient or 
+         * their care giver.</p><p>Constraint: Can&#226;&#128;&#153;t 
+         * have both normal and one of the other codes 
+         * simultaneously.</p><p>The attribute is optional because not 
+         * all systems will support masking.</p> <p>Can be used to set 
+         * a mask for a new dispense, if present in a new dispense 
+         * request.</p><p>Allows the patient to have discrete control 
+         * over access to their prescription data.</p><p>Taboo allows 
+         * the provider to request restricted access to patient or 
+         * their care giver.</p><p>Constraint: Can&#226;&#128;&#153;t 
+         * have both normal and one of the other codes 
+         * simultaneously.</p><p>The attribute is optional because not 
+         * all systems will support masking.</p> <p>Can be used to set 
+         * a mask for a new dispense, if present in a new dispense 
+         * request.</p><p>Allows the patient to have discrete control 
+         * over access to their prescription data.</p><p>Taboo allows 
+         * the provider to request restricted access to patient or 
+         * their care giver.</p><p>Constraint: Can&#226;&#128;&#153;t 
+         * have both normal and one of the other codes 
+         * simultaneously.</p><p>The attribute is optional because not 
+         * all systems will support masking.</p> <p>Can be used to set 
+         * a mask for a new dispense, if present in a new dispense 
+         * request.</p><p>Allows the patient to have discrete control 
+         * over access to their prescription data.</p><p>Taboo allows 
+         * the provider to request restricted access to patient or 
+         * their care giver.</p><p>Constraint: Can&#226;&#128;&#153;t 
+         * have both normal and one of the other codes 
+         * simultaneously.</p><p>The attribute is optional because not 
+         * all systems will support masking.</p> <p>If a dispense is 
+         * masked, it implicitly masks the prescription being 
+         * dispensed. (There's no point in masking a dispense if the 
+         * prescription is unmasked.)</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"confidentialityCode"})]
         public ICollection<x_NormalRestrictedTabooConfidentialityKind> ConfidentialityCode {
             get { return this.confidentialityCode.RawSet<x_NormalRestrictedTabooConfidentialityKind>(); }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PORX_MT020070CA.MedicationDispense.subject</summary>
+         * 
+         * <remarks>Conformance/Cardinality: REQUIRED (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subject"})]
         public bool? Subject {
             get { return this.subject.Value; }
             set { this.subject.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PORX_MT020070CA.InFulfillmentOf1.substanceAdministrationRequest</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"inFulfillmentOf/substanceAdministrationRequest"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged.DeviceRequest_1 InFulfillmentOfSubstanceAdministrationRequest {
             get { return this.inFulfillmentOfSubstanceAdministrationRequest; }
             set { this.inFulfillmentOfSubstanceAdministrationRequest = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PORX_MT020070CA.Component13.substitutionMade</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"component1/substitutionMade"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.Substitution Component1SubstitutionMade {
             get { return this.component1SubstitutionMade; }
             set { this.component1SubstitutionMade = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PORX_MT020070CA.Component11.dosageInstruction</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"component2/dosageInstruction"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.AdministrationInstructions> Component2DosageInstruction {
             get { return this.component2DosageInstruction; }
         }
 
+        /**
+         * <summary>Relationship: PORX_MT020070CA.Component.supplyEvent</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"component3/supplyEvent"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Porx_mt020070ca.SupplyEvent Component3SupplyEvent {
             get { return this.component3SupplyEvent; }
             set { this.component3SupplyEvent = value; }
         }
 
+        /**
+         * <summary>Relationship: PORX_MT020070CA.Subject7.annotation</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf/annotation"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Coct_mt120600ca.Notes SubjectOfAnnotation {
             get { return this.subjectOfAnnotation; }

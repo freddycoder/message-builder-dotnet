@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,14 +27,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Si.Comt_mt400001ca {
 
 
     /**
-     * <summary>Diagnosis</summary>
+     * <summary>Business Name: Diagnosis</summary>
      * 
-     * <remarks><p>If code is SNOMED, value must not be specified. 
-     * Otherwise value is mandatory and code must be 
+     * <p>If code is SNOMED, value must not be specified. Otherwise 
+     * value is mandatory and code must be 
      * &#226;&#128;&#152;DX&#226;&#128;&#153;</p> <p>Conveys 
      * information about a diagnosis to be masked</p> <p>Allows 
      * masking of items related to a particular medical 
-     * condition.</p></remarks>
+     * condition.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"COMT_MT400001CA.Diagnosis"})]
     public class Diagnosis : MessagePartBean {
@@ -47,13 +47,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Si.Comt_mt400001ca {
             this.value = new CVImpl();
         }
         /**
-         * <summary>A:Diagnosis Type</summary>
+         * <summary>Business Name: A:Diagnosis Type</summary>
          * 
-         * <remarks><p>Used to indicate that this observation is a 
-         * diagnosis, and for SNOMED, provides details of what the 
-         * diagnosis is.</p> <p>Needed to convey the diagnosis 
-         * information to be masked, and attribute is therefore 
-         * mandatory.</p></remarks>
+         * <remarks>Relationship: COMT_MT400001CA.Diagnosis.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Used to indicate 
+         * that this observation is a diagnosis, and for SNOMED, 
+         * provides details of what the diagnosis is.</p> <p>Needed to 
+         * convey the diagnosis information to be masked, and attribute 
+         * is therefore mandatory.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public ActCode Code {
@@ -62,13 +63,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Si.Comt_mt400001ca {
         }
 
         /**
-         * <summary>B:Diagnosis</summary>
+         * <summary>Business Name: B:Diagnosis</summary>
          * 
-         * <remarks><p>The diagnosis whose associated records should be 
-         * masked.</p> <p>Allows masking of all records (prescriptions, 
-         * dispenses, encounters, lab tests, etc.) associated with the 
-         * specified diagnosis. This element is optional because it is 
-         * not used for SNOMED.</p></remarks>
+         * <remarks>Relationship: COMT_MT400001CA.Diagnosis.value 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>The diagnosis 
+         * whose associated records should be masked.</p> <p>Allows 
+         * masking of all records (prescriptions, dispenses, 
+         * encounters, lab tests, etc.) associated with the specified 
+         * diagnosis. This element is optional because it is not used 
+         * for SNOMED.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"value"})]
         public DiagnosisValue Value {

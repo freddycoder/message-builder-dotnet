@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
 
 
     /**
-     * <summary>FirstFill</summary>
+     * <summary>Business Name: FirstFill</summary>
      * 
      * <remarks>PORX_MT060160CA.InitialSupplyRequest: First Fill 
      * <p>Special instructions regarding the very first supply of 
@@ -60,10 +60,25 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             this.expectedUseTime = new IVLImpl<TS, Interval<PlatformDate>>();
         }
         /**
-         * <summary>FirstFillExpiryDate</summary>
+         * <summary>Business Name: FirstFillExpiryDate</summary>
          * 
-         * <remarks>First Fill Expiry Date <p>The last date before 
+         * <remarks>Un-merged Business Name: FirstFillExpiryDate 
+         * Relationship: 
+         * PORX_MT060160CA.InitialSupplyRequest.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The date before 
          * which an initial dispense can be made against the 
+         * prescription. If an initial fill has not been made against 
+         * the prescription in this time-period, it may not be 
+         * dispensed.</p> <p>Some jurisdictions have distinct 
+         * stale-date periods for the initial fill of a prescription 
+         * from the overall dispensing of the prescription. E.g. 
+         * &quot;The first fill must be made within 1 year, all fills 
+         * must be complete within 1.5 years&quot;. (This attribute 
+         * would be used for the &quot;1 year&quot;.)</p> Un-merged 
+         * Business Name: FirstFillExpiryDate Relationship: 
+         * PORX_MT010120CA.InitialSupplyRequest.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The last date 
+         * before which an initial dispense can be made against the 
          * prescription. If an initial fill has not been made against 
          * the prescription in this time-period, then the prescription 
          * is no longer deemed valid and it may not be dispensed.</p> 
@@ -72,25 +87,19 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
          * dispensing of the prescription. E.g. &quot;The first fill 
          * must be made within 1 year, all fills must be complete 
          * within 1.5 years&quot;. (This attribute would be used for 
-         * the &quot;1 year&quot;).</p> First Fill Expiry Date <p>The 
-         * date before which an initial dispense can be made against 
-         * the prescription. If an initial fill has not been made 
-         * against the prescription in this time-period, it may not be 
+         * the &quot;1 year&quot;).</p> Un-merged Business Name: 
+         * FirstFillExpiryDate Relationship: 
+         * PORX_MT060340CA.InitialSupplyRequest.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The date before 
+         * which an initial dispense can be made against the 
+         * prescription. If an initial fill has not been made against 
+         * the prescription in this time-period, it may not be 
          * dispensed.</p> <p>Some jurisdictions have distinct 
          * stale-date periods for the initial fill of a prescription 
          * from the overall dispensing of the prescription. E.g. 'The 
          * first fill must be made within 1 year, all fills must be 
          * complete within 1.5 years'. (This attribute would be used 
-         * for the '1 year'.)</p> First Fill Expiry Date <p>The date 
-         * before which an initial dispense can be made against the 
-         * prescription. If an initial fill has not been made against 
-         * the prescription in this time-period, it may not be 
-         * dispensed.</p> <p>Some jurisdictions have distinct 
-         * stale-date periods for the initial fill of a prescription 
-         * from the overall dispensing of the prescription. E.g. 
-         * &quot;The first fill must be made within 1 year, all fills 
-         * must be complete within 1.5 years&quot;. (This attribute 
-         * would be used for the &quot;1 year&quot;.)</p></remarks>
+         * for the '1 year'.)</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"effectiveTime"})]
         public Interval<PlatformDate> EffectiveTime {
@@ -99,15 +108,27 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>FirstFillQuantity</summary>
+         * <summary>Business Name: FirstFillQuantity</summary>
          * 
-         * <remarks>First Fill Quantity <p>The quantity of medication 
-         * to be dispensed the first time the prescription is dispensed 
-         * against.</p> <p>Prescription.coordinatingAmount</p> 
-         * <p>Allows a limited quantity to be dispensed for a trial or 
-         * for a synchronizing dose.</p> First Fill Quantity <p>The 
-         * quantity of medication to be dispensed the first time the 
-         * prescription is dispensed against.</p> <p>Allows a limited 
+         * <remarks>Un-merged Business Name: FirstFillQuantity 
+         * Relationship: PORX_MT060160CA.InitialSupplyRequest.quantity 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The quantity of 
+         * medication to be dispensed the first time the prescription 
+         * is dispensed against.</p> 
+         * <p>Prescription.coordinatingAmount</p> <p>Allows a limited 
+         * quantity to be dispensed for a trial or for a synchronizing 
+         * dose.</p> Un-merged Business Name: FirstFillQuantity 
+         * Relationship: PORX_MT010120CA.InitialSupplyRequest.quantity 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The quantity of 
+         * medication to be dispensed the first time the prescription 
+         * is dispensed against.</p> <p>Allows a limited quantity to be 
+         * dispensed for a trial or for a synchronizing dose.</p> 
+         * Un-merged Business Name: FirstFillQuantity Relationship: 
+         * PORX_MT060340CA.InitialSupplyRequest.quantity 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The quantity of 
+         * medication to be dispensed the first time the prescription 
+         * is dispensed against.</p> 
+         * <p>Prescription.coordinatingAmount</p> <p>Allows a limited 
          * quantity to be dispensed for a trial or for a synchronizing 
          * dose.</p></remarks>
          */
@@ -118,20 +139,33 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>FirstFillDaysSupply</summary>
+         * <summary>Business Name: FirstFillDaysSupply</summary>
          * 
-         * <remarks>First Fill Days Supply <p>The number of days that 
-         * the first fill is expected to last, if the patient is 
-         * compliant with the dispensing of the first fill and with 
+         * <remarks>Un-merged Business Name: FirstFillDaysSupply 
+         * Relationship: 
+         * PORX_MT060160CA.InitialSupplyRequest.expectedUseTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The number of 
+         * days that the first fill is expected to last, if the patient 
+         * is compliant with the dispensing of the first fill and with 
          * administration of the prescription.</p> <p>Used when the 
          * prescriber cannot or does not wish to calculate the quantity 
          * necessary to last for the trial or synchronization time.</p> 
-         * First Fill Days Supply <p>The number of days that the first 
-         * fill is expected to last, if the patient is compliant with 
-         * the dispensing of the first fill and with administration of 
-         * the prescription.</p> <p>Used when the prescriber cannot or 
-         * does not wish to calculate the quantity necessary to last 
-         * for the trial or synchronization time.</p></remarks>
+         * Un-merged Business Name: FirstFillDaysSupply Relationship: 
+         * PORX_MT010120CA.InitialSupplyRequest.expectedUseTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The number of 
+         * days that the first fill is expected to last, if the patient 
+         * is compliant with the dispensing of the first fill and with 
+         * administration of the prescription.</p> <p>Used when the 
+         * prescriber cannot or does not wish to calculate the quantity 
+         * necessary to last for the trial or synchronization time.</p> 
+         * Un-merged Business Name: FirstFillDaysSupply Relationship: 
+         * PORX_MT060340CA.InitialSupplyRequest.expectedUseTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The number of 
+         * days that the first fill is expected to last, if the patient 
+         * is compliant with the dispensing of the first fill and with 
+         * administration of the prescription.</p> <p>Used when the 
+         * prescriber cannot or does not wish to calculate the quantity 
+         * necessary to last for the trial or synchronization time.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"expectedUseTime"})]
         public Interval<PlatformDate> ExpectedUseTime {

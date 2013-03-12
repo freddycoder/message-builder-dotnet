@@ -1,3 +1,22 @@
+/**
+ * Copyright 2013 Canada Health Infoway, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Author:        $LastChangedBy: tmcgrady $
+ * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Revision:      $LastChangedRevision: 2623 $
+ */
 using System;
 using System.Collections.Generic;
 using System.Xml;
@@ -5,6 +24,8 @@ using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Datatype.Impl;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
+using Ca.Infoway.Messagebuilder.Datatype.Lang.Util;
+using Ca.Infoway.Messagebuilder.Domainvalue;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser;
 using Ca.Infoway.Messagebuilder.Platform;
@@ -37,33 +58,41 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 	[DataTypeHandler(new string[] { "AD", "AD.BASIC", "AD.FULL", "AD.SEARCH" })]
 	internal class AdElementParser : AbstractSingleElementParser<PostalAddress>
 	{
+		private static readonly AdValidationUtils AD_VALIDATION_UTILS = new AdValidationUtils();
+
 		protected override BareANY DoCreateDataTypeInstance(string typeName)
 		{
 			return new ADImpl();
 		}
 
-		/// <exception cref="Ca.Infoway.Messagebuilder.Marshalling.HL7.XmlToModelTransformationException"></exception>
 		protected override PostalAddress ParseNonNullNode(ParseContext context, XmlNode node, BareANY parseResult, Type expectedReturnType
 			, XmlToModelResult xmlToModelResult)
 		{
-			PostalAddress result = ParseNode(node);
-			result.Uses = GetNameUses(GetAttributeValue(node, "use"));
+			PostalAddress result = ParseNode(node, xmlToModelResult);
+			result.Uses = GetNameUses(GetAttributeValue(node, "use"), node, xmlToModelResult);
+			// FIXME - VALIDATION - TM - missing useablePeriod (only for MR2009 AD.FULL)
+			AD_VALIDATION_UTILS.ValidatePostalAddress(result, context.Type, context.GetVersion(), (XmlElement)node, null, xmlToModelResult
+				);
 			return result;
 		}
 
-		private ICollection<Ca.Infoway.Messagebuilder.Datatype.Lang.PostalAddressUse> GetNameUses(string nameUseAttribute)
+		private ICollection<x_BasicPostalAddressUse> GetNameUses(string nameUseAttribute, XmlNode node, XmlToModelResult xmlToModelResult
+			)
 		{
-			ICollection<Ca.Infoway.Messagebuilder.Datatype.Lang.PostalAddressUse> uses = new HashSet<Ca.Infoway.Messagebuilder.Datatype.Lang.PostalAddressUse
-				>();
+			ICollection<x_BasicPostalAddressUse> uses = new HashSet<x_BasicPostalAddressUse>();
 			if (nameUseAttribute != null)
 			{
 				StringTokenizer tokenizer = new StringTokenizer(nameUseAttribute);
 				while (tokenizer.HasMoreElements())
 				{
 					string token = tokenizer.NextToken();
-					Ca.Infoway.Messagebuilder.Datatype.Lang.PostalAddressUse postalAddressUse = CodeResolverRegistry.Lookup<Ca.Infoway.Messagebuilder.Datatype.Lang.PostalAddressUse
-						>(token);
-					if (postalAddressUse != null)
+					x_BasicPostalAddressUse postalAddressUse = CodeResolverRegistry.Lookup<x_BasicPostalAddressUse>(token);
+					if (postalAddressUse == null)
+					{
+						// error if a use is not found
+						RecordError("PostalAddressUse '" + token + "' is not valid", (XmlElement)node, xmlToModelResult);
+					}
+					else
 					{
 						uses.Add(postalAddressUse);
 					}
@@ -72,8 +101,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			return uses;
 		}
 
-		/// <exception cref="Ca.Infoway.Messagebuilder.Marshalling.HL7.XmlToModelTransformationException"></exception>
-		private PostalAddress ParseNode(XmlNode node)
+		private PostalAddress ParseNode(XmlNode node, XmlToModelResult xmlToModelResult)
 		{
 			PostalAddress result = new PostalAddress();
 			XmlNodeList childNodes = node.ChildNodes;
@@ -91,10 +119,22 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 					{
 						XmlElement element = (XmlElement)childNode;
 						string name = NodeUtil.GetLocalOrTagName(element);
-						string value = GetTextValue(element);
+						PostalAddressPartType postalAddressPartType = GetPostalAddressPartType(name);
+						string value = GetTextValue(name, element, xmlToModelResult);
 						string codeAsString = GetAttributeValue(childNode, "code");
-						result.AddPostalAddressPart(new PostalAddressPart(GetPostalAddressPartType(name), CodeUtil.ConvertToCode(codeAsString), value
-							));
+						// only for state/country
+						string codeSystem = GetAttributeValue(childNode, "codeSystem");
+						// only for state/country
+						Code code = CodeUtil.ConvertToCode(codeAsString, codeSystem);
+						if (postalAddressPartType == null)
+						{
+							// error if part type not found
+							RecordError("Address part type not valid: " + name, element, xmlToModelResult);
+						}
+						else
+						{
+							result.AddPostalAddressPart(new PostalAddressPart(postalAddressPartType, code, value));
+						}
 					}
 				}
 			}
@@ -106,28 +146,41 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			return childNode.NodeType == System.Xml.XmlNodeType.Text && !StringUtils.IsBlank(childNode.Value);
 		}
 
-		/// <exception cref="Ca.Infoway.Messagebuilder.Marshalling.HL7.XmlToModelTransformationException"></exception>
 		private PostalAddressPartType GetPostalAddressPartType(string type)
 		{
-			return GetNamePartType<PostalAddressPartType>(type);
-		}
-
-		/// <exception cref="Ca.Infoway.Messagebuilder.Marshalling.HL7.XmlToModelTransformationException"></exception>
-		private string GetTextValue(XmlElement element)
-		{
-			XmlNode childNode = element.FirstChild;
-			if (childNode == null)
+			// don't allow exception (seems like overkill)!
+			try
+			{
+				return GetNamePartType<PostalAddressPartType>(type);
+			}
+			catch (XmlToModelTransformationException)
 			{
 				return null;
 			}
-			else
+		}
+
+		private string GetTextValue(string name, XmlElement element, XmlToModelResult xmlToModelResult)
+		{
+			XmlNode childNode = element.FirstChild;
+			string result = null;
+			if (childNode != null)
 			{
 				if (childNode.NodeType != System.Xml.XmlNodeType.Text)
 				{
-					throw new XmlToModelTransformationException("Expected AD child node to have a text node");
+					RecordError("Expected AD child node '" + name + "' to have a text node", element, xmlToModelResult);
+				}
+				else
+				{
+					result = childNode.Value;
 				}
 			}
-			return childNode.Value;
+			return result;
+		}
+
+		private void RecordError(string message, XmlElement element, XmlToModelResult xmlToModelResult)
+		{
+			xmlToModelResult.AddHl7Error(new Hl7Error(Hl7ErrorCode.DATA_TYPE_ERROR, message + " (" + XmlDescriber.DescribeSingleElement
+				(element) + ")", element));
 		}
 	}
 }

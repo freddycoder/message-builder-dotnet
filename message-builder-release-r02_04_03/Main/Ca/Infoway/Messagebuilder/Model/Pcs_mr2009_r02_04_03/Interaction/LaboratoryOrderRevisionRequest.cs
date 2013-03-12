@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,21 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt001000ca;
 
 
+    /**
+     * <summary>Business Name: POLB_IN111102CA: Laboratory Order 
+     * Revision Request</summary>
+     * 
+     * <p>This interaction is used when a revision request is 
+     * communicated. If the receiving role is a filler, the 
+     * expectation is to confirm, reject, or respond with a 
+     * revision to the filler's promise.</p> Message: 
+     * MCCI_MT002100CA.Message Control Act: 
+     * MCAI_MT700210CA.ControlActEvent --> Payload: 
+     * POLB_MT001000CA.RequestChoice ----> Payload Choice: 
+     * POLB_MT001000CA.PlacerGroup ----> Payload Choice: 
+     * POLB_MT001000CA.BatteryRequest ----> Payload Choice: 
+     * POLB_MT001000CA.ObservationRequest
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"POLB_IN111102CA"})]
     public class LaboratoryOrderRevisionRequest : HL7Message_1<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Mcai_mt700210ca.TriggerEvent<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt001000ca.IRequestChoice>>, IInteraction {
 

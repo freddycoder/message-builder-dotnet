@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,14 +28,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Porx_mt9
 
 
     /**
-     * <summary>Diagnosis Indications</summary>
+     * <summary>Business Name: Diagnosis Indications</summary>
      * 
-     * <remarks><p>Code must be fixed to DX if not using 
-     * SNOMED</p><p>Value is mandatory if not using SNOMED</p> 
      * <p>Code must be fixed to DX if not using SNOMED</p><p>Value 
-     * is mandatory if not using SNOMED</p> <p>Describes 
-     * diagnosis-related indications</p> <p>Allows separation of 
-     * conditions from symptoms from other forms of indication.</p></remarks>
+     * is mandatory if not using SNOMED</p> <p>Code must be fixed 
+     * to DX if not using SNOMED</p><p>Value is mandatory if not 
+     * using SNOMED</p> <p>Describes diagnosis-related 
+     * indications</p> <p>Allows separation of conditions from 
+     * symptoms from other forms of indication.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"PORX_MT980050CA.ObservationDiagnosis"})]
     public class DiagnosisIndications : MessagePartBean, Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.IIndications {
@@ -50,14 +50,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Porx_mt9
             this.value = new CVImpl();
         }
         /**
-         * <summary>Diagnosis Type</summary>
+         * <summary>Business Name: Diagnosis Type</summary>
          * 
-         * <remarks><p>Identifies the type of diagnosis</p> 
-         * <p>Identifies this measurement as a type of diagnosis and is 
-         * therefore mandatory. It is set to CD because SNOMED codes 
-         * may require post-coordination</p> <p>For SNOMED, the 
-         * complete diagnosis appears here. For non-SNOMED this should 
-         * be a fixed value of &quot;DX&quot;.</p></remarks>
+         * <remarks>Relationship: 
+         * PORX_MT980050CA.ObservationDiagnosis.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Identifies the 
+         * type of diagnosis</p> <p>Identifies this measurement as a 
+         * type of diagnosis and is therefore mandatory. It is set to 
+         * CD because SNOMED codes may require post-coordination</p> 
+         * <p>For SNOMED, the complete diagnosis appears here. For 
+         * non-SNOMED this should be a fixed value of 
+         * &quot;DX&quot;.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public ActCode Code {
@@ -66,11 +69,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Porx_mt9
         }
 
         /**
-         * <summary>Free Form Diagnosis Indication</summary>
+         * <summary>Business Name: Free Form Diagnosis Indication</summary>
          * 
-         * <remarks><p>A free form description augmenting the specified 
-         * diagnosis code.</p> <p>Provides greater flexibility in 
-         * specifying indication.</p></remarks>
+         * <remarks>Relationship: 
+         * PORX_MT980050CA.ObservationDiagnosis.text 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>A free form 
+         * description augmenting the specified diagnosis code.</p> 
+         * <p>Provides greater flexibility in specifying 
+         * indication.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"text"})]
         public String Text {
@@ -79,13 +85,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Porx_mt9
         }
 
         /**
-         * <summary>A:Diagnosis Code</summary>
+         * <summary>Business Name: A:Diagnosis Code</summary>
          * 
-         * <remarks><p>A coded form of the diagnosis that is the reason 
-         * for the current action.</p> <p>Allows cross-checking the use 
-         * of a therapy against its indication. Also allows analysis of 
-         * best practices, etc. This attribute is optional because it 
-         * is not used by SNOMED.</p></remarks>
+         * <remarks>Relationship: 
+         * PORX_MT980050CA.ObservationDiagnosis.value 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>A coded form of 
+         * the diagnosis that is the reason for the current action.</p> 
+         * <p>Allows cross-checking the use of a therapy against its 
+         * indication. Also allows analysis of best practices, etc. 
+         * This attribute is optional because it is not used by 
+         * SNOMED.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"value"})]
         public DiagnosisValue Value {

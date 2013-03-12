@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Merged {
 
 
     /**
-     * <summary>CarrierRole</summary>
+     * <summary>Business Name: CarrierRole</summary>
      * 
      * <remarks>FICR_MT610201CA.CarrierRole: Carrier Role 
      * <p>Organisation playing the role of Insurance Carrier.</p></remarks>
@@ -46,18 +46,31 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Merged {
             this.underwritingOrganizationName = new STImpl();
         }
         /**
-         * <summary>Payor Identifier</summary>
+         * <summary>Un-merged Business Name: CarrierID</summary>
          * 
-         * <remarks><p>A unique identifier for the payor organization 
-         * responsible for the coverage extension.</p> <p>Gives context 
-         * to the coverage extension identifier and therefore 
-         * mandatory. Allows the dispensing service delivery location 
-         * to know where to send a claim.</p> Carrier ID <p>Unique 
-         * identifier of the Policy Carrier - OID, made up of OID root 
-         * and extension that identifies the insurance carrier.</p> 
-         * Carrier ID <p>The unique identifier of the policy 
-         * carrier.</p> <p>RxS1: OID, made up of OID root and extension 
-         * that identifies the insurance carrier.</p></remarks>
+         * <remarks>Relationship: FICR_MT600201CA.CarrierRole.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>RxS1: OID, made up 
+         * of OID root and extension that identifies the insurance 
+         * carrier.</p> <p>The unique identifier of the policy 
+         * carrier.</p> Un-merged Business Name: PayorIdentifier 
+         * Relationship: PORX_MT060160CA.CarrierRole.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>Gives context to 
+         * the coverage extension identifier and therefore mandatory. 
+         * Allows the dispensing service delivery location to know 
+         * where to send a claim.</p> <p>A unique identifier for the 
+         * payor organization responsible for the coverage 
+         * extension.</p> Un-merged Business Name: PayorIdentifier 
+         * Relationship: PORX_MT060340CA.CarrierRole.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>Gives context to 
+         * the coverage extension identifier and therefore mandatory. 
+         * Allows the dispensing service delivery location to know 
+         * where to send a claim.</p> <p>A unique identifier for the 
+         * payor organization responsible for the coverage 
+         * extension.</p> Un-merged Business Name: CarrierID 
+         * Relationship: FICR_MT610201CA.CarrierRole.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>Unique identifier 
+         * of the Policy Carrier - OID, made up of OID root and 
+         * extension that identifies the insurance carrier.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -66,11 +79,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>PayorName</summary>
+         * <summary>Business Name: PayorName</summary>
          * 
-         * <remarks>Payor Name <p>The name of the organization 
-         * responsible for issuing the coverage extension.</p> 
-         * <p>Mandatory for display purposes.</p></remarks>
+         * <remarks>Un-merged Business Name: PayorName Relationship: 
+         * PORX_MT060160CA.CarrierOrganization.name 
+         * Conformance/Cardinality: MANDATORY (1) <p>Mandatory for 
+         * display purposes.</p> <p>The name of the organization 
+         * responsible for issuing the coverage extension.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"underwritingCarrierOrganization/name"})]
         public String UnderwritingCarrierOrganizationName {
@@ -79,11 +94,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>PayorName</summary>
+         * <summary>Business Name: PayorName</summary>
          * 
-         * <remarks>Payor Name <p>The name of the organization 
-         * responsible for issuing the coverage extension.</p> 
-         * <p>Mandatory for display purposes.</p></remarks>
+         * <remarks>Un-merged Business Name: PayorName Relationship: 
+         * PORX_MT060340CA.Organization.name Conformance/Cardinality: 
+         * MANDATORY (1) <p>Mandatory for display purposes.</p> <p>The 
+         * name of the organization responsible for issuing the 
+         * coverage extension.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"underwritingOrganization/name"})]
         public String UnderwritingOrganizationName {

@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,6 +27,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Iehr.Repc_mt000019ca;
 
 
+    /**
+     * <summary>Business Name: REPC_IN000018CA: Patient 
+     * allergy/intolerance with hist. query resp.</summary>
+     * 
+     * <remarks>Message: MCCI_MT002300CA.Message Control Act: 
+     * QUQI_MT120006CA.ControlActEvent --> Payload: 
+     * REPC_MT000009CA.IntoleranceCondition --> Payload: 
+     * REPC_MT000019CA.ParameterList</remarks>
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"REPC_IN000018CA"})]
     public class PatientAllergyIntoleranceWithHistQueryResp : HL7Message<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged.TriggerEvent_4<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Iehr.Repc_mt000009ca.AllergyIntolerance,Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Iehr.Repc_mt000019ca.ConditionHistoryQueryParameters>>, IInteraction {
 

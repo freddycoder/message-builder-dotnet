@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
 
 
     /**
-     * <summary>PreviousDispenseInformation</summary>
+     * <summary>Business Name: PreviousDispenseInformation</summary>
      * 
      * <remarks>PORX_MT060190CA.SupplyEventPastSummary: Previous 
      * Dispense Information <p>At least one of quantity and 
@@ -65,24 +65,36 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             this.quantity = new PQImpl();
         }
         /**
-         * <summary>A:Dispensed Fills To-date</summary>
+         * <summary>Un-merged Business Name: NumberOfFillsMadeAgainstRx</summary>
          * 
-         * <remarks><p>Indicates the number of dispense events 
-         * performed against the prescription to date, including trial, 
-         * partial and complete fills.</p> <p>Useful in tracking the 
-         * progress of a prescription in prescription.</p> Number of 
-         * Fills Made Against Rx <p>Indicates the number of dispense 
-         * events performed against the prescription to date, including 
-         * trial, partial and complete fills.</p> <p>Useful in tracking 
-         * the progress of a prescription in prescription.</p> A:Number 
-         * of Fills Made Against Rx <p>Indicates the number of dispense 
-         * events performed against the prescription to date, including 
-         * trial, partial and complete fills.</p> <p>Useful in tracking 
-         * the progress of a prescription.</p> A:Number of Fill Made 
-         * Against Rx <p>Indicates the number of dispense events 
-         * performed against the prescription to date, including trial, 
-         * partial and complete fills.</p> <p>Useful in tracking the 
-         * progress of a prescription in prescription.</p></remarks>
+         * <remarks>Relationship: 
+         * PORX_MT060190CA.SupplyEventPastSummary.repeatNumber 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
+         * number of dispense events performed against the prescription 
+         * to date, including trial, partial and complete fills.</p> 
+         * <p>Useful in tracking the progress of a prescription in 
+         * prescription.</p> Un-merged Business Name: 
+         * NumberOfFillsMadeAgainstRx Relationship: 
+         * PORX_MT060340CA.SupplyEventPastSummary.repeatNumber 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
+         * number of dispense events performed against the prescription 
+         * to date, including trial, partial and complete fills.</p> 
+         * <p>Useful in tracking the progress of a prescription.</p> 
+         * Un-merged Business Name: NumberOfFillMadeAgainstRx 
+         * Relationship: 
+         * PORX_MT030040CA.SupplyEventPastSummary.repeatNumber 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
+         * number of dispense events performed against the prescription 
+         * to date, including trial, partial and complete fills.</p> 
+         * <p>Useful in tracking the progress of a prescription in 
+         * prescription.</p> Un-merged Business Name: 
+         * DispensedFillsToDate Relationship: 
+         * PORX_MT060160CA.SupplyEventPastSummary.repeatNumber 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
+         * number of dispense events performed against the prescription 
+         * to date, including trial, partial and complete fills.</p> 
+         * <p>Useful in tracking the progress of a prescription in 
+         * prescription.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"repeatNumber"})]
         public int? RepeatNumber {
@@ -91,21 +103,32 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>Total Supplied Amount</summary>
+         * <summary>Un-merged Business Name: TotalSuppliedAmount</summary>
          * 
-         * <remarks><p>Indicates the amount of medication that has been 
-         * dispensed to date.</p> <p>Useful for tracking the progress 
-         * of a prescription.</p> B:Total Supplied Amount <p>Indicates 
-         * the amount of the prescribed medication that has been 
-         * dispensed to-date.</p> <p>Useful for tracking the progress 
-         * of a prescription</p> B:Dispensed Quantity To-date 
-         * <p>Depending on the Dispense Aggregate Information Type, 
-         * this field would contain one of Remaining Total Quantity, 
-         * First Quantity Dispensed, Last Quantity Dispensed, or Total 
-         * Supplied Amount.</p> <p>Useful for tracking the progress of 
-         * a prescription</p> B:Total Supplied Amount <p>Indicates the 
+         * <remarks>Relationship: 
+         * PORX_MT060190CA.SupplyEventPastSummary.quantity 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
+         * amount of medication that has been dispensed to date.</p> 
+         * <p>Useful for tracking the progress of a prescription.</p> 
+         * Un-merged Business Name: TotalSuppliedAmount Relationship: 
+         * PORX_MT060340CA.SupplyEventPastSummary.quantity 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
          * amount of the prescribed medication that has been dispensed 
          * to-date.</p> <p>Useful for tracking the progress of a 
+         * prescription</p> Un-merged Business Name: 
+         * TotalSuppliedAmount Relationship: 
+         * PORX_MT030040CA.SupplyEventPastSummary.quantity 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
+         * amount of the prescribed medication that has been dispensed 
+         * to-date.</p> <p>Useful for tracking the progress of a 
+         * prescription</p> Un-merged Business Name: 
+         * DispensedQuantityToDate Relationship: 
+         * PORX_MT060160CA.SupplyEventPastSummary.quantity 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Depending on the 
+         * Dispense Aggregate Information Type, this field would 
+         * contain one of Remaining Total Quantity, First Quantity 
+         * Dispensed, Last Quantity Dispensed, or Total Supplied 
+         * Amount.</p> <p>Useful for tracking the progress of a 
          * prescription</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"quantity"})]

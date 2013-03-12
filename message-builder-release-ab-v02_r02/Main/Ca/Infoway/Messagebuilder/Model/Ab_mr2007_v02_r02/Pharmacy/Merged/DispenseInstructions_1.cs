@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,7 +32,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
 
 
     /**
-     * <summary>DispenseInstructions</summary>
+     * <summary>Business Name: DispenseInstructions</summary>
      * 
      * <remarks>PORX_MT060040CA.SupplyRequest: Dispense 
      * Instructions <p>At least one of &quot;Days Supply&quot; and 
@@ -85,21 +85,37 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
             this.fulfillmentSupplyEvent = new List<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Porx_mt010140ca.RemainingDispenses>();
         }
         /**
-         * <summary>TotalPrescribedQuantity</summary>
+         * <summary>Business Name: TotalPrescribedQuantity</summary>
          * 
-         * <remarks>B:Total Prescribed Quantity <p>The overall number 
-         * of devices to be dispensed under this prescription. Includes 
-         * any first fills (trials, aligning quantities), the initial 
-         * standard fill plus all refills.</p> <p>Sets upper limit for 
-         * device to be dispensed. Can be used to verify the intention 
-         * of the prescriber with respect to the overall prescription. 
-         * Used for comparison when determining whether additional 
-         * quantity may be dispensed in the context of a part-fill 
-         * prescription.</p> B:Total Prescribed Quantity <p>The overall 
+         * <remarks>Un-merged Business Name: TotalPrescribedQuantity 
+         * Relationship: PORX_MT060040CA.SupplyRequest.quantity 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The overall 
          * number of devices to be dispensed under this prescription. 
          * Includes any first fills (trials, aligning quantities), the 
          * initial standard fill plus all refills.</p> <p>Sets upper 
          * limit for devices to be dispensed. Can be used to verify the 
+         * intention of the prescriber with respect to the overall 
+         * prescription. Used for comparison when determining whether 
+         * additional quantity may be dispensed in the context of a 
+         * part-fill prescription.</p> Un-merged Business Name: 
+         * TotalPrescribedQuantity Relationship: 
+         * PORX_MT060060CA.SupplyRequest.quantity 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The overall 
+         * number of devices to be dispensed under this prescription. 
+         * Includes any first fills (trials, aligning quantities), the 
+         * initial standard fill plus all refills.</p> <p>Sets upper 
+         * limit for devices to be dispensed. Can be used to verify the 
+         * intention of the prescriber with respect to the overall 
+         * prescription. Used for comparison when determining whether 
+         * additional quantity may be dispensed in the context of a 
+         * part-fill prescription.</p> Un-merged Business Name: 
+         * TotalPrescribedQuantity Relationship: 
+         * PORX_MT010110CA.SupplyRequest.quantity 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The overall 
+         * number of devices to be dispensed under this prescription. 
+         * Includes any first fills (trials, aligning quantities), the 
+         * initial standard fill plus all refills.</p> <p>Sets upper 
+         * limit for device to be dispensed. Can be used to verify the 
          * intention of the prescriber with respect to the overall 
          * prescription. Used for comparison when determining whether 
          * additional quantity may be dispensed in the context of a 
@@ -112,16 +128,28 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
         }
 
         /**
-         * <summary>TotalDaysSupply</summary>
+         * <summary>Business Name: TotalDaysSupply</summary>
          * 
-         * <remarks>C:Total Days Supply <p>The number of days that the 
-         * overall prescribed item is expected to last, if the patient 
-         * is compliant with the dispensing and use of the 
-         * prescription.</p> <p>Used to specify a total authorization 
-         * as a duration rather than a quantity with refills. E.g. 
-         * dispense 30 at a time, refill for 1 year. May also be sent 
-         * as an estimate of the expected overall duration of the 
-         * prescription based on the quantity prescribed.</p></remarks>
+         * <remarks>Un-merged Business Name: TotalDaysSupply 
+         * Relationship: PORX_MT060040CA.SupplyRequest.expectedUseTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The number of 
+         * days that the overall prescribed item is expected to last, 
+         * if the patient is compliant with the dispensing and use of 
+         * the prescription.</p> <p>Used to specify a total 
+         * authorization as a duration rather than a quantity with 
+         * refills. E.g. dispense 30 at a time, refill for 1 year. May 
+         * also be sent as an estimate of the expected overall duration 
+         * of the prescription based on the quantity prescribed.</p> 
+         * Un-merged Business Name: TotalDaysSupply Relationship: 
+         * PORX_MT010110CA.SupplyRequest.expectedUseTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The number of 
+         * days that the overall prescribed item is expected to last, 
+         * if the patient is compliant with the dispensing and use of 
+         * the prescription.</p> <p>Used to specify a total 
+         * authorization as a duration rather than a quantity with 
+         * refills. E.g. dispense 30 at a time, refill for 1 year. May 
+         * also be sent as an estimate of the expected overall duration 
+         * of the prescription based on the quantity prescribed.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"expectedUseTime"})]
         public Interval<PlatformDate> ExpectedUseTime {
@@ -129,47 +157,133 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
             set { this.expectedUseTime.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PORX_MT060040CA.SupplyRequest.location 
+         * Conformance/Cardinality: REQUIRED (0-1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060060CA.SupplyRequest.location 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT010140CA.SupplyRequest.location 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT010110CA.SupplyRequest.location 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"location"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.CreatedAt Location {
             get { return this.location; }
             set { this.location = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PORX_MT060040CA.Destination1.serviceDeliveryLocation 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT010110CA.Destination1.serviceDeliveryLocation 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"destination/serviceDeliveryLocation"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.DispenseShipToLocation DestinationServiceDeliveryLocation {
             get { return this.destinationServiceDeliveryLocation; }
             set { this.destinationServiceDeliveryLocation = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: PORX_MT060040CA.Component3.typeCode 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT010110CA.Component.typeCode Conformance/Cardinality: 
+         * MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"component/typeCode"})]
         public ActRelationshipType ComponentTypeCode {
             get { return (ActRelationshipType) this.componentTypeCode.Value; }
             set { this.componentTypeCode.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PORX_MT060040CA.Component3.contextControlCode 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT010110CA.Component.contextControlCode 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"component/contextControlCode"})]
         public ContextControl ComponentContextControlCode {
             get { return (ContextControl) this.componentContextControlCode.Value; }
             set { this.componentContextControlCode.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PORX_MT060040CA.Component3.contextConductionInd 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT010110CA.Component.contextConductionInd 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"component/contextConductionInd"})]
         public bool? ComponentContextConductionInd {
             get { return this.componentContextConductionInd.Value; }
             set { this.componentContextConductionInd.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PORX_MT060040CA.Component3.supplementalFillInformation 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT010110CA.Component.supplementalFillInformation 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"component/supplementalFillInformation"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged.SupplementalFillInformation ComponentSupplementalFillInformation {
             get { return this.componentSupplementalFillInformation; }
             set { this.componentSupplementalFillInformation = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PORX_MT010140CA.InFulfillmentOf.supplyEvent 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"fulfillment/supplyEvent"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Porx_mt010140ca.RemainingDispenses> FulfillmentSupplyEvent {
             get { return this.fulfillmentSupplyEvent; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: PORX_MT010140CA.Component6.actRequest 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"componentOf/actRequest"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged.SubstanceAdministrationRequest ComponentOfActRequest {
             get { return this.componentOfActRequest; }

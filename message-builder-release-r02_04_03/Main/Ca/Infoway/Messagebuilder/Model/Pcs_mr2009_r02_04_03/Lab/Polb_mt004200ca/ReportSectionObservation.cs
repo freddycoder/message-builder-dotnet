@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,15 +26,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt004200
     using Ca.Infoway.Messagebuilder.Datatype.Lang;
     using Ca.Infoway.Messagebuilder.Domainvalue;
     using Ca.Infoway.Messagebuilder.Model;
+    using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Domainvalue;
     using System;
     using System.Collections.Generic;
 
 
     /**
-     * <summary>Report Section Observation</summary>
+     * <summary>Business Name: Report Section Observation</summary>
      * 
-     * <remarks><p>Any report sections reported at the header or 
-     * report level (not specific to a specimen or diagnosis).</p></remarks>
+     * <p>Any report sections reported at the header or report 
+     * level (not specific to a specimen or diagnosis).</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"POLB_MT004200CA.ReportLevelObservationEvent"})]
     public class ReportSectionObservation : MessagePartBean {
@@ -55,10 +56,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt004200
             this.value = new ANYImpl<object>();
         }
         /**
-         * <summary>Section Identifier</summary>
+         * <summary>Business Name: Section Identifier</summary>
          * 
-         * <remarks><p>Unique identifier for a section of the report at 
-         * the ObservationReport level.</p></remarks>
+         * <remarks>Relationship: 
+         * POLB_MT004200CA.ReportLevelObservationEvent.id 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Unique identifier 
+         * for a section of the report at the ObservationReport 
+         * level.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -67,20 +71,26 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt004200
         }
 
         /**
-         * <summary>Report Section Observation Type</summary>
+         * <summary>Business Name: Report Section Observation Type</summary>
          * 
-         * <remarks><p>Specifies the type of report section.</p></remarks>
+         * <remarks>Relationship: 
+         * POLB_MT004200CA.ReportLevelObservationEvent.code 
+         * Conformance/Cardinality: POPULATED (1) <p>Specifies the type 
+         * of report section.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
-        public Code Code {
-            get { return (Code) this.code.Value; }
+        public SectionHeadingObservationCode Code {
+            get { return (SectionHeadingObservationCode) this.code.Value; }
             set { this.code.Value = value; }
         }
 
         /**
-         * <summary>Note Type</summary>
+         * <summary>Business Name: Note Type</summary>
          * 
-         * <remarks><p>Type of comment or note.</p></remarks>
+         * <remarks>Relationship: 
+         * POLB_MT004200CA.ReportLevelObservationEvent.text 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Type of comment 
+         * or note.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"text"})]
         public String Text {
@@ -89,10 +99,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt004200
         }
 
         /**
-         * <summary>Report Section Observation Date/Time</summary>
+         * <summary>Business Name: Report Section Observation Date/Time</summary>
          * 
-         * <remarks><p>The date/time this report section was 
-         * &quot;reported&quot;.</p></remarks>
+         * <remarks>Relationship: 
+         * POLB_MT004200CA.ReportLevelObservationEvent.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The date/time 
+         * this report section was &quot;reported&quot;.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"effectiveTime"})]
         public PlatformDate EffectiveTime {
@@ -101,7 +113,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt004200
         }
 
         /**
-         * <summary>Result Masking Indicator</summary>
+         * <summary>Business Name: Result Masking Indicator</summary>
+         * 
+         * <remarks>Relationship: 
+         * POLB_MT004200CA.ReportLevelObservationEvent.confidentialityCode 
+         * Conformance/Cardinality: REQUIRED (0-2)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"confidentialityCode"})]
         public ICollection<x_BasicConfidentialityKind> ConfidentialityCode {
@@ -109,12 +125,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt004200
         }
 
         /**
-         * <summary>Report Section Observation Value</summary>
+         * <summary>Business Name: Report Section Observation Value</summary>
          * 
-         * <remarks><p>The report section values - usually this is 
-         * text-based. If a coded value applies, values must be 
-         * selected from the SectionHeadingObservationValue Concept 
-         * Domain.</p></remarks>
+         * <remarks>Relationship: 
+         * POLB_MT004200CA.ReportLevelObservationEvent.value 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The report 
+         * section values - usually this is text-based. If a coded 
+         * value applies, values must be selected from the 
+         * SectionHeadingObservationValue Concept Domain.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"value"})]
         public object Value {

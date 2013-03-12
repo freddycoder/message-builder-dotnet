@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,8 +31,8 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt500
 
 
     /**
-     * <summary><p>Mood Code: PRP - auth, pre-det, cov.etc. RQO - 
-     * invoice</p></summary>
+     * <p>Mood Code: PRP - auth, pre-det, cov.etc. RQO - 
+     * invoice</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"FICR_MT500201CA.PaymentRequest"})]
     public class PaymentRequest : MessagePartBean {
@@ -52,7 +52,10 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt500
             this.reasonOfInvoiceElementChoice = new List<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt500201ca.IInvoiceElementChoice>();
         }
         /**
-         * <summary>Invoice Identifier</summary>
+         * <summary>Business Name: Invoice Identifier</summary>
+         * 
+         * <remarks>Relationship: FICR_MT500201CA.PaymentRequest.id 
+         * Conformance/Cardinality: MANDATORY (1-9)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public ICollection<Identifier> Id {
@@ -60,7 +63,10 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt500
         }
 
         /**
-         * <summary>Total Billed Amount</summary>
+         * <summary>Business Name: Total Billed Amount</summary>
+         * 
+         * <remarks>Relationship: FICR_MT500201CA.PaymentRequest.amt 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"amt"})]
         public Money Amt {
@@ -68,29 +74,59 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt500
             set { this.amt.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * FICR_MT500201CA.PaymentRequestAttention.contactParty</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"primaryPerformer/contactParty"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Merged.ContactParty PrimaryPerformerContactParty {
             get { return this.primaryPerformerContactParty; }
             set { this.primaryPerformerContactParty = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * FICR_MT500201CA.PaymentRequestPayee.account</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"credit/account"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt110200ca.PayeeAccount CreditAccount {
             get { return this.creditAccount; }
             set { this.creditAccount = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * FICR_MT500201CA.PaymentRequestPayor.account</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"debit/account"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt110101ca.Account DebitAccount {
             get { return this.debitAccount; }
             set { this.debitAccount = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * FICR_MT500201CA.PertinentInformation.providerBillingTaxAccount</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"pertinentInformation/providerBillingTaxAccount"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Merged.ProviderBillingTaxAccount> PertinentInformationProviderBillingTaxAccount {
             get { return this.pertinentInformationProviderBillingTaxAccount; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * FICR_MT500201CA.PaymentRequestReason.invoiceElementChoice</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"reasonOf/invoiceElementChoice"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt500201ca.IInvoiceElementChoice> ReasonOfInvoiceElementChoice {
             get { return this.reasonOfInvoiceElementChoice; }

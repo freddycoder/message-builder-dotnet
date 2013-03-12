@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
 
 
     /**
-     * <summary>DispensedIn</summary>
+     * <summary>Business Name: DispensedIn</summary>
      * 
      * <remarks>POME_MT010100CA.Content: dispensed in 
      * <p>Information about how the dispensed drug is or should be 
@@ -52,11 +52,24 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
             this.containerPackagedMedicineFormCode = new CVImpl();
         }
         /**
-         * <summary>PackageQuantity</summary>
+         * <summary>Business Name: PackageQuantity</summary>
          * 
-         * <remarks>Package Quantity <p>The quantity of the medication 
-         * dosage form contained in the package given or to be given to 
-         * the patient.</p> <p>Sometimes ordering and dispensing is by 
+         * <remarks>Un-merged Business Name: PackageQuantity 
+         * Relationship: POME_MT010100CA.Content.quantity 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The quantity of 
+         * the medication dosage form contained in the package given or 
+         * to be given to the patient.</p> <p>Sometimes ordering and 
+         * dispensing is by package rather than individual units, and 
+         * package is important in calculating total amount 
+         * supplied.</p> <p>Because of the constraint imposed by the 
+         * RIM that in a role, PQ.DRUG must be expressed as a ratio, 
+         * the numerator should be the package quantity and the 
+         * denominator a '1'.</p> Un-merged Business Name: 
+         * PackageQuantity Relationship: 
+         * POME_MT010040CA.Content.quantity Conformance/Cardinality: 
+         * REQUIRED (0-1) <p>The quantity of the medication dosage form 
+         * contained in the package given or to be given to the 
+         * patient.</p> <p>Sometimes ordering and dispensing is by 
          * package rather than individual units, and package is 
          * important in calculating total amount supplied.</p> 
          * <p>Because of the constraint imposed by the RIM that in a 
@@ -71,14 +84,19 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
         }
 
         /**
-         * <summary>ContainerType</summary>
+         * <summary>Business Name: ContainerType</summary>
          * 
-         * <remarks>H:Container Type <p>A coded value denoting a 
-         * specific kind of a container. Used to identify a requirement 
-         * for a particular type of compliance packaging</p> <p>Many 
-         * insurance plans require that a prescriber specifically 
-         * authorize the use of compliance packaging before it will be 
-         * covered by the plan.</p> Container Type <p>A coded value 
+         * <remarks>Un-merged Business Name: ContainerType 
+         * Relationship: POME_MT010100CA.PackagedMedicine.formCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>A coded value 
+         * denoting a specific kind of a container. Used to identify a 
+         * requirement for a particular type of compliance 
+         * packaging</p> <p>Many insurance plans require that a 
+         * prescriber specifically authorize the use of compliance 
+         * packaging before it will be covered by the plan.</p> 
+         * Un-merged Business Name: ContainerType Relationship: 
+         * POME_MT010040CA.PackagedMedicine.formCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>A coded value 
          * denoting a specific kind of a container. Used to identify a 
          * requirement for a particular type of compliance 
          * packaging</p> <p>Many insurance plans require that a 

@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,9 +37,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged {
             this.telecom = new TELImpl();
         }
         /**
-         * <summary>ContactPersonName</summary>
+         * <summary>Business Name: ContactPersonName</summary>
          * 
-         * <remarks>Contact Person Name</remarks>
+         * <remarks>Un-merged Business Name: ContactPersonName 
+         * Relationship: FICR_MT500201CA.ContactPerson.name 
+         * Conformance/Cardinality: REQUIRED (0-1) Un-merged Business 
+         * Name: ContactPersonName Relationship: 
+         * FICR_MT600201CA.ContactPerson.name Conformance/Cardinality: 
+         * REQUIRED (0-1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"name"})]
         public PersonName Name {
@@ -48,9 +53,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged {
         }
 
         /**
-         * <summary>ContactPersonTelephoneOrEmailDetails</summary>
+         * <summary>Business Name: ContactPersonTelephoneOrEmailDetails</summary>
          * 
-         * <remarks>contact person telephone or email details</remarks>
+         * <remarks>Un-merged Business Name: 
+         * ContactPersonTelephoneOrEmailDetails Relationship: 
+         * FICR_MT500201CA.ContactPerson.telecom 
+         * Conformance/Cardinality: REQUIRED (0-1) Un-merged Business 
+         * Name: ContactPersonTelephoneOrEmailDetails Relationship: 
+         * FICR_MT600201CA.ContactPerson.telecom 
+         * Conformance/Cardinality: REQUIRED (0-1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"telecom"})]
         public TelecommunicationAddress Telecom {

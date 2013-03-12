@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,8 +14,8 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2012-01-18 20:51:51 -0500 (Wed, 18 Jan 2012) $
- * Revision:      $LastChangedRevision: 3829 $
+ * Last modified: $LastChangedDate: 2013-03-01 17:48:17 -0500 (Fri, 01 Mar 2013) $
+ * Revision:      $LastChangedRevision: 6663 $
  */
 
 using System;
@@ -41,7 +41,7 @@ using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_02.Common.Merged;
 using ActCode = Ca.Infoway.Messagebuilder.Domainvalue.ActCode;
 using ActStatus = Ca.Infoway.Messagebuilder.Domainvalue.ActStatus;
 using HL7TriggerEventCode = Ca.Infoway.Messagebuilder.Domainvalue.Transport.HL7TriggerEventCode;
-using PostalAddressUse = Ca.Infoway.Messagebuilder.Datatype.Lang.PostalAddressUse;
+using X_BasicPostalAddressUse = Ca.Infoway.Messagebuilder.Domainvalue.Basic.X_BasicPostalAddressUse;
 using URLScheme = Ca.Infoway.Messagebuilder.Domainvalue.URLScheme;
 
 namespace FindCandidatesQueryExample
@@ -85,16 +85,16 @@ namespace FindCandidatesQueryExample
             TriggerEvent<ParameterList> controlActEvent = new TriggerEvent<ParameterList>();
             messageBean.ControlActEvent = controlActEvent;
 
-            controlActEvent.EventType = HL7TriggerEventCode.FIND_CANDIDATES_QUERY;
+            controlActEvent.Code = HL7TriggerEventCode.FIND_CANDIDATES_QUERY;
 
             populateMessageAttributesStandardValues(messageBean);
             populateRecordControlActStandardValues(controlActEvent);
 
             // payload
             controlActEvent.QueryByParameter = new Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_02.Common.Merged.QueryByParameter<ParameterList>();
-			controlActEvent.QueryByParameter.QueryIdentifier = new Identifier("12.34.5", "11222211");
+			controlActEvent.QueryByParameter.QueryId = new Identifier("12.34.5", "11222211");
 			controlActEvent.QueryByParameter.ParameterList = new ParameterList();
-			controlActEvent.QueryByParameter.ParameterList.ClientName.Add(PersonName.CreateFirstNameLastName("J", "Smith"));
+			controlActEvent.QueryByParameter.ParameterList.PersonNameValue.Add(PersonName.CreateFirstNameLastName("J", "Smith"));
 
             return messageBean;
         }
@@ -102,33 +102,33 @@ namespace FindCandidatesQueryExample
         private static void populateMessageAttributesStandardValues(FindCandidatesQuery message)
         {
 
-            message.MessageIdentifier = new Identifier(UUID.RandomUUID().ToString());
+            message.Id = new Identifier(UUID.RandomUUID().ToString());
 
-            message.MessageTimestamp = new PlatformDate(new DateTime(2008, 6, 25, 14, 16, 10));
-            message.ConformanceProfileIdentifiers.Add(new Identifier("1.2.3.4.5", "profileIdExtension"));
+            message.CreationTime = new PlatformDate(new DateTime(2008, 6, 25, 14, 16, 10));
+            message.ProfileId.Add(new Identifier("1.2.3.4.5", "profileIdExtension"));
             message.ProcessingCode = Ca.Infoway.Messagebuilder.Domainvalue.Transport.ProcessingID.PRODUCTION;
-			message.ProcessingMode = Ca.Infoway.Messagebuilder.Domainvalue.Transport.ProcessingMode.CURRENT_PROCESSING;
-            message.DesiredAcknowledgmentType = Ca.Infoway.Messagebuilder.Domainvalue.Transport.AcknowledgementCondition.ALWAYS;
+			message.ProcessingModeCode = Ca.Infoway.Messagebuilder.Domainvalue.Transport.ProcessingMode.CURRENT_PROCESSING;
+            message.AcceptAckCode = Ca.Infoway.Messagebuilder.Domainvalue.Transport.AcknowledgementCondition.ALWAYS;
             message.Receiver = new Receiver();
-            message.Receiver.ReceiverApplicationIdentifier = new Identifier("2.16.124.113620.1.2.100", "222");
+            message.Receiver.DeviceId = new Identifier("2.16.124.113620.1.2.100", "222");
 
-            message.Receiver.ReceiverNetworkAddress = new TelecommunicationAddress(CodeResolverRegistry.Lookup<URLScheme>("http"), "123.456.789.10");
+            message.Receiver.Telecom = new TelecommunicationAddress(CodeResolverRegistry.Lookup<URLScheme>("http"), "123.456.789.10");
 
             message.Sender = new Sender();
-            message.Sender.SendingApplicationIdentifier = new Identifier("2.16.124.113620.1.2.100", "111");
-            message.Sender.SendingSoftwareVersionNumber = (new Configuration()).Version;
-            message.Sender.SendingApplicationName = (new Configuration()).Name;
-            message.Sender.SendingNetworkAddress = new TelecommunicationAddress();
-            message.Sender.SendingNetworkAddress.Address = "987.654.321.0";
-            message.Sender.SendingNetworkAddress.UrlScheme = CodeResolverRegistry.Lookup<URLScheme>("http");
-            message.ResponseType = Ca.Infoway.Messagebuilder.Domainvalue.Transport.ResponseMode.IMMEDIATE;
+            message.Sender.DeviceId = new Identifier("2.16.124.113620.1.2.100", "111");
+            message.Sender.DeviceManufacturerModelName = (new Configuration()).Version;
+            message.Sender.DeviceName = (new Configuration()).Name;
+            message.Sender.Telecom = new TelecommunicationAddress();
+            message.Sender.Telecom.Address = "987.654.321.0";
+            message.Sender.Telecom.UrlScheme = CodeResolverRegistry.Lookup<URLScheme>("http");
+            message.ResponseModeCode = Ca.Infoway.Messagebuilder.Domainvalue.Transport.ResponseMode.IMMEDIATE;
         }
 
         private static void populateRecordControlActStandardValues(TriggerEvent<ParameterList> controlActEvent)
         {
 
-            controlActEvent.EventIdentifier = new Identifier("2.16.840.1.113883.1.6", "8141234");
-            controlActEvent.EventEffectivePeriod = IntervalUtil.CreateInterval(new PlatformDate(0), null);
+            controlActEvent.Id = new Identifier("2.16.840.1.113883.1.6", "8141234");
+            controlActEvent.EffectiveTime = IntervalUtil.CreateInterval(new PlatformDate(0), null);
             controlActEvent.Author = createAuthorBean();
             controlActEvent.DataEntryLocationServiceDeliveryLocation = createServiceDeliveryLocationBean();
             controlActEvent.ResponsiblePartyAssignedEntity = createAssignedPersonBean();
@@ -145,10 +145,10 @@ namespace FindCandidatesQueryExample
         private static Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_02.Common.Merged.HealthcareWorker createAssignedPersonBean()
         {
             Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_02.Common.Merged.HealthcareWorker assignedPersonBean = new Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_02.Common.Merged.HealthcareWorker();
-            assignedPersonBean.HealthcareWorkerIdentifier.Add(new Identifier("12.34.56", "1"));
+            assignedPersonBean.Id.Add(new Identifier("12.34.56", "1"));
 			assignedPersonBean.AssignedPerson = new ActingPerson();
-			assignedPersonBean.AssignedPerson.LicenseNumber = new Identifier("12.34.56.78", "78");
-			assignedPersonBean.HealthcareWorkerType = CodeResolverRegistry.Lookup<HealthcareProviderRoleType>("AUD", CodeSystem.VOCABULARY_ROLE_CODE.Root);
+            assignedPersonBean.AssignedPerson.AsHealthCareProviderId = new Identifier("12.34.56.78", "78");
+			assignedPersonBean.Code = CodeResolverRegistry.Lookup<HealthcareProviderRoleType>("AUD", CodeSystem.VOCABULARY_ROLE_CODE.Root);
 				
             return assignedPersonBean;
         }
@@ -156,7 +156,7 @@ namespace FindCandidatesQueryExample
         private static CreatedBy_2 createAuthorBean()
         {
             CreatedBy_2 authorBean = new CreatedBy_2();
-            authorBean.TimeOfCreation = new PlatformDate(0);
+            authorBean.Time = new PlatformDate(0);
             authorBean.AuthorPerson = createAssignedPersonBean();
             return authorBean;
         }
@@ -165,14 +165,14 @@ namespace FindCandidatesQueryExample
         {
 
             Patient_1 identifiedPersonBean = new Patient_1();
-            identifiedPersonBean.PatientIdentifier.Add(new Identifier("3.14", "159"));
-            identifiedPersonBean.PatientAddress = createPostalAddress();
-            identifiedPersonBean.PatientContactPhoneAndEMails.Add(new TelecommunicationAddress(
+            identifiedPersonBean.Id.Add(new Identifier("3.14", "159"));
+            identifiedPersonBean.Addr = createPostalAddress();
+            identifiedPersonBean.Telecom.Add(new TelecommunicationAddress(
                     CodeResolverRegistry.Lookup<URLScheme>("http"), "123.456.789.10"));
 			identifiedPersonBean.PatientPerson = new ActingPerson();
-            identifiedPersonBean.PatientPerson.Name = PersonNameUtil.CreateFirstNameLastName("Alan", "Wall");
+            identifiedPersonBean.PatientPerson.Name = PersonName.CreateFirstNameLastName("Alan", "Wall");
 
-            identifiedPersonBean.PatientPerson.PatientGender =
+            identifiedPersonBean.PatientPerson.AdministrativeGenderCode =
                 CodeResolverRegistry.Lookup<AdministrativeGender>("F", CodeSystem.VOCABULARY_ADMINISTRATIVE_GENDER.Root);
 
             identifiedPersonBean.PatientPerson.BirthTime = new PlatformDate(new DateTime(1972, 2, 21));
@@ -187,7 +187,7 @@ namespace FindCandidatesQueryExample
         private static PostalAddress createPostalAddress(String streetName)
         {
             PostalAddress address1 = new PostalAddress();
-            address1.AddUse(PostalAddressUse.HOME);
+            address1.AddUse(X_BasicPostalAddressUse.HOME);
             address1.AddPostalAddressPart(new PostalAddressPart(PostalAddressPartType.STREET_NAME, streetName));
             return address1;
         }

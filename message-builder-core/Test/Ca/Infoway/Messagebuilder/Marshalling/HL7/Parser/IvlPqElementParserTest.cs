@@ -1,3 +1,22 @@
+/**
+ * Copyright 2013 Canada Health Infoway, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Author:        $LastChangedBy: tmcgrady $
+ * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Revision:      $LastChangedRevision: 2623 $
+ */
 using System.Xml;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
@@ -11,7 +30,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 	[TestFixture]
 	public class IvlPqElementParserTest : CeRxDomainValueTestCase
 	{
-		private static readonly string mL = Ca.Infoway.Messagebuilder.Datatype.Lang.UnitsOfMeasureCaseSensitive.MILLILITRE.CodeValue;
+		private static readonly string mL = Ca.Infoway.Messagebuilder.Domainvalue.Basic.UnitsOfMeasureCaseSensitive.MILLILITRE.CodeValue;
 
 		private XmlToModelResult result;
 
@@ -29,8 +48,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		/// <exception cref="Ca.Infoway.Messagebuilder.Marshalling.HL7.XmlToModelTransformationException"></exception>
 		private Interval<PhysicalQuantity> Parse(XmlNode node)
 		{
-			return (Interval<PhysicalQuantity>)this.parser.Parse(ParserContextImpl.Create("IVL<PQ>", typeof(Interval<object>), SpecificationVersion
-				.V02R02, null, null, null), Arrays.AsList(node), this.result).BareValue;
+			return (Interval<PhysicalQuantity>)this.parser.Parse(ParserContextImpl.Create("IVL<PQ.BASIC>", typeof(Interval<object>), 
+				SpecificationVersion.V02R02, null, null, null), Arrays.AsList(node), this.result).BareValue;
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -39,23 +58,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		{
 			XmlNode node = CreateNode("<name><low unit=\"ml\" value=\"1000\"/><high unit=\"ml\" value=\"2000\"/></name>");
 			Interval<PhysicalQuantity> interval = Parse(node);
-			Assert.IsNotNull(interval, "null");
-			Assert.AreEqual(1000, interval.Low.Quantity.Value, "low - value");
-			Assert.AreEqual(mL, interval.Low.Unit.CodeValue, "low - unit");
-			Assert.AreEqual(2000, interval.High.Quantity.Value, "high - value");
-			Assert.AreEqual(mL, interval.High.Unit.CodeValue, "high - unit");
-			Assert.AreEqual(1500, interval.Centre.Quantity.Value, "centre - value");
-			Assert.AreEqual(mL, interval.Centre.Unit.CodeValue, "centre - unit");
-			Assert.AreEqual(1000, interval.Width.Value.Quantity.Value, "width - value");
-			Assert.AreEqual(mL, interval.Width.Value.Unit.CodeValue, "width - unit");
-		}
-
-		/// <exception cref="System.Exception"></exception>
-		[Test]
-		public virtual void TestParseLowWidth()
-		{
-			XmlNode node = CreateNode("<name><low unit=\"ml\" value=\"1000\"/><width unit=\"ml\" value=\"1000\"/></name>");
-			Interval<PhysicalQuantity> interval = Parse(node);
+			Assert.IsTrue(this.result.IsValid());
 			Assert.IsNotNull(interval, "null");
 			Assert.AreEqual(1000, interval.Low.Quantity.Value, "low - value");
 			Assert.AreEqual(mL, interval.Low.Unit.CodeValue, "low - unit");
@@ -73,12 +76,31 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		{
 			XmlNode node = CreateNode("<name><low unit=\"ml\" value=\"1000\"/></name>");
 			Interval<PhysicalQuantity> interval = Parse(node);
+			Assert.IsFalse(this.result.IsValid());
+			Assert.AreEqual(1, this.result.GetHl7Errors().Count);
+			// high must be provided
 			Assert.IsNotNull(interval, "null");
 			Assert.AreEqual(1000, interval.Low.Quantity.Value, "low - value");
 			Assert.AreEqual(mL, interval.Low.Unit.CodeValue, "low - unit");
 			Assert.IsNull(interval.High, "high");
 			Assert.IsNull(interval.Centre, "centre");
 			Assert.IsNull(interval.Width, "width");
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void TestParseLowInvalidBothNull()
+		{
+			XmlNode node = CreateNode("<name><low nullFlavor=\"OTH\"/><high nullFlavor=\"NI\"/></name>");
+			Interval<PhysicalQuantity> interval = Parse(node);
+			Assert.IsFalse(this.result.IsValid());
+			Assert.AreEqual(1, this.result.GetHl7Errors().Count);
+			// low and high can't both be null
+			Assert.IsNotNull(interval, "null");
+			Assert.IsNull(interval.Low);
+			Assert.IsNull(interval.High);
+			Assert.AreEqual(Ca.Infoway.Messagebuilder.Domainvalue.Nullflavor.NullFlavor.OTHER, interval.LowNullFlavor);
+			Assert.AreEqual(Ca.Infoway.Messagebuilder.Domainvalue.Nullflavor.NullFlavor.NO_INFORMATION, interval.HighNullFlavor);
 		}
 	}
 }

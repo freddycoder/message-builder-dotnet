@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,13 +29,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Coct_mt1
 
 
     /**
-     * <summary>Notes</summary>
+     * <summary>Business Name: Notes</summary>
      * 
-     * <remarks><p>This is a list of comments made about the record 
-     * by providers. Information captured here includes the 
-     * provider making the comments; and excludes information that 
-     * would render the record invalid. This information will only 
-     * be seen when another provider reviews the record. Urgent or 
+     * <p>This is a list of comments made about the record by 
+     * providers. Information captured here includes the provider 
+     * making the comments; and excludes information that would 
+     * render the record invalid. This information will only be 
+     * seen when another provider reviews the record. Urgent or 
      * targeted messages should be sent using a different mechanism 
      * (e.g. phone).</p> <p>Public Health requires all clinical 
      * notes to be 'verified' by a responsible party if not created 
@@ -45,7 +45,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Coct_mt1
      * here will have to be reconciled with other projects using 
      * this same cmet.</p> <p>Allows various Providers to attach 
      * comments to an existing record, and thus improving 
-     * cross-provider communications.</p></remarks>
+     * cross-provider communications.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"COCT_MT120600CA.Annotation"})]
     public class Notes : MessagePartBean {
@@ -61,14 +61,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Coct_mt1
             this.authorTime = new TSImpl();
         }
         /**
-         * <summary>Note Text</summary>
+         * <summary>Business Name: Note Text</summary>
          * 
-         * <remarks><p>Free text comments. Additional textual 
-         * iinformation entered about an object.</p> <p>Allows a 
-         * provider to attach comments to objects for communication. 
-         * This attribute is mandatory because there's no point in 
-         * having a note class unless there's actually content in the 
-         * note.</p></remarks>
+         * <remarks>Relationship: COCT_MT120600CA.Annotation.text 
+         * Conformance/Cardinality: MANDATORY (1) <p>Free text 
+         * comments. Additional textual iinformation entered about an 
+         * object.</p> <p>Allows a provider to attach comments to 
+         * objects for communication. This attribute is mandatory 
+         * because there's no point in having a note class unless 
+         * there's actually content in the note.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"text"})]
         public String Text {
@@ -77,13 +78,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Coct_mt1
         }
 
         /**
-         * <summary>Written in</summary>
+         * <summary>Business Name: Written in</summary>
          * 
-         * <remarks><p>A coded value denoting the language in which the 
-         * note is written.</p> <p>Allows providers to write notes in 
-         * the language of their choice.</p><p>This attribute is marked 
-         * as 'populated' because the language of the note must always 
-         * be known/available or a null flavor must be specified.</p> 
+         * <remarks>Relationship: 
+         * COCT_MT120600CA.Annotation.languageCode 
+         * Conformance/Cardinality: POPULATED (1) <p>A coded value 
+         * denoting the language in which the note is written.</p> 
+         * <p>Allows providers to write notes in the language of their 
+         * choice.</p><p>This attribute is marked as 'populated' 
+         * because the language of the note must always be 
+         * known/available or a null flavor must be specified.</p> 
          * <p>Allows providers to write notes in the language of their 
          * choice.</p><p>This attribute is marked as 'populated' 
          * because the language of the note must always be 
@@ -96,16 +100,18 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Coct_mt1
         }
 
         /**
-         * <summary>Note Timestamp</summary>
+         * <summary>Business Name: Note Timestamp</summary>
          * 
-         * <remarks><p>The date and time at which the note was 
-         * posted.</p> <p>Identifies timing of the annotation for 
-         * sorting and for audit purposes.</p><p>This attribute is 
-         * mandatory because the time of creation of the annotation 
-         * will always be known.</p> <p>Identifies timing of the 
-         * annotation for sorting and for audit purposes.</p><p>This 
-         * attribute is mandatory because the time of creation of the 
-         * annotation will always be known.</p></remarks>
+         * <remarks>Relationship: COCT_MT120600CA.Author.time 
+         * Conformance/Cardinality: MANDATORY (1) <p>The date and time 
+         * at which the note was posted.</p> <p>Identifies timing of 
+         * the annotation for sorting and for audit 
+         * purposes.</p><p>This attribute is mandatory because the time 
+         * of creation of the annotation will always be known.</p> 
+         * <p>Identifies timing of the annotation for sorting and for 
+         * audit purposes.</p><p>This attribute is mandatory because 
+         * the time of creation of the annotation will always be 
+         * known.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"author/time"})]
         public PlatformDate AuthorTime {
@@ -113,6 +119,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Coct_mt1
             set { this.authorTime.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: COCT_MT120600CA.Author.assignedPerson</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"author/assignedPerson"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Coct_mt090107ca.Provider AuthorAssignedPerson {
             get { return this.authorAssignedPerson; }

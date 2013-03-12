@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,13 +28,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt306011ca {
 
 
     /**
-     * <summary>Territorial Authority</summary>
+     * <summary>Business Name: Territorial Authority</summary>
      * 
-     * <remarks><p>RoleClass necessary to support the Jurisdiction 
-     * within which the scoping organization exists</p> <p>Supports 
+     * <p>RoleClass necessary to support the Jurisdiction within 
+     * which the scoping organization exists</p> <p>Supports 
      * business requirement to provide additional information 
      * regarding the jurisdication within the scoping organization 
-     * exists.</p></remarks>
+     * exists.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"PRPM_MT306011CA.TerritorialAuthority"})]
     public class TerritorialAuthority : MessagePartBean {
@@ -49,11 +49,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt306011ca {
             this.part = new List<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt306011ca.Part>();
         }
         /**
-         * <summary>Territorial Authority Type</summary>
+         * <summary>Business Name: Territorial Authority Type</summary>
          * 
-         * <remarks><p>The code identifying the specific Territorial 
-         * Authority</p> <p>Mandatory attribute supports the validation 
-         * and identification of the healthcare provider</p></remarks>
+         * <remarks>Relationship: 
+         * PRPM_MT306011CA.TerritorialAuthority.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>The code 
+         * identifying the specific Territorial Authority</p> 
+         * <p>Mandatory attribute supports the validation and 
+         * identification of the healthcare provider</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public RoleCode Code {
@@ -62,12 +65,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt306011ca {
         }
 
         /**
-         * <summary>Jurisdiction Type</summary>
+         * <summary>Business Name: Jurisdiction Type</summary>
          * 
-         * <remarks><p>A character value that represents the Canadian 
-         * provincial or territorial geographical area within which the 
-         * Provider is operating.</p> <p>Mandatory attribute supports 
-         * the validation and identification of the healthcare 
+         * <remarks>Relationship: PRPM_MT306011CA.Jurisdiction.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>A character value 
+         * that represents the Canadian provincial or territorial 
+         * geographical area within which the Provider is 
+         * operating.</p> <p>Mandatory attribute supports the 
+         * validation and identification of the healthcare 
          * provider</p><p>.</p> <p>Mandatory attribute supports the 
          * validation and identification of the healthcare 
          * provider</p><p>.</p> <p>If Jurisdiction is included in the 
@@ -80,6 +85,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt306011ca {
             set { this.territoryCode.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PRPM_MT306011CA.TerritorialAuthority.part</summary>
+         * 
+         * <remarks>Conformance/Cardinality: REQUIRED (0-*)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"part"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt306011ca.Part> Part {
             get { return this.part; }

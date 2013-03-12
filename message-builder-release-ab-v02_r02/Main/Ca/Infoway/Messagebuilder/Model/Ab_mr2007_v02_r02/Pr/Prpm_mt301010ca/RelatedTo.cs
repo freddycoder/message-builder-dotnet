@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,7 +37,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt301010ca {
             this.effectiveTime = new IVLImpl<TS, Interval<PlatformDate>>();
         }
         /**
-         * <summary><p>Required</p></summary>
+         * <summary>Relationship: 
+         * PRPM_MT301010CA.RelatedTo.effectiveTime</summary>
+         * 
+         * <remarks>Conformance/Cardinality: REQUIRED (0-1) 
+         * <p>Required</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"effectiveTime"})]
         public Interval<PlatformDate> EffectiveTime {
@@ -45,6 +49,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt301010ca {
             set { this.effectiveTime.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: PRPM_MT301010CA.RelatedTo.roleChoice</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"roleChoice"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt301010ca.IRoleChoice RoleChoice {
             get { return this.roleChoice; }

@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Cr.Merged {
 
 
     /**
-     * <summary>LanguageCommunication</summary>
+     * <summary>Business Name: LanguageCommunication</summary>
      * 
      * <remarks>PRPA_MT101102CA.LanguageCommunication: Language 
      * Communication <p>Information about what language(s) should 
@@ -55,13 +55,23 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Cr.Merged {
             this.languageCode = new CVImpl();
         }
         /**
-         * <summary>LanguageOfCommunicationPreferenceIndicator</summary>
+         * <summary>Business Name: 
+         * LanguageOfCommunicationPreferenceIndicator</summary>
          * 
-         * <remarks>Language of Communication Preference Indicator 
-         * <p>Indicates the preferred language for all 
-         * communications.</p> <p>Required attribute that supports the 
-         * business requirement to indicate the preferred language for 
-         * all communications.</p></remarks>
+         * <remarks>Un-merged Business Name: 
+         * LanguageOfCommunicationPreferenceIndicator Relationship: 
+         * PRPA_MT101102CA.LanguageCommunication.preferenceInd 
+         * Conformance/Cardinality: REQUIRED (0) <p>Indicates the 
+         * preferred language for all communications.</p> <p>Required 
+         * attribute that supports the business requirement to indicate 
+         * the preferred language for all communications.</p> Un-merged 
+         * Business Name: LanguageOfCommunicationPreferenceIndicator 
+         * Relationship: 
+         * PRPA_MT101104CA.LanguageCommunication.preferenceInd 
+         * Conformance/Cardinality: REQUIRED (0) <p>Indicates the 
+         * preferred language for all communications.</p> <p>Required 
+         * attribute that supports the business requirement to indicate 
+         * the preferred language for all communications.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"preferenceInd"})]
         public IList<bool?> PreferenceInd {
@@ -69,9 +79,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Cr.Merged {
         }
 
         /**
-         * <summary>LanguageOfCommunicationCode</summary>
+         * <summary>Business Name: LanguageOfCommunicationCode</summary>
          * 
-         * <remarks>Language of Communication Code <p>A code indicating 
+         * <remarks>Un-merged Business Name: 
+         * LanguageOfCommunicationCode Relationship: 
+         * PRPA_MT101104CA.LanguageCommunication.languageCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>A code indicating 
          * the language of communication</p> <p>Mandatory attribute 
          * conveying the expected language message elements are to be 
          * transmitted in</p></remarks>

@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,8 @@
 namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 	
 	using Ca.Infoway.Messagebuilder;
+    using Ca.Infoway.Messagebuilder.Domainvalue.Basic;
+    using Ca.Infoway.Messagebuilder.Datatype.Lang.Util;
 	using System;
 	using System.Collections;
 	using System.Collections.Generic;
@@ -88,7 +90,7 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		///
 		/// <returns>the given name</returns>
 		  get {
-				IList<EntityNamePart> parts_0 = GetPartsOfType(Ca.Infoway.Messagebuilder.Datatype.Lang.PersonNamePartType.GIVEN);
+				IList<EntityNamePart> parts_0 = GetPartsOfType(PersonNamePartType.GIVEN);
 				return ((parts_0.Count==0)) ? null : parts_0[0].Value;
 			}
 		}
@@ -106,7 +108,7 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		///
 		/// <returns>the family name</returns>
 		  get {
-				IList<EntityNamePart> parts_0 = GetPartsOfType(Ca.Infoway.Messagebuilder.Datatype.Lang.PersonNamePartType.FAMILY);
+				IList<EntityNamePart> parts_0 = GetPartsOfType(PersonNamePartType.FAMILY);
 				return ((parts_0.Count==0)) ? null : parts_0[0].Value;
 			}
 		}
@@ -133,13 +135,14 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		public static PersonName CreateFirstNameLastName(String firstName,
 				String lastName) {
 			PersonName name = new PersonName();
+            name.AddUse(EntityNameUse.LEGAL);
 			if (Ca.Infoway.Messagebuilder.StringUtils.IsNotBlank(firstName)) {
 				name.AddNamePart(new EntityNamePart(firstName,
-						Ca.Infoway.Messagebuilder.Datatype.Lang.PersonNamePartType.GIVEN));
+						PersonNamePartType.GIVEN));
 			}
 			if (Ca.Infoway.Messagebuilder.StringUtils.IsNotBlank(lastName)) {
 				name.AddNamePart(new EntityNamePart(lastName,
-						Ca.Infoway.Messagebuilder.Datatype.Lang.PersonNamePartType.FAMILY));
+						PersonNamePartType.FAMILY));
 			}
 			return name;
 		}

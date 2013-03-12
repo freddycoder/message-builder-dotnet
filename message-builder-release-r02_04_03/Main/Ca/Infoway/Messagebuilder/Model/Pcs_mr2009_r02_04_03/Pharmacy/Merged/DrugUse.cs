@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,24 +27,24 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Merged {
 
 
     /**
-     * <summary>DrugUse</summary>
+     * <summary>Business Name: DrugUse</summary>
      * 
      * <remarks>PORX_MT060340CA.WorkingListEvent: Drug Use 
-     * <p>Categorization of prescriptions based on the intended 
-     * duration of the prescribed therapy.</p> <p>Useful in 
+     * <p>Useful in establishing compliance for drug renewals and 
+     * refills.</p> <p>Categorization of prescriptions based on the 
+     * intended duration of the prescribed therapy.</p> 
+     * PORX_MT060160CA.WorkingListEvent: Drug Use <p>Useful in 
      * establishing compliance for drug renewals and refills.</p> 
-     * PORX_MT060160CA.WorkingListEvent: Drug Use <p>Categorization 
-     * of prescriptions based on the intended duration of the 
-     * prescribed therapy.</p> <p>Useful in establishing compliance 
-     * for drug renewals and refills.</p> 
-     * PORX_MT030040CA.WorkingListEvent: Drug Use <p>Categorization 
-     * of prescriptions based on the intended duration of the 
-     * prescribed therapy.</p> <p>Useful in establishing compliance 
-     * for drug renewals and refills.</p> 
-     * PORX_MT060190CA.WorkingListEvent: Drug Use <p>Categorization 
-     * of prescriptions based on the intended duration of the 
-     * prescribed therapy.</p> <p>Useful in establishing compliance 
-     * for drug renewals and refills.</p></remarks>
+     * <p>Categorization of prescriptions based on the intended 
+     * duration of the prescribed therapy.</p> 
+     * PORX_MT030040CA.WorkingListEvent: Drug Use <p>Useful in 
+     * establishing compliance for drug renewals and refills.</p> 
+     * <p>Categorization of prescriptions based on the intended 
+     * duration of the prescribed therapy.</p> 
+     * PORX_MT060190CA.WorkingListEvent: Drug Use <p>Useful in 
+     * establishing compliance for drug renewals and refills.</p> 
+     * <p>Categorization of prescriptions based on the intended 
+     * duration of the prescribed therapy.</p></remarks>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"PORX_MT010120CA.WorkingListEvent","PORX_MT020070CA.WorkingListEvent","PORX_MT030040CA.WorkingListEvent","PORX_MT060160CA.WorkingListEvent","PORX_MT060190CA.WorkingListEvent","PORX_MT060340CA.WorkingListEvent"})]
     public class DrugUse : MessagePartBean {
@@ -55,66 +55,70 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Merged {
             this.code = new CVImpl();
         }
         /**
-         * <summary>Treatment Type</summary>
+         * <summary>Un-merged Business Name: TreatmentType</summary>
          * 
-         * <remarks><p>Describes the categorization of the therapy 
-         * envisioned by this prescription (e.g. Continuous/Chronic, 
-         * Short-Term/Acute and &quot;As-Needed).</p> <p>Allows 
-         * categorizing prescription for presentation. May influence 
-         * detection of duplicate therapy. May also be used to affect 
-         * how DUR processing is completed. The code is mandatory as 
-         * this information is known at dispense time if the act 
-         * relationship was not a NULL..</p> D:Treatment Type 
-         * <p>Describes the categorization of the therapy envisioned by 
-         * this prescription (e.g. Continuous/Chronic, Short-Term/Acute 
-         * and &quot;As-Needed).</p> <p>Allows categorizing 
-         * prescription for presentation. May influence detection of 
-         * duplicate therapy. May also be used to affect how DUR 
-         * processing is completed. The field is marked as 
-         * &quot;mandatory&quot; because the intended duration of the 
-         * therapy should be known at prescribe time.</p> D:Treatment 
-         * Type <p>Describes the categorization of the therapy 
-         * envisioned by this prescription (e.g Continuous/Chronic, 
-         * Short-Term/Acute and &quot;As-Needed).</p> <p>Allows 
-         * categorizing prescription for presentation. May influence 
-         * detection of duplicate therapy. May also be used to affect 
-         * how DUR processing is completed.</p><p>The field is marked 
-         * as &quot;mandatory&quot; because the intended duration of 
-         * the therapy should be known at prescribe time.</p> <p>Allows 
+         * <remarks>Relationship: PORX_MT060340CA.WorkingListEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows 
          * categorizing prescription for presentation. May influence 
          * detection of duplicate therapy. May also be used to affect 
          * how DUR processing is completed.</p><p>The field is marked 
          * as &quot;mandatory&quot; because the intended duration of 
          * the therapy should be known at prescribe time.</p> 
-         * D:Prescription Treatment Type <p>Describes the 
+         * <p>Describes the categorization of the therapy envisioned by 
+         * this prescription (e.g Continuous/Chronic, Short-Term/Acute 
+         * and &quot;As-Needed).</p> Un-merged Business Name: 
+         * TreatmentType Relationship: 
+         * PORX_MT020070CA.WorkingListEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows 
+         * categorizing prescription for presentation. May influence 
+         * detection of duplicate therapy. May also be used to affect 
+         * how DUR processing is completed. The code is mandatory as 
+         * this information is known at dispense time if the act 
+         * relationship was not a NULL..</p> <p>Describes the 
          * categorization of the therapy envisioned by this 
          * prescription (e.g. Continuous/Chronic, Short-Term/Acute and 
-         * &quot;As-Needed).</p> <p>Allows categorizing prescription 
-         * for presentation. May influence detection of duplicate 
-         * therapy. May also be used to affect how DUR processing is 
-         * completed. The field is marked as &quot;mandatory&quot; 
-         * because the intended duration of the therapy should be known 
-         * at prescribe time.</p> D:Treatment Type <p>Describes the 
-         * categorization of the therapy envisioned by this 
+         * &quot;As-Needed).</p> Un-merged Business Name: TreatmentType 
+         * Relationship: PORX_MT060160CA.WorkingListEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows 
+         * categorizing prescription for presentation. May influence 
+         * detection of duplicate therapy. May also be used to affect 
+         * how DUR processing is completed. The field is marked as 
+         * &quot;mandatory&quot; because the intended duration of the 
+         * therapy should be known at prescribe time.</p> <p>Describes 
+         * the categorization of the therapy envisioned by this 
          * prescription (e.g. Continuous/Chronic, Short-Term/Acute and 
-         * &quot;As-Needed).</p> <p>Allows categorizing prescription 
-         * for presentation. May influence detection of duplicate 
-         * therapy. May also be used to affect how DUR processing is 
-         * completed. The code is mandatory as this information should 
-         * be known at prescribe time.</p> D:Prescription Treatment 
-         * Type <p>Describes the categorization of the therapy 
-         * envisioned by this prescription (e.g. Continuous/Chronic, 
-         * Short-Term/Acute and &quot;As-Needed).</p> <p>Allows 
+         * &quot;As-Needed).</p> Un-merged Business Name: 
+         * PrescriptionTreatmentType Relationship: 
+         * PORX_MT030040CA.WorkingListEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows 
          * categorizing prescription for presentation. May influence 
          * detection of duplicate therapy. May also be used to affect 
          * how DUR processing is completed.</p><p>The field is marked 
          * mandatory because the intended duration of the therapy 
-         * should be known at prescribe time.</p> <p>Allows 
+         * should be known at prescribe time.</p> <p>Describes the 
+         * categorization of the therapy envisioned by this 
+         * prescription (e.g. Continuous/Chronic, Short-Term/Acute and 
+         * &quot;As-Needed).</p> Un-merged Business Name: TreatmentType 
+         * Relationship: PORX_MT010120CA.WorkingListEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows 
          * categorizing prescription for presentation. May influence 
          * detection of duplicate therapy. May also be used to affect 
-         * how DUR processing is completed.</p><p>The field is marked 
-         * mandatory because the intended duration of the therapy 
-         * should be known at prescribe time.</p></remarks>
+         * how DUR processing is completed. The code is mandatory as 
+         * this information should be known at prescribe time.</p> 
+         * <p>Describes the categorization of the therapy envisioned by 
+         * this prescription (e.g. Continuous/Chronic, Short-Term/Acute 
+         * and &quot;As-Needed).</p> Un-merged Business Name: 
+         * PrescriptionTreatmentType Relationship: 
+         * PORX_MT060190CA.WorkingListEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows 
+         * categorizing prescription for presentation. May influence 
+         * detection of duplicate therapy. May also be used to affect 
+         * how DUR processing is completed. The field is marked as 
+         * &quot;mandatory&quot; because the intended duration of the 
+         * therapy should be known at prescribe time.</p> <p>Describes 
+         * the categorization of the therapy envisioned by this 
+         * prescription (e.g. Continuous/Chronic, Short-Term/Acute and 
+         * &quot;As-Needed).</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public ActTherapyDurationWorkingListCode Code {

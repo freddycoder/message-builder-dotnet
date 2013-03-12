@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,6 +25,20 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Merged;
 
 
+    /**
+     * <summary>Business Name: PORX_IN060380CA: Medication profile 
+     * detail query response</summary>
+     * 
+     * <p>Returns detailed information about a patient's 
+     * prescriptions, dispenses and other medications for a 
+     * specific patient optionally filtered by date.</p> Message: 
+     * MCCI_MT002300CA.Message Control Act: 
+     * QUQI_MT120006CA.ControlActEvent --> Payload: 
+     * PORX_MT060160CA.MedicationRecord ----> Payload Choice: 
+     * PORX_MT060160CA.CombinedMedicationRequest ----> Payload 
+     * Choice: PORX_MT060160CA.OtherMedication --> Payload: 
+     * PORX_MT060170CA.ParameterList
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"PORX_IN060380CA"})]
     public class MedicationProfileDetailQueryResponse : HL7Message_1<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.TriggerEvent_6<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Merged.IMedicationRecord,Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Merged.DrugQueryParameters>>, IInteraction {
 

@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,31 +27,20 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Ficr_mt60020
 
 
     /**
-     * <summary>Attachments</summary>
+     * <summary>Business Name: Attachments</summary>
      * 
-     * <remarks><p>Could be used to attach a Limited Use Form or a 
-     * Consent Form.</p> <p>If this relationship is required, it 
-     * may only be specified for the Root Invoice Element Group and 
-     * is not permitted for all other Invoice Element 
-     * Groups.</p><p>Look into what HL7 is currently doing, as well 
-     * as timing. Each SIG to revisit based on HL7's work. Want the 
-     * ability to send attachments with the invoice as well as 
-     * sending it upon request. Need to ensure that the vocab in 
-     * the info codes for inv adj response supports the needed 
-     * attachments.</p> <p>If this relationship is required, it may 
-     * only be specified for the Root Invoice Element Group and is 
-     * not permitted for all other Invoice Element 
-     * Groups.</p><p>Look into what HL7 is currently doing, as well 
-     * as timing. Each SIG to revisit based on HL7's work. Want the 
-     * ability to send attachments with the invoice as well as 
-     * sending it upon request. Need to ensure that the vocab in 
-     * the info codes for inv adj response supports the needed 
-     * attachments.</p> <p>Use of attachments must be pre-approved 
-     * by the NeCST Pharmacy SIG.</p><p>RxS1: Not permitted, as 
-     * attachments are not included in this scenario.</p> <p>Use of 
-     * attachments must be pre-approved by the NeCST Pharmacy 
+     * <p>If this relationship is required, it may only be 
+     * specified for the Root Invoice Element Group and is not 
+     * permitted for all other Invoice Element Groups.</p><p>Look 
+     * into what HL7 is currently doing, as well as timing. Each 
+     * SIG to revisit based on HL7's work. Want the ability to send 
+     * attachments with the invoice as well as sending it upon 
+     * request. Need to ensure that the vocab in the info codes for 
+     * inv adj response supports the needed attachments.</p> <p>Use 
+     * of attachments must be pre-approved by the NeCST Pharmacy 
      * SIG.</p><p>RxS1: Not permitted, as attachments are not 
-     * included in this scenario.</p></remarks>
+     * included in this scenario.</p> <p>Could be used to attach a 
+     * Limited Use Form or a Consent Form.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"FICR_MT600201CA.InvoiceElementGroupAttachment"})]
     public class Attachments : MessagePartBean {
@@ -62,12 +51,24 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Ficr_mt60020
         public Attachments() {
             this.typeCode = new CSImpl();
         }
+        /**
+         * <summary>Relationship: 
+         * FICR_MT600201CA.InvoiceElementGroupAttachment.typeCode</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"typeCode"})]
         public ActRelationshipType TypeCode {
             get { return (ActRelationshipType) this.typeCode.Value; }
             set { this.typeCode.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * FICR_MT600201CA.InvoiceElementGroupAttachment.healthDocumentAttachment</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"healthDocumentAttachment"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Ficr_mt600201ca.HealthDocumentAttachment HealthDocumentAttachment {
             get { return this.healthDocumentAttachment; }

@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,9 +28,9 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt300
 
 
     /**
-     * <summary>Person Prescribing</summary>
+     * <summary>Business Name: Person Prescribing</summary>
      * 
-     * <remarks><p>Person Prescribing</p></remarks>
+     * <p>Person Prescribing</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"COCT_MT300000CA.PrescriberPerson"})]
     public class PersonPrescribing : MessagePartBean {
@@ -43,9 +43,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt300
             this.telecom = new LISTImpl<TEL, TelecommunicationAddress>(typeof(TELImpl));
         }
         /**
-         * <summary>Prescriber Name</summary>
+         * <summary>Business Name: Prescriber Name</summary>
          * 
-         * <remarks><p>Name of person prescribing</p></remarks>
+         * <remarks>Relationship: COCT_MT300000CA.PrescriberPerson.name 
+         * Conformance/Cardinality: POPULATED (1) <p>Name of person 
+         * prescribing</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"name"})]
         public PersonName Name {
@@ -54,10 +56,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt300
         }
 
         /**
-         * <summary>Prescriber Telephone Number</summary>
+         * <summary>Business Name: Prescriber Telephone Number</summary>
          * 
-         * <remarks><p>Telephone no. of the prescriber</p> <p>used for 
-         * Coverage Extension to contact prescriber</p></remarks>
+         * <remarks>Relationship: 
+         * COCT_MT300000CA.PrescriberPerson.telecom 
+         * Conformance/Cardinality: REQUIRED (0-3) <p>used for Coverage 
+         * Extension to contact prescriber</p> <p>Telephone no. of the 
+         * prescriber</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"telecom"})]
         public IList<TelecommunicationAddress> Telecom {

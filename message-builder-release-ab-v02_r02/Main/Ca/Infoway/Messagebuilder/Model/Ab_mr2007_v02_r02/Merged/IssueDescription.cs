@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
 
 
     /**
-     * <summary>IssueDescription</summary>
+     * <summary>Business Name: IssueDescription</summary>
      * 
      * <remarks>PORX_MT980010CA.DetectedIssueDefinition: Issue 
      * Description <p>This is the decision support rule that 
@@ -71,10 +71,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             this.authorAssignedEntityAssignedOrganizationName = new STImpl();
         }
         /**
-         * <summary>IssueMonographId</summary>
+         * <summary>Business Name: IssueMonographId</summary>
          * 
-         * <remarks>A:Issue Monograph Id <p>Knowledgebase organization 
-         * specific identifier for the issue definition.</p> 
+         * <remarks>Un-merged Business Name: IssueMonographId 
+         * Relationship: PORX_MT980010CA.DetectedIssueDefinition.id 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Knowledgebase 
+         * organization specific identifier for the issue 
+         * definition.</p> 
          * <p>DDIMonograph.DDIMonographId</p><p>ZPE.2</p><p>MB.05.03C</p><p>ZPS.14</p><p>ZDU.5.2</p><p>A_DetectedMedicationIssue</p><p>Monograph 
          * Code</p> 
          * <p>DDIMonograph.DDIMonographId</p><p>ZPE.2</p><p>MB.05.03C</p><p>ZPS.14</p><p>ZDU.5.2</p><p>A_DetectedMedicationIssue</p><p>Monograph 
@@ -90,7 +93,89 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
          * <p>DDIMonograph.DDIMonographId</p><p>ZPE.2</p><p>MB.05.03C</p><p>ZPS.14</p><p>ZDU.5.2</p><p>A_DetectedMedicationIssue</p><p>Monograph 
          * Code</p> <p>Allows applications to match with local 
          * Knowledge-bases and avoid displaying duplicate issues to 
-         * providers.</p> A:Issue Monograph Id <p>Knowledgebase 
+         * providers.</p> Un-merged Business Name: IssueMonographId 
+         * Relationship: COCT_MT260020CA.DetectedIssueDefinition.id 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Knowledgebase 
+         * organization specific identifier for the issue 
+         * definition.</p> 
+         * <p>DDIMonograph.DDIMonographId</p><p>ZPE.2</p><p>MB.05.03C</p><p>ZPS.14</p><p>ZDU.5.2</p><p>A_DetectedMedicationIssue</p><p>Monograph 
+         * Code</p> 
+         * <p>DDIMonograph.DDIMonographId</p><p>ZPE.2</p><p>MB.05.03C</p><p>ZPS.14</p><p>ZDU.5.2</p><p>A_DetectedMedicationIssue</p><p>Monograph 
+         * Code</p> 
+         * <p>DDIMonograph.DDIMonographId</p><p>ZPE.2</p><p>MB.05.03C</p><p>ZPS.14</p><p>ZDU.5.2</p><p>A_DetectedMedicationIssue</p><p>Monograph 
+         * Code</p> 
+         * <p>DDIMonograph.DDIMonographId</p><p>ZPE.2</p><p>MB.05.03C</p><p>ZPS.14</p><p>ZDU.5.2</p><p>A_DetectedMedicationIssue</p><p>Monograph 
+         * Code</p> 
+         * <p>DDIMonograph.DDIMonographId</p><p>ZPE.2</p><p>MB.05.03C</p><p>ZPS.14</p><p>ZDU.5.2</p><p>A_DetectedMedicationIssue</p><p>Monograph 
+         * Code</p> 
+         * <p>DDIMonograph.DDIMonographId</p><p>ZPE.2</p><p>MB.05.03C</p><p>ZPS.14</p><p>ZDU.5.2</p><p>A_DetectedMedicationIssue</p><p>Monograph 
+         * Code</p> 
+         * <p>DDIMonograph.DDIMonographId</p><p>ZPE.2</p><p>MB.05.03C</p><p>ZPS.14</p><p>ZDU.5.2</p><p>A_DetectedMedicationIssue</p><p>Monograph 
+         * Code</p> <p>Allows applications to match with local 
+         * Knowledge-bases and avoid displaying duplicate issues to 
+         * providers.</p> Un-merged Business Name: IssueMonographId 
+         * Relationship: COCT_MT260030CA.DetectedIssueDefinition.id 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Knowledgebase 
+         * organization specific identifier for the issue 
+         * definition.</p> 
+         * <p>DDIMonograph.DDIMonographId</p><p>ZPE.2</p><p>MB.05.03C</p><p>ZPS.14</p><p>ZDU.5.2</p><p>A_DetectedMedicationIssue</p><p>Monograph 
+         * Code</p> 
+         * <p>DDIMonograph.DDIMonographId</p><p>ZPE.2</p><p>MB.05.03C</p><p>ZPS.14</p><p>ZDU.5.2</p><p>A_DetectedMedicationIssue</p><p>Monograph 
+         * Code</p> 
+         * <p>DDIMonograph.DDIMonographId</p><p>ZPE.2</p><p>MB.05.03C</p><p>ZPS.14</p><p>ZDU.5.2</p><p>A_DetectedMedicationIssue</p><p>Monograph 
+         * Code</p> 
+         * <p>DDIMonograph.DDIMonographId</p><p>ZPE.2</p><p>MB.05.03C</p><p>ZPS.14</p><p>ZDU.5.2</p><p>A_DetectedMedicationIssue</p><p>Monograph 
+         * Code</p> 
+         * <p>DDIMonograph.DDIMonographId</p><p>ZPE.2</p><p>MB.05.03C</p><p>ZPS.14</p><p>ZDU.5.2</p><p>A_DetectedMedicationIssue</p><p>Monograph 
+         * Code</p> 
+         * <p>DDIMonograph.DDIMonographId</p><p>ZPE.2</p><p>MB.05.03C</p><p>ZPS.14</p><p>ZDU.5.2</p><p>A_DetectedMedicationIssue</p><p>Monograph 
+         * Code</p> 
+         * <p>DDIMonograph.DDIMonographId</p><p>ZPE.2</p><p>MB.05.03C</p><p>ZPS.14</p><p>ZDU.5.2</p><p>A_DetectedMedicationIssue</p><p>Monograph 
+         * Code</p> <p>Allows applications to match with local 
+         * Knowledge-bases and avoid displaying duplicate issues to 
+         * providers.</p> Un-merged Business Name: IssueMonographId 
+         * Relationship: PORX_MT980020CA.DetectedIssueDefinition.id 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Knowledgebase 
+         * organization specific identifier for the issue 
+         * definition.</p> 
+         * <p>DDIMonograph.DDIMonographId</p><p>ZPE.2</p><p>MB.05.03C</p><p>ZPS.14</p><p>ZDU.5.2</p><p>A_DetectedMedicationIssue</p><p>Monograph 
+         * Code</p> 
+         * <p>DDIMonograph.DDIMonographId</p><p>ZPE.2</p><p>MB.05.03C</p><p>ZPS.14</p><p>ZDU.5.2</p><p>A_DetectedMedicationIssue</p><p>Monograph 
+         * Code</p> 
+         * <p>DDIMonograph.DDIMonographId</p><p>ZPE.2</p><p>MB.05.03C</p><p>ZPS.14</p><p>ZDU.5.2</p><p>A_DetectedMedicationIssue</p><p>Monograph 
+         * Code</p> 
+         * <p>DDIMonograph.DDIMonographId</p><p>ZPE.2</p><p>MB.05.03C</p><p>ZPS.14</p><p>ZDU.5.2</p><p>A_DetectedMedicationIssue</p><p>Monograph 
+         * Code</p> 
+         * <p>DDIMonograph.DDIMonographId</p><p>ZPE.2</p><p>MB.05.03C</p><p>ZPS.14</p><p>ZDU.5.2</p><p>A_DetectedMedicationIssue</p><p>Monograph 
+         * Code</p> 
+         * <p>DDIMonograph.DDIMonographId</p><p>ZPE.2</p><p>MB.05.03C</p><p>ZPS.14</p><p>ZDU.5.2</p><p>A_DetectedMedicationIssue</p><p>Monograph 
+         * Code</p> 
+         * <p>DDIMonograph.DDIMonographId</p><p>ZPE.2</p><p>MB.05.03C</p><p>ZPS.14</p><p>ZDU.5.2</p><p>A_DetectedMedicationIssue</p><p>Monograph 
+         * Code</p> <p>Allows applications to match with local 
+         * Knowledge-bases and avoid displaying duplicate issues to 
+         * providers.</p> Un-merged Business Name: IssueMonographId 
+         * Relationship: COCT_MT260010CA.DetectedIssueDefinition.id 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Knowledgebase 
+         * organization specific identifier for the issue 
+         * definition.</p> 
+         * <p>DDIMonograph.DDIMonographId</p><p>ZPE.2</p><p>MB.05.03C</p><p>ZPS.14</p><p>ZDU.5.2</p><p>A_DetectedMedicationIssue</p><p>Monograph 
+         * Code</p> 
+         * <p>DDIMonograph.DDIMonographId</p><p>ZPE.2</p><p>MB.05.03C</p><p>ZPS.14</p><p>ZDU.5.2</p><p>A_DetectedMedicationIssue</p><p>Monograph 
+         * Code</p> 
+         * <p>DDIMonograph.DDIMonographId</p><p>ZPE.2</p><p>MB.05.03C</p><p>ZPS.14</p><p>ZDU.5.2</p><p>A_DetectedMedicationIssue</p><p>Monograph 
+         * Code</p> 
+         * <p>DDIMonograph.DDIMonographId</p><p>ZPE.2</p><p>MB.05.03C</p><p>ZPS.14</p><p>ZDU.5.2</p><p>A_DetectedMedicationIssue</p><p>Monograph 
+         * Code</p> 
+         * <p>DDIMonograph.DDIMonographId</p><p>ZPE.2</p><p>MB.05.03C</p><p>ZPS.14</p><p>ZDU.5.2</p><p>A_DetectedMedicationIssue</p><p>Monograph 
+         * Code</p> 
+         * <p>DDIMonograph.DDIMonographId</p><p>ZPE.2</p><p>MB.05.03C</p><p>ZPS.14</p><p>ZDU.5.2</p><p>A_DetectedMedicationIssue</p><p>Monograph 
+         * Code</p> 
+         * <p>DDIMonograph.DDIMonographId</p><p>ZPE.2</p><p>MB.05.03C</p><p>ZPS.14</p><p>ZDU.5.2</p><p>A_DetectedMedicationIssue</p><p>Monograph 
+         * Code</p> <p>Allows applications to match with local 
+         * Knowledge-bases and avoid displaying duplicate issues to 
+         * providers.</p> Un-merged Business Name: IssueMonographId 
+         * Relationship: PORX_MT980030CA.DetectedIssueDefinition.id 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Knowledgebase 
          * organization specific identifier for the issue 
          * definition.</p> 
          * <p>DDIMonograph.DDIMonographId</p><p>ZPE.2</p><p>MB.05.03C</p><p>ZPS.14</p><p>ZDU.5.2</p><p>A_DetectedMedicationIssue</p><p>Monograph 
@@ -117,14 +202,51 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>IssueDescription</summary>
+         * <summary>Business Name: IssueDescription</summary>
          * 
-         * <remarks>C:Issue Description <p>A free form textual 
-         * description of the issue. This is usually in the form of a 
-         * monograph.</p> <p>Monograph URI (Reference)</p><p>Monograph 
-         * description</p> <p>Monograph URI (Reference)</p><p>Monograph 
-         * description</p> <p>Provides detailed clinical background on 
-         * reasons for issue.</p> C:Issue Description <p>A free form 
+         * <remarks>Un-merged Business Name: IssueDescription 
+         * Relationship: PORX_MT980010CA.DetectedIssueDefinition.text 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>A free form 
+         * textual description of the issue. This is usually in the 
+         * form of a monograph.</p> <p>Monograph URI 
+         * (Reference)</p><p>Monograph description</p> <p>Monograph URI 
+         * (Reference)</p><p>Monograph description</p> <p>Provides 
+         * detailed clinical background on reasons for issue.</p> 
+         * Un-merged Business Name: IssueDescription Relationship: 
+         * COCT_MT260020CA.DetectedIssueDefinition.text 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>A free form 
+         * textual description of the issue. This is usually in the 
+         * form of a monograph.</p> <p>Monograph URI 
+         * (Reference)</p><p>Monograph description</p> <p>Monograph URI 
+         * (Reference)</p><p>Monograph description</p> <p>Provides 
+         * detailed clinical background on reasons for issue.</p> 
+         * Un-merged Business Name: IssueDescription Relationship: 
+         * COCT_MT260030CA.DetectedIssueDefinition.text 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>A free form 
+         * textual description of the issue. This is usually in the 
+         * form of a monograph.</p> <p>Monograph URI 
+         * (Reference)</p><p>Monograph description</p> <p>Monograph URI 
+         * (Reference)</p><p>Monograph description</p> <p>Provides 
+         * detailed clinical background on reasons for issue.</p> 
+         * Un-merged Business Name: IssueDescription Relationship: 
+         * PORX_MT980020CA.DetectedIssueDefinition.text 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>A free form 
+         * textual description of the issue. This is usually in the 
+         * form of a monograph.</p> <p>Monograph URI 
+         * (Reference)</p><p>Monograph description</p> <p>Monograph URI 
+         * (Reference)</p><p>Monograph description</p> <p>Provides 
+         * detailed clinical background on reasons for issue.</p> 
+         * Un-merged Business Name: IssueDescription Relationship: 
+         * COCT_MT260010CA.DetectedIssueDefinition.text 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>A free form 
+         * textual description of the issue. This is usually in the 
+         * form of a monograph.</p> <p>Monograph URI 
+         * (Reference)</p><p>Monograph description</p> <p>Monograph URI 
+         * (Reference)</p><p>Monograph description</p> <p>Provides 
+         * detailed clinical background on reasons for issue.</p> 
+         * Un-merged Business Name: IssueDescription Relationship: 
+         * PORX_MT980030CA.DetectedIssueDefinition.text 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>A free form 
          * textual description of the issue. This is usually in the 
          * form of a monograph.</p> <p>Monograph URI 
          * (Reference)</p><p>Monograph description</p> <p>Monograph URI 
@@ -138,18 +260,58 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>IssueMonographEffectiveDate</summary>
+         * <summary>Business Name: IssueMonographEffectiveDate</summary>
          * 
-         * <remarks>B:Issue Monograph Effective Date <p>The date and 
-         * time on which the monograph becomes valid and 
-         * applicable.</p> 
+         * <remarks>Un-merged Business Name: 
+         * IssueMonographEffectiveDate Relationship: 
+         * PORX_MT980010CA.Author2.time Conformance/Cardinality: 
+         * REQUIRED (0-1) <p>The date and time on which the monograph 
+         * becomes valid and applicable.</p> 
          * <p>DDIMonograph.EffectiveDate</p><p>A_DetectedMedicationIssue</p> 
          * <p>DDIMonograph.EffectiveDate</p><p>A_DetectedMedicationIssue</p> 
          * <p>Allows detailed matching of local knowledgebase record 
          * with that of the central. (The monograph id may remain the 
          * same, but the effective date will always change).</p> 
-         * B:Issue Monograph Effective Date <p>The date and time on 
-         * which the monograph becomes valid and applicable.</p> 
+         * Un-merged Business Name: IssueMonographEffectiveDate 
+         * Relationship: COCT_MT260020CA.Author2.time 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The date and time 
+         * on which the monograph becomes valid and applicable.</p> 
+         * <p>DDIMonograph.EffectiveDate</p><p>A_DetectedMedicationIssue</p> 
+         * <p>DDIMonograph.EffectiveDate</p><p>A_DetectedMedicationIssue</p> 
+         * <p>Allows detailed matching of local knowledgebase record 
+         * with that of the central. (The monograph id may remain the 
+         * same, but the effective date will always change).</p> 
+         * Un-merged Business Name: IssueMonographEffectiveDate 
+         * Relationship: COCT_MT260030CA.Author2.time 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The date and time 
+         * on which the monograph becomes valid and applicable.</p> 
+         * <p>DDIMonograph.EffectiveDate</p><p>A_DetectedMedicationIssue</p> 
+         * <p>DDIMonograph.EffectiveDate</p><p>A_DetectedMedicationIssue</p> 
+         * <p>Allows detailed matching of local knowledgebase record 
+         * with that of the central. (The monograph id may remain the 
+         * same, but the effective date will always change).</p> 
+         * Un-merged Business Name: IssueMonographEffectiveDate 
+         * Relationship: PORX_MT980020CA.Author2.time 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The date and time 
+         * on which the monograph becomes valid and applicable.</p> 
+         * <p>DDIMonograph.EffectiveDate</p><p>A_DetectedMedicationIssue</p> 
+         * <p>DDIMonograph.EffectiveDate</p><p>A_DetectedMedicationIssue</p> 
+         * <p>Allows detailed matching of local knowledgebase record 
+         * with that of the central. (The monograph id may remain the 
+         * same, but the effective date will always change).</p> 
+         * Un-merged Business Name: IssueMonographEffectiveDate 
+         * Relationship: COCT_MT260010CA.Author2.time 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The date and time 
+         * on which the monograph becomes valid and applicable.</p> 
+         * <p>DDIMonograph.EffectiveDate</p><p>A_DetectedMedicationIssue</p> 
+         * <p>DDIMonograph.EffectiveDate</p><p>A_DetectedMedicationIssue</p> 
+         * <p>Allows detailed matching of local knowledgebase record 
+         * with that of the central. (The monograph id may remain the 
+         * same, but the effective date will always change).</p> 
+         * Un-merged Business Name: IssueMonographEffectiveDate 
+         * Relationship: PORX_MT980030CA.Author2.time 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The date and time 
+         * on which the monograph becomes valid and applicable.</p> 
          * <p>DDIMonograph.EffectiveDate</p><p>A_DetectedMedicationIssue</p> 
          * <p>DDIMonograph.EffectiveDate</p><p>A_DetectedMedicationIssue</p> 
          * <p>Allows detailed matching of local knowledgebase record 
@@ -163,17 +325,59 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>KnowledgebaseVendorName</summary>
+         * <summary>Business Name: KnowledgebaseVendorName</summary>
          * 
-         * <remarks>C:Knowledgebase Vendor Name <p>The name of a 
+         * <remarks>Un-merged Business Name: KnowledgebaseVendorName 
+         * Relationship: PORX_MT980010CA.Organization.name 
+         * Conformance/Cardinality: MANDATORY (1) <p>The name of a 
          * clinical knowledgebase vendor organization.</p> <p>Allows a 
          * knowledgebase vendor to be referenced by name.</p><p>The 
          * attribute is mandatory because it is the only information 
          * collected about a knowledgebase vendor.</p> <p>Allows a 
          * knowledgebase vendor to be referenced by name.</p><p>The 
          * attribute is mandatory because it is the only information 
-         * collected about a knowledgebase vendor.</p> C:Knowledgebase 
-         * Vendor Name <p>The name of a clinical knowledgebase vendor 
+         * collected about a knowledgebase vendor.</p> Un-merged 
+         * Business Name: KnowledgebaseVendorName Relationship: 
+         * COCT_MT260020CA.Organization.name Conformance/Cardinality: 
+         * MANDATORY (1) <p>The name of a clinical knowledgebase vendor 
+         * organization.</p> <p>Allows a knowledgebase vendor to be 
+         * referenced by name.</p><p>The attribute is mandatory because 
+         * it is the only information collected about a knowledgebase 
+         * vendor.</p> <p>Allows a knowledgebase vendor to be 
+         * referenced by name.</p><p>The attribute is mandatory because 
+         * it is the only information collected about a knowledgebase 
+         * vendor.</p> Un-merged Business Name: KnowledgebaseVendorName 
+         * Relationship: COCT_MT260030CA.Organization.name 
+         * Conformance/Cardinality: MANDATORY (1) <p>The name of a 
+         * clinical knowledgebase vendor organization.</p> <p>Allows a 
+         * knowledgebase vendor to be referenced by name.</p><p>The 
+         * attribute is mandatory because it is the only information 
+         * collected about a knowledgebase vendor.</p> <p>Allows a 
+         * knowledgebase vendor to be referenced by name.</p><p>The 
+         * attribute is mandatory because it is the only information 
+         * collected about a knowledgebase vendor.</p> Un-merged 
+         * Business Name: KnowledgebaseVendorName Relationship: 
+         * PORX_MT980020CA.Organization.name Conformance/Cardinality: 
+         * MANDATORY (1) <p>The name of a clinical knowledgebase vendor 
+         * organization.</p> <p>Allows a knowledgebase vendor to be 
+         * referenced by name.</p><p>The attribute is mandatory because 
+         * it is the only information collected about a knowledgebase 
+         * vendor.</p> <p>Allows a knowledgebase vendor to be 
+         * referenced by name.</p><p>The attribute is mandatory because 
+         * it is the only information collected about a knowledgebase 
+         * vendor.</p> Un-merged Business Name: KnowledgebaseVendorName 
+         * Relationship: COCT_MT260010CA.Organization.name 
+         * Conformance/Cardinality: MANDATORY (1) <p>The name of a 
+         * clinical knowledgebase vendor organization.</p> <p>Allows a 
+         * knowledgebase vendor to be referenced by name.</p><p>The 
+         * attribute is mandatory because it is the only information 
+         * collected about a knowledgebase vendor.</p> <p>Allows a 
+         * knowledgebase vendor to be referenced by name.</p><p>The 
+         * attribute is mandatory because it is the only information 
+         * collected about a knowledgebase vendor.</p> Un-merged 
+         * Business Name: KnowledgebaseVendorName Relationship: 
+         * PORX_MT980030CA.Organization.name Conformance/Cardinality: 
+         * MANDATORY (1) <p>The name of a clinical knowledgebase vendor 
          * organization.</p> <p>Allows a knowledgebase vendor to be 
          * referenced by name.</p><p>The attribute is mandatory because 
          * it is the only information collected about a knowledgebase 
@@ -188,6 +392,29 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             set { this.authorAssignedEntityAssignedOrganizationName.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PORX_MT980010CA.Component.substanceAdministrationEventCriterion 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * COCT_MT260020CA.Component.substanceAdministrationEventCriterion 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * COCT_MT260030CA.Component.substanceAdministrationEventCriterion 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT980020CA.Component.substanceAdministrationEventCriterion 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * COCT_MT260010CA.Component.substanceAdministrationEventCriterion 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT980030CA.Component.substanceAdministrationEventCriterion 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"component/substanceAdministrationEventCriterion"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.RecommendedDosage ComponentSubstanceAdministrationEventCriterion {
             get { return this.componentSubstanceAdministrationEventCriterion; }

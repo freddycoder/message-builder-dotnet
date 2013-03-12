@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,14 +32,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Porx_mt0
 
 
     /**
-     * <summary>Dispense Instructions</summary>
+     * <summary>Business Name: Dispense Instructions</summary>
      * 
-     * <remarks><p>Specification of how the prescribed medication 
-     * is to be dispensed to the patient. Dispensed instruction 
-     * information includes the quantity to be dispensed, how often 
-     * the quantity is to be dispensed, etc.</p> <p>Sets the 
-     * parameters within which the dispenser must operate in 
-     * dispensing the medication to the patient.</p></remarks>
+     * <p>Sets the parameters within which the dispenser must 
+     * operate in dispensing the medication to the patient.</p> 
+     * <p>Specification of how the prescribed medication is to be 
+     * dispensed to the patient. Dispensed instruction information 
+     * includes the quantity to be dispensed, how often the 
+     * quantity is to be dispensed, etc.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"PORX_MT060340CA.SupplyRequest"})]
     public class DispenseInstructions : MessagePartBean {
@@ -58,19 +58,19 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Porx_mt0
             this.component = new List<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Merged.Component3>();
         }
         /**
-         * <summary>Prescription Dispensable Indicator</summary>
+         * <summary>Business Name: Prescription Dispensable Indicator</summary>
          * 
-         * <remarks><p>This generally mirrors the status for the 
-         * prescription, but in some circumstances may be changed to 
-         * 'aborted' while the prescription is still active. When this 
-         * occurs, it means the prescription may no longer be 
-         * dispensed, though it may still be administered.</p> 
-         * <p>Allows a prescriber to say &quot;Finish what you have on 
-         * hand, but don't get any more.&quot;</p><p>Because the status 
-         * should always be known, this element is mandatory.</p> 
-         * <p>Allows a prescriber to say &quot;Finish what you have on 
-         * hand, but don't get any more.&quot;</p><p>Because the status 
-         * should always be known, this element is mandatory.</p></remarks>
+         * <remarks>Relationship: 
+         * PORX_MT060340CA.SupplyRequest.statusCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows a 
+         * prescriber to say &quot;Finish what you have on hand, but 
+         * don't get any more.&quot;</p><p>Because the status should 
+         * always be known, this element is mandatory.</p> <p>This 
+         * generally mirrors the status for the prescription, but in 
+         * some circumstances may be changed to 'aborted' while the 
+         * prescription is still active. When this occurs, it means the 
+         * prescription may no longer be dispensed, though it may still 
+         * be administered.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"statusCode"})]
         public ActStatus StatusCode {
@@ -79,9 +79,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Porx_mt0
         }
 
         /**
-         * <summary>A:Dispensing Allowed Period</summary>
+         * <summary>Business Name: A:Dispensing Allowed Period</summary>
          * 
-         * <remarks><p>This indicates the validity period of a 
+         * <remarks>Relationship: 
+         * PORX_MT060340CA.SupplyRequest.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates when 
+         * the Order becomes valid, and when it ceases to be an 
+         * actionable Order. Some jurisdictions place a 'stale date' on 
+         * prescriptions that cause them to become invalid a certain 
+         * amount of time after they are written. This time may vary by 
+         * medication.</p> <p>This indicates the validity period of a 
          * prescription (stale dating the Prescription). It reflects 
          * the prescriber perspective for the validity of the 
          * prescription. Dispenses must not be made against the 
@@ -90,11 +97,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Porx_mt0
          * that the prescription can be filled for the first time. If 
          * an upper-bound is not specified then the Prescription is 
          * open-ended or will default to a stale-date based on 
-         * regulations.</p> <p>Indicates when the Order becomes valid, 
-         * and when it ceases to be an actionable Order. Some 
-         * jurisdictions place a 'stale date' on prescriptions that 
-         * cause them to become invalid a certain amount of time after 
-         * they are written. This time may vary by medication.</p></remarks>
+         * regulations.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"effectiveTime"})]
         public Interval<PlatformDate> EffectiveTime {
@@ -102,23 +105,47 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Porx_mt0
             set { this.effectiveTime.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PORX_MT060340CA.Receiver.personalRelationship</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"receiver/personalRelationship"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.RelatedPerson> ReceiverPersonalRelationship {
             get { return this.receiverPersonalRelationship; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PORX_MT060340CA.Destination1.serviceDeliveryLocation</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"destination/serviceDeliveryLocation"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Merged.DispenseShipToLocation DestinationServiceDeliveryLocation {
             get { return this.destinationServiceDeliveryLocation; }
             set { this.destinationServiceDeliveryLocation = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PORX_MT060340CA.SupplyRequest.location</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"location"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.OccurredAt Location {
             get { return this.location; }
             set { this.location = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PORX_MT060340CA.SupplyRequest.component</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1-5)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"component"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Merged.Component3> Component {
             get { return this.component; }

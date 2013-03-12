@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,10 +32,10 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merg
      * <summary>POIZ_MT030060CA.IntoleranceCondition: (no business 
      * name)</summary>
      * 
-     * <remarks><p>A record of a patient's allergy or 
-     * intolerance.</p> <p>Necessary component of a person's 
-     * overall medication and clinical profile. Helps with drug 
-     * contraindication checking.</p></remarks>
+     * <p>Necessary component of a person's overall medication and 
+     * clinical profile. Helps with drug contraindication 
+     * checking.</p> <p>A record of a patient's allergy or 
+     * intolerance.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"POIZ_MT030050CA.IntoleranceCondition","POIZ_MT030060CA.IntoleranceCondition","POIZ_MT060150CA.IntoleranceCondition"})]
     public class IntoleranceCondition : MessagePartBean {
@@ -54,13 +54,21 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merg
             this.uncertaintyCode = new CVImpl();
         }
         /**
-         * <summary>AllergyIntoleranceRecordID</summary>
+         * <summary>Business Name: AllergyIntoleranceRecordID</summary>
          * 
-         * <remarks>Allergy/Intolerance Record ID <p>Unique identifier 
-         * for the intolerance condition.</p> <p>Needed to reference 
-         * allergy and intolerance records stored in a patient's 
-         * logitudinal electronic health record. As a result, this 
-         * attribute is mandatory.</p> Allergy/Intolerance Record ID</remarks>
+         * <remarks>Un-merged Business Name: AllergyIntoleranceRecordID 
+         * Relationship: POIZ_MT030060CA.IntoleranceCondition.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>Needed to 
+         * reference allergy and intolerance records stored in a 
+         * patient's logitudinal electronic health record. As a result, 
+         * this attribute is mandatory.</p> <p>Unique identifier for 
+         * the intolerance condition.</p> Un-merged Business Name: 
+         * AllergyIntoleranceRecordID Relationship: 
+         * POIZ_MT030050CA.IntoleranceCondition.id 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: AllergyIntoleranceRecordID Relationship: 
+         * POIZ_MT060150CA.IntoleranceCondition.id 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -69,16 +77,24 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merg
         }
 
         /**
-         * <summary>AllergyIntoleranceType</summary>
+         * <summary>Business Name: AllergyIntoleranceType</summary>
          * 
-         * <remarks>Allergy Intolerance Type <p>A coded value denoting 
+         * <remarks>Un-merged Business Name: AllergyIntoleranceType 
+         * Relationship: POIZ_MT030060CA.IntoleranceCondition.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows for the 
+         * separation of allergy and intolerance records. The type of 
+         * condition is critical to understanding the record and is 
+         * therefore mandatory. It is expressed as a CD to allow for 
+         * SNOMED post-coordination.</p> <p>A coded value denoting 
          * whether the record pertains to an intolerance or a true 
          * allergy. (Allergies result from immunologic reactions. 
-         * Intolerances do not.)</p> <p>Allows for the separation of 
-         * allergy and intolerance records. The type of condition is 
-         * critical to understanding the record and is therefore 
-         * mandatory. It is expressed as a CD to allow for SNOMED 
-         * post-coordination.</p> Allergy Intolerance Type</remarks>
+         * Intolerances do not.)</p> Un-merged Business Name: 
+         * AllergyIntoleranceType Relationship: 
+         * POIZ_MT030050CA.IntoleranceCondition.code 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: AllergyIntoleranceType Relationship: 
+         * POIZ_MT060150CA.IntoleranceCondition.code 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public ObservationIntoleranceType Code {
@@ -87,16 +103,25 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merg
         }
 
         /**
-         * <summary>AllergyIntoleranceRefuted</summary>
+         * <summary>Business Name: AllergyIntoleranceRefuted</summary>
          * 
-         * <remarks>Allergy/Intolerance Refuted <p>An indication that 
-         * the allergy/intolerance has been refuted. I.e. A clinician 
-         * has positively determined that the patient does not suffer 
-         * from a particular allergy or intolerance.</p> <p>Allows 
-         * providers to refute a previously confirmed or suspected 
-         * allergy. The attribute is mandatory because it is essential 
-         * to know whether a record is refuted or not.</p> 
-         * Allergy/Intolerance Refuted</remarks>
+         * <remarks>Un-merged Business Name: AllergyIntoleranceRefuted 
+         * Relationship: 
+         * POIZ_MT030060CA.IntoleranceCondition.negationInd 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows providers 
+         * to refute a previously confirmed or suspected allergy. The 
+         * attribute is mandatory because it is essential to know 
+         * whether a record is refuted or not.</p> <p>An indication 
+         * that the allergy/intolerance has been refuted. I.e. A 
+         * clinician has positively determined that the patient does 
+         * not suffer from a particular allergy or intolerance.</p> 
+         * Un-merged Business Name: AllergyIntoleranceRefuted 
+         * Relationship: 
+         * POIZ_MT030050CA.IntoleranceCondition.negationInd 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: AllergyIntoleranceRefuted Relationship: 
+         * POIZ_MT060150CA.IntoleranceCondition.negationInd 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"negationInd"})]
         public bool? NegationInd {
@@ -105,14 +130,23 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merg
         }
 
         /**
-         * <summary>AllergyIntoleranceStatus</summary>
+         * <summary>Business Name: AllergyIntoleranceStatus</summary>
          * 
-         * <remarks>Allergy/Intolerance Status Allergy/Intolerance 
-         * Status <p>A coded value that indicates whether an 
+         * <remarks>Un-merged Business Name: AllergyIntoleranceStatus 
+         * Relationship: 
+         * POIZ_MT030060CA.IntoleranceCondition.statusCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows providers 
+         * to evaluate the relevance of a recorded allergy/intolerance. 
+         * The status has a default value of 'ACTIVE' and is therefore 
+         * mandatory.</p> <p>A coded value that indicates whether an 
          * allergy/intolerance is 'ACTIVE' or 'COMPLETE' (indicating no 
-         * longer active).</p> <p>Allows providers to evaluate the 
-         * relevance of a recorded allergy/intolerance. The status has 
-         * a default value of 'ACTIVE' and is therefore mandatory.</p></remarks>
+         * longer active).</p> Un-merged Business Name: 
+         * AllergyIntoleranceStatus Relationship: 
+         * POIZ_MT030050CA.IntoleranceCondition.statusCode 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: AllergyIntoleranceStatus Relationship: 
+         * POIZ_MT060150CA.IntoleranceCondition.statusCode 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"statusCode"})]
         public ActStatus StatusCode {
@@ -121,19 +155,28 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merg
         }
 
         /**
-         * <summary>ConfirmedIndicator</summary>
+         * <summary>Business Name: ConfirmedIndicator</summary>
          * 
-         * <remarks>Confirmed Indicator Confirmed Indicator <p>An 
+         * <remarks>Un-merged Business Name: ConfirmedIndicator 
+         * Relationship: 
+         * POIZ_MT030060CA.IntoleranceCondition.uncertaintyCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>Helps other 
+         * providers to make appropriate decisions in their management 
+         * of allergy or intolerance contraindications. Attribute is 
+         * mandatory because an allergy or intolerance record must be 
+         * tagged as either 'confirmed' or 'suspected'.</p> <p>An 
          * indication of the level of confidence/surety placed in the 
          * recorded information. The two valid confirmation statuses 
          * are&quot; 'CONFIRMED' and 'SUSPECTED'. An allergy or 
          * intolerance record is always used in drug contraindication 
          * checking whether the record is tagged as 'confirmed' or 
-         * 'suspected'.</p> <p>Helps other providers to make 
-         * appropriate decisions in their management of allergy or 
-         * intolerance contraindications. Attribute is mandatory 
-         * because an allergy or intolerance record must be tagged as 
-         * either 'confirmed' or 'suspected'.</p></remarks>
+         * 'suspected'.</p> Un-merged Business Name: ConfirmedIndicator 
+         * Relationship: 
+         * POIZ_MT030050CA.IntoleranceCondition.uncertaintyCode 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: ConfirmedIndicator Relationship: 
+         * POIZ_MT060150CA.IntoleranceCondition.uncertaintyCode 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"uncertaintyCode"})]
         public ActUncertainty UncertaintyCode {

@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,10 +35,10 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt004000
 
 
     /**
-     * <summary>Battery Event</summary>
+     * <summary>Business Name: Battery Event</summary>
      * 
-     * <remarks><p>Used to group Observation Events by the 
-     * batteries that were ordered by the lab.</p></remarks>
+     * <p>Used to group Observation Events by the batteries that 
+     * were ordered by the lab.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"POLB_MT004000CA.BatteryEvent"})]
     public class BatteryEvent : MessagePartBean, Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt004000ca.IResultChoice {
@@ -78,11 +78,21 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt004000
             this.component3ResultChoice = new List<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt004000ca.IResultChoice>();
             this.subjectOf2 = new List<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.Includes>();
         }
+        /**
+         * <summary>Relationship: POLB_MT004000CA.ResultChoice.specimen</summary>
+         * 
+         * <remarks>Conformance/Cardinality: REQUIRED (0-100)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"specimen"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Merged.ReportSectionSpecimen> Specimen {
             get { return this.specimen; }
         }
 
+        /**
+         * <summary>Relationship: POLB_MT004000CA.RecordTarget.patient</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"recordTarget/patient"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.Patient_1 RecordTargetPatient {
             get { return this.recordTargetPatient; }
@@ -90,26 +100,33 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt004000
         }
 
         /**
-         * <summary>Battery Event Identifier</summary>
+         * <summary>Business Name: Battery Event Identifier</summary>
          * 
-         * <remarks><p>This is a unique identifier for the Battery 
-         * Event.</p></remarks>
+         * <remarks>Relationship: POLB_MT004000CA.BatteryEvent.id 
+         * Conformance/Cardinality: POPULATED (1-2) <p>This is a unique 
+         * identifier for the Battery Event.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public ICollection<Identifier> Id {
             get { return this.id.RawSet(); }
         }
 
+        /**
+         * <summary>Relationship: POLB_MT004000CA.ResultChoice.receiver</summary>
+         * 
+         * <remarks>Conformance/Cardinality: REQUIRED (0-20)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"receiver"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Merged.ElectronicResultReceiver> Receiver {
             get { return this.receiver; }
         }
 
         /**
-         * <summary>Type of Battery Event</summary>
+         * <summary>Business Name: Type of Battery Event</summary>
          * 
-         * <remarks><p>Code drawn from the pCLOCD to identify the 
-         * battery ordered by the lab.</p></remarks>
+         * <remarks>Relationship: POLB_MT004000CA.BatteryEvent.code 
+         * Conformance/Cardinality: POPULATED (1) <p>Code drawn from 
+         * the pCLOCD to identify the battery ordered by the lab.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public ObservationOrderableLabType Code {
@@ -117,11 +134,22 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt004000
             set { this.code.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: POLB_MT004000CA.Performer.roleChoice</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"performer/roleChoice"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.IRoleChoice> PerformerRoleChoice {
             get { return this.performerRoleChoice; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * POLB_MT004000CA.ResultChoice.primaryInformationRecipient</summary>
+         * 
+         * <remarks>Conformance/Cardinality: REQUIRED (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"primaryInformationRecipient"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt004000ca.PrimaryInformationRecipient PrimaryInformationRecipient {
             get { return this.primaryInformationRecipient; }
@@ -129,10 +157,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt004000
         }
 
         /**
-         * <summary>Battery Event Status</summary>
+         * <summary>Business Name: Battery Event Status</summary>
          * 
-         * <remarks><p>Status associated with all ObservationEvents 
-         * that are components of this Battery Event.</p></remarks>
+         * <remarks>Relationship: 
+         * POLB_MT004000CA.BatteryEvent.statusCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>Status associated 
+         * with all ObservationEvents that are components of this 
+         * Battery Event.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"statusCode"})]
         public ActStatus StatusCode {
@@ -141,10 +172,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt004000
         }
 
         /**
-         * <summary>Battery Event Effective Time</summary>
+         * <summary>Business Name: Battery Event Effective Time</summary>
          * 
-         * <remarks><p>Effective time associated with the lab order 
-         * battery.</p></remarks>
+         * <remarks>Relationship: 
+         * POLB_MT004000CA.BatteryEvent.effectiveTime 
+         * Conformance/Cardinality: POPULATED (1) <p>Effective time 
+         * associated with the lab order battery.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"effectiveTime"})]
         public Interval<PlatformDate> EffectiveTime {
@@ -152,61 +185,117 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt004000
             set { this.effectiveTime.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * POLB_MT004000CA.InFulfillmentOf.fulfillmentChoice</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"inFulfillmentOf/fulfillmentChoice"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Merged.IFulfillmentChoice> InFulfillmentOfFulfillmentChoice {
             get { return this.inFulfillmentOfFulfillmentChoice; }
         }
 
         /**
-         * <summary>Battery Event Confidentiality</summary>
+         * <summary>Business Name: Battery Event Confidentiality</summary>
          * 
-         * <remarks><p>Level of confidentiality assoicated with the 
-         * reporting of the Observation Events that are components of 
-         * this Battery.</p></remarks>
+         * <remarks>Relationship: 
+         * POLB_MT004000CA.BatteryEvent.confidentialityCode 
+         * Conformance/Cardinality: REQUIRED (0-2) <p>Level of 
+         * confidentiality assoicated with the reporting of the 
+         * Observation Events that are components of this Battery.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"confidentialityCode"})]
         public ICollection<x_BasicConfidentialityKind> ConfidentialityCode {
             get { return this.confidentialityCode.RawSet<x_BasicConfidentialityKind>(); }
         }
 
+        /**
+         * <summary>Relationship: 
+         * POLB_MT004000CA.PertinentInformation1.outbreakEvent</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"pertinentInformation1/outbreakEvent"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Merged.Outbreak PertinentInformation1OutbreakEvent {
             get { return this.pertinentInformation1OutbreakEvent; }
             set { this.pertinentInformation1OutbreakEvent = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * POLB_MT004000CA.PertinentInformation2.supportingClinicalObservationEvent</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"pertinentInformation2/supportingClinicalObservationEvent"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Merged.SupportingClinicalInformation> PertinentInformation2SupportingClinicalObservationEvent {
             get { return this.pertinentInformation2SupportingClinicalObservationEvent; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * POLB_MT004000CA.Component2.resultSortKey</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"component1/resultSortKey"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Merged.ResultSortKey Component1ResultSortKey {
             get { return this.component1ResultSortKey; }
             set { this.component1ResultSortKey = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * POLB_MT004000CA.Component3.reportableTestIndicator</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"component2/reportableTestIndicator"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Merged.ReportableHealthIndicator> Component2ReportableTestIndicator {
             get { return this.component2ReportableTestIndicator; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * POLB_MT004000CA.Component1.resultChoice</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"component3/resultChoice"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt004000ca.IResultChoice> Component3ResultChoice {
             get { return this.component3ResultChoice; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * POLB_MT004000CA.Subject1.controlActEvent</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf1/controlActEvent"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt130001ca.VersionInformation SubjectOf1ControlActEvent {
             get { return this.subjectOf1ControlActEvent; }
             set { this.subjectOf1ControlActEvent = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * POLB_MT004000CA.ResultChoice.subjectOf2</summary>
+         * 
+         * <remarks>Conformance/Cardinality: REQUIRED (0-100)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf2"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.Includes> SubjectOf2 {
             get { return this.subjectOf2; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * POLB_MT004000CA.Subject3.resultStatusProcessStep</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf3/resultStatusProcessStep"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Merged.ResultStatusProcessStep SubjectOf3ResultStatusProcessStep {
             get { return this.subjectOf3ResultStatusProcessStep; }

@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,12 +28,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt600
 
 
     /**
-     * <summary><p>At most 5 levels of recursion, with n children 
-     * at each level. Root level counts as level 1.</p></summary>
+     * <p>At most 5 levels of recursion, with n children at each 
+     * level. Root level counts as level 1.</p>
      * 
-     * <remarks><p>This allows for an Invoice Grouping to be 
-     * composed of one or more invoice element groups and/or 
-     * details. There must be one leaf detail.</p></remarks>
+     * <p>This allows for an Invoice Grouping to be composed of one 
+     * or more invoice element groups and/or details. There must be 
+     * one leaf detail.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"FICR_MT600201CA.InvoiceElementComponent"})]
     public class InvoiceElementComponent : MessagePartBean {
@@ -45,7 +45,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt600
             this.sequenceNumber = new INTImpl();
         }
         /**
-         * <summary>Invoice Element Sequence Number</summary>
+         * <summary>Business Name: Invoice Element Sequence Number</summary>
+         * 
+         * <remarks>Relationship: 
+         * FICR_MT600201CA.InvoiceElementComponent.sequenceNumber 
+         * Conformance/Cardinality: REQUIRED (0-1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"sequenceNumber"})]
         public int? SequenceNumber {
@@ -53,6 +57,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt600
             set { this.sequenceNumber.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * FICR_MT600201CA.InvoiceElementComponent.invoiceElementChoice</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"invoiceElementChoice"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt600201ca.IInvoiceElementChoice InvoiceElementChoice {
             get { return this.invoiceElementChoice; }

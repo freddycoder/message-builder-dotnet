@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,24 +35,52 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lr.Merged {
             this.id = new IIImpl();
         }
         /**
-         * <summary>LocationRegionId</summary>
+         * <summary>Business Name: LocationRegionId</summary>
          * 
-         * <remarks>H: Location Region Id <p>Identifies the health 
-         * region associated with the service delivery location (if 
-         * any).</p> <p>In Canada, many service delivery locations are 
-         * organized into regions for administrative, coordination 
-         * and/or funding reasons. Regions may influence where a 
-         * patient may go for services. They may also be used for 
-         * searching.</p><p>Because not all service delivery locations 
-         * are associated with a region, this element is only 
-         * 'populated' to allow null flavors such as 'NA'.</p> <p>In 
-         * Canada, many service delivery locations are organized into 
-         * regions for administrative, coordination and/or funding 
-         * reasons. Regions may influence where a patient may go for 
-         * services. They may also be used for searching.</p><p>Because 
-         * not all service delivery locations are associated with a 
-         * region, this element is only 'populated' to allow null 
-         * flavors such as 'NA'.</p></remarks>
+         * <remarks>Un-merged Business Name: LocationRegionId 
+         * Relationship: PRPA_MT202302CA.TerritorialAuthority.id 
+         * Conformance/Cardinality: POPULATED (1) <p>In Canada, many 
+         * service delivery locations are organized into regions for 
+         * administrative, coordination and/or funding reasons. Regions 
+         * may influence where a patient may go for services. They may 
+         * also be used for searching.</p><p>Because not all service 
+         * delivery locations are associated with a region, this 
+         * element is only 'populated' to allow null flavors such as 
+         * 'NA'.</p> <p>Identifies the health region associated with 
+         * the service delivery location (if any).</p> Un-merged 
+         * Business Name: LocationRegionId Relationship: 
+         * PRPA_MT202303CA.TerritorialAuthority.id 
+         * Conformance/Cardinality: POPULATED (1) <p>In Canada, many 
+         * service delivery locations are organized into regions for 
+         * administrative, coordination and/or funding reasons. Regions 
+         * may influence where a patient may go for services. They may 
+         * also be used for searching.</p><p>Because not all service 
+         * delivery locations are associated with a region, this 
+         * element is only 'populated' to allow null flavors such as 
+         * 'NA'.</p> <p>Identifies the health region associated with 
+         * the service delivery location (if any).</p> Un-merged 
+         * Business Name: LocationRegionId Relationship: 
+         * PRPA_MT202317CA.TerritorialAuthority.id 
+         * Conformance/Cardinality: POPULATED (1) <p>In Canada, many 
+         * service delivery locations are organized into regions for 
+         * administrative, coordination and/or funding reasons. Regions 
+         * may influence where a patient may go for services. They may 
+         * also be used for searching.</p><p>Because not all service 
+         * delivery locations are associated with a region, this 
+         * element is only 'populated' to allow null flavors such as 
+         * 'NA'.</p> <p>Identifies the health region associated with 
+         * the service delivery location (if any).</p> Un-merged 
+         * Business Name: LocationRegionId Relationship: 
+         * PRPA_MT202301CA.TerritorialAuthority.id 
+         * Conformance/Cardinality: POPULATED (1) <p>In Canada, many 
+         * service delivery locations are organized into regions for 
+         * administrative, coordination and/or funding reasons. Regions 
+         * may influence where a patient may go for services. They may 
+         * also be used for searching.</p><p>Because not all service 
+         * delivery locations are associated with a region, this 
+         * element is only 'populated' to allow null flavors such as 
+         * 'NA'.</p> <p>Identifies the health region associated with 
+         * the service delivery location (if any).</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {

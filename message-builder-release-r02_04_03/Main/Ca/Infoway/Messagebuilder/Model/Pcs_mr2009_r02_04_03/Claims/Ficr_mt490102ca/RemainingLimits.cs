@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,7 +40,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt490
             this.expectedUseTime = new IVLImpl<TS, Interval<PlatformDate>>();
         }
         /**
-         * <summary>Remaining Fills Permitted</summary>
+         * <summary>Business Name: Remaining Fills Permitted</summary>
+         * 
+         * <remarks>Relationship: 
+         * FICR_MT490102CA.RemainingLimits.repeatNumber 
+         * Conformance/Cardinality: REQUIRED (0-1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"repeatNumber"})]
         public int? RepeatNumber {
@@ -49,7 +53,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt490
         }
 
         /**
-         * <summary>Remaining Quantity Supply</summary>
+         * <summary>Business Name: Remaining Quantity Supply</summary>
+         * 
+         * <remarks>Relationship: 
+         * FICR_MT490102CA.RemainingLimits.quantity 
+         * Conformance/Cardinality: REQUIRED (0-1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"quantity"})]
         public PhysicalQuantity Quantity {
@@ -58,7 +66,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt490
         }
 
         /**
-         * <summary>Remaining Days Supply</summary>
+         * <summary>Business Name: Remaining Days Supply</summary>
+         * 
+         * <remarks>Relationship: 
+         * FICR_MT490102CA.RemainingLimits.expectedUseTime 
+         * Conformance/Cardinality: REQUIRED (0-1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"expectedUseTime"})]
         public Interval<PlatformDate> ExpectedUseTime {

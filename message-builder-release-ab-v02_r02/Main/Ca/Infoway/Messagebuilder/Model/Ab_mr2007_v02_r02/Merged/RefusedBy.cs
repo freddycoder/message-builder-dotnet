@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,15 +29,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
     /**
      * <summary>PORX_MT060210CA.Author: *b:recorded by</summary>
      * 
-     * <remarks><p>Indicates the identity of the provider who 
-     * recorded the other medication information.</p> <p>Allows 
-     * other providers to enquire about the authenticity of the 
-     * content of the other medication record and is therefore 
-     * mandatory.</p> REPC_MT000009CA.Author: *f:authored by 
-     * <p>Identifies the provider who reported the allergy or 
-     * intolerance.</p> <p>Identifies responsibility for accuracy 
-     * and relevance of the information. This association reflects 
-     * primary responsibility, and is therefore mandatory.</p> 
+     * <p>Indicates the identity of the provider who recorded the 
+     * other medication information.</p> <p>Allows other providers 
+     * to enquire about the authenticity of the content of the 
+     * other medication record and is therefore mandatory.</p> 
+     * REPC_MT000009CA.Author: *f:authored by <p>Identifies the 
+     * provider who reported the allergy or intolerance.</p> 
+     * <p>Identifies responsibility for accuracy and relevance of 
+     * the information. This association reflects primary 
+     * responsibility, and is therefore mandatory.</p> 
      * PORX_MT060060CA.Author: *refused by <p>Indicates who refused 
      * to fulfill the prescription</p> <p>Allows follow-up and 
      * traceability of the refusal and is therefore mandatory</p> 
@@ -74,7 +74,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
      * PORX_MT020060CA.Author: bc:prescribed by <p>The person who 
      * prescribed the device.</p> <p>Used to create an 'inferred' 
      * prescription if an electronic prescription does not already 
-     * exist in the EHR.</p></remarks>
+     * exist in the EHR.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"PORX_MT020060CA.Author","PORX_MT020070CA.Author","PORX_MT030040CA.Author","PORX_MT060040CA.Author","PORX_MT060060CA.Author","PORX_MT060190CA.Author","PORX_MT060190CA.Author3","PORX_MT060210CA.Author","REPC_MT000005CA.Author","REPC_MT000006CA.Author","REPC_MT000009CA.Author"})]
     public class RefusedBy : MessagePartBean {
@@ -85,6 +85,43 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         public RefusedBy() {
             this.time = new TSImpl();
         }
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: PORX_MT060210CA.Author.assignedEntity 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT000009CA.Author.assignedEntity 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060060CA.Author.assignedEntity 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT020070CA.Author.assignedEntity 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060040CA.Author.assignedEntity 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060190CA.Author.assignedEntity 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060190CA.Author3.assignedEntity 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT000005CA.Author.assignedEntity 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT030040CA.Author.assignedEntity 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT000006CA.Author.assignedEntity 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT020060CA.Author.assignedEntity 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"assignedEntity"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.HealthcareWorker AssignedEntity {
             get { return this.assignedEntity; }
@@ -92,9 +129,47 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>Prescription Order Date</summary>
+         * <summary>Un-merged Business Name: CreateTimestamp</summary>
          * 
-         * <remarks><p>The calendar date on which the device was 
+         * <remarks>Relationship: REPC_MT000009CA.Author.time 
+         * Conformance/Cardinality: POPULATED (1) <p>The date and time 
+         * on which the allergy/intolerance record was created.</p> 
+         * <p>Identifies timing of allergy/intolerance for sorting and 
+         * for audit purposes. Attribute is populated because the 
+         * source of the data may not be through the 'record common 
+         * observation' interaction.</p> Un-merged Business Name: 
+         * PrescriptionOrderDate Relationship: 
+         * PORX_MT020070CA.Author.time Conformance/Cardinality: 
+         * POPULATED (1) <p>The date at which the drug was prescribed. 
+         * This may differ from the date on which the prescription 
+         * becomes effective. E.g. A prescription created today may not 
+         * be valid to be dispensed or administered for two weeks.</p> 
+         * <p>Indicates when the action was performed, and may 
+         * influence expiry dates for the order.</p><p>The attribute is 
+         * populated because the creation date of the prescription 
+         * shall always be known or absent for a reason.</p> 
+         * <p>Indicates when the action was performed, and may 
+         * influence expiry dates for the order.</p><p>The attribute is 
+         * populated because the creation date of the prescription 
+         * shall always be known or absent for a reason.</p> Un-merged 
+         * Business Name: CreateTimestamp Relationship: 
+         * REPC_MT000005CA.Author.time Conformance/Cardinality: 
+         * POPULATED (1) <p>The date and time on which the 
+         * allergy/intolerance record was created.</p> <p>Identifies 
+         * timing of allergy/intolerance for sorting and for audit 
+         * purposes. Attribute is populated because the source of the 
+         * data may not be through the 'record allergy/intolerance' 
+         * interaction.</p> Un-merged Business Name: CreateTimestamp 
+         * Relationship: REPC_MT000006CA.Author.time 
+         * Conformance/Cardinality: POPULATED (1) <p>The date and time 
+         * on which the adverse reaction record was created.</p> 
+         * <p>Identifies timing of adverse reaction for sorting and for 
+         * audit purposes. Attribute is populated because the source of 
+         * the data may not be through the 'record common observation' 
+         * interaction.</p> Un-merged Business Name: 
+         * PrescriptionOrderDate Relationship: 
+         * PORX_MT020060CA.Author.time Conformance/Cardinality: 
+         * POPULATED (1) <p>The calendar date on which the device was 
          * prescribed. This may differ from the date on which the 
          * prescription becomes effective. E.g. A prescription created 
          * today may not be valid to be dispensed or used for two 
@@ -106,35 +181,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
          * may influence expiry dates for the order.</p><p>The 
          * attribute is populated because the creation date of the 
          * prescription shall always be known or absent for a 
-         * reason.</p> Create Timestamp <p>The date and time on which 
-         * the adverse reaction record was created.</p> <p>Identifies 
-         * timing of adverse reaction for sorting and for audit 
-         * purposes. Attribute is populated because the source of the 
-         * data may not be through the 'record common observation' 
-         * interaction.</p> Create Timestamp <p>The date and time on 
-         * which the allergy/intolerance record was created.</p> 
-         * <p>Identifies timing of allergy/intolerance for sorting and 
-         * for audit purposes. Attribute is populated because the 
-         * source of the data may not be through the 'record 
-         * allergy/intolerance' interaction.</p> Prescription Order 
-         * Date <p>The date at which the drug was prescribed. This may 
-         * differ from the date on which the prescription becomes 
-         * effective. E.g. A prescription created today may not be 
-         * valid to be dispensed or administered for two weeks.</p> 
-         * <p>Indicates when the action was performed, and may 
-         * influence expiry dates for the order.</p><p>The attribute is 
-         * populated because the creation date of the prescription 
-         * shall always be known or absent for a reason.</p> 
-         * <p>Indicates when the action was performed, and may 
-         * influence expiry dates for the order.</p><p>The attribute is 
-         * populated because the creation date of the prescription 
-         * shall always be known or absent for a reason.</p> Create 
-         * Timestamp <p>The date and time on which the 
-         * allergy/intolerance record was created.</p> <p>Identifies 
-         * timing of allergy/intolerance for sorting and for audit 
-         * purposes. Attribute is populated because the source of the 
-         * data may not be through the 'record common observation' 
-         * interaction.</p></remarks>
+         * reason.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"time"})]
         public PlatformDate Time {

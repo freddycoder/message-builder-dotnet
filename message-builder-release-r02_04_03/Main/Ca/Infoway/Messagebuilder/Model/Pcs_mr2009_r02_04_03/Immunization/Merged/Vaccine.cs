@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,27 +31,27 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merg
 
 
     /**
-     * <summary>Vaccine</summary>
+     * <summary>Business Name: Vaccine</summary>
      * 
-     * <remarks>POIZ_MT030060CA.Vaccine: Vaccine <p>A 
+     * <remarks>POIZ_MT030060CA.Vaccine: Vaccine <p>Allows vaccines 
+     * to be clearly described and referenced. Also allows 
+     * searching for and examining information about vaccines that 
+     * have been administered to a patient.</p> <p>A pharmaceutical 
+     * product to be supplied and/or administered to a patient. 
+     * Encompasses manufactured vaccines and generic 
+     * classifications.</p> POIZ_MT060150CA.Vaccine: Vaccine 
+     * <p>Allows vaccines to be clearly described and referenced. 
+     * Also allows searching for and examining information about 
+     * vaccines that have been administered to a patient.</p> <p>A 
      * pharmaceutical product to be supplied and/or administered to 
      * a patient. Encompasses manufactured vaccines and generic 
-     * classifications.</p> <p>Allows vaccines to be clearly 
-     * described and referenced. Also allows searching for and 
-     * examining information about vaccines that have been 
-     * administered to a patient.</p> POIZ_MT060150CA.Vaccine: 
-     * Vaccine <p>A pharmaceutical product to be supplied and/or 
-     * administered to a patient. Encompasses manufactured vaccines 
-     * and generic classifications.</p> <p>Allows vaccines to be 
-     * clearly described and referenced. Also allows searching for 
-     * and examining information about vaccines that have been 
-     * administered to a patient.</p> POIZ_MT030050CA.Vaccine: 
-     * Vaccine <p>A pharmaceutical product to be supplied and/or 
-     * administered to a patient. Encompasses manufactured vaccines 
-     * and generic classifications.</p> <p>Allows vaccines to be 
-     * clearly described and referenced. Also allows searching for 
-     * and examining information about vaccines that have been 
-     * administered to a patient.</p></remarks>
+     * classifications.</p> POIZ_MT030050CA.Vaccine: Vaccine 
+     * <p>Allows vaccines to be clearly described and referenced. 
+     * Also allows searching for and examining information about 
+     * vaccines that have been administered to a patient.</p> <p>A 
+     * pharmaceutical product to be supplied and/or administered to 
+     * a patient. Encompasses manufactured vaccines and generic 
+     * classifications.</p></remarks>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"POIZ_MT030050CA.Vaccine","POIZ_MT030060CA.Vaccine","POIZ_MT060150CA.Vaccine"})]
     public class Vaccine : MessagePartBean {
@@ -75,16 +75,38 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merg
             this.ingredientsIngredient = new List<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merged.Antigens>();
         }
         /**
-         * <summary>VaccineCode</summary>
+         * <summary>Business Name: VaccineCode</summary>
          * 
-         * <remarks>Vaccine Code <p>An identifier for a type of drug. 
+         * <remarks>Un-merged Business Name: VaccineCode Relationship: 
+         * POIZ_MT030060CA.Vaccine.code Conformance/Cardinality: 
+         * POPULATED (1) <p>Used to ensure clear communication by 
+         * uniquely identifying a particular drug product when 
+         * prescribing or dispensing. This attribute is only marked as 
+         * 'populated' because some custom compounds will not have 
+         * unique identifiers.</p> <p>An identifier for a type of drug. 
          * Depending on where the drug is being referenced, the drug 
          * may be identified at different levels of abstraction. E.g. 
-         * Manufactured drug (including vaccine).</p> <p>Used to ensure 
-         * clear communication by uniquely identifying a particular 
-         * drug product when prescribing or dispensing. This attribute 
-         * is only marked as 'populated' because some custom compounds 
-         * will not have unique identifiers.</p></remarks>
+         * Manufactured drug (including vaccine).</p> Un-merged 
+         * Business Name: VaccineCode Relationship: 
+         * POIZ_MT060150CA.Vaccine.code Conformance/Cardinality: 
+         * POPULATED (1) <p>Used to ensure clear communication by 
+         * uniquely identifying a particular drug product when 
+         * prescribing or dispensing. This attribute is only marked as 
+         * 'populated' because some custom compounds will not have 
+         * unique identifiers.</p> <p>An identifier for a type of drug. 
+         * Depending on where the drug is being referenced, the drug 
+         * may be identified at different levels of abstraction. E.g. 
+         * Manufactured drug (including vaccine).</p> Un-merged 
+         * Business Name: VaccineCode Relationship: 
+         * POIZ_MT030050CA.Vaccine.code Conformance/Cardinality: 
+         * POPULATED (1) <p>Used to ensure clear communication by 
+         * uniquely identifying a particular drug product when 
+         * prescribing or dispensing. This attribute is only marked as 
+         * 'populated' because some custom compounds will not have 
+         * unique identifiers.</p> <p>An identifier for a type of drug. 
+         * Depending on where the drug is being referenced, the drug 
+         * may be identified at different levels of abstraction. E.g. 
+         * Manufactured drug (including vaccine).</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public ClinicalDrug Code {
@@ -93,14 +115,32 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merg
         }
 
         /**
-         * <summary>VaccineName</summary>
+         * <summary>Business Name: VaccineName</summary>
          * 
-         * <remarks>Vaccine Name <p>The name assigned to a vaccine.</p> 
-         * <p>Names are used for human reference communication, to 
-         * allow selection from dropdowns and for local searching. If a 
-         * code is available, the name acts as a cross-check. If the 
-         * code is not available the name acts as the primary 
-         * identifier. The attribute is therefore mandatory.</p></remarks>
+         * <remarks>Un-merged Business Name: VaccineName Relationship: 
+         * POIZ_MT030060CA.Vaccine.name Conformance/Cardinality: 
+         * MANDATORY (1) <p>Names are used for human reference 
+         * communication, to allow selection from dropdowns and for 
+         * local searching. If a code is available, the name acts as a 
+         * cross-check. If the code is not available the name acts as 
+         * the primary identifier. The attribute is therefore 
+         * mandatory.</p> <p>The name assigned to a vaccine.</p> 
+         * Un-merged Business Name: VaccineName Relationship: 
+         * POIZ_MT060150CA.Vaccine.name Conformance/Cardinality: 
+         * MANDATORY (1) <p>Names are used for human reference 
+         * communication, to allow selection from dropdowns and for 
+         * local searching. If a code is available, the name acts as a 
+         * cross-check. If the code is not available the name acts as 
+         * the primary identifier. The attribute is therefore 
+         * mandatory.</p> <p>The name assigned to a vaccine.</p> 
+         * Un-merged Business Name: VaccineName Relationship: 
+         * POIZ_MT030050CA.Vaccine.name Conformance/Cardinality: 
+         * MANDATORY (1) <p>Names are used for human reference 
+         * communication, to allow selection from dropdowns and for 
+         * local searching. If a code is available, the name acts as a 
+         * cross-check. If the code is not available the name acts as 
+         * the primary identifier. The attribute is therefore 
+         * mandatory.</p> <p>The name assigned to a vaccine.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"name"})]
         public String Name {
@@ -109,13 +149,30 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merg
         }
 
         /**
-         * <summary>VaccineDescription</summary>
+         * <summary>Business Name: VaccineDescription</summary>
          * 
-         * <remarks>Vaccine Description <p>A free form textual 
+         * <remarks>Un-merged Business Name: VaccineDescription 
+         * Relationship: POIZ_MT030060CA.Vaccine.desc 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Allows 
+         * description of compound ingredients and/or recipe in free 
+         * text form.</p> <p>A free form textual description of a 
+         * vaccine. This usually is only populated for custom 
+         * compounds, providing instructions on the composition and 
+         * creation of the compound.</p> Un-merged Business Name: 
+         * VaccineDescription Relationship: 
+         * POIZ_MT060150CA.Vaccine.desc Conformance/Cardinality: 
+         * REQUIRED (0-1) <p>Allows description of compound ingredients 
+         * and/or recipe in free text form.</p> <p>A free form textual 
          * description of a vaccine. This usually is only populated for 
          * custom compounds, providing instructions on the composition 
-         * and creation of the compound.</p> <p>Allows description of 
-         * compound ingredients and/or recipe in free text form.</p></remarks>
+         * and creation of the compound.</p> Un-merged Business Name: 
+         * VaccineDescription Relationship: 
+         * POIZ_MT030050CA.Vaccine.desc Conformance/Cardinality: 
+         * REQUIRED (0-1) <p>Allows description of compound ingredients 
+         * and/or recipe in free text form.</p> <p>A free form textual 
+         * description of a vaccine. This usually is only populated for 
+         * custom compounds, providing instructions on the composition 
+         * and creation of the compound.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"desc"})]
         public String Desc {
@@ -124,14 +181,32 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merg
         }
 
         /**
-         * <summary>DrugForm</summary>
+         * <summary>Business Name: DrugForm</summary>
          * 
-         * <remarks>Drug Form <p>Indicates the form in which the drug 
-         * product must be, or has been manufactured or custom 
-         * prepared.</p> <p>Provides a constrained vocabulary for 
+         * <remarks>Un-merged Business Name: DrugForm Relationship: 
+         * POIZ_MT030060CA.Vaccine.formCode Conformance/Cardinality: 
+         * REQUIRED (0-1) <p>Provides a constrained vocabulary for 
          * describing dose forms. The form of the drug influences how 
          * it can be used by the patient.</p> <p>Must be populated if 
-         * the Vaccine Code does not specify the Drug Form.</p></remarks>
+         * the Vaccine Code does not specify the Drug Form.</p> 
+         * <p>Indicates the form in which the drug product must be, or 
+         * has been manufactured or custom prepared.</p> Un-merged 
+         * Business Name: DrugForm Relationship: 
+         * POIZ_MT060150CA.Vaccine.formCode Conformance/Cardinality: 
+         * REQUIRED (0-1) <p>Provides a constrained vocabulary for 
+         * describing dose forms. The form of the drug influences how 
+         * it can be used by the patient.</p> <p>Must be populated if 
+         * the Vaccine Code does not specify the Drug Form.</p> 
+         * <p>Indicates the form in which the drug product must be, or 
+         * has been manufactured or custom prepared.</p> Un-merged 
+         * Business Name: DrugForm Relationship: 
+         * POIZ_MT030050CA.Vaccine.formCode Conformance/Cardinality: 
+         * REQUIRED (0-1) <p>Provides a constrained vocabulary for 
+         * describing dose forms. The form of the drug influences how 
+         * it can be used by the patient.</p> <p>Must be populated if 
+         * the Vaccine Code does not specify the Drug Form.</p> 
+         * <p>Indicates the form in which the drug product must be, or 
+         * has been manufactured or custom prepared.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"formCode"})]
         public AdministrableDrugForm FormCode {
@@ -140,12 +215,26 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merg
         }
 
         /**
-         * <summary>VaccineLotNumber</summary>
+         * <summary>Business Name: VaccineLotNumber</summary>
          * 
-         * <remarks>Vaccine Lot Number <p>Identification of a batch in 
-         * which a specific manufactured drug belongs.</p> <p>Useful in 
+         * <remarks>Un-merged Business Name: VaccineLotNumber 
+         * Relationship: POIZ_MT030060CA.Vaccine.lotNumberText 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Useful in 
          * tracking for recalls but may not always be known (e.g. 
-         * historical immunization records).</p></remarks>
+         * historical immunization records).</p> <p>Identification of a 
+         * batch in which a specific manufactured drug belongs.</p> 
+         * Un-merged Business Name: VaccineLotNumber Relationship: 
+         * POIZ_MT060150CA.Vaccine.lotNumberText 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Useful in 
+         * tracking for recalls but may not always be known (e.g. 
+         * historical immunization records).</p> <p>Identification of a 
+         * batch in which a specific manufactured drug belongs.</p> 
+         * Un-merged Business Name: VaccineLotNumber Relationship: 
+         * POIZ_MT030050CA.Vaccine.lotNumberText 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Useful in 
+         * tracking for recalls but may not always be known (e.g. 
+         * historical immunization records).</p> <p>Identification of a 
+         * batch in which a specific manufactured drug belongs.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"lotNumberText"})]
         public String LotNumberText {
@@ -154,20 +243,51 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merg
         }
 
         /**
-         * <summary>VaccineExpiryDate</summary>
+         * <summary>Business Name: VaccineExpiryDate</summary>
          * 
-         * <remarks>Vaccine Expiry Date <p>Indicates either the length 
-         * of time a drug product can remain viable (when talking about 
-         * a drug in general terms), or the date on which the drug 
-         * product is no longer considered viable (when talking about a 
-         * specific medication that has been dispensed).</p> <p>The 
-         * potency, effectiveness and safety of drug products changes 
-         * over time. When determining quantities to be supplied to a 
-         * patient, one of the considerations is how long the drug will 
-         * remain viable.</p> <p>To indicate the length of time after 
-         * opening a product remains viable, specify the 'Width' 
-         * property. To indicate a specific end date for an actual 
-         * dispensed product, specify the 'High' property</p></remarks>
+         * <remarks>Un-merged Business Name: VaccineExpiryDate 
+         * Relationship: POIZ_MT030060CA.Vaccine.expirationTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The potency, 
+         * effectiveness and safety of drug products changes over time. 
+         * When determining quantities to be supplied to a patient, one 
+         * of the considerations is how long the drug will remain 
+         * viable.</p> <p>To indicate the length of time after opening 
+         * a product remains viable, specify the 'Width' property. To 
+         * indicate a specific end date for an actual dispensed 
+         * product, specify the 'High' property</p> <p>Indicates either 
+         * the length of time a drug product can remain viable (when 
+         * talking about a drug in general terms), or the date on which 
+         * the drug product is no longer considered viable (when 
+         * talking about a specific medication that has been 
+         * dispensed).</p> Un-merged Business Name: VaccineExpiryDate 
+         * Relationship: POIZ_MT060150CA.Vaccine.expirationTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The potency, 
+         * effectiveness and safety of drug products changes over time. 
+         * When determining quantities to be supplied to a patient, one 
+         * of the considerations is how long the drug will remain 
+         * viable.</p> <p>To indicate the length of time after opening 
+         * a product remains viable, specify the 'Width' property. To 
+         * indicate a specific end date for an actual dispensed 
+         * product, specify the 'High' property</p> <p>Indicates either 
+         * the length of time a drug product can remain viable (when 
+         * talking about a drug in general terms), or the date on which 
+         * the drug product is no longer considered viable (when 
+         * talking about a specific medication that has been 
+         * dispensed).</p> Un-merged Business Name: VaccineExpiryDate 
+         * Relationship: POIZ_MT030050CA.Vaccine.expirationTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The potency, 
+         * effectiveness and safety of drug products changes over time. 
+         * When determining quantities to be supplied to a patient, one 
+         * of the considerations is how long the drug will remain 
+         * viable.</p> <p>To indicate the length of time after opening 
+         * a product remains viable, specify the 'Width' property. To 
+         * indicate a specific end date for an actual dispensed 
+         * product, specify the 'High' property</p> <p>Indicates either 
+         * the length of time a drug product can remain viable (when 
+         * talking about a drug in general terms), or the date on which 
+         * the drug product is no longer considered viable (when 
+         * talking about a specific medication that has been 
+         * dispensed).</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"expirationTime"})]
         public Interval<PlatformDate> ExpirationTime {
@@ -175,12 +295,40 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merg
             set { this.expirationTime.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * POIZ_MT030060CA.ManufacturedProduct.manufacturer 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * POIZ_MT060150CA.ManufacturedProduct.manufacturer 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * POIZ_MT030050CA.ManufacturedProduct.manufacturer 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"asManufacturedProduct/manufacturer"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.Manufacturer AsManufacturedProductManufacturer {
             get { return this.asManufacturedProductManufacturer; }
             set { this.asManufacturedProductManufacturer = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * POIZ_MT030060CA.Ingredients.ingredient 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * POIZ_MT060150CA.Ingredients.ingredient 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * POIZ_MT030050CA.Ingredients.ingredient 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"ingredients/ingredient"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merged.Antigens> IngredientsIngredient {
             get { return this.ingredientsIngredient; }

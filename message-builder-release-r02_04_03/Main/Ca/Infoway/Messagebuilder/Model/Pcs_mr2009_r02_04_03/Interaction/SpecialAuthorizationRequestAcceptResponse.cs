@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,6 +25,22 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged;
 
 
+    /**
+     * <summary>Business Name: FICR_IN400002CA: Special 
+     * Authorization Request Accept Response</summary>
+     * 
+     * <p>Indicates that processing of the Create SA Request for a 
+     * specific product (e.g. drug), device or service was either: 
+     * - Approved (SA status of &quot;&quot;active&quot;&quot;); or 
+     * - Pended (SA status of &quot;&quot;suspended&quot;&quot;); 
+     * or - Pended and Request Additional Information (SA status of 
+     * &quot;&quot;suspended&quot;&quot;) with request for 
+     * additional information from the Payor conveyed in the 
+     * response message payload</p> Message: 
+     * MCCI_MT002300CA.Message Control Act: 
+     * MCAI_MT700227CA.ControlActEvent --> Payload: 
+     * FICR_MT400004CA.SpecialAuthorizationRequest
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"FICR_IN400002CA"})]
     public class SpecialAuthorizationRequestAcceptResponse : HL7Message_1<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.TriggerEvent_2<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Merged.SpecialAuthorizationRequest>>, IInteraction {
 

@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,11 +29,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Poiz
 
 
     /**
-     * <summary>Antigen</summary>
+     * <summary>Business Name: Antigen</summary>
      * 
-     * <remarks><p>A list of antigens that may or be present in a 
-     * vaccine administered to a patient.</p> <p>Important for 
-     * expressing antigen validity and counts.</p></remarks>
+     * <p>Important for expressing antigen validity and counts.</p> 
+     * <p>A list of antigens that may or be present in a vaccine 
+     * administered to a patient.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"POIZ_MT061150CA.Antigen"})]
     public class Antigen : MessagePartBean {
@@ -49,17 +49,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Poiz
             this.asHealthChartSubjectOf2AntigenCountValue = new INTImpl();
         }
         /**
-         * <summary>Antigen Code</summary>
+         * <summary>Business Name: Antigen Code</summary>
          * 
-         * <remarks><p>The unique code used to identify the 
-         * antigen.</p> <p>Allows un-ambiguous identification of the 
-         * ingredients of a drug for performing various alert 
-         * checking.</p><p>Also allows for the identification of 
-         * antigens as specific class of ingredients in vaccines.</p> 
-         * <p>Allows un-ambiguous identification of the ingredients of 
-         * a drug for performing various alert checking.</p><p>Also 
-         * allows for the identification of antigens as specific class 
-         * of ingredients in vaccines.</p></remarks>
+         * <remarks>Relationship: POIZ_MT061150CA.Antigen.code 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Allows 
+         * un-ambiguous identification of the ingredients of a drug for 
+         * performing various alert checking.</p><p>Also allows for the 
+         * identification of antigens as specific class of ingredients 
+         * in vaccines.</p> <p>The unique code used to identify the 
+         * antigen.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public ClinicalDrug Code {
@@ -68,11 +66,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Poiz
         }
 
         /**
-         * <summary>Antigen Name</summary>
+         * <summary>Business Name: Antigen Name</summary>
          * 
-         * <remarks><p>The name of the antigen contained within a 
-         * vaccine.</p> <p>Used for communication between and display 
-         * to providers.</p></remarks>
+         * <remarks>Relationship: POIZ_MT061150CA.Antigen.name 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Used for 
+         * communication between and display to providers.</p> <p>The 
+         * name of the antigen contained within a vaccine.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"name"})]
         public String Name {
@@ -80,6 +79,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Poiz
             set { this.name.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * POIZ_MT061150CA.Subject4.antigenValidity</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"asHealthChart/subjectOf1/antigenValidity"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merged.AntigenValidity AsHealthChartSubjectOf1AntigenValidity {
             get { return this.asHealthChartSubjectOf1AntigenValidity; }
@@ -87,11 +92,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Poiz
         }
 
         /**
-         * <summary>Antigen Count Value</summary>
+         * <summary>Business Name: Antigen Count Value</summary>
          * 
-         * <remarks><p>Represents the asserted antigen count.</p> 
-         * <p>Allows for an immunization registry to communicate the 
-         * current antigen count value.</p></remarks>
+         * <remarks>Relationship: POIZ_MT061150CA.AntigenCount.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows for an 
+         * immunization registry to communicate the current antigen 
+         * count value.</p> <p>Represents the asserted antigen 
+         * count.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"asHealthChart/subjectOf2/antigenCount/value"})]
         public int? AsHealthChartSubjectOf2AntigenCountValue {

@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,8 +26,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged {
      * <summary>FICR_MT510201CA.InvoiceElementChoice: (no business 
      * name)</summary>
      * 
-     * <remarks><p>MoodCode: PRP - auth, pre-det, cov ext RQO - 
-     * invoice</p></remarks>
+     * <p>MoodCode: PRP - auth, pre-det, cov ext RQO - invoice</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"COCT_MT680000CA.InvoiceElementChoice","FICR_MT510201CA.InvoiceElementChoice","FICR_MT610201CA.InvoiceElementChoice"})]
     public interface IInvoiceElementChoice {

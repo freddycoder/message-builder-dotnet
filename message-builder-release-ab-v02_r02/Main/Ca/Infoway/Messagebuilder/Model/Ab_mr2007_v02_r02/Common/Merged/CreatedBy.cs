@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged {
 
 
     /**
-     * <summary>CreatedBy</summary>
+     * <summary>Business Name: CreatedBy</summary>
      * 
      * <remarks>MFMI_MT700751CA.Author: a:*created by <p>Indicates 
      * the person responsible for the event that caused this 
@@ -56,11 +56,30 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged {
             this.signatureText = new EDImpl<String>();
         }
         /**
-         * <summary>TimeOfCreation</summary>
+         * <summary>Business Name: TimeOfCreation</summary>
          * 
-         * <remarks>D:Time of Creation <p>The time the person 
-         * responsible for the event made the decision for it to occur. 
-         * This may be different than the time the change became 
+         * <remarks>Un-merged Business Name: TimeOfCreation 
+         * Relationship: MFMI_MT700751CA.Author.time 
+         * Conformance/Cardinality: MANDATORY (1) <p>The time the 
+         * person responsible for the event made the decision for it to 
+         * occur. This may be different than the time the change became 
+         * effective. (E.g. If a provider decides today to put a 
+         * prescription on hold starting next Tuesday, the time of 
+         * creation would be today and the change effective period 
+         * would be next Tuesday.)</p><p>This date can be 
+         * back-dated.</p> <p>The time the person responsible for the 
+         * event made the decision for it to occur. This may be 
+         * different than the time the change became effective. (E.g. 
+         * If a provider decides today to put a prescription on hold 
+         * starting next Tuesday, the time of creation would be today 
+         * and the change effective period would be next 
+         * Tuesday.)</p><p>This date can be back-dated.</p> <p>The time 
+         * a change is made is a critical piece of audit information 
+         * and is therefore mandatory.</p> Un-merged Business Name: 
+         * TimeOfCreation Relationship: MFMI_MT700711CA.Author.time 
+         * Conformance/Cardinality: MANDATORY (1) <p>The time the 
+         * person responsible for the event made the decision for it to 
+         * occur. This may be different than the time the change became 
          * effective. (E.g. If a provider decides today to put a 
          * prescription on hold starting next Tuesday, the time of 
          * creation would be today and the change effective period 
@@ -82,9 +101,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged {
         }
 
         /**
-         * <summary>InformationReceivedMethod</summary>
+         * <summary>Business Name: InformationReceivedMethod</summary>
          * 
-         * <remarks>F:Information Received Method <p>Indicates how the 
+         * <remarks>Un-merged Business Name: InformationReceivedMethod 
+         * Relationship: MFMI_MT700751CA.Author.modeCode 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>Indicates how the 
+         * person who recorded the event became aware of it.. E.g. 
+         * Verbal, written, fax, etc.</p> <p>May have ramifications for 
+         * the audit trail and reliability of the information.</p> 
+         * Un-merged Business Name: InformationReceivedMethod 
+         * Relationship: MFMI_MT700711CA.Author.modeCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates how the 
          * person who recorded the event became aware of it.. E.g. 
          * Verbal, written, fax, etc.</p> <p>May have ramifications for 
          * the audit trail and reliability of the information.</p></remarks>
@@ -96,14 +123,24 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged {
         }
 
         /**
-         * <summary>DigitalSignature</summary>
+         * <summary>Business Name: DigitalSignature</summary>
          * 
-         * <remarks>G:Digital Signature <p>Indicates the formal digital 
-         * signature of the message content.</p> <p>Digital signatures 
-         * may be needed for authentication of message content. The 
-         * attribute is marked as optional because it is not yet clear 
-         * whether there is a use-case for this, or where it will be 
-         * used.</p></remarks>
+         * <remarks>Un-merged Business Name: DigitalSignature 
+         * Relationship: MFMI_MT700751CA.Author.signatureText 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>Indicates the 
+         * formal digital signature of the message content.</p> 
+         * <p>Digital signatures may be needed for authentication of 
+         * message content. The attribute is marked as optional because 
+         * it is not yet clear whether there is a use-case for this, or 
+         * where it will be used.</p> Un-merged Business Name: 
+         * DigitalSignature Relationship: 
+         * MFMI_MT700711CA.Author.signatureText 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>Indicates the 
+         * formal digital signature of the message content.</p> 
+         * <p>Digital signatures may be needed for authentication of 
+         * message content. The attribute is marked as optional because 
+         * it is not yet clear whether there is a use-case for this, or 
+         * where it will be used.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"signatureText"})]
         public String SignatureText {
@@ -111,6 +148,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged {
             set { this.signatureText.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: MFMI_MT700751CA.Author.authorPerson 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MFMI_MT700711CA.Author.authorPerson Conformance/Cardinality: 
+         * POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"authorPerson"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged.IAuthorPerson AuthorPerson {
             get { return this.authorPerson; }

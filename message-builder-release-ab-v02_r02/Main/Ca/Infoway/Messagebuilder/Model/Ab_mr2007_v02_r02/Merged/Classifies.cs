@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
     /**
      * <summary>PORX_MT060340CA.Component4: classifies</summary>
      * 
-     * <remarks><p>Indicates the clinical use category in which the 
+     * <p>Indicates the clinical use category in which the 
      * prescription has been put.</p> <p>Allows prescriptions to be 
      * categorized in multiple ways.</p> 
      * PORX_MT010120CA.Component4: classified by <p>Indicates the 
@@ -48,7 +48,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
      * PORX_MT060190CA.Component4: classifies <p>Indicates the 
      * clinical use category in which the prescription has been 
      * put.</p> <p>Allows prescriptions to be categorized in 
-     * multiple ways.</p></remarks>
+     * multiple ways.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"PORX_MT010120CA.Component4","PORX_MT030040CA.Component4","PORX_MT060160CA.Component4","PORX_MT060190CA.Component4","PORX_MT060340CA.Component4"})]
     public class Classifies : MessagePartBean {
@@ -57,6 +57,26 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
 
         public Classifies() {
         }
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PORX_MT060340CA.Component4.workingListEvent 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT010120CA.Component4.workingListEvent 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060160CA.Component4.workingListEvent 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT030040CA.Component4.workingListEvent 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060190CA.Component4.workingListEvent 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"workingListEvent"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.DrugUse WorkingListEvent {
             get { return this.workingListEvent; }

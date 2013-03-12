@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,23 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged;
 
 
+    /**
+     * <summary>Business Name: COMT_IN200000CA: Clinical 
+     * summary/profile query response</summary>
+     * 
+     * <p>Return the 'summary' versions of all demographics, 
+     * medications, allergies, medical conditions, lab tests, 
+     * observations, procedures, encounters, referrals and other 
+     * clinical data.</p> Message: MCCI_MT002300CA.Message Control 
+     * Act: QUQI_MT120006CA.ControlActEvent --> Payload: 
+     * COMT_MT111111CA.Summary ----> Payload Choice: 
+     * COMT_MT111111CA.RenderedContent ----> Payload Choice: 
+     * COMT_MT111111CA.SHR ----> Payload Choice: 
+     * COMT_MT111111CA.Pharmacy ----> Payload Choice: 
+     * COMT_MT111111CA.Lab ----> Payload Choice: 
+     * POIZ_MT061150CA.Immunization --> Payload: 
+     * REPC_MT000008CA.ParameterList
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"COMT_IN200000CA"})]
     public class ClinicalSummaryProfileQueryResponse : HL7Message_1<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.TriggerEvent_6<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Comt_mt111111ca.ISummary,Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged.QueryDefinition>>, IInteraction {
 

@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,14 +29,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt080
 
 
     /**
-     * <summary>Specimen Process Steps</summary>
+     * <summary>Business Name: Specimen Process Steps</summary>
      * 
-     * <remarks><p>The specimen is subject to one or more process 
-     * steps. e.g. the specimen receive date is documented using a 
-     * process step object, specimen action codes are also 
-     * represented and communicated using this process step 
-     * object.</p> <p>At this time, only the transportation 
-     * specimen process steps are in scope for lab messaging.</p></remarks>
+     * <p>At this time, only the transportation specimen process 
+     * steps are in scope for lab messaging.</p> <p>The specimen is 
+     * subject to one or more process steps. e.g. the specimen 
+     * receive date is documented using a process step object, 
+     * specimen action codes are also represented and communicated 
+     * using this process step object.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"COCT_MT080100CA.TransportationEvent"})]
     public class SpecimenProcessSteps : MessagePartBean {
@@ -51,12 +51,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt080
             this.effectiveTime = new IVLImpl<TS, Interval<PlatformDate>>();
         }
         /**
-         * <summary>P:Transportation Type</summary>
+         * <summary>Business Name: P:Transportation Type</summary>
          * 
-         * <remarks><p>Describes the type of process step being 
-         * documented and communicated. Value is fixed to specimen 
-         * received.</p> <p>Categorizes the type of transportation act 
-         * being communiated.</p></remarks>
+         * <remarks>Relationship: 
+         * COCT_MT080100CA.TransportationEvent.code 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Categorizes the 
+         * type of transportation act being communiated.</p> 
+         * <p>Describes the type of process step being documented and 
+         * communicated. Value is fixed to specimen received.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public ActSpecimenTransportationCode Code {
@@ -65,12 +67,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt080
         }
 
         /**
-         * <summary>R:Transportation Status</summary>
+         * <summary>Business Name: R:Transportation Status</summary>
          * 
-         * <remarks><p>The state or status of this transportation 
-         * process step.</p> <p>Indicates (along with the mood) whether 
-         * this act's action has been completed or is still being acted 
-         * upon (or has yet to be acted upon).</p></remarks>
+         * <remarks>Relationship: 
+         * COCT_MT080100CA.TransportationEvent.statusCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates (along 
+         * with the mood) whether this act's action has been completed 
+         * or is still being acted upon (or has yet to be acted 
+         * upon).</p> <p>The state or status of this transportation 
+         * process step.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"statusCode"})]
         public ActStatus StatusCode {
@@ -79,14 +84,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt080
         }
 
         /**
-         * <summary>Q:Transportation Date/Time</summary>
+         * <summary>Business Name: Q:Transportation Date/Time</summary>
          * 
-         * <remarks><p>The date/time the process step took place or the 
-         * duration of that step (days or time in transit, start time, 
-         * end time).</p> <p>Holds the date/time the process step took 
-         * place. This attribute is especially important for those 
-         * process steps which document the date/time the process 
-         * happened (specimen received date/time).</p></remarks>
+         * <remarks>Relationship: 
+         * COCT_MT080100CA.TransportationEvent.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Holds the 
+         * date/time the process step took place. This attribute is 
+         * especially important for those process steps which document 
+         * the date/time the process happened (specimen received 
+         * date/time).</p> <p>The date/time the process step took place 
+         * or the duration of that step (days or time in transit, start 
+         * time, end time).</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"effectiveTime"})]
         public Interval<PlatformDate> EffectiveTime {

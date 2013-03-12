@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,8 +24,10 @@
 /// ---------------------------------------------------------------------------------------------------
  
 namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
-	
-	using System;
+
+    using Ca.Infoway.Messagebuilder.Datatype.Lang.Util;
+    using Ca.Infoway.Messagebuilder.Domainvalue;
+    using System;
 	using System.Collections;
 	using System.Collections.Generic;
 	using System.ComponentModel;
@@ -38,11 +40,7 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 	///
 	public class CompressedData : EncapsulatedData {
 	
-		public static readonly String LANGUAGE_ENGLISH = "ENG";
-		public static readonly String LANGUAGE_FRENCH = "FRA";
-	
 		private Compression compression;
-		private String language;
 	
 		/// <summary>
 		/// Constructs an empty CompressedData.
@@ -61,11 +59,10 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		/// <param name="compression_0">a compression type</param>
 		/// <param name="language_1">a language</param>
 		public CompressedData(
-				Ca.Infoway.Messagebuilder.Domainvalue.MediaType mediaType,
+				x_DocumentMediaType mediaType,
 				String reference, byte[] content, Compression compression_0,
-				String language_1) : base(mediaType, reference, content) {
+				String language_1) : base(mediaType, reference, language_1, content) {
 			this.compression = compression_0;
-			Language = language_1;
 		}
 	
 		/// <summary>
@@ -83,38 +80,6 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 				return this.compression;
 			}
 		}
-		
-	
-		/// <summary>
-		/// Sets the current language to the supplied parameter.
-		/// </summary>
-		///
-		/// <param name="language_0">the language to set</param>
-		public String Language {
-		/// <summary>
-		/// Returns the language.
-		/// </summary>
-		///
-		/// <returns>the language.</returns>
-		  get {
-				return this.language;
-			}
-		/// <summary>
-		/// Sets the current language to the supplied parameter.
-		/// </summary>
-		///
-		/// <param name="language_0">the language to set</param>
-		  set {
-				if (value != null) {
-					if (LANGUAGE_ENGLISH.Equals(value)) {
-						this.language = LANGUAGE_ENGLISH;
-					} else if (LANGUAGE_FRENCH.Equals(value)) {
-						this.language = LANGUAGE_FRENCH;
-					}
-				}
-			}
-		}
-		
 	
 		/// <summary>
 		/// Returns the uncompressed content as a byte array.
@@ -169,7 +134,7 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		
 		private bool Gzip {
 		  get {
-				return compression != null && Ca.Infoway.Messagebuilder.Datatype.Lang.Compression.GZIP.Equals(compression);
+				return compression != null && Compression.GZIP.Equals(compression);
 			}
 		}
 		

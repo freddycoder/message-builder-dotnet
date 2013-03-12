@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,17 +28,18 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt280
 
 
     /**
-     * <summary>Previous Billable Act Cross Reference</summary>
+     * <summary>Business Name: Previous Billable Act Cross 
+     * Reference</summary>
      * 
-     * <remarks><p>Used to reference a previous act (e.g. billable 
-     * act) by including its Act.id. May only be used to reference 
-     * a billable act in the SAME message, not for past messages 
+     * <p>Used to reference a previous act (e.g. billable act) by 
+     * including its Act.id. May only be used to reference a 
+     * billable act in the SAME message, not for past messages 
      * (this would require adjudicators to keep a lot of 
      * history).</p> <p>Used to reference a previous act (e.g. 
      * billable act) by including its Act.id. May only be used to 
      * reference a billable act in the SAME message, not for past 
      * messages (this would require adjudicators to keep a lot of 
-     * history).</p></remarks>
+     * history).</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"COCT_MT280001CA.CrossReference"})]
     public class PreviousBillableActCrossReference : MessagePartBean, Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt280001ca.IA_BillableActChoice {
@@ -49,14 +50,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt280
             this.id = new SETImpl<II, Identifier>(typeof(IIImpl));
         }
         /**
-         * <summary>) (Act.id.</summary>
+         * <summary>Business Name: ) (Act.id.</summary>
          * 
-         * <remarks><p>Act.id. referencing a previous act (e.g. 
-         * billable act) in the SAME message,</p> <p>Used to reference 
+         * <remarks>Relationship: COCT_MT280001CA.CrossReference.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>Used to reference 
          * a previous act (e.g. billable act) by including its Act.id. 
          * May only be used to reference a billable act in the SAME 
          * message, not for past messages (this would require 
-         * adjudicators to keep a lot of history).</p></remarks>
+         * adjudicators to keep a lot of history).</p> <p>Act.id. 
+         * referencing a previous act (e.g. billable act) in the SAME 
+         * message,</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public ICollection<Identifier> Id {

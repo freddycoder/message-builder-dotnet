@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,8 +14,8 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2012-01-18 21:43:51 -0500 (Wed, 18 Jan 2012) $
- * Revision:      $LastChangedRevision: 4345 $
+ * Last modified: $LastChangedDate: 2013-03-05 08:26:42 -0500 (Tue, 05 Mar 2013) $
+ * Revision:      $LastChangedRevision: 6671 $
  */
 
 
@@ -26,19 +26,21 @@ namespace Ca.Infoway.Messagebuilder.Platform
 
 	public class NumberFormatter
 	{
-		public String Format(BigDecimal b, int maxLength, int maxNumberOfDecimals, bool padFractions) {
+		public String Format(BigDecimal b, int maxLength, int maxNumberOfIntegers, int maxNumberOfDecimals, bool padFractions) {
 			String basePattern = "0." + StringUtils.Repeat(padFractions ? "0" : "#", maxNumberOfDecimals);
 			String text = String.Format("{0:" + basePattern + "}", (decimal) b);
-			
-			if (text.Length <= maxLength && text.Contains(".")) {
-				return text;
-			} else if (text.Contains(".")) {
-				return text.Substring(text.Length - maxLength);
-			} else if (text.Length > (maxLength - maxNumberOfDecimals - 1)) {
-				return text.Substring(text.Length - (maxLength - maxNumberOfDecimals - 1));
-			} else {
-				return text;
-			}
+
+            // the above takes care of the decimals having too many digits; now to handle digits to left of decimal.
+            // this code preserves a negative sign to match what the java code does (this is possibly not ideal)
+            int decimalLocation = text.IndexOf(".");
+            if (decimalLocation > maxNumberOfIntegers) {
+                return (b.CompareTo(BigDecimal.ZERO) < 0 ? "-" : "") + text.Substring(decimalLocation - maxNumberOfIntegers);
+            } else if (decimalLocation == -1 && text.Length > maxNumberOfIntegers) {
+                return (b.CompareTo(BigDecimal.ZERO) < 0 ? "-" : "") + text.Substring(text.Length - maxNumberOfIntegers);
+            } else {
+                return text;
+            }
+
 		}
 	}
 }

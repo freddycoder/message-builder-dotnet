@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,10 +29,10 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merg
     /**
      * <summary>POIZ_MT030060CA.InFulfillmentOf: (no business name)</summary>
      * 
-     * <remarks><p>Indicates the order of a specific immunization 
-     * event with a planned/expected number of immunizations.</p> 
      * <p>Allows tracking against an immunization plan or 
-     * schedule.</p></remarks>
+     * schedule.</p> <p>Indicates the order of a specific 
+     * immunization event with a planned/expected number of 
+     * immunizations.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"POIZ_MT030050CA.InFulfillmentOf","POIZ_MT030060CA.InFulfillmentOf","POIZ_MT060150CA.InFulfillmentOf"})]
     public class InFulfillmentOf : MessagePartBean {
@@ -45,14 +45,21 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merg
             this.immunizationPlan = new BLImpl(false);
         }
         /**
-         * <summary>DoseNumber</summary>
+         * <summary>Business Name: DoseNumber</summary>
          * 
-         * <remarks>Dose Number <p>Indicates whether this is the 
-         * initial immunization (Dose Number = 1) or a specific booster 
-         * (Dose Number = 2 means first booster, 3 means second 
-         * booster, etc.).</p> <p>Used in compliance checking regarding 
-         * completion of an immunization plan or schedule.</p> Dose 
-         * Number</remarks>
+         * <remarks>Un-merged Business Name: DoseNumber Relationship: 
+         * POIZ_MT030050CA.InFulfillmentOf.sequenceNumber 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: DoseNumber Relationship: 
+         * POIZ_MT030060CA.InFulfillmentOf.sequenceNumber 
+         * Conformance/Cardinality: POPULATED (1) <p>Used in compliance 
+         * checking regarding completion of an immunization plan or 
+         * schedule.</p> <p>Indicates whether this is the initial 
+         * immunization (Dose Number = 1) or a specific booster (Dose 
+         * Number = 2 means first booster, 3 means second booster, 
+         * etc.).</p> Un-merged Business Name: DoseNumber Relationship: 
+         * POIZ_MT060150CA.InFulfillmentOf.sequenceNumber 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"sequenceNumber"})]
         public int? SequenceNumber {
@@ -60,6 +67,20 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merg
             set { this.sequenceNumber.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * POIZ_MT030050CA.InFulfillmentOf.immunizationPlan 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * POIZ_MT030060CA.InFulfillmentOf.immunizationPlan 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * POIZ_MT060150CA.InFulfillmentOf.immunizationPlan 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"immunizationPlan"})]
         public bool? ImmunizationPlan {
             get { return this.immunizationPlan.Value; }

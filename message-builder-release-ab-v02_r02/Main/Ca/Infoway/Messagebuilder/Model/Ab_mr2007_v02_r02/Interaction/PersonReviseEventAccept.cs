@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Cr.Prpa_mt101102ca;
 
 
+    /**
+     * <summary>Business Name: PRPA_IN101205CA: Person Revise Event 
+     * Accept</summary>
+     * 
+     * <remarks>Message: MCCI_MT002300CA.Message Control Act: 
+     * MFMI_MT700726CA.ControlActEvent --> Payload: 
+     * PRPA_MT101102CA.IdentifiedEntity</remarks>
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"PRPA_IN101205CA"})]
     public class PersonReviseEventAccept : HL7Message<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Mfmi_mt700726ca.TriggerEvent<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Cr.Prpa_mt101102ca.IdentifiedPerson>>, IInteraction {
 

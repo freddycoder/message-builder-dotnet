@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -43,7 +43,10 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt23000
             this.signatureCode = new CEImpl();
         }
         /**
-         * <summary>X: Authored Datetime</summary>
+         * <summary>Business Name: X: Authored Datetime</summary>
+         * 
+         * <remarks>Relationship: REPC_MT230001CA.Author.time 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"time"})]
         public PlatformDate Time {
@@ -52,7 +55,10 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt23000
         }
 
         /**
-         * <summary>K: Attested Indicator</summary>
+         * <summary>Business Name: K: Attested Indicator</summary>
+         * 
+         * <remarks>Relationship: REPC_MT230001CA.Author.signatureCode 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"signatureCode"})]
         public ParticipationSignature SignatureCode {
@@ -60,6 +66,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt23000
             set { this.signatureCode.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: REPC_MT230001CA.Author.actingPerson</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"actingPerson"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt911108ca.IActingPerson ActingPerson {
             get { return this.actingPerson; }

@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -46,9 +46,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merg
             this.responsiblePartyModeCode = new CEImpl();
         }
         /**
-         * <summary>ConsentID</summary>
+         * <summary>Business Name: ConsentID</summary>
          * 
-         * <remarks>Consent ID</remarks>
+         * <remarks>Un-merged Business Name: ConsentID Relationship: 
+         * POIZ_MT060150CA.Consent.id Conformance/Cardinality: 
+         * POPULATED (1) Un-merged Business Name: ConsentID 
+         * Relationship: POIZ_MT030050CA.Consent.id 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: ConsentID Relationship: POIZ_MT030060CA.Consent.id 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -57,9 +63,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merg
         }
 
         /**
-         * <summary>ConsentWitheldIndicator</summary>
+         * <summary>Business Name: ConsentWitheldIndicator</summary>
          * 
-         * <remarks>Consent witheld indicator</remarks>
+         * <remarks>Un-merged Business Name: ConsentWitheldIndicator 
+         * Relationship: POIZ_MT060150CA.Consent.negationInd 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: ConsentWitheldIndicator Relationship: 
+         * POIZ_MT030050CA.Consent.negationInd Conformance/Cardinality: 
+         * MANDATORY (1) Un-merged Business Name: 
+         * ConsentWitheldIndicator Relationship: 
+         * POIZ_MT030060CA.Consent.negationInd Conformance/Cardinality: 
+         * MANDATORY (1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"negationInd"})]
         public bool? NegationInd {
@@ -68,9 +82,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merg
         }
 
         /**
-         * <summary>ConsentEffectiveAndEndTime</summary>
+         * <summary>Business Name: ConsentEffectiveAndEndTime</summary>
          * 
-         * <remarks>Consent Effective and End Time</remarks>
+         * <remarks>Un-merged Business Name: ConsentEffectiveAndEndTime 
+         * Relationship: POIZ_MT060150CA.Consent.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) Un-merged Business 
+         * Name: ConsentEffectiveAndEndTime Relationship: 
+         * POIZ_MT030050CA.Consent.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) Un-merged Business 
+         * Name: ConsentEffectiveAndEndTime Relationship: 
+         * POIZ_MT030060CA.Consent.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"effectiveTime"})]
         public Interval<PlatformDate> EffectiveTime {
@@ -78,6 +100,18 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merg
             set { this.effectiveTime.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: POIZ_MT060150CA.Consent.receiver 
+         * Conformance/Cardinality: REQUIRED (0-1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * POIZ_MT030050CA.Consent.receiver Conformance/Cardinality: 
+         * REQUIRED (0-1) Un-merged Business Name: (no business name 
+         * specified) Relationship: POIZ_MT030060CA.Consent.receiver 
+         * Conformance/Cardinality: REQUIRED (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"receiver"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.ConsentGivenTo Receiver {
             get { return this.receiver; }
@@ -85,12 +119,20 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merg
         }
 
         /**
-         * <summary>ConsentMethod</summary>
+         * <summary>Business Name: ConsentMethod</summary>
          * 
-         * <remarks>Consent Method <p>Describes the method in which 
-         * consent was given.</p> <p>Allows for explicit communication 
-         * of how consent was given (e.g. verbal, written, etc.)</p> 
-         * Consent Method</remarks>
+         * <remarks>Un-merged Business Name: ConsentMethod 
+         * Relationship: POIZ_MT060150CA.ResponsibleParty2.modeCode 
+         * Conformance/Cardinality: REQUIRED (0-1) Un-merged Business 
+         * Name: ConsentMethod Relationship: 
+         * POIZ_MT030050CA.ResponsibleParty2.modeCode 
+         * Conformance/Cardinality: REQUIRED (0-1) Un-merged Business 
+         * Name: ConsentMethod Relationship: 
+         * POIZ_MT030060CA.ResponsibleParty2.modeCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Allows for 
+         * explicit communication of how consent was given (e.g. 
+         * verbal, written, etc.)</p> <p>Describes the method in which 
+         * consent was given.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"responsibleParty/modeCode"})]
         public ParticipationMode ResponsiblePartyModeCode {
@@ -98,6 +140,20 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merg
             set { this.responsiblePartyModeCode.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * POIZ_MT060150CA.ResponsibleParty2.consenter 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * POIZ_MT030050CA.ResponsibleParty2.consenter 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * POIZ_MT030060CA.ResponsibleParty2.consenter 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"responsibleParty/consenter"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.IConsenter ResponsiblePartyConsenter {
             get { return this.responsiblePartyConsenter; }

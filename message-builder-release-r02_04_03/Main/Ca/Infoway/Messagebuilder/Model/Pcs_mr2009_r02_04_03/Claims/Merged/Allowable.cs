@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,9 +35,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Merged {
             this.netAmt = new MOImpl();
         }
         /**
-         * <summary>Paid Amount</summary>
+         * <summary>Un-merged Business Name: PaidAmount</summary>
          * 
-         * <remarks>Fee Scheduled Eligibile Amt.</remarks>
+         * <remarks>Relationship: FICR_MT610201CA.Allowable.netAmt 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: FeeScheduledEligibileAmt Relationship: 
+         * FICR_MT510201CA.Allowable.netAmt Conformance/Cardinality: 
+         * MANDATORY (1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"netAmt"})]
         public Money NetAmt {

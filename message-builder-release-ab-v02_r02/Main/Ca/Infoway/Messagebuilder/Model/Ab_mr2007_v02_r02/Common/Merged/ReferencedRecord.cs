@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged {
 
 
     /**
-     * <summary>ReferencedRecord</summary>
+     * <summary>Business Name: ReferencedRecord</summary>
      * 
      * <remarks>COMT_MT001101CA.ActRequest: Referenced Record 
      * <p>References an existing event record by identifier.</p> 
@@ -56,12 +56,19 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged {
             this.id = new SETImpl<II, Identifier>(typeof(IIImpl));
         }
         /**
-         * <summary>RecordIds</summary>
+         * <summary>Business Name: RecordIds</summary>
          * 
-         * <remarks>Record Ids <p>The identifier assigned by the 
-         * central system (EHR) to the Event record being referred 
-         * to.</p> <p>Allows the event record to be uniquely referenced 
-         * and is therefore mandatory.</p></remarks>
+         * <remarks>Un-merged Business Name: RecordIds Relationship: 
+         * COMT_MT001101CA.ActRequest.id Conformance/Cardinality: 
+         * MANDATORY (1-2) <p>The identifier assigned by the central 
+         * system (EHR) to the Event record being referred to.</p> 
+         * <p>Allows the event record to be uniquely referenced and is 
+         * therefore mandatory.</p> Un-merged Business Name: RecordIds 
+         * Relationship: COMT_MT001103CA.ActEvent.id 
+         * Conformance/Cardinality: MANDATORY (1-2) <p>The identifier 
+         * assigned by the central system (EHR) to the Event record 
+         * being referred to.</p> <p>Allows the event record to be 
+         * uniquely referenced and is therefore mandatory.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public ICollection<Identifier> Id {

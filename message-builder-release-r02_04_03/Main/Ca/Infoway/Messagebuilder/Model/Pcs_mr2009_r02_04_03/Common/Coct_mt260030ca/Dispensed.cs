@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,14 +25,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt260
 
 
     /**
-     * <summary>*a:dispensed</summary>
+     * <summary>Business Name: *a:dispensed</summary>
      * 
-     * <remarks><p>Indicates the drug that was dispensed</p> 
      * <p>Important information for issue management.</p><p>The 
      * association is marked as populated because it may be 
-     * masked.</p> <p>Important information for issue 
-     * management.</p><p>The association is marked as populated 
-     * because it may be masked.</p></remarks>
+     * masked.</p> <p>Indicates the drug that was dispensed</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"COCT_MT260030CA.Product"})]
     public class Dispensed : MessagePartBean {
@@ -41,6 +38,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt260
 
         public Dispensed() {
         }
+        /**
+         * <summary>Relationship: COCT_MT260030CA.Product.medication</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"medication"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt220210ca.DrugProduct Medication {
             get { return this.medication; }

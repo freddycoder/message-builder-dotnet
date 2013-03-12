@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,12 +35,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Cr.Prpa_mt101103ca {
             this.value = new CVImpl();
         }
         /**
-         * <summary>Language of Communication Code</summary>
+         * <summary>Business Name: Language of Communication Code</summary>
          * 
-         * <remarks><p>A code indicating the language of 
-         * communication</p> <p>Mandatory attribute conveying the 
-         * expected language message elements are to be transmitted 
-         * in</p></remarks>
+         * <remarks>Relationship: PRPA_MT101103CA.LanguageCode.value 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>A code indicating 
+         * the language of communication</p> <p>Mandatory attribute 
+         * conveying the expected language message elements are to be 
+         * transmitted in</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"value"})]
         public QueryParameterValue Value {

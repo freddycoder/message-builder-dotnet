@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,11 +35,147 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged {
             this.id = new IIImpl();
         }
         /**
-         * <summary>ReplacesRecordIds</summary>
+         * <summary>Business Name: ReplacesRecordIds</summary>
          * 
-         * <remarks>G:Replaces Record Ids G:Replaces Record Ids </p> 
-         * </p> G:Replaces Record Ids </p> </p> G:Replaces Record Ids 
-         * </p> </p></remarks>
+         * <remarks>Un-merged Business Name: ReplacesRecordIds 
+         * Relationship: REPC_MT210003CA.OldClinicalDocumentEvent.id 
+         * Conformance/Cardinality: MANDATORY (1) <p> <i>Used in 
+         * circumstances where information initially captured about an 
+         * event is erroneous, incomplete or not captured at the 
+         * desired level of detail and the change cannot be made by 
+         * retracting the original record. (E.g. Too much time has 
+         * elapsed, change is being made by a provider other than the 
+         * original author of the vent record, etc.) May also be used 
+         * to reference multiple records in the case where the same 
+         * event has been accidentally captured more than once. May 
+         * also be used when this is a newer &quot;version&quot; of the 
+         * type of Referral than those records being referenced.</i> 
+         * </p> <p> <i>Used to identify any records that are 
+         * &quot;superseded&quot; by the current record. This will 
+         * cause the referenced records to be marked as 
+         * &quot;obsolete&quot; with a reference pointing to this 
+         * record.</i> </p> Un-merged Business Name: ReplacesRecordIds 
+         * Relationship: REPC_MT220003CA.OldClinicalDocumentEvent.id 
+         * Conformance/Cardinality: MANDATORY (1) <p> <i>Used in 
+         * circumstances where information initially captured about an 
+         * event is erroneous, incomplete or not captured at the 
+         * desired level of detail and the change cannot be made by 
+         * retracting the original record. (E.g. Too much time has 
+         * elapsed, change is being made by a provider other than the 
+         * original author of the vent record, etc.) May also be used 
+         * to reference multiple records in the case where the same 
+         * event has been accidentally captured more than once. May 
+         * also be used when this is a newer &quot;version&quot; of the 
+         * type of Discharge-Care Summary than those records being 
+         * referenced.</i> </p> <p> <i>Used to identify any records 
+         * that are &quot;superseded&quot; by the current record. This 
+         * will cause the referenced records to be marked as 
+         * &quot;obsolete&quot; with a reference pointing to this 
+         * record.</i> </p> Un-merged Business Name: ReplacesRecordIds 
+         * Relationship: REPC_MT220001CA.OldClinicalDocumentEvent.id 
+         * Conformance/Cardinality: MANDATORY (1) <p> <i>Used in 
+         * circumstances where information initially captured about an 
+         * event is erroneous, incomplete or not captured at the 
+         * desired level of detail and the change cannot be made by 
+         * retracting the original record. (E.g. Too much time has 
+         * elapsed, change is being made by a provider other than the 
+         * original author of the vent record, etc.) May also be used 
+         * to reference multiple records in the case where the same 
+         * event has been accidentally captured more than once. May 
+         * also be used when this is a newer &quot;version&quot; of the 
+         * type of Discharge-Care Summary than those records being 
+         * referenced.</i> </p> <p> <i>Used to identify any records 
+         * that are &quot;superseded&quot; by the current record. This 
+         * will cause the referenced records to be marked as 
+         * &quot;obsolete&quot; with a reference pointing to this 
+         * record.</i> </p> Un-merged Business Name: ReplacesRecordIds 
+         * Relationship: REPC_MT230003CA.OldClinicalDocumentEvent.id 
+         * Conformance/Cardinality: MANDATORY (1) <p> <i>Used in 
+         * circumstances where information initially captured about an 
+         * event is erroneous, incomplete or not captured at the 
+         * desired level of detail and the change cannot be made by 
+         * retracting the original record. (E.g. Too much time has 
+         * elapsed, change is being made by a provider other than the 
+         * original author of the vent record, etc.) May also be used 
+         * to reference multiple records in the case where the same 
+         * event has been accidentally captured more than once. May 
+         * also be used when this is a newer &quot;version&quot; of the 
+         * type of Clinical Observation Document than those records 
+         * being referenced.</i> </p> <p> <i>Used to identify any 
+         * records that are &quot;superseded&quot; by the current 
+         * record. This will cause the referenced records to be marked 
+         * as &quot;obsolete&quot; with a reference pointing to this 
+         * record.</i> </p> Un-merged Business Name: ReplacesRecordIds 
+         * Relationship: REPC_MT220002CA.OldClinicalDocumentEvent.id 
+         * Conformance/Cardinality: MANDATORY (1) <p> <i>Used in 
+         * circumstances where information initially captured about an 
+         * event is erroneous, incomplete or not captured at the 
+         * desired level of detail and the change cannot be made by 
+         * retracting the original record. (E.g. Too much time has 
+         * elapsed, change is being made by a provider other than the 
+         * original author of the vent record, etc.) May also be used 
+         * to reference multiple records in the case where the same 
+         * event has been accidentally captured more than once. May 
+         * also be used when this is a newer &quot;version&quot; of the 
+         * type of Discharge-Care Summary than those records being 
+         * referenced.</i> </p> <p> <i>Used to identify any records 
+         * that are &quot;superseded&quot; by the current record. This 
+         * will cause the referenced records to be marked as 
+         * &quot;obsolete&quot; with a reference pointing to this 
+         * record.</i> </p> Un-merged Business Name: ReplacesRecordIds 
+         * Relationship: REPC_MT230001CA.OldClinicalDocumentEvent.id 
+         * Conformance/Cardinality: MANDATORY (1) <p> <i>Used in 
+         * circumstances where information initially captured about an 
+         * event is erroneous, incomplete or not captured at the 
+         * desired level of detail and the change cannot be made by 
+         * retracting the original record. (E.g. Too much time has 
+         * elapsed, change is being made by a provider other than the 
+         * original author of the vent record, etc.) May also be used 
+         * to reference multiple records in the case where the same 
+         * event has been accidentally captured more than once. May 
+         * also be used when this is a newer &quot;version&quot; of the 
+         * type of Clinical Observation Document than those records 
+         * being referenced.</i> </p> <p> <i>Used to identify any 
+         * records that are &quot;superseded&quot; by the current 
+         * record. This will cause the referenced records to be marked 
+         * as &quot;obsolete&quot; with a reference pointing to this 
+         * record.</i> </p> Un-merged Business Name: ReplacesRecordIds 
+         * Relationship: REPC_MT210002CA.OldClinicalDocumentEvent.id 
+         * Conformance/Cardinality: MANDATORY (1) <p> <i>Used in 
+         * circumstances where information initially captured about an 
+         * event is erroneous, incomplete or not captured at the 
+         * desired level of detail and the change cannot be made by 
+         * retracting the original record. (E.g. Too much time has 
+         * elapsed, change is being made by a provider other than the 
+         * original author of the vent record, etc.) May also be used 
+         * to reference multiple records in the case where the same 
+         * event has been accidentally captured more than once. May 
+         * also be used when this is a newer &quot;version&quot; of the 
+         * type of Referral than those records being referenced.</i> 
+         * </p> <p> <i>Used to identify any records that are 
+         * &quot;superseded&quot; by the current record. This will 
+         * cause the referenced records to be marked as 
+         * &quot;obsolete&quot; with a reference pointing to this 
+         * record.</i> </p> Un-merged Business Name: ReplacesRecordIds 
+         * Relationship: REPC_MT230002CA.OldClinicalDocumentEvent.id 
+         * Conformance/Cardinality: MANDATORY (1) <p> <i>Used in 
+         * circumstances where information initially captured about an 
+         * event is erroneous, incomplete or not captured at the 
+         * desired level of detail and the change cannot be made by 
+         * retracting the original record. (E.g. Too much time has 
+         * elapsed, change is being made by a provider other than the 
+         * original author of the vent record, etc.) May also be used 
+         * to reference multiple records in the case where the same 
+         * event has been accidentally captured more than once. May 
+         * also be used when this is a newer &quot;version&quot; of the 
+         * type of Clinical Observation Document than those records 
+         * being referenced.</i> </p> <p> <i>Used to identify any 
+         * records that are &quot;superseded&quot; by the current 
+         * record. This will cause the referenced records to be marked 
+         * as &quot;obsolete&quot; with a reference pointing to this 
+         * record.</i> </p> Un-merged Business Name: ReplacesRecordIds 
+         * Relationship: REPC_MT210001CA.OldClinicalDocumentEvent.id 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {

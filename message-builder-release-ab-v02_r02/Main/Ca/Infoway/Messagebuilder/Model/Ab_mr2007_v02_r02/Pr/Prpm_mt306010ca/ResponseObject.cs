@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,17 +29,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt306010ca {
 
 
     /**
-     * <summary>Response Object</summary>
+     * <summary>Business Name: Response Object</summary>
      * 
-     * <remarks><p>This is an optional output control parameter. 
-     * Sender indicates via coded values which class or class 
-     * attributes in the response model are to be valued in the 
-     * response. By site agreement codes can be based upon local 
-     * object model, or alternatively, the classes and attributes 
-     * from the query response model, as in the example below. 
-     * Example: requestor wants provider identifier, name and 
-     * service delivery location data returned so ResponseObject is 
-     * valued as follows:</p><p>&lt;ResponseObject&gt;&lt;value 
+     * <p>This is an optional output control parameter. Sender 
+     * indicates via coded values which class or class attributes 
+     * in the response model are to be valued in the response. By 
+     * site agreement codes can be based upon local object model, 
+     * or alternatively, the classes and attributes from the query 
+     * response model, as in the example below. Example: requestor 
+     * wants provider identifier, name and service delivery 
+     * location data returned so ResponseObject is valued as 
+     * follows:</p><p>&lt;ResponseObject&gt;&lt;value 
      * code=&quot;HealthCareProvider.id&quot;/&gt;&lt;/ResponseObject&gt;</p><p>&lt;ResponseObject&gt;&lt;value 
      * code=&quot;PrincipalPerson.name&quot;/&gt;&lt;/ResponseObject&gt;</p><p>&lt;ResponseObject&gt;&lt;value 
      * code=&quot;ServiceDeliveryLocation&quot;/&gt;&lt;/ResponseObject&gt;</p><p>Utilized 
@@ -122,7 +122,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt306010ca {
      * to receive all information. The type of information expected 
      * in the response is provided via the response object.</p> 
      * <p>Supports the business request to be able to specify 
-     * expected response to this query</p></remarks>
+     * expected response to this query</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"PRPM_MT306010CA.ResponseObject"})]
     public class ResponseObject : MessagePartBean {
@@ -133,12 +133,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt306010ca {
             this.value = new SETImpl<CV, Code>(typeof(CVImpl));
         }
         /**
-         * <summary>Provider Query Response Object</summary>
+         * <summary>Business Name: Provider Query Response Object</summary>
          * 
-         * <remarks><p>Outlines the values expected to be received by 
-         * this query</p> <p>Populated attribute provides tremendous 
-         * value in giving the organization issuing the query the 
-         * flexibility to request particular items in the response.</p></remarks>
+         * <remarks>Relationship: PRPM_MT306010CA.ResponseObject.value 
+         * Conformance/Cardinality: POPULATED (1-20) <p>Outlines the 
+         * values expected to be received by this query</p> 
+         * <p>Populated attribute provides tremendous value in giving 
+         * the organization issuing the query the flexibility to 
+         * request particular items in the response.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"value"})]
         public ICollection<QueryParameterValue> Value {

@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -48,7 +48,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt500
             this.multipleBirthOrderNumber = new INTImpl();
         }
         /**
-         * <summary>Patient Name</summary>
+         * <summary>Business Name: Patient Name</summary>
+         * 
+         * <remarks>Relationship: 
+         * FICR_MT500201CA.CoveredPartyAsPatientPerson.name 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"name"})]
         public PersonName Name {
@@ -57,7 +61,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt500
         }
 
         /**
-         * <summary>Person Gender</summary>
+         * <summary>Business Name: Person Gender</summary>
+         * 
+         * <remarks>Relationship: 
+         * FICR_MT500201CA.CoveredPartyAsPatientPerson.administrativeGenderCode 
+         * Conformance/Cardinality: REQUIRED (0-1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"administrativeGenderCode"})]
         public AdministrativeGender AdministrativeGenderCode {
@@ -66,7 +74,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt500
         }
 
         /**
-         * <summary>Person Date of birth</summary>
+         * <summary>Business Name: Person Date of birth</summary>
+         * 
+         * <remarks>Relationship: 
+         * FICR_MT500201CA.CoveredPartyAsPatientPerson.birthTime 
+         * Conformance/Cardinality: REQUIRED (0-1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"birthTime"})]
         public PlatformDate BirthTime {
@@ -75,7 +87,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt500
         }
 
         /**
-         * <summary>time of death</summary>
+         * <summary>Business Name: time of death</summary>
+         * 
+         * <remarks>Relationship: 
+         * FICR_MT500201CA.CoveredPartyAsPatientPerson.deceasedTime 
+         * Conformance/Cardinality: REQUIRED (0-1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"deceasedTime"})]
         public PlatformDate DeceasedTime {
@@ -84,7 +100,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt500
         }
 
         /**
-         * <summary>Person multiple birth indicator</summary>
+         * <summary>Business Name: Person multiple birth indicator</summary>
+         * 
+         * <remarks>Relationship: 
+         * FICR_MT500201CA.CoveredPartyAsPatientPerson.multipleBirthInd 
+         * Conformance/Cardinality: REQUIRED (0-1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"multipleBirthInd"})]
         public bool? MultipleBirthInd {
@@ -93,7 +113,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt500
         }
 
         /**
-         * <summary>Person multiple birth order number</summary>
+         * <summary>Business Name: Person multiple birth order number</summary>
+         * 
+         * <remarks>Relationship: 
+         * FICR_MT500201CA.CoveredPartyAsPatientPerson.multipleBirthOrderNumber 
+         * Conformance/Cardinality: REQUIRED (0-1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"multipleBirthOrderNumber"})]
         public int? MultipleBirthOrderNumber {
@@ -101,6 +125,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt500
             set { this.multipleBirthOrderNumber.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * FICR_MT500201CA.CoveredPartyAsPatientPerson.parentOrGuardianRole</summary>
+         * 
+         * <remarks>Conformance/Cardinality: REQUIRED (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"parentOrGuardianRole"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt500201ca.ParentOrGuardianRole ParentOrGuardianRole {
             get { return this.parentOrGuardianRole; }

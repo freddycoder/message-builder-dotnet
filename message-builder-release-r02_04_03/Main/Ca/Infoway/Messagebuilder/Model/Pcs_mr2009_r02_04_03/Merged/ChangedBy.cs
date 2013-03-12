@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,130 +32,161 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged {
     /**
      * <summary>PORX_MT060340CA.Author1: *changed by</summary>
      * 
-     * <remarks><p>Identity of the health service provider or 
+     * <p>In an EHR integrated health services environment, it is 
+     * important that other providers are able to query who (or 
+     * what application) is responsible for status changes. Also 
+     * used by applications for auditing and sorting.</p><p>The 
+     * attribute is marked as &quot;mandatory&quot; because 
+     * provider or application maintaining the prescription must be 
+     * known.</p> <p>Identity of the health service provider or 
      * application responsible for the change in the prescription 
-     * status.</p> <p>In an EHR integrated health services 
-     * environment, it is important that other providers are able 
-     * to query who (or what application) is responsible for status 
-     * changes. Also used by applications for auditing and 
-     * sorting.</p><p>The attribute is marked as 
-     * &quot;mandatory&quot; because provider or application 
-     * maintaining the prescription must be known.</p> <p>In an EHR 
-     * integrated health services environment, it is important that 
-     * other providers are able to query who (or what application) 
-     * is responsible for status changes. Also used by applications 
-     * for auditing and sorting.</p><p>The attribute is marked as 
-     * &quot;mandatory&quot; because provider or application 
-     * maintaining the prescription must be known.</p> 
-     * REPC_MT610002CA.Author3: *a:authored by </p> </p> </p> 
-     * REPC_MT000007CA.Author3: *last amended by </p> </p> 
-     * COCT_MT260022CA.Author1: managed by <p>Identifies the 
-     * provider who created the management of the issue.</p> 
-     * <p>OverrideReason.provider</p><p>ManagedContraindication.provider</p><p>A_DetectedMedicationIssue</p> 
-     * <p>OverrideReason.provider</p><p>ManagedContraindication.provider</p><p>A_DetectedMedicationIssue</p> 
-     * <p>OverrideReason.provider</p><p>ManagedContraindication.provider</p><p>A_DetectedMedicationIssue</p> 
-     * <p>Part of the audit record, but may not always be known for 
-     * historical managements.</p> REPC_MT000010CA.Author3: *last 
-     * amended by </p> </p> PORX_MT060090CA.Author6: *changed by 
-     * <p>Identity of the health service provider or the 
-     * application responsible for the change in the prescription 
-     * dispense status.</p> <p>In an EHR integrated health services 
+     * status.</p> REPC_MT610002CA.Author3: *a:authored by <p> 
+     * <i>Used to identify responsibility for accuracy and 
+     * relevance of the information. This association reflects 
+     * primary responsibility, and is therefore mandatory.</i> 
+     * </p><p> <i>The author is generally the person to contact 
+     * with requests for additional information. In some cases, 
+     * this information may also be used for filtering or 
+     * sorting.</i> </p> <p> <i>This identifies the provider who is 
+     * responsible for the decision to capture the Professional 
+     * Service in the patient's EHR. Note that while the author is 
+     * frequently the data-enterer, this will not always be the 
+     * case, for example where transcribers are involved.</i> </p> 
+     * REPC_MT000007CA.Author3: *last amended by <p> <i>The most 
+     * recent Amending Provider has significant responsibility for 
+     * the &quot;current appearance&quot; of the record and can 
+     * have considerable influence on how other providers will 
+     * interpret the validity and significance of the record. The 
+     * element is mandatory because it should always be known by 
+     * the EHR.</i> </p> <p> <i>This identifies the provider who 
+     * most recently amended the Health Condition.</i> </p> 
+     * COCT_MT260022CA.Author1: managed by 
+     * <p>OverrideReason.provider</p> 
+     * <p>ManagedContraindication.provider</p> 
+     * <p>A_DetectedMedicationIssue</p> <p>Part of the audit 
+     * record, but may not always be known for historical 
+     * managements.</p> <p>Identifies the provider who created the 
+     * management of the issue.</p> REPC_MT000010CA.Author3: *last 
+     * amended by <p> <i>The most recent Amending Provider has 
+     * significant responsibility for the &quot;current 
+     * appearance&quot; of the record and can have considerable 
+     * influence on how other providers will interpret the validity 
+     * and significance of the record. The element is mandatory 
+     * because it should always be known by the EHR.</i> </p> <p> 
+     * <i>This identifies the provider who most recently amended 
+     * the Health Condition.</i> </p> PORX_MT060090CA.Author6: 
+     * *changed by <p>In an EHR integrated health services 
      * environment, it is important that other providers are able 
      * to query who is responsible for status changes. Also used by 
      * applications for auditing and sorting. The attribute is 
      * mandatory because provider or application maintaining the 
-     * prescription dispense must be known.</p> 
-     * REPC_MT000010CA.Author: *a:authored by </p> 
-     * <p>AllergyIntolerance.authorizingProvider</p><p>ZPB1.3</p><p>AllergyIntolerance.authorizingPhysician</p> 
-     * <p>AllergyIntolerance.authorizingProvider</p><p>ZPB1.3</p><p>AllergyIntolerance.authorizingPhysician</p> 
-     * <p>AllergyIntolerance.authorizingProvider</p><p>ZPB1.3</p><p>AllergyIntolerance.authorizingPhysician</p> 
-     * </p> </p> REPC_MT500004CA.Author3: *a:authored by </p> </p> 
-     * </p> COCT_MT130001CA.Author3: *changed by <p>Identity of the 
-     * health service provider responsible for the change.</p> 
+     * prescription dispense must be known.</p> <p>Identity of the 
+     * health service provider or the application responsible for 
+     * the change in the prescription dispense status.</p> 
+     * REPC_MT000010CA.Author: *a:authored by 
+     * <p>AllergyIntolerance.authorizingProvider</p> <p>ZPB1.3</p> 
+     * <p>AllergyIntolerance.authorizingPhysician</p> <p> <i>Used 
+     * to identify responsibility for accuracy and relevance of the 
+     * information. This association reflects primary 
+     * responsibility, and is therefore mandatory.</i> </p><p> 
+     * <i>The author is generally the person to contact with 
+     * requests for additional information. In some cases, this 
+     * information may also be used for filtering or sorting.</i> 
+     * </p> <p> <i>This identifies the provider who is responsible 
+     * for the decision to capture the Health Condition in the 
+     * patient's EHR. Note that while the author is frequently the 
+     * data-enterer, this will not always be the case, for example 
+     * where transcribers are involved.</i> </p> 
+     * REPC_MT500004CA.Author3: *a:authored by <p> <i>Used to 
+     * identify responsibility for accuracy and relevance of the 
+     * information. This association reflects primary 
+     * responsibility, and is therefore mandatory.</i> </p><p> 
+     * <i>The author is generally the person to contact with 
+     * requests for additional information. In some cases, this 
+     * information may also be used for filtering or sorting.</i> 
+     * </p> <p> <i>This identifies the provider who is responsible 
+     * for the decision to capture the Care Composition in the 
+     * patient's EHR. Note that while the author is frequently the 
+     * data-enterer, this will not always be the case, for example 
+     * where transcribers are involved.</i> </p> 
+     * COCT_MT130001CA.Author3: *changed by <p>In an EHR integrated 
+     * health services environment, it is important that other 
+     * providers are able to query who is responsible for a given 
+     * change. Also used by applications for auditing and sorting. 
+     * The attribute is mandatory because the responsible provider 
+     * should always be known.</p> <p>Identity of the health 
+     * service provider responsible for the change.</p> 
+     * PORX_MT060160CA.Author1: *changed by <p>In an EHR integrated 
+     * health services environment, it is important that other 
+     * providers are able to query who (or what application) is 
+     * responsible for status changes. Also used by applications 
+     * for auditing and sorting.</p><p>The attribute is 
+     * &quot;mandatory&quot; because provider or application 
+     * maintaining the prescription must be known.</p> <p>Identity 
+     * of the health service provider or application responsible 
+     * for the change in the prescription status.</p> 
+     * REPC_MT500003CA.Author3: *a:authored by <p> <i>Used to 
+     * identify responsibility for accuracy and relevance of the 
+     * information. This association reflects primary 
+     * responsibility, and is therefore mandatory.</i> </p><p> 
+     * <i>The author is generally the person to contact with 
+     * requests for additional information. In some cases, this 
+     * information may also be used for filtering or sorting.</i> 
+     * </p> <p> <i>This identifies the provider who is responsible 
+     * for the decision to capture the Care Composition in the 
+     * patient's EHR. Note that while the author is frequently the 
+     * data-enterer, this will not always be the case, for example 
+     * where transcribers are involved.</i> </p> 
+     * REPC_MT000007CA.Author: *a:authored by 
+     * <p>AllergyIntolerance.authorizingProvider</p> <p>ZPB1.3</p> 
+     * <p>AllergyIntolerance.authorizingPhysician</p> <p> <i>Used 
+     * to identify responsibility for accuracy and relevance of the 
+     * information. This association reflects primary 
+     * responsibility, and is therefore mandatory.</i> </p><p> 
+     * <i>The author is generally the person to contact with 
+     * requests for additional information. In some cases, this 
+     * information may also be used for filtering or sorting.</i> 
+     * </p> <p> <i>This identifies the provider who is responsible 
+     * for the decision to capture the Health Condition in the 
+     * patient's EHR. Note that while the author is frequently the 
+     * data-enterer, this will not always be the case, for example 
+     * where transcribers are involved.</i> </p> 
+     * COCT_MT260030CA.Author1: *managed by 
+     * <p>OverrideReason.provider</p> 
+     * <p>ManagedContraindication.provider</p> 
+     * <p>A_DetectedMedicationIssue</p> <p>Part of the audit record 
+     * and therefore mandatory.</p> <p>Identifies the provider who 
+     * managed the issue.</p> REPC_MT000009CA.Author3: *changed by 
      * <p>In an EHR integrated health services environment, it is 
      * important that other providers are able to query who is 
      * responsible for a given change. Also used by applications 
      * for auditing and sorting. The attribute is mandatory because 
      * the responsible provider should always be known.</p> 
-     * PORX_MT060160CA.Author1: *changed by <p>Identity of the 
-     * health service provider or application responsible for the 
-     * change in the prescription status.</p> <p>In an EHR 
-     * integrated health services environment, it is important that 
-     * other providers are able to query who (or what application) 
-     * is responsible for status changes. Also used by applications 
-     * for auditing and sorting.</p><p>The attribute is 
-     * &quot;mandatory&quot; because provider or application 
-     * maintaining the prescription must be known.</p> <p>In an EHR 
-     * integrated health services environment, it is important that 
-     * other providers are able to query who (or what application) 
-     * is responsible for status changes. Also used by applications 
-     * for auditing and sorting.</p><p>The attribute is 
-     * &quot;mandatory&quot; because provider or application 
-     * maintaining the prescription must be known.</p> 
-     * REPC_MT500003CA.Author3: *a:authored by </p> </p> </p> 
-     * REPC_MT000007CA.Author: *a:authored by </p> 
-     * <p>AllergyIntolerance.authorizingProvider</p><p>ZPB1.3</p><p>AllergyIntolerance.authorizingPhysician</p> 
-     * <p>AllergyIntolerance.authorizingProvider</p><p>ZPB1.3</p><p>AllergyIntolerance.authorizingPhysician</p> 
-     * <p>AllergyIntolerance.authorizingProvider</p><p>ZPB1.3</p><p>AllergyIntolerance.authorizingPhysician</p> 
-     * </p> </p> COCT_MT260030CA.Author1: *managed by <p>Identifies 
-     * the provider who managed the issue.</p> 
-     * <p>OverrideReason.provider</p><p>ManagedContraindication.provider</p><p>A_DetectedMedicationIssue</p> 
-     * <p>OverrideReason.provider</p><p>ManagedContraindication.provider</p><p>A_DetectedMedicationIssue</p> 
-     * <p>OverrideReason.provider</p><p>ManagedContraindication.provider</p><p>A_DetectedMedicationIssue</p> 
-     * <p>Part of the audit record and therefore mandatory.</p> 
-     * REPC_MT000009CA.Author3: *changed by <p>Identity of the 
-     * health service provider responsible for the change in the 
-     * allergy/intolerance status.</p> <p>In an EHR integrated 
+     * <p>Identity of the health service provider responsible for 
+     * the change in the allergy/intolerance status.</p> 
+     * PORX_MT060040CA.Author1: *changed by <p>In an EHR integrated 
      * health services environment, it is important that other 
-     * providers are able to query who is responsible for a given 
-     * change. Also used by applications for auditing and sorting. 
-     * The attribute is mandatory because the responsible provider 
-     * should always be known.</p> PORX_MT060040CA.Author1: 
-     * *changed by <p>Identity of the health service provider or 
-     * application responsible for the change in the prescription 
-     * status.</p> <p>In an EHR integrated health services 
-     * environment, it is important that other providers are able 
-     * to query who (or what application) is responsible for status 
-     * changes. Also used by applications for auditing and 
-     * sorting.</p><p>The attribute is mandatory because provider 
-     * or application maintaining the prescription must be 
-     * known.</p> <p>In an EHR integrated health services 
-     * environment, it is important that other providers are able 
-     * to query who (or what application) is responsible for status 
-     * changes. Also used by applications for auditing and 
-     * sorting.</p><p>The attribute is mandatory because provider 
-     * or application maintaining the prescription must be 
-     * known.</p> PORX_MT060210CA.Author7: *changed by <p>Identity 
-     * of the health service provider or the application 
-     * responsible for the change in the other medication 
-     * status.</p> <p>In an EHR integrated health services 
-     * environment, it is important that other providers are able 
-     * to query who is responsible for status changes. Also used by 
-     * applications for auditing and sorting. The attribute is 
-     * marked as &quot;mandatory&quot; because provider or 
-     * application maintaining the other medication must be 
-     * known.</p> REPC_MT420003CA.Author3: *a:authored by </p> 
-     * <p>Annotation.requestingProvider</p><p>ZPB3.18 
-     * (id.root)</p><p>ZPB3.19 (id.extension)</p><p>ZPB3.15</p> 
-     * <p>Annotation.requestingProvider</p><p>ZPB3.18 
-     * (id.root)</p><p>ZPB3.19 (id.extension)</p><p>ZPB3.15</p> 
-     * <p>Annotation.requestingProvider</p><p>ZPB3.18 
-     * (id.root)</p><p>ZPB3.19 (id.extension)</p><p>ZPB3.15</p> 
-     * <p>Annotation.requestingProvider</p><p>ZPB3.18 
-     * (id.root)</p><p>ZPB3.19 (id.extension)</p><p>ZPB3.15</p> 
-     * </p> </p> PORX_MT060010CA.Author6: *changed by <p>Identity 
-     * of the health service provider or the application 
-     * responsible for the change in the prescription dispense 
-     * status.</p> <p>In an EHR integrated health services 
-     * environment, it is important that other providers are able 
-     * to query who is responsible for status changes. Also used by 
-     * applications for auditing and sorting.</p><p>The attribute 
-     * is mandatory as the prior author will always be known.</p> 
-     * <p>In an EHR integrated health services environment, it is 
-     * important that other providers are able to query who is 
+     * providers are able to query who (or what application) is 
      * responsible for status changes. Also used by applications 
      * for auditing and sorting.</p><p>The attribute is mandatory 
-     * as the prior author will always be known.</p></remarks>
+     * because provider or application maintaining the prescription 
+     * must be known.</p> <p>Identity of the health service 
+     * provider or application responsible for the change in the 
+     * prescription status.</p> PORX_MT060210CA.Author7: *changed 
+     * by <p>In an EHR integrated health services environment, it 
+     * is important that other providers are able to query who is 
+     * responsible for status changes. Also used by applications 
+     * for auditing and sorting. The attribute is marked as 
+     * &quot;mandatory&quot; because provider or application 
+     * maintaining the other medication must be known.</p> 
+     * <p>Identity of the health service provider or the 
+     * application responsible for the change in the other 
+     * medication status.</p> REPC_MT420003CA.Author3: *a:authored 
+     * by <p>Annotation.requestingProvider</p> <p>ZPB3.18 
+     * (id.root)</p> <p>ZPB3.19 (id.extension)</p> <p>ZPB3.15</p> 
+     * <p> <i>Used to identify responsibility for accuracy and 
+     * relevance of the information. This association reflects
+     * ... [rest of documentation truncated due to excessive length]
      */
     [Hl7PartTypeMappingAttribute(new string[] {"COCT_MT130001CA.Author3","COCT_MT260020CA.Author1","COCT_MT260022CA.Author1","COCT_MT260030CA.Author1","PORX_MT060010CA.Author6","PORX_MT060040CA.Author1","PORX_MT060090CA.Author6","PORX_MT060160CA.Author1","PORX_MT060210CA.Author7","PORX_MT060340CA.Author1","REPC_MT000007CA.Author","REPC_MT000007CA.Author3","REPC_MT000009CA.Author3","REPC_MT000010CA.Author","REPC_MT000010CA.Author3","REPC_MT420003CA.Author3","REPC_MT500003CA.Author3","REPC_MT500004CA.Author3","REPC_MT610002CA.Author3"})]
     public class ChangedBy : MessagePartBean {
@@ -169,89 +200,154 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged {
             this.time = new TSImpl();
         }
         /**
-         * <summary>Change Timestamp</summary>
+         * <summary>Un-merged Business Name: ChangeTimestamp</summary>
          * 
-         * <remarks><p>The date and time at which the change was 
-         * made.</p> <p>Gives other providers the frame of reference in 
-         * evaluating any post-change issues with the prescription 
-         * dispense. Also used for sorting and audit purposes.</p> 
-         * Change Timestamp <p>The date and time at which the change 
-         * was made.</p> <p>Gives other providers the frame of 
+         * <remarks>Relationship: PORX_MT060340CA.Author1.time 
+         * Conformance/Cardinality: MANDATORY (1) <p>Gives other 
+         * providers the frame of reference in evaluating any 
+         * post-change issues with the prescription. Also used for 
+         * sorting and audit purposes.</p><p>The attribute is marked as 
+         * &quot;mandatory&quot; because the time of change must be 
+         * known.</p> <p>The date on which the change was made.</p> 
+         * Un-merged Business Name: AuthoredDatetime Relationship: 
+         * REPC_MT610002CA.Author3.time Conformance/Cardinality: 
+         * POPULATED (1) <p> <i>Used to allow for historical sequencing 
+         * of records in the EHR, which facilitates auditing, sorting 
+         * etc. This attribute is populated because it won't always be 
+         * known in the circumstance where the data is being entered by 
+         * a person other than the original &quot;creator&quot; of the 
+         * record.</i> </p> <p> <i>Indicates the time the decision to 
+         * record when the Professional Service was made. This will 
+         * usually be simultaneous with the time the record is 
+         * submitted to the EHR, but in some circumstances may be 
+         * before.</i> </p> Un-merged Business Name: AmendDatetime 
+         * Relationship: REPC_MT000007CA.Author3.time 
+         * Conformance/Cardinality: MANDATORY (1) <p> <i>It can be used 
+         * by PoS applications to sort or filter records. Also provides 
+         * information on how recently the record has changed.</i> 
+         * </p><p> <i>Because the element should always be known by the 
+         * EHR, it is mandatory.</i> </p> <p> <i>This indicates the 
+         * last time a change was made to the Health Condition.</i> 
+         * </p> Un-merged Business Name: ManagementDate Relationship: 
+         * COCT_MT260022CA.Author1.time Conformance/Cardinality: 
+         * POPULATED (1) <p>ManagedContraindication.CreationDate</p> 
+         * <p>Part of the audit record but not always available and 
+         * therefore only marked as 'populated'.</p> <p>The date and 
+         * time on which the provider used this management for the 
+         * issue in the past.</p> Un-merged Business Name: 
+         * AmendDatetime Relationship: REPC_MT000010CA.Author3.time 
+         * Conformance/Cardinality: MANDATORY (1) <p> <i>It can be used 
+         * by PoS applications to sort or filter records. Also provides 
+         * information on how recently the record has changed.</i> 
+         * </p><p> <i>Because the element should always be known by the 
+         * EHR, it is mandatory.</i> </p> <p> <i>This indicates the 
+         * last time a change was made to the Health Condition.</i> 
+         * </p> Un-merged Business Name: ChangeTimestamp Relationship: 
+         * PORX_MT060090CA.Author6.time Conformance/Cardinality: 
+         * MANDATORY (1) <p>Gives other providers the frame of 
          * reference in evaluating any post-change issues with the 
          * prescription dispense. Also used for sorting and audit 
          * purposes.</p><p>The attribute is mandatory as the time of 
-         * change is known.</p> <p>Gives other providers the frame of 
+         * change is known.</p> <p>The date and time at which the 
+         * change was made.</p> Un-merged Business Name: 
+         * AuthoredDatetime Relationship: REPC_MT000010CA.Author.time 
+         * Conformance/Cardinality: POPULATED (1) <p> <i>Used to allow 
+         * for historical sequencing of records in the EHR, which 
+         * facilitates auditing, sorting etc. This attribute is 
+         * populated because it won't always be known in the 
+         * circumstance where the data is being entered by a person 
+         * other than the original &quot;creator&quot; of the 
+         * record.</i> </p> <p> <i>Indicates the time the decision to 
+         * record when the Health Condition was made. This will usually 
+         * be simultaneous with the time the record is submitted to the 
+         * EHR, but in some circumstances may be before.</i> </p> 
+         * Un-merged Business Name: AuthoredDatetime Relationship: 
+         * REPC_MT500004CA.Author3.time Conformance/Cardinality: 
+         * POPULATED (1) <p> <i>Used to allow for historical sequencing 
+         * of records in the EHR, which facilitates auditing, sorting 
+         * etc. This attribute is populated because it won't always be 
+         * known in the circumstance where the data is being entered by 
+         * a person other than the original &quot;creator&quot; of the 
+         * record.</i> </p> <p> <i>Indicates the time the decision to 
+         * record when the Care Composition was made. This will usually 
+         * be simultaneous with the time the record is submitted to the 
+         * EHR, but in some circumstances may be before.</i> </p> 
+         * Un-merged Business Name: ChangeDatetime Relationship: 
+         * COCT_MT130001CA.Author3.time Conformance/Cardinality: 
+         * MANDATORY (1) <p>Gives other providers the frame of 
          * reference in evaluating any post-change issues with the 
-         * prescription dispense. Also used for sorting and audit 
-         * purposes.</p><p>The attribute is mandatory as the time of 
-         * change is known.</p> Authored Datetime </p> 
-         * <p>ZPB3.20</p><p>Annotation.annotationDate</p> 
-         * <p>ZPB3.20</p><p>Annotation.annotationDate</p> </p> Change 
-         * Timestamp <p>The date on which the change was made.</p> 
-         * <p>Gives other providers the frame of reference in 
-         * evaluating any post-change issues with the prescription. 
-         * Also used for sorting and audit purposes.</p><p>The 
-         * attribute is marked as &quot;mandatory&quot; because the 
-         * time of change must be known.</p> <p>Gives other providers 
-         * the frame of reference in evaluating any post-change issues 
-         * with the prescription. Also used for sorting and audit 
+         * event. Also used for sorting and audit purposes. Time of 
+         * change is always known and thus the attribute is 
+         * mandatory.</p> <p>The date on which the change was made. 
+         * Note that this may be earlier or occassionally later than 
+         * when the change is actually effective.</p> Un-merged 
+         * Business Name: ChangeTimestamp Relationship: 
+         * PORX_MT060160CA.Author1.time Conformance/Cardinality: 
+         * MANDATORY (1) <p>Gives other providers the frame of 
+         * reference in evaluating any post-change issues with the 
+         * prescription. Also used for sorting and audit 
          * purposes.</p><p>The attribute is marked as 
          * &quot;mandatory&quot; because the time of change must be 
-         * known.</p> Amend Datetime </p> </p> </p> A: Authored 
-         * Datetime </p> </p> B:Management Date B:Management Date 
-         * <p>The date and time on which the provider managed the 
-         * issue.</p> <p>ManagedContraindication.CreationDate</p> 
+         * known.</p> <p>The date and time at which the change was 
+         * made.</p> Un-merged Business Name: AuthoredDatetime 
+         * Relationship: REPC_MT500003CA.Author3.time 
+         * Conformance/Cardinality: POPULATED (1) <p> <i>Used to allow 
+         * for historical sequencing of records in the EHR, which 
+         * facilitates auditing, sorting etc. This attribute is 
+         * populated because it won't always be known in the 
+         * circumstance where the data is being entered by a person 
+         * other than the original &quot;creator&quot; of the 
+         * record.</i> </p> <p> <i>Indicates the time the decision to 
+         * record when the Care Composition was made. This will usually 
+         * be simultaneous with the time the record is submitted to the 
+         * EHR, but in some circumstances may be before.</i> </p> 
+         * Un-merged Business Name: AuthoredDatetime Relationship: 
+         * REPC_MT000007CA.Author.time Conformance/Cardinality: 
+         * POPULATED (1) <p> <i>Used to allow for historical sequencing 
+         * of records in the EHR, which facilitates auditing, sorting 
+         * etc. This attribute is populated because it won't always be 
+         * known in the circumstance where the data is being entered by 
+         * a person other than the original &quot;creator&quot; of the 
+         * record.</i> </p> <p> <i>Indicates the time the decision to 
+         * record when the Health Condition was made. This will usually 
+         * be simultaneous with the time the record is submitted to the 
+         * EHR, but in some circumstances may be before.</i> </p> 
+         * Un-merged Business Name: ChangeTime Relationship: 
+         * REPC_MT000009CA.Author3.time Conformance/Cardinality: 
+         * MANDATORY (1) <p>Gives other providers the frame of 
+         * reference in evaluating any post-change issues with the 
+         * allergy. Also used for sorting and audit purposes. Time of 
+         * change is always known and thus the attribute is 
+         * mandatory.</p> <p>The date on which the change was made.</p> 
+         * Un-merged Business Name: ManagementDate Relationship: 
+         * COCT_MT260030CA.Author1.time Conformance/Cardinality: 
+         * POPULATED (1) <p>ManagedContraindication.CreationDate</p> 
          * <p>Part of the audit record, but not always available and 
-         * therefore 'populated'.</p> Change Timestamp <p>The date on 
-         * which the change was made.</p> <p>Gives other providers the 
-         * frame of reference in evaluating any post-change issues with 
-         * the prescription. Also used for sorting and audit 
-         * purposes.</p><p>This attribute is marked as 
-         * &quot;mandatory&quot; as the time the comment was posted 
-         * will always be known.</p> <p>Gives other providers the frame 
-         * of reference in evaluating any post-change issues with the 
+         * therefore 'populated'.</p> <p>The date and time on which the 
+         * provider managed the issue.</p> Un-merged Business Name: 
+         * ManagementDate Relationship: COCT_MT260020CA.Author1.time 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: ChangeTimestamp Relationship: 
+         * PORX_MT060040CA.Author1.time Conformance/Cardinality: 
+         * MANDATORY (1) <p>Gives other providers the frame of 
+         * reference in evaluating any post-change issues with the 
          * prescription. Also used for sorting and audit 
          * purposes.</p><p>This attribute is marked as 
          * &quot;mandatory&quot; as the time the comment was posted 
-         * will always be known.</p> Authored Datetime </p> </p> Change 
-         * Time <p>The date on which the change was made.</p> <p>Gives 
-         * other providers the frame of reference in evaluating any 
-         * post-change issues with the allergy. Also used for sorting 
-         * and audit purposes. Time of change is always known and thus 
-         * the attribute is mandatory.</p> Authored Datetime </p> </p> 
-         * Change Datetime <p>The date on which the change was made. 
-         * Note that this may be earlier or occassionally later than 
-         * when the change is actually effective.</p> <p>Gives other 
-         * providers the frame of reference in evaluating any 
-         * post-change issues with the event. Also used for sorting and 
-         * audit purposes. Time of change is always known and thus the 
-         * attribute is mandatory.</p> B:Management Date <p>The date 
-         * and time on which the provider used this management for the 
-         * issue in the past.</p> 
-         * <p>ManagedContraindication.CreationDate</p> <p>Part of the 
-         * audit record but not always available and therefore only 
-         * marked as 'populated'.</p> Change Timestamp <p>The date and 
-         * time at which the change was made.</p> <p>Gives other 
+         * will always be known.</p> <p>The date on which the change 
+         * was made.</p> Un-merged Business Name: ChangeTimestamp 
+         * Relationship: PORX_MT060210CA.Author7.time 
+         * Conformance/Cardinality: MANDATORY (1) <p>Gives other 
          * providers the frame of reference in evaluating any 
          * post-change issues with the other medication. Also used for 
          * sorting and audit purposes.</p><p>Attribute is marked as 
          * &quot;mandatory&quot; as the time of change must be 
-         * known.</p> <p>Gives other providers the frame of reference 
-         * in evaluating any post-change issues with the other 
-         * medication. Also used for sorting and audit 
-         * purposes.</p><p>Attribute is marked as &quot;mandatory&quot; 
-         * as the time of change must be known.</p> Change Timestamp 
-         * <p>The date and time at which the change was made.</p> 
-         * <p>Gives other providers the frame of reference in 
-         * evaluating any post-change issues with the prescription. 
-         * Also used for sorting and audit purposes.</p><p>The 
-         * attribute is marked as &quot;mandatory&quot; because the 
-         * time of change must be known.</p> <p>Gives other providers 
-         * the frame of reference in evaluating any post-change issues 
-         * with the prescription. Also used for sorting and audit 
-         * purposes.</p><p>The attribute is marked as 
-         * &quot;mandatory&quot; because the time of change must be 
-         * known.</p></remarks>
+         * known.</p> <p>The date and time at which the change was 
+         * made.</p> Un-merged Business Name: AuthoredDatetime 
+         * Relationship: REPC_MT420003CA.Author3.time 
+         * Conformance/Cardinality: POPULATED (1) <p>ZPB3.20</p> 
+         * <p>Annotation.annota
+         * ... [rest of documentation truncated due to excessive length]
          */
         [Hl7XmlMappingAttribute(new string[] {"time"})]
         public PlatformDate Time {
@@ -259,18 +355,86 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged {
             set { this.time.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: PORX_MT060340CA.Author1.changedBy 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060160CA.Author1.changedBy Conformance/Cardinality: 
+         * MANDATORY (1) Un-merged Business Name: (no business name 
+         * specified) Relationship: PORX_MT060040CA.Author1.changedBy 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060210CA.Author7.changedBy Conformance/Cardinality: 
+         * MANDATORY (1) Un-merged Business Name: (no business name 
+         * specified) Relationship: PORX_MT060010CA.Author6.changedBy 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060090CA.Author6.changedBy Conformance/Cardinality: 
+         * MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"changedBy"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Merged.IChangedBy ChangedByValue {
             get { return this.changedByValue; }
             set { this.changedByValue = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: REPC_MT000010CA.Author.actingPerson 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * COCT_MT130001CA.Author3.actingPerson 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT500004CA.Author3.actingPerson 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT610002CA.Author3.actingPerson 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT000007CA.Author3.actingPerson 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT500003CA.Author3.actingPerson 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT000007CA.Author.actingPerson Conformance/Cardinality: 
+         * MANDATORY (1) Un-merged Business Name: (no business name 
+         * specified) Relationship: 
+         * REPC_MT000010CA.Author3.actingPerson 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT420003CA.Author3.actingPerson 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"actingPerson"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt911108ca.IActingPerson ActingPerson {
             get { return this.actingPerson; }
             set { this.actingPerson = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * COCT_MT260022CA.Author1.assignedEntity 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT000009CA.Author3.assignedEntity 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * COCT_MT260030CA.Author1.assignedEntity 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * COCT_MT260020CA.Author1.assignedEntity 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"assignedEntity"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.HealthcareWorker AssignedEntity {
             get { return this.assignedEntity; }

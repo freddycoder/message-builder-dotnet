@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,9 +31,9 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
     /**
      * <summary>PORX_MT980030CA.Location: *b:dispensed at</summary>
      * 
-     * <remarks><p>Indicates the facility where the dispense event 
-     * was performed</p> <p>A_DetectedMedicationIssue</p> <p>Used 
-     * for contacting the pharmacy or pharmacist involved in the 
+     * <p>Indicates the facility where the dispense event was 
+     * performed</p> <p>A_DetectedMedicationIssue</p> <p>Used for 
+     * contacting the pharmacy or pharmacist involved in the 
      * dispense.</p><p>The association is marked as populated 
      * because it may be masked.</p> <p>Used for contacting the 
      * pharmacy or pharmacist involved in the dispense.</p><p>The 
@@ -182,7 +182,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
      * If AuthorizationToken specified, association is required if 
      * authorization does not cover this participation.</p> 
      * <p>Indicates the service delivery location where the event 
-     * o
+     * occurred.<
      * ... [rest of documentation truncated due to excessive length]
      */
     [Hl7PartTypeMappingAttribute(new string[] {"COCT_MT260010CA.Location","COCT_MT260020CA.Location","COCT_MT260030CA.Location","COMT_MT300003CA.Location","COMT_MT900001AB.Location","MCAI_MT700210CA.Location","MCAI_MT700211CA.Location","MCAI_MT700212CA.Location","MCAI_MT700221CA.Location","MCAI_MT700230CA.Location","MCAI_MT700231CA.Location","MCAI_MT700232CA.Location","MFMI_MT700711CA.Location","MFMI_MT700751CA.Location","PORX_MT010110CA.Location2","PORX_MT010120CA.Location2","PORX_MT010140CA.Location","PORX_MT030040CA.Location","PORX_MT030040CA.Location2","PORX_MT060010CA.Location","PORX_MT060020CA.Location","PORX_MT060040CA.Location","PORX_MT060040CA.Location2","PORX_MT060040CA.Location3","PORX_MT060040CA.Location4","PORX_MT060060CA.Location2","PORX_MT060090CA.Location","PORX_MT060100CA.Location","PORX_MT060160CA.Location","PORX_MT060160CA.Location2","PORX_MT060160CA.Location3","PORX_MT060160CA.Location4","PORX_MT060160CA.Location5","PORX_MT060190CA.Location2","PORX_MT060190CA.Location3","PORX_MT060190CA.Location4","PORX_MT060210CA.Location2","PORX_MT060340CA.Location","PORX_MT060340CA.Location2","PORX_MT060340CA.Location3","PORX_MT060340CA.Location4","PORX_MT980010CA.Location","PORX_MT980020CA.Location","PORX_MT980030CA.Location","QUQI_MT020000CA.Location","QUQI_MT020002CA.Location","REPC_MT000005CA.Location","REPC_MT000006CA.Location","REPC_MT000009CA.Location"})]
@@ -196,6 +196,158 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             this.substitutionConditionCode = new CVImpl();
             this.time = new IVLImpl<TS, Interval<PlatformDate>>();
         }
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PORX_MT980030CA.Location.serviceDeliveryLocation 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * COMT_MT300003CA.Location.serviceDeliveryLocation 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCAI_MT700211CA.Location.serviceDeliveryLocation 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060060CA.Location2.serviceDeliveryLocation 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT030040CA.Location2.serviceDeliveryLocation 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * COCT_MT260020CA.Location.serviceDeliveryLocation 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCAI_MT700231CA.Location.serviceDeliveryLocation 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060160CA.Location.serviceDeliveryLocation 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT000005CA.Location.serviceDeliveryLocation 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT010110CA.Location2.serviceDeliveryLocation 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT000006CA.Location.serviceDeliveryLocation 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060100CA.Location.serviceDeliveryLocation 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060160CA.Location5.serviceDeliveryLocation 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060160CA.Location4.serviceDeliveryLocation 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060160CA.Location3.serviceDeliveryLocation 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060010CA.Location.serviceDeliveryLocation 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060160CA.Location2.serviceDeliveryLocation 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MFMI_MT700711CA.Location.serviceDeliveryLocation 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * COCT_MT260010CA.Location.serviceDeliveryLocation 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * COCT_MT260030CA.Location.serviceDeliveryLocation 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT030040CA.Location.serviceDeliveryLocation 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT010140CA.Location.serviceDeliveryLocation 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCAI_MT700230CA.Location.serviceDeliveryLocation 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT980020CA.Location.serviceDeliveryLocation 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060190CA.Location2.serviceDeliveryLocation 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060190CA.Location4.serviceDeliveryLocation 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060190CA.Location3.serviceDeliveryLocation 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCAI_MT700212CA.Location.serviceDeliveryLocation 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT980010CA.Location.serviceDeliveryLocation 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060340CA.Location.serviceDeliveryLocation 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCAI_MT700221CA.Location.serviceDeliveryLocation 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * QUQI_MT020002CA.Location.serviceDeliveryLocation 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT000009CA.Location.serviceDeliveryLocation 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT010120CA.Location2.serviceDeliveryLocation 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCAI_MT700232CA.Location.serviceDeliveryLocation 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060020CA.Location.serviceDeliveryLocation 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060210CA.Location2.serviceDeliveryLocation 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCAI_MT700210CA.Location.serviceDeliveryLocation 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060090CA.Location.serviceDeliveryLocation 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * QUQI_MT020000CA.Location.serviceDeliveryLocation 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060040CA.Location2.serviceDeliveryLocation 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060040CA.Location4.serviceDeliveryLocation 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060040CA.Location3.serviceDeliveryLocation 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MFMI_MT700751CA.Location.serviceDeliveryLocation 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060340CA.Location4.serviceDeliveryLocation 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060040CA.Location.serviceDeliveryLocation 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060340CA.Location2.serviceDeliveryLocation 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060340CA.Location3.serviceDeliveryLocation 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * COMT_MT900001AB.Location.serviceDeliveryLocation 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"serviceDeliveryLocation"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.ServiceLocation ServiceDeliveryLocation {
             get { return this.serviceDeliveryLocation; }
@@ -203,9 +355,27 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>Dispense Facility Not Assignable Indicator</summary>
+         * <summary>Un-merged Business Name: 
+         * DispenseFacilityNotAssignableIndicator</summary>
          * 
-         * <remarks><p>Indicates a 'hard' or 'soft' assignment of 
+         * <remarks>Relationship: 
+         * PORX_MT060060CA.Location2.substitutionConditionCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates whether 
+         * a dispenser to whom the prescription is targeted is a 
+         * mandated or patient-preferred pharmacy.</p> <p>Influences 
+         * whether the prescription may be transferred to a service 
+         * delivery location other than the targeted dispenser.</p> 
+         * Un-merged Business Name: 
+         * DispenseFacilityNotAssignableIndicator Relationship: 
+         * PORX_MT030040CA.Location2.substitutionConditionCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates a 
+         * 'hard' or 'soft' assignment of dispensing priviledged to the 
+         * targetted facility.</p><p>'Hard' assignment (mandated 
+         * facility) indicates that the prescription can be dispensed 
+         * only at that facility.</p><p>'Soft' assignment (usually as a 
+         * patient directive) indicates that the prescription may be 
+         * dispensed at facilities other than the targeted 
+         * facility.</p> <p>Indicates a 'hard' or 'soft' assignment of 
          * dispensing priviledged to the targetted 
          * facility.</p><p>'Hard' assignment (mandated facility) 
          * indicates that the prescription can be dispensed only at 
@@ -219,26 +389,41 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
          * facility.</p><p>'Soft' assignment (usually as a patient 
          * directive) indicates that the prescription may be dispensed 
          * at facilities other than the targeted facility.</p> 
-         * <p>Indicates a 'hard' or 'soft' assignment of dispensing 
-         * priviledged to the targetted facility.</p><p>'Hard' 
-         * assignment (mandated facility) indicates that the 
-         * prescription can be dispensed only at that 
-         * facility.</p><p>'Soft' assignment (usually as a patient 
+         * <p>Influences whether the prescription may be transferred to 
+         * a service delivery location other than the targeted 
+         * dispenser.</p> Un-merged Business Name: 
+         * AssignedFacilityNotReassignableIndicator Relationship: 
+         * PORX_MT060340CA.Location4.substitutionConditionCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates whether 
+         * a dispenser to whom the prescription is targeted is a 
+         * mandated or patient-preferred pharmacy.</p> <p>Influences 
+         * whether the prescription may be transferred to a service 
+         * delivery location other than the targeted dispenser.</p> 
+         * Un-merged Business Name: 
+         * AssignedFacilityNotReassignableIndicator Relationship: 
+         * PORX_MT060160CA.Location5.substitutionConditionCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates whether 
+         * a dispenser to whom the prescription is targeted is a 
+         * mandated or patient-preferred pharmacy.</p> <p>Influences 
+         * whether the prescription may be transferred to a service 
+         * delivery location other than the targeted dispenser.</p> 
+         * Un-merged Business Name: 
+         * DispenseFacilityNotAssignableIndicator Relationship: 
+         * PORX_MT060190CA.Location3.substitutionConditionCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates a 
+         * 'hard' or 'soft' assignment of dispensing priviledged to the 
+         * targeted facility.</p><p>'Hard' assignment (mandated 
+         * facility) indicates that the prescription can be dispensed 
+         * only at that facility.</p><p>'Soft' assignment (usually as a 
+         * patient directive) indicates that the prescription may be 
+         * dispensed at facilities other than the targeted 
+         * facility.</p> <p>Indicates a 'hard' or 'soft' assignment of 
+         * dispensing priviledged to the targeted 
+         * facility.</p><p>'Hard' assignment (mandated facility) 
+         * indicates that the prescription can be dispensed only at 
+         * that facility.</p><p>'Soft' assignment (usually as a patient 
          * directive) indicates that the prescription may be dispensed 
          * at facilities other than the targeted facility.</p> 
-         * <p>Influences whether the prescription may be transferred to 
-         * a service delivery location other than the targeted 
-         * dispenser.</p> Dispense Facility Not Assignable Indicator 
-         * <p>Indicates whether a dispenser to whom the prescription is 
-         * targeted is a mandated or patient-preferred pharmacy.</p> 
-         * <p>Influences whether the prescription may be transferred to 
-         * a service delivery location other than the targeted 
-         * dispenser.</p> Assigned Facility Not Reassignable Indicator 
-         * <p>Indicates whether a dispenser to whom the prescription is 
-         * targeted is a mandated or patient-preferred pharmacy.</p> 
-         * <p>Influences whether the prescription may be transferred to 
-         * a service delivery location other than the targeted 
-         * dispenser.</p> Dispense Facility Not Assignable Indicator 
          * <p>Indicates a 'hard' or 'soft' assignment of dispensing 
          * priviledged to the targeted facility.</p><p>'Hard' 
          * assignment (mandated facility) indicates that the 
@@ -246,35 +431,23 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
          * facility.</p><p>'Soft' assignment (usually as a patient 
          * directive) indicates that the prescription may be dispensed 
          * at facilities other than the targeted facility.</p> 
-         * <p>Indicates a 'hard' or 'soft' assignment of dispensing 
-         * priviledged to the targeted facility.</p><p>'Hard' 
-         * assignment (mandated facility) indicates that the 
-         * prescription can be dispensed only at that 
-         * facility.</p><p>'Soft' assignment (usually as a patient 
-         * directive) indicates that the prescription may be dispensed 
-         * at facilities other than the targeted facility.</p> 
-         * <p>Indicates a 'hard' or 'soft' assignment of dispensing 
-         * priviledged to the targeted facility.</p><p>'Hard' 
-         * assignment (mandated facility) indicates that the 
-         * prescription can be dispensed only at that 
-         * facility.</p><p>'Soft' assignment (usually as a patient 
-         * directive) indicates that the prescription may be dispensed 
-         * at facilities other than the targeted facility.</p> 
          * <p>Influences whether the prescription may be transferred to 
          * a service delivery location other than the targeted 
-         * dispenser.</p> Dispense Facility Not Reassignable 
-         * <p>Indicates a 'hard' or 'soft' assignment of dispensing 
-         * priviledged to the targetted facility.</p><p>'Hard' 
-         * assignment (mandated facility) indicates that the 
-         * prescription can be dispensed only at that 
-         * facility.</p><p>'Soft' assignment (usually as a patient 
-         * directive) indicates that the prescription may be dispensed 
-         * at facilities other than the targeted facility.</p> 
-         * <p>Indicates a 'hard' or 'soft' assignment of dispensing 
-         * priviledged to the targetted facility.</p><p>'Hard' 
-         * assignment (mandated facility) indicates that the 
-         * prescription can be dispensed only at that 
-         * facility.</p><p>'Soft' assignment (usually as a patient 
+         * dispenser.</p> Un-merged Business Name: 
+         * DispenseFacilityNotReassignable Relationship: 
+         * PORX_MT010120CA.Location2.substitutionConditionCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates a 
+         * 'hard' or 'soft' assignment of dispensing priviledged to the 
+         * targetted facility.</p><p>'Hard' assignment (mandated 
+         * facility) indicates that the prescription can be dispensed 
+         * only at that facility.</p><p>'Soft' assignment (usually as a 
+         * patient directive) indicates that the prescription may be 
+         * dispensed at facilities other than the targeted 
+         * facility.</p> <p>Indicates a 'hard' or 'soft' assignment of 
+         * dispensing priviledged to the targetted 
+         * facility.</p><p>'Hard' assignment (mandated facility) 
+         * indicates that the prescription can be dispensed only at 
+         * that facility.</p><p>'Soft' assignment (usually as a patient 
          * directive) indicates that the prescription may be dispensed 
          * at facilities other than the targeted facility.</p> 
          * <p>Indicates a 'hard' or 'soft' assignment of dispensing 
@@ -295,25 +468,39 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>ToBePickedUpWhen</summary>
+         * <summary>Business Name: ToBePickedUpWhen</summary>
          * 
-         * <remarks>to be picked up when <p>The date and time on which 
-         * the dispense is expected to be picked up.</p> <p>Allows a 
-         * prescriber to indicate to the targeted pharmacy, when 
-         * patient will be expecting to pick up the dispensed 
-         * device.</p> to be picked up when <p>The date and time on 
-         * which the dispense is expected to be picked up.</p> 
+         * <remarks>Un-merged Business Name: ToBePickedUpWhen 
+         * Relationship: PORX_MT010110CA.Location2.time 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The date and time 
+         * on which the dispense is expected to be picked up.</p> 
          * <p>Allows a prescriber to indicate to the targeted pharmacy, 
          * when patient will be expecting to pick up the dispensed 
-         * medication.</p> To be picked up when <p>The date and time on 
-         * which the dispense is expected to be picked up.</p> 
+         * device.</p> Un-merged Business Name: ToBePickedUpWhen 
+         * Relationship: PORX_MT060040CA.Location4.time 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The date and time 
+         * on which the dispense is expected to be picked up.</p> 
          * <p>Allows a prescriber to indicate to the targeted pharmacy, 
          * when patient will be expecting to pick up the dispensed 
-         * medication.</p> To be picked up when <p>The date and time on 
-         * which the dispense is expected to be picked up.</p> 
+         * device.</p> Un-merged Business Name: ToBePickedUpWhen 
+         * Relationship: PORX_MT060340CA.Location4.time 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The date and time 
+         * on which the dispense is expected to be picked up.</p> 
          * <p>Allows a prescriber to indicate to the targeted pharmacy, 
          * when patient will be expecting to pick up the dispensed 
-         * device.</p></remarks>
+         * medication.</p> Un-merged Business Name: ToBePickedUpWhen 
+         * Relationship: PORX_MT060160CA.Location5.time 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The date and time 
+         * on which the dispense is expected to be picked up.</p> 
+         * <p>Allows a prescriber to indicate to the targeted pharmacy, 
+         * when patient will be expecting to pick up the dispensed 
+         * medication.</p> Un-merged Business Name: ToBePickedUpWhen 
+         * Relationship: PORX_MT010120CA.Location2.time 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The date and time 
+         * on which the dispense is expected to be picked up.</p> 
+         * <p>Allows a prescriber to indicate to the targeted pharmacy, 
+         * when patient will be expecting to pick up the dispensed 
+         * medication.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"time"})]
         public Interval<PlatformDate> Time {

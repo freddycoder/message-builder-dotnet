@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,9 @@
 /// ---------------------------------------------------------------------------------------------------
  
 namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
-	
+
+    using Ca.Infoway.Messagebuilder.Datatype.Lang.Util;
+    using Ca.Infoway.Messagebuilder.Domainvalue;
 	using System;
 	using System.Collections;
 	using System.Collections.Generic;
@@ -33,7 +35,8 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 	
 	/// <summary>
 	/// Uncertain Range.
-	/// This   data type is used when a continuous range needs to be expressed. 
+	/// This data type is used when a continuous range needs to be expressed. 
+    /// Recommended to use the UncertainRangeFactory class for object creation.
 	/// For URG&lt;TS.DATE&gt; This data type is used when an occurrence is tied to a specific date, 
 	/// but the actual date is not known, merely the range of dates within which the date falls. 
 	/// This differs from IVL&lt;TS.DATE&gt; in that it refers to a single occurrence rather than a period 
@@ -46,156 +49,128 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 	///
 	/// <param name="T"> the underlying urg's   datatype (eg. Date)</param>
 	public class UncertainRange<T> : Interval<T> {
-	
-		/// <summary>
-		/// Constructs an uncertain range.
-		/// </summary>
-		///
-		/// <param name="low">lower bound</param>
-		/// <param name="high">upper bound</param>
-		/// <param name="centre">middle bound</param>
-		/// <param name="width">size of width</param>
-		/// <param name="representation">the type of range</param>
-		internal UncertainRange(T low, T high, T centre, Diff<T> width,
-				Representation representation) : base(low, high, centre, width, representation) {
-		}
-	
-		/// <summary>
-		/// Constructs an uncertain range (low/high).
-		/// </summary>
-		///
-		/// <param name="TS"> the type of the bounds</param>
-		/// <param name="low">lower bound</param>
-		/// <param name="high">upper bound</param>
-		/// <returns>the constructed uncertain range</returns>
-		public static new UncertainRange<TS> CreateLowHigh<TS>(TS low, TS high) {
-			return new UncertainRange<TS>(low, high, Ca.Infoway.Messagebuilder.Datatype.Lang.GenericMath.Average(low, high),
-					Ca.Infoway.Messagebuilder.Datatype.Lang.GenericMath.Diff<TS>(low, high), Ca.Infoway.Messagebuilder.Datatype.Lang.Representation.LOW_HIGH);
-		}
-	
-		/// <summary>
-		/// Constructs an uncertain range (low/width).
-		/// </summary>
-		///
-		/// <param name="TS"> the type of the bounds</param>
-		/// <param name="low">lower bound</param>
-		/// <param name="width">size of width</param>
-		/// <returns>the constructed uncertain range</returns>
-		public static new UncertainRange<TS> CreateLowWidth<TS>(TS low, Diff<TS> width) {
-			TS high = Ca.Infoway.Messagebuilder.Datatype.Lang.GenericMath.Add(low, width);
-			return new UncertainRange<TS>(low, high, Ca.Infoway.Messagebuilder.Datatype.Lang.GenericMath.Average(low, high),
-					width, Ca.Infoway.Messagebuilder.Datatype.Lang.Representation.LOW_WIDTH);
-		}
-	
-		/// <summary>
-		/// Constructs an uncertain range (width/high).
-		/// </summary>
-		///
-		/// <param name="TS"> the type of the bounds</param>
-		/// <param name="width">size of width</param>
-		/// <param name="high">higher bound</param>
-		/// <returns>the constructed uncertain range</returns>
-		public static new UncertainRange<TS> CreateWidthHigh<TS>(Diff<TS> width, TS high) {
-			TS low = Ca.Infoway.Messagebuilder.Datatype.Lang.GenericMath.Diff<TS>(width.Value, high).Value;
-			return new UncertainRange<TS>(low, high, Ca.Infoway.Messagebuilder.Datatype.Lang.GenericMath.Average(low, high),
-					width, Ca.Infoway.Messagebuilder.Datatype.Lang.Representation.WIDTH_HIGH);
-		}
-	
-		/// <summary>
-		/// Constructs an uncertain range (centre/width).
-		/// </summary>
-		///
-		/// <param name="TS"> the type of the bounds</param>
-		/// <param name="centre">centre bound</param>
-		/// <param name="width">size of width</param>
-		/// <returns>the constructed uncertain range</returns>
-		public static new UncertainRange<TS> CreateCentreWidth<TS>(TS centre,
-				Diff<TS> width) {
-			TS half = Ca.Infoway.Messagebuilder.Datatype.Lang.GenericMath.Half(width.Value);
-			TS low = Ca.Infoway.Messagebuilder.Datatype.Lang.GenericMath.Diff<TS>(half, centre).Value;
-			TS high = Ca.Infoway.Messagebuilder.Datatype.Lang.GenericMath.Add(low, width);
-			return new UncertainRange<TS>(low, high, centre, width,
-					Ca.Infoway.Messagebuilder.Datatype.Lang.Representation.CENTRE_WIDTH);
-		}
-	
-		/// <summary>
-		/// Constructs an uncertain range (centre/high).
-		/// </summary>
-		///
-		/// <param name="TS"> the type of the bounds</param>
-		/// <param name="center">center bound</param>
-		/// <param name="high">higher bound</param>
-		/// <returns>the constructed uncertain range</returns>
-		public static UncertainRange<TS> CreateCentreHigh<TS>(TS center, TS high) {
-			TS half = Ca.Infoway.Messagebuilder.Datatype.Lang.GenericMath.Diff<TS>(center, high).Value;
-			TS low = Ca.Infoway.Messagebuilder.Datatype.Lang.GenericMath.Diff<TS>(half, center).Value;
-			return new UncertainRange<TS>(low, high, center, Ca.Infoway.Messagebuilder.Datatype.Lang.GenericMath.Diff<TS>(low,
-					high), Ca.Infoway.Messagebuilder.Datatype.Lang.Representation.CENTRE_HIGH);
-		}
-	
-		/// <summary>
-		/// Constructs an uncertain range (low).
-		/// </summary>
-		///
-		/// <param name="TS"> the type of the bounds</param>
-		/// <param name="low">lower bound</param>
-		/// <returns>the constructed uncertain range</returns>
-        public static new UncertainRange<TS> CreateLow<TS>(TS low)
+
+        private Boolean? lowInclusive;
+        private Boolean? highInclusive;
+
+        /// <summary>
+        /// Constructs an uncertain range.
+        /// Recommended to use the UncertainRangeFactory class for object creation.
+        /// </summary>
+        ///
+        /// <param name="interval">an interval</param>
+        public UncertainRange(Interval<T> interval)
+            : this(interval.Low, interval.High, interval.Centre, interval.Width, interval.Representation, interval.LowNullFlavor, interval.HighNullFlavor, interval.CentreNullFlavor)
         {
-			return new UncertainRange<TS>(low, default(TS), default(TS), null, Ca.Infoway.Messagebuilder.Datatype.Lang.Representation.LOW);
-		}
-	
-		/// <summary>
-		/// Constructs an uncertain range (low/centre).
-		/// </summary>
-		///
-		/// <param name="TS"> the type of the bounds</param>
-		/// <param name="low">lower bound</param>
-		/// <param name="center">center bound</param>
-		/// <returns>the constructed uncertain range</returns>
-		public static UncertainRange<TS> CreateLowCenter<TS>(TS low, TS center) {
-            return new UncertainRange<TS>(low, default(TS), center, null,
-					Ca.Infoway.Messagebuilder.Datatype.Lang.Representation.LOW_CENTER);
-		}
-	
-		/// <summary>
-		/// Constructs an uncertain range (width).
-		/// </summary>
-		///
-		/// <param name="TS"> the type of the bounds</param>
-		/// <param name="diff">the width diff</param>
-		/// <returns>the constructed uncertain range</returns>
-        public static new UncertainRange<TS> CreateWidth<TS>(Diff<TS> diff)
+        }
+
+        /// <summary>
+        /// Constructs an uncertain range.
+        /// Recommended to use the UncertainRangeFactory class for object creation.
+        /// </summary>
+        ///
+        /// <param name="interval">an interval</param>
+        /// <param name="lowInclusive">lowInclusive</param>
+        /// <param name="highInclusive">highInclusive</param>
+        public UncertainRange(Interval<T> interval, Boolean? lowInclusive, Boolean? highInclusive)
+            : this(interval.Low, interval.High, interval.Centre, interval.Width, interval.Representation, interval.LowNullFlavor, interval.HighNullFlavor, interval.CentreNullFlavor, lowInclusive, highInclusive)
         {
-            return new UncertainRange<TS>(default(TS), default(TS), default(TS), diff,
-					Ca.Infoway.Messagebuilder.Datatype.Lang.Representation.WIDTH);
-		}
-	
-		/// <summary>
-		/// Constructs an uncertain range (high).
-		/// </summary>
-		///
-		/// <param name="TS"> the type of the bounds</param>
-		/// <param name="high">higher bound</param>
-		/// <returns>the constructed uncertain range</returns>
-        public static new UncertainRange<TS> CreateHigh<TS>(TS high)
+        }
+
+        /// <summary>
+        /// Constructs an uncertain range.
+        /// Recommended to use the UncertainRangeFactory class for object creation.
+        /// </summary>
+        ///
+        /// <param name="low">lower bound</param>
+        /// <param name="high">upper bound</param>
+        /// <param name="centre">middle bound</param>
+        /// <param name="width">size of width</param>
+        /// <param name="representation">the type of range</param>
+        public UncertainRange(T low, T high, T centre, Diff<T> width, Representation representation)
+            : this(low, high, centre, width, representation, null, null, null)
         {
-            return new UncertainRange<TS>(default(TS), high, default(TS), null,
-					Ca.Infoway.Messagebuilder.Datatype.Lang.Representation.HIGH);
-		}
-	
-		/// <summary>
-		/// Constructs an uncertain range (centre).
-		/// </summary>
-		///
-		/// <param name="TS"> the type of the bounds</param>
-		/// <param name="centre">centre bound</param>
-		/// <returns>the constructed uncertain range</returns>
-        public static new UncertainRange<TS> CreateCentre<TS>(TS centre)
+        }
+
+        /// <summary>
+        /// Constructs an uncertain range.
+        /// Recommended to use the UncertainRangeFactory class for object creation.
+        /// </summary>
+        ///
+        /// <param name="low">lower bound</param>
+        /// <param name="high">upper bound</param>
+        /// <param name="centre">middle bound</param>
+        /// <param name="width">size of width</param>
+        /// <param name="representation">the type of range</param>
+        /// <param name="lowInclusive">lowInclusive</param>
+        /// <param name="highInclusive">highInclusive</param>
+        public UncertainRange(T low, T high, T centre, Diff<T> width, Representation representation, Boolean? lowInclusive, Boolean? highInclusive)
+            : this(low, high, centre, width, representation, null, null, null, lowInclusive, highInclusive)
         {
-            return new UncertainRange<TS>(default(TS), default(TS), centre, null,
-					Ca.Infoway.Messagebuilder.Datatype.Lang.Representation.CENTRE);
-		}
-	
-	}
+        }
+
+        /// <summary>
+        /// Constructs an uncertain range.
+        /// Recommended to use the UncertainRangeFactory class for object creation.
+        /// </summary>
+        ///
+        /// <param name="low">lower bound</param>
+        /// <param name="high">upper bound</param>
+        /// <param name="centre">middle bound</param>
+        /// <param name="width">size of width</param>
+        /// <param name="representation">the type of range</param>
+        /// <param name="lowNullFLavor">lowNullFLavor</param>
+        /// <param name="highNullFLavor">highNullFLavor</param>
+        /// <param name="centreNullFLavor">centreNullFLavor</param>
+        public UncertainRange(T low, T high, T centre, Diff<T> width, Representation representation, NullFlavor lowNullFlavor, NullFlavor highNullFlavor, NullFlavor centreNullFlavor)
+            : this(low, high, centre, width, representation, lowNullFlavor, highNullFlavor, centreNullFlavor, null, null)
+        {
+        }
+
+        /// <summary>
+        /// Constructs an uncertain range.
+        /// Recommended to use the UncertainRangeFactory class for object creation.
+        /// </summary>
+        ///
+        /// <param name="low">lower bound</param>
+        /// <param name="high">upper bound</param>
+        /// <param name="centre">middle bound</param>
+        /// <param name="width">size of width</param>
+        /// <param name="representation">the type of range</param>
+        /// <param name="lowNullFLavor">lowNullFLavor</param>
+        /// <param name="highNullFLavor">highNullFLavor</param>
+        /// <param name="centreNullFLavor">centreNullFLavor</param>
+        /// <param name="lowInclusive">lowInclusive</param>
+        /// <param name="highInclusive">highInclusive</param>
+        public UncertainRange(T low, T high, T centre, Diff<T> width, Representation representation, NullFlavor lowNullFlavor, NullFlavor highNullFlavor, NullFlavor centreNullFlavor, Boolean? lowInclusive, Boolean? highInclusive)
+            : base(low, high, centre, width, representation, lowNullFlavor, highNullFlavor, centreNullFlavor)
+        {
+            this.lowInclusive = lowInclusive;
+            this.highInclusive = highInclusive;
+        }
+
+        public Boolean? LowInclusive
+        {
+            get
+            {
+                return lowInclusive;
+            }
+            set
+            {
+                this.lowInclusive = value;
+            }
+        }
+
+        public Boolean? HighInclusive
+        {
+            get
+            {
+                return highInclusive;
+            }
+            set
+            {
+                this.highInclusive = value;
+            }
+        }
+    }
 }

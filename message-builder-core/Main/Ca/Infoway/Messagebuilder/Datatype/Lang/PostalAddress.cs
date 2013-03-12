@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,7 @@
 namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 	
 	using Ca.Infoway.Messagebuilder;
+    using Ca.Infoway.Messagebuilder.Domainvalue;
 	using System;
 	using System.Collections.Generic;
 	using System.ComponentModel;
@@ -39,11 +40,11 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 	public class PostalAddress {
 	
 		public PostalAddress() {
-			this.uses = new HashSet<PostalAddressUse>();
+			this.uses = new HashSet<x_BasicPostalAddressUse>();
 			this.parts = Ca.Infoway.Messagebuilder.CollUtils.SynchronizedList(new List<PostalAddressPart>());
 		}
-	
-		private ICollection<PostalAddressUse> uses;
+
+        private ICollection<x_BasicPostalAddressUse> uses;
 		private readonly IList<PostalAddressPart> parts;
 	
 		/// <summary>
@@ -51,7 +52,8 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		/// </summary>
 		///
 		/// <param name="uses_0">set of postal address uses</param>
-		public ICollection<PostalAddressUse> Uses {
+        public ICollection<x_BasicPostalAddressUse> Uses
+        {
 		/// <summary>
 		/// Obtains the postal address' set of uses.
 		/// </summary>
@@ -76,7 +78,7 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		/// </summary>
 		///
 		/// <param name="use">a postal address use</param>
-		public void AddUse(PostalAddressUse use) {
+        public void AddUse(x_BasicPostalAddressUse use) {
 			ILOG.J2CsMapping.Collections.Generics.Collections.Add(this.uses,use);
 		}
 	

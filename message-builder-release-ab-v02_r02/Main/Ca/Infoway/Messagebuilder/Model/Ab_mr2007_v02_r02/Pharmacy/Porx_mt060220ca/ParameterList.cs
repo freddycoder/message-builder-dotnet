@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,10 +30,10 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Porx_mt0602
 
 
     /**
-     * <summary><p>Defines the set of parameters that may be used 
-     * to filter the query response.</p></summary>
+     * <p>Defines the set of parameters that may be used to filter 
+     * the query response.</p>
      * 
-     * <remarks><p>Root class for query definition</p></remarks>
+     * <p>Root class for query definition</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"PORX_MT060220CA.ParameterList"})]
     public class ParameterList : MessagePartBean {
@@ -58,16 +58,19 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Porx_mt0602
             this.otherMedicationRecordIdValue = new IIImpl();
         }
         /**
-         * <summary>Administration Effective Period</summary>
+         * <summary>Business Name: Administration Effective Period</summary>
          * 
-         * <remarks><p>Indicates the administration period for which 
-         * the request/query applies.</p><p>Filter the result set to 
+         * <remarks>Relationship: 
+         * PORX_MT060220CA.AdministrationEffectivePeriod.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the 
+         * administration period for which the request/query 
+         * applies.</p><p>Filter the result set to include only those 
+         * other medication records for which the patient was deemed to 
+         * be taking the drug within the specified period.</p> 
+         * <p>Indicates the administration period for which the 
+         * request/query applies.</p><p>Filter the result set to 
          * include only those other medication records for which the 
          * patient was deemed to be taking the drug within the 
-         * specified period.</p> <p>Indicates the administration period 
-         * for which the request/query applies.</p><p>Filter the result 
-         * set to include only those other medication records for which 
-         * the patient was deemed to be taking the drug within the 
          * specified period.</p> <p>Allows the requester to specify the 
          * administration period of interest for the retrieval. Useful 
          * for constraining run-away queries.</p></remarks>
@@ -79,15 +82,18 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Porx_mt0602
         }
 
         /**
-         * <summary>Amended in Time Range</summary>
+         * <summary>Business Name: Amended in Time Range</summary>
          * 
-         * <remarks><p>Indicates that the returned records should be 
-         * filtered to only include those which have been amended in 
-         * some way (had status changed, been annotated, prescription 
-         * was dispensed, etc.) within the indicated time-period. This 
-         * will commonly be used to 'retrieve everything that has been 
-         * amended since xxx'.</p> <p>Allows the requester to specify 
-         * the event period of interest for the retrieval of medication 
+         * <remarks>Relationship: 
+         * PORX_MT060220CA.AmendedInTimeRange.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates that the 
+         * returned records should be filtered to only include those 
+         * which have been amended in some way (had status changed, 
+         * been annotated, prescription was dispensed, etc.) within the 
+         * indicated time-period. This will commonly be used to 
+         * 'retrieve everything that has been amended since xxx'.</p> 
+         * <p>Allows the requester to specify the event period of 
+         * interest for the retrieval of medication 
          * records.</p><p>Useful for constraining run-away queries</p> 
          * <p>Allows the requester to specify the event period of 
          * interest for the retrieval of medication 
@@ -100,19 +106,21 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Porx_mt0602
         }
 
         /**
-         * <summary>Care Composition IDs</summary>
+         * <summary>Business Name: Care Composition IDs</summary>
          * 
-         * <remarks><p>Filters the records retrieved to only include 
-         * those associated with the specified encounter, episode or 
-         * care event. If unspecified, no filter is 
-         * applied.</p><p>Note: When matching on care composition id, 
-         * systems should also retrieve records with a fulfillment id 
-         * to requisitions associated with the care composition. E.g. 
-         * When retrieving records associated with an encounter which 
-         * includes a referral, the retrieved records should also 
-         * include the care summary created in fulfillment of the 
-         * referral.</p> <p>Filters the records retrieved to only 
-         * include those associated with the specified encounter, 
+         * <remarks>Relationship: 
+         * PORX_MT060220CA.CareCompositionID.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Filters the 
+         * records retrieved to only include those associated with the 
+         * specified encounter, episode or care event. If unspecified, 
+         * no filter is applied.</p><p>Note: When matching on care 
+         * composition id, systems should also retrieve records with a 
+         * fulfillment id to requisitions associated with the care 
+         * composition. E.g. When retrieving records associated with an 
+         * encounter which includes a referral, the retrieved records 
+         * should also include the care summary created in fulfillment 
+         * of the referral.</p> <p>Filters the records retrieved to 
+         * only include those associated with the specified encounter, 
          * episode or care event. If unspecified, no filter is 
          * applied.</p><p>Note: When matching on care composition id, 
          * systems should also retrieve records with a fulfillment id 
@@ -129,15 +137,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Porx_mt0602
         }
 
         /**
-         * <summary>Care Composition Types</summary>
+         * <summary>Business Name: Care Composition Types</summary>
          * 
-         * <remarks><p>Desc: Filters the records retrieved to only 
-         * include those associated with the specified 'kind' of 
-         * encounter, episode or care event. If unspecified, no filter 
-         * is applied.</p> <p>Allows retrieving all records associated 
-         * with a particular type of encounter, episode or care event. 
-         * E.g.Orthopedic Clinic Encounter, ER encounter, Walk-in 
-         * encounter, etc.</p></remarks>
+         * <remarks>Relationship: 
+         * PORX_MT060220CA.CareCompositionType.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Desc: Filters the 
+         * records retrieved to only include those associated with the 
+         * specified 'kind' of encounter, episode or care event. If 
+         * unspecified, no filter is applied.</p> <p>Allows retrieving 
+         * all records associated with a particular type of encounter, 
+         * episode or care event. E.g.Orthopedic Clinic Encounter, ER 
+         * encounter, Walk-in encounter, etc.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"careCompositionType/value"})]
         public IList<ActCareEventType> CareCompositionTypeValue {
@@ -145,16 +155,19 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Porx_mt0602
         }
 
         /**
-         * <summary>Include Issues Indicator</summary>
+         * <summary>Business Name: Include Issues Indicator</summary>
          * 
-         * <remarks><p>Indicates whether or not Issues (detected and/or 
-         * managed) attached to the other medication records are to be 
-         * returned along with the detailed information.</p> <p>Allows 
-         * for the flexibility of omitting/including issues in the 
-         * retrieval of medication data.</p><p>Because the attribute is 
-         * boolean, it must explicitly indicate a 'TRUE' or 'FALSE', 
-         * and thus it is mandatory.</p> <p>Allows for the flexibility 
-         * of omitting/including issues in the retrieval of medication 
+         * <remarks>Relationship: 
+         * PORX_MT060220CA.IncludeIssuesIndicator.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates whether 
+         * or not Issues (detected and/or managed) attached to the 
+         * other medication records are to be returned along with the 
+         * detailed information.</p> <p>Allows for the flexibility of 
+         * omitting/including issues in the retrieval of medication 
+         * data.</p><p>Because the attribute is boolean, it must 
+         * explicitly indicate a 'TRUE' or 'FALSE', and thus it is 
+         * mandatory.</p> <p>Allows for the flexibility of 
+         * omitting/including issues in the retrieval of medication 
          * data.</p><p>Because the attribute is boolean, it must 
          * explicitly indicate a 'TRUE' or 'FALSE', and thus it is 
          * mandatory.</p></remarks>
@@ -166,14 +179,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Porx_mt0602
         }
 
         /**
-         * <summary>Include Notes Indicator</summary>
+         * <summary>Business Name: Include Notes Indicator</summary>
          * 
-         * <remarks><p>Indicates whether or not notes attached to the 
-         * other medication records are to be returned along with the 
-         * detailed information.</p> <p>Allows for the flexibility of 
-         * omitting/including notes in the retrieval of information for 
-         * medication data.</p><p>Because the attribute is boolean, it 
-         * must explicitly indicate a 'TRUE' or 'FALSE', and thus it is 
+         * <remarks>Relationship: 
+         * PORX_MT060220CA.IncludeNotesIndicator.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates whether 
+         * or not notes attached to the other medication records are to 
+         * be returned along with the detailed information.</p> 
+         * <p>Allows for the flexibility of omitting/including notes in 
+         * the retrieval of information for medication 
+         * data.</p><p>Because the attribute is boolean, it must 
+         * explicitly indicate a 'TRUE' or 'FALSE', and thus it is 
          * mandatory.</p> <p>Allows for the flexibility of 
          * omitting/including notes in the retrieval of information for 
          * medication data.</p><p>Because the attribute is boolean, it 
@@ -187,19 +203,20 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Porx_mt0602
         }
 
         /**
-         * <summary>Issue Filter Code</summary>
+         * <summary>Business Name: Issue Filter Code</summary>
          * 
-         * <remarks><p>Indicates whether records to be returned (e.g. 
-         * prescription order, prescription dispense and/or other 
-         * medication) should be filtered to those with at least one 
-         * persistent un-managed issue (against the record), with at 
-         * least one persistent issues or should return all records, 
-         * independent of the presence of persistent issues.</p> <p>By 
-         * filtering returned records to include only those which have 
-         * unmanaged issues or any issues at all, allows a provider to 
-         * focus on those aspects of care where extra attention is 
-         * needed. Because the attribute must be known, it is 
-         * mandatory.</p></remarks>
+         * <remarks>Relationship: PORX_MT060220CA.IssueFilterCode.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates whether 
+         * records to be returned (e.g. prescription order, 
+         * prescription dispense and/or other medication) should be 
+         * filtered to those with at least one persistent un-managed 
+         * issue (against the record), with at least one persistent 
+         * issues or should return all records, independent of the 
+         * presence of persistent issues.</p> <p>By filtering returned 
+         * records to include only those which have unmanaged issues or 
+         * any issues at all, allows a provider to focus on those 
+         * aspects of care where extra attention is needed. Because the 
+         * attribute must be known, it is mandatory.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"issueFilterCode/value"})]
         public IssueFilterCode IssueFilterCodeValue {
@@ -208,12 +225,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Porx_mt0602
         }
 
         /**
-         * <summary>E:Other Medication Record Id</summary>
+         * <summary>Business Name: E:Other Medication Record Id</summary>
          * 
-         * <remarks><p>Identifier of the other medication record for 
-         * which detailed information is to be retrieved.</p> <p>Allows 
-         * for the retrieval of medication records based on a specific 
-         * active medication record.</p></remarks>
+         * <remarks>Relationship: 
+         * PORX_MT060220CA.OtherMedicationRecordId.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Identifier of the 
+         * other medication record for which detailed information is to 
+         * be retrieved.</p> <p>Allows for the retrieval of medication 
+         * records based on a specific active medication record.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"otherMedicationRecordId/value"})]
         public Identifier OtherMedicationRecordIdValue {

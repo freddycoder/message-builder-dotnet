@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,7 +38,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt500
             this.policyHolderPersonBirthTime = new TSImpl();
         }
         /**
-         * <summary>Policy Holder Name</summary>
+         * <summary>Business Name: Policy Holder Name</summary>
+         * 
+         * <remarks>Relationship: 
+         * FICR_MT500201CA.PolicyHolderPerson.name 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"policyHolderPerson/name"})]
         public PersonName PolicyHolderPersonName {
@@ -47,7 +51,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt500
         }
 
         /**
-         * <summary>Policy Holder Date of birth</summary>
+         * <summary>Business Name: Policy Holder Date of birth</summary>
+         * 
+         * <remarks>Relationship: 
+         * FICR_MT500201CA.PolicyHolderPerson.birthTime 
+         * Conformance/Cardinality: REQUIRED (0-1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"policyHolderPerson/birthTime"})]
         public PlatformDate PolicyHolderPersonBirthTime {

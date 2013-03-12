@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,9 +25,9 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt610
 
 
     /**
-     * <summary><p>Want sum of all adjudication details (info &amp; 
+     * <p>Want sum of all adjudication details (info &amp; 
      * non-info) to equal what was submitted. For example, the 
-     * reasons why you refused to pay part of the invoice</p></summary>
+     * reasons why you refused to pay part of the invoice</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"FICR_MT610201CA.AdjudicatedInvoiceElementChoice"})]
     public interface IAdjudicatedInvoiceElementChoice {

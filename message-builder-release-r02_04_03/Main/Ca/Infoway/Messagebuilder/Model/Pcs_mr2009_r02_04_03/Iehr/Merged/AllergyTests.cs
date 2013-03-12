@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,27 +29,28 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged {
 
 
     /**
-     * <summary>AllergyTests</summary>
+     * <summary>Business Name: AllergyTests</summary>
      * 
      * <remarks>REPC_MT000005CA.AllergyTestEvent: Allergy Tests 
-     * <p>Indicates the specific allergy test that supports the 
-     * recording of the allergy/intolerance.</p> <p>Provides 
-     * evidence for recording the allergy/intolerance.</p> 
-     * REPC_MT000001CA.AllergyTestEvent: Allergy Tests <p>At least 
-     * one of Id or Value must be specified.</p> <p>Indicates the 
-     * specific allergy test that supports the recording of the 
-     * allergy/intolerance.</p> <p>Provides evidence for recording 
-     * the allergy/intolerance.</p> 
-     * REPC_MT000013CA.AllergyTestEvent: Allergy Tests <p>At least 
-     * one of Id or Value must be specified</p> <p>Indicates the 
-     * specific allergy test that supports the recording of the 
-     * allergy/intolerance.</p> <p>Provides evidence for recording 
-     * the allergy/intolerance.</p> 
-     * REPC_MT000009CA.AllergyTestEvent: Allergy Tests <p>At least 
-     * one of Id or Value must be specified.</p> <p>Indicates the 
-     * specific allergy test that supports the recording of the 
-     * allergy/intolerance.</p> <p>Provides evidence for recording 
-     * the allergy/intolerance.</p></remarks>
+     * <p>Provides evidence for recording the 
+     * allergy/intolerance.</p> <p>Indicates the specific allergy 
+     * test that supports the recording of the 
+     * allergy/intolerance.</p> REPC_MT000001CA.AllergyTestEvent: 
+     * Allergy Tests <p>At least one of Id or Value must be 
+     * specified.</p> <p>Provides evidence for recording the 
+     * allergy/intolerance.</p> <p>Indicates the specific allergy 
+     * test that supports the recording of the 
+     * allergy/intolerance.</p> REPC_MT000013CA.AllergyTestEvent: 
+     * Allergy Tests <p>At least one of Id or Value must be 
+     * specified</p> <p>Provides evidence for recording the 
+     * allergy/intolerance.</p> <p>Indicates the specific allergy 
+     * test that supports the recording of the 
+     * allergy/intolerance.</p> REPC_MT000009CA.AllergyTestEvent: 
+     * Allergy Tests <p>At least one of Id or Value must be 
+     * specified.</p> <p>Provides evidence for recording the 
+     * allergy/intolerance.</p> <p>Indicates the specific allergy 
+     * test that supports the recording of the 
+     * allergy/intolerance.</p></remarks>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"REPC_MT000001CA.AllergyTestEvent","REPC_MT000005CA.AllergyTestEvent","REPC_MT000009CA.AllergyTestEvent","REPC_MT000013CA.AllergyTestEvent"})]
     public class AllergyTests : MessagePartBean, Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged.IRecords {
@@ -66,12 +67,29 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged {
             this.value = new CVImpl();
         }
         /**
-         * <summary>AllergyTestRecordId</summary>
+         * <summary>Business Name: AllergyTestRecordId</summary>
          * 
-         * <remarks>B:Allergy Test Record Id <p>An identifier for a 
+         * <remarks>Un-merged Business Name: AllergyTestRecordId 
+         * Relationship: REPC_MT000005CA.AllergyTestEvent.id 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Allows an 
+         * allergy/intolerance test record to be directly 
+         * referenced.</p> <p>An identifier for a specific instance of 
+         * an allergy/intolerance test.</p> Un-merged Business Name: 
+         * AllergyTestRecordId Relationship: 
+         * REPC_MT000001CA.AllergyTestEvent.id Conformance/Cardinality: 
+         * REQUIRED (0-1) <p>Allows an allergy/intolerance test record 
+         * to be directly referenced.</p> <p>An identifier for a 
          * specific instance of an allergy/intolerance test.</p> 
-         * <p>Allows an allergy/intolerance test record to be directly 
-         * referenced.</p></remarks>
+         * Un-merged Business Name: AllergyTestRecordId Relationship: 
+         * REPC_MT000013CA.AllergyTestEvent.id Conformance/Cardinality: 
+         * REQUIRED (0-1) <p>Allows an allergy/intolerance test record 
+         * to be directly referenced.</p> <p>An identifier for a 
+         * specific instance of an allergy/intolerance test.</p> 
+         * Un-merged Business Name: AllergyTestRecordId Relationship: 
+         * REPC_MT000009CA.AllergyTestEvent.id Conformance/Cardinality: 
+         * REQUIRED (0-1) <p>Allows an allergy/intolerance test record 
+         * to be directly referenced.</p> <p>An identifier for a 
+         * specific instance of an allergy/intolerance test.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -80,18 +98,37 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged {
         }
 
         /**
-         * <summary>AllergyTestType</summary>
+         * <summary>Business Name: AllergyTestType</summary>
          * 
-         * <remarks>A:Allergy Test Type <p>A coded value denoting the 
-         * type of allergy test conducted.</p> <p>Allows different 
+         * <remarks>Un-merged Business Name: AllergyTestType 
+         * Relationship: REPC_MT000005CA.AllergyTestEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>At least one of Id 
+         * or Value must be specified.</p> <p>Allows different kinds of 
+         * allergy/intolerance tests to be distinguishable and is 
+         * therefore mandatory. It uses the CD type to support SNOMED 
+         * post-coordination.</p> <p>A coded value denoting the type of 
+         * allergy test conducted.</p> Un-merged Business Name: 
+         * AllergyTestType Relationship: 
+         * REPC_MT000001CA.AllergyTestEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows different 
          * kinds of allergy/intolerance tests to be distinguishable and 
          * is therefore mandatory. It uses the CD type to support 
-         * SNOMED post-coordination.</p> A:Allergy Test Type <p>At 
-         * least one of Id or Value must be specified.</p> <p>A coded 
-         * value denoting the type of allergy test conducted.</p> 
-         * <p>Allows different kinds of allergy/intolerance tests to be 
-         * distinguishable and is therefore mandatory. It uses the CD 
-         * type to support SNOMED post-coordination.</p></remarks>
+         * SNOMED post-coordination.</p> <p>A coded value denoting the 
+         * type of allergy test conducted.</p> Un-merged Business Name: 
+         * AllergyTestType Relationship: 
+         * REPC_MT000013CA.AllergyTestEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows different 
+         * kinds of allergy/intolerance tests to be distinguishable and 
+         * is therefore mandatory. It uses the CD type to support 
+         * SNOMED post-coordination.</p> <p>A coded value denoting the 
+         * type of allergy test conducted.</p> Un-merged Business Name: 
+         * AllergyTestType Relationship: 
+         * REPC_MT000009CA.AllergyTestEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows different 
+         * kinds of allergy/intolerance tests to be distinguishable and 
+         * is therefore mandatory. It uses the CD type to support 
+         * SNOMED post-coordination.</p> <p>A coded value denoting the 
+         * type of allergy test conducted.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public ObservationAllergyTestType Code {
@@ -100,11 +137,28 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged {
         }
 
         /**
-         * <summary>AllergyTestDate</summary>
+         * <summary>Business Name: AllergyTestDate</summary>
          * 
-         * <remarks>D:Allergy Test Date <p>The date on which the 
-         * allergy test was performed.</p> <p>Allows providers to 
-         * evaluate the currency of the test.</p></remarks>
+         * <remarks>Un-merged Business Name: AllergyTestDate 
+         * Relationship: REPC_MT000005CA.AllergyTestEvent.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Allows providers 
+         * to evaluate the currency of the test.</p> <p>The date on 
+         * which the allergy test was performed.</p> Un-merged Business 
+         * Name: AllergyTestDate Relationship: 
+         * REPC_MT000001CA.AllergyTestEvent.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Allows providers 
+         * to evaluate the currency of the test.</p> <p>The date on 
+         * which the allergy test was performed.</p> Un-merged Business 
+         * Name: AllergyTestDate Relationship: 
+         * REPC_MT000013CA.AllergyTestEvent.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Allows providers 
+         * to evaluate the currency of the test.</p> <p>The date on 
+         * which the allergy test was performed.</p> Un-merged Business 
+         * Name: AllergyTestDate Relationship: 
+         * REPC_MT000009CA.AllergyTestEvent.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Allows providers 
+         * to evaluate the currency of the test.</p> <p>The date on 
+         * which the allergy test was performed.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"effectiveTime"})]
         public PlatformDate EffectiveTime {
@@ -113,22 +167,45 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged {
         }
 
         /**
-         * <summary>AllergyTestResult</summary>
+         * <summary>Business Name: AllergyTestResult</summary>
          * 
-         * <remarks>C:Allergy Test Result <p>Value is required if not 
-         * using SNOMED</p> <p>A code indicating result of the allergy 
-         * test.</p> <p>Allows other providers to evaluate the test. 
-         * There is no point in associating an allergy test with 
-         * unknown results with an allergy or intolerance however the 
-         * element is optional because this information may be 
-         * post-coordinated in the 'code' attribute using SNOMED.</p> 
-         * C:Allergy Test Result <p>Value is mandatory if not using 
-         * SNOMED</p> <p>A code indicating result of the allergy 
-         * test.</p> <p>Allows other providers to evaluate the test. 
-         * There is no point in associating an allergy test with 
-         * unknown results with an allergy or intolerance however the 
-         * element is optional because this information may be 
-         * post-coordinated in the 'code' attribute using SNOMED.</p></remarks>
+         * <remarks>Un-merged Business Name: AllergyTestResult 
+         * Relationship: REPC_MT000005CA.AllergyTestEvent.value 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>Value is 
+         * mandatory if not using SNOMED</p> <p>Allows other providers 
+         * to evaluate the test. There is no point in associating an 
+         * allergy test with unknown results with an allergy or 
+         * intolerance however the element is optional because this 
+         * information may be post-coordinated in the 'code' attribute 
+         * using SNOMED.</p> <p>A code indicating result of the allergy 
+         * test.</p> Un-merged Business Name: AllergyTestResult 
+         * Relationship: REPC_MT000001CA.AllergyTestEvent.value 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>Value is required 
+         * if not using SNOMED</p> <p>Allows other providers to 
+         * evaluate the test. There is no point in associating an 
+         * allergy test with unknown results with an allergy or 
+         * intolerance however the element is optional because this 
+         * information may be post-coordinated in the 'code' attribute 
+         * using SNOMED.</p> <p>A code indicating result of the allergy 
+         * test.</p> Un-merged Business Name: AllergyTestResult 
+         * Relationship: REPC_MT000013CA.AllergyTestEvent.value 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>Value is required 
+         * if not using SNOMED</p> <p>Allows other providers to 
+         * evaluate the test. There is no point in associating an 
+         * allergy test with unknown results with an allergy or 
+         * intolerance however the element is optional because this 
+         * information may be post-coordinated in the 'code' attribute 
+         * using SNOMED.</p> <p>A code indicating result of the allergy 
+         * test.</p> Un-merged Business Name: AllergyTestResult 
+         * Relationship: REPC_MT000009CA.AllergyTestEvent.value 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>Value is required 
+         * if not using SNOMED</p> <p>Allows other providers to 
+         * evaluate the test. There is no point in associating an 
+         * allergy test with unknown results with an allergy or 
+         * intolerance however the element is optional because this 
+         * information may be post-coordinated in the 'code' attribute 
+         * using SNOMED.</p> <p>A code indicating result of the allergy 
+         * test.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"value"})]
         public AllergyTestValue Value {

@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,20 +28,21 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merg
 
 
     /**
-     * <summary>HealthDocument</summary>
+     * <summary>Business Name: HealthDocument</summary>
      * 
      * <remarks>POIZ_MT030060CA.HealthDocument: Health Document 
-     * <p>The health document that supports the historical 
-     * immunization information.</p> <p>Useful for identifying the 
-     * Health Document that is the basis of historical immunization 
+     * <p>Useful for identifying the Health Document that is the 
+     * basis of historical immunization information.</p> <p>The 
+     * health document that supports the historical immunization 
      * information.</p> POIZ_MT030050CA.HealthDocument: Health 
-     * Document <p>The health document that supports the historical 
-     * immunization information.</p> <p>Useful for identifying the 
-     * Health Document that is the basis of historical immunization 
-     * information.</p> POIZ_MT060150CA.HealthDocument: Health 
-     * Document <p>The health document that supports the historical 
-     * immunization information.</p> <p>Useful for identifying the 
-     * Health Document that is the basis of historical immunization 
+     * Document <p>Useful for identifying the Health Document that 
+     * is the basis of historical immunization information.</p> 
+     * <p>The health document that supports the historical 
+     * immunization information.</p> 
+     * POIZ_MT060150CA.HealthDocument: Health Document <p>Useful 
+     * for identifying the Health Document that is the basis of 
+     * historical immunization information.</p> <p>The health 
+     * document that supports the historical immunization 
      * information.</p></remarks>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"POIZ_MT030050CA.HealthDocument","POIZ_MT030060CA.HealthDocument","POIZ_MT060150CA.HealthDocument"})]
@@ -57,13 +58,28 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merg
             this.text = new EDImpl<EncapsulatedData>();
         }
         /**
-         * <summary>HealthDocumentID</summary>
+         * <summary>Business Name: HealthDocumentID</summary>
          * 
-         * <remarks>Health Document ID <p>Identifies the health 
-         * document that supports the historical immunization 
-         * information.</p> <p>Used to reference identified health 
+         * <remarks>Un-merged Business Name: HealthDocumentID 
+         * Relationship: POIZ_MT030060CA.HealthDocument.id 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>Used to reference 
+         * identified health documents. As not all implementations will 
+         * support this concept, this attribute is optional.</p> 
+         * <p>Identifies the health document that supports the 
+         * historical immunization information.</p> Un-merged Business 
+         * Name: HealthDocumentID Relationship: 
+         * POIZ_MT030050CA.HealthDocument.id Conformance/Cardinality: 
+         * OPTIONAL (0-1) <p>Used to reference identified health 
          * documents. As not all implementations will support this 
-         * concept, this attribute is optional.</p></remarks>
+         * concept, this attribute is optional.</p> <p>Identifies the 
+         * health document that supports the historical immunization 
+         * information.</p> Un-merged Business Name: HealthDocumentID 
+         * Relationship: POIZ_MT060150CA.HealthDocument.id 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>Used to reference 
+         * identified health documents. As not all implementations will 
+         * support this concept, this attribute is optional.</p> 
+         * <p>Identifies the health document that supports the 
+         * historical immunization information.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -72,13 +88,29 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merg
         }
 
         /**
-         * <summary>HealthDocumentTitle</summary>
+         * <summary>Business Name: HealthDocumentTitle</summary>
          * 
-         * <remarks>Health Document Title <p>The title of the Health 
-         * Document</p> <p>Useful for identifying the Health Document 
-         * that is the basis of historical immunization information. 
-         * Not all implementations will support this concept so this 
-         * attribute is optional.</p></remarks>
+         * <remarks>Un-merged Business Name: HealthDocumentTitle 
+         * Relationship: POIZ_MT030060CA.HealthDocument.title 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>Useful for 
+         * identifying the Health Document that is the basis of 
+         * historical immunization information. Not all implementations 
+         * will support this concept so this attribute is optional.</p> 
+         * <p>The title of the Health Document</p> Un-merged Business 
+         * Name: HealthDocumentTitle Relationship: 
+         * POIZ_MT030050CA.HealthDocument.title 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>Useful for 
+         * identifying the Health Document that is the basis of 
+         * historical immunization information. Not all implementations 
+         * will support this concept so this attribute is optional.</p> 
+         * <p>The title of the Health Document</p> Un-merged Business 
+         * Name: HealthDocumentTitle Relationship: 
+         * POIZ_MT060150CA.HealthDocument.title 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>Useful for 
+         * identifying the Health Document that is the basis of 
+         * historical immunization information. Not all implementations 
+         * will support this concept so this attribute is optional.</p> 
+         * <p>The title of the Health Document</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"title"})]
         public String Title {
@@ -87,14 +119,31 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merg
         }
 
         /**
-         * <summary>HealthDocumentText</summary>
+         * <summary>Business Name: HealthDocumentText</summary>
          * 
-         * <remarks>Health Document Text <p>Contains the body of the 
+         * <remarks>Un-merged Business Name: HealthDocumentText 
+         * Relationship: POIZ_MT030060CA.HealthDocument.text 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>Useful for 
+         * identifying the Health Document that is the basis of 
+         * historical immunization information. Not all implementations 
+         * will support this concept so this attribute is optional.</p> 
+         * <p>Contains the body of the health document that is the 
+         * basis of the immunization information.</p> Un-merged 
+         * Business Name: HealthDocumentText Relationship: 
+         * POIZ_MT030050CA.HealthDocument.text Conformance/Cardinality: 
+         * OPTIONAL (0-1) <p>Useful for identifying the Health Document 
+         * that is the basis of historical immunization information. 
+         * Not all implementations will support this concept so this 
+         * attribute is optional.</p> <p>Contains the body of the 
          * health document that is the basis of the immunization 
-         * information.</p> <p>Useful for identifying the Health 
-         * Document that is the basis of historical immunization 
-         * information. Not all implementations will support this 
-         * concept so this attribute is optional.</p></remarks>
+         * information.</p> Un-merged Business Name: HealthDocumentText 
+         * Relationship: POIZ_MT060150CA.HealthDocument.text 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>Useful for 
+         * identifying the Health Document that is the basis of 
+         * historical immunization information. Not all implementations 
+         * will support this concept so this attribute is optional.</p> 
+         * <p>Contains the body of the health document that is the 
+         * basis of the immunization information.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"text"})]
         public EncapsulatedData Text {

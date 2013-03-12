@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,7 +25,6 @@
  
 namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 	
-	using Ca.Infoway.Messagebuilder.Datatype.Nullflavor;
 	using Ca.Infoway.Messagebuilder.Domainvalue;
 	using System;
 	using System.Collections;
@@ -41,6 +40,7 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 	public class Diff<T> : BareDiff {
 	
 		private readonly T value_ren;
+        private NullFlavor nullFlavor;
 	
 		/// <summary>
 		/// Constructs a diff using the supplied parameter.
@@ -49,9 +49,16 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		/// <param name="value">the difference value</param>
 		public Diff(T value_ren) {
 			this.value_ren = value_ren;
+            this.nullFlavor = null;
 		}
-	
-		/// <summary>
+
+        public Diff(NullFlavor nullFlavor)
+        {
+            this.value_ren = default(T);
+            this.nullFlavor = nullFlavor;
+        }
+        
+        /// <summary>
 		/// Returns the diff value.
 		/// </summary>
 		///
@@ -83,7 +90,7 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		///
 		/// <returns>the null flavor</returns>
 		  get {
-				throw null;
+				return this.nullFlavor;
 			}
 		/// <summary>
 		/// Sets a nullflavor on this diff.
@@ -91,6 +98,7 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		///
 		/// <param name="nullFlavor">a null flavor</param>
 		  set {
+              this.nullFlavor = value;
 			}
 		}
 		
@@ -101,7 +109,7 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		///
 		/// <returns>whether the diff has a null flavor set.</returns>
 		public virtual bool HasNullFlavor() {
-			return false;
+			return this.nullFlavor != null;
 		}
 		
 		public Object BareValue {

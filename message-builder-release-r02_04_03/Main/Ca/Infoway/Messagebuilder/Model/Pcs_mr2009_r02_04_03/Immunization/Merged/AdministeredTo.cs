@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,19 +25,19 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merg
 
 
     /**
-     * <summary>AdministeredTo</summary>
+     * <summary>Business Name: AdministeredTo</summary>
      * 
      * <remarks>POIZ_MT030060CA.Subject10: (no business name) 
-     * <p>Indicates the patient who was immunized.</p> <p>Essential 
-     * for linking the immunization to the patient's record, and is 
-     * therefore mandatory.</p> POIZ_MT070020CA.Subject: 
-     * administered to <p>Indicates the patient who is scheduled to 
-     * be immunized.</p> <p>Essential for linking the immunization 
-     * to the patient's record, and is therefore mandatory.</p> 
-     * POIZ_MT061150CA.Subject10: *administered to <p>Indicates the 
-     * patient who was immunized.</p> <p>Essential for linking the 
-     * immunization to the patient's record, and is therefore 
-     * mandatory.</p></remarks>
+     * <p>Essential for linking the immunization to the patient's 
+     * record, and is therefore mandatory.</p> <p>Indicates the 
+     * patient who was immunized.</p> POIZ_MT070020CA.Subject: 
+     * administered to <p>Essential for linking the immunization to 
+     * the patient's record, and is therefore mandatory.</p> 
+     * <p>Indicates the patient who is scheduled to be 
+     * immunized.</p> POIZ_MT061150CA.Subject10: *administered to 
+     * <p>Essential for linking the immunization to the patient's 
+     * record, and is therefore mandatory.</p> <p>Indicates the 
+     * patient who was immunized.</p></remarks>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"POIZ_MT030050CA.Subject10","POIZ_MT030060CA.Subject10","POIZ_MT060150CA.Subject10","POIZ_MT061150CA.Subject10","POIZ_MT070020CA.Subject"})]
     public class AdministeredTo : MessagePartBean {
@@ -46,6 +46,23 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merg
 
         public AdministeredTo() {
         }
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: POIZ_MT030060CA.Subject10.patient 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * POIZ_MT060150CA.Subject10.patient Conformance/Cardinality: 
+         * MANDATORY (1) Un-merged Business Name: (no business name 
+         * specified) Relationship: POIZ_MT070020CA.Subject.patient 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * POIZ_MT061150CA.Subject10.patient Conformance/Cardinality: 
+         * MANDATORY (1) Un-merged Business Name: (no business name 
+         * specified) Relationship: POIZ_MT030050CA.Subject10.patient 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"patient"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.Patient_2 Patient {
             get { return this.patient; }

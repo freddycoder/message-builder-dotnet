@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,8 +34,8 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
      * <summary>PORX_MT060180CA.ParameterList: Medication Profile 
      * Generic Query Parameters</summary>
      * 
-     * <remarks><p>Defines the set of parameters that may be used 
-     * to filter the query response.</p> <p>Root class for query 
+     * <p>Defines the set of parameters that may be used to filter 
+     * the query response.</p> <p>Root class for query 
      * definition</p> PORX_MT050020CA.ParameterList: Generic Query 
      * Parameters <p>Defines the set of parameters that may be used 
      * to filter the query response.</p> <p>Root class for query 
@@ -54,7 +54,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
      * Query Parameters <p>At least one of drug code or drug name 
      * must be specified</p> <p>Defines the set of parameters that 
      * may be used to filter the query response.</p> <p>Root class 
-     * for query parameters</p></remarks>
+     * for query parameters</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"POME_MT010030CA.ParameterList","POME_MT010050CA.ParameterList","POME_MT010090CA.ParameterList","PORX_MT050020CA.ParameterList","PORX_MT060170CA.ParameterList","PORX_MT060180CA.ParameterList"})]
     public class GenericQueryParameters : MessagePartBean {
@@ -125,23 +125,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
             this.drugRouteValue = new CVImpl();
         }
         /**
-         * <summary>AdministrationEffectivePeriod</summary>
+         * <summary>Business Name: AdministrationEffectivePeriod</summary>
          * 
-         * <remarks>Administration Effective Period <p>For a 
-         * prescription indicates the period for which the patient was 
-         * deemed to be taking the drug.</p><p>Filter the result set to 
-         * include only those medication records (prescription order, 
-         * prescription dispense and other medication) for which the 
-         * patient was deemed to be taking the drug.</p> <p>For a 
-         * prescription indicates the period for which the patient was 
-         * deemed to be taking the drug.</p><p>Filter the result set to 
-         * include only those medication records (prescription order, 
-         * prescription dispense and other medication) for which the 
-         * patient was deemed to be taking the drug.</p> <p>Allows the 
-         * requester to specify the administration period of interest 
-         * for the retrieval. Useful for constraining run-away 
-         * queries.</p> Administration Effective Period <p>Indicates 
-         * the administration period for which the request/query 
+         * <remarks>Un-merged Business Name: 
+         * AdministrationEffectivePeriod Relationship: 
+         * PORX_MT060180CA.AdministrationEffectivePeriod.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the 
+         * administration period for which the request/query 
          * applies.</p><p>Filter the result set to include only those 
          * medication records (prescription order, prescription 
          * dispense and other active medication) for which the patient 
@@ -153,7 +143,22 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
          * the patient was deemed to be taking the drug within the 
          * specified period.</p> <p>Allows the requester to specify the 
          * administration period of interest for the retrieval. Useful 
-         * for constraining run-away queries.</p></remarks>
+         * for constraining run-away queries.</p> Un-merged Business 
+         * Name: AdministrationEffectivePeriod Relationship: 
+         * PORX_MT060170CA.AdministrationEffectivePeriod.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>For a prescription 
+         * indicates the period for which the patient was deemed to be 
+         * taking the drug.</p><p>Filter the result set to include only 
+         * those medication records (prescription order, prescription 
+         * dispense and other medication) for which the patient was 
+         * deemed to be taking the drug.</p> <p>For a prescription 
+         * indicates the period for which the patient was deemed to be 
+         * taking the drug.</p><p>Filter the result set to include only 
+         * those medication records (prescription order, prescription 
+         * dispense and other medication) for which the patient was 
+         * deemed to be taking the drug.</p> <p>Allows the requester to 
+         * specify the administration period of interest for the 
+         * retrieval. Useful for constraining run-away queries.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"administrationEffectivePeriod/value"})]
         public Interval<PlatformDate> AdministrationEffectivePeriodValue {
@@ -162,9 +167,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
         }
 
         /**
-         * <summary>AmendedInTimeRange</summary>
+         * <summary>Business Name: AmendedInTimeRange</summary>
          * 
-         * <remarks>Amended in Time Range <p>Indicates that the 
+         * <remarks>Un-merged Business Name: AmendedInTimeRange 
+         * Relationship: PORX_MT060180CA.AmendedInTimeRange.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates that the 
          * returned records should be filtered to only include those 
          * which have been amended in some way (had status changed, 
          * been annotated, prescription was dispensed, etc.) within the 
@@ -176,18 +183,20 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
          * queries.</p> <p>Allows the requester to specify the event 
          * period of interest for the retrieval of medication 
          * records.</p><p>Useful for constraining run-away queries.</p> 
-         * Amended In Time Range <p>Indicates that the returned records 
-         * should be filtered to only include those which have been 
-         * amended in some way (had status changed, been annotated, 
-         * prescription was dispensed, etc.) within the indicated 
-         * time-period. This will commonly be used to 'retrieve 
-         * everything that has been amended since xxx'.</p> <p>Allows 
-         * the requester to specify the event period of interest for 
-         * the retrieval of medication records.</p><p>Useful for 
-         * constraining run-away queries.</p> <p>Allows the requester 
-         * to specify the event period of interest for the retrieval of 
-         * medication records.</p><p>Useful for constraining run-away 
-         * queries.</p></remarks>
+         * Un-merged Business Name: AmendedInTimeRange Relationship: 
+         * PORX_MT060170CA.AmendedInTimeRange.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates that the 
+         * returned records should be filtered to only include those 
+         * which have been amended in some way (had status changed, 
+         * been annotated, prescription was dispensed, etc.) within the 
+         * indicated time-period. This will commonly be used to 
+         * 'retrieve everything that has been amended since xxx'.</p> 
+         * <p>Allows the requester to specify the event period of 
+         * interest for the retrieval of medication 
+         * records.</p><p>Useful for constraining run-away queries.</p> 
+         * <p>Allows the requester to specify the event period of 
+         * interest for the retrieval of medication 
+         * records.</p><p>Useful for constraining run-away queries.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"amendedInTimeRange/value"})]
         public Interval<PlatformDate> AmendedInTimeRangeValue {
@@ -196,10 +205,34 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
         }
 
         /**
-         * <summary>CareCompositionIDs</summary>
+         * <summary>Business Name: CareCompositionIDs</summary>
          * 
-         * <remarks>Care Composition IDs <p>Filters the records 
-         * retrieved to only include those associated with the 
+         * <remarks>Un-merged Business Name: CareCompositionIDs 
+         * Relationship: PORX_MT060180CA.CareCompositionID.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Filters the 
+         * records retrieved to only include those associated with the 
+         * specified encounter, episode or care event. If unspecified, 
+         * no filter is applied.</p><p>Note: When matching on care 
+         * composition id, systems should also retrieve records with a 
+         * fulfillment id to requisitions associated with the care 
+         * composition. E.g. When retrieving records associated with an 
+         * encounter which includes a referral, the retrieved records 
+         * should also include the care summary created in fulfillment 
+         * of the referral.</p> <p>Filters the records retrieved to 
+         * only include those associated with the specified encounter, 
+         * episode or care event. If unspecified, no filter is 
+         * applied.</p><p>Note: When matching on care composition id, 
+         * systems should also retrieve records with a fulfillment id 
+         * to requisitions associated with the care composition. E.g. 
+         * When retrieving records associated with an encounter which 
+         * includes a referral, the retrieved records should also 
+         * include the care summary created in fulfillment of the 
+         * referral.</p> <p>Allows retrieving all records associated 
+         * with an encounter, episode or care event.</p> Un-merged 
+         * Business Name: CareCompositionIDs Relationship: 
+         * PORX_MT060170CA.CareCompositionID.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Filters the 
+         * records retrieved to only include those associated with the 
          * specified encounter, episode or care event. If unspecified, 
          * no filter is applied.</p><p>Note: When matching on care 
          * composition id, systems should also retrieve records with a 
@@ -225,10 +258,21 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
         }
 
         /**
-         * <summary>CareCompositionTypes</summary>
+         * <summary>Business Name: CareCompositionTypes</summary>
          * 
-         * <remarks>Care Composition Types <p>Filters the records 
-         * retrieved to only include those associated with the 
+         * <remarks>Un-merged Business Name: CareCompositionTypes 
+         * Relationship: PORX_MT060180CA.CareCompositionType.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Filters the 
+         * records retrieved to only include those associated with the 
+         * specified 'kind' of encounter, episode or care event. If 
+         * unspecified, no filter is applied.</p> <p>Allows retrieving 
+         * all records associated with a particular type of encounter, 
+         * episode or care event. E.g.Orthopedic Clinic Encounter, ER 
+         * encounter, Walk-in encounter, etc.</p> Un-merged Business 
+         * Name: CareCompositionTypes Relationship: 
+         * PORX_MT060170CA.CareCompositionType.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Filters the 
+         * records retrieved to only include those associated with the 
          * specified 'kind' of encounter, episode or care event. If 
          * unspecified, no filter is applied.</p> <p>Allows retrieving 
          * all records associated with a particular type of encounter, 
@@ -241,13 +285,22 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
         }
 
         /**
-         * <summary>DiagnosisCode</summary>
+         * <summary>Business Name: DiagnosisCode</summary>
          * 
-         * <remarks>Diagnosis Code <p>Indicates that the result set is 
-         * to be filtered to include only those records pertaining to 
-         * the specified diagnosis indication code.</p> <p>Allows for 
-         * the retrieval of patient's prescriptions and/or dispenses 
-         * based on prescribing indications.</p></remarks>
+         * <remarks>Un-merged Business Name: DiagnosisCode 
+         * Relationship: PORX_MT060180CA.DiagnosisCode.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates that the 
+         * result set is to be filtered to include only those records 
+         * pertaining to the specified diagnosis indication code.</p> 
+         * <p>Allows for the retrieval of patient's prescriptions 
+         * and/or dispenses based on prescribing indications.</p> 
+         * Un-merged Business Name: DiagnosisCode Relationship: 
+         * PORX_MT060170CA.DiagnosisCode.value Conformance/Cardinality: 
+         * MANDATORY (1) <p>Indicates that the result set is to be 
+         * filtered to include only those records pertaining to the 
+         * specified diagnosis indication code.</p> <p>Allows for the 
+         * retrieval of patient's prescriptions and/or dispenses based 
+         * on prescribing indications.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"diagnosisCode/value"})]
         public DiagnosisValue DiagnosisCodeValue {
@@ -256,25 +309,22 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
         }
 
         /**
-         * <summary>DrugCode</summary>
+         * <summary>Business Name: DrugCode</summary>
          * 
-         * <remarks>B:Drug Code <p>An identifier for a type of drug. 
-         * Types of drugs include: Manufactured drug, generic 
-         * formulation, generic, therapeutic class, etc.</p> <p>Allows 
-         * the requester to retrieve drugs of certain abstraction only. 
-         * These drug abstractions include: Manufactured drug, generic 
-         * formulation, generic, therapeutic class, etc.</p> E:Drug 
-         * Code <p>Indicates that the result set is to be filtered to 
-         * include only those contraindications pertaining to the 
-         * specified drug.</p><p>The code may refer to an 
-         * administerable medication, an orderable medication or a 
-         * higher level drug classification.</p><p>The contraindication 
-         * records retrieve would comprise the drug-drug interactions 
-         * between this specified and each of the drugs on the 
-         * patient's profile, as well as drug-disease and drug-allergy 
-         * contraindications that might result (based on the 
-         * information on the patient's profile).</p> <p>Indicates that 
-         * the result set is to be filtered to include only those 
+         * <remarks>Un-merged Business Name: DrugCode Relationship: 
+         * PORX_MT060180CA.DrugCode.value Conformance/Cardinality: 
+         * MANDATORY (1) <p>Indicates that the result set is to be 
+         * filtered to include only those records pertaining to the 
+         * specified drug. The code may refer to an orderable 
+         * medication or a higher level drug classification.</p> 
+         * <p>Allows for the retrieval of patient prescriptions and/or 
+         * dispenses based on a specific medication that was ordered 
+         * and/or dispensed. This will most commonly be used to filter 
+         * for therapeutic classifications such as 
+         * &quot;Anti-hypertensives&quot;.</p> Un-merged Business Name: 
+         * DrugCode Relationship: PORX_MT050020CA.DrugCode.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates that the 
+         * result set is to be filtered to include only those 
          * contraindications pertaining to the specified 
          * drug.</p><p>The code may refer to an administerable 
          * medication, an orderable medication or a higher level drug 
@@ -292,11 +342,21 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
          * between this specified and each of the drugs on the 
          * patient's profile, as well as drug-disease and drug-allergy 
          * contraindications that might result (based on the 
-         * information on the patient's profile).</p> <p>Allows for the 
-         * retrieval of all potential contraindications based on a 
-         * specific medication being introduced onto the patient's 
-         * medication profile. Contraindications can't be found without 
-         * specifying the medication, therefore this attribute is 
+         * information on the patient's profile).</p> <p>Indicates that 
+         * the result set is to be filtered to include only those 
+         * contraindications pertaining to the specified 
+         * drug.</p><p>The code may refer to an administerable 
+         * medication, an orderable medication or a higher level drug 
+         * classification.</p><p>The contraindication records retrieve 
+         * would comprise the drug-drug interactions between this 
+         * specified and each of the drugs on the patient's profile, as 
+         * well as drug-disease and drug-allergy contraindications that 
+         * might result (based on the information on the patient's 
+         * profile).</p> <p>Allows for the retrieval of all potential 
+         * contraindications based on a specific medication being 
+         * introduced onto the patient's medication profile. 
+         * Contraindications can't be found without specifying the 
+         * medication, therefore this attribute is 
          * mandatory.</p><p>This will most commonly be used by 
          * providers to test the viability of prescribing/dispensing a 
          * medication to a patient (in view of the patient's existing 
@@ -308,7 +368,34 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
          * mandatory.</p><p>This will most commonly be used by 
          * providers to test the viability of prescribing/dispensing a 
          * medication to a patient (in view of the patient's existing 
-         * medication profile).</p> B:Drug Code <p>An identifier that 
+         * medication profile).</p> Un-merged Business Name: DrugCode 
+         * Relationship: POME_MT010050CA.DrugCode.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>An identifier for 
+         * a type of drug. Types of drugs include: Manufactured drug, 
+         * generic formulation, generic, therapeutic class, etc.</p> 
+         * <p>Allows the requester to retrieve drugs of certain 
+         * abstraction only. These drug abstractions include: 
+         * Manufactured drug, generic formulation, generic, therapeutic 
+         * class, etc.</p> Un-merged Business Name: DrugCode 
+         * Relationship: POME_MT010030CA.DrugCode.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>An identifier for 
+         * a specific drug product. Types of drugs identified by drug 
+         * code include: Manufactured drug, generic formulation, 
+         * generic, therapeutic class, etc.</p> <p>Allows the requester 
+         * to retrieve detail information about a specific drug 
+         * product.</p> Un-merged Business Name: DrugCode Relationship: 
+         * PORX_MT060170CA.DrugCode.value Conformance/Cardinality: 
+         * MANDATORY (1) <p>Indicates that the result set is to be 
+         * filtered to include only those records pertaining to the 
+         * specified drug. The code may refer to an orderable 
+         * medication or a higher level drug classification.</p> 
+         * <p>Allows for the retrieval of patient prescriptions and/or 
+         * dispenses based on a specific medication that was ordered 
+         * and/or dispensed. This will most commonly be used to filter 
+         * for therapeutic classifications such as 
+         * &quot;Anti-hypertensives&quot;.</p> Un-merged Business Name: 
+         * DrugCode Relationship: POME_MT010090CA.DrugCode.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>An identifier that 
          * describes a drug at any level of the clinical drug 
          * hierarchy. The code may describe (point to) a Manufactured 
          * drug, generic drug formulation, generic drug, therapeutic 
@@ -335,20 +422,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
          * constrained.</p> <p>Allows the requester to retrieve drugs 
          * of certain abstraction only. These drug abstractions 
          * include: Manufactured drug, generic formulation, generic, 
-         * therapeutic class, etc.</p> B:Drug Code <p>An identifier for 
-         * a specific drug product. Types of drugs identified by drug 
-         * code include: Manufactured drug, generic formulation, 
-         * generic, therapeutic class, etc.</p> <p>Allows the requester 
-         * to retrieve detail information about a specific drug 
-         * product.</p> Drug Code <p>Indicates that the result set is 
-         * to be filtered to include only those records pertaining to 
-         * the specified drug. The code may refer to an orderable 
-         * medication or a higher level drug classification.</p> 
-         * <p>Allows for the retrieval of patient prescriptions and/or 
-         * dispenses based on a specific medication that was ordered 
-         * and/or dispensed. This will most commonly be used to filter 
-         * for therapeutic classifications such as 
-         * &quot;Anti-hypertensives&quot;.</p></remarks>
+         * therapeutic class, etc.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"drugCode/value"})]
         public ClinicalDrug DrugCodeValue {
@@ -357,12 +431,36 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
         }
 
         /**
-         * <summary>IncludeEventHistoryIndicator</summary>
+         * <summary>Business Name: IncludeEventHistoryIndicator</summary>
          * 
-         * <remarks>Include Event History Indicator <p>Indicates 
-         * whether or not history events associated with a prescription 
-         * order, prescription dispense and/or active medications are 
-         * to be returned along with the detailed 
+         * <remarks>Un-merged Business Name: 
+         * IncludeEventHistoryIndicator Relationship: 
+         * PORX_MT060180CA.IncludeEventHistoryIndicator.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates whether 
+         * or not history events associated with a prescription order, 
+         * prescription dispense and/or other active medications are to 
+         * be returned along with the detailed 
+         * information.</p><p>&quot;Pending&quot; changes will be 
+         * returned regardless of the setting of this flag.</p> 
+         * <p>Indicates whether or not history events associated with a 
+         * prescription order, prescription dispense and/or other 
+         * active medications are to be returned along with the 
+         * detailed information.</p><p>&quot;Pending&quot; changes will 
+         * be returned regardless of the setting of this flag.</p> 
+         * <p>Allows for the flexibility of omitting/including history 
+         * in the retrieval of the requested information.</p><p>Because 
+         * the attribute is boolean, it must explicitly indicate a 
+         * 'TRUE' or 'FALSE', and thus it is mandatory.</p> <p>Allows 
+         * for the flexibility of omitting/including history in the 
+         * retrieval of the requested information.</p><p>Because the 
+         * attribute is boolean, it must explicitly indicate a 'TRUE' 
+         * or 'FALSE', and thus it is mandatory.</p> Un-merged Business 
+         * Name: IncludeEventHistoryIndicator Relationship: 
+         * PORX_MT060170CA.IncludeEventHistoryIndicator.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates whether 
+         * or not history events associated with a prescription order, 
+         * prescription dispense and/or active medications are to be 
+         * returned along with the detailed 
          * information.</p><p>&quot;Pending&quot; changes will be 
          * returned regardless of the setting of this flag.</p> 
          * <p>Indicates whether or not history events associated with a 
@@ -377,26 +475,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
          * for the flexibility of omitting/including history in the 
          * retrieval of the requested information.</p><p>Because the 
          * attribute is boolean, it must explicitly indicate a 'TRUE' 
-         * or 'FALSE', and thus it is mandatory.</p> Include Event 
-         * History Indicator <p>Indicates whether or not history events 
-         * associated with a prescription order, prescription dispense 
-         * and/or other active medications are to be returned along 
-         * with the detailed information.</p><p>&quot;Pending&quot; 
-         * changes will be returned regardless of the setting of this 
-         * flag.</p> <p>Indicates whether or not history events 
-         * associated with a prescription order, prescription dispense 
-         * and/or other active medications are to be returned along 
-         * with the detailed information.</p><p>&quot;Pending&quot; 
-         * changes will be returned regardless of the setting of this 
-         * flag.</p> <p>Allows for the flexibility of 
-         * omitting/including history in the retrieval of the requested 
-         * information.</p><p>Because the attribute is boolean, it must 
-         * explicitly indicate a 'TRUE' or 'FALSE', and thus it is 
-         * mandatory.</p> <p>Allows for the flexibility of 
-         * omitting/including history in the retrieval of the requested 
-         * information.</p><p>Because the attribute is boolean, it must 
-         * explicitly indicate a 'TRUE' or 'FALSE', and thus it is 
-         * mandatory.</p></remarks>
+         * or 'FALSE', and thus it is mandatory.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"includeEventHistoryIndicator/value"})]
         public bool? IncludeEventHistoryIndicatorValue {
@@ -405,10 +484,27 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
         }
 
         /**
-         * <summary>IncludeIssuesIndicator</summary>
+         * <summary>Business Name: IncludeIssuesIndicator</summary>
          * 
-         * <remarks>Include Issues Indicator <p>Indicates whether or 
-         * not Issues (detected and/or managed) attached to the 
+         * <remarks>Un-merged Business Name: IncludeIssuesIndicator 
+         * Relationship: PORX_MT060180CA.IncludeIssuesIndicator.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates whether 
+         * or not Issues (detected and/or managed) attached to the 
+         * prescriptions, dispenses and other active medication records 
+         * are to be returned along with the detailed information.</p> 
+         * <p>Allows for the flexibility of omitting/including issues 
+         * in the retrieval of medication detail profile 
+         * data.</p><p>Because the attribute is boolean, it must 
+         * explicitly indicate a 'TRUE' or 'FALSE', and thus it is 
+         * mandatory.</p> <p>Allows for the flexibility of 
+         * omitting/including issues in the retrieval of medication 
+         * detail profile data.</p><p>Because the attribute is boolean, 
+         * it must explicitly indicate a 'TRUE' or 'FALSE', and thus it 
+         * is mandatory.</p> Un-merged Business Name: 
+         * IncludeIssuesIndicator Relationship: 
+         * PORX_MT060170CA.IncludeIssuesIndicator.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates whether 
+         * or not Issues (detected and/or managed) attached to the 
          * prescriptions, dispenses and other active medication records 
          * are to be returned along with the detailed information.</p> 
          * <p>Allows for the flexibility of omitting/including issues 
@@ -428,20 +524,38 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
         }
 
         /**
-         * <summary>IncludeNotesIndicator</summary>
+         * <summary>Business Name: IncludeNotesIndicator</summary>
          * 
-         * <remarks>Include Notes Indicator <p>Indicates whether or not 
-         * notes attached to the prescription, dispenses and other 
-         * active medication records are to be returned along with the 
-         * detailed information.</p> <p>Allows for the flexibility of 
+         * <remarks>Un-merged Business Name: IncludeNotesIndicator 
+         * Relationship: PORX_MT060180CA.IncludeNotesIndicator.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates whether 
+         * or not notes attached to the prescription, dispenses and 
+         * other active medication records are to be returned along 
+         * with the detailed information.</p> <p>Allows for the 
+         * flexibility of omitting/including notes in the retrieval of 
+         * information for medication profile detail 
+         * data.</p><p>Because the attribute is boolean, it must 
+         * explicitly indicate a 'TRUE' or 'FALSE', and thus it is 
+         * mandatory.</p> <p>Allows for the flexibility of 
          * omitting/including notes in the retrieval of information for 
          * medication profile detail data.</p><p>Because the attribute 
          * is boolean, it must explicitly indicate a 'TRUE' or 'FALSE', 
-         * and thus it is mandatory.</p> <p>Allows for the flexibility 
-         * of omitting/including notes in the retrieval of information 
-         * for medication profile detail data.</p><p>Because the 
-         * attribute is boolean, it must explicitly indicate a 'TRUE' 
-         * or 'FALSE', and thus it is mandatory.</p></remarks>
+         * and thus it is mandatory.</p> Un-merged Business Name: 
+         * IncludeNotesIndicator Relationship: 
+         * PORX_MT060170CA.IncludeNotesIndicator.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates whether 
+         * or not notes attached to the prescription, dispenses and 
+         * other active medication records are to be returned along 
+         * with the detailed information.</p> <p>Allows for the 
+         * flexibility of omitting/including notes in the retrieval of 
+         * information for medication profile detail 
+         * data.</p><p>Because the attribute is boolean, it must 
+         * explicitly indicate a 'TRUE' or 'FALSE', and thus it is 
+         * mandatory.</p> <p>Allows for the flexibility of 
+         * omitting/including notes in the retrieval of information for 
+         * medication profile detail data.</p><p>Because the attribute 
+         * is boolean, it must explicitly indicate a 'TRUE' or 'FALSE', 
+         * and thus it is mandatory.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"includeNotesIndicator/value"})]
         public bool? IncludeNotesIndicatorValue {
@@ -450,11 +564,29 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
         }
 
         /**
-         * <summary>IncludePendingChangesIndicator</summary>
+         * <summary>Business Name: IncludePendingChangesIndicator</summary>
          * 
-         * <remarks>Include Pending Changes Indicator <p>Indicates 
-         * whether to include future changes (e.g. status changes that 
-         * aren't effective yet) associated with a prescription order, 
+         * <remarks>Un-merged Business Name: 
+         * IncludePendingChangesIndicator Relationship: 
+         * PORX_MT060180CA.IncludePendingChangesIndicator.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates whether 
+         * to include future changes (e.g. status changes that aren't 
+         * effective yet) associated with a prescription order, 
+         * prescription dispense and/or active medications are to be 
+         * returned along with the detailed information.</p> <p>Allows 
+         * for the flexibility of omitting/including future events in 
+         * the retrieval of the requested information.</p><p>Because 
+         * the attribute is boolean, it must explicitly indicate a 
+         * 'TRUE' or 'FALSE', and thus it is mandatory.</p> <p>Allows 
+         * for the flexibility of omitting/including future events in 
+         * the retrieval of the requested information.</p><p>Because 
+         * the attribute is boolean, it must explicitly indicate a 
+         * 'TRUE' or 'FALSE', and thus it is mandatory.</p> Un-merged 
+         * Business Name: IncludePendingChangesIndicator Relationship: 
+         * PORX_MT060170CA.IncludePendingChangesIndicator.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates whether 
+         * to include future changes (e.g. status changes that aren't 
+         * effective yet) associated with a prescription order, 
          * prescription dispense and/or active medications are to be 
          * returned along with the detailed information.</p> <p>Allows 
          * for the flexibility of omitting/including future events in 
@@ -473,19 +605,21 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
         }
 
         /**
-         * <summary>IssueFilterCode</summary>
+         * <summary>Business Name: IssueFilterCode</summary>
          * 
-         * <remarks>Issue Filter Code <p>Indicates whether records to 
-         * be returned (e.g. prescription order, prescription dispense 
-         * and/or other medication) should be filtered to those with at 
-         * least one persistent un-managed issue (against the record), 
-         * with at least one persistent issues or should return all 
-         * records, independent of the presence of persistent 
-         * issues.</p> <p>By filtering returned records to include only 
-         * those which have unmanaged issues or any issues at all, 
-         * allows a provider to focus on those aspects of care where 
-         * extra attention is needed. Because the attribute must be 
-         * known, it is mandatory.</p></remarks>
+         * <remarks>Un-merged Business Name: IssueFilterCode 
+         * Relationship: PORX_MT060180CA.IssueFilterCode.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates whether 
+         * records to be returned (e.g. prescription order, 
+         * prescription dispense and/or other medication) should be 
+         * filtered to those with at least one persistent un-managed 
+         * issue (against the record), with at least one persistent 
+         * issues or should return all records, independent of the 
+         * presence of persistent issues.</p> <p>By filtering returned 
+         * records to include only those which have unmanaged issues or 
+         * any issues at all, allows a provider to focus on those 
+         * aspects of care where extra attention is needed. Because the 
+         * attribute must be known, it is mandatory.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"issueFilterCode/value"})]
         public IssueFilterCode IssueFilterCodeValue {
@@ -494,9 +628,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
         }
 
         /**
-         * <summary>MostRecentByDrugIndicator</summary>
+         * <summary>Business Name: MostRecentByDrugIndicator</summary>
          * 
-         * <remarks>Most Recent By Drug Indicator <p>Indicates whether 
+         * <remarks>Un-merged Business Name: MostRecentByDrugIndicator 
+         * Relationship: 
+         * PORX_MT060180CA.MostRecentByDrugIndicator.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates whether 
          * or not the medication records are to be retrieved based on 
          * the most recent by Drug Code. If true, only the most recent 
          * prescription, dispense or other active medication for a 
@@ -521,33 +658,67 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
         }
 
         /**
-         * <summary>MostRecentDispenseForEachRxIndicator</summary>
+         * <summary>Business Name: MostRecentDispenseForEachRxIndicator</summary>
          * 
-         * <remarks>Most Recent Dispense for each Rx Indicator 
-         * <p>Indicates whether or not a prescription dispenses 
-         * returned on a query should be limited to only the most 
-         * recent dispense for a prescription.</p><p>Allows the 
-         * returning of at most one prescription dispense record per a 
-         * prescription.</p><p>The default is 'TRUE' indicating that 
-         * retrieval should be for only the most recent dispense for a 
-         * prescription is to be included in a query result.</p> 
-         * <p>Indicates whether or not a prescription dispenses 
-         * returned on a query should be limited to only the most 
-         * recent dispense for a prescription.</p><p>Allows the 
-         * returning of at most one prescription dispense record per a 
-         * prescription.</p><p>The default is 'TRUE' indicating that 
-         * retrieval should be for only the most recent dispense for a 
-         * prescription is to be included in a query result.</p> 
-         * <p>Indicates whether or not a prescription dispenses 
-         * returned on a query should be limited to only the most 
-         * recent dispense for a prescription.</p><p>Allows the 
-         * returning of at most one prescription dispense record per a 
-         * prescription.</p><p>The default is 'TRUE' indicating that 
-         * retrieval should be for only the most recent dispense for a 
-         * prescription is to be included in a query result.</p> 
-         * <p>Helps to trim down volume of query response by 
-         * eliminating multiple dispenses for the same 
-         * prescription.</p><p>Because this is a boolean attribute 
+         * <remarks>Un-merged Business Name: 
+         * MostRecentDispenseForEachRxIndicator Relationship: 
+         * PORX_MT060180CA.MostRecentDispenseForEachRxIndicator.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates whether 
+         * or not a prescription dispenses returned on a query should 
+         * be limited to only the most recent dispense for a 
+         * prescription.</p><p>Allows the returning of at most one 
+         * prescription dispense record per a prescription.</p><p>The 
+         * default is 'TRUE' indicating that retrieval should be for 
+         * only the most recent dispense for a prescription is to be 
+         * included in a query result.</p> <p>Indicates whether or not 
+         * a prescription dispenses returned on a query should be 
+         * limited to only the most recent dispense for a 
+         * prescription.</p><p>Allows the returning of at most one 
+         * prescription dispense record per a prescription.</p><p>The 
+         * default is 'TRUE' indicating that retrieval should be for 
+         * only the most recent dispense for a prescription is to be 
+         * included in a query result.</p> <p>Indicates whether or not 
+         * a prescription dispenses returned on a query should be 
+         * limited to only the most recent dispense for a 
+         * prescription.</p><p>Allows the returning of at most one 
+         * prescription dispense record per a prescription.</p><p>The 
+         * default is 'TRUE' indicating that retrieval should be for 
+         * only the most recent dispense for a prescription is to be 
+         * included in a query result.</p> <p>Helps to trim down volume 
+         * of query response by eliminating multiple dispenses for the 
+         * same prescription.</p><p>Because this is a boolean attribute 
+         * whose value must be known to evaluate the query, the 
+         * attribute is mandatory.</p> <p>Helps to trim down volume of 
+         * query response by eliminating multiple dispenses for the 
+         * same prescription.</p><p>Because this is a boolean attribute 
+         * whose value must be known to evaluate the query, the 
+         * attribute is mandatory.</p> Un-merged Business Name: 
+         * MostRecentDispenseForEachRxIndicator Relationship: 
+         * PORX_MT060170CA.MostRecentDispenseForEachRxIndicator.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates whether 
+         * or not a prescription dispenses returned on a query should 
+         * be limited to only the most recent dispense for a 
+         * prescription.</p><p>Allows the returning of at most one 
+         * prescription dispense record per a prescription.</p><p>The 
+         * default is 'TRUE' indicating that retrieval should be for 
+         * only the most recent dispense for a prescription is to be 
+         * included in a query result.</p> <p>Indicates whether or not 
+         * a prescription dispenses returned on a query should be 
+         * limited to only the most recent dispense for a 
+         * prescription.</p><p>Allows the returning of at most one 
+         * prescription dispense record per a prescription.</p><p>The 
+         * default is 'TRUE' indicating that retrieval should be for 
+         * only the most recent dispense for a prescription is to be 
+         * included in a query result.</p> <p>Indicates whether or not 
+         * a prescription dispenses returned on a query should be 
+         * limited to only the most recent dispense for a 
+         * prescription.</p><p>Allows the returning of at most one 
+         * prescription dispense record per a prescription.</p><p>The 
+         * default is 'TRUE' indicating that retrieval should be for 
+         * only the most recent dispense for a prescription is to be 
+         * included in a query result.</p> <p>Helps to trim down volume 
+         * of query response by eliminating multiple dispenses for the 
+         * same prescription.</p><p>Because this is a boolean attribute 
          * whose value must be known to evaluate the query, the 
          * attribute is mandatory.</p> <p>Helps to trim down volume of 
          * query response by eliminating multiple dispenses for the 
@@ -562,10 +733,20 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
         }
 
         /**
-         * <summary>OtherIndicationCode</summary>
+         * <summary>Business Name: OtherIndicationCode</summary>
          * 
-         * <remarks>Other Indication Code <p>Indicates that the result 
-         * set is to be filtered to include only those records 
+         * <remarks>Un-merged Business Name: OtherIndicationCode 
+         * Relationship: PORX_MT060180CA.OtherIndicationCode.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates that the 
+         * result set is to be filtered to include only those records 
+         * pertaining to the specified non-condition-related indication 
+         * code.</p> <p>Allows for the retrieval of patient's 
+         * prescriptions and/or dispenses based on prescribing 
+         * indications.</p> Un-merged Business Name: 
+         * OtherIndicationCode Relationship: 
+         * PORX_MT060170CA.OtherIndicationCode.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates that the 
+         * result set is to be filtered to include only those records 
          * pertaining to the specified non-condition-related indication 
          * code.</p> <p>Allows for the retrieval of patient's 
          * prescriptions and/or dispenses based on prescribing 
@@ -578,9 +759,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
         }
 
         /**
-         * <summary>OtherMedicationRecordId</summary>
+         * <summary>Business Name: OtherMedicationRecordId</summary>
          * 
-         * <remarks>E:Other Medication Record Id <p>Identifier of the 
+         * <remarks>Un-merged Business Name: OtherMedicationRecordId 
+         * Relationship: PORX_MT060180CA.OtherMedicationRecordId.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Identifier of the 
          * other active medication record for which detailed 
          * information is to be retrieved.</p> <p>Allows for the 
          * retrieval of medication records based on a specific active 
@@ -593,9 +776,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
         }
 
         /**
-         * <summary>PrescriberProviderID</summary>
+         * <summary>Business Name: PrescriberProviderID</summary>
          * 
-         * <remarks>Prescriber Provider ID <p>Identifier of the 
+         * <remarks>Un-merged Business Name: PrescriberProviderID 
+         * Relationship: PORX_MT060180CA.PrescriberProviderID.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Identifier of the 
          * prescriber who created and/or supervised the prescriptions 
          * being retrieved.</p><p>The result set will be filtered to 
          * only include records which were either directly created by 
@@ -615,9 +800,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
         }
 
         /**
-         * <summary>PrescriptionDispenseNumber</summary>
+         * <summary>Business Name: PrescriptionDispenseNumber</summary>
          * 
-         * <remarks>E:Prescription Dispense Number <p>Identifies which 
+         * <remarks>Un-merged Business Name: PrescriptionDispenseNumber 
+         * Relationship: 
+         * PORX_MT060180CA.PrescriptionDispenseNumber.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Identifies which 
          * prescription dispense record should be retrieved.</p> 
          * <p>Allows for the retrieval of medication records relating 
          * to a specific dispense record.</p></remarks>
@@ -629,9 +817,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
         }
 
         /**
-         * <summary>PrescriptionOrderNumber</summary>
+         * <summary>Business Name: PrescriptionOrderNumber</summary>
          * 
-         * <remarks>D:Prescription Order Number <p>Identifier of the 
+         * <remarks>Un-merged Business Name: PrescriptionOrderNumber 
+         * Relationship: PORX_MT060180CA.PrescriptionOrderNumber.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Identifier of the 
          * prescription for which detailed information is 
          * required.</p><p>The result set will be filtered to only the 
          * specific prescription.</p> <p>Identifier of the prescription 
@@ -646,9 +836,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
         }
 
         /**
-         * <summary>PrescriptionStatuses</summary>
+         * <summary>Business Name: PrescriptionStatuses</summary>
          * 
-         * <remarks>Prescription Statuses <p>Indicates that 
+         * <remarks>Un-merged Business Name: PrescriptionStatuses 
+         * Relationship: PORX_MT060180CA.PrescriptionStatus.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates that 
          * prescriptions of a specific statuses are to be included in 
          * the result set. Specific prescription statuses are: 
          * 'active', completed', 'aborted', 'suspended'.</p> <p>Allows 
@@ -661,12 +853,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
         }
 
         /**
-         * <summary>RxDispenserIndicators</summary>
+         * <summary>Business Name: RxDispenserIndicators</summary>
          * 
-         * <remarks>Rx Dispenser Indicators <p>A coded value indicating 
-         * the dispensing (fill) status of the prescription to be 
-         * included in the result set. Rx Dispense Indicators include: 
-         * ND (Never Dispensed), DRR (Dispensed with Refills 
+         * <remarks>Un-merged Business Name: RxDispenserIndicators 
+         * Relationship: PORX_MT060180CA.RxDispenseIndicator.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>A coded value 
+         * indicating the dispensing (fill) status of the prescription 
+         * to be included in the result set. Rx Dispense Indicators 
+         * include: ND (Never Dispensed), DRR (Dispensed with Refills 
          * Remaining), etc.</p><p>The repetition of 3 allows for 
          * retrieval based on all three Rx Dispense Indicators.</p> 
          * <p>A coded value indicating the dispensing (fill) status of 
@@ -684,13 +878,21 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
         }
 
         /**
-         * <summary>SymptomCode</summary>
+         * <summary>Business Name: SymptomCode</summary>
          * 
-         * <remarks>Symptom Code <p>Indicates that the result set is to 
-         * be filtered to include only those records pertaining to the 
+         * <remarks>Un-merged Business Name: SymptomCode Relationship: 
+         * PORX_MT060180CA.SymptomCode.value Conformance/Cardinality: 
+         * MANDATORY (1) <p>Indicates that the result set is to be 
+         * filtered to include only those records pertaining to the 
          * specified symptom indication code.</p> <p>Allows for the 
          * retrieval of patient's prescriptions and/or dispenses based 
-         * on prescribing indications.</p></remarks>
+         * on prescribing indications.</p> Un-merged Business Name: 
+         * SymptomCode Relationship: PORX_MT060170CA.SymptomCode.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates that the 
+         * result set is to be filtered to include only those records 
+         * pertaining to the specified symptom indication code.</p> 
+         * <p>Allows for the retrieval of patient's prescriptions 
+         * and/or dispenses based on prescribing indications.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"symptomCode/value"})]
         public SymptomValue SymptomCodeValue {
@@ -699,12 +901,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
         }
 
         /**
-         * <summary>TreatmentTypes</summary>
+         * <summary>Business Name: TreatmentTypes</summary>
          * 
-         * <remarks>Treatment Types <p>Indicates that the result set is 
-         * to be filtered to only include those records pertaining to 
-         * the specified treatment type (categories). The specific 
-         * values are &quot;Continuous/Chronic&quot;, 
+         * <remarks>Un-merged Business Name: TreatmentTypes 
+         * Relationship: PORX_MT060180CA.TreatmentType.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates that the 
+         * result set is to be filtered to only include those records 
+         * pertaining to the specified treatment type (categories). The 
+         * specific values are &quot;Continuous/Chronic&quot;, 
          * &quot;Short-Term/Acute&quot; and 
          * &quot;As-Needed/PRN&quot;.</p> <p>Allows for the retrieval 
          * of prescriptions and dispensed based on the intended 
@@ -718,10 +922,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
         }
 
         /**
-         * <summary>MedicationDocumentID</summary>
+         * <summary>Business Name: MedicationDocumentID</summary>
          * 
-         * <remarks>E:Medication Document ID <p>Unique identifier for a 
-         * particular medication document. This will reference a 
+         * <remarks>Un-merged Business Name: MedicationDocumentID 
+         * Relationship: POME_MT010050CA.MedicationDocumentID.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Unique identifier 
+         * for a particular medication document. This will reference a 
          * specific kind of documentation (e.g. DDI Monograph, Patient 
          * Education Monograph, Allergy Monograph, etc) created by a 
          * specific author organization (e.g. Health Canada, FDB, WHO, 
@@ -735,9 +941,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
         }
 
         /**
-         * <summary>MedicationDocumentType</summary>
+         * <summary>Business Name: MedicationDocumentType</summary>
          * 
-         * <remarks>D:Medication Document Type <p>Indicates that the 
+         * <remarks>Un-merged Business Name: MedicationDocumentType 
+         * Relationship: POME_MT010050CA.MedicationDocumentType.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates that the 
          * result set is to be filtered to include only those 
          * medication documents pertaining to the specified document 
          * category.</p><p>Valid medication document categories 
@@ -758,12 +966,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
         }
 
         /**
-         * <summary>PrescribingIndicationDiagnosisCode</summary>
+         * <summary>Business Name: PrescribingIndicationDiagnosisCode</summary>
          * 
-         * <remarks>C:Prescribing Indication Diagnosis Code <p>Returns 
-         * documents which relate to a particular diagnosis</p> 
-         * <p>Useful for finding protocols and drug monographs 
-         * associated with an indication</p></remarks>
+         * <remarks>Un-merged Business Name: 
+         * PrescribingIndicationDiagnosisCode Relationship: 
+         * POME_MT010050CA.PrescribingDiagnosisCode.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Returns documents 
+         * which relate to a particular diagnosis</p> <p>Useful for 
+         * finding protocols and drug monographs associated with an 
+         * indication</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"prescribingDiagnosisCode/value"})]
         public DiagnosisValue PrescribingDiagnosisCodeValue {
@@ -772,11 +983,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
         }
 
         /**
-         * <summary>PrescribingIndicationSymptomCode</summary>
+         * <summary>Business Name: PrescribingIndicationSymptomCode</summary>
          * 
-         * <remarks>Prescribing Indication Symptom Code <p>Returns 
-         * documents which relate to a particular symptom</p> <p>Useful 
-         * for finding protocols and drug monographs associated with an 
+         * <remarks>Un-merged Business Name: 
+         * PrescribingIndicationSymptomCode Relationship: 
+         * POME_MT010050CA.PrescribingSymptomCode.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Returns documents 
+         * which relate to a particular symptom</p> <p>Useful for 
+         * finding protocols and drug monographs associated with an 
          * indication</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"prescribingSymptomCode/value"})]
@@ -785,18 +999,28 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
             set { this.prescribingSymptomCodeValue.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * POME_MT010090CA.ParameterList.drugCharacteristics 
+         * Conformance/Cardinality: REQUIRED (0-5)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"drugCharacteristics"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Pome_mt010090ca.HasCharacteristic> DrugCharacteristics {
             get { return this.drugCharacteristics; }
         }
 
         /**
-         * <summary>OrderableDrugForm</summary>
+         * <summary>Business Name: OrderableDrugForm</summary>
          * 
-         * <remarks>D:Orderable Drug Form <p>Indicates the form in 
-         * which the drug product must is manufactured.</p> <p>Useful 
-         * filter for searching drugs. Allows the requester to specify 
-         * the drug form of interest for the retrieval.</p></remarks>
+         * <remarks>Un-merged Business Name: OrderableDrugForm 
+         * Relationship: POME_MT010090CA.DrugForm.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the form 
+         * in which the drug product must is manufactured.</p> 
+         * <p>Useful filter for searching drugs. Allows the requester 
+         * to specify the drug form of interest for the retrieval.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"drugForm/value"})]
         public OrderableDrugForm DrugFormValue {
@@ -805,9 +1029,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
         }
 
         /**
-         * <summary>DrugManufacturerName</summary>
+         * <summary>Business Name: DrugManufacturerName</summary>
          * 
-         * <remarks>F:Drug Manufacturer Name <p>The name of a drug 
+         * <remarks>Un-merged Business Name: DrugManufacturerName 
+         * Relationship: POME_MT010090CA.DrugManufacturerName.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>The name of a drug 
          * manufacturer.</p> <p>Allows for the retrieval of drug 
          * products based on the manufacturer.</p> <p>Manufacturer name 
          * search will be 'Starts with...' type of a search.</p></remarks>
@@ -819,11 +1045,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
         }
 
         /**
-         * <summary>DrugName</summary>
+         * <summary>Business Name: DrugName</summary>
          * 
-         * <remarks>C:Drug Name <p>The name assigned to a drug.</p> 
-         * <p>Name may be the only identification of a drug known by 
-         * many prescribers.</p></remarks>
+         * <remarks>Un-merged Business Name: DrugName Relationship: 
+         * POME_MT010090CA.DrugName.value Conformance/Cardinality: 
+         * MANDATORY (1) <p>The name assigned to a drug.</p> <p>Name 
+         * may be the only identification of a drug known by many 
+         * prescribers.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"drugName/value"})]
         public String DrugNameValue {
@@ -832,12 +1060,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
         }
 
         /**
-         * <summary>DrugRouteCode</summary>
+         * <summary>Business Name: DrugRouteCode</summary>
          * 
-         * <remarks>E:Drug Route Code <p>A filter based on how the drug 
-         * should be introduced into the patient's body (e.g. Oral, 
-         * topical, etc.)</p> <p>Allows limiting the returned list of 
-         * drugs to a single route.</p></remarks>
+         * <remarks>Un-merged Business Name: DrugRouteCode 
+         * Relationship: POME_MT010090CA.DrugRoute.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>A filter based on 
+         * how the drug should be introduced into the patient's body 
+         * (e.g. Oral, topical, etc.)</p> <p>Allows limiting the 
+         * returned list of drugs to a single route.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"drugRoute/value"})]
         public RouteOfAdministration DrugRouteValue {

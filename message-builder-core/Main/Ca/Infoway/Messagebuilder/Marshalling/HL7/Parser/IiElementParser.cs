@@ -1,15 +1,31 @@
+/**
+ * Copyright 2013 Canada Health Infoway, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Author:        $LastChangedBy: tmcgrady $
+ * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Revision:      $LastChangedRevision: 2623 $
+ */
 using System;
 using System.Xml;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Datatype.Impl;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
-using Ca.Infoway.Messagebuilder.Lang;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser;
-using Ca.Infoway.Messagebuilder.Platform;
 using Ca.Infoway.Messagebuilder.Util.Xml;
-using ILOG.J2CsMapping.Text;
 
 namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 {
@@ -32,97 +48,72 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 	[DataTypeHandler("II")]
 	internal class IiElementParser : AbstractSingleElementParser<Identifier>
 	{
-		private static readonly string II = "II";
-
-		private static readonly string II_TOKEN = "II.TOKEN";
-
-		private static readonly string II_BUS = "II.BUS";
-
-		private static readonly string II_PUBLIC = "II.PUBLIC";
-
-		private static readonly string II_OID = "II.OID";
-
-		private static readonly string II_VER = "II.VER";
-
-		private static readonly string II_BUS_AND_VER = "II.BUS_AND_VER";
+		private static readonly IiValidationUtils iiValidationUtils = new IiValidationUtils();
 
 		protected override BareANY DoCreateDataTypeInstance(string typeName)
 		{
 			return new IIImpl();
 		}
 
-		/// <exception cref="Ca.Infoway.Messagebuilder.Marshalling.HL7.XmlToModelTransformationException"></exception>
 		protected override Identifier ParseNonNullNode(ParseContext context, XmlNode node, BareANY result, Type returnType, XmlToModelResult
 			 xmlToModelResult)
 		{
 			XmlElement element = (XmlElement)node;
+			VersionNumber version = (context == null ? null : context.GetVersion());
 			string root = GetMandatoryAttributeValue(element, "root", xmlToModelResult);
 			string extension = GetAttributeValue(element, "extension");
-			string type = GetType(context, element, xmlToModelResult);
-			// type might have resolved to something different if this II.x is abstract (II, II_BUS_AND_VER), so set it again
+			string versionAttribute = null;
+			string type = HandleSpecializationType(context, element, xmlToModelResult);
+			// type might have resolved to something different if this II.x is abstract (II, II_BUS_AND_VER), so set it again before performing validations
 			SetDataType(type, result);
-			if (StringUtils.IsBlank(root))
+			if (IiValidationUtils.II.Equals(type))
 			{
+				// should only occur for CeRx and AB, but could happen if a relationship of type II is not specified via specializationType 
+				ValidateII(xmlToModelResult, element, version, root, extension, type);
 			}
 			else
 			{
-				// skip it... already handled
-				if (II_TOKEN.Equals(type))
+				if (IiValidationUtils.II_TOKEN.Equals(type))
 				{
-					ValidateRootAsUuid(element, root, xmlToModelResult);
-					ValidateUnallowedAttributes(type, element, xmlToModelResult, "extension");
-					ValidateUnallowedAttributes(type, element, xmlToModelResult, "use");
-					ValidateUnallowedAttributes(type, element, xmlToModelResult, "displayable");
+					ValidateII_TOKEN(xmlToModelResult, element, root, type, version);
 				}
 				else
 				{
-					if (II_BUS.Equals(type))
+					if (IiValidationUtils.II_BUS.Equals(type))
 					{
-						if (!IsUuid(root))
-						{
-							ValidateRootAsOid(root, element, xmlToModelResult);
-						}
-						else
-						{
-							ValidateRootAsUuid(element, root, xmlToModelResult);
-							ValidateUnallowedAttributes(type, element, xmlToModelResult, "extension");
-						}
-						ValidateUnallowedAttributes(type, element, xmlToModelResult, "displayable");
-						ValidateAttributeEquals(type, element, xmlToModelResult, "use", "BUS");
+						ValidateII_BUS(xmlToModelResult, element, root, extension, type, version);
 					}
 					else
 					{
-						if (II_OID.Equals(type))
+						if (IiValidationUtils.II_OID.Equals(type))
 						{
-							ValidateRootAsOid(root, element, xmlToModelResult);
-							ValidateUnallowedAttributes(type, element, xmlToModelResult, "extension");
-							ValidateUnallowedAttributes(type, element, xmlToModelResult, "use");
-							ValidateUnallowedAttributes(type, element, xmlToModelResult, "displayable");
+							ValidateII_OID(context, xmlToModelResult, element, root, type, version);
 						}
 						else
 						{
-							if (II_PUBLIC.Equals(type))
+							if (IiValidationUtils.II_PUBLIC.Equals(type))
 							{
-								ValidateRootAsOid(root, element, xmlToModelResult);
-								ValidateAttributeEquals(type, element, xmlToModelResult, "displayable", "true");
-								// Redmine 11293 - TM - must have use=BUS, but not for MR2007 (use is not permitted in this case)
-								if (IsMR2009(context.GetVersion()))
-								{
-									ValidateAttributeEquals(type, element, xmlToModelResult, "use", "BUS");
-								}
-								else
-								{
-									ValidateUnallowedAttributes(type, element, xmlToModelResult, "use");
-								}
+								ValidateII_PUBLIC(context, xmlToModelResult, element, root, extension, type, version, false);
 							}
 							else
 							{
-								if (II_VER.Equals(type))
+								if (IiValidationUtils.II_VER.Equals(type))
 								{
-									ValidateRootAsUuid(element, root, xmlToModelResult);
-									ValidateUnallowedAttributes(type, element, xmlToModelResult, "extension");
-									ValidateUnallowedAttributes(type, element, xmlToModelResult, "displayable");
-									ValidateAttributeEquals(type, element, xmlToModelResult, "use", "VER");
+									ValidateII_VER(xmlToModelResult, element, root, type, version);
+								}
+								else
+								{
+									if (IiValidationUtils.II_BUSVER.Equals(type))
+									{
+										versionAttribute = ValidateII_BUSVER(xmlToModelResult, element, root, extension, type, version);
+									}
+									else
+									{
+										if (IiValidationUtils.II_PUBLICVER.Equals(type))
+										{
+											versionAttribute = ValidateII_PUBLICVER(context, xmlToModelResult, element, root, extension, type, version);
+										}
+									}
 								}
 							}
 						}
@@ -130,50 +121,171 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 				}
 			}
 			ValidateUnallowedAttributes(type, element, xmlToModelResult, "assigningAuthorityName");
-			return new Identifier(root, extension);
+			return new Identifier(root, extension, versionAttribute);
 		}
 
-		private bool IsMR2009(VersionNumber version)
+		private void ValidateII(XmlToModelResult xmlToModelResult, XmlElement element, VersionNumber version, string root, string
+			 extension, string type)
 		{
-			return SpecificationVersion.IsVersion(SpecificationVersion.R02_04_02, version) || SpecificationVersion.IsVersion(SpecificationVersion
-				.R02_04_03, version);
+			ValidateRootAndExtensionAsOidOrUuid(xmlToModelResult, element, root, extension, type, version);
+			ValidateUnallowedAttributes(type, element, xmlToModelResult, "displayable");
+			ValidateUnallowedAttributes(type, element, xmlToModelResult, "use");
 		}
 
-		private string GetType(ParseContext context, XmlElement element, XmlToModelResult xmlToModelResult)
+		private string ValidateII_PUBLICVER(ParseContext context, XmlToModelResult xmlToModelResult, XmlElement element, string root
+			, string extension, string type, VersionNumber version)
 		{
-			string type = context.Type;
-			if (IsSpecializationTypeAllowed(context, type))
+			ValidateII_PUBLIC(context, xmlToModelResult, element, root, extension, type, version, true);
+			return GetMandatoryAttributeValue(element, "version", xmlToModelResult);
+		}
+
+		private string ValidateII_BUSVER(XmlToModelResult xmlToModelResult, XmlElement element, string root, string extension, string
+			 type, VersionNumber version)
+		{
+			ValidateII_BUS(xmlToModelResult, element, root, extension, type, version);
+			return GetMandatoryAttributeValue(element, "version", xmlToModelResult);
+		}
+
+		private void ValidateII_VER(XmlToModelResult xmlToModelResult, XmlElement element, string root, string type, VersionNumber
+			 version)
+		{
+			ValidateRootAsUuid(element, root, xmlToModelResult, version);
+			ValidateUnallowedAttributes(type, element, xmlToModelResult, "extension");
+			ValidateUnallowedAttributes(type, element, xmlToModelResult, "displayable");
+			ValidateAttributeEquals(type, element, xmlToModelResult, "use", "VER");
+		}
+
+		private void ValidateII_TOKEN(XmlToModelResult xmlToModelResult, XmlElement element, string root, string type, VersionNumber
+			 version)
+		{
+			ValidateRootAsUuid(element, root, xmlToModelResult, version);
+			ValidateUnallowedAttributes(type, element, xmlToModelResult, "extension");
+			ValidateUnallowedAttributes(type, element, xmlToModelResult, "use");
+			ValidateUnallowedAttributes(type, element, xmlToModelResult, "displayable");
+		}
+
+		private void ValidateII_OID(ParseContext context, XmlToModelResult xmlToModelResult, XmlElement element, string root, string
+			 type, VersionNumber version)
+		{
+			ValidateRootAsOid(root, element, xmlToModelResult, version);
+			ValidateUnallowedAttributes(type, element, xmlToModelResult, "extension");
+			ValidateUnallowedAttributes(type, element, xmlToModelResult, "displayable");
+			if (!iiValidationUtils.IsCerxOrMr2007(context.GetVersion()))
 			{
-				if (II_BUS_AND_VER.Equals(type) || II.Equals(type))
+				ValidateAttributeEquals(type, element, xmlToModelResult, "use", "BUS");
+			}
+			else
+			{
+				ValidateUnallowedAttributes(type, element, xmlToModelResult, "use");
+			}
+		}
+
+		private void ValidateII_PUBLIC(ParseContext context, XmlToModelResult xmlToModelResult, XmlElement element, string root, 
+			string extension, string type, VersionNumber version, bool isII_PUBLICVER)
+		{
+			ValidateRootAsOid(root, element, xmlToModelResult, version);
+			ValidateExtensionForOid(xmlToModelResult, element, extension);
+			ValidateAttributeEquals(type, element, xmlToModelResult, "displayable", "true");
+			// Redmine 11293 - TM - must have use=BUS, but not for MR2007 (use is not permitted in this case)
+			if (!isII_PUBLICVER && !iiValidationUtils.IsCerxOrMr2007(context.GetVersion()))
+			{
+				ValidateAttributeEquals(type, element, xmlToModelResult, "use", "BUS");
+			}
+			else
+			{
+				ValidateUnallowedAttributes(type, element, xmlToModelResult, "use");
+			}
+		}
+
+		private void ValidateII_BUS(XmlToModelResult xmlToModelResult, XmlElement element, string root, string extension, string 
+			type, VersionNumber version)
+		{
+			ValidateRootAndExtensionAsOidOrUuid(xmlToModelResult, element, root, extension, type, version);
+			ValidateUnallowedAttributes(type, element, xmlToModelResult, "displayable");
+			ValidateAttributeEquals(type, element, xmlToModelResult, "use", "BUS");
+		}
+
+		private void ValidateRootAndExtensionAsOidOrUuid(XmlToModelResult xmlToModelResult, XmlElement element, string root, string
+			 extension, string type, VersionNumber version)
+		{
+			// if root has not been provided don't bother further validating root or extension
+			if (StringUtils.IsNotBlank(root))
+			{
+				if (!iiValidationUtils.IsUuid(root))
 				{
-					//   || II.equals(type)   ???? if plain II, then probably CeRx... (don't do extra validations)
-					string specializationType = GetAttributeValue(element, AbstractElementParser.SPECIALIZATION_TYPE);
-					if (specializationType == null)
+					ValidateRootAsOid(root, element, xmlToModelResult, version);
+					ValidateExtensionForOid(xmlToModelResult, element, extension);
+				}
+				else
+				{
+					ValidateRootAsUuid(element, root, xmlToModelResult, version);
+					ValidateUnallowedAttributes(type, element, xmlToModelResult, "extension");
+				}
+			}
+		}
+
+		private void ValidateExtensionForOid(XmlToModelResult xmlToModelResult, XmlElement element, string extension)
+		{
+			// extension is mandatory in this case
+			GetMandatoryAttributeValue(element, "extension", xmlToModelResult);
+			ValidateExtensionLength(element, extension, xmlToModelResult);
+		}
+
+		private string HandleSpecializationType(ParseContext context, XmlElement element, XmlToModelResult xmlToModelResult)
+		{
+			VersionNumber version = context.GetVersion();
+			string typeFromContext = context.Type;
+			string specializationType = GetAttributeValue(element, AbstractElementParser.SPECIALIZATION_TYPE);
+			if (iiValidationUtils.IsSpecializationTypeRequired(version, typeFromContext))
+			{
+				bool validSpecializationType = IsSpecializationTypeProvided(specializationType);
+				if (iiValidationUtils.IsII(typeFromContext))
+				{
+					validSpecializationType &= IiValidationUtils.concreteIiTypes.Contains(specializationType);
+				}
+				else
+				{
+					if (iiValidationUtils.IsIiBusAndVer(typeFromContext))
 					{
-						xmlToModelResult.AddHl7Error(Hl7Error.CreateMissingMandatoryAttributeError(AbstractElementParser.SPECIALIZATION_TYPE, element
-							));
+						validSpecializationType &= iiValidationUtils.IsIiBusOrIiVer(specializationType);
+					}
+				}
+				// only override type if new type is valid
+				if (validSpecializationType)
+				{
+					typeFromContext = specializationType;
+				}
+				else
+				{
+					if (iiValidationUtils.IsIiBusAndVer(typeFromContext))
+					{
+						string use = GetAttributeValue(element, "use");
+						typeFromContext = ("VER".Equals(use) ? IiValidationUtils.II_VER : IiValidationUtils.II_BUS);
+						// II.BUS allows oids and uuids, so default to it as a last resort
+						RecordError(iiValidationUtils.GetInvalidSpecializationTypeForBusAndVerErrorMessage(specializationType, typeFromContext), 
+							element, xmlToModelResult);
 					}
 					else
 					{
-						if (II_BUS_AND_VER.Equals(type) && !II_BUS.Equals(specializationType) && !II_VER.Equals(specializationType))
-						{
-							xmlToModelResult.AddHl7Error(new Hl7Error(Hl7ErrorCode.DATA_TYPE_ERROR, "Specialization type must be II.BUS or II.VER. Invalid specialization type "
-								 + specializationType + " (" + XmlDescriber.DescribeSingleElement(element) + ")", element));
-						}
-						else
-						{
-							type = specializationType;
-						}
+						RecordError(iiValidationUtils.GetInvalidOrMissingSpecializationTypeErrorMessage(specializationType), element, xmlToModelResult
+							);
 					}
 				}
 			}
-			return type;
+			else
+			{
+				if (IsSpecializationTypeProvided(specializationType))
+				{
+					RecordError(iiValidationUtils.GetShouldNotProvideSpecializationTypeErrorMessage(typeFromContext), element, xmlToModelResult
+						);
+				}
+			}
+			return typeFromContext;
 		}
 
-		private bool IsSpecializationTypeAllowed(ParseContext context, string type)
+		private bool IsSpecializationTypeProvided(string specializationType)
 		{
-			return !SpecificationVersion.IsVersion(SpecificationVersion.V01R04_3, context.GetVersion()) && !(SpecificationVersion.IsVersion
-				(SpecificationVersion.V02R02_AB, context.GetVersion()) && II.Equals(type));
+			return specializationType != null;
 		}
 
 		private void ValidateAttributeEquals(string type, XmlElement element, XmlToModelResult xmlToModelResult, string attributeName
@@ -181,75 +293,65 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		{
 			if (!element.HasAttribute(attributeName))
 			{
-				xmlToModelResult.AddHl7Error(new Hl7Error(Hl7ErrorCode.DATA_TYPE_ERROR, System.String.Format("Data type " + type + " requires the attribute {0}=\"{1}\" ({2})"
-					, attributeName, XmlStringEscape.Escape(attributeValue), XmlDescriber.DescribeSingleElement(element)), element));
+				RecordError(iiValidationUtils.GetMissingAttributeErrorMessage(type, attributeName, attributeValue), element, xmlToModelResult
+					);
 			}
 			else
 			{
 				if (!StringUtils.Equals(element.GetAttribute(attributeName), attributeValue))
 				{
-					xmlToModelResult.AddHl7Error(new Hl7Error(Hl7ErrorCode.DATA_TYPE_ERROR, System.String.Format("Data type " + type + " expected the attribute {0}=\"{1}\" ({2})"
-						, attributeName, XmlStringEscape.Escape(attributeValue), XmlDescriber.DescribeSingleElement(element)), element));
+					RecordError(iiValidationUtils.GetIncorrectAttributeValueErrorMessage(type, attributeName, attributeValue), element, xmlToModelResult
+						);
 				}
 			}
 		}
 
-		private void ValidateRootAsUuid(XmlElement element, string root, XmlToModelResult xmlToModelResult)
+		private void ValidateRootAsUuid(XmlElement element, string root, XmlToModelResult xmlToModelResult, VersionNumber version
+			)
 		{
-			if (!IsUuid(root))
+			if (StringUtils.IsNotBlank(root))
 			{
-				xmlToModelResult.AddHl7Error(new Hl7Error(Hl7ErrorCode.DATA_TYPE_ERROR, "root '" + root + "' should be a UUID. (" + XmlDescriber
-					.DescribeSingleElement(element) + ")", element));
-			}
-		}
-
-		private bool IsUuid(string root)
-		{
-			try
-			{
-				UUID.FromString(root);
-				return true;
-			}
-			catch (Exception)
-			{
-				return false;
-			}
-		}
-
-		private void ValidateRootAsOid(string root, XmlElement element, XmlToModelResult xmlToModelResult)
-		{
-			if (!IsOid(root))
-			{
-				xmlToModelResult.AddHl7Error(new Hl7Error(Hl7ErrorCode.DATA_TYPE_ERROR, "The oid, \"" + root + "\" does not appear to be a valid oid"
-					, element));
-			}
-		}
-
-		internal virtual bool IsOid(string root)
-		{
-			if (StringUtils.IsBlank(root) || !root.Contains("."))
-			{
-				return false;
-			}
-			else
-			{
-				bool oid = true;
-				while (root.Contains("."))
+				if (!iiValidationUtils.IsUuid(root))
 				{
-					string prefix = StringUtils.SubstringBefore(root, ".");
-					oid &= (StringUtils.IsNotBlank(prefix) && StringUtils.IsNumeric(prefix));
-					root = StringUtils.SubstringAfter(root, ".");
+					RecordError(iiValidationUtils.GetRootMustBeUuidErrorMessage(root), element, xmlToModelResult);
 				}
-				if (StringUtils.IsBlank(root))
-				{
-					oid = false;
-				}
-				else
-				{
-					oid &= StringUtils.IsNumeric(root);
-				}
-				return oid;
+				ValidateRootLength(element, root, xmlToModelResult, version);
 			}
+		}
+
+		private void ValidateRootLength(XmlElement element, string root, XmlToModelResult xmlToModelResult, VersionNumber version
+			)
+		{
+			if (iiValidationUtils.IsRootLengthInvalid(root, version))
+			{
+				RecordError(iiValidationUtils.GetInvalidRootLengthErrorMessage(root, version), element, xmlToModelResult);
+			}
+		}
+
+		private void ValidateExtensionLength(XmlElement element, string extension, XmlToModelResult xmlToModelResult)
+		{
+			if (iiValidationUtils.IsExtensionLengthInvalid(extension))
+			{
+				RecordError(iiValidationUtils.GetInvalidExtensionLengthErrorMessage(extension), element, xmlToModelResult);
+			}
+		}
+
+		private void ValidateRootAsOid(string root, XmlElement element, XmlToModelResult xmlToModelResult, VersionNumber version)
+		{
+			if (StringUtils.IsNotBlank(root))
+			{
+				if (!iiValidationUtils.IsOid(root))
+				{
+					RecordError(iiValidationUtils.GetRootMustBeAnOidErrorMessage(root), element, xmlToModelResult);
+				}
+				ValidateRootLength(element, root, xmlToModelResult, version);
+			}
+		}
+
+		private void RecordError(string message, XmlElement element, XmlToModelResult xmlToModelResult)
+		{
+			xmlToModelResult.AddHl7Error(new Hl7Error(Hl7ErrorCode.DATA_TYPE_ERROR, message + " (" + XmlDescriber.DescribeSingleElement
+				(element) + ")", element));
 		}
 	}
 }

@@ -1,11 +1,31 @@
+/**
+ * Copyright 2013 Canada Health Infoway, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Author:        $LastChangedBy: tmcgrady $
+ * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Revision:      $LastChangedRevision: 2623 $
+ */
 using System;
 using System.Xml;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Datatype.Impl;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
+using Ca.Infoway.Messagebuilder.Datatype.Lang.Util;
+using Ca.Infoway.Messagebuilder.Domainvalue;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
-using Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser;
 using Ca.Infoway.Messagebuilder.Platform;
 using Ca.Infoway.Messagebuilder.Util.Xml;
@@ -32,14 +52,15 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 	[DataTypeHandler("ED")]
 	internal class EdElementParser : AbstractSingleElementParser<EncapsulatedData>
 	{
-		/// <exception cref="Ca.Infoway.Messagebuilder.Marshalling.HL7.XmlToModelTransformationException"></exception>
+		private EdValidationUtils edValidationUtils = new EdValidationUtils();
+
 		protected override EncapsulatedData ParseNonNullNode(ParseContext context, XmlNode node, BareANY result, Type expectedReturnType
 			, XmlToModelResult xmlToModelResult)
 		{
-			ValidateMaxChildCount(context, node, 1);
+			ValidateMaxChildCount(context, node, StandardDataType.ED_DOC.Type.Equals(context.Type) ? 2 : 1);
 			try
 			{
-				return Parse(node);
+				return Parse((XmlElement)node, context, xmlToModelResult);
 			}
 			catch (Exception e)
 			{
@@ -47,16 +68,18 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			}
 		}
 
-		private EncapsulatedData Parse(XmlNode node)
+		private EncapsulatedData Parse(XmlElement element, ParseContext context, XmlToModelResult xmlToModelResult)
 		{
-			XmlElement element = (XmlElement)node;
-			MediaType mediaType = ParseMediaType(element);
+			string specializationType = ParseSpecializationType(element);
 			Compression compression = ParseCompression(element);
+			x_DocumentMediaType mediaType = ParseMediaType(element);
 			string language = ParseLanguage(element);
 			string representation = ParseRepresentation(element);
 			string reference = ParseReference(element);
 			byte[] content = ParseContent(element, representation);
-			if (compression != null || language != null)
+			Validate(specializationType, compression, mediaType, language, representation, reference, content, element, context, xmlToModelResult
+				);
+			if (compression != null)
 			{
 				return new CompressedData(mediaType, reference, content, compression, language);
 			}
@@ -64,7 +87,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			{
 				if (mediaType != null || reference != null || content != null)
 				{
-					return new EncapsulatedData(mediaType, reference, content);
+					return new EncapsulatedData(mediaType, reference, language, content);
 				}
 				else
 				{
@@ -73,13 +96,25 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			}
 		}
 
+		private void Validate(string specializationType, Compression compression, x_DocumentMediaType mediaType, string language, 
+			string representation, string reference, byte[] content, XmlElement element, ParseContext context, XmlToModelResult xmlToModelResult
+			)
+		{
+			Hl7BaseVersion baseVersion = context.GetVersion().GetBaseVersion();
+			string type = context.Type;
+			Hl7Errors errors = xmlToModelResult;
+			bool hasCompression = element.HasAttribute(EdValidationUtils.ATTRIBUTE_COMPRESSION);
+			this.edValidationUtils.DoValidate(specializationType, compression, hasCompression, mediaType, language, representation, reference
+				, content, baseVersion, type, element, null, errors);
+		}
+
 		private byte[] ParseContent(XmlElement element, string representation)
 		{
 			byte[] content = null;
 			string text = NodeUtil.GetTextValue(element, false);
 			if (!StringUtils.IsBlank(text))
 			{
-				if (EdPropertyFormatter.REPRESENTATION_B64.EqualsIgnoreCase(representation))
+				if (EdValidationUtils.REPRESENTATION_B64.EqualsIgnoreCase(representation))
 				{
 					content = Base64.DecodeBase64String(text);
 				}
@@ -93,59 +128,69 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 
 		private string ParseRepresentation(XmlElement element)
 		{
-			if (element.HasAttribute(EdPropertyFormatter.ATTRIBUTE_REPRESENTATION))
+			if (element.HasAttribute(EdValidationUtils.ATTRIBUTE_REPRESENTATION))
 			{
-				return element.GetAttribute(EdPropertyFormatter.ATTRIBUTE_REPRESENTATION);
+				return element.GetAttribute(EdValidationUtils.ATTRIBUTE_REPRESENTATION);
 			}
 			return null;
 		}
 
 		private string ParseReference(XmlElement element)
 		{
-			if (element.HasAttribute(EdPropertyFormatter.ELEMENT_REFERENCE))
+			if (element.HasAttribute(EdValidationUtils.ELEMENT_REFERENCE))
 			{
 				// this format of ED is no longer correct (for any HL7v3 version), contrary to what V01R04.3 and V02R02 data type specifications state
-				return element.GetAttribute(EdPropertyFormatter.ELEMENT_REFERENCE);
+				return element.GetAttribute(EdValidationUtils.ELEMENT_REFERENCE);
 			}
 			else
 			{
 				// look for newer format for providing reference within a "value" attribute of a "reference" element
-				XmlNodeList elements = element.GetElementsByTagName(EdPropertyFormatter.ELEMENT_REFERENCE);
+				XmlNodeList elements = element.GetElementsByTagName(EdValidationUtils.ELEMENT_REFERENCE);
 				if (elements.Count == 1)
 				{
 					XmlElement reference = (XmlElement)elements.Item(0);
-					if (reference.HasAttribute(EdPropertyFormatter.ATTRIBUTE_VALUE))
+					if (reference.HasAttribute(EdValidationUtils.ATTRIBUTE_VALUE))
 					{
-						return reference.GetAttribute(EdPropertyFormatter.ATTRIBUTE_VALUE);
+						return reference.GetAttribute(EdValidationUtils.ATTRIBUTE_VALUE);
 					}
 				}
 			}
 			return null;
 		}
 
+		private string ParseSpecializationType(XmlElement element)
+		{
+			if (element.HasAttribute(AbstractElementParser.SPECIALIZATION_TYPE))
+			{
+				return element.GetAttribute(AbstractElementParser.SPECIALIZATION_TYPE);
+			}
+			return null;
+		}
+
 		private string ParseLanguage(XmlElement element)
 		{
-			if (element.HasAttribute(EdPropertyFormatter.ATTRIBUTE_LANGUAGE))
+			if (element.HasAttribute(EdValidationUtils.ATTRIBUTE_LANGUAGE))
 			{
-				return element.GetAttribute(EdPropertyFormatter.ATTRIBUTE_LANGUAGE);
+				return element.GetAttribute(EdValidationUtils.ATTRIBUTE_LANGUAGE);
 			}
 			return null;
 		}
 
 		private Compression ParseCompression(XmlElement element)
 		{
-			if (element.HasAttribute(EdPropertyFormatter.ATTRIBUTE_COMPRESSION))
+			if (element.HasAttribute(EdValidationUtils.ATTRIBUTE_COMPRESSION))
 			{
-				return Compression.Get(element.GetAttribute(EdPropertyFormatter.ATTRIBUTE_COMPRESSION));
+				return Compression.Get(element.GetAttribute(EdValidationUtils.ATTRIBUTE_COMPRESSION));
 			}
 			return null;
 		}
 
-		private MediaType ParseMediaType(XmlElement element)
+		private x_DocumentMediaType ParseMediaType(XmlElement element)
 		{
-			if (element.HasAttribute(EdPropertyFormatter.ATTRIBUTE_MEDIA_TYPE))
+			if (element.HasAttribute(EdValidationUtils.ATTRIBUTE_MEDIA_TYPE))
 			{
-				return MediaType.Get(element.GetAttribute(EdPropertyFormatter.ATTRIBUTE_MEDIA_TYPE));
+				return Ca.Infoway.Messagebuilder.Domainvalue.Basic.X_DocumentMediaType.Get(element.GetAttribute(EdValidationUtils.ATTRIBUTE_MEDIA_TYPE
+					));
 			}
 			return null;
 		}

@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,13 +24,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Ficr_mt61020
 
 
     /**
-     * <summary>Payment Reason</summary>
+     * <summary>Business Name: Payment Reason</summary>
      * 
-     * <remarks><p>For spontaneous EOBs, there may be more than 1 
-     * EOB for the same Payment Intent.</p> <p>For deferred 
-     * adjudication, this may be of value. Spontaneous EOBs for 
-     * policies that were not asked for on an invoice will likely 
-     * require separate Payment Intents and/or EOBs.</p></remarks>
+     * <p>For spontaneous EOBs, there may be more than 1 EOB for 
+     * the same Payment Intent.</p> <p>For deferred adjudication, 
+     * this may be of value. Spontaneous EOBs for policies that 
+     * were not asked for on an invoice will likely require 
+     * separate Payment Intents and/or EOBs.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"FICR_MT610201CA.PaymentIntentReason"})]
     public class PaymentReason : MessagePartBean {
@@ -39,6 +39,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Ficr_mt61020
 
         public PaymentReason() {
         }
+        /**
+         * <summary>Relationship: 
+         * FICR_MT610201CA.PaymentIntentReason.adjudicatedInvoiceElementGroup</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"adjudicatedInvoiceElementGroup"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Ficr_mt610201ca.AdjudicatedInvoice AdjudicatedInvoiceElementGroup {
             get { return this.adjudicatedInvoiceElementGroup; }

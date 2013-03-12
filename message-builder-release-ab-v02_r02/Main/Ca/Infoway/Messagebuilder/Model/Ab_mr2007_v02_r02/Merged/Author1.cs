@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,12 +32,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
     /**
      * <summary>PORX_MT060340CA.Author1: *changed by</summary>
      * 
-     * <remarks><p>Identity of the health service provider or 
-     * application responsible for the change in the prescription 
-     * status.</p> <p>PrescriptionStatus.provider</p> <p>In an EHR 
-     * integrated health services environment, it is important that 
-     * other providers are able to query who (or what application) 
-     * is responsible for status changes. Also used by applications 
+     * <p>Identity of the health service provider or application 
+     * responsible for the change in the prescription status.</p> 
+     * <p>PrescriptionStatus.provider</p> <p>In an EHR integrated 
+     * health services environment, it is important that other 
+     * providers are able to query who (or what application) is 
+     * responsible for status changes. Also used by applications 
      * for auditing and sorting.</p><p>The attribute is marked as 
      * &quot;mandatory&quot; because provider or application 
      * maintaining the prescription must be known.</p> <p>In an EHR 
@@ -169,7 +169,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
      * and sorting.</p><p>The attribute is populated because 
      * provider or application maintaining the prescription 
      * dispense must be known else an appropriate 'null' flavor 
-     
+     * must be
      * ... [rest of documentation truncated due to excessive length]
      */
     [Hl7PartTypeMappingAttribute(new string[] {"COCT_MT130001CA.Author3","COCT_MT260010CA.Author1","COCT_MT260012CA.Author1","COCT_MT260020CA.Author1","COCT_MT260022CA.Author1","COCT_MT260030CA.Author1","PORX_MT060010CA.Author6","PORX_MT060040CA.Author1","PORX_MT060090CA.Author6","PORX_MT060160CA.Author1","PORX_MT060210CA.Author7","PORX_MT060340CA.Author1","PORX_MT980010CA.Author1","PORX_MT980020CA.Author1","PORX_MT980030CA.Author1","REPC_MT000009CA.Author3"})]
@@ -187,15 +187,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             this.typeCode = new CSImpl();
         }
         /**
-         * <summary>Change Timestamp</summary>
+         * <summary>Un-merged Business Name: ChangeTimestamp</summary>
          * 
-         * <remarks><p>The date and time at which the change was 
-         * made.</p> <p>Gives other providers the frame of reference in 
-         * evaluating any post-change issues with the prescription 
-         * dispense. Also used for sorting and audit purposes.</p> 
-         * Change Timestamp <p>The date on which the change was 
-         * made.</p> <p>PrescriptionStatus.effectiveDate</p> <p>Gives 
-         * other providers the frame of reference in evaluating any 
+         * <remarks>Relationship: PORX_MT060340CA.Author1.time 
+         * Conformance/Cardinality: MANDATORY (1) <p>The date on which 
+         * the change was made.</p> 
+         * <p>PrescriptionStatus.effectiveDate</p> <p>Gives other 
+         * providers the frame of reference in evaluating any 
          * post-change issues with the prescription. Also used for 
          * sorting and audit purposes.</p><p>The attribute is marked as 
          * &quot;mandatory&quot; because the time of change must be 
@@ -203,77 +201,127 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
          * in evaluating any post-change issues with the prescription. 
          * Also used for sorting and audit purposes.</p><p>The 
          * attribute is marked as &quot;mandatory&quot; because the 
-         * time of change must be known.</p> B:Management Date <p>The 
-         * date and time on which the provider managed the issue.</p> 
+         * time of change must be known.</p> Un-merged Business Name: 
+         * ManagementDate Relationship: COCT_MT260022CA.Author1.time 
+         * Conformance/Cardinality: POPULATED (1) <p>The date and time 
+         * on which the provider used this management for the issue in 
+         * the past.</p> <p>ManagedContraindication.CreationDate</p> 
+         * <p>Part of the audit record but not always available and 
+         * therefore only marked as 'populated'.</p> Un-merged Business 
+         * Name: ManagementDate Relationship: 
+         * PORX_MT980030CA.Author1.time Conformance/Cardinality: 
+         * POPULATED (1) <p>The date and time on which the provider 
+         * managed the issue.</p> 
          * <p>ManagedContraindication.CreationDate</p> <p>Part of the 
          * audit record, but not always available and therefore 
-         * 'populated'.</p> Change Datetime <p>The date on which the 
-         * change was made. Note that this may be earlier or 
+         * 'populated'.</p> Un-merged Business Name: ManagementDate 
+         * Relationship: COCT_MT260012CA.Author1.time 
+         * Conformance/Cardinality: POPULATED (1) <p>The date and time 
+         * on which the provider managed the issue.</p> 
+         * <p>ManagedContraindication.CreationDate</p> <p>Part of the 
+         * audit record, but not always available and therefore 
+         * 'populated'.</p> Un-merged Business Name: ChangeTimestamp 
+         * Relationship: PORX_MT060090CA.Author6.time 
+         * Conformance/Cardinality: MANDATORY (1) <p>The date and time 
+         * at which the change was made.</p> <p>Gives other providers 
+         * the frame of reference in evaluating any post-change issues 
+         * with the prescription dispense. Also used for sorting and 
+         * audit purposes.</p><p>The attribute is mandatory as the time 
+         * of change is known.</p> <p>Gives other providers the frame 
+         * of reference in evaluating any post-change issues with the 
+         * prescription dispense. Also used for sorting and audit 
+         * purposes.</p><p>The attribute is mandatory as the time of 
+         * change is known.</p> Un-merged Business Name: ManagementDate 
+         * Relationship: PORX_MT980010CA.Author1.time 
+         * Conformance/Cardinality: POPULATED (1) <p>The date and time 
+         * on which the provider managed the issue.</p> 
+         * <p>ManagedContraindication.CreationDate</p> <p>Part of the 
+         * audit record, but not always available and therefore 
+         * 'populated'.</p> Un-merged Business Name: ChangeDatetime 
+         * Relationship: COCT_MT130001CA.Author3.time 
+         * Conformance/Cardinality: MANDATORY (1) <p>The date on which 
+         * the change was made. Note that this may be earlier or 
          * occassionally later than when the change is actually 
          * effective.</p> <p>Gives other providers the frame of 
          * reference in evaluating any post-change issues with the 
          * event. Also used for sorting and audit purposes. Time of 
          * change is always known and thus the attribute is 
-         * mandatory.</p> Change Timestamp <p>The date and time at 
-         * which the change was made.</p> <p>Gives other providers the 
-         * frame of reference in evaluating any post-change issues with 
-         * the other medication. Also used for sorting and audit 
+         * mandatory.</p> Un-merged Business Name: ChangeTimestamp 
+         * Relationship: PORX_MT060160CA.Author1.time 
+         * Conformance/Cardinality: MANDATORY (1) <p>The date and time 
+         * at which the change was made.</p> 
+         * <p>PrescriptionStatus.effectiveDate</p> <p>Gives other 
+         * providers the frame of reference in evaluating any 
+         * post-change issues with the prescription. Also used for 
+         * sorting and audit purposes.</p><p>The attribute is marked as 
+         * &quot;mandatory&quot; because the time of change must be 
+         * known.</p> <p>Gives other providers the frame of reference 
+         * in evaluating any post-change issues with the prescription. 
+         * Also used for sorting and audit purposes.</p><p>The 
+         * attribute is marked as &quot;mandatory&quot; because the 
+         * time of change must be known.</p> Un-merged Business Name: 
+         * ChangeTime Relationship: REPC_MT000009CA.Author3.time 
+         * Conformance/Cardinality: MANDATORY (1) <p>The date on which 
+         * the change was made.</p> <p>Gives other providers the frame 
+         * of reference in evaluating any post-change issues with the 
+         * allergy. Also used for sorting and audit purposes. Time of 
+         * change is always known and thus the attribute is 
+         * mandatory.</p> Un-merged Business Name: ManagementDate 
+         * Relationship: COCT_MT260030CA.Author1.time 
+         * Conformance/Cardinality: POPULATED (1) <p>The date and time 
+         * on which the provider managed the issue.</p> 
+         * <p>ManagedContraindication.CreationDate</p> <p>Part of the 
+         * audit record, but not always available and therefore 
+         * 'populated'.</p> Un-merged Business Name: ManagementDate 
+         * Relationship: COCT_MT260020CA.Author1.time 
+         * Conformance/Cardinality: POPULATED (1) <p>The date and time 
+         * on which the provider used this management for the issue in 
+         * the past.</p> <p>ManagedContraindication.CreationDate</p> 
+         * <p>Part of the audit record but not always available and 
+         * therefore only marked as 'populated'.</p> Un-merged Business 
+         * Name: ChangeTimestamp Relationship: 
+         * PORX_MT060040CA.Author1.time Conformance/Cardinality: 
+         * MANDATORY (1) <p>The date on which the change was made.</p> 
+         * <p>Gives other providers the frame of reference in 
+         * evaluating any post-change issues with the prescription. 
+         * Also used for sorting and audit purposes.</p><p>This 
+         * attribute is marked as &quot;mandatory&quot; as the time the 
+         * comment was posted will always be known.</p> <p>Gives other 
+         * providers the frame of reference in evaluating any 
+         * post-change issues with the prescription. Also used for 
+         * sorting and audit purposes.</p><p>This attribute is marked 
+         * as &quot;mandatory&quot; as the time the comment was posted 
+         * will always be known.</p> Un-merged Business Name: 
+         * ChangeTimestamp Relationship: PORX_MT060210CA.Author7.time 
+         * Conformance/Cardinality: MANDATORY (1) <p>The date and time 
+         * at which the change was made.</p> <p>Gives other providers 
+         * the frame of reference in evaluating any post-change issues 
+         * with the other medication. Also used for sorting and audit 
          * purposes.</p><p>Attribute is marked as &quot;mandatory&quot; 
          * as the time of change must be known.</p> <p>Gives other 
          * providers the frame of reference in evaluating any 
          * post-change issues with the other medication. Also used for 
          * sorting and audit purposes.</p><p>Attribute is marked as 
          * &quot;mandatory&quot; as the time of change must be 
-         * known.</p> Change Timestamp <p>The date on which the change 
-         * was made.</p> <p>Gives other providers the frame of 
-         * reference in evaluating any post-change issues with the 
-         * prescription. Also used for sorting and audit 
-         * purposes.</p><p>This attribute is marked as 
-         * &quot;mandatory&quot; as the time the comment was posted 
-         * will always be known.</p> <p>Gives other providers the frame 
-         * of reference in evaluating any post-change issues with the 
-         * prescription. Also used for sorting and audit 
-         * purposes.</p><p>This attribute is marked as 
-         * &quot;mandatory&quot; as the time the comment was posted 
-         * will always be known.</p> Change Timestamp <p>The date and 
-         * time at which the change was made.</p> <p>Gives other 
-         * providers the frame of reference in evaluating any 
-         * post-change issues with the prescription dispense. Also used 
-         * for sorting and audit purposes.</p><p>The attribute is 
-         * mandatory as the time of change is known.</p> <p>Gives other 
-         * providers the frame of reference in evaluating any 
-         * post-change issues with the prescription dispense. Also used 
-         * for sorting and audit purposes.</p><p>The attribute is 
-         * mandatory as the time of change is known.</p> Change 
-         * Timestamp <p>The date and time at which the change was 
-         * made.</p> <p>PrescriptionStatus.effectiveDate</p> <p>Gives 
-         * other providers the frame of reference in evaluating any 
-         * post-change issues with the prescription. Also used for 
-         * sorting and audit purposes.</p><p>The attribute is marked as 
-         * &quot;mandatory&quot; because the time of change must be 
-         * known.</p> <p>Gives other providers the frame of reference 
-         * in evaluating any post-change issues with the prescription. 
-         * Also used for sorting and audit purposes.</p><p>The 
-         * attribute is marked as &quot;mandatory&quot; because the 
-         * time of change must be known.</p> B:Management Date <p>The 
-         * date and time on which the provider used this management for 
-         * the issue in the past.</p> 
+         * known.</p> Un-merged Business Name: ManagementDate 
+         * Relationship: COCT_MT260010CA.Author1.time 
+         * Conformance/Cardinality: POPULATED (1) <p>The date and time 
+         * on which the provider managed the issue.</p> 
          * <p>ManagedContraindication.CreationDate</p> <p>Part of the 
-         * audit record but not always available and therefore only 
-         * marked as 'populated'.</p> Change Time <p>The date on which 
-         * the change was made.</p> <p>Gives other providers the frame 
-         * of reference in evaluating any post-change issues with the 
-         * allergy. Also used for sorting and audit purposes. Time of 
-         * change is always known and thus the attribute is 
-         * mandatory.</p> B:Management Date <p>The date and time on 
-         * which the provider used this management for the issue in the 
-         * past.</p> <p>ManagedContraindication.CreationDate</p> 
+         * audit record, but not always available and therefore 
+         * 'populated'.</p> Un-merged Business Name: ManagementDate 
+         * Relationship: PORX_MT980020CA.Author1.time 
+         * Conformance/Cardinality: POPULATED (1) <p>The date and time 
+         * on which the provider used this management for the issue in 
+         * the past.</p> <p>ManagedContraindication.CreationDate</p> 
          * <p>Part of the audit record but not always available and 
-         * therefore only marked as 'populated'.</p> B:Management Date 
-         * <p>The date and time on which the provider managed the 
-         * issue.</p> <p>ManagedContraindication.CreationDate</p> 
-         * <p>Part of the audit record, but not always available and 
-         * therefore 'populated'.</p></remarks>
+         * therefore only marked as 'populated'.</p> Un-merged Business 
+         * Name: ChangeTimestamp Relationship: 
+         * PORX_MT060010CA.Author6.time Conformance/Cardinality: 
+         * REQUIRED (0-1) <p>The date and time at which the change was 
+         * made.</p> <p>Gives other providers the frame of reference in 
+         * evaluating any post-change issues with the prescription 
+         * dispense. Also used for sorting and audit purposes.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"time"})]
         public PlatformDate Time {
@@ -281,30 +329,101 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             set { this.time.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: PORX_MT060340CA.Author1.changedBy 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060160CA.Author1.changedBy Conformance/Cardinality: 
+         * MANDATORY (1) Un-merged Business Name: (no business name 
+         * specified) Relationship: PORX_MT060040CA.Author1.changedBy 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060210CA.Author7.changedBy Conformance/Cardinality: 
+         * MANDATORY (1) Un-merged Business Name: (no business name 
+         * specified) Relationship: PORX_MT060010CA.Author6.changedBy 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060090CA.Author6.changedBy Conformance/Cardinality: 
+         * MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"changedBy"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.IChangedBy ChangedBy {
             get { return this.changedBy; }
             set { this.changedBy = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * COCT_MT260022CA.Author1.assignedEntity 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * COCT_MT260030CA.Author1.assignedEntity 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT000009CA.Author3.assignedEntity 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * COCT_MT260020CA.Author1.assignedEntity 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * COCT_MT260010CA.Author1.assignedEntity 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * COCT_MT260012CA.Author1.assignedEntity 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"assignedEntity"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.HealthcareWorker AssignedEntity {
             get { return this.assignedEntity; }
             set { this.assignedEntity = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PORX_MT980010CA.Author1.assignedPerson 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT980030CA.Author1.assignedPerson 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT980020CA.Author1.assignedPerson 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"assignedPerson"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Coct_mt090107ca.Provider AssignedPerson {
             get { return this.assignedPerson; }
             set { this.assignedPerson = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: COCT_MT260012CA.Author1.typeCode 
+         * Conformance/Cardinality: OPTIONAL (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"typeCode"})]
         public ParticipationType TypeCode {
             get { return (ParticipationType) this.typeCode.Value; }
             set { this.typeCode.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: COCT_MT130001CA.Author3.actingPerson 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"actingPerson"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged.IActingPerson ActingPerson {
             get { return this.actingPerson; }

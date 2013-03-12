@@ -1,3 +1,22 @@
+/**
+ * Copyright 2013 Canada Health Infoway, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Author:        $LastChangedBy: tmcgrady $
+ * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Revision:      $LastChangedRevision: 2623 $
+ */
 using System;
 using System.Xml;
 using Ca.Infoway.Messagebuilder.Datatype;
@@ -5,104 +24,76 @@ using Ca.Infoway.Messagebuilder.Datatype.Impl;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser;
-using ILOG.J2CsMapping.Util;
+using ILOG.J2CsMapping.Collections.Generics;
 
 namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 {
 	internal abstract class UrgElementParser<T, V> : AbstractSingleElementParser<UncertainRange<V>> where T : QTY<V>
 	{
-		/// <exception cref="Ca.Infoway.Messagebuilder.Marshalling.HL7.XmlToModelTransformationException"></exception>
 		protected override UncertainRange<V> ParseNonNullNode(ParseContext context, XmlNode node, BareANY result, Type expectedReturnType
 			, XmlToModelResult xmlToModelResult)
 		{
-			try
+			// URGs are almost identical in function to IVLs; use IVL parser
+			BareANY bareAny = GetIvlParser().Parse(ConvertContext(context), Arrays.AsList(node), xmlToModelResult);
+			Interval<V> parsedInterval = (Interval<V>)bareAny.BareValue;
+			Boolean? lowInclusive = GetInclusiveValue("low", context, node, xmlToModelResult);
+			Boolean? highInclusive = GetInclusiveValue("high", context, node, xmlToModelResult);
+			UncertainRange<V> urg = ConvertIntervalToUncertainRange(parsedInterval, lowInclusive, highInclusive);
+			return urg;
+		}
+
+		private Boolean? GetInclusiveValue(string elementName, ParseContext context, XmlNode node, XmlToModelResult xmlToModelResult
+			)
+		{
+			Boolean? result = null;
+			XmlNodeList childNodes = node.ChildNodes;
+			for (int i = 0; i < childNodes.Count; i++)
 			{
-				XmlElement low = (XmlElement)GetNamedChildNode(node, "low");
-				XmlElement high = (XmlElement)GetNamedChildNode(node, "high");
-				XmlElement center = (XmlElement)GetNamedChildNode(node, "center");
-				XmlElement width = (XmlElement)GetNamedChildNode(node, "width");
-				if (low != null && high != null)
+				XmlNode child = childNodes.Item(i);
+				if (elementName.EqualsIgnoreCase(child.Name))
 				{
-					try
+					string inclusive = GetAttributeValue(child, "inclusive");
+					if (inclusive != null)
 					{
-						return UncertainRange<object>.CreateLowHigh(CreateType(low), CreateType(high));
+						result = System.Convert.ToBoolean(inclusive);
 					}
-					catch (ArgumentException e)
+					if (inclusive != null && !"true".EqualsIgnoreCase(inclusive) && !"false".EqualsIgnoreCase(inclusive))
 					{
-						xmlToModelResult.AddHl7Error(new Hl7Error(Hl7ErrorCode.SYNTAX_ERROR, e.Message, (XmlElement)node));
-						return null;
-					}
-				}
-				else
-				{
-					if (low != null && width != null)
-					{
-						return UncertainRangeFactory.CreateLowWidth<V>(CreateType(low), CreateDiffType(width));
+						xmlToModelResult.AddHl7Error(new Hl7Error(Hl7ErrorCode.DATA_TYPE_ERROR, "The 'inclusive' attribute for URG." + elementName
+							 + " must be 'true' or 'false'", (XmlElement)node));
 					}
 					else
 					{
-						if (high != null && width != null)
+						if (inclusive != null && !context.Type.StartsWith("URG<PQ."))
 						{
-							return UncertainRangeFactory.CreateWidthHigh<V>(CreateDiffType(width), CreateType(high));
-						}
-						else
-						{
-							if (center != null && width != null)
-							{
-								return UncertainRangeFactory.CreateCentreWidth<V>(CreateType(center), CreateDiffType(width));
-							}
-							else
-							{
-								if (low != null)
-								{
-									return UncertainRangeFactory.CreateLow<V>(CreateType(low));
-								}
-								else
-								{
-									if (high != null)
-									{
-										return UncertainRangeFactory.CreateHigh<V>(CreateType(high));
-									}
-									else
-									{
-										if (center != null)
-										{
-											return UncertainRangeFactory.CreateCentre<V>(CreateType(center));
-										}
-										else
-										{
-											if (width != null)
-											{
-												return UncertainRangeFactory.CreateWidth<V>(CreateDiffType(width));
-											}
-											else
-											{
-												return null;
-											}
-										}
-									}
-								}
-							}
+							xmlToModelResult.AddHl7Error(new Hl7Error(Hl7ErrorCode.DATA_TYPE_ERROR, "The 'inclusive' attribute for URG." + elementName
+								 + " is not allowed for types of " + context.Type, (XmlElement)node));
 						}
 					}
+					break;
 				}
 			}
-			catch (ParseException e)
-			{
-				throw new XmlToModelTransformationException(e.ToString());
-			}
+			return result;
 		}
 
-		/// <exception cref="ILOG.J2CsMapping.Util.ParseException"></exception>
-		/// <exception cref="Ca.Infoway.Messagebuilder.Marshalling.HL7.XmlToModelTransformationException"></exception>
-		protected virtual Diff<V> CreateDiffType(XmlElement width)
+		private ParseContext ConvertContext(ParseContext context)
 		{
-			return new Diff<V>((V)CreateType(width));
+			string newType = "IVL<" + Hl7DataTypeName.GetParameterizedType(context.Type) + ">";
+			return ParserContextImpl.Create(newType, context);
 		}
 
-		/// <exception cref="ILOG.J2CsMapping.Util.ParseException"></exception>
-		/// <exception cref="Ca.Infoway.Messagebuilder.Marshalling.HL7.XmlToModelTransformationException"></exception>
-		protected abstract V CreateType(XmlElement high);
+		private UncertainRange<V> ConvertIntervalToUncertainRange(Interval<V> parsedInterval, Boolean? lowInclusive, Boolean? highInclusive
+			)
+		{
+			UncertainRange<V> urg = null;
+			if (parsedInterval != null)
+			{
+				urg = new UncertainRange<V>(parsedInterval, lowInclusive, highInclusive);
+			}
+			return urg;
+		}
+
+		protected abstract ElementParser GetIvlParser();
 
 		protected override BareANY DoCreateDataTypeInstance(string typeName)
 		{

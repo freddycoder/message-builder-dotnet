@@ -1,3 +1,22 @@
+/**
+ * Copyright 2013 Canada Health Infoway, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Author:        $LastChangedBy: tmcgrady $
+ * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Revision:      $LastChangedRevision: 2623 $
+ */
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -19,6 +38,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 {
 	internal class XmlRenderingVisitor : Visitor
 	{
+		private static readonly string INLINED_PROPERTY_SUFFIX = "_INLINED";
+
 		private static readonly string NULL_FLAVOR_FORMAT_FOR_ASSOCIATIONS = "nullFlavor=\"{0}\" xsi:nil=\"true\"";
 
 		internal class Buffer
@@ -31,7 +52,9 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 
 			private readonly int indent;
 
-			private string warning;
+			private IList<string> warnings = new List<string>();
+
+			private XmlWarningRenderer xmlWarningRenderer = new XmlWarningRenderer();
 
 			public Buffer(XmlRenderingVisitor _enclosing, string name, int indent)
 			{
@@ -63,9 +86,12 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 			public virtual string ToXml()
 			{
 				StringBuilder builder = new StringBuilder();
-				if (StringUtils.IsNotBlank(this.warning))
+				if (!this.warnings.IsEmpty())
 				{
-					builder.Append(new XmlWarningRenderer().CreateWarning(this.indent, this.warning));
+					foreach (string warning in this.warnings)
+					{
+						builder.Append(this.xmlWarningRenderer.CreateWarning(this.indent, warning));
+					}
 				}
 				Indenter.IndentBuilder(builder, this.indent);
 				builder.Append("<").Append(this.name);
@@ -95,14 +121,14 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 				return "Buffer: " + this.name;
 			}
 
-			public virtual string GetWarning()
+			public virtual IList<string> GetWarnings()
 			{
-				return this.warning;
+				return this.warnings;
 			}
 
-			public virtual void SetWarning(string warning)
+			public virtual void AddWarning(string warning)
 			{
-				this.warning = warning;
+				this.warnings.Add(warning);
 			}
 
 			private readonly XmlRenderingVisitor _enclosing;
@@ -117,6 +143,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 		private readonly DataTypeValueAdapterProvider adapterProvider = new DataTypeValueAdapterProvider();
 
 		private readonly ModelToXmlResult result = new ModelToXmlResult();
+
+		private readonly XmlWarningRenderer xmlWarningRenderer = new XmlWarningRenderer();
 
 		private XmlRenderingVisitor.Buffer CurrentBuffer()
 		{
@@ -142,7 +170,10 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 		{
 			if (IsSomethingToRender(part, relationship))
 			{
-				this.propertyPathNames.Push(part.GetPropertyName());
+				bool validationWarning = false;
+				string warningMessage = null;
+				PushPropertyPathName(DeterminePropertyName(part.GetPropertyName(), relationship), part.IsCollapsed());
+				string propertyPath = BuildPropertyPath();
 				this.buffers.Push(new XmlRenderingVisitor.Buffer(this, DetermineXmlName(part, relationship), this.buffers.Count));
 				if (part.IsEmpty() && relationship.Conformance == Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.POPULATED)
 				{
@@ -154,25 +185,52 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 					if (part.IsEmpty() && relationship.Conformance == Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY && !IsTrivial(
 						part))
 					{
-						CurrentBuffer().SetWarning("Mandatory association has no data. (" + relationship.Name + ")");
+						// some errors are due to "null" parts MB has inserted to create structural XML; don't log errors on these
+						validationWarning = !part.IsNullPart() && !part.IsCollapsed();
+						warningMessage = "Mandatory association has no data.";
+						if (!validationWarning)
+						{
+							CurrentBuffer().AddWarning(warningMessage + " (" + propertyPath + ")");
+						}
 					}
 					else
 					{
 						if (relationship.Conformance == Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.IGNORED)
 						{
-							CurrentBuffer().SetWarning(System.String.Format(ConformanceLevelUtil.IsIgnoredNotAllowed() ? ConformanceLevelUtil.ASSOCIATION_IS_IGNORED_AND_CAN_NOT_BE_USED
-								 : ConformanceLevelUtil.ASSOCIATION_IS_IGNORED_AND_WILL_NOT_BE_USED, relationship.Name));
+							validationWarning = true;
+							warningMessage = System.String.Format(ConformanceLevelUtil.IsIgnoredNotAllowed() ? ConformanceLevelUtil.ASSOCIATION_IS_IGNORED_AND_CAN_NOT_BE_USED
+								 : ConformanceLevelUtil.ASSOCIATION_IS_IGNORED_AND_WILL_NOT_BE_USED, relationship.Name);
 						}
 						else
 						{
 							if (relationship.Conformance == Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.NOT_ALLOWED)
 							{
-								CurrentBuffer().SetWarning(System.String.Format(ConformanceLevelUtil.ASSOCIATION_IS_NOT_ALLOWED, relationship.Name));
+								validationWarning = true;
+								warningMessage = System.String.Format(ConformanceLevelUtil.ASSOCIATION_IS_NOT_ALLOWED, relationship.Name);
 							}
 						}
 					}
 				}
+				if (validationWarning)
+				{
+					// store error within error collection
+					this.result.AddHl7Error(new Hl7Error(Hl7ErrorCode.DATA_TYPE_ERROR, warningMessage, propertyPath));
+				}
+				AddNewErrorsToList(CurrentBuffer().GetWarnings());
 			}
+		}
+
+		private void PushPropertyPathName(string propertyName, bool isCollapsed)
+		{
+			string nameToPush = propertyName + (isCollapsed ? INLINED_PROPERTY_SUFFIX : string.Empty);
+			this.propertyPathNames.Push(nameToPush);
+		}
+
+		private string DeterminePropertyName(string propertyName, Named nameFallBack)
+		{
+			string backupName = (nameFallBack == null ? null : nameFallBack.Name);
+			return (StringUtils.IsNotBlank(propertyName) && !FixedValueAttributeBeanBridge.FIXED.Equals(propertyName)) ? propertyName
+				 : (backupName == null ? string.Empty : backupName);
 		}
 
 		/// <summary>Very rarely, there's a mandatory association that has no data.</summary>
@@ -265,23 +323,30 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 		public virtual void VisitAttribute(AttributeBridge tealBean, Relationship relationship, VersionNumber version, TimeZone dateTimeZone
 			, TimeZone dateTimeTimeZone)
 		{
-			this.propertyPathNames.Push(tealBean.GetPropertyName());
+			PushPropertyPathName(DeterminePropertyName(tealBean.GetPropertyName(), relationship), false);
 			if (relationship.Structural)
 			{
-				if (StringUtils.IsBlank(CurrentBuffer().GetWarning()) && relationship.Conformance == Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
-					.IGNORED)
+				string propertyPath = BuildPropertyPath();
+				string warningForIncorrectUseOfIgnore = null;
+				if (relationship.Conformance == Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.IGNORED)
 				{
-					CurrentBuffer().SetWarning(System.String.Format(ConformanceLevelUtil.IsIgnoredNotAllowed() ? ConformanceLevelUtil.ATTRIBUTE_IS_IGNORED_AND_CAN_NOT_BE_USED
-						 : ConformanceLevelUtil.ATTRIBUTE_IS_IGNORED_AND_WILL_NOT_BE_USED, relationship.Name));
+					warningForIncorrectUseOfIgnore = System.String.Format(ConformanceLevelUtil.IsIgnoredNotAllowed() ? ConformanceLevelUtil.ATTRIBUTE_IS_IGNORED_AND_CAN_NOT_BE_USED
+						 : ConformanceLevelUtil.ATTRIBUTE_IS_IGNORED_AND_WILL_NOT_BE_USED, relationship.Name);
 				}
 				else
 				{
 					if (relationship.Conformance == Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.NOT_ALLOWED)
 					{
-						CurrentBuffer().SetWarning(System.String.Format(ConformanceLevelUtil.ATTRIBUTE_IS_NOT_ALLOWED, relationship.Name));
+						warningForIncorrectUseOfIgnore = System.String.Format(ConformanceLevelUtil.ATTRIBUTE_IS_NOT_ALLOWED, relationship.Name);
 					}
 				}
-				new VisitorStructuralAttributeRenderer(relationship, tealBean.GetValue()).Render(CurrentBuffer().GetStructuralBuilder());
+				if (warningForIncorrectUseOfIgnore != null)
+				{
+					this.result.AddHl7Error(new Hl7Error(Hl7ErrorCode.DATA_TYPE_ERROR, warningForIncorrectUseOfIgnore, propertyPath));
+				}
+				new VisitorStructuralAttributeRenderer(relationship, tealBean.GetValue()).Render(CurrentBuffer().GetStructuralBuilder(), 
+					propertyPath, this.result);
+				AddNewErrorsToList(CurrentBuffer().GetWarnings());
 			}
 			else
 			{
@@ -290,7 +355,50 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 			this.propertyPathNames.Pop();
 		}
 
-		// remove(this.propertyPathNames.size() - 1);
+		private string BuildPropertyPath()
+		{
+			StringBuilder result = new StringBuilder();
+			string previousPathName = null;
+			foreach (string currentPathName in this.propertyPathNames)
+			{
+				if (IsInlined(previousPathName))
+				{
+					if (IsInlined(currentPathName))
+					{
+						if (!StringUtils.Equals(previousPathName, currentPathName))
+						{
+							result.Append('.').Append(RemoveInlinedSuffix(currentPathName));
+						}
+					}
+					else
+					{
+						string convertedPreviousPathName = RemoveInlinedSuffix(previousPathName);
+						if (!StringUtils.Equals(convertedPreviousPathName, currentPathName))
+						{
+							result.Append('.').Append(currentPathName);
+						}
+					}
+				}
+				else
+				{
+					result.Append('.').Append(RemoveInlinedSuffix(currentPathName));
+				}
+				previousPathName = currentPathName;
+			}
+			return Ca.Infoway.Messagebuilder.StringUtils.Substring(result.ToString(), 1);
+		}
+
+		private bool IsInlined(string propertyName)
+		{
+			return propertyName != null && propertyName.EndsWith(INLINED_PROPERTY_SUFFIX);
+		}
+
+		private string RemoveInlinedSuffix(string propertyName)
+		{
+			return IsInlined(propertyName) ? Ca.Infoway.Messagebuilder.StringUtils.Substring(propertyName, 0, propertyName.Length - INLINED_PROPERTY_SUFFIX
+				.Length) : propertyName;
+		}
+
 		private void RenderNonStructuralAttribute(AttributeBridge tealBean, Relationship relationship, VersionNumber version, TimeZone
 			 dateTimeZone, TimeZone dateTimeTimeZone)
 		{
@@ -302,6 +410,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 			}
 			else
 			{
+				string propertyPath = BuildPropertyPath();
+				string xmlFragment = string.Empty;
 				try
 				{
 					BareANY any;
@@ -315,40 +425,67 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 						any = tealBean.GetHl7Value();
 						any = this.adapterProvider.GetAdapter(any != null ? any.GetType() : null, type).Adapt(any);
 					}
-					//				boolean isSpecializationType = (tealBean.getHl7Value().getDataType() != tealBean.getRelationship().getType());
-					// FIXME - SPECIALIZATION_TYPE - need to allow for specialization type to be set here
-					string xmlFragment = string.Empty;
-					if (StringUtils.IsBlank(CurrentBuffer().GetWarning()) && relationship.Conformance == Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
-						.IGNORED)
+					string warningForIncorrectUseOfIgnore = null;
+					if (relationship.Conformance == Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.IGNORED)
 					{
 						if (ConformanceLevelUtil.IsIgnoredNotAllowed())
 						{
-							xmlFragment += new XmlWarningRenderer().CreateWarning(0, System.String.Format(ConformanceLevelUtil.ATTRIBUTE_IS_IGNORED_AND_CAN_NOT_BE_USED
-								, relationship.Name));
+							warningForIncorrectUseOfIgnore = System.String.Format(ConformanceLevelUtil.ATTRIBUTE_IS_IGNORED_AND_CAN_NOT_BE_USED, relationship
+								.Name);
 						}
 						else
 						{
-							xmlFragment += new XmlWarningRenderer().CreateWarning(0, System.String.Format(ConformanceLevelUtil.ATTRIBUTE_IS_IGNORED_AND_WILL_NOT_BE_USED
-								, relationship.Name));
+							warningForIncorrectUseOfIgnore = System.String.Format(ConformanceLevelUtil.ATTRIBUTE_IS_IGNORED_AND_WILL_NOT_BE_USED, relationship
+								.Name);
 						}
 					}
 					else
 					{
 						if (relationship.Conformance == Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.NOT_ALLOWED)
 						{
-							xmlFragment += new XmlWarningRenderer().CreateWarning(0, System.String.Format(ConformanceLevelUtil.ATTRIBUTE_IS_NOT_ALLOWED
-								, relationship.Name));
+							warningForIncorrectUseOfIgnore = System.String.Format(ConformanceLevelUtil.ATTRIBUTE_IS_NOT_ALLOWED, relationship.Name);
 						}
 					}
-					xmlFragment += formatter.Format(FormatContextImpl.Create(relationship, version, dateTimeZone, dateTimeTimeZone), any, GetIndent
-						());
-					CurrentBuffer().GetChildBuilder().Append(xmlFragment);
+					if (warningForIncorrectUseOfIgnore != null)
+					{
+						Hl7Error hl7Error = new Hl7Error(Hl7ErrorCode.DATA_TYPE_ERROR, warningForIncorrectUseOfIgnore, propertyPath);
+						this.result.AddHl7Error(hl7Error);
+					}
+					// boolean isSpecializationType = (tealBean.getHl7Value().getDataType() != tealBean.getRelationship().getType());
+					// FIXME - VALIDATION - TM - SPECIALIZATION_TYPE - need to allow for specialization type to be set here???
+					xmlFragment += formatter.Format(FormatContextImpl.Create(this.result, propertyPath, relationship, version, dateTimeZone, 
+						dateTimeTimeZone, relationship.CodingStrength), any, GetIndent());
 				}
 				catch (ModelToXmlTransformationException e)
 				{
-					string propertyPath = StringUtils.Join(this.propertyPathNames, ".");
 					Hl7Error hl7Error = new Hl7Error(Hl7ErrorCode.DATA_TYPE_ERROR, e.Message, propertyPath);
 					this.result.AddHl7Error(hl7Error);
+				}
+				RenderNewErrorsToXml(CurrentBuffer().GetChildBuilder());
+				CurrentBuffer().GetChildBuilder().Append(xmlFragment);
+			}
+		}
+
+		private void RenderNewErrorsToXml(StringBuilder stringBuilder)
+		{
+			foreach (Hl7Error hl7Error in this.result.GetHl7Errors())
+			{
+				if (!hl7Error.IsRenderedToXml())
+				{
+					stringBuilder.Append(this.xmlWarningRenderer.CreateWarning(GetIndent(), hl7Error.ToString()));
+					hl7Error.MarkAsRenderedToXml();
+				}
+			}
+		}
+
+		private void AddNewErrorsToList(IList<string> errors)
+		{
+			foreach (Hl7Error hl7Error in this.result.GetHl7Errors())
+			{
+				if (!hl7Error.IsRenderedToXml())
+				{
+					errors.Add(hl7Error.ToString());
+					hl7Error.MarkAsRenderedToXml();
 				}
 			}
 		}
@@ -365,7 +502,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 
 		public virtual void VisitRootStart(PartBridge tealBean, Interaction interaction)
 		{
-			this.propertyPathNames.Push(tealBean.GetPropertyName());
+			this.propertyPathNames.Push(DeterminePropertyName(tealBean.GetPropertyName(), interaction));
 			this.interaction = interaction;
 			this.buffers.Clear();
 			this.buffers.Push(new XmlRenderingVisitor.Buffer(this, interaction.Name, 0));
@@ -381,7 +518,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 			}
 			string xml = CurrentBuffer().ToXml();
 			this.result.SetXmlMessage(xml);
-			return result;
+			return this.result;
 		}
 
 		private void PopBuffer()

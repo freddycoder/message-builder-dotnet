@@ -1,7 +1,27 @@
-using System.Collections.Generic;
+/**
+ * Copyright 2013 Canada Health Infoway, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Author:        $LastChangedBy: tmcgrady $
+ * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Revision:      $LastChangedRevision: 2623 $
+ */
 using System.Text;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
+using Ca.Infoway.Messagebuilder.Datatype.Lang.Util;
+using Ca.Infoway.Messagebuilder.Domainvalue;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter;
 using Ca.Infoway.Messagebuilder.Util.Iterator;
@@ -36,74 +56,44 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 	[DataTypeHandler("AD.BASIC")]
 	internal class AdBasicPropertyFormatter : AbstractAdPropertyFormatter
 	{
-		private static readonly IList<string> ALLOWABLE_ADDRESS_USES = new List<string>();
-
-		static AdBasicPropertyFormatter()
-		{
-			ALLOWABLE_ADDRESS_USES.Add("H");
-			ALLOWABLE_ADDRESS_USES.Add("PHYS");
-			ALLOWABLE_ADDRESS_USES.Add("PST");
-			ALLOWABLE_ADDRESS_USES.Add("TMP");
-			ALLOWABLE_ADDRESS_USES.Add("WP");
-		}
-
 		internal sealed override string FormatNonNullValue(FormatContext context, PostalAddress postalAddress, int indentLevel)
 		{
+			Hl7BaseVersion baseVersion = context.GetVersion().GetBaseVersion();
+			string dataType = context.Type;
+			AbstractAdPropertyFormatter.AD_VALIDATION_UTILS.ValidatePostalAddress(postalAddress, dataType, context.GetVersion(), null
+				, context.GetPropertyPath(), context.GetModelToXmlResult());
 			PostalAddress basicAddress = new PostalAddress();
 			StringBuilder builder = new StringBuilder();
-			PostalAddressPartType lastPartType = null;
+			// remove any non-basic address parts
 			foreach (PostalAddressPart part in EmptyIterable<object>.NullSafeIterable(postalAddress.Parts))
 			{
 				if (part.Type == PostalAddressPartType.CITY || part.Type == PostalAddressPartType.STATE || part.Type == PostalAddressPartType
-					.COUNTRY || part.Type == PostalAddressPartType.POSTAL_CODE)
+					.COUNTRY || part.Type == PostalAddressPartType.POSTAL_CODE || part.Type == PostalAddressPartType.DELIMITER)
 				{
 					Flush(builder, basicAddress);
 					basicAddress.AddPostalAddressPart(part);
 				}
 				else
 				{
-					if (part.Type == PostalAddressPartType.DELIMITER && StringUtils.IsBlank(part.Value))
+					if (StringUtils.IsNotBlank(part.Value))
 					{
-						Flush(builder, basicAddress);
-						basicAddress.AddPostalAddressPart(part);
-					}
-					else
-					{
-						if (StringUtils.IsNotBlank(part.Value))
+						if (builder.Length > 0)
 						{
-							if (builder.Length > 0 && part.Type == PostalAddressPartType.STREET_ADDRESS_LINE && lastPartType == PostalAddressPartType
-								.STREET_ADDRESS_LINE)
-							{
-								Flush(builder, basicAddress);
-								basicAddress.AddPostalAddressPart(new PostalAddressPart(PostalAddressPartType.DELIMITER, (string)null));
-							}
-							else
-							{
-								if (builder.Length > 0)
-								{
-									builder.Append(" ");
-								}
-							}
-							builder.Append(part.Value);
+							builder.Append(" ");
 						}
+						builder.Append(part.Value);
 					}
 				}
-				lastPartType = part.Type;
 			}
 			Flush(builder, basicAddress);
-			foreach (Ca.Infoway.Messagebuilder.Datatype.Lang.PostalAddressUse use in postalAddress.Uses)
+			foreach (x_BasicPostalAddressUse use in postalAddress.Uses)
 			{
-				if (IsAllowableUse(use))
+				if (AbstractAdPropertyFormatter.AD_VALIDATION_UTILS.IsAllowableUse(dataType, use, baseVersion))
 				{
 					basicAddress.AddUse(use);
 				}
 			}
 			return base.FormatNonNullValue(context, basicAddress, indentLevel);
-		}
-
-		private bool IsAllowableUse(Ca.Infoway.Messagebuilder.Datatype.Lang.PostalAddressUse use)
-		{
-			return use != null && use.CodeValue != null && ALLOWABLE_ADDRESS_USES.Contains(use.CodeValue);
 		}
 
 		private void Flush(StringBuilder builder, PostalAddress basicAddress)

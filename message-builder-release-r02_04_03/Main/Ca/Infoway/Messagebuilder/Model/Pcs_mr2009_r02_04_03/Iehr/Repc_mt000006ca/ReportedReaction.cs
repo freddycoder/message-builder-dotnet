@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,6 +27,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt00000
     using Ca.Infoway.Messagebuilder.Domainvalue;
     using Ca.Infoway.Messagebuilder.Model;
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged;
+    using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Domainvalue;
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged;
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged;
     using System;
@@ -34,16 +35,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt00000
 
 
     /**
-     * <summary>Reported Reaction</summary>
+     * <summary>Business Name: Reported Reaction</summary>
      * 
-     * <remarks><p>This is a record of an adverse reaction 
-     * considered relevant to the patient's clinical record.</p> 
      * <p>Useful in tracking reactions when it is not known 
      * precisely what product they are associated with and whether 
      * the reaction is due to an allergy or intolerance, a drug 
      * interaction or some other cause. Effectively gives a 'heads 
      * up' to clinicians using the drug or combination of 
-     * drugs.</p></remarks>
+     * drugs.</p> <p>This is a record of an adverse reaction 
+     * considered relevant to the patient's clinical record.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"REPC_MT000006CA.ReactionObservationEvent"})]
     public class ReportedReaction : MessagePartBean, Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Comt_mt111111ca.ISHR {
@@ -77,11 +77,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt00000
             this.componentOfPatientCareProvisionEvent = new List<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.CareCompositions>();
         }
         /**
-         * <summary>C:Reaction Record Id</summary>
+         * <summary>Business Name: C:Reaction Record Id</summary>
          * 
-         * <remarks><p>An identifier assigned to the record of the 
-         * adverse reaction.</p> <p>Uniquely identifies the specific 
-         * reaction record and is therefore mandatory.</p></remarks>
+         * <remarks>Relationship: 
+         * REPC_MT000006CA.ReactionObservationEvent.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>Uniquely 
+         * identifies the specific reaction record and is therefore 
+         * mandatory.</p> <p>An identifier assigned to the record of 
+         * the adverse reaction.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -90,28 +93,33 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt00000
         }
 
         /**
-         * <summary>Diagnosis Type</summary>
+         * <summary>Business Name: Diagnosis Type</summary>
          * 
-         * <remarks><p>Code is fixed to DX if not using SNOMED</p> 
-         * <p>Indicates the type of diagnosis being captured.</p> 
-         * <p>Indicates that the observation is actually a diagnosis 
-         * and is therefore mandatory. The datatype is CD to support 
-         * SNOMED post-coordination.</p> <p>If using SNOMED, this will 
-         * contain the diagnosis. Otherwise it will be a fixed value of 
-         * 'DX'.</p></remarks>
+         * <remarks>Relationship: 
+         * REPC_MT000006CA.ReactionObservationEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Code is fixed to 
+         * DX if not using SNOMED</p> <p>Indicates that the observation 
+         * is actually a diagnosis and is therefore mandatory. The 
+         * datatype is CD to support SNOMED post-coordination.</p> 
+         * <p>If using SNOMED, this will contain the diagnosis. 
+         * Otherwise it will be a fixed value of 'DX'.</p> <p>Indicates 
+         * the type of diagnosis being captured.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
-        public Code Code {
-            get { return (Code) this.code.Value; }
+        public ActDiagnosisCode Code {
+            get { return (ActDiagnosisCode) this.code.Value; }
             set { this.code.Value = value; }
         }
 
         /**
-         * <summary>G:Description</summary>
+         * <summary>Business Name: G:Description</summary>
          * 
-         * <remarks><p>A free form description of the reaction.</p> 
-         * <p>Allows for flexibility in the recording and reporting of 
-         * the reaction.</p></remarks>
+         * <remarks>Relationship: 
+         * REPC_MT000006CA.ReactionObservationEvent.text 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Allows for 
+         * flexibility in the recording and reporting of the 
+         * reaction.</p> <p>A free form description of the 
+         * reaction.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"text"})]
         public String Text {
@@ -120,12 +128,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt00000
         }
 
         /**
-         * <summary>F:Reaction Onset Date</summary>
+         * <summary>Business Name: F:Reaction Onset Date</summary>
          * 
-         * <remarks><p>The date on which the reaction occurrence 
-         * began.</p> <p>Indicates when evidence of the condition first 
-         * appeared. May also provide information on the duration of 
-         * the reaction.</p></remarks>
+         * <remarks>Relationship: 
+         * REPC_MT000006CA.ReactionObservationEvent.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates when 
+         * evidence of the condition first appeared. May also provide 
+         * information on the duration of the reaction.</p> <p>The date 
+         * on which the reaction occurrence began.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"effectiveTime"})]
         public Interval<PlatformDate> EffectiveTime {
@@ -134,13 +144,25 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt00000
         }
 
         /**
-         * <summary>G:Adverse Reaction Masking Indicators</summary>
+         * <summary>Business Name: G:Adverse Reaction Masking 
+         * Indicators</summary>
          * 
-         * <remarks><p>Communicates the desire of the patient to 
-         * restrict access to this Health Condition record. Provides 
-         * support for additional confidentiality constraint, giving 
-         * patients a level of control over their information. Methods 
-         * for accessing masked event records will be governed by each 
+         * <remarks>Relationship: 
+         * REPC_MT000006CA.ReactionObservationEvent.confidentialityCode 
+         * Conformance/Cardinality: REQUIRED (0-2) <p>Allows the 
+         * patient to have discrete control over access to their 
+         * adverse reaction data.</p><p>Taboo allows the provider to 
+         * request restricted access to patient or their care 
+         * giver.</p><p>Constraint: Cant have both normal and one of 
+         * the other codes simultaneously.</p><p>The attribute is 
+         * required because even if a jurisdiction doesn't support 
+         * masking on the way in, it will need to need to communicate 
+         * masked data returned from other jurisdictions.</p> 
+         * <p>Communicates the desire of the patient to restrict access 
+         * to this Health Condition record. Provides support for 
+         * additional confidentiality constraint, giving patients a 
+         * level of control over their information. Methods for 
+         * accessing masked event records will be governed by each 
          * jurisdiction (e.g. court orders, shared secret/consent, 
          * etc.). Can also be used to communicate that the information 
          * is deemed to be sensitive and should not be communicated or 
@@ -153,39 +175,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt00000
          * of the other codes can be asserted to indicate masking by 
          * the patient from providers or masking by a provider from the 
          * patient, respectively. 'normal' should never be asserted 
-         * with one of the other codes.</p> <p>Allows the patient to 
-         * have discrete control over access to their adverse reaction 
-         * data.</p><p>Taboo allows the provider to request restricted 
-         * access to patient or their care giver.</p><p>Constraint: 
-         * Cant have both normal and one of the other codes 
-         * simultaneously.</p><p>The attribute is required because even 
-         * if a jurisdiction doesn't support masking on the way in, it 
-         * will need to need to communicate masked data returned from 
-         * other jurisdictions.</p> <p>Allows the patient to have 
-         * discrete control over access to their adverse reaction 
-         * data.</p><p>Taboo allows the provider to request restricted 
-         * access to patient or their care giver.</p><p>Constraint: 
-         * Cant have both normal and one of the other codes 
-         * simultaneously.</p><p>The attribute is required because even 
-         * if a jurisdiction doesn't support masking on the way in, it 
-         * will need to need to communicate masked data returned from 
-         * other jurisdictions.</p> <p>Allows the patient to have 
-         * discrete control over access to their adverse reaction 
-         * data.</p><p>Taboo allows the provider to request restricted 
-         * access to patient or their care giver.</p><p>Constraint: 
-         * Cant have both normal and one of the other codes 
-         * simultaneously.</p><p>The attribute is required because even 
-         * if a jurisdiction doesn't support masking on the way in, it 
-         * will need to need to communicate masked data returned from 
-         * other jurisdictions.</p> <p>Allows the patient to have 
-         * discrete control over access to their adverse reaction 
-         * data.</p><p>Taboo allows the provider to request restricted 
-         * access to patient or their care giver.</p><p>Constraint: 
-         * Cant have both normal and one of the other codes 
-         * simultaneously.</p><p>The attribute is required because even 
-         * if a jurisdiction doesn't support masking on the way in, it 
-         * will need to need to communicate masked data returned from 
-         * other jurisdictions.</p></remarks>
+         * with one of the other codes.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"confidentialityCode"})]
         public ICollection<x_BasicConfidentialityKind> ConfidentialityCode {
@@ -193,16 +183,19 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt00000
         }
 
         /**
-         * <summary>B:Reaction</summary>
+         * <summary>Business Name: B:Reaction</summary>
          * 
-         * <remarks><p>Value is mandatory if not using SNOMED</p> 
-         * <p>Specifies the kind of reaction, as experienced by the 
-         * patient.</p> <p>B.1</p> <p>Ensures consistency in tracking 
-         * and categorizing the reaction type. Helps ensure that only 
-         * proper allergies are categorized as allergy. The attribute 
-         * is optional because it will not be used for SNOMED. The 
-         * attribute is CWE because not all possible types of reactions 
-         * are expressible by coded values.</p></remarks>
+         * <remarks>Relationship: 
+         * REPC_MT000006CA.ReactionObservationEvent.value 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>Value is 
+         * mandatory if not using SNOMED</p> <p>B.1</p> <p>Ensures 
+         * consistency in tracking and categorizing the reaction type. 
+         * Helps ensure that only proper allergies are categorized as 
+         * allergy. The attribute is optional because it will not be 
+         * used for SNOMED. The attribute is CWE because not all 
+         * possible types of reactions are expressible by coded 
+         * values.</p> <p>Specifies the kind of reaction, as 
+         * experienced by the patient.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"value"})]
         public SubjectReaction Value {
@@ -210,52 +203,106 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt00000
             set { this.value.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * REPC_MT000006CA.ResponsibleParty.assignedEntity</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"responsibleParty/assignedEntity"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.HealthcareWorker ResponsiblePartyAssignedEntity {
             get { return this.responsiblePartyAssignedEntity; }
             set { this.responsiblePartyAssignedEntity = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * REPC_MT000006CA.ReactionObservationEvent.author</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"author"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.RefusedBy Author {
             get { return this.author; }
             set { this.author = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * REPC_MT000006CA.ReactionObservationEvent.informant</summary>
+         * 
+         * <remarks>Conformance/Cardinality: REQUIRED (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"informant"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged.ReportedBy Informant {
             get { return this.informant; }
             set { this.informant = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * REPC_MT000006CA.ReactionObservationEvent.location</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"location"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.OccurredAt Location {
             get { return this.location; }
             set { this.location = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * REPC_MT000006CA.ReactionObservationEvent.subjectOf1</summary>
+         * 
+         * <remarks>Conformance/Cardinality: REQUIRED (0-99)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf1"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.Includes> SubjectOf1 {
             get { return this.subjectOf1; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * REPC_MT000006CA.Subject4.annotationIndicator</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf2/annotationIndicator"})]
         public bool? SubjectOf2AnnotationIndicator {
             get { return this.subjectOf2AnnotationIndicator.Value; }
             set { this.subjectOf2AnnotationIndicator.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * REPC_MT000006CA.Subject6.causalityAssessment</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf3/causalityAssessment"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged.ReportedReactions> SubjectOf3CausalityAssessment {
             get { return this.subjectOf3CausalityAssessment; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * REPC_MT000006CA.Subject1.severityObservation</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf4/severityObservation"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.AllergyIntoleranceSeverityLevel SubjectOf4SeverityObservation {
             get { return this.subjectOf4SeverityObservation; }
             set { this.subjectOf4SeverityObservation = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * REPC_MT000006CA.Component.patientCareProvisionEvent</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"componentOf/patientCareProvisionEvent"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.CareCompositions> ComponentOfPatientCareProvisionEvent {
             get { return this.componentOfPatientCareProvisionEvent; }

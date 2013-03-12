@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,9 +35,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Merged {
             this.id = new IIImpl();
         }
         /**
-         * <summary>CrossReferenceIdentifier</summary>
+         * <summary>Business Name: CrossReferenceIdentifier</summary>
          * 
-         * <remarks>Cross Reference Identifier</remarks>
+         * <remarks>Un-merged Business Name: CrossReferenceIdentifier 
+         * Relationship: 
+         * FICR_MT500201CA.InvoiceElementCrossReference.id 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: CrossReferenceIdentifier Relationship: 
+         * FICR_MT600201CA.InvoiceElementCrossReference.id 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {

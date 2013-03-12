@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,10 +24,10 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt004100
 
 
     /**
-     * <summary>has component</summary>
+     * <summary>Business Name: has component</summary>
      * 
-     * <remarks><p>Associates an Organism Identification Event with 
-     * a Specimen Observation Cluster.</p></remarks>
+     * <p>Associates an Organism Identification Event with a 
+     * Specimen Observation Cluster.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"POLB_MT004100CA.Component4"})]
     public class HasComponent : MessagePartBean {
@@ -36,6 +36,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt004100
 
         public HasComponent() {
         }
+        /**
+         * <summary>Relationship: 
+         * POLB_MT004100CA.Component4.organismIdentificationEvent</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"organismIdentificationEvent"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt004100ca.OrganismIdentificatonObservations OrganismIdentificationEvent {
             get { return this.organismIdentificationEvent; }

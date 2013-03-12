@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,12 +28,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt301010ca {
 
 
     /**
-     * <summary>Organization</summary>
+     * <summary>Business Name: Organization</summary>
      * 
-     * <remarks><p>The scoping organization for the specified role 
-     * class</p> <p>Supports the requirement to supply additional 
-     * information regarding the assigning Organization of the 
-     * specified RoleClass</p></remarks>
+     * <p>The scoping organization for the specified role class</p> 
+     * <p>Supports the requirement to supply additional information 
+     * regarding the assigning Organization of the specified 
+     * RoleClass</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"PRPM_MT301010CA.Organization"})]
     public class Organization : MessagePartBean {
@@ -49,12 +49,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt301010ca {
             this.addr = new ADImpl();
         }
         /**
-         * <summary>Organization Id</summary>
+         * <summary>Business Name: Organization Id</summary>
          * 
-         * <remarks><p>Unique identifier for the organization that 
-         * assigned the specified roleClass identifier.</p> <p>Required 
-         * attribute supports the validation and identification of the 
-         * specified roleClass.</p></remarks>
+         * <remarks>Relationship: PRPM_MT301010CA.Organization.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>Unique identifier 
+         * for the organization that assigned the specified roleClass 
+         * identifier.</p> <p>Required attribute supports the 
+         * validation and identification of the specified 
+         * roleClass.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -63,14 +65,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt301010ca {
         }
 
         /**
-         * <summary>Issuing Representing Qualification Granting 
-         * Organization Name</summary>
+         * <summary>Business Name: Issuing Representing Qualification 
+         * Granting Organization Name</summary>
          * 
-         * <remarks><p>The name of the organization in support of three 
-         * role classes as follows:</p><p>1. Organization that is 
-         * responsible for registering the provider for a specific 
-         * healthcare provider role.</p><p>2. Organization associated 
-         * with a provider&#226;&#128;&#153;s functional role.</p><p>3. 
+         * <remarks>Relationship: PRPM_MT301010CA.Organization.name 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The name of the 
+         * organization in support of three role classes as 
+         * follows:</p><p>1. Organization that is responsible for 
+         * registering the provider for a specific healthcare provider 
+         * role.</p><p>2. Organization associated with a 
+         * provider&#226;&#128;&#153;s functional role.</p><p>3. 
          * Organization that grants the qualifications or 
          * expertise.</p> <p>The name of the organization in support of 
          * three role classes as follows:</p><p>1. Organization that is 
@@ -100,12 +104,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt301010ca {
         }
 
         /**
-         * <summary>(Issuing Representing Qualification Granting 
-         * Organization Address</summary>
+         * <summary>Business Name: (Issuing Representing Qualification 
+         * Granting Organization Address</summary>
          * 
-         * <remarks><p>Address for any of the supported roles</p><p>1. 
-         * Issuing Oganization</p><p>2. Representing 
-         * Organization</p><p>3. Qualification Granting 
+         * <remarks>Relationship: PRPM_MT301010CA.Organization.addr 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Address for any 
+         * of the supported roles</p><p>1. Issuing Oganization</p><p>2. 
+         * Representing Organization</p><p>3. Qualification Granting 
          * Organization</p> <p>Address for any of the supported 
          * roles</p><p>1. Issuing Oganization</p><p>2. Representing 
          * Organization</p><p>3. Qualification Granting 
@@ -124,6 +129,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt301010ca {
             set { this.addr.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PRPM_MT301010CA.Organization.territorialAuthority</summary>
+         * 
+         * <remarks>Conformance/Cardinality: REQUIRED (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"territorialAuthority"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt301010ca.TerritorialAuthority TerritorialAuthority {
             get { return this.territorialAuthority; }

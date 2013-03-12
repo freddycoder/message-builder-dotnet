@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,6 +25,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt500005ca;
 
 
+    /**
+     * <summary>Business Name: REPC_IN041100CA: Patient care 
+     * composition summaries query</summary>
+     * 
+     * <p>Requests retrieval of a list of encounters, episodes and 
+     * similar structures for a particular patient or group of 
+     * patients, potentially filtered by date or other criteria. 
+     * &lt;p/&gt;</p> Message: MCCI_MT002100CA.Message Control Act: 
+     * QUQI_MT020000CA.ControlActEvent --> Payload: 
+     * REPC_MT500005CA.ParameterList
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"REPC_IN041100CA"})]
     public class PatientCareCompositionSummariesQuery : HL7Message_1<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.TriggerEvent_5<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt500005ca.QueryDefinition>>, IInteraction {
 

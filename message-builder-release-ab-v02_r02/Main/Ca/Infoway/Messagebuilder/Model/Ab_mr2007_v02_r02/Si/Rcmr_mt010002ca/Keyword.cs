@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,13 +32,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Si.Rcmr_mt010002ca {
 
 
     /**
-     * <summary>Keyword</summary>
+     * <summary>Business Name: Keyword</summary>
      * 
-     * <remarks><p>Information pertaining to a patient's secret 
-     * password used to control access to his/her health 
-     * information.</p> <p>Allows a patient to control access to 
-     * their health information. Provides authorization for 
-     * providers to view patient information.</p></remarks>
+     * <p>Information pertaining to a patient's secret password 
+     * used to control access to his/her health information.</p> 
+     * <p>Allows a patient to control access to their health 
+     * information. Provides authorization for providers to view 
+     * patient information.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"RCMR_MT010002CA.KeywordEvent"})]
     public class Keyword : MessagePartBean {
@@ -52,13 +52,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Si.Rcmr_mt010002ca {
             this.subjectRecordTypeCode = new List<CV>();
         }
         /**
-         * <summary>Keyword</summary>
+         * <summary>Business Name: Keyword</summary>
          * 
-         * <remarks><p>Indicate the keyword associated with a 
-         * particular consent.</p> <p>Allows patients to change their 
-         * keyword. If explicitly set to null, removes the keyword for 
-         * the identified record types. Because of this, the attribute 
-         * is set to 'populated'.</p></remarks>
+         * <remarks>Relationship: RCMR_MT010002CA.Author.signatureText 
+         * Conformance/Cardinality: POPULATED (1) <p>Indicate the 
+         * keyword associated with a particular consent.</p> <p>Allows 
+         * patients to change their keyword. If explicitly set to null, 
+         * removes the keyword for the identified record types. Because 
+         * of this, the attribute is set to 'populated'.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"author/signatureText"})]
         public String AuthorSignatureText {
@@ -66,6 +67,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Si.Rcmr_mt010002ca {
             set { this.authorSignatureText.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: RCMR_MT010002CA.Author.consenter</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"author/consenter"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.IConsenter AuthorConsenter {
             get { return this.authorConsenter; }
@@ -87,22 +93,23 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Si.Rcmr_mt010002ca {
         }
 
         /**
-         * <summary>B:Consent Information Types</summary>
+         * <summary>Business Name: B:Consent Information Types</summary>
          * 
-         * <remarks><p>The type of patient information that can be 
+         * <remarks>Relationship: RCMR_MT010002CA.RecordType.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>The type of 
+         * patient information that can be accessed or modified. 
+         * Examples are: demographics, medications, lab, DI, 
+         * etc</p><p>The keyword revisioning process may also involve 
+         * revising the list of information types covered by the 
+         * keyword.</p> <p>The type of patient information that can be 
          * accessed or modified. Examples are: demographics, 
          * medications, lab, DI, etc</p><p>The keyword revisioning 
          * process may also involve revising the list of information 
-         * types covered by the keyword.</p> <p>The type of patient 
-         * information that can be accessed or modified. Examples are: 
-         * demographics, medications, lab, DI, etc</p><p>The keyword 
-         * revisioning process may also involve revising the list of 
-         * information types covered by the keyword.</p> <p>Different 
-         * keywords may be needed to access different types of patient 
-         * information (e.g. demographics, medications, allergies, lab 
-         * results). Understanding the type of information the keyword 
-         * applies to is critical, and therefore the attribute is 
-         * mandatory.</p></remarks>
+         * types covered by the keyword.</p> <p>Different keywords may 
+         * be needed to access different types of patient information 
+         * (e.g. demographics, medications, allergies, lab results). 
+         * Understanding the type of information the keyword applies to 
+         * is critical, and therefore the attribute is mandatory.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"subject/recordType/code"})]
         public IList<ActInformationAccessTypeCode> SubjectRecordTypeCode {

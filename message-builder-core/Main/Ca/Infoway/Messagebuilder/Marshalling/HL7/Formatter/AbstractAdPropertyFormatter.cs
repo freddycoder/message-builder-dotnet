@@ -1,8 +1,30 @@
+/**
+ * Copyright 2013 Canada Health Infoway, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Author:        $LastChangedBy: tmcgrady $
+ * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Revision:      $LastChangedRevision: 2623 $
+ */
 using System.Collections.Generic;
 using System.Text;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
+using Ca.Infoway.Messagebuilder.Datatype.Lang.Util;
+using Ca.Infoway.Messagebuilder.Domainvalue;
 using Ca.Infoway.Messagebuilder.Lang;
+using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter;
 
 namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
@@ -38,13 +60,20 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 	/// </remarks>
 	public abstract class AbstractAdPropertyFormatter : AbstractNullFlavorPropertyFormatter<PostalAddress>
 	{
+		protected static readonly AdValidationUtils AD_VALIDATION_UTILS = new AdValidationUtils();
+
 		internal override string FormatNonNullValue(FormatContext context, PostalAddress postalAddress, int indentLevel)
 		{
 			StringBuilder buffer = new StringBuilder();
-			buffer.Append(CreateElement(context, GetUseAttributeMap(postalAddress), indentLevel, false, false));
+			IDictionary<string, string> useAttributeMap = GetUseAttributeMap(context.Type, postalAddress, context.GetVersion().GetBaseVersion
+				());
+			buffer.Append(CreateElement(context, useAttributeMap, indentLevel, false, false));
 			foreach (PostalAddressPart postalAddressPart in postalAddress.Parts)
 			{
-				AppendPostalAddressPart(buffer, postalAddressPart);
+				if (AD_VALIDATION_UTILS.IsAllowableAddressPart(postalAddressPart.Type, context.Type))
+				{
+					AppendPostalAddressPart(buffer, postalAddressPart);
+				}
 			}
 			buffer.Append(CreateElementClosure(context, 0, true));
 			return buffer.ToString();
@@ -54,18 +83,39 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		{
 			string openTag = string.Empty;
 			string closeTag = string.Empty;
+			bool isDelimiter = IsDelimiter(postalAddressPart);
 			if (postalAddressPart.Type != null)
 			{
-				openTag = "<" + postalAddressPart.Type.Value + FormatCode(postalAddressPart.Code) + ">";
-				closeTag = "</" + postalAddressPart.Type.Value + ">";
+				if (isDelimiter)
+				{
+					openTag = "<" + postalAddressPart.Type.Value + "/>";
+				}
+				else
+				{
+					openTag = "<" + postalAddressPart.Type.Value + FormatCode(postalAddressPart.Code) + ">";
+					closeTag = "</" + postalAddressPart.Type.Value + ">";
+				}
 			}
 			buffer.Append(openTag);
-			string xmlEscapedValue = XmlStringEscape.Escape(postalAddressPart.Value);
-			if (xmlEscapedValue != null)
+			if (!isDelimiter)
 			{
-				buffer.Append(xmlEscapedValue);
+				string xmlEscapedValue = XmlStringEscape.Escape(postalAddressPart.Value);
+				if (xmlEscapedValue != null)
+				{
+					buffer.Append(xmlEscapedValue);
+				}
 			}
 			buffer.Append(closeTag);
+		}
+
+		private bool IsDelimiter(PostalAddressPart postalAddressPart)
+		{
+			bool result = false;
+			if (postalAddressPart != null && postalAddressPart.Type != null)
+			{
+				result = PostalAddressPartType.DELIMITER.CodeValue.Equals(postalAddressPart.Type.CodeValue);
+			}
+			return result;
 		}
 
 		private string FormatCode(Code code)
@@ -75,21 +125,26 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 				return StringUtils.EMPTY;
 			}
 			string codeValue = XmlStringEscape.Escape(code.CodeValue);
-			return " code=\"" + codeValue + "\"";
+			string codeSystem = XmlStringEscape.Escape(code.CodeSystem);
+			return " code=\"" + codeValue + "\"" + (StringUtils.IsBlank(code.CodeSystem) ? string.Empty : " codeSystem=\"" + codeSystem
+				 + "\"");
 		}
 
-		private IDictionary<string, string> GetUseAttributeMap(PostalAddress value)
+		private IDictionary<string, string> GetUseAttributeMap(string dataType, PostalAddress value, Hl7BaseVersion baseVersion)
 		{
 			string uses = string.Empty;
-			foreach (Ca.Infoway.Messagebuilder.Domainvalue.PostalAddressUse postalAddressUse in value.Uses)
+			foreach (x_BasicPostalAddressUse postalAddressUse in value.Uses)
 			{
-				uses += uses.Length == 0 ? string.Empty : " ";
-				uses += postalAddressUse.CodeValue;
+				if (AD_VALIDATION_UTILS.IsAllowableUse(dataType, postalAddressUse, baseVersion))
+				{
+					uses += uses.Length == 0 ? string.Empty : " ";
+					uses += postalAddressUse.CodeValue;
+				}
 			}
 			IDictionary<string, string> result = new Dictionary<string, string>();
 			if (uses.Length > 0)
 			{
-				result["use"] = uses;
+				result["use"] = uses.Trim();
 			}
 			return result;
 		}

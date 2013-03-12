@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Merged {
 
 
     /**
-     * <summary>NotEligibleForTrial</summary>
+     * <summary>Business Name: NotEligibleForTrial</summary>
      * 
      * <remarks>PORX_MT060340CA.Component2: G:not eligible for 
      * Trial? <p>Indicates that a prescription is part of a Trial 
@@ -58,37 +58,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Merged {
             this.negationInd = new BLImpl();
         }
         /**
-         * <summary>NotEligibleForTrial</summary>
+         * <summary>Business Name: NotEligibleForTrial</summary>
          * 
-         * <remarks>Not Eligible for Trial? <p>An indication that a 
-         * prescription is or is not eligible for trial dispensing from 
-         * a clinical (not financial) perspective. False = Eligible, 
-         * True = Not Eligible.</p> <p>May affect dispensers' 
+         * <remarks>Un-merged Business Name: NotEligibleForTrial 
+         * Relationship: PORX_MT060340CA.Component2.negationInd 
+         * Conformance/Cardinality: MANDATORY (1) <p>An indication that 
+         * a prescription is or is not eligible for trial dispensing 
+         * from a clinical (not financial) perspective. False = 
+         * Eligible, True = Not Eligible.</p> <p>May affect dispensers' 
          * discretion to dispense anything other than prescribed fill 
-         * quantity.</p><p>Expressed as 'Non-Eligibility' rather than 
-         * 'Eligibility' due to restrictions in HL7 modeling.</p><p>The 
-         * attribute is mandatory as it must be known whether it is 
-         * true or false.</p> <p>May affect dispensers' discretion to 
-         * dispense anything other than prescribed fill 
-         * quantity.</p><p>Expressed as 'Non-Eligibility' rather than 
-         * 'Eligibility' due to restrictions in HL7 modeling.</p><p>The 
-         * attribute is mandatory as it must be known whether it is 
-         * true or false.</p> <p>May affect dispensers' discretion to 
-         * dispense anything other than prescribed fill 
-         * quantity.</p><p>Expressed as 'Non-Eligibility' rather than 
-         * 'Eligibility' due to restrictions in HL7 modeling.</p><p>The 
-         * attribute is mandatory as it must be known whether it is 
-         * true or false.</p> Not Eligible for Trial? <p>An indication 
-         * that a prescription is or is not eligible for trial 
-         * dispensing from a clinical (not financial) perspective. 
-         * False = Eligible, True = Not Eligible.</p> <p>May affect 
-         * dispensers' discretion to dispense anything other than 
-         * prescribed fill quantity.</p><p>Expressed as 
-         * 'Non-Eligibility' rather than 'Eligibility' due to 
-         * restrictions in HL7 modeling.</p><p>The attribute is 
-         * mandatory because it must be known whether trials are 
-         * allowed or not.</p> <p>May affect dispensers' discretion to 
-         * dispense anything other than prescribed fill 
          * quantity.</p><p>Expressed as 'Non-Eligibility' rather than 
          * 'Eligibility' due to restrictions in HL7 modeling.</p><p>The 
          * attribute is mandatory because it must be known whether 
@@ -97,7 +75,33 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Merged {
          * quantity.</p><p>Expressed as 'Non-Eligibility' rather than 
          * 'Eligibility' due to restrictions in HL7 modeling.</p><p>The 
          * attribute is mandatory because it must be known whether 
-         * trials are allowed or not.</p></remarks>
+         * trials are allowed or not.</p> <p>May affect dispensers' 
+         * discretion to dispense anything other than prescribed fill 
+         * quantity.</p><p>Expressed as 'Non-Eligibility' rather than 
+         * 'Eligibility' due to restrictions in HL7 modeling.</p><p>The 
+         * attribute is mandatory because it must be known whether 
+         * trials are allowed or not.</p> Un-merged Business Name: 
+         * NotEligibleForTrial Relationship: 
+         * PORX_MT060160CA.Component2.negationInd 
+         * Conformance/Cardinality: MANDATORY (1) <p>An indication that 
+         * a prescription is or is not eligible for trial dispensing 
+         * from a clinical (not financial) perspective. False = 
+         * Eligible, True = Not Eligible.</p> <p>May affect dispensers' 
+         * discretion to dispense anything other than prescribed fill 
+         * quantity.</p><p>Expressed as 'Non-Eligibility' rather than 
+         * 'Eligibility' due to restrictions in HL7 modeling.</p><p>The 
+         * attribute is mandatory as it must be known whether it is 
+         * true or false.</p> <p>May affect dispensers' discretion to 
+         * dispense anything other than prescribed fill 
+         * quantity.</p><p>Expressed as 'Non-Eligibility' rather than 
+         * 'Eligibility' due to restrictions in HL7 modeling.</p><p>The 
+         * attribute is mandatory as it must be known whether it is 
+         * true or false.</p> <p>May affect dispensers' discretion to 
+         * dispense anything other than prescribed fill 
+         * quantity.</p><p>Expressed as 'Non-Eligibility' rather than 
+         * 'Eligibility' due to restrictions in HL7 modeling.</p><p>The 
+         * attribute is mandatory as it must be known whether it is 
+         * true or false.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"negationInd"})]
         public bool? NegationInd {

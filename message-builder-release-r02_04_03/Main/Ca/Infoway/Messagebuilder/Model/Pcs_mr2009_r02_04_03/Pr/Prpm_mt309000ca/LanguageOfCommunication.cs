@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,13 +28,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Prpm_mt309000c
 
 
     /**
-     * <summary>Language of Communication</summary>
+     * <summary>Business Name: Language of Communication</summary>
      * 
-     * <remarks><p>Information about what language(s) should be 
-     * used to communicate with the focal person can be sent in the 
-     * LanguageCommunication class.</p> <p>Supports the business 
-     * requirement to identify languages used by client for the 
-     * purposes of communication</p></remarks>
+     * <p>Supports the business requirement to identify languages 
+     * used by client for the purposes of communication</p> 
+     * <p>Information about what language(s) should be used to 
+     * communicate with the focal person can be sent in the 
+     * LanguageCommunication class.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"PRPM_MT309000CA.LanguageCommunication"})]
     public class LanguageOfCommunication : MessagePartBean {
@@ -51,12 +51,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Prpm_mt309000c
             this.preferenceInd = new BLImpl();
         }
         /**
-         * <summary>Language of Communication Code</summary>
+         * <summary>Business Name: Language of Communication Code</summary>
          * 
-         * <remarks><p>A code indicating the language of 
-         * communication</p> <p>Mandatory attribute conveying the 
-         * expected language message elements are to be transmitted 
-         * in</p></remarks>
+         * <remarks>Relationship: 
+         * PRPM_MT309000CA.LanguageCommunication.languageCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>Mandatory 
+         * attribute conveying the expected language message elements 
+         * are to be transmitted in</p> <p>A code indicating the 
+         * language of communication</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"languageCode"})]
         public HumanLanguage LanguageCode {
@@ -65,13 +67,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Prpm_mt309000c
         }
 
         /**
-         * <summary>Language of Communication Skills Code</summary>
+         * <summary>Business Name: Language of Communication Skills 
+         * Code</summary>
          * 
-         * <remarks><p>Indicates the healthcare provider's ability to 
-         * communicate in the indicated language i.e. written, spoken, 
-         * read</p> <p>Required attribute provides additional 
-         * information about the healthcare provider's communication 
-         * skills in a given language</p></remarks>
+         * <remarks>Relationship: 
+         * PRPM_MT309000CA.LanguageCommunication.modeCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Required 
+         * attribute provides additional information about the 
+         * healthcare provider's communication skills in a given 
+         * language</p> <p>Indicates the healthcare provider's ability 
+         * to communicate in the indicated language i.e. written, 
+         * spoken, read</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"modeCode"})]
         public LanguageAbilityMode ModeCode {
@@ -80,13 +86,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Prpm_mt309000c
         }
 
         /**
-         * <summary>Language of Communication Proficiency Level Code</summary>
+         * <summary>Business Name: Language of Communication 
+         * Proficiency Level Code</summary>
          * 
-         * <remarks><p>Indicates the proficiency level at which 
+         * <remarks>Relationship: 
+         * PRPM_MT309000CA.LanguageCommunication.proficiencyLevelCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Required 
+         * attribute provides additional information about the 
+         * healthcare provider's communication skills in a given 
+         * language</p> <p>Indicates the proficiency level at which 
          * healthcare provider is able to communicate in the indicated 
-         * language of communication</p> <p>Required attribute provides 
-         * additional information about the healthcare provider's 
-         * communication skills in a given language</p></remarks>
+         * language of communication</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"proficiencyLevelCode"})]
         public LanguageAbilityProficiency ProficiencyLevelCode {
@@ -95,12 +105,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Prpm_mt309000c
         }
 
         /**
-         * <summary>Language of Communication Preference Indicator</summary>
+         * <summary>Business Name: Language of Communication Preference 
+         * Indicator</summary>
          * 
-         * <remarks><p>Indicates the preferred language for all 
-         * communications.</p> <p>Required attribute that supports the 
-         * business requirement to indicate the preferred language for 
-         * all communications.</p></remarks>
+         * <remarks>Relationship: 
+         * PRPM_MT309000CA.LanguageCommunication.preferenceInd 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Required 
+         * attribute that supports the business requirement to indicate 
+         * the preferred language for all communications.</p> 
+         * <p>Indicates the preferred language for all 
+         * communications.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"preferenceInd"})]
         public bool? PreferenceInd {

@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,6 +25,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Merged;
 
 
+    /**
+     * <summary>Business Name: POME_IN010070CA: Drug search query</summary>
+     * 
+     * <p>Requests retrieval of a lists of candidate drugs based on 
+     * various search criteria such as name, route, code, 
+     * manufacturer, appearance, etc.</p> Message: 
+     * MCCI_MT002100CA.Message Control Act: 
+     * QUQI_MT020002CA.ControlActEvent --> Payload: 
+     * POME_MT010090CA.ParameterList
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"POME_IN010070CA"})]
     public class DrugSearchQuery : HL7Message_1<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.TriggerEvent_5<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Merged.DrugQueryParameters>>, IInteraction {
 

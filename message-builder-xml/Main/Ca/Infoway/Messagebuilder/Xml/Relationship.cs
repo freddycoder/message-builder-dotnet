@@ -1,3 +1,22 @@
+/**
+ * Copyright 2013 Canada Health Infoway, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Author:        $LastChangedBy: tmcgrady $
+ * Last modified: $LastChangedDate: 2013-03-08 11:06:36 -0500 (Fri, 08 Mar 2013) $
+ * Revision:      $LastChangedRevision: 6699 $
+ */
 using System;
 using System.Collections.Generic;
 using Ca.Infoway.Messagebuilder;
@@ -75,6 +94,8 @@ namespace Ca.Infoway.Messagebuilder.Xml
 		private IList<Ca.Infoway.Messagebuilder.Xml.Relationship> choices = new List<Ca.Infoway.Messagebuilder.Xml.Relationship>(
 			);
 
+		private string parentType;
+
 		/// <summary>Default constructor.</summary>
 		/// <remarks>Default constructor.</remarks>
 		public Relationship()
@@ -88,6 +109,7 @@ namespace Ca.Infoway.Messagebuilder.Xml
 		/// <param name="cardinality">- the cardinality.</param>
 		public Relationship(string name, string type, Ca.Infoway.Messagebuilder.Xml.Cardinality cardinality)
 		{
+			// not guaranteed to be populated
 			this.name = name;
 			this.type = type;
 			this.cardinality = cardinality.ToString();
@@ -246,6 +268,11 @@ namespace Ca.Infoway.Messagebuilder.Xml
 				Ca.Infoway.Messagebuilder.Xml.Cardinality cardinality = value;
 				this.cardinality = cardinality == null ? null : cardinality.ToString();
 			}
+		}
+
+		public virtual string GetRawCardinality()
+		{
+			return this.cardinality;
 		}
 
 		/// <summary>Get the sort order.</summary>
@@ -615,6 +642,23 @@ namespace Ca.Infoway.Messagebuilder.Xml
 			{
 				Ca.Infoway.Messagebuilder.Xml.UpdateMode updateMode = value;
 				this.updateMode = updateMode;
+			}
+		}
+
+		/// <summary>The type containing this relationship</summary>
+		/// <returns>parent type</returns>
+		/// <summary>The type containing this relationship</summary>
+		/// <value></value>
+		public virtual string ParentType
+		{
+			get
+			{
+				return parentType;
+			}
+			set
+			{
+				string parentType = value;
+				this.parentType = parentType;
 			}
 		}
 	}

@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged {
 
 
     /**
-     * <summary>HealthcareProvider</summary>
+     * <summary>Business Name: HealthcareProvider</summary>
      * 
      * <remarks>COCT_MT290000CA.HealthCareProvider: Healthcare 
      * Provider <p>Healthcare Provider</p> 
@@ -58,14 +58,18 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged {
             this.healthCareProviderPersonAddr = new ADImpl();
         }
         /**
-         * <summary>Provider identifiers</summary>
+         * <summary>Un-merged Business Name: ProviderIdentifiers</summary>
          * 
-         * <remarks><p>Provider ID, eg. Prof. license no.</p> <p>More 
-         * than provider identifier could be provided, eg. for dental 
-         * claims.</p> Provider ID <p>More than 1 Provider identifier 
-         * can be provided for a particular role, e.g. some dental 
-         * claims. An Id may not be available for out of jurisdiction 
-         * providers and consulltants.</p></remarks>
+         * <remarks>Relationship: COCT_MT290000CA.HealthCareProvider.id 
+         * Conformance/Cardinality: REQUIRED (0-9) <p>More than 
+         * provider identifier could be provided, eg. for dental 
+         * claims.</p> <p>Provider ID, eg. Prof. license no.</p> 
+         * Un-merged Business Name: ProviderID Relationship: 
+         * COCT_MT490000CA.HealthCareProvider.id 
+         * Conformance/Cardinality: REQUIRED (0-9) <p>More than 1 
+         * Provider identifier can be provided for a particular role, 
+         * e.g. some dental claims. An Id may not be available for out 
+         * of jurisdiction providers and consulltants.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public ICollection<Identifier> Id {
@@ -73,10 +77,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged {
         }
 
         /**
-         * <summary>Provider Type</summary>
+         * <summary>Un-merged Business Name: ProviderType</summary>
          * 
-         * <remarks><p>Allows for crosswalks between speciality code 
-         * sets</p> Healthcare Provider code <p>code denoting 
+         * <remarks>Relationship: 
+         * COCT_MT290000CA.HealthCareProvider.code 
+         * Conformance/Cardinality: POPULATED (1) <p>Allows for 
+         * crosswalks between speciality code sets</p> Un-merged 
+         * Business Name: HealthcareProviderCode Relationship: 
+         * COCT_MT490000CA.HealthCareProvider.code 
+         * Conformance/Cardinality: POPULATED (1) <p>code denoting 
          * healthcare Provider Type</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
@@ -86,10 +95,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged {
         }
 
         /**
-         * <summary>Name of Provider</summary>
+         * <summary>Un-merged Business Name: NameOfProvider</summary>
          * 
-         * <remarks><p>Name of person providing service or drug</p> 
-         * Provider Name <p>Name of Provider</p></remarks>
+         * <remarks>Relationship: COCT_MT290000CA.ProviderPerson.name 
+         * Conformance/Cardinality: MANDATORY (1) <p>Name of person 
+         * providing service or drug</p> Un-merged Business Name: 
+         * ProviderName Relationship: 
+         * COCT_MT490000CA.ProviderPerson.name Conformance/Cardinality: 
+         * MANDATORY (1) <p>Name of Provider</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"healthCareProviderPerson/name"})]
         public PersonName HealthCareProviderPersonName {
@@ -98,11 +111,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged {
         }
 
         /**
-         * <summary>contact no.</summary>
+         * <summary>Un-merged Business Name: ContactNo</summary>
          * 
-         * <remarks><p>contact info. for Provider</p> Provider Telecom 
-         * <p>Telephone no. of provider</p> <p>only required if 
-         * provider is not known to the Payor</p></remarks>
+         * <remarks>Relationship: 
+         * COCT_MT290000CA.ProviderPerson.telecom 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>contact info. for 
+         * Provider</p> Un-merged Business Name: ProviderTelecom 
+         * Relationship: COCT_MT490000CA.ProviderPerson.telecom 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>only required if 
+         * provider is not known to the Payor</p> <p>Telephone no. of 
+         * provider</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"healthCareProviderPerson/telecom"})]
         public TelecommunicationAddress HealthCareProviderPersonTelecom {
@@ -111,12 +129,18 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged {
         }
 
         /**
-         * <summary>ProviderGender</summary>
+         * <summary>Business Name: ProviderGender</summary>
          * 
-         * <remarks>Provider Gender <p>Telecom, gender, birth time, 
-         * addr are only required if provider is not known to the 
-         * Payor</p> Provider Gender <p>only required if provider is 
-         * not known to the Payor</p></remarks>
+         * <remarks>Un-merged Business Name: ProviderGender 
+         * Relationship: 
+         * COCT_MT290000CA.ProviderPerson.administrativeGenderCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Telecom, gender, 
+         * birth time, addr are only required if provider is not known 
+         * to the Payor</p> Un-merged Business Name: ProviderGender 
+         * Relationship: 
+         * COCT_MT490000CA.ProviderPerson.administrativeGenderCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>only required if 
+         * provider is not known to the Payor</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"healthCareProviderPerson/administrativeGenderCode"})]
         public AdministrativeGender HealthCareProviderPersonAdministrativeGenderCode {
@@ -125,12 +149,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged {
         }
 
         /**
-         * <summary>Provider Birth date</summary>
+         * <summary>Un-merged Business Name: ProviderDateOfBirth</summary>
          * 
-         * <remarks><p>only required if provider is not known to the 
-         * Payor</p> Provider Date of Birth <p>Telecom, gender, birth 
-         * time, addr are only required if provider is not known to the 
-         * Payor</p></remarks>
+         * <remarks>Relationship: 
+         * COCT_MT290000CA.ProviderPerson.birthTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Telecom, gender, 
+         * birth time, addr are only required if provider is not known 
+         * to the Payor</p> Un-merged Business Name: ProviderBirthDate 
+         * Relationship: COCT_MT490000CA.ProviderPerson.birthTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>only required if 
+         * provider is not known to the Payor</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"healthCareProviderPerson/birthTime"})]
         public PlatformDate HealthCareProviderPersonBirthTime {
@@ -139,13 +167,18 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged {
         }
 
         /**
-         * <summary>ProviderAddress</summary>
+         * <summary>Business Name: ProviderAddress</summary>
          * 
-         * <remarks>Provider Address <p>Can be used to specify 
-         * jurisdiction for OOJ providers</p> Provider Address 
-         * <p>Telecom, gender, birth time, addr are only required if 
-         * provider is not known to the Payor</p> <p>Can be used to 
-         * specify jurisdiction for OOJ providers</p></remarks>
+         * <remarks>Un-merged Business Name: ProviderAddress 
+         * Relationship: COCT_MT290000CA.ProviderPerson.addr 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Can be used to 
+         * specify jurisdiction for OOJ providers</p> <p>Telecom, 
+         * gender, birth time, addr are only required if provider is 
+         * not known to the Payor</p> Un-merged Business Name: 
+         * ProviderAddress Relationship: 
+         * COCT_MT490000CA.ProviderPerson.addr Conformance/Cardinality: 
+         * REQUIRED (0-1) <p>Can be used to specify jurisdiction for 
+         * OOJ providers</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"healthCareProviderPerson/addr"})]
         public PostalAddress HealthCareProviderPersonAddr {

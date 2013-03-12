@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,6 +25,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt220004ca;
 
 
+    /**
+     * <summary>Business Name: REPC_IN000086CA: Patient discharge / 
+     * care summaries query</summary>
+     * 
+     * <p>Requests retrieval of Discharge/ Care Summaries for a 
+     * particular patient, potentially filtered by time or other 
+     * criteria.</p> Message: MCCI_MT002100CA.Message Control Act: 
+     * QUQI_MT020000CA.ControlActEvent --> Payload: 
+     * REPC_MT220004CA.ParameterList
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"REPC_IN000086CA"})]
     public class PatientDischargeCareSummariesQuery : HL7Message_1<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.TriggerEvent_5<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt220004ca.QueryDefinition>>, IInteraction {
 

@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,13 +29,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Ra.Rcmr_mt010001c
 
 
     /**
-     * <summary>b:consented to by</summary>
+     * <summary>Business Name: b:consented to by</summary>
      * 
-     * <remarks><p>Indicates that the consent was provided by the 
-     * patient or representative.</p> <p>Consent can be provided by 
-     * the patient or representative or be overridden by a 
-     * provider. It is important to know which occurred for audit 
-     * purposes.</p></remarks>
+     * <p>Consent can be provided by the patient or representative 
+     * or be overridden by a provider. It is important to know 
+     * which occurred for audit purposes.</p> <p>Indicates that the 
+     * consent was provided by the patient or representative.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"RCMR_MT010001CA.Author"})]
     public class ConsentedToBy : MessagePartBean {
@@ -47,11 +46,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Ra.Rcmr_mt010001c
             this.modeCode = new CVImpl();
         }
         /**
-         * <summary>Patient Consent Mechanism</summary>
+         * <summary>Business Name: Patient Consent Mechanism</summary>
          * 
-         * <remarks><p>Indicates whether the patient's consent is 
-         * written or verbal.</p> <p>Verbal consents may trigger a 
-         * higher level of auditing.</p></remarks>
+         * <remarks>Relationship: RCMR_MT010001CA.Author.modeCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Verbal consents 
+         * may trigger a higher level of auditing.</p> <p>Indicates 
+         * whether the patient's consent is written or verbal.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"modeCode"})]
         public x_PhysicalVerbalParticipationMode ModeCode {
@@ -59,6 +59,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Ra.Rcmr_mt010001c
             set { this.modeCode.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: RCMR_MT010001CA.Author.consenter</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"consenter"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.IConsenter Consenter {
             get { return this.consenter; }

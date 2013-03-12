@@ -1,3 +1,22 @@
+/**
+ * Copyright 2013 Canada Health Infoway, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Author:        $LastChangedBy: tmcgrady $
+ * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Revision:      $LastChangedRevision: 2623 $
+ */
 using System;
 using System.Xml;
 using Ca.Infoway.Messagebuilder;
@@ -10,6 +29,7 @@ using NUnit.Framework;
 
 namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 {
+	/// <author>administrator</author>
 	[TestFixture]
 	public class TsFullDateTimeElementParserTest : MarshallingTestCase
 	{
@@ -75,30 +95,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 				().Parse(CreateContext(), node, this.xmlResult).BareValue);
 		}
 
-		/// <exception cref="System.Exception"></exception>
-		[Test]
-		public virtual void TestParseValidValueAttributeWithTimeZoneMinus()
-		{
-			PlatformDate calendar = DateUtil.GetDate(2008, 2, 31, 15, 58, 57, 862);
-			string value = "20080331155857.8620" + GetCurrentTimeZone(calendar);
-			XmlNode node = CreateNode("<something extra=\"extra\" value=\"" + value + "\" />");
-			AssertDateEquals("correct value returned", MarshallingTestCase.FULL_DATE_TIME, calendar, (PlatformDate)new TsElementParser
-				().Parse(CreateContext(), node, this.xmlResult).BareValue);
-		}
-
-		/// <exception cref="System.Exception"></exception>
-		[Test]
-		public virtual void TestParseValidValueAttributeWithTimeZonePlus()
-		{
-			//Date expectedCalendar = DateUtil.getDate(2008, 2, 31, 10, 58, 57, 862);
-            DateTime date = DateUtil.GetDate(2008, 2, 31, 10, 58, 57, 862);
-            DateTime calWithTZ = TimeZoneInfo.ConvertTime(date, TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time"));
-            PlatformDate expectedCalendar = new PlatformDate(calWithTZ);
-			XmlNode node = CreateNode("<something extra=\"extra\" value=\"20080331155857.8620+0100\" />");
-			AssertDateEquals("correct value returned", MarshallingTestCase.FULL_DATE_TIME, expectedCalendar, (PlatformDate)new TsElementParser
-				().Parse(CreateContext(), node, this.xmlResult).BareValue);
-		}
-
+		//Date expectedCalendar = DateUtil.getDate(2008, 2, 31, 10, 58, 57, 862);
 		/// <exception cref="System.Exception"></exception>
 		[Test]
 		public virtual void TestParseInvalidValueAttribute()
@@ -121,14 +118,9 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 
 		private string GetCurrentTimeZone(PlatformDate calendar)
 		{
-            DateTimeOffset expectedDate1 = TimeZoneInfo.ConvertTime(calendar, TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time"));
-            String timeZoneString = expectedDate1.Offset.ToString().Split(":")[0];
-            String currentTimeZone = timeZoneString;
-            while (currentTimeZone.Length <= 4)
-            {
-                currentTimeZone += "0";
-            }
-            return currentTimeZone;
+			SimpleDateFormat tzformat = new SimpleDateFormat("Z");
+			string currentTimeZone = tzformat.Format(calendar);
+			return currentTimeZone;
 		}
 	}
 }

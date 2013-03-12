@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,13 +31,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Coct_mt080100
 
 
     /**
-     * <summary>Specimen Collection Procedure</summary>
+     * <summary>Business Name: Specimen Collection Procedure</summary>
      * 
-     * <remarks><p>This is the procedure act which describes the 
+     * <p>This is the procedure act which describes the 
      * process/procedure used to collect the associated 
      * specimen.</p> <p>For certain laboratory tests, the specimen 
      * collection procedure information is relevant in determining 
-     * the result value.</p></remarks>
+     * the result value.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"COCT_MT080100CA.SpecimenCollectionProcedureEvent"})]
     public class SpecimenCollectionProcedure : MessagePartBean {
@@ -53,20 +53,22 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Coct_mt080100
             this.subjectOfAnnotation = new List<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Coct_mt120600ca.Notes>();
         }
         /**
-         * <summary>G:Specimen Collection Text</summary>
+         * <summary>Business Name: G:Specimen Collection Text</summary>
          * 
-         * <remarks><p>Used to describe any additional information 
-         * regarding the specimen collection procedure or the collected 
-         * material, e.g. left ear; where &quot;ear&quot; is atomically 
-         * represented by the Natural entity code but the 
-         * &quot;left&quot; is not able, at this time, to also be 
-         * communicated within the Natural entity. This attribute is 
-         * not used for notes or comments regarding the specimen 
-         * collection process. Notes and annotations are documented 
-         * using the Annotation CMET.</p> <p>The text attribute 
-         * documents any additional information regarding this specimen 
-         * collection procedure event that is not able to be 
-         * communicated using the other attribution of this act e.g. 
+         * <remarks>Relationship: 
+         * COCT_MT080100CA.SpecimenCollectionProcedureEvent.text 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Used to describe 
+         * any additional information regarding the specimen collection 
+         * procedure or the collected material, e.g. left ear; where 
+         * &quot;ear&quot; is atomically represented by the Natural 
+         * entity code but the &quot;left&quot; is not able, at this 
+         * time, to also be communicated within the Natural entity. 
+         * This attribute is not used for notes or comments regarding 
+         * the specimen collection process. Notes and annotations are 
+         * documented using the Annotation CMET.</p> <p>The text 
+         * attribute documents any additional information regarding 
+         * this specimen collection procedure event that is not able to 
+         * be communicated using the other attribution of this act e.g. 
          * for granularity of coding reasons.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"text"})]
@@ -76,17 +78,20 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Coct_mt080100
         }
 
         /**
-         * <summary>E:Specimen Collection Date/Time</summary>
+         * <summary>Business Name: E:Specimen Collection Date/Time</summary>
          * 
-         * <remarks><p>The date/time the specimen was collected. This 
-         * can be a date/time interval (start - stop).</p><p>The time 
-         * may not always be known, but a date should always be 
-         * entered.</p> <p>The date/time the specimen was collected. 
-         * This can be a date/time interval (start - stop).</p><p>The 
-         * time may not always be known, but a date should always be 
-         * entered.</p> <p>The specimen collection date/time is 
-         * relevant to the testing and resulting outcome of that 
-         * specimen for some laboratory tests.</p></remarks>
+         * <remarks>Relationship: 
+         * COCT_MT080100CA.SpecimenCollectionProcedureEvent.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The date/time the 
+         * specimen was collected. This can be a date/time interval 
+         * (start - stop).</p><p>The time may not always be known, but 
+         * a date should always be entered.</p> <p>The date/time the 
+         * specimen was collected. This can be a date/time interval 
+         * (start - stop).</p><p>The time may not always be known, but 
+         * a date should always be entered.</p> <p>The specimen 
+         * collection date/time is relevant to the testing and 
+         * resulting outcome of that specimen for some laboratory 
+         * tests.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"effectiveTime"})]
         public Interval<PlatformDate> EffectiveTime {
@@ -94,12 +99,23 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Coct_mt080100
             set { this.effectiveTime.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * COCT_MT080100CA.Performer2.assignedEntity</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"performer/assignedEntity"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.HealthcareWorker PerformerAssignedEntity {
             get { return this.performerAssignedEntity; }
             set { this.performerAssignedEntity = value; }
         }
 
+        /**
+         * <summary>Relationship: COCT_MT080100CA.Subject2.annotation</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf/annotation"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Coct_mt120600ca.Notes> SubjectOfAnnotation {
             get { return this.subjectOfAnnotation; }

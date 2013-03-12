@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,20 +30,20 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt306051ca {
 
 
     /**
-     * <summary>Assigned Entity</summary>
+     * <summary>Business Name: Assigned Entity</summary>
      * 
-     * <remarks><p>The role class, assigned entity, captures the 
-     * critical information of the provider playing the role of 
-     * interest. This includes an identifier for the role, mailing 
-     * address, phone number, and the time within which the role is 
-     * played (may be open ended). The scooping organization, which 
-     * may be omitted if not needed, provides the organizational 
-     * context for the entity that actually plays the role. For 
-     * example, the role scoper will normally be the party that 
-     * assigns the identifier for the role.</p> <p>Roleclass 
-     * required to provide additional information for the person 
-     * responsible for providing healthcare services within a 
-     * specific healthcare setting</p></remarks>
+     * <p>The role class, assigned entity, captures the critical 
+     * information of the provider playing the role of interest. 
+     * This includes an identifier for the role, mailing address, 
+     * phone number, and the time within which the role is played 
+     * (may be open ended). The scooping organization, which may be 
+     * omitted if not needed, provides the organizational context 
+     * for the entity that actually plays the role. For example, 
+     * the role scoper will normally be the party that assigns the 
+     * identifier for the role.</p> <p>Roleclass required to 
+     * provide additional information for the person responsible 
+     * for providing healthcare services within a specific 
+     * healthcare setting</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"PRPM_MT306051CA.AssignedEntity"})]
     public class AssignedEntity : MessagePartBean, Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt306051ca.IRoleChoice {
@@ -60,12 +60,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt306051ca {
             this.name = new LISTImpl<PN, PersonName>(typeof(PNImpl));
         }
         /**
-         * <summary>Functional Role Identifier</summary>
+         * <summary>Business Name: Functional Role Identifier</summary>
          * 
-         * <remarks><p>Identifies specific functional role that a 
-         * provider may play within an organization.</p> <p>Mandatory 
-         * attribute supports the identification of the healthcare 
-         * provider</p></remarks>
+         * <remarks>Relationship: PRPM_MT306051CA.AssignedEntity.id 
+         * Conformance/Cardinality: MANDATORY (1-50) <p>Identifies 
+         * specific functional role that a provider may play within an 
+         * organization.</p> <p>Mandatory attribute supports the 
+         * identification of the healthcare provider</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public ICollection<Identifier> Id {
@@ -73,11 +74,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt306051ca {
         }
 
         /**
-         * <summary>Functional Role Type</summary>
+         * <summary>Business Name: Functional Role Type</summary>
          * 
-         * <remarks><p>The code identifying the specific functional 
-         * role.</p> <p>Mandatory attribute supports the identification 
-         * of the healthcare provider</p></remarks>
+         * <remarks>Relationship: PRPM_MT306051CA.AssignedEntity.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>The code 
+         * identifying the specific functional role.</p> <p>Mandatory 
+         * attribute supports the identification of the healthcare 
+         * provider</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public AssignedRoleType Code {
@@ -86,23 +89,37 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt306051ca {
         }
 
         /**
-         * <summary>Functional Role Name</summary>
+         * <summary>Business Name: Functional Role Name</summary>
          * 
-         * <remarks><p>The provider&#226;&#128;&#153;s name pertaining 
-         * to the specific functional role.</p> <p>Required attribute 
-         * supports the identification of the healthcare provider</p></remarks>
+         * <remarks>Relationship: PRPM_MT306051CA.AssignedEntity.name 
+         * Conformance/Cardinality: REQUIRED (0-5) <p>The 
+         * provider&#226;&#128;&#153;s name pertaining to the specific 
+         * functional role.</p> <p>Required attribute supports the 
+         * identification of the healthcare provider</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"name"})]
         public IList<PersonName> Name {
             get { return this.name.RawList(); }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PRPM_MT306051CA.AssignedEntity.assignedPrincipalPerson</summary>
+         * 
+         * <remarks>Conformance/Cardinality: REQUIRED (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"assignedPrincipalPerson"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Merged.PrinicpalPerson_2 AssignedPrincipalPerson {
             get { return this.assignedPrincipalPerson; }
             set { this.assignedPrincipalPerson = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PRPM_MT306051CA.AssignedEntity.representedOrganization</summary>
+         * 
+         * <remarks>Conformance/Cardinality: REQUIRED (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"representedOrganization"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt306051ca.Organization RepresentedOrganization {
             get { return this.representedOrganization; }

@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged {
 
 
     /**
-     * <summary>TriggerEvent</summary>
+     * <summary>Business Name: TriggerEvent</summary>
      * 
      * <remarks>MCAI_MT700227CA.ControlActEvent: Trigger Event 
      * <p>Identifies the action that resulted in this message being 
@@ -118,10 +118,82 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged {
             this.componentOf = new List<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged.CareCompositions>();
         }
         /**
-         * <summary>EventIdentifier</summary>
+         * <summary>Business Name: EventIdentifier</summary>
          * 
-         * <remarks>B:Event Identifier <p>A unique identifier for this 
-         * particular event assigned by the system in which the event 
+         * <remarks>Un-merged Business Name: EventIdentifier 
+         * Relationship: MCAI_MT700227CA.ControlActEvent.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>A unique 
+         * identifier for this particular event assigned by the system 
+         * in which the event occurred.</p> <p>Allows the event to be 
+         * referenced (for undos) and also indicates whether multiple 
+         * interactions were caused by the same triggering event. Also 
+         * used for audit purposes.</p> <p>Identifier needs to be 
+         * persisted by receiving applications, except for queries 
+         * (queries cannot be retracted or undone).</p> Un-merged 
+         * Business Name: EventIdentifier Relationship: 
+         * MCAI_MT700212CA.ControlActEvent.id Conformance/Cardinality: 
+         * MANDATORY (1) <p>A unique identifier for this particular 
+         * event assigned by the system in which the event 
+         * occurred.</p> <p>Allows the event to be referenced (for 
+         * undos) and also indicates whether multiple interactions were 
+         * caused by the same triggering event. Also used for audit 
+         * purposes.</p> <p>Identifier needs to be persisted by 
+         * receiving applications, except for queries (queries cannot 
+         * be retracted or undone).</p> Un-merged Business Name: 
+         * EventIdentifier Relationship: 
+         * MCAI_MT700218CA.ControlActEvent.id Conformance/Cardinality: 
+         * MANDATORY (1) <p>A unique identifier for this particular 
+         * event assigned by the system in which the event 
+         * occurred.</p> <p>Allows the event to be referenced (for 
+         * undos) and also indicates whether multiple interactions were 
+         * caused by the same triggering event. Also used for audit 
+         * purposes.</p> <p>Identifier needs to be persisted by 
+         * receiving applications, except for queries (queries cannot 
+         * be retracted or undone).</p> Un-merged Business Name: 
+         * EventIdentifier Relationship: 
+         * MCAI_MT700217CA.ControlActEvent.id Conformance/Cardinality: 
+         * MANDATORY (1) <p>A unique identifier for this particular 
+         * event assigned by the system in which the event 
+         * occurred.</p> <p>Allows the event to be referenced (for 
+         * undos) and also indicates whether multiple interactions were 
+         * caused by the same triggering event. Also used for audit 
+         * purposes.</p> <p>Identifier needs to be persisted by 
+         * receiving applications, except for queries (queries cannot 
+         * be retracted or undone).</p> Un-merged Business Name: 
+         * EventIdentifier Relationship: 
+         * MCAI_MT700221CA.ControlActEvent.id Conformance/Cardinality: 
+         * MANDATORY (1) <p>A unique identifier for this particular 
+         * event assigned by the system in which the event 
+         * occurred.</p> <p>Allows the event to be referenced (for 
+         * undos) and also indicates whether multiple interactions were 
+         * caused by the same triggering event. Also used for audit 
+         * purposes.</p> <p>Identifier needs to be persisted by 
+         * receiving applications, except for queries (queries cannot 
+         * be retracted or undone).</p> Un-merged Business Name: 
+         * EventIdentifier Relationship: 
+         * MCAI_MT700226CA.ControlActEvent.id Conformance/Cardinality: 
+         * MANDATORY (1) <p>A unique identifier for this particular 
+         * event assigned by the system in which the event 
+         * occurred.</p> <p>Allows the event to be referenced (for 
+         * undos) and also indicates whether multiple interactions were 
+         * caused by the same triggering event. Also used for audit 
+         * purposes.</p> <p>Identifier needs to be persisted by 
+         * receiving applications, except for queries (queries cannot 
+         * be retracted or undone).</p> Un-merged Business Name: 
+         * EventIdentifier Relationship: 
+         * MCAI_MT700216CA.ControlActEvent.id Conformance/Cardinality: 
+         * MANDATORY (1) <p>A unique identifier for this particular 
+         * event assigned by the system in which the event 
+         * occurred.</p> <p>Allows the event to be referenced (for 
+         * undos) and also indicates whether multiple interactions were 
+         * caused by the same triggering event. Also used for audit 
+         * purposes.</p> <p>Identifier needs to be persisted by 
+         * receiving applications, except for queries (queries cannot 
+         * be retracted or undone).</p> Un-merged Business Name: 
+         * EventIdentifier Relationship: 
+         * MCAI_MT700211CA.ControlActEvent.id Conformance/Cardinality: 
+         * MANDATORY (1) <p>A unique identifier for this particular 
+         * event assigned by the system in which the event 
          * occurred.</p> <p>Allows the event to be referenced (for 
          * undos) and also indicates whether multiple interactions were 
          * caused by the same triggering event. Also used for audit 
@@ -136,11 +208,49 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged {
         }
 
         /**
-         * <summary>EventType</summary>
+         * <summary>Business Name: EventType</summary>
          * 
-         * <remarks>A:Event Type <p>Identifies the trigger event that 
-         * occurred.</p> <p>This is mandatory because it is essential 
-         * to understanding the meaning of the event.</p></remarks>
+         * <remarks>Un-merged Business Name: EventType Relationship: 
+         * MCAI_MT700227CA.ControlActEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Identifies the 
+         * trigger event that occurred.</p> <p>This is mandatory 
+         * because it is essential to understanding the meaning of the 
+         * event.</p> Un-merged Business Name: EventType Relationship: 
+         * MCAI_MT700212CA.ControlActEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Identifies the 
+         * trigger event that occurred.</p> <p>This is mandatory 
+         * because it is essential to understanding the meaning of the 
+         * event.</p> Un-merged Business Name: EventType Relationship: 
+         * MCAI_MT700218CA.ControlActEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Identifies the 
+         * trigger event that occurred.</p> <p>This is mandatory 
+         * because it is essential to understanding the meaning of the 
+         * event.</p> Un-merged Business Name: EventType Relationship: 
+         * MCAI_MT700217CA.ControlActEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Identifies the 
+         * trigger event that occurred.</p> <p>This is mandatory 
+         * because it is essential to understanding the meaning of the 
+         * event.</p> Un-merged Business Name: EventType Relationship: 
+         * MCAI_MT700221CA.ControlActEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Identifies the 
+         * trigger event that occurred.</p> <p>This is mandatory 
+         * because it is essential to understanding the meaning of the 
+         * event.</p> Un-merged Business Name: EventType Relationship: 
+         * MCAI_MT700226CA.ControlActEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Identifies the 
+         * trigger event that occurred.</p> <p>This is mandatory 
+         * because it is essential to understanding the meaning of the 
+         * event.</p> Un-merged Business Name: EventType Relationship: 
+         * MCAI_MT700216CA.ControlActEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Identifies the 
+         * trigger event that occurred.</p> <p>This is mandatory 
+         * because it is essential to understanding the meaning of the 
+         * event.</p> Un-merged Business Name: EventType Relationship: 
+         * MCAI_MT700211CA.ControlActEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Identifies the 
+         * trigger event that occurred.</p> <p>This is mandatory 
+         * because it is essential to understanding the meaning of the 
+         * event.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public HL7TriggerEventCode Code {
@@ -149,13 +259,71 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged {
         }
 
         /**
-         * <summary>EventEffectivePeriod</summary>
+         * <summary>Business Name: EventEffectivePeriod</summary>
          * 
-         * <remarks>C:Event Effective Period <p>Indicates the time the 
-         * event (e.g. query, change, activation) should begin and 
-         * occasionally when it should end.</p> <p>The time an event 
-         * becomes effective may differ from the time the event is 
-         * recorded (i.e. it may be in the future or the past). For 
+         * <remarks>Un-merged Business Name: EventEffectivePeriod 
+         * Relationship: MCAI_MT700227CA.ControlActEvent.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
+         * time the event (e.g. query, change, activation) should begin 
+         * and occasionally when it should end.</p> <p>The time an 
+         * event becomes effective may differ from the time the event 
+         * is recorded (i.e. it may be in the future or the past). For 
+         * events such as 'suspend', an intended end date may also be 
+         * indicated.</p> Un-merged Business Name: EventEffectivePeriod 
+         * Relationship: MCAI_MT700212CA.ControlActEvent.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
+         * time the event (e.g. query, change, activation) should begin 
+         * and occasionally when it should end.</p> <p>The time an 
+         * event becomes effective may differ from the time the event 
+         * is recorded (i.e. it may be in the future or the past). For 
+         * events such as 'suspend', an intended end date may also be 
+         * indicated.</p> Un-merged Business Name: EventEffectivePeriod 
+         * Relationship: MCAI_MT700218CA.ControlActEvent.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
+         * time the event (e.g. query, change, activation) should begin 
+         * and occasionally when it should end.</p> <p>The time an 
+         * event becomes effective may differ from the time the event 
+         * is recorded (i.e. it may be in the future or the past). For 
+         * events such as 'suspend', an intended end date may also be 
+         * indicated.</p> Un-merged Business Name: EventEffectivePeriod 
+         * Relationship: MCAI_MT700217CA.ControlActEvent.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
+         * time the event (e.g. query, change, activation) should begin 
+         * and occasionally when it should end.</p> <p>The time an 
+         * event becomes effective may differ from the time the event 
+         * is recorded (i.e. it may be in the future or the past). For 
+         * events such as 'suspend', an intended end date may also be 
+         * indicated.</p> Un-merged Business Name: EventEffectivePeriod 
+         * Relationship: MCAI_MT700221CA.ControlActEvent.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
+         * time the event (e.g. query, change, activation) should begin 
+         * and occasionally when it should end.</p> <p>The time an 
+         * event becomes effective may differ from the time the event 
+         * is recorded (i.e. it may be in the future or the past). For 
+         * events such as 'suspend', an intended end date may also be 
+         * indicated.</p> Un-merged Business Name: EventEffectivePeriod 
+         * Relationship: MCAI_MT700226CA.ControlActEvent.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
+         * time the event (e.g. query, change, activation) should begin 
+         * and occasionally when it should end.</p> <p>The time an 
+         * event becomes effective may differ from the time the event 
+         * is recorded (i.e. it may be in the future or the past). For 
+         * events such as 'suspend', an intended end date may also be 
+         * indicated.</p> Un-merged Business Name: EventEffectivePeriod 
+         * Relationship: MCAI_MT700216CA.ControlActEvent.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
+         * time the event (e.g. query, change, activation) should begin 
+         * and occasionally when it should end.</p> <p>The time an 
+         * event becomes effective may differ from the time the event 
+         * is recorded (i.e. it may be in the future or the past). For 
+         * events such as 'suspend', an intended end date may also be 
+         * indicated.</p> Un-merged Business Name: EventEffectivePeriod 
+         * Relationship: MCAI_MT700211CA.ControlActEvent.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
+         * time the event (e.g. query, change, activation) should begin 
+         * and occasionally when it should end.</p> <p>The time an 
+         * event becomes effective may differ from the time the event 
+         * is recorded (i.e. it may be in the future or the past). For 
          * events such as 'suspend', an intended end date may also be 
          * indicated.</p></remarks>
          */
@@ -166,14 +334,79 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged {
         }
 
         /**
-         * <summary>EventReason</summary>
+         * <summary>Business Name: EventReason</summary>
          * 
-         * <remarks>E:Event Reason <p>Identifies why this specific 
-         * message interaction (e.g. query, activation request, 
-         * modification request) occurred.</p> <p>Allows identifying a 
-         * reason for a specific action, such as 'reason for hold' or 
-         * 'reason for accessing information'.</p> <p>The domain 
-         * associated with this attribute will vary for each 
+         * <remarks>Un-merged Business Name: EventReason Relationship: 
+         * MCAI_MT700227CA.ControlActEvent.reasonCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Identifies why 
+         * this specific message interaction (e.g. query, activation 
+         * request, modification request) occurred.</p> <p>Allows 
+         * identifying a reason for a specific action, such as 'reason 
+         * for hold' or 'reason for accessing information'.</p> <p>The 
+         * domain associated with this attribute will vary for each 
+         * interaction and will be noted as part of the interaction 
+         * description.</p> Un-merged Business Name: EventReason 
+         * Relationship: MCAI_MT700212CA.ControlActEvent.reasonCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Identifies why 
+         * this specific message interaction (e.g. query, activation 
+         * request, modification request) occurred.</p> <p>Allows 
+         * identifying a reason for a specific action, such as 'reason 
+         * for hold' or 'reason for accessing information'.</p> <p>The 
+         * domain associated with this attribute will vary for each 
+         * interaction and will be noted as part of the interaction 
+         * description.</p> Un-merged Business Name: EventReason 
+         * Relationship: MCAI_MT700218CA.ControlActEvent.reasonCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Identifies why 
+         * this specific message interaction (e.g. query, activation 
+         * request, modification request) occurred.</p> <p>Allows 
+         * identifying a reason for a specific action, such as 'reason 
+         * for hold' or 'reason for accessing information'.</p> <p>The 
+         * domain associated with this attribute will vary for each 
+         * interaction and will be noted as part of the interaction 
+         * description.</p> Un-merged Business Name: EventReason 
+         * Relationship: MCAI_MT700217CA.ControlActEvent.reasonCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Identifies why 
+         * this specific message interaction (e.g. query, activation 
+         * request, modification request) occurred.</p> <p>Allows 
+         * identifying a reason for a specific action, such as 'reason 
+         * for hold' or 'reason for accessing information'.</p> <p>The 
+         * domain associated with this attribute will vary for each 
+         * interaction and will be noted as part of the interaction 
+         * description.</p> Un-merged Business Name: EventReason 
+         * Relationship: MCAI_MT700221CA.ControlActEvent.reasonCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Identifies why 
+         * this specific message interaction (e.g. query, activation 
+         * request, modification request) occurred.</p> <p>Allows 
+         * identifying a reason for a specific action, such as 'reason 
+         * for hold' or 'reason for accessing information'.</p> <p>The 
+         * domain associated with this attribute will vary for each 
+         * interaction and will be noted as part of the interaction 
+         * description.</p> Un-merged Business Name: EventReason 
+         * Relationship: MCAI_MT700226CA.ControlActEvent.reasonCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Identifies why 
+         * this specific message interaction (e.g. query, activation 
+         * request, modification request) occurred.</p> <p>Allows 
+         * identifying a reason for a specific action, such as 'reason 
+         * for hold' or 'reason for accessing information'.</p> <p>The 
+         * domain associated with this attribute will vary for each 
+         * interaction and will be noted as part of the interaction 
+         * description.</p> Un-merged Business Name: EventReason 
+         * Relationship: MCAI_MT700216CA.ControlActEvent.reasonCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Identifies why 
+         * this specific message interaction (e.g. query, activation 
+         * request, modification request) occurred.</p> <p>Allows 
+         * identifying a reason for a specific action, such as 'reason 
+         * for hold' or 'reason for accessing information'.</p> <p>The 
+         * domain associated with this attribute will vary for each 
+         * interaction and will be noted as part of the interaction 
+         * description.</p> Un-merged Business Name: EventReason 
+         * Relationship: MCAI_MT700211CA.ControlActEvent.reasonCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Identifies why 
+         * this specific message interaction (e.g. query, activation 
+         * request, modification request) occurred.</p> <p>Allows 
+         * identifying a reason for a specific action, such as 'reason 
+         * for hold' or 'reason for accessing information'.</p> <p>The 
+         * domain associated with this attribute will vary for each 
          * interaction and will be noted as part of the interaction 
          * description.</p></remarks>
          */
@@ -183,18 +416,99 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged {
             set { this.reasonCode.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * MCAI_MT700227CA.ControlActEvent.recordTarget 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCAI_MT700217CA.ControlActEvent.recordTarget 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCAI_MT700221CA.ControlActEvent.recordTarget 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCAI_MT700226CA.ControlActEvent.recordTarget 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCAI_MT700216CA.ControlActEvent.recordTarget 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCAI_MT700211CA.ControlActEvent.recordTarget 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"recordTarget"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged.StoredIn RecordTarget {
             get { return this.recordTarget; }
             set { this.recordTarget = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * MCAI_MT700227CA.ControlActEvent.subject 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCAI_MT700212CA.ControlActEvent.subject 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCAI_MT700218CA.ControlActEvent.subject 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCAI_MT700217CA.ControlActEvent.subject 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCAI_MT700221CA.ControlActEvent.subject 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCAI_MT700226CA.ControlActEvent.subject 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCAI_MT700216CA.ControlActEvent.subject 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCAI_MT700211CA.ControlActEvent.subject 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subject"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.RefersTo<ACT> Subject {
             get { return this.subject; }
             set { this.subject = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * MCAI_MT700227CA.ControlActEvent.subjectOf 
+         * Conformance/Cardinality: REQUIRED (0-50) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCAI_MT700212CA.ControlActEvent.subjectOf1 
+         * Conformance/Cardinality: REQUIRED (0-50) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCAI_MT700218CA.ControlActEvent.subjectOf 
+         * Conformance/Cardinality: REQUIRED (0-50) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCAI_MT700217CA.ControlActEvent.subjectOf 
+         * Conformance/Cardinality: REQUIRED (0-50) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCAI_MT700221CA.ControlActEvent.subjectOf 
+         * Conformance/Cardinality: REQUIRED (0-50) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCAI_MT700226CA.ControlActEvent.subjectOf 
+         * Conformance/Cardinality: REQUIRED (0-50) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCAI_MT700216CA.ControlActEvent.subjectOf 
+         * Conformance/Cardinality: REQUIRED (0-50) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCAI_MT700211CA.ControlActEvent.subjectOf1 
+         * Conformance/Cardinality: REQUIRED (0-50)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf","subjectOf1"})]
         [Hl7MapByPartType(Name="subjectOf", Type="MCAI_MT700216CA.Subject")]
         [Hl7MapByPartType(Name="subjectOf", Type="MCAI_MT700217CA.Subject")]
@@ -208,48 +522,151 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged {
             get { return this.subjectOf1; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * MCAI_MT700212CA.ResponsibleParty.assignedEntity 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCAI_MT700221CA.ResponsibleParty.assignedEntity 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCAI_MT700211CA.ResponsibleParty.assignedEntity 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"responsibleParty/assignedEntity"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.HealthcareWorker ResponsiblePartyAssignedEntity {
             get { return this.responsiblePartyAssignedEntity; }
             set { this.responsiblePartyAssignedEntity = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * MCAI_MT700212CA.ControlActEvent.author 
+         * Conformance/Cardinality: OPTIONAL (0-1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCAI_MT700221CA.ControlActEvent.author 
+         * Conformance/Cardinality: OPTIONAL (0-1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCAI_MT700211CA.ControlActEvent.author 
+         * Conformance/Cardinality: OPTIONAL (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"author"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.CreatedBy Author {
             get { return this.author; }
             set { this.author = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * MCAI_MT700212CA.DataEnterer.actingPerson 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCAI_MT700221CA.DataEnterer.actingPerson 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCAI_MT700211CA.DataEnterer.actingPerson 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"dataEnterer/actingPerson"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged.IActingPerson DataEntererActingPerson {
             get { return this.dataEntererActingPerson; }
             set { this.dataEntererActingPerson = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * MCAI_MT700212CA.DataEntryLocation.serviceDeliveryLocation 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCAI_MT700221CA.DataEntryLocation.serviceDeliveryLocation 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCAI_MT700211CA.DataEntryLocation.serviceDeliveryLocation 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"dataEntryLocation/serviceDeliveryLocation"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.ServiceLocation DataEntryLocationServiceDeliveryLocation {
             get { return this.dataEntryLocationServiceDeliveryLocation; }
             set { this.dataEntryLocationServiceDeliveryLocation = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * MCAI_MT700212CA.ControlActEvent.location 
+         * Conformance/Cardinality: OPTIONAL (0-1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCAI_MT700221CA.ControlActEvent.location 
+         * Conformance/Cardinality: OPTIONAL (0-1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCAI_MT700211CA.ControlActEvent.location 
+         * Conformance/Cardinality: OPTIONAL (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"location"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.CreatedAt Location {
             get { return this.location; }
             set { this.location = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * MCAI_MT700212CA.PertinentInformation.authorizationToken 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCAI_MT700221CA.PertinentInformation.authorizationToken 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCAI_MT700211CA.PertinentInformation.authorizationToken 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"pertinentInformation/authorizationToken"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged.AuthenticationToken PertinentInformationAuthorizationToken {
             get { return this.pertinentInformationAuthorizationToken; }
             set { this.pertinentInformationAuthorizationToken = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * MCAI_MT700212CA.ControlActEvent.subjectOf2 
+         * Conformance/Cardinality: REQUIRED (0-1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCAI_MT700211CA.ControlActEvent.subjectOf2 
+         * Conformance/Cardinality: REQUIRED (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf2"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged.AuthorizedBy SubjectOf2 {
             get { return this.subjectOf2; }
             set { this.subjectOf2 = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * MCAI_MT700211CA.ControlActEvent.componentOf 
+         * Conformance/Cardinality: REQUIRED (0-100)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"componentOf"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged.CareCompositions> ComponentOf {
             get { return this.componentOf; }

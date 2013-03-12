@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged {
 
 
     /**
-     * <summary>QueryByParameter</summary>
+     * <summary>Business Name: QueryByParameter</summary>
      * 
      * <remarks>MFMI_MT700751CA.QueryByParameter: Query By 
      * Parameter <p>InitialQuantity must only be specified if 
@@ -55,12 +55,44 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged {
             this.sortControl = new List<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.SortControl>();
         }
         /**
-         * <summary>QueryIdentifier</summary>
+         * <summary>Business Name: QueryIdentifier</summary>
          * 
-         * <remarks>H:Query Identifier <p>Unique number for this 
-         * particular query.</p> <p>Needed to allow continuation of 
-         * queries and linking of query requests and responses and 
-         * therefore mandatory.</p></remarks>
+         * <remarks>Un-merged Business Name: QueryIdentifier 
+         * Relationship: QUQI_MT020000CA.QueryByParameter.queryId 
+         * Conformance/Cardinality: MANDATORY (1) <p>Needed to allow 
+         * continuation of queries and linking of query requests and 
+         * responses and therefore mandatory.</p> <p>Unique number for 
+         * this particular query.</p> Un-merged Business Name: 
+         * QueryIdentifier Relationship: 
+         * MFMI_MT700751CA.QueryByParameter.queryId 
+         * Conformance/Cardinality: MANDATORY (1) <p>Needed to allow 
+         * continuation of queries and linking of query requests and 
+         * responses and therefore mandatory.</p> <p>Unique number for 
+         * this particular query.</p> Un-merged Business Name: 
+         * QueryIdentifier Relationship: 
+         * MFMI_MT700746CA.QueryByParameter.queryId 
+         * Conformance/Cardinality: MANDATORY (1) <p>Needed to allow 
+         * continuation of queries and linking of query requests and 
+         * responses and therefore mandatory.</p> <p>Unique number for 
+         * this particular query.</p> Un-merged Business Name: 
+         * QueryIdentifier Relationship: 
+         * QUQI_MT020002CA.QueryByParameter.queryId 
+         * Conformance/Cardinality: MANDATORY (1) <p>Needed to allow 
+         * continuation of queries and linking of query requests and 
+         * responses and therefore mandatory.</p> <p>Unique number for 
+         * this particular query.</p> Un-merged Business Name: 
+         * QueryIdentifier Relationship: 
+         * QUQI_MT120008CA.QueryByParameter.queryId 
+         * Conformance/Cardinality: MANDATORY (1) <p>Needed to allow 
+         * continuation of queries and linking of query requests and 
+         * responses and therefore mandatory.</p> <p>Unique number for 
+         * this particular query.</p> Un-merged Business Name: 
+         * QueryIdentifier Relationship: 
+         * QUQI_MT120006CA.QueryByParameter.queryId 
+         * Conformance/Cardinality: MANDATORY (1) <p>Needed to allow 
+         * continuation of queries and linking of query requests and 
+         * responses and therefore mandatory.</p> <p>Unique number for 
+         * this particular query.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"queryId"})]
         public Identifier QueryId {
@@ -69,27 +101,81 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged {
         }
 
         /**
-         * <summary>ExpeditedQueryIndicator</summary>
+         * <summary>Business Name: ExpeditedQueryIndicator</summary>
          * 
-         * <remarks>K: Expedited Query Indicator <p>This allows the 
-         * sender to indicate to the receiver that this query should 
-         * follow an expedited processing flow.</p> <p>Intended to 
+         * <remarks>Un-merged Business Name: ExpeditedQueryIndicator 
+         * Relationship: 
+         * QUQI_MT020000CA.QueryByParameter.responseModalityCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Intended to 
          * convey the requested 'packaging' of query results. This 
          * attribute does not affect which rows are selected by the 
          * query, just the manner in which they are returned. For 
          * example, a batch file containing responses, a response 
          * message containing multiple payloads, or a stream of 
          * response messages (notifications) each identifying itself as 
-         * a response to a query request.</p> K: Expedited Query 
-         * Indicator <p>This allows the sender to indicate to the 
+         * a response to a query request.</p> <p>This allows the sender 
+         * to indicate to the receiver that this query should follow an 
+         * expedited processing flow.</p> Un-merged Business Name: 
+         * ExpeditedQueryIndicator Relationship: 
+         * MFMI_MT700751CA.QueryByParameter.responseModalityCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Intended to 
+         * convey the requested 'packaging' of query results. This 
+         * attribute does not affect which rows are selected by the 
+         * query, just the manner in which they are returned. For 
+         * example, a batch file containing responses, a response 
+         * message containing multiple payloads, or a stream of 
+         * response messages (notifications) each identifying itself as 
+         * a response to a query request.</p> <p>This allows the sender 
+         * to indicate to the receiver that this query should follow an 
+         * expedited processing flow.</p> Un-merged Business Name: 
+         * ExpeditedQueryIndicator Relationship: 
+         * MFMI_MT700746CA.QueryByParameter.responseModalityCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Intended to 
+         * convey the 'packaging' of query results. This attribute does 
+         * not affect which rows are selected by the query, just the 
+         * manner in which they are returned. For example, a batch file 
+         * containing responses, a response message containing multiple 
+         * payloads, or a stream of response messages (notifications) 
+         * each identifying itself as a response to a query 
+         * request.</p> <p>This allows the sender to indicate to the 
          * receiver that this query should follow an expedited 
-         * processing flow.</p> <p>Intended to convey the 'packaging' 
-         * of query results. This attribute does not affect which rows 
-         * are selected by the query, just the manner in which they are 
-         * returned. For example, a batch file containing responses, a 
-         * response message containing multiple payloads, or a stream 
-         * of response messages (notifications) each identifying itself 
-         * as a response to a query request.</p></remarks>
+         * processing flow.</p> Un-merged Business Name: 
+         * ExpeditedQueryIndicator Relationship: 
+         * QUQI_MT020002CA.QueryByParameter.responseModalityCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Intended to 
+         * convey the 'packaging' of query results. This attribute does 
+         * not affect which rows are selected by the query, just the 
+         * manner in which they are returned. For example, a batch file 
+         * containing responses, a response message containing multiple 
+         * payloads, or a stream of response messages (notifications) 
+         * each identifying itself as a response to a query 
+         * request.</p> <p>This allows the sender to indicate to the 
+         * receiver that this query should follow an expedited 
+         * processing flow.</p> Un-merged Business Name: 
+         * ExpeditedQueryIndicator Relationship: 
+         * QUQI_MT120008CA.QueryByParameter.responseModalityCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Intended to 
+         * convey the 'packaging' of query results. This attribute does 
+         * not affect which rows are selected by the query, just the 
+         * manner in which they are returned. For example, a batch file 
+         * containing responses, a response message containing multiple 
+         * payloads, or a stream of response messages (notifications) 
+         * each identifying itself as a response to a query 
+         * request.</p> <p>This allows the sender to indicate to the 
+         * receiver that this query should follow an expedited 
+         * processing flow.</p> Un-merged Business Name: 
+         * ExpeditedQueryIndicator Relationship: 
+         * QUQI_MT120006CA.QueryByParameter.responseModalityCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Intended to 
+         * convey the 'packaging' of query results. This attribute does 
+         * not affect which rows are selected by the query, just the 
+         * manner in which they are returned. For example, a batch file 
+         * containing responses, a response message containing multiple 
+         * payloads, or a stream of response messages (notifications) 
+         * each identifying itself as a response to a query 
+         * request.</p> <p>This allows the sender to indicate to the 
+         * receiver that this query should follow an expedited 
+         * processing flow.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"responseModalityCode"})]
         public ResponseModality ResponseModalityCode {
@@ -98,25 +184,86 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged {
         }
 
         /**
-         * <summary>QueryLimit</summary>
+         * <summary>Business Name: QueryLimit</summary>
          * 
-         * <remarks>I:Query Limit <p>The number of response item 
-         * repetitions that should be included in the initial 
-         * response.</p> <p>There may be a very large number of 
-         * matching rows. To manage communication bandwidth, a limited 
-         * set may initially be returned with further data retrieved by 
-         * using query continuations.</p> I:Query Limit <p>The number 
-         * of response item repetitions that should be included in the 
-         * initial response.</p> <p>There may be a very large number of 
-         * matching rows. To manage communication bandwidth, a limited 
-         * set may initially be returned with further data retrieved by 
-         * using query continuations.</p> <p>If not specified, the 
-         * default behavior is to return all repetitions. However the 
-         * recipient of a query may always choose to limit the quantity 
-         * returned to be less than the number requested. Regardless of 
-         * the number specified here, the number of rows returned will 
-         * never exceed the number of matching rows based on the query 
-         * parameters.</p></remarks>
+         * <remarks>Un-merged Business Name: QueryLimit Relationship: 
+         * QUQI_MT020000CA.QueryByParameter.initialQuantity 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>There may be a 
+         * very large number of matching rows. To manage communication 
+         * bandwidth, a limited set may initially be returned with 
+         * further data retrieved by using query continuations.</p> 
+         * <p>If not specified, the default behavior is to return all 
+         * repetitions. However the recipient of a query may always 
+         * choose to limit the quantity returned to be less than the 
+         * number requested. Regardless of the number specified here, 
+         * the number of rows returned will never exceed the number of 
+         * matching rows based on the query parameters.</p> <p>The 
+         * number of response item repetitions that should be included 
+         * in the initial response.</p> Un-merged Business Name: 
+         * QueryLimit Relationship: 
+         * MFMI_MT700751CA.QueryByParameter.initialQuantity 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>There may be a 
+         * very large number of matching rows. To manage communication 
+         * bandwidth, a limited set may initially be returned with 
+         * further data retrieved by using query continuations.</p> 
+         * <p>If not specified, the default behavior is to return all 
+         * repetitions. However the recipient of a query may always 
+         * choose to limit the quantity returned to be less than the 
+         * number requested. Regardless of the number specified here, 
+         * the number of rows returned will never exceed the number of 
+         * matching rows based on the query parameters.</p> <p>The 
+         * number of response item repetitions that should be included 
+         * in the initial response.</p> Un-merged Business Name: 
+         * QueryLimit Relationship: 
+         * MFMI_MT700746CA.QueryByParameter.initialQuantity 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>There may be a 
+         * very large number of matching rows. To manage communication 
+         * bandwidth, a limited set may initially be returned with 
+         * further data retrieved by using query continuations.</p> 
+         * <p>The number of response item repetitions that should be 
+         * included in the initial response.</p> Un-merged Business 
+         * Name: QueryLimit Relationship: 
+         * QUQI_MT020002CA.QueryByParameter.initialQuantity 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>There may be a 
+         * very large number of matching rows. To manage communication 
+         * bandwidth, a limited set may initially be returned with 
+         * further data retrieved by using query continuations.</p> 
+         * <p>If not specified, the default behavior is to return all 
+         * repetitions. However the recipient of a query may always 
+         * choose to limit the quantity returned to be less than the 
+         * number requested. Regardless of the number specified here, 
+         * the number of rows returned will never exceed the number of 
+         * matching rows based on the query parameters.</p> <p>The 
+         * number of response item repetitions that should be included 
+         * in the initial response.</p> Un-merged Business Name: 
+         * QueryLimit Relationship: 
+         * QUQI_MT120008CA.QueryByParameter.initialQuantity 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>There may be a 
+         * very large number of matching rows. To manage communication 
+         * bandwidth, a limited set may initially be returned with 
+         * further data retrieved by using query continuations.</p> 
+         * <p>If not specified, the default behavior is to return all 
+         * repetitions. However the recipient of a query may always 
+         * choose to limit the quantity returned to be less than the 
+         * number requested. Regardless of the number specified here, 
+         * the number of rows returned will never exceed the number of 
+         * matching rows based on the query parameters.</p> <p>The 
+         * number of response item repetitions that should be included 
+         * in the initial response.</p> Un-merged Business Name: 
+         * QueryLimit Relationship: 
+         * QUQI_MT120006CA.QueryByParameter.initialQuantity 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>There may be a 
+         * very large number of matching rows. To manage communication 
+         * bandwidth, a limited set may initially be returned with 
+         * further data retrieved by using query continuations.</p> 
+         * <p>If not specified, the default behavior is to return all 
+         * repetitions. However the recipient of a query may always 
+         * choose to limit the quantity returned to be less than the 
+         * number requested. Regardless of the number specified here, 
+         * the number of rows returned will never exceed the number of 
+         * matching rows based on the query parameters.</p> <p>The 
+         * number of response item repetitions that should be included 
+         * in the initial response.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"initialQuantity"})]
         public int? InitialQuantity {
@@ -125,13 +272,51 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged {
         }
 
         /**
-         * <summary>QueryLimitType</summary>
+         * <summary>Business Name: QueryLimitType</summary>
          * 
-         * <remarks>J:Query Limit Type <p>Defines the units associated 
-         * with the magnitude of the maximum size limit of a query 
-         * response that can be accepted by the requesting 
-         * application.</p> <p>Needed to quantify the types of records 
-         * requested to be returned in the query.</p></remarks>
+         * <remarks>Un-merged Business Name: QueryLimitType 
+         * Relationship: 
+         * QUQI_MT020000CA.QueryByParameter.initialQuantityCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Needed to 
+         * quantify the types of records requested to be returned in 
+         * the query.</p> <p>Defines the units associated with the 
+         * magnitude of the maximum size limit of a query response that 
+         * can be accepted by the requesting application.</p> Un-merged 
+         * Business Name: QueryLimitType Relationship: 
+         * MFMI_MT700751CA.QueryByParameter.initialQuantityCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Needed to 
+         * quantify the types of records requested to be returned in 
+         * the query.</p> <p>Defines the units associated with the 
+         * magnitude of the maximum size limit of a query response that 
+         * can be accepted by the requesting application.</p> Un-merged 
+         * Business Name: QueryLimitType Relationship: 
+         * MFMI_MT700746CA.QueryByParameter.initialQuantityCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Needed to 
+         * quantify the types of records requested to be returned in 
+         * the query.</p> <p>Defines the units associated with the 
+         * magnitude of the maximum size limit of a query response that 
+         * can be accepted by the requesting application.</p> Un-merged 
+         * Business Name: QueryLimitType Relationship: 
+         * QUQI_MT020002CA.QueryByParameter.initialQuantityCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Needed to 
+         * quantify the types of records requested to be returned in 
+         * the query.</p> <p>Defines the units associated with the 
+         * magnitude of the maximum size limit of a query response that 
+         * can be accepted by the requesting application.</p> Un-merged 
+         * Business Name: QueryLimitType Relationship: 
+         * QUQI_MT120008CA.QueryByParameter.initialQuantityCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Needed to 
+         * quantify the types of records requested to be returned in 
+         * the query.</p> <p>Defines the units associated with the 
+         * magnitude of the maximum size limit of a query response that 
+         * can be accepted by the requesting application.</p> Un-merged 
+         * Business Name: QueryLimitType Relationship: 
+         * QUQI_MT120006CA.QueryByParameter.initialQuantityCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Needed to 
+         * quantify the types of records requested to be returned in 
+         * the query.</p> <p>Defines the units associated with the 
+         * magnitude of the maximum size limit of a query response that 
+         * can be accepted by the requesting application.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"initialQuantityCode"})]
         public QueryRequestLimit InitialQuantityCode {
@@ -139,12 +324,58 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged {
             set { this.initialQuantityCode.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * QUQI_MT020000CA.QueryByParameter.parameterList 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MFMI_MT700751CA.QueryByParameter.parameterList 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MFMI_MT700746CA.QueryByParameter.parameterList 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * QUQI_MT020002CA.QueryByParameter.parameterList 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * QUQI_MT120008CA.QueryByParameter.parameterList 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * QUQI_MT120006CA.QueryByParameter.parameterList 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"parameterList"})]
         public PL ParameterList {
             get { return this.parameterList; }
             set { this.parameterList = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * QUQI_MT020000CA.QueryByParameter.sortControl 
+         * Conformance/Cardinality: OPTIONAL (0-10) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MFMI_MT700751CA.QueryByParameter.sortControl 
+         * Conformance/Cardinality: OPTIONAL (0-10) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MFMI_MT700746CA.QueryByParameter.sortControl 
+         * Conformance/Cardinality: OPTIONAL (0-10) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * QUQI_MT020002CA.QueryByParameter.sortControl 
+         * Conformance/Cardinality: OPTIONAL (0-10) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * QUQI_MT120008CA.QueryByParameter.sortControl 
+         * Conformance/Cardinality: OPTIONAL (0-10) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * QUQI_MT120006CA.QueryByParameter.sortControl 
+         * Conformance/Cardinality: OPTIONAL (0-10)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"sortControl"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.SortControl> SortControl {
             get { return this.sortControl; }

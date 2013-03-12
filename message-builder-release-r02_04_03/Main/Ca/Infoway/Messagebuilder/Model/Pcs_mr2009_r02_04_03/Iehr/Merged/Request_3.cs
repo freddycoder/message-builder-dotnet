@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,10 +28,28 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged {
 
 
     /**
-     * <summary>Request</summary>
+     * <summary>Business Name: Request</summary>
      * 
-     * <remarks>REPC_MT610002CA.ActRequest: A:Request </p> </p> 
-     * REPC_MT610001CA.ActRequest: A:Request </p> </p></remarks>
+     * <remarks>REPC_MT610002CA.ActRequest: A:Request <p> <i>By 
+     * requesting the action, a provider takes a level of 
+     * responsibility for it. Also, a link between request and 
+     * fulfilling record may result in differences in query 
+     * responses. For example retrieving a request may also result 
+     * in retrieval of fulfilling records. Requesting providers 
+     * generally have authorization to view masked information as 
+     * well.</i> </p> <p> <i>This ties the record to the request 
+     * (referral or specific request) that resulted in the creation 
+     * of the Professional Service record.</i> </p> 
+     * REPC_MT610001CA.ActRequest: A:Request <p> <i>By requesting 
+     * the action, a provider takes a level of responsibility for 
+     * it. Also, a link between request and fulfilling record may 
+     * result in differences in query responses. For example 
+     * retrieving a request may also result in retrieval of 
+     * fulfilling records. Requesting providers generally have 
+     * authorization to view masked information as well.</i> </p> 
+     * <p> <i>This ties the record to the request (referral or 
+     * specific request) that resulted in the creation of the 
+     * Professional Service record.</i> </p></remarks>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"REPC_MT610001CA.ActRequest","REPC_MT610002CA.ActRequest"})]
     public class Request_3 : MessagePartBean {
@@ -45,9 +63,22 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged {
             this.id = new IIImpl();
         }
         /**
-         * <summary>RequestType</summary>
+         * <summary>Business Name: RequestType</summary>
          * 
-         * <remarks>B:Request Type </p> </p></remarks>
+         * <remarks>Un-merged Business Name: RequestType Relationship: 
+         * REPC_MT610002CA.ActRequest.classCode 
+         * Conformance/Cardinality: MANDATORY (1) <p> <i>Needed to know 
+         * what query to execute to retrieve details about the request. 
+         * (I.e. Get Patient Referral vs. Get Professional Service 
+         * Order.)</i> </p> <p> <i>This distinguishes between 
+         * &quot;referral&quot; requests and specific orders.</i> </p> 
+         * Un-merged Business Name: RequestType Relationship: 
+         * REPC_MT610001CA.ActRequest.classCode 
+         * Conformance/Cardinality: MANDATORY (1) <p> <i>Needed to know 
+         * what query to execute to retrieve details about the request. 
+         * (I.e. Get Patient Referral vs. Get Professional Service 
+         * Order.)</i> </p> <p> <i>This distinguishes between 
+         * &quot;referral&quot; requests and specific orders.</i> </p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"classCode"})]
         public x_ActClassCareProvisionProcedure ClassCode {
@@ -56,9 +87,36 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged {
         }
 
         /**
-         * <summary>RequestId</summary>
+         * <summary>Business Name: RequestId</summary>
          * 
-         * <remarks>A: Request Id </p> </p> </p></remarks>
+         * <remarks>Un-merged Business Name: RequestId Relationship: 
+         * REPC_MT610002CA.ActRequest.id Conformance/Cardinality: 
+         * REQUIRED (0-1) <p> <i>Associates a request to its results. 
+         * Allows querying for results associated by a request. Also, 
+         * authors of requests are generally authorized to view 
+         * associated results, even if masked. Result records may also 
+         * be automatically retrieved when retrieving the request 
+         * record.</i> </p><p> <i>This attributes is only 
+         * &quot;required&quot; because in some cases there might not 
+         * be a formal electronic request. However, the requesting 
+         * provider may still be known.</i> </p> <p> <i>This identifies 
+         * the specific request record (referral or order) that this 
+         * Professional Service is fulfilling. The type of request is 
+         * identified by the Request Type.</i> </p> Un-merged Business 
+         * Name: RequestId Relationship: REPC_MT610001CA.ActRequest.id 
+         * Conformance/Cardinality: REQUIRED (0-1) <p> <i>Associates a 
+         * request to its results. Allows querying for results 
+         * associated by a request. Also, authors of requests are 
+         * generally authorized to view associated results, even if 
+         * masked. Result records may also be automatically retrieved 
+         * when retrieving the request record.</i> </p><p> <i>This 
+         * attributes is only &quot;required&quot; because in some 
+         * cases there might not be a formal electronic request. 
+         * However, the requesting provider may still be known.</i> 
+         * </p> <p> <i>This identifies the specific request record 
+         * (referral or order) that this Professional Service is 
+         * fulfilling. The type of request is identified by the Request 
+         * Type.</i> </p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -66,6 +124,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged {
             set { this.id.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: REPC_MT610002CA.ActRequest.author 
+         * Conformance/Cardinality: REQUIRED (0-1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT610001CA.ActRequest.author Conformance/Cardinality: 
+         * REQUIRED (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"author"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged.RequestedBy Author {
             get { return this.author; }

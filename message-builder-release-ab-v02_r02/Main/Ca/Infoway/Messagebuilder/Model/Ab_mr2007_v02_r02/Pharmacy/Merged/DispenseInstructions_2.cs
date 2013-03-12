@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
 
 
     /**
-     * <summary>DispenseInstructions</summary>
+     * <summary>Business Name: DispenseInstructions</summary>
      * 
      * <remarks>PORX_MT030040CA.SupplyRequest: Dispense 
      * Instructions <p>Specification of how the prescribed 
@@ -55,20 +55,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
             this.expectedUseTime = new IVLImpl<TS, Interval<PlatformDate>>();
         }
         /**
-         * <summary>A:Prescription Dispense Indicator</summary>
+         * <summary>Un-merged Business Name: 
+         * PrescriptionDispensableIndicator</summary>
          * 
-         * <remarks><p>This generally mirrors the status for the 
-         * prescription, but in some circumstances may be changed to 
-         * 'aborted' while the prescription is still active. When this 
-         * occurs, it means the prescription may no longer be 
-         * dispensed, though it may still be administered.</p> 
-         * <p>Allows a prescriber to say &quot;Finish what you have on 
-         * hand, but don't get any more.&quot;</p><p>Because the status 
-         * should always be known, this element is mandatory.</p> 
-         * <p>Allows a prescriber to say &quot;Finish what you have on 
-         * hand, but don't get any more.&quot;</p><p>Because the status 
-         * should always be known, this element is mandatory.</p> 
-         * A:Prescription Dispensable Indicator <p>This generally 
+         * <remarks>Relationship: 
+         * PORX_MT060190CA.SupplyRequest.statusCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>This generally 
          * mirrors the status for the prescription, but in some 
          * circumstances may be changed to 'aborted' while the 
          * prescription is still active. When this occurs, it means the 
@@ -81,7 +73,21 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
          * prescription to be controlled/manipulates as 
          * needed.</p><p>Attribute is marked as &quot;mandatory&quot; 
          * as the dispensing authority of the prescription will always 
-         * be known.</p></remarks>
+         * be known.</p> Un-merged Business Name: 
+         * PrescriptionDispenseIndicator Relationship: 
+         * PORX_MT030040CA.SupplyRequest.statusCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>This generally 
+         * mirrors the status for the prescription, but in some 
+         * circumstances may be changed to 'aborted' while the 
+         * prescription is still active. When this occurs, it means the 
+         * prescription may no longer be dispensed, though it may still 
+         * be administered.</p> <p>Allows a prescriber to say 
+         * &quot;Finish what you have on hand, but don't get any 
+         * more.&quot;</p><p>Because the status should always be known, 
+         * this element is mandatory.</p> <p>Allows a prescriber to say 
+         * &quot;Finish what you have on hand, but don't get any 
+         * more.&quot;</p><p>Because the status should always be known, 
+         * this element is mandatory.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"statusCode"})]
         public ActStatus StatusCode {
@@ -90,40 +96,47 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
         }
 
         /**
-         * <summary>TotalPrescribedQuantity</summary>
+         * <summary>Business Name: TotalPrescribedQuantity</summary>
          * 
-         * <remarks>B:Total Prescribed Quantity <p>The overall amount 
-         * of amount medication to be dispensed under this 
+         * <remarks>Un-merged Business Name: TotalPrescribedQuantity 
+         * Relationship: PORX_MT060190CA.SupplyRequest.quantity 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The overall 
+         * amount of amount medication to be dispensed under this 
          * prescription. Includes any first fills (trials, aligning 
          * quantities), the initial standard fill plus all refills.</p> 
          * <p>Sets upper limit for medication to be dispensed. Can be 
          * used to verify the intention of the prescriber with respect 
          * to the overall medication. Used for comparison when 
          * determining whether additional quantity may be dispensed in 
-         * the context of a part-fill prescription.</p> Total 
-         * Prescribed Quantity <p>The overall amount of amount 
-         * medication to be dispensed under this prescription. Includes 
-         * any first fills (trials, aligning quantities), the initial 
-         * standard fill plus all refills.</p> <p>Critical in 
-         * understanding the patient's medication profile, both past 
-         * and current. This also allows determination of the amount 
-         * that remains to be dispensed against the prescription.</p> 
-         * B:Total Prescribed Quantity <p>The overall amount of amount 
-         * medication to be dispensed under this prescription. Includes 
-         * any first fills (trials, aligning quantities), the initial 
-         * standard fill plus all refills.</p> <p>Sets upper limit for 
-         * medication to be dispensed. Can be used to verify the 
-         * intention of the prescriber with respect to the overall 
-         * medication. Used for comparison when determining whether 
-         * additional quantity may be dispensed in the context of a 
-         * part-fill prescription.</p><p>Narcotics must always be 
-         * specified as a total quantity.</p> <p>Sets upper limit for 
-         * medication to be dispensed. Can be used to verify the 
-         * intention of the prescriber with respect to the overall 
-         * medication. Used for comparison when determining whether 
-         * additional quantity may be dispensed in the context of a 
-         * part-fill prescription.</p><p>Narcotics must always be 
-         * specified as a total quantity.</p></remarks>
+         * the context of a part-fill prescription.</p> Un-merged 
+         * Business Name: TotalPrescribedQuantity Relationship: 
+         * PORX_MT030040CA.SupplyRequest.quantity 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The overall 
+         * amount of amount medication to be dispensed under this 
+         * prescription. Includes any first fills (trials, aligning 
+         * quantities), the initial standard fill plus all refills.</p> 
+         * <p>Sets upper limit for medication to be dispensed. Can be 
+         * used to verify the intention of the prescriber with respect 
+         * to the overall medication. Used for comparison when 
+         * determining whether additional quantity may be dispensed in 
+         * the context of a part-fill prescription.</p><p>Narcotics 
+         * must always be specified as a total quantity.</p> <p>Sets 
+         * upper limit for medication to be dispensed. Can be used to 
+         * verify the intention of the prescriber with respect to the 
+         * overall medication. Used for comparison when determining 
+         * whether additional quantity may be dispensed in the context 
+         * of a part-fill prescription.</p><p>Narcotics must always be 
+         * specified as a total quantity.</p> Un-merged Business Name: 
+         * TotalPrescribedQuantity Relationship: 
+         * PORX_MT020070CA.SupplyRequest.quantity 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The overall 
+         * amount of amount medication to be dispensed under this 
+         * prescription. Includes any first fills (trials, aligning 
+         * quantities), the initial standard fill plus all refills.</p> 
+         * <p>Critical in understanding the patient's medication 
+         * profile, both past and current. This also allows 
+         * determination of the amount that remains to be dispensed 
+         * against the prescription.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"quantity"})]
         public PhysicalQuantity Quantity {
@@ -131,6 +144,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
             set { this.quantity.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PORX_MT060190CA.SupplyRequest.location 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT030040CA.SupplyRequest.location 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"location"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.CreatedAt Location {
             get { return this.location; }
@@ -138,12 +162,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
         }
 
         /**
-         * <summary>TotalDaysSupply</summary>
+         * <summary>Business Name: TotalDaysSupply</summary>
          * 
-         * <remarks>Total Days Supply <p>The number of days that the 
-         * overall prescribed item is expected to last, if the patient 
-         * is compliant with the dispensing and administration of the 
-         * prescription.</p> <p>Useful in monitoring patient 
+         * <remarks>Un-merged Business Name: TotalDaysSupply 
+         * Relationship: PORX_MT020070CA.SupplyRequest.expectedUseTime 
+         * Conformance/Cardinality: MANDATORY (1) <p>The number of days 
+         * that the overall prescribed item is expected to last, if the 
+         * patient is compliant with the dispensing and administration 
+         * of the prescription.</p> <p>Useful in monitoring patient 
          * compliance. May also be useful in determining and managing 
          * certain contraindications ('Fill-Too-Soon', 'Fill-Too-Late', 
          * and 'Duration of Therapy').</p></remarks>

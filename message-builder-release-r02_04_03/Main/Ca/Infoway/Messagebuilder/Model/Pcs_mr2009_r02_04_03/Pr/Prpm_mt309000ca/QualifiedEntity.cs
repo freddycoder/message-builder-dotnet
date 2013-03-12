@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,17 +31,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Prpm_mt309000c
 
 
     /**
-     * <summary>Qualified Entity</summary>
+     * <summary>Business Name: Qualified Entity</summary>
      * 
-     * <remarks><p>This role describes specific qualifications that 
-     * may be held the provider as a result of training or 
-     * experience, but having no legal force. Example: a medical 
-     * degree or diploma. The current model does not include role 
-     * attributes such as name, addr and telecom because there are 
-     * no known use cases in this domain where this role is 
-     * contactable.</p> <p>Roleclass required to provide additional 
-     * information for the person responsible for providing 
-     * healthcare services</p></remarks>
+     * <p>Roleclass required to provide additional information for 
+     * the person responsible for providing healthcare services</p> 
+     * <p>This role describes specific qualifications that may be 
+     * held the provider as a result of training or experience, but 
+     * having no legal force. Example: a medical degree or diploma. 
+     * The current model does not include role attributes such as 
+     * name, addr and telecom because there are no known use cases 
+     * in this domain where this role is contactable.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"PRPM_MT309000CA.QualifiedEntity"})]
     public class QualifiedEntity : MessagePartBean, Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Prpm_mt309000ca.IRoleChoice {
@@ -61,35 +60,51 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Prpm_mt309000c
             this.code = new CVImpl();
             this.effectiveTime = new IVLImpl<TS, Interval<PlatformDate>>();
         }
+        /**
+         * <summary>Relationship: 
+         * PRPM_MT309000CA.ResponsibleParty.privilege</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"responsibleFor/privilege"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Merged.Privilege> ResponsibleForPrivilege {
             get { return this.responsibleForPrivilege; }
         }
 
         /**
-         * <summary>Expertise or Credentials Role Identifier</summary>
+         * <summary>Business Name: Expertise or Credentials Role 
+         * Identifier</summary>
          * 
-         * <remarks><p>Unique identifier for the Expertise or 
-         * Credential.</p> <p>Required attribute supports the 
-         * identification of the healthcare provider credentials</p></remarks>
+         * <remarks>Relationship: PRPM_MT309000CA.QualifiedEntity.id 
+         * Conformance/Cardinality: REQUIRED (0-5) <p>Required 
+         * attribute supports the identification of the healthcare 
+         * provider credentials</p> <p>Unique identifier for the 
+         * Expertise or Credential.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public ICollection<Identifier> Id {
             get { return this.id.RawSet(); }
         }
 
+        /**
+         * <summary>Relationship: PRPM_MT309000CA.RelatedTo.roleChoice</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"relatedTo/roleChoice"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Prpm_mt309000ca.IRoleChoice> RelatedToRoleChoice {
             get { return this.relatedToRoleChoice; }
         }
 
         /**
-         * <summary>Expertise or Credentials Role Type</summary>
+         * <summary>Business Name: Expertise or Credentials Role Type</summary>
          * 
-         * <remarks><p>A code for the degree or educational rank that 
-         * the credential specifies. May also apply to an Expertise 
-         * type.</p> <p>Required attribute supports the identification 
-         * of the healthcare provider credentials</p></remarks>
+         * <remarks>Relationship: PRPM_MT309000CA.QualifiedEntity.code 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Required 
+         * attribute supports the identification of the healthcare 
+         * provider credentials</p> <p>A code for the degree or 
+         * educational rank that the credential specifies. May also 
+         * apply to an Expertise type.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public QualifiedRoleType Code {
@@ -98,14 +113,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Prpm_mt309000c
         }
 
         /**
-         * <summary>Expertise or Credentials Role Effective Date</summary>
+         * <summary>Business Name: Expertise or Credentials Role 
+         * Effective Date</summary>
          * 
-         * <remarks><p>The effective date of the provider expertise or 
-         * credentials in the healthcare provider role.</p> <p>Required 
+         * <remarks>Relationship: 
+         * PRPM_MT309000CA.QualifiedEntity.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Required 
          * attribute supports the identification of the healthcare 
          * provider credentials</p> <p>If Expertise or Credentials are 
          * included in the message, then Role Effective Date Must 
-         * Exist</p></remarks>
+         * Exist</p> <p>The effective date of the provider expertise or 
+         * credentials in the healthcare provider role.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"effectiveTime"})]
         public Interval<PlatformDate> EffectiveTime {
@@ -113,12 +131,24 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Prpm_mt309000c
             set { this.effectiveTime.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PRPM_MT309000CA.QualifiedEntity.qualifiedPrincipalPerson</summary>
+         * 
+         * <remarks>Conformance/Cardinality: REQUIRED (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"qualifiedPrincipalPerson"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Prpm_mt309000ca.PrinicpalPerson QualifiedPrincipalPerson {
             get { return this.qualifiedPrincipalPerson; }
             set { this.qualifiedPrincipalPerson = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PRPM_MT309000CA.QualifiedEntity.qualificationGrantingOrganization</summary>
+         * 
+         * <remarks>Conformance/Cardinality: OPTIONAL (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"qualificationGrantingOrganization"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Prpm_mt309000ca.Organization QualificationGrantingOrganization {
             get { return this.qualificationGrantingOrganization; }

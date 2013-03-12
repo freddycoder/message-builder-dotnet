@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,13 +26,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Pome_mt0
 
 
     /**
-     * <summary>Medication</summary>
+     * <summary>Business Name: Medication</summary>
      * 
-     * <remarks><p>Represents a particular medicine or herbal 
-     * product which might be prescribed or administered.</p> 
      * <p>Allows retrieval of details about a product at a 
      * particular level of granularity (therapeutic class, generic, 
-     * manufactured, etc.)</p></remarks>
+     * manufactured, etc.)</p> <p>Represents a particular medicine 
+     * or herbal product which might be prescribed or 
+     * administered.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"POME_MT010040CA.AdministerableMaterial"})]
     public class Medication : MessagePartBean {
@@ -54,50 +54,102 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Pome_mt0
             this.consumedInAdministrationGuideline = new List<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Pome_mt010040ca.RecommendedAdministrationInstructions>();
             this.productOf2PotentialSupply = new List<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Pome_mt010040ca.Formularies>();
         }
+        /**
+         * <summary>Relationship: 
+         * POME_MT010040CA.AdministerableMaterial.administerableMedicine</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"administerableMedicine"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Pome_mt010040ca.DrugOrCompound AdministerableMedicine {
             get { return this.administerableMedicine; }
             set { this.administerableMedicine = value; }
         }
 
+        /**
+         * <summary>Relationship: POME_MT010040CA.Subject9.document</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf1/document"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Merged.Monographs> SubjectOf1Document {
             get { return this.subjectOf1Document; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * POME_MT010040CA.Subject8.monitoringProgram</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf2/monitoringProgram"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Pome_mt010040ca.MonitoringPrograms> SubjectOf2MonitoringProgram {
             get { return this.subjectOf2MonitoringProgram; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * POME_MT010040CA.Subject10.characteristic</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf3/characteristic"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Merged.AppearanceCharacteristics> SubjectOf3Characteristic {
             get { return this.subjectOf3Characteristic; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * POME_MT010040CA.Subject2.potentialCharge</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf4/potentialCharge"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Merged.DrugCost SubjectOf4PotentialCharge {
             get { return this.subjectOf4PotentialCharge; }
             set { this.subjectOf4PotentialCharge = value; }
         }
 
+        /**
+         * <summary>Relationship: POME_MT010040CA.Subject5.halfLife</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf5/halfLife"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Pome_mt010040ca.DrugHalfLife SubjectOf5HalfLife {
             get { return this.subjectOf5HalfLife; }
             set { this.subjectOf5HalfLife = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * POME_MT010040CA.Consumable2.administrationGuideline</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"consumedIn/administrationGuideline"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Pome_mt010040ca.RecommendedAdministrationInstructions> ConsumedInAdministrationGuideline {
             get { return this.consumedInAdministrationGuideline; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * POME_MT010040CA.Product2.dispenseGuidelines</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"productOf1/dispenseGuidelines"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Pome_mt010040ca.DispenseInformation ProductOf1DispenseGuidelines {
             get { return this.productOf1DispenseGuidelines; }
             set { this.productOf1DispenseGuidelines = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * POME_MT010040CA.Product.potentialSupply</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"productOf2/potentialSupply"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Pome_mt010040ca.Formularies> ProductOf2PotentialSupply {
             get { return this.productOf2PotentialSupply; }

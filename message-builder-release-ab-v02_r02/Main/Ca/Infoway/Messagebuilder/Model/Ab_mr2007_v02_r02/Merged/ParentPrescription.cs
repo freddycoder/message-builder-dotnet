@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
 
 
     /**
-     * <summary>ParentPrescription</summary>
+     * <summary>Business Name: ParentPrescription</summary>
      * 
      * <remarks>PORX_MT060040CA.PriorSupplyRequest: Parent 
      * Prescription <p>This is the original prescription that is 
@@ -57,10 +57,35 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             this.id = new IIImpl();
         }
         /**
-         * <summary>PreviousPrescriptionOrderNumber</summary>
+         * <summary>Business Name: PreviousPrescriptionOrderNumber</summary>
          * 
-         * <remarks>B:Previous Prescription Order Number <p>A reference 
-         * to a previous prescription which the current prescription 
+         * <remarks>Un-merged Business Name: 
+         * PreviousPrescriptionOrderNumber Relationship: 
+         * PORX_MT010120CA.PriorCombinedMedicationRequest.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>A reference to a 
+         * previous prescription which the current prescription 
+         * replaces.</p> <p>Allows a prescription renewal (this 
+         * prescription) to note the previous prescription id that was 
+         * renewed;</p><p>Allows tracking a therapy across multiple 
+         * renewal prescriptions.</p> <p>Allows a prescription renewal 
+         * (this prescription) to note the previous prescription id 
+         * that was renewed;</p><p>Allows tracking a therapy across 
+         * multiple renewal prescriptions.</p> Un-merged Business Name: 
+         * PreviousPrescriptionOrderNumber Relationship: 
+         * PORX_MT060040CA.PriorSupplyRequest.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>A reference to a 
+         * previous prescription which the current prescription 
+         * replaces.</p> <p>Allows a prescription renewal (this 
+         * prescription) to note the previous prescription id that was 
+         * renewed;</p><p>Allows tracking a therapy across multiple 
+         * renewal prescriptions.</p> <p>Allows a prescription renewal 
+         * (this prescription) to note the previous prescription id 
+         * that was renewed;</p><p>Allows tracking a therapy across 
+         * multiple renewal prescriptions.</p> Un-merged Business Name: 
+         * PreviousPrescriptionOrderNumber Relationship: 
+         * PORX_MT060340CA.PriorCombinedMedicationRequest.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>A reference to a 
+         * previous prescription which the current prescription 
          * replaces.</p> <p>New or Repeat (if present, then Repeat)</p> 
          * <p>Allows a prescription renewal (this prescription) to note 
          * the previous prescription id that was renewed;</p><p>Allows 
@@ -68,16 +93,19 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
          * prescriptions.</p> <p>Allows a prescription renewal (this 
          * prescription) to note the previous prescription id that was 
          * renewed;</p><p>Allows tracking a therapy across multiple 
-         * renewal prescriptions.</p> B:Previous Prescription Order 
-         * Number <p>A reference to a previous prescription which the 
-         * current prescription replaces.</p> <p>Allows a prescription 
-         * renewal (this prescription) to note the previous 
-         * prescription id that was renewed;</p><p>Allows tracking a 
-         * therapy across multiple renewal prescriptions.</p> <p>Allows 
-         * a prescription renewal (this prescription) to note the 
-         * previous prescription id that was renewed;</p><p>Allows 
+         * renewal prescriptions.</p> Un-merged Business Name: 
+         * PreviousPrescriptionOrderNumber Relationship: 
+         * PORX_MT060160CA.PriorCombinedMedicationRequest.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>A reference to a 
+         * previous prescription which the current prescription 
+         * replaces.</p> <p>New or Repeat (if present, then Repeat)</p> 
+         * <p>Allows a prescription renewal (this prescription) to note 
+         * the previous prescription id that was renewed;</p><p>Allows 
          * tracking a therapy across multiple renewal 
-         * prescriptions.</p></remarks>
+         * prescriptions.</p> <p>Allows a prescription renewal (this 
+         * prescription) to note the previous prescription id that was 
+         * renewed;</p><p>Allows tracking a therapy across multiple 
+         * renewal prescriptions.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {

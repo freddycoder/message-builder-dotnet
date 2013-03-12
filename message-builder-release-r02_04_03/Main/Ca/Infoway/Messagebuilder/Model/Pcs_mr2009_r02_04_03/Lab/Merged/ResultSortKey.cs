@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,17 +27,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Merged {
 
 
     /**
-     * <summary>ResultSortKey</summary>
+     * <summary>Business Name: ResultSortKey</summary>
      * 
      * <remarks>POLB_MT004000CA.ResultSortKey: Result Sort Key 
-     * <p>String used for sorting of results.</p> <p>OLIS needs an 
-     * alphanumeric sort key string to a test result to allow a 
-     * laboratory to provide sorting information for test 
+     * <p>OLIS needs an alphanumeric sort key string to a test 
+     * result to allow a laboratory to provide sorting information 
+     * for test results.</p> <p>String used for sorting of 
      * results.</p> POLB_MT004200CA.ResultSortKey: Result Sort Key 
      * <p>This must not be linked at ObservationReport level.</p> 
-     * <p>String used for sorting of results.</p> <p>OLIS needs an 
-     * alphanumeric sort key string to a test result to allow a 
-     * laboratory to provide sorting information for test 
+     * <p>OLIS needs an alphanumeric sort key string to a test 
+     * result to allow a laboratory to provide sorting information 
+     * for test results.</p> <p>String used for sorting of 
      * results.</p></remarks>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"POLB_MT004000CA.ResultSortKey","POLB_MT004100CA.ResultSortKey","POLB_MT004200CA.ResultSortKey"})]
@@ -49,11 +49,19 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Merged {
             this.text = new STImpl();
         }
         /**
-         * <summary>SortKeyText</summary>
+         * <summary>Business Name: SortKeyText</summary>
          * 
-         * <remarks>Sort Key Text Sort Key Text <p>Value used for 
-         * sorting results.</p> <p>Attribute for communicating the 
-         * actual sort key value.</p></remarks>
+         * <remarks>Un-merged Business Name: SortKeyText Relationship: 
+         * POLB_MT004000CA.ResultSortKey.text Conformance/Cardinality: 
+         * MANDATORY (1) <p>Attribute for communicating the actual sort 
+         * key value.</p> <p>Value used for sorting results.</p> 
+         * Un-merged Business Name: SortKeyText Relationship: 
+         * POLB_MT004200CA.ResultSortKey.text Conformance/Cardinality: 
+         * MANDATORY (1) <p>Attribute for communicating the actual sort 
+         * key value.</p> <p>Value used for sorting results.</p> 
+         * Un-merged Business Name: SortKeyText Relationship: 
+         * POLB_MT004100CA.ResultSortKey.text Conformance/Cardinality: 
+         * MANDATORY (1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"text"})]
         public String Text {

@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
 
 
     /**
-     * <summary>LastDispenseInformation</summary>
+     * <summary>Business Name: LastDispenseInformation</summary>
      * 
      * <remarks>PORX_MT060060CA.SupplyEventLastSummary: Last 
      * Dispense Information <p>Provides summary information about 
@@ -52,17 +52,23 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
             this.quantity = new INTImpl();
         }
         /**
-         * <summary>LastDispensePickupDate</summary>
+         * <summary>Business Name: LastDispensePickupDate</summary>
          * 
-         * <remarks>A:Last Dispense Pickup Date <p>Indicates the most 
-         * recent date on which a dispense on the prescription was 
+         * <remarks>Un-merged Business Name: LastDispensePickupDate 
+         * Relationship: 
+         * PORX_MT060060CA.SupplyEventLastSummary.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
+         * most recent date on which a dispense on the prescription was 
          * picked up.</p> <p>Useful in determining when a prescription 
          * will next need to be dispensed. Also provides an indication 
-         * of compliance.</p> Last Dispense Pickup Date <p>Indicates 
-         * the most recent date on which a dispense on the prescription 
-         * was picked up.</p> <p>Useful in determining when a 
-         * prescription will next need to be dispensed. Also provides 
-         * an indication of compliance.</p></remarks>
+         * of compliance.</p> Un-merged Business Name: 
+         * LastDispensePickupDate Relationship: 
+         * PORX_MT060040CA.SupplyEventLastSummary.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
+         * most recent date on which a dispense on the prescription was 
+         * picked up.</p> <p>Useful in determining when a prescription 
+         * will next need to be dispensed. Also provides an indication 
+         * of compliance.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"effectiveTime"})]
         public Interval<PlatformDate> EffectiveTime {
@@ -71,9 +77,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
         }
 
         /**
-         * <summary>LastQuantityDispensed</summary>
+         * <summary>Business Name: LastQuantityDispensed</summary>
          * 
-         * <remarks>B:Last Quantity Dispensed <p>Indicates the most 
+         * <remarks>Un-merged Business Name: LastQuantityDispensed 
+         * Relationship: 
+         * PORX_MT060060CA.SupplyEventLastSummary.quantity 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the most 
          * recent quantity of the drug that was picked up for the 
          * prescription.</p> <p>Useful in determining number of devices 
          * that a patient should have on-hand. Also provides an 
@@ -83,14 +92,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
          * of devices that a patient should have on-hand. Also provides 
          * an indication of compliance.</p><p>Because the quantity 
          * should always be known if the last dispense is known, this 
-         * attribute is mandatory.</p> Last Quantity Dispensed 
-         * <p>Indicates the most recent quantity of the drug that was 
-         * picked up for the prescription.</p> <p>Useful in determining 
-         * number of devices that a patient should have on-hand. Also 
-         * provides an indication of compliance.</p><p>If the last 
-         * dispense is known, then the quantity must be known, thus the 
-         * element is mandatory.</p> <p>Useful in determining number of 
-         * devices that a patient should have on-hand. Also provides an 
+         * attribute is mandatory.</p> Un-merged Business Name: 
+         * LastQuantityDispensed Relationship: 
+         * PORX_MT060040CA.SupplyEventLastSummary.quantity 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the most 
+         * recent quantity of the drug that was picked up for the 
+         * prescription.</p> <p>Useful in determining number of devices 
+         * that a patient should have on-hand. Also provides an 
+         * indication of compliance.</p><p>If the last dispense is 
+         * known, then the quantity must be known, thus the element is 
+         * mandatory.</p> <p>Useful in determining number of devices 
+         * that a patient should have on-hand. Also provides an 
          * indication of compliance.</p><p>If the last dispense is 
          * known, then the quantity must be known, thus the element is 
          * mandatory.</p></remarks>

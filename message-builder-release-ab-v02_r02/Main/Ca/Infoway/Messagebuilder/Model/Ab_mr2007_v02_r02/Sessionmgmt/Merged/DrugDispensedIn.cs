@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,9 +30,9 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Merged {
     /**
      * <summary>COCT_MT220200CA.Content: drug dispensed in</summary>
      * 
-     * <remarks><p>Must specify at least one of Drug Package 
-     * quantity and Drug Container Type.</p> <p>Information about 
-     * how the dispensed drug is or should be contained</p> 
+     * <p>Must specify at least one of Drug Package quantity and 
+     * Drug Container Type.</p> <p>Information about how the 
+     * dispensed drug is or should be contained</p> 
      * <p>A_BillablePharmacyDispense</p> <p>May influence 
      * prescribing quantities, and also allows conveying 
      * instructions with respect to special packaging such as 
@@ -57,7 +57,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Merged {
      * <p>A_BillablePharmacyDispense</p> <p>May influence 
      * prescribing quantities, and also allows conveying 
      * instructions with respect to special packaging such as 
-     * compliance packaging.</p></remarks>
+     * compliance packaging.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"COCT_MT220100CA.Content","COCT_MT220110CA.Content","COCT_MT220200CA.Content","COCT_MT220210CA.Content"})]
     public class DrugDispensedIn : MessagePartBean {
@@ -70,18 +70,40 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Merged {
             this.containerPackagedMedicineFormCode = new CVImpl();
         }
         /**
-         * <summary>DrugPackageQuantity</summary>
+         * <summary>Business Name: DrugPackageQuantity</summary>
          * 
-         * <remarks>B:Drug Package Quantity <p>The quantity of the 
-         * medication dosage form contained in the package given or to 
-         * be given to the patient.</p> 
+         * <remarks>Un-merged Business Name: DrugPackageQuantity 
+         * Relationship: COCT_MT220200CA.Content.quantity 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The quantity of 
+         * the medication dosage form contained in the package given or 
+         * to be given to the patient.</p> 
          * <p>ZDP.10.2.2</p><p>ZDP.9.2.2</p> 
          * <p>ZDP.10.2.2</p><p>ZDP.9.2.2</p> <p>Sometimes ordering and 
          * dispensing is by package rather than individual units, and 
          * package is important in calculating total amount 
-         * supplied.</p> F:Drug Package Quantity <p>The quantity of the 
-         * medication dosage form contained in the package given or to 
-         * be given to the patient.</p> 
+         * supplied.</p> Un-merged Business Name: DrugPackageQuantity 
+         * Relationship: COCT_MT220210CA.Content.quantity 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The quantity of 
+         * the medication dosage form contained in the package given or 
+         * to be given to the patient.</p> 
+         * <p>ZDP.10.2.2</p><p>ZDP.9.2.2</p> 
+         * <p>ZDP.10.2.2</p><p>ZDP.9.2.2</p> <p>Sometimes ordering and 
+         * dispensing is by package rather than individual units, and 
+         * package is important in calculating total amount 
+         * supplied.</p> Un-merged Business Name: DrugPackageQuantity 
+         * Relationship: COCT_MT220110CA.Content.quantity 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The quantity of 
+         * the medication dosage form contained in the package given or 
+         * to be given to the patient.</p> 
+         * <p>ZDP.10.2.2</p><p>ZDP.9.2.2</p> 
+         * <p>ZDP.10.2.2</p><p>ZDP.9.2.2</p> <p>Sometimes ordering and 
+         * dispensing is by package rather than individual units, and 
+         * package is important in calculating total amount 
+         * supplied.</p> Un-merged Business Name: DrugPackageQuantity 
+         * Relationship: COCT_MT220100CA.Content.quantity 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The quantity of 
+         * the medication dosage form contained in the package given or 
+         * to be given to the patient.</p> 
          * <p>ZDP.10.2.2</p><p>ZDP.9.2.2</p> 
          * <p>ZDP.10.2.2</p><p>ZDP.9.2.2</p> <p>Sometimes ordering and 
          * dispensing is by package rather than individual units, and 
@@ -95,25 +117,40 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Merged {
         }
 
         /**
-         * <summary>DrugContainerType</summary>
+         * <summary>Business Name: DrugContainerType</summary>
          * 
-         * <remarks>Drug Container Type <p>A coded value denoting a 
-         * specific kind of a container. Used to identify a requirement 
-         * for a particular type of compliance packaging</p> <p>Many 
-         * insurance plans require that a prescriber specifically 
-         * authorize the use of compliance packaging before it will be 
-         * covered by the plan.</p> A:Drug Container Type <p>A coded 
-         * value denoting a specific kind of a container. Used to 
-         * identify a requirement for a particular type of compliance 
+         * <remarks>Un-merged Business Name: DrugContainerType 
+         * Relationship: COCT_MT220200CA.PackagedMedicine.formCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>A coded value 
+         * denoting a specific kind of a container. Used to identify a 
+         * requirement for a particular type of compliance 
          * packaging</p> <p>Many insurance plans require that a 
          * prescriber specifically authorize the use of compliance 
-         * packaging before it will be covered by the plan.</p> E:Drug 
-         * Container Type <p>A coded value denoting a specific kind of 
-         * a container. Used to identify a requirement for a particular 
-         * type of compliance packaging</p> <p>Many insurance plans 
-         * require that a prescriber specifically authorize the use of 
-         * compliance packaging before it will be covered by the 
-         * plan.</p></remarks>
+         * packaging before it will be covered by the plan.</p> 
+         * Un-merged Business Name: DrugContainerType Relationship: 
+         * COCT_MT220210CA.PackagedMedicine.formCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>A coded value 
+         * denoting a specific kind of a container. Used to identify a 
+         * requirement for a particular type of compliance 
+         * packaging</p> <p>Many insurance plans require that a 
+         * prescriber specifically authorize the use of compliance 
+         * packaging before it will be covered by the plan.</p> 
+         * Un-merged Business Name: DrugContainerType Relationship: 
+         * COCT_MT220110CA.PackagedMedicine.formCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>A coded value 
+         * denoting a specific kind of a container. Used to identify a 
+         * requirement for a particular type of compliance 
+         * packaging</p> <p>Many insurance plans require that a 
+         * prescriber specifically authorize the use of compliance 
+         * packaging before it will be covered by the plan.</p> 
+         * Un-merged Business Name: DrugContainerType Relationship: 
+         * COCT_MT220100CA.PackagedMedicine.formCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>A coded value 
+         * denoting a specific kind of a container. Used to identify a 
+         * requirement for a particular type of compliance 
+         * packaging</p> <p>Many insurance plans require that a 
+         * prescriber specifically authorize the use of compliance 
+         * packaging before it will be covered by the plan.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"containerPackagedMedicine/formCode"})]
         public CompliancePackageEntityType ContainerPackagedMedicineFormCode {

@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,12 +29,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt306051ca {
 
 
     /**
-     * <summary>Organization</summary>
+     * <summary>Business Name: Organization</summary>
      * 
-     * <remarks><p>The scoping organization for the specified role 
-     * class</p> <p>Supports the requirement to supply additional 
-     * information regarding the assigning Organization of the 
-     * specified RoleClass</p></remarks>
+     * <p>The scoping organization for the specified role class</p> 
+     * <p>Supports the requirement to supply additional information 
+     * regarding the assigning Organization of the specified 
+     * RoleClass</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"PRPM_MT306051CA.Organization"})]
     public class Organization : MessagePartBean {
@@ -49,11 +49,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt306051ca {
             this.territorialAuthority = new List<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt306051ca.TerritorialAuthority>();
         }
         /**
-         * <summary>Organization Id</summary>
+         * <summary>Business Name: Organization Id</summary>
          * 
-         * <remarks><p>The unique identifier of the Organization.</p> 
-         * <p>Mandatory attribute supports the validation and 
-         * identification of the healthcare provider</p></remarks>
+         * <remarks>Relationship: PRPM_MT306051CA.Organization.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>The unique 
+         * identifier of the Organization.</p> <p>Mandatory attribute 
+         * supports the validation and identification of the healthcare 
+         * provider</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -62,14 +64,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt306051ca {
         }
 
         /**
-         * <summary>(Issuing Representing Qualification Granting 
-         * Organization Name(s</summary>
+         * <summary>Business Name: (Issuing Representing Qualification 
+         * Granting Organization Name(s</summary>
          * 
-         * <remarks><p>The name of the organization supporting the 
-         * following three role classes:</p><p>1. Organization that is 
-         * responsible for registering the provider for a specific 
-         * healthcare provider role.</p><p>2. Organization associated 
-         * with a provider&#226;&#128;&#153;s functional role.</p><p>3. 
+         * <remarks>Relationship: PRPM_MT306051CA.Organization.name 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The name of the 
+         * organization supporting the following three role 
+         * classes:</p><p>1. Organization that is responsible for 
+         * registering the provider for a specific healthcare provider 
+         * role.</p><p>2. Organization associated with a 
+         * provider&#226;&#128;&#153;s functional role.</p><p>3. 
          * Organization that grants the qualifications or 
          * expertise.</p> <p>The name of the organization supporting 
          * the following three role classes:</p><p>1. Organization that 
@@ -98,6 +102,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt306051ca {
             set { this.name.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PRPM_MT306051CA.Organization.territorialAuthority</summary>
+         * 
+         * <remarks>Conformance/Cardinality: REQUIRED (0-*)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"territorialAuthority"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt306051ca.TerritorialAuthority> TerritorialAuthority {
             get { return this.territorialAuthority; }

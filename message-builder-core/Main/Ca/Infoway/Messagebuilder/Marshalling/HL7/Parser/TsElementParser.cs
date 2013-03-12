@@ -1,15 +1,32 @@
+/**
+ * Copyright 2013 Canada Health Infoway, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Author:        $LastChangedBy: tmcgrady $
+ * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Revision:      $LastChangedRevision: 2623 $
+ */
 using System;
-using System.Collections.Generic;
 using System.Xml;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Datatype.Impl;
-using Ca.Infoway.Messagebuilder.Datatype.Lang;
+using Ca.Infoway.Messagebuilder.Datatype.Lang.Util;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser;
 using Ca.Infoway.Messagebuilder.Platform;
 using Ca.Infoway.Messagebuilder.Util.Xml;
-using ILOG.J2CsMapping.Collections.Generics;
 using ILOG.J2CsMapping.Text;
 
 namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
@@ -26,43 +43,10 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 	[DataTypeHandler("TS")]
 	internal class TsElementParser : AbstractSingleElementParser<PlatformDate>
 	{
-		private readonly IDictionary<StandardDataType, IList<string>> formats;
-
-		private readonly IDictionary<string, string> expandedFormats;
-
-		private readonly IDictionary<VersionNumber, IDictionary<StandardDataType, IList<string>>> versionFormatExceptions;
+		public static readonly string ABSTRACT_TS_IGNORE_SPECIALIZATION_TYPE_ERROR_PROPERTY_NAME = "messagebuilder.abstract.ts.ignore.specializationtype.error";
 
 		public TsElementParser()
 		{
-			IDictionary<StandardDataType, IList<string>> map = new Dictionary<StandardDataType, IList<string>>();
-			map[StandardDataType.TS_FULLDATETIME] = Arrays.AsList("yyyyMMddHHmmss.SSSZZZZZ", "yyyyMMddHHmmssZZZZZ");
-			// this is an abstract type and these formats are only used after issuing a warning (there should be a specializationType)
-			map[StandardDataType.TS_FULLDATEWITHTIME] = Arrays.AsList("yyyyMMddHHmmss.SSSZZZZZ", "yyyyMMddHHmmssZZZZZ", "yyyyMMdd");
-			map[StandardDataType.TS_FULLDATE] = Arrays.AsList("yyyyMMdd");
-			map[StandardDataType.TS_DATE] = Arrays.AsList("yyyyMMdd", "yyyyMM", "yyyy");
-			map[StandardDataType.TS_DATETIME] = Arrays.AsList("yyyyMMddHHmmss.SSSZZZZZ", "yyyyMMddHHmmss.SSS", "yyyyMMddHHmmssZZZZZ", 
-				"yyyyMMddHHmmss", "yyyyMMddHHmmZZZZZ", "yyyyMMddHHmm", "yyyyMMddHHZZZZZ", "yyyyMMddHH", "yyyyMMddZZZZZ", "yyyyMMdd", "yyyyMMZZZZZ"
-				, "yyyyMM", "yyyyZZZZZ", "yyyy");
-			map[StandardDataType.TS] = map.SafeGet(StandardDataType.TS_DATETIME);
-			this.formats = Ca.Infoway.Messagebuilder.CollUtils.CreateUnmodifiableDictionary(map);
-			this.expandedFormats = new Dictionary<string, string>();
-			this.expandedFormats["yyyyMMddHHmmss.SSSZZZZZ"] = "yyyyMMddHHmmss.SSS0ZZZZZ";
-			this.expandedFormats["yyyyMMddHHmmss.SSS"] = "yyyyMMddHHmmss.SSS0";
-			// some older versions have slightly different rules for allowable time formats
-			IDictionary<StandardDataType, IList<string>> exceptionMapV02R01 = new Dictionary<StandardDataType, IList<string>>();
-			exceptionMapV02R01[StandardDataType.TS_FULLDATEWITHTIME] = CollUtils.EmptyList<string>();
-			IDictionary<StandardDataType, IList<string>> exceptionMapV01R04_3 = new Dictionary<StandardDataType, IList<string>>();
-			exceptionMapV01R04_3[StandardDataType.TS_FULLDATEWITHTIME] = CollUtils.EmptyList<string>();
-			exceptionMapV01R04_3[StandardDataType.TS_FULLDATETIME] = Arrays.AsList("yyyyMMddHHmmss");
-			exceptionMapV01R04_3[StandardDataType.TS_DATETIME] = Arrays.AsList("yyyyMMddHHmmss", "yyyyMMddHHmm", "yyyyMMddHH", "yyyyMMdd"
-				, "yyyyMM", "yyyy");
-			IDictionary<VersionNumber, IDictionary<StandardDataType, IList<string>>> versionMap = new Dictionary<VersionNumber, IDictionary
-				<StandardDataType, IList<string>>>();
-			versionMap[SpecificationVersion.V02R01] = Ca.Infoway.Messagebuilder.CollUtils.CreateUnmodifiableDictionary(exceptionMapV02R01
-				);
-			versionMap[SpecificationVersion.V01R04_3] = Ca.Infoway.Messagebuilder.CollUtils.CreateUnmodifiableDictionary(exceptionMapV01R04_3
-				);
-			this.versionFormatExceptions = Ca.Infoway.Messagebuilder.CollUtils.CreateUnmodifiableDictionary(versionMap);
 		}
 
 		/// <exception cref="Ca.Infoway.Messagebuilder.Marshalling.HL7.XmlToModelTransformationException"></exception>
@@ -81,20 +65,32 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			string specializationType = GetAttributeValue(node, AbstractElementParser.SPECIALIZATION_TYPE);
 			if (specializationType == null)
 			{
+				// TM - RedMine issue 492 - there is some concern over MBT forcing a specialization type for abstract TS type TS_FULLDATEWITHTIME
+				//    - I'm relaxing this validation for the time being (the formatter currently ignores specialization type completely)
+				//    - (update: perhaps the real issue is that this was an IVL<TS.FULLDATEWITHTIME> and MB has a bug where inner types can't have specializationType set??)
+				// TM - 16/10/2012 - should be able to set specialization type now (need to specify IVL_FULL_DATE_TIME as the specialization type for IVL<TS.FULLDATEWITHTIME>, for example)
+				//                 - in a cowardly move, I have allowed for a system property to bypass this error
+				if (ILOG.J2CsMapping.Util.BooleanUtil.ValueOf(Runtime.GetProperty(ABSTRACT_TS_IGNORE_SPECIALIZATION_TYPE_ERROR_PROPERTY_NAME
+					)))
+				{
+				}
+				else
+				{
+					// do nothing - fall back to parsing through all allowable date formats for TS.FULLDATEWITHTIME
+					xmlToModelResult.AddHl7Error(Hl7Error.CreateMissingMandatoryAttributeError(AbstractElementParser.SPECIALIZATION_TYPE, (XmlElement
+						)node));
+				}
 			}
 			else
 			{
-				// TM - RedMine issue 492 - there is some concern over MBT forcing a specialization type for abstract TS types
-				//    - I'm relaxing this validation for the time being (the formatter currently ignores specialization type completely)
-				// do nothing - fall back to parsing through all allowable date formats for TS.FULLDATEWITHTIME
-				// xmlToModelResult.addHl7Error(Hl7Error.createMissingMandatoryAttributeError(SPECIALIZATION_TYPE, (Element) node));
-				if (IsValidType(specializationType))
+				if (IsValidSpecializationType(specializationType))
 				{
 					context = ParserContextImpl.Create(specializationType, context.GetExpectedReturnType(), context.GetVersion(), context.GetDateTimeZone
 						(), context.GetDateTimeTimeZone(), context.GetConformance(), null, null);
 				}
 				else
 				{
+					// log error - fall back to parsing through all allowable date formats for TS.FULLDATEWITHTIME
 					xmlToModelResult.AddHl7Error(new Hl7Error(Hl7ErrorCode.DATA_TYPE_ERROR, "Invalid specialization type " + specializationType
 						 + " (" + XmlDescriber.DescribeSingleElement((XmlElement)node) + ")", (XmlElement)node));
 				}
@@ -102,7 +98,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			return context;
 		}
 
-		private bool IsValidType(string specializationType)
+		private bool IsValidSpecializationType(string specializationType)
 		{
 			StandardDataType type = StandardDataType.GetByTypeName(specializationType);
 			return StandardDataType.TS_FULLDATE.Equals(type) || StandardDataType.TS_FULLDATETIME.Equals(type);
@@ -127,6 +123,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 				try
 				{
 					result = ParseDate(unparsedDate, GetAllDateFormats(context), context);
+					CheckForMissingTimezone(context, xmlToModelResult, result, unparsedDate, element);
 				}
 				catch (ArgumentException)
 				{
@@ -141,11 +138,27 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			return result;
 		}
 
+		private void CheckForMissingTimezone(ParseContext context, XmlToModelResult xmlToModelResult, PlatformDate result, string
+			 unparsedDate, XmlElement element)
+		{
+			// issue a warning if a datetime (partial or otherwise) was passed in without a timezone (non-CeRx only)
+			if (context == null || context.GetVersion() == null || !SpecificationVersion.IsVersion(context.GetVersion(), Hl7BaseVersion
+				.CERX))
+			{
+				if (result is DateWithPattern && TsDateFormats.datetimeFormatsRequiringWarning.Contains(((DateWithPattern)result).DatePattern
+					))
+				{
+					xmlToModelResult.AddHl7Error(new Hl7Error(Hl7ErrorCode.DATA_TYPE_ERROR, "Timezone should be specified for datetime " + unparsedDate
+						 + ". Value processed without timezone.", element));
+				}
+			}
+		}
+
 		private PlatformDate TryEveryFormat(ParseContext context, string unparsedDate, XmlElement element, XmlToModelResult xmlToModelResult
 			)
 		{
 			PlatformDate result = null;
-			foreach (StandardDataType type in this.formats.Keys)
+			foreach (StandardDataType type in TsDateFormats.formats.Keys)
 			{
 				try
 				{
@@ -183,24 +196,12 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		private string[] GetAllDateFormats(ParseContext context)
 		{
 			StandardDataType standardDataType = StandardDataType.GetByTypeName(context);
-			IDictionary<StandardDataType, IList<string>> exceptionMap = this.versionFormatExceptions.SafeGet(context == null ? null : 
-				context.GetVersion());
-			if (exceptionMap == null)
-			{
-				exceptionMap = this.versionFormatExceptions.SafeGet(context == null ? null : context.GetVersion() == null ? null : context
-					.GetVersion().GetBaseVersion());
-			}
-			IList<string> formats = (exceptionMap == null ? null : exceptionMap.SafeGet(standardDataType));
-			if (formats == null)
-			{
-				formats = this.formats.SafeGet(standardDataType);
-			}
-			return CollUtils.IsEmpty(formats) ? new string[0] : formats.ToArray(new string[formats.Count]);
+			VersionNumber version = (context == null ? null : context.GetVersion());
+			return TsDateFormats.GetAllDateFormats(standardDataType, version);
 		}
 
 		/// <summary>Adapted from org.apache.commons.lang.time.DateUtils, but leniency is turned off.</summary>
 		/// <remarks>Adapted from org.apache.commons.lang.time.DateUtils, but leniency is turned off.</remarks>
-		/// <param name="context">TODO</param>
 		private PlatformDate ParseDate(string str, string[] parsePatterns, ParseContext context)
 		{
 			string dateString = StandardizeDate(str);
@@ -210,8 +211,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 				if (DateFormatUtil.IsMatchingPattern(dateString, pattern))
 				{
 					PlatformDate date = DateFormatUtil.Parse(dateString, pattern, GetTimeZone(context));
-					// SPD: wrap the date in our own Date to remember the chosen parsePattern with the Date
 					pattern = ExpandPatternIfNecessary(pattern);
+					// SPD: wrap the date in our own Date to remember the chosen parsePattern with the Date
 					return new DateWithPattern(date, pattern);
 				}
 			}
@@ -220,7 +221,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 
 		private string ExpandPatternIfNecessary(string pattern)
 		{
-			return this.expandedFormats.ContainsKey(pattern) ? this.expandedFormats.SafeGet(pattern) : pattern;
+			return TsDateFormats.expandedFormats.ContainsKey(pattern) ? TsDateFormats.expandedFormats.SafeGet(pattern) : pattern;
 		}
 
 		private TimeZone GetTimeZone(ParseContext context)
@@ -238,10 +239,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 				}
 				else
 				{
-					if (IsDateTime(context))
-					{
-						timeZone = GetNonNullTimeZone(context.GetDateTimeTimeZone());
-					}
+					timeZone = GetNonNullTimeZone(context.GetDateTimeTimeZone());
 				}
 			}
 			return timeZone;
@@ -257,13 +255,11 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			return timeZone == null ? System.TimeZone.CurrentTimeZone : timeZone;
 		}
 
-		private bool IsDateTime(ParseContext context)
-		{
-			return StandardDataType.TS_DATETIME.Equals(StandardDataType.GetByTypeName(context)) || StandardDataType.TS_FULLDATETIME.Equals
-				(StandardDataType.GetByTypeName(context)) || StandardDataType.TS_FULLDATEWITHTIME.Equals(StandardDataType.GetByTypeName(
-				context));
-		}
-
+		//	private boolean isDateTime(ParseContext context) {
+		//		return StandardDataType.TS_DATETIME.equals(StandardDataType.getByTypeName(context)) ||
+		//				StandardDataType.TS_FULLDATETIME.equals(StandardDataType.getByTypeName(context)) ||
+		//				StandardDataType.TS_FULLDATEWITHTIME.equals(StandardDataType.getByTypeName(context));
+		//	}
 		private bool IsDate(ParseContext context)
 		{
 			return StandardDataType.TS_DATE.Equals(StandardDataType.GetByTypeName(context)) || StandardDataType.TS_FULLDATE.Equals(StandardDataType

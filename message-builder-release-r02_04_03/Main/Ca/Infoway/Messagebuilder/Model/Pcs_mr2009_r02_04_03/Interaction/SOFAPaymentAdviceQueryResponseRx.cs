@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,6 +25,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged;
 
 
+    /**
+     * <summary>Business Name: QUCR_IN810102CA: SOFA Payment Advice 
+     * Query Response, Rx</summary>
+     * 
+     * <p>The sender sends a SOFA (Statement of Financial Activity) 
+     * Payment Advice Query Response message for Pharmacy services 
+     * and/or products.</p> Message: MCCI_MT002300CA.Message 
+     * Control Act: QUQI_MT120008CA.ControlActEvent --> Payload: 
+     * QUCR_MT810201CA.AdjudResultsGroup --> Payload: 
+     * QUCR_MT800201CA.ParameterList
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"QUCR_IN810102CA"})]
     public class SOFAPaymentAdviceQueryResponseRx : HL7Message_1<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.TriggerEvent_6<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Merged.AdjudicatedResultsGroup,Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Merged.ParameterList_2>>, IInteraction {
 

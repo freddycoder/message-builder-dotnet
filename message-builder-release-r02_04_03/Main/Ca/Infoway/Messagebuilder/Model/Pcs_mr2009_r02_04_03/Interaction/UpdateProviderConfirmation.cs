@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,23 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Prpm_mt309000ca;
 
 
+    /**
+     * <summary>Business Name: PRPM_IN303011CA: Update Provider 
+     * Confirmation</summary>
+     * 
+     * <p>This interaction is used to confirm the receipt of the 
+     * Update Provider Request interaction. This interaction either 
+     * confirms processing of the request and contains the 
+     * appropriate identifiers assigned by the provider registry 
+     * system; or will indicate that the request could not be 
+     * fulfilled (with supporting reasons).</p> Message: 
+     * MCCI_MT002300CA.Message Control Act: 
+     * MFMI_MT700726CA.ControlActEvent --> Payload: 
+     * PRPM_MT309000CA.RoleChoice ----> Payload Choice: 
+     * PRPM_MT309000CA.AssignedEntity ----> Payload Choice: 
+     * PRPM_MT309000CA.QualifiedEntity ----> Payload Choice: 
+     * PRPM_MT309000CA.HealthCareProvider
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"PRPM_IN303011CA"})]
     public class UpdateProviderConfirmation : HL7Message_1<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Mfmi_mt700726ca.TriggerEvent<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Prpm_mt309000ca.IRoleChoice>>, IInteraction {
 

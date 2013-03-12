@@ -1,6 +1,26 @@
+/**
+ * Copyright 2013 Canada Health Infoway, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Author:        $LastChangedBy: tmcgrady $
+ * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Revision:      $LastChangedRevision: 2623 $
+ */
 using System.Collections.Generic;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
+using Ca.Infoway.Messagebuilder.Datatype.Lang.Util;
 using Ca.Infoway.Messagebuilder.DevTools;
 using Ca.Infoway.Messagebuilder.Domainvalue;
 using Ca.Infoway.Messagebuilder.Platform;
@@ -85,7 +105,8 @@ namespace Ca.Infoway.Messagebuilder.DevTools
 		{
 			ReceiverValueHolder receiver = new ReceiverValueHolder();
 			receiver.SetDeviceName("Receiver Application Name");
-			receiver.SetTelecom(new TelecommunicationAddress(Ca.Infoway.Messagebuilder.Datatype.Lang.URLScheme.HTTP, "192.168.2.1"));
+			receiver.SetTelecom(new TelecommunicationAddress(Ca.Infoway.Messagebuilder.Domainvalue.Basic.URLScheme.HTTP, "192.168.2.1"
+				));
 			receiver.SetDeviceAgentAgentOrganizationId(new Identifier("1.1.2", "ext2"));
 			receiver.SetDeviceId(new Identifier("1.1.3", "ext3"));
 			return receiver;
@@ -94,7 +115,8 @@ namespace Ca.Infoway.Messagebuilder.DevTools
 		private SenderValueHolder PopulateSender()
 		{
 			SenderValueHolder sender = new SenderValueHolder();
-			sender.SetTelecom(new TelecommunicationAddress(Ca.Infoway.Messagebuilder.Datatype.Lang.URLScheme.HTTP, "192.168.2.2"));
+			sender.SetTelecom(new TelecommunicationAddress(Ca.Infoway.Messagebuilder.Domainvalue.Basic.URLScheme.HTTP, "192.168.2.2")
+				);
 			sender.SetDeviceId(new Identifier("1.1.4", "ext4"));
 			sender.SetDeviceManufacturerModelName("1.0");
 			sender.SetDeviceSoftwareName("MBT Pharmacy");
@@ -109,7 +131,7 @@ namespace Ca.Infoway.Messagebuilder.DevTools
 		{
 			ToBeRespondedToByValueHolder bean = new ToBeRespondedToByValueHolder();
 			bean.SetDeviceId(new Identifier("1.1.6", "ext6"));
-			bean.SetTelecom(new TelecommunicationAddress(Ca.Infoway.Messagebuilder.Datatype.Lang.URLScheme.HTTP, "192.168.2.3"));
+			bean.SetTelecom(new TelecommunicationAddress(Ca.Infoway.Messagebuilder.Domainvalue.Basic.URLScheme.HTTP, "192.168.2.3"));
 			return bean;
 		}
 	}

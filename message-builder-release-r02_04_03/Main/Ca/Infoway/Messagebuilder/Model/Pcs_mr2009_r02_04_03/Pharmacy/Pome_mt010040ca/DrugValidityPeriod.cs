@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,16 +28,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Pome_mt0
 
 
     /**
-     * <summary>Drug Validity Period</summary>
+     * <summary>Business Name: Drug Validity Period</summary>
      * 
-     * <remarks><p>Defines upper limits for period in which a 
-     * prescribed drug may be dispensed. Although an attempt will 
-     * be made to obtain and define panCanadian validity periods 
-     * for drug, it is possible that drug validity periods wii be 
-     * jurisdiction-specific</p> <p>Allows for business rules 
-     * regarding dispenses against a prescription. Controlled and 
-     * monitored drugs have shorter prescription lifespans that 
-     * other drugs.</p></remarks>
+     * <p>Allows for business rules regarding dispenses against a 
+     * prescription. Controlled and monitored drugs have shorter 
+     * prescription lifespans that other drugs.</p> <p>Defines 
+     * upper limits for period in which a prescribed drug may be 
+     * dispensed. Although an attempt will be made to obtain and 
+     * define panCanadian validity periods for drug, it is possible 
+     * that drug validity periods wii be jurisdiction-specific</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"POME_MT010040CA.InitialDispense"})]
     public class DrugValidityPeriod : MessagePartBean {
@@ -48,30 +47,19 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Pome_mt0
             this.effectiveTime = new IVLImpl<TS, Interval<PlatformDate>>();
         }
         /**
-         * <summary>First Fill Period</summary>
+         * <summary>Business Name: First Fill Period</summary>
          * 
-         * <remarks><p>The period within which the prescribed drug has 
-         * to be dispensed for the first time.</p><p>This is usually 
-         * jurisdiction-specific, and for the most part, it is set at 
-         * the drug class level.</p><p>For instance, the first fill 
-         * period of validity for narcotic drugs is 3 days in most 
-         * jurisdiction, where as it is between 18 and 24 months for 
-         * other non-controlled drugs.</p> <p>The period within which 
-         * the prescribed drug has to be dispensed for the first 
+         * <remarks>Relationship: 
+         * POME_MT010040CA.InitialDispense.effectiveTime 
+         * Conformance/Cardinality: MANDATORY (1) <p>Certain 
+         * prescribers have time limitations or certain drugs must be 
+         * filled in a finite period of time.</p> <p>The period within 
+         * which the prescribed drug has to be dispensed for the first 
          * time.</p><p>This is usually jurisdiction-specific, and for 
          * the most part, it is set at the drug class level.</p><p>For 
          * instance, the first fill period of validity for narcotic 
          * drugs is 3 days in most jurisdiction, where as it is between 
-         * 18 and 24 months for other non-controlled drugs.</p> <p>The 
-         * period within which the prescribed drug has to be dispensed 
-         * for the first time.</p><p>This is usually 
-         * jurisdiction-specific, and for the most part, it is set at 
-         * the drug class level.</p><p>For instance, the first fill 
-         * period of validity for narcotic drugs is 3 days in most 
-         * jurisdiction, where as it is between 18 and 24 months for 
-         * other non-controlled drugs.</p> <p>Certain prescribers have 
-         * time limitations or certain drugs must be filled in a finite 
-         * period of time.</p></remarks>
+         * 18 and 24 months for other non-controlled drugs.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"effectiveTime"})]
         public Interval<PlatformDate> EffectiveTime {

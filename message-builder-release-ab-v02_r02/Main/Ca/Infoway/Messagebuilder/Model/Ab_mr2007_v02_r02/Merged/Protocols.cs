@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
 
 
     /**
-     * <summary>Protocols</summary>
+     * <summary>Business Name: Protocols</summary>
      * 
      * <remarks>PORX_MT060340CA.SubstanceAdministrationDefinition: 
      * Protocols <p>Documentation of why a prescriber has chosen to 
@@ -51,46 +51,39 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             this.id = new IIImpl();
         }
         /**
-         * <summary>ProtocolIdentifiers</summary>
+         * <summary>Business Name: ProtocolIdentifiers</summary>
          * 
-         * <remarks>H:Protocol Identifiers <p>A unique identifier for a 
-         * specific protocol or guideline which the prescription has 
-         * been written in accordance with.</p> <p>Enables the 
-         * communication of a reference to a protocol, study or 
-         * guideline id, specific to the jurisdiction;</p><p>Allows 
-         * providers to reference a protocol/guideline for prescribing 
-         * to specific situations. This could also be used for 
-         * justification for prescribing a medication from a particular 
-         * formulary. E.g., 'Limited Use' medications in Ontario 
-         * require physicians to use a code indicating that a patient 
-         * is eligible for this particular medication;</p><p>This 
-         * attribute is mandatory as the id clearly identifies the 
-         * protocol, study or guideline being referenced</p> <p>Enables 
-         * the communication of a reference to a protocol, study or 
-         * guideline id, specific to the jurisdiction;</p><p>Allows 
-         * providers to reference a protocol/guideline for prescribing 
-         * to specific situations. This could also be used for 
-         * justification for prescribing a medication from a particular 
-         * formulary. E.g., 'Limited Use' medications in Ontario 
-         * require physicians to use a code indicating that a patient 
-         * is eligible for this particular medication;</p><p>This 
-         * attribute is mandatory as the id clearly identifies the 
-         * protocol, study or guideline being referenced</p> <p>Enables 
-         * the communication of a reference to a protocol, study or 
-         * guideline id, specific to the jurisdiction;</p><p>Allows 
-         * providers to reference a protocol/guideline for prescribing 
-         * to specific situations. This could also be used for 
-         * justification for prescribing a medication from a particular 
-         * formulary. E.g., 'Limited Use' medications in Ontario 
-         * require physicians to use a code indicating that a patient 
-         * is eligible for this particular medication;</p><p>This 
-         * attribute is mandatory as the id clearly identifies the 
-         * protocol, study or guideline being referenced</p> Protocol 
-         * Identifiers <p>A unique identifier for a specific protocol 
-         * or guideline which the prescription has been written in 
-         * accordance with.</p> <p>Enables the communication of a 
-         * reference to a protocol, study or guideline id, specific to 
-         * the jurisdiction;</p><p>Allows providers to reference a 
+         * <remarks>Un-merged Business Name: ProtocolIdentifiers 
+         * Relationship: 
+         * PORX_MT060340CA.SubstanceAdministrationDefinition.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>A unique 
+         * identifier for a specific protocol or guideline which the 
+         * prescription has been written in accordance with.</p> 
+         * <p>Enables the communication of a reference to a protocol, 
+         * study or guideline id, specific to the 
+         * jurisdiction;</p><p>Allows providers to reference a 
+         * protocol/guideline for prescribing to specific situations. 
+         * This could also be used for justification for prescribing a 
+         * medication from a particular formulary. E.g., 'Limited' Use 
+         * medications in Ontario require physicians to use a code 
+         * indicating that a patient is eligible for this particular 
+         * medication.</p> <p>Enables the communication of a reference 
+         * to a protocol, study or guideline id, specific to the 
+         * jurisdiction;</p><p>Allows providers to reference a 
+         * protocol/guideline for prescribing to specific situations. 
+         * This could also be used for justification for prescribing a 
+         * medication from a particular formulary. E.g., 'Limited' Use 
+         * medications in Ontario require physicians to use a code 
+         * indicating that a patient is eligible for this particular 
+         * medication.</p> Un-merged Business Name: ProtocolIdentifiers 
+         * Relationship: 
+         * PORX_MT060160CA.SubstanceAdministrationDefinition.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>A unique 
+         * identifier for a specific protocol or guideline which the 
+         * prescription has been written in accordance with.</p> 
+         * <p>Enables the communication of a reference to a protocol, 
+         * study or guideline id, specific to the 
+         * jurisdiction;</p><p>Allows providers to reference a 
          * protocol/guideline for prescribing to specific situations. 
          * This could also be used for justification for prescribing a 
          * medication from a particular formulary. E.g., 'Limited Use' 
@@ -104,25 +97,43 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
          * medication from a particular formulary. E.g., 'Limited Use' 
          * medications in Ontario require physicians to use a code 
          * indicating that a patient is eligible for this particular 
-         * medication.</p> Protocol Identifiers <p>A unique identifier 
-         * for a specific protocol or guideline which the prescription 
-         * has been written in accordance with.</p> <p>Enables the 
-         * communication of a reference to a protocol, study or 
-         * guideline id, specific to the jurisdiction;</p><p>Allows 
-         * providers to reference a protocol/guideline for prescribing 
-         * to specific situations. This could also be used for 
-         * justification for prescribing a medication from a particular 
-         * formulary. E.g., 'Limited' Use medications in Ontario 
-         * require physicians to use a code indicating that a patient 
-         * is eligible for this particular medication.</p> <p>Enables 
-         * the communication of a reference to a protocol, study or 
-         * guideline id, specific to the jurisdiction;</p><p>Allows 
-         * providers to reference a protocol/guideline for prescribing 
-         * to specific situations. This could also be used for 
-         * justification for prescribing a medication from a particular 
-         * formulary. E.g., 'Limited' Use medications in Ontario 
-         * require physicians to use a code indicating that a patient 
-         * is eligible for this particular medication.</p></remarks>
+         * medication.</p> Un-merged Business Name: ProtocolIdentifiers 
+         * Relationship: 
+         * PORX_MT010120CA.SubstanceAdministrationDefinition.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>A unique 
+         * identifier for a specific protocol or guideline which the 
+         * prescription has been written in accordance with.</p> 
+         * <p>Enables the communication of a reference to a protocol, 
+         * study or guideline id, specific to the 
+         * jurisdiction;</p><p>Allows providers to reference a 
+         * protocol/guideline for prescribing to specific situations. 
+         * This could also be used for justification for prescribing a 
+         * medication from a particular formulary. E.g., 'Limited Use' 
+         * medications in Ontario require physicians to use a code 
+         * indicating that a patient is eligible for this particular 
+         * medication;</p><p>This attribute is mandatory as the id 
+         * clearly identifies the protocol, study or guideline being 
+         * referenced</p> <p>Enables the communication of a reference 
+         * to a protocol, study or guideline id, specific to the 
+         * jurisdiction;</p><p>Allows providers to reference a 
+         * protocol/guideline for prescribing to specific situations. 
+         * This could also be used for justification for prescribing a 
+         * medication from a particular formulary. E.g., 'Limited Use' 
+         * medications in Ontario require physicians to use a code 
+         * indicating that a patient is eligible for this particular 
+         * medication;</p><p>This attribute is mandatory as the id 
+         * clearly identifies the protocol, study or guideline being 
+         * referenced</p> <p>Enables the communication of a reference 
+         * to a protocol, study or guideline id, specific to the 
+         * jurisdiction;</p><p>Allows providers to reference a 
+         * protocol/guideline for prescribing to specific situations. 
+         * This could also be used for justification for prescribing a 
+         * medication from a particular formulary. E.g., 'Limited Use' 
+         * medications in Ontario require physicians to use a code 
+         * indicating that a patient is eligible for this particular 
+         * medication;</p><p>This attribute is mandatory as the id 
+         * clearly identifies the protocol, study or guideline being 
+         * referenced</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {

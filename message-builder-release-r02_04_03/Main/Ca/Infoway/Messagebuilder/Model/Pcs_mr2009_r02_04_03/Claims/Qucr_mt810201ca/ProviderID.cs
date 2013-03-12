@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,12 +27,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Qucr_mt810
 
 
     /**
-     * <summary>Provider ID</summary>
+     * <summary>Business Name: Provider ID</summary>
      * 
-     * <remarks><p>Provider is the health care practitioner or 
-     * goods provider that is providing the service or good that is 
-     * being invoiced (e.g. Pharmacist and not Ordering 
-     * Physician).</p></remarks>
+     * <p>Provider is the health care practitioner or goods 
+     * provider that is providing the service or good that is being 
+     * invoiced (e.g. Pharmacist and not Ordering Physician).</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"QUCR_MT810201CA.AdjudResultsProviderRole"})]
     public class ProviderID : MessagePartBean {
@@ -43,9 +42,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Qucr_mt810
             this.id = new IIImpl();
         }
         /**
-         * <summary>Summary Breakdown Provider ID</summary>
+         * <summary>Business Name: Summary Breakdown Provider ID</summary>
          * 
-         * <remarks><p>Identity of provider for summary breakdowns.</p></remarks>
+         * <remarks>Relationship: 
+         * QUCR_MT810201CA.AdjudResultsProviderRole.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>Identity of 
+         * provider for summary breakdowns.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {

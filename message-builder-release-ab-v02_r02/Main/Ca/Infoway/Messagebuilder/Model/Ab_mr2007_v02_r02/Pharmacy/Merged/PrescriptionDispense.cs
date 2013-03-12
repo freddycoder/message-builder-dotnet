@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,13 +36,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
      * <summary>PORX_MT020060CA.DeviceDispense: Prescription 
      * Dispense</summary>
      * 
-     * <remarks><p>This is the detailed information about a device 
-     * dispense that has been performed on behalf a patient</p> 
+     * <p>This is the detailed information about a device dispense 
+     * that has been performed on behalf a patient</p> 
      * <p>Dispensing is an integral part of the overall 
      * prescription process.</p> PORX_MT060020CA.DeviceDispense: 
      * Dispense <p>Represents the dispensing of a device to a 
      * patient.</p> <p>Communicates an overview of a patient's 
-     * dispenses.</p></remarks>
+     * dispenses.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"PORX_MT020060CA.DeviceDispense","PORX_MT060020CA.DeviceDispense"})]
     public class PrescriptionDispense : MessagePartBean {
@@ -71,15 +71,23 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
             this.subjectOf2AnnotationIndicator = new BLImpl(false);
         }
         /**
-         * <summary>PrescriptionDispenseNumber</summary>
+         * <summary>Business Name: PrescriptionDispenseNumber</summary>
          * 
-         * <remarks>A:Prescription Dispense Number <p>The Prescription 
-         * Dispense Number is a globally unique number assigned to a 
-         * dispense (single fill) by the EHR/DIS irrespective of the 
-         * source of the dispense.</p><p>It is created by the EHR/DIS 
-         * once the dispense has passed all edits and validation.</p> 
-         * <p>The Prescription Dispense Number is a globally unique 
-         * number assigned to a dispense (single fill) by the EHR/DIS 
+         * <remarks>Un-merged Business Name: PrescriptionDispenseNumber 
+         * Relationship: PORX_MT020060CA.DeviceDispense.id 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Identifier 
+         * assigned by the dispensing facility.</p> <p>Allows formal 
+         * tracking of centrally recorded dispenses to local records 
+         * for audit and related purposes.</p> Un-merged Business Name: 
+         * PrescriptionDispenseNumber Relationship: 
+         * PORX_MT060020CA.DeviceDispense.id Conformance/Cardinality: 
+         * MANDATORY (1) <p>The Prescription Dispense Number is a 
+         * globally unique number assigned to a dispense (single fill) 
+         * by the EHR/DIS irrespective of the source of the 
+         * dispense.</p><p>It is created by the EHR/DIS once the 
+         * dispense has passed all edits and validation.</p> <p>The 
+         * Prescription Dispense Number is a globally unique number 
+         * assigned to a dispense (single fill) by the EHR/DIS 
          * irrespective of the source of the dispense.</p><p>It is 
          * created by the EHR/DIS once the dispense has passed all 
          * edits and validation.</p> <p>Allows for the referencing of a 
@@ -89,10 +97,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
          * for the referencing of a specific dispense 
          * record.</p><p>Identifier for a dispensed record is needed so 
          * that dispenses may be uniquely referenced. Thus the 
-         * mandatory requirement.</p> A:Prescription Dispense Number 
-         * <p>Identifier assigned by the dispensing facility.</p> 
-         * <p>Allows formal tracking of centrally recorded dispenses to 
-         * local records for audit and related purposes.</p></remarks>
+         * mandatory requirement.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -101,10 +106,62 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
         }
 
         /**
-         * <summary>PrescriptionMaskingIndicators</summary>
+         * <summary>Business Name: PrescriptionMaskingIndicators</summary>
          * 
-         * <remarks>E:Prescription Masking Indicators <p>Communicates 
-         * the intent of the patient to restrict access to their 
+         * <remarks>Un-merged Business Name: 
+         * PrescriptionMaskingIndicators Relationship: 
+         * PORX_MT020060CA.DeviceDispense.confidentialityCode 
+         * Conformance/Cardinality: OPTIONAL (0-2) <p>Communicates the 
+         * intent that the dispense should be masked if it is created; 
+         * If the dispense is masked, this makes the complete 
+         * prescription and all dispenses masked.</p> <p>Can be used to 
+         * set a mask for a new dispense, if present in a new dispense 
+         * request.</p><p>Allows the patient to have discrete control 
+         * over access to their prescription data.</p><p>Taboo allows 
+         * the provider to request restricted access to patient or 
+         * their care giver.</p><p>Constraint: Can&#226;&#128;&#153;t 
+         * have both normal and one of the other codes 
+         * simultaneously.</p><p>The attribute is optional because not 
+         * all systems will support masking.</p> <p>Can be used to set 
+         * a mask for a new dispense, if present in a new dispense 
+         * request.</p><p>Allows the patient to have discrete control 
+         * over access to their prescription data.</p><p>Taboo allows 
+         * the provider to request restricted access to patient or 
+         * their care giver.</p><p>Constraint: Can&#226;&#128;&#153;t 
+         * have both normal and one of the other codes 
+         * simultaneously.</p><p>The attribute is optional because not 
+         * all systems will support masking.</p> <p>Can be used to set 
+         * a mask for a new dispense, if present in a new dispense 
+         * request.</p><p>Allows the patient to have discrete control 
+         * over access to their prescription data.</p><p>Taboo allows 
+         * the provider to request restricted access to patient or 
+         * their care giver.</p><p>Constraint: Can&#226;&#128;&#153;t 
+         * have both normal and one of the other codes 
+         * simultaneously.</p><p>The attribute is optional because not 
+         * all systems will support masking.</p> <p>Can be used to set 
+         * a mask for a new dispense, if present in a new dispense 
+         * request.</p><p>Allows the patient to have discrete control 
+         * over access to their prescription data.</p><p>Taboo allows 
+         * the provider to request restricted access to patient or 
+         * their care giver.</p><p>Constraint: Can&#226;&#128;&#153;t 
+         * have both normal and one of the other codes 
+         * simultaneously.</p><p>The attribute is optional because not 
+         * all systems will support masking.</p> <p>Can be used to set 
+         * a mask for a new dispense, if present in a new dispense 
+         * request.</p><p>Allows the patient to have discrete control 
+         * over access to their prescription data.</p><p>Taboo allows 
+         * the provider to request restricted access to patient or 
+         * their care giver.</p><p>Constraint: Can&#226;&#128;&#153;t 
+         * have both normal and one of the other codes 
+         * simultaneously.</p><p>The attribute is optional because not 
+         * all systems will support masking.</p> <p>If a dispense is 
+         * masked, it implicitly masks the prescription being 
+         * dispensed. (There's no point in masking a dispense if the 
+         * prescription is unmasked.)</p> Un-merged Business Name: 
+         * PrescriptionMaskingIndicators Relationship: 
+         * PORX_MT060020CA.DeviceDispense.confidentialityCode 
+         * Conformance/Cardinality: REQUIRED (0-2) <p>Communicates the 
+         * intent of the patient to restrict access to their 
          * prescriptions.</p><p>Provides support for additional 
          * confidentiality constraint, giving patients a level of 
          * control over their information.</p><p>Allows providers to 
@@ -180,77 +237,65 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
          * codes simultaneously.</p><p>The attribute is required 
          * because even if a jurisdiction doesn't support masking on 
          * the way in, it will need to need to communicate masked data 
-         * returned from other jurisdictions.</p> E:Prescription 
-         * Masking Indicators <p>Communicates the intent that the 
-         * dispense should be masked if it is created; If the dispense 
-         * is masked, this makes the complete prescription and all 
-         * dispenses masked.</p> <p>Can be used to set a mask for a new 
-         * dispense, if present in a new dispense request.</p><p>Allows 
-         * the patient to have discrete control over access to their 
-         * prescription data.</p><p>Taboo allows the provider to 
-         * request restricted access to patient or their care 
-         * giver.</p><p>Constraint: Can&#226;&#128;&#153;t have both 
-         * normal and one of the other codes simultaneously.</p><p>The 
-         * attribute is optional because not all systems will support 
-         * masking.</p> <p>Can be used to set a mask for a new 
-         * dispense, if present in a new dispense request.</p><p>Allows 
-         * the patient to have discrete control over access to their 
-         * prescription data.</p><p>Taboo allows the provider to 
-         * request restricted access to patient or their care 
-         * giver.</p><p>Constraint: Can&#226;&#128;&#153;t have both 
-         * normal and one of the other codes simultaneously.</p><p>The 
-         * attribute is optional because not all systems will support 
-         * masking.</p> <p>Can be used to set a mask for a new 
-         * dispense, if present in a new dispense request.</p><p>Allows 
-         * the patient to have discrete control over access to their 
-         * prescription data.</p><p>Taboo allows the provider to 
-         * request restricted access to patient or their care 
-         * giver.</p><p>Constraint: Can&#226;&#128;&#153;t have both 
-         * normal and one of the other codes simultaneously.</p><p>The 
-         * attribute is optional because not all systems will support 
-         * masking.</p> <p>Can be used to set a mask for a new 
-         * dispense, if present in a new dispense request.</p><p>Allows 
-         * the patient to have discrete control over access to their 
-         * prescription data.</p><p>Taboo allows the provider to 
-         * request restricted access to patient or their care 
-         * giver.</p><p>Constraint: Can&#226;&#128;&#153;t have both 
-         * normal and one of the other codes simultaneously.</p><p>The 
-         * attribute is optional because not all systems will support 
-         * masking.</p> <p>Can be used to set a mask for a new 
-         * dispense, if present in a new dispense request.</p><p>Allows 
-         * the patient to have discrete control over access to their 
-         * prescription data.</p><p>Taboo allows the provider to 
-         * request restricted access to patient or their care 
-         * giver.</p><p>Constraint: Can&#226;&#128;&#153;t have both 
-         * normal and one of the other codes simultaneously.</p><p>The 
-         * attribute is optional because not all systems will support 
-         * masking.</p> <p>If a dispense is masked, it implicitly masks 
-         * the prescription being dispensed. (There's no point in 
-         * masking a dispense if the prescription is unmasked.)</p></remarks>
+         * returned from other jurisdictions.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"confidentialityCode"})]
         public ICollection<x_NormalRestrictedTabooConfidentialityKind> ConfidentialityCode {
             get { return this.confidentialityCode.RawSet<x_NormalRestrictedTabooConfidentialityKind>(); }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PORX_MT020060CA.DeviceDispense.subject 
+         * Conformance/Cardinality: REQUIRED (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subject"})]
         public bool? Subject {
             get { return this.subject.Value; }
             set { this.subject.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PORX_MT020060CA.InFulfillmentOf1.deviceRequest 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"inFulfillmentOf/deviceRequest"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged.DeviceRequest_1 InFulfillmentOfDeviceRequest {
             get { return this.inFulfillmentOfDeviceRequest; }
             set { this.inFulfillmentOfDeviceRequest = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PORX_MT020060CA.Component11.procedureRequest 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"component1/procedureRequest"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged.ProcedureRequest Component1ProcedureRequest {
             get { return this.component1ProcedureRequest; }
             set { this.component1ProcedureRequest = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: PORX_MT020060CA.Component.supplyEvent 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060020CA.Component2.supplyEvent 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"component/supplyEvent","component2/supplyEvent"})]
         [Hl7MapByPartType(Name="component", Type="PORX_MT060020CA.Component2")]
         [Hl7MapByPartType(Name="component/supplyEvent", Type="PORX_MT060020CA.SupplyEvent")]
@@ -261,6 +306,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
             set { this.componentSupplyEvent = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: PORX_MT020060CA.Subject7.annotation 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf/annotation"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Coct_mt120600ca.Notes SubjectOfAnnotation {
             get { return this.subjectOfAnnotation; }
@@ -268,17 +320,19 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
         }
 
         /**
-         * <summary>DispenseStatus</summary>
+         * <summary>Business Name: DispenseStatus</summary>
          * 
-         * <remarks>C:Dispense Status <p>Indicates the status of the 
-         * dispense record created on the EHR/DIS. If 'Active' it means 
-         * that the dispense has been processed but not yet given to 
-         * the patient. If 'Complete', it indicates that the medication 
-         * has been delivered to the patient.</p> <p>Important in 
-         * understanding what medication the patient actually has on 
-         * hand, thus the attribute is mandatory. May also influence 
-         * the ability of a different pharmacy to dispense the 
-         * medication.</p></remarks>
+         * <remarks>Un-merged Business Name: DispenseStatus 
+         * Relationship: PORX_MT060020CA.DeviceDispense.statusCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the 
+         * status of the dispense record created on the EHR/DIS. If 
+         * 'Active' it means that the dispense has been processed but 
+         * not yet given to the patient. If 'Complete', it indicates 
+         * that the medication has been delivered to the patient.</p> 
+         * <p>Important in understanding what medication the patient 
+         * actually has on hand, thus the attribute is mandatory. May 
+         * also influence the ability of a different pharmacy to 
+         * dispense the medication.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"statusCode"})]
         public ActStatus StatusCode {
@@ -286,36 +340,84 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
             set { this.statusCode.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PORX_MT060020CA.ResponsibleParty.assignedEntity 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"responsibleParty/assignedEntity"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.HealthcareWorker ResponsiblePartyAssignedEntity {
             get { return this.responsiblePartyAssignedEntity; }
             set { this.responsiblePartyAssignedEntity = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PORX_MT060020CA.Performer.assignedEntity 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"performer/assignedEntity"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.HealthcareWorker PerformerAssignedEntity {
             get { return this.performerAssignedEntity; }
             set { this.performerAssignedEntity = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PORX_MT060020CA.DeviceDispense.location 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"location"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.CreatedAt Location {
             get { return this.location; }
             set { this.location = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PORX_MT060020CA.InFulfillmentOf.supplyRequest 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"fulfillment/supplyRequest"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged.SupplyOrder FulfillmentSupplyRequest {
             get { return this.fulfillmentSupplyRequest; }
             set { this.fulfillmentSupplyRequest = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PORX_MT060020CA.Subject4.detectedIssueIndicator 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf1/detectedIssueIndicator"})]
         public bool? SubjectOf1DetectedIssueIndicator {
             get { return this.subjectOf1DetectedIssueIndicator.Value; }
             set { this.subjectOf1DetectedIssueIndicator.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PORX_MT060020CA.Subject3.annotationIndicator 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf2/annotationIndicator"})]
         public bool? SubjectOf2AnnotationIndicator {
             get { return this.subjectOf2AnnotationIndicator.Value; }

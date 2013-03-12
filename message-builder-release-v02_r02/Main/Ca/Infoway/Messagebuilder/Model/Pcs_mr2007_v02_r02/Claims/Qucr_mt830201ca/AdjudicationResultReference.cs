@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,10 +25,10 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Qucr_mt83020
 
 
     /**
-     * <summary><p>Multiple references to submitted invoice 
-     * elements provides support for code substitution where the 
-     * number of submitted fee items is consolidated on the 
-     * adjudication results (e.g. 3 items to 1).</p></summary>
+     * <p>Multiple references to submitted invoice elements 
+     * provides support for code substitution where the number of 
+     * submitted fee items is consolidated on the adjudication 
+     * results (e.g. 3 items to 1).</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"QUCR_MT830201CA.AdjudicationResultReference"})]
     public class AdjudicationResultReference : MessagePartBean {
@@ -37,6 +37,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Qucr_mt83020
 
         public AdjudicationResultReference() {
         }
+        /**
+         * <summary>Relationship: 
+         * QUCR_MT830201CA.AdjudicationResultReference.invoiceElementGroup</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"invoiceElementGroup"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Merged.SubmittedInvoiceGroup InvoiceElementGroup {
             get { return this.invoiceElementGroup; }

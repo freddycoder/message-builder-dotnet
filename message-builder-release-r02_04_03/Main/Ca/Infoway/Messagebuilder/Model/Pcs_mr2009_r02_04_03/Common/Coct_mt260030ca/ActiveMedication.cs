@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,13 +32,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt260
 
 
     /**
-     * <summary>Active Medication</summary>
+     * <summary>Business Name: Active Medication</summary>
      * 
-     * <remarks><p>Indicates an active medication (prescription or 
-     * non-prescription medication) that is recorded in the 
-     * patient's record and which contributed to triggering the 
-     * issue.</p> <p>Allows providers to identify the offending 
-     * drugs when determining their management approach.</p></remarks>
+     * <p>Allows providers to identify the offending drugs when 
+     * determining their management approach.</p> <p>Indicates an 
+     * active medication (prescription or non-prescription 
+     * medication) that is recorded in the patient's record and 
+     * which contributed to triggering the issue.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"COCT_MT260030CA.SubstanceAdministration"})]
     public class ActiveMedication : MessagePartBean, Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.ICausalActs {
@@ -62,14 +62,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt260
             this.doseQuantity = new PQImpl();
         }
         /**
-         * <summary>Other Medication Indicator</summary>
+         * <summary>Business Name: Other Medication Indicator</summary>
          * 
-         * <remarks><p>If the attribute is 'RQO', represents a 
-         * prescription or dispense record. Otherwise if 'EVN', it 
-         * represents an 'Other Medication' record.</p> <p>Knowing 
-         * whether a drug is prescribed or not can influence actions 
-         * taken to mitigate an issue. The element is therefore 
-         * mandatory</p></remarks>
+         * <remarks>Relationship: 
+         * COCT_MT260030CA.SubstanceAdministration.moodCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>Knowing whether a 
+         * drug is prescribed or not can influence actions taken to 
+         * mitigate an issue. The element is therefore mandatory</p> 
+         * <p>If the attribute is 'RQO', represents a prescription or 
+         * dispense record. Otherwise if 'EVN', it represents an 'Other 
+         * Medication' record.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"moodCode"})]
         public x_ActMoodRequestEvent MoodCode {
@@ -78,26 +80,22 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt260
         }
 
         /**
-         * <summary>A:Active Medication Record Number</summary>
+         * <summary>Business Name: A:Active Medication Record Number</summary>
          * 
-         * <remarks><p>Unique identifier of the prescription or other 
-         * medication drug record that triggered the issue.</p> 
-         * <p>DDI/DuplicateTherapy.InteractingPrescriptionNumber</p><p>InteractingPrescription.PrescriptionExternalKey</p><p>InteractingPrescription.PrescriptionNumber</p><p>DDI/Dosage/Duplicate 
-         * Therapy.SourceNumber (All senders must uniquely identify 
-         * prescriptions on request)</p> 
-         * <p>DDI/DuplicateTherapy.InteractingPrescriptionNumber</p><p>InteractingPrescription.PrescriptionExternalKey</p><p>InteractingPrescription.PrescriptionNumber</p><p>DDI/Dosage/Duplicate 
-         * Therapy.SourceNumber (All senders must uniquely identify 
-         * prescriptions on request)</p> 
-         * <p>DDI/DuplicateTherapy.InteractingPrescriptionNumber</p><p>InteractingPrescription.PrescriptionExternalKey</p><p>InteractingPrescription.PrescriptionNumber</p><p>DDI/Dosage/Duplicate 
-         * Therapy.SourceNumber (All senders must uniquely identify 
-         * prescriptions on request)</p> 
-         * <p>DDI/DuplicateTherapy.InteractingPrescriptionNumber</p><p>InteractingPrescription.PrescriptionExternalKey</p><p>InteractingPrescription.PrescriptionNumber</p><p>DDI/Dosage/Duplicate 
-         * Therapy.SourceNumber (All senders must uniquely identify 
-         * prescriptions on request)</p> <p>Allows provider to 
-         * drill-down and retrieve additional information about the 
-         * implicated drug therapy to either modify the therapy or to 
-         * learn more information in determining their management 
-         * approach for the issue.</p></remarks>
+         * <remarks>Relationship: 
+         * COCT_MT260030CA.SubstanceAdministration.id 
+         * Conformance/Cardinality: POPULATED (1) 
+         * <p>DDI/DuplicateTherapy.InteractingPrescriptionNumber</p> 
+         * <p>InteractingPrescription.PrescriptionExternalKey</p> 
+         * <p>InteractingPrescription.PrescriptionNumber</p> 
+         * <p>DDI/Dosage/Duplicate Therapy.SourceNumber (All senders 
+         * must uniquely identify prescriptions on request)</p> 
+         * <p>Allows provider to drill-down and retrieve additional 
+         * information about the implicated drug therapy to either 
+         * modify the therapy or to learn more information in 
+         * determining their management approach for the issue.</p> 
+         * <p>Unique identifier of the prescription or other medication 
+         * drug record that triggered the issue.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -106,19 +104,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt260
         }
 
         /**
-         * <summary>Administration Type</summary>
+         * <summary>Business Name: Administration Type</summary>
          * 
-         * <remarks><p>Identifies whether the interaction is with a 
-         * drug or a vaccine. For SNOMED, may also indicate the 
-         * specific drug or vaccine at issue.</p> <p>Needed to 
+         * <remarks>Relationship: 
+         * COCT_MT260030CA.SubstanceAdministration.code 
+         * Conformance/Cardinality: POPULATED (1) <p>Needed to 
          * determine what to do about the issue. Because the medication 
          * can be masked, this element is only marked as 
          * 'populated'.</p><p>The element allows a full 'CD' type to 
-         * support SNOMED implementations.</p> <p>Needed to determine 
-         * what to do about the issue. Because the medication can be 
-         * masked, this element is only marked as 
-         * 'populated'.</p><p>The element allows a full 'CD' type to 
-         * support SNOMED implementations.</p></remarks>
+         * support SNOMED implementations.</p> <p>Identifies whether 
+         * the interaction is with a drug or a vaccine. For SNOMED, may 
+         * also indicate the specific drug or vaccine at issue.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public ActSubstanceAdministrationCode Code {
@@ -127,15 +123,18 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt260
         }
 
         /**
-         * <summary>B:Active Medication Status</summary>
+         * <summary>Business Name: B:Active Medication Status</summary>
          * 
-         * <remarks><p>Indicates the status of the medication record at 
-         * the time of the issue.</p> <p>ZPB3.8 (aborted = 
+         * <remarks>Relationship: 
+         * COCT_MT260030CA.SubstanceAdministration.statusCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>ZPB3.8 (aborted = 
          * discontinued; nullified = reversed/system reversed; 
          * active=filled/not-filled)</p> <p>Used to determine the 
          * relevance of the issue and the need to manage it. For 
          * example, if the medication is on hold, it may be less of an 
-         * issue than if it is being actively taken.</p></remarks>
+         * issue than if it is being actively taken.</p> <p>Indicates 
+         * the status of the medication record at the time of the 
+         * issue.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"statusCode"})]
         public ActStatus StatusCode {
@@ -144,13 +143,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt260
         }
 
         /**
-         * <summary>C:Active Medication Time-range</summary>
+         * <summary>Business Name: C:Active Medication Time-range</summary>
          * 
-         * <remarks><p>The date and time during which the patient is 
-         * expected to be taking the drug which triggered the 
-         * issue.</p> <p>Requested Duration</p> <p>Allows the provider 
-         * to evaluate 'duplicate therapy' and similar timing-based 
-         * issues.</p></remarks>
+         * <remarks>Relationship: 
+         * COCT_MT260030CA.SubstanceAdministration.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Requested 
+         * Duration</p> <p>Allows the provider to evaluate 'duplicate 
+         * therapy' and similar timing-based issues.</p> <p>The date 
+         * and time during which the patient is expected to be taking 
+         * the drug which triggered the issue.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"effectiveTime"})]
         public Interval<PlatformDate> EffectiveTime {
@@ -159,17 +160,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt260
         }
 
         /**
-         * <summary>E:Active Medication Masking Indicator</summary>
+         * <summary>Business Name: E:Active Medication Masking 
+         * Indicator</summary>
          * 
-         * <remarks><p>An indication of sensitivity surrounding the 
-         * related drug, and thus defines the required sensitivity for 
-         * the detected issue.</p> <p>Conveys the patient's wishes 
-         * relating to the sensitivity of the drug 
+         * <remarks>Relationship: 
+         * COCT_MT260030CA.SubstanceAdministration.confidentialityCode 
+         * Conformance/Cardinality: OPTIONAL (0-2) <p>Conveys the 
+         * patient's wishes relating to the sensitivity of the drug 
          * information.</p><p>The attribute is optional because not all 
-         * systems will support masking.</p> <p>Conveys the patient's 
-         * wishes relating to the sensitivity of the drug 
-         * information.</p><p>The attribute is optional because not all 
-         * systems will support masking.</p></remarks>
+         * systems will support masking.</p> <p>An indication of 
+         * sensitivity surrounding the related drug, and thus defines 
+         * the required sensitivity for the detected issue.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"confidentialityCode"})]
         public ICollection<x_BasicConfidentialityKind> ConfidentialityCode {
@@ -177,18 +178,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt260
         }
 
         /**
-         * <summary>D:Active Medication Dose Quantity</summary>
+         * <summary>Business Name: D:Active Medication Dose Quantity</summary>
          * 
-         * <remarks><p>The amount of medication administered to the 
-         * patient</p> <p>Requested Dosage 
-         * Level</p><p>ZPS.12</p><p>ZDU.4.4</p><p>Contraindication.dosageAmount</p> 
-         * <p>Requested Dosage 
-         * Level</p><p>ZPS.12</p><p>ZDU.4.4</p><p>Contraindication.dosageAmount</p> 
-         * <p>Requested Dosage 
-         * Level</p><p>ZPS.12</p><p>ZDU.4.4</p><p>Contraindication.dosageAmount</p> 
-         * <p>Requested Dosage 
-         * Level</p><p>ZPS.12</p><p>ZDU.4.4</p><p>Contraindication.dosageAmount</p> 
-         * <p>Used in Low Dose/High Dose issues.</p></remarks>
+         * <remarks>Relationship: 
+         * COCT_MT260030CA.SubstanceAdministration.doseQuantity 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Requested Dosage 
+         * Level</p> <p>ZPS.12</p> <p>ZDU.4.4</p> 
+         * <p>Contraindication.dosageAmount</p> <p>Used in Low 
+         * Dose/High Dose issues.</p> <p>The amount of medication 
+         * administered to the patient</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"doseQuantity"})]
         public PhysicalQuantity DoseQuantity {
@@ -196,6 +194,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt260
             set { this.doseQuantity.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: COCT_MT260030CA.Consumable.medication</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"consumable/medication"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt220110ca.DrugProduct ConsumableMedication {
             get { return this.consumableMedication; }

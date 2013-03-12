@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,12 +29,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
     /**
      * <summary>PORX_MT060090CA.Agent: (no business name)</summary>
      * 
-     * <remarks><p>The identifier must be either the patient 
-     * identifier, the prescriber identifier or the dispenser 
-     * identifier</p> PORX_MT020070CA.Agent: (no business name) 
-     * <p>invariant( x) { The identifier must be either the patient 
-     * identifier, the prescriber identifier or the dispenser 
-     * identifier. }</p></remarks>
+     * <p>The identifier must be either the patient identifier, the 
+     * prescriber identifier or the dispenser identifier</p> 
+     * PORX_MT020070CA.Agent: (no business name) <p>invariant( x) { 
+     * The identifier must be either the patient identifier, the 
+     * prescriber identifier or the dispenser identifier. }</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"PORX_MT020070CA.Agent","PORX_MT060090CA.Agent","PORX_MT060160CA.Agent","PORX_MT060340CA.Agent"})]
     public class Agent : MessagePartBean {
@@ -45,20 +44,35 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             this.id = new IIImpl();
         }
         /**
-         * <summary>SubstitutingPersonIdentifier</summary>
+         * <summary>Business Name: SubstitutingPersonIdentifier</summary>
          * 
-         * <remarks>Substituting Person Identifier <p>The identity of 
-         * the person who was ultimately responsible for the drug 
-         * substitution.</p><p>This is either the patient, the 
-         * prescriber of the dispenser.</p> <p>The identity of the 
-         * person who was ultimately responsible for the drug 
-         * substitution.</p><p>This is either the patient, the 
+         * <remarks>Un-merged Business Name: 
+         * SubstitutingPersonIdentifier Relationship: 
+         * PORX_MT060090CA.Agent.id Conformance/Cardinality: MANDATORY 
+         * (1) <p>The identity of the person who was ultimately 
+         * responsible for the drug substitution.</p><p>This is either 
+         * the patient, the prescriber of the dispenser.</p> <p>The 
+         * identity of the person who was ultimately responsible for 
+         * the drug substitution.</p><p>This is either the patient, the 
          * prescriber of the dispenser.</p> <p>Provides a trace of 
-         * responsibility for the dispensed drug.</p> Substituting 
-         * Person Identifier <p>Identity of the person who ultimately 
-         * made the substitution decision.</p> <p>Provides a trace of 
-         * responsibility for the substitution.</p> Substituting Person 
-         * Identifier <p>The identity of the person who was ultimately 
+         * responsibility for the dispensed drug.</p> Un-merged 
+         * Business Name: SubstitutingPersonIdentifier Relationship: 
+         * PORX_MT060340CA.Agent.id Conformance/Cardinality: MANDATORY 
+         * (1) <p>The identity of the person who was ultimately 
+         * responsible for the drug substitution.</p><p>This is either 
+         * the patient, the prescriber of the dispenser.</p> <p>The 
+         * identity of the person who was ultimately responsible for 
+         * the drug substitution.</p><p>This is either the patient, the 
+         * prescriber of the dispenser.</p> <p>Provides a trace of 
+         * responsibility for the dispensed drug.</p> Un-merged 
+         * Business Name: SubstitutingPersonIdentifier Relationship: 
+         * PORX_MT020070CA.Agent.id Conformance/Cardinality: MANDATORY 
+         * (1) <p>Identity of the person who ultimately made the 
+         * substitution decision.</p> <p>Provides a trace of 
+         * responsibility for the substitution.</p> Un-merged Business 
+         * Name: SubstitutingPersonIdentifier Relationship: 
+         * PORX_MT060160CA.Agent.id Conformance/Cardinality: MANDATORY 
+         * (1) <p>The identity of the person who was ultimately 
          * responsible for the drug substitution.</p><p>This is either 
          * the patient, the prescriber of the dispenser.</p> <p>The 
          * identity of the person who was ultimately responsible for 

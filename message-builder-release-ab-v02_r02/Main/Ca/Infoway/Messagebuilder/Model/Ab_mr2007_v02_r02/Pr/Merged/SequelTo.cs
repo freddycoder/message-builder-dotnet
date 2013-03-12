@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,9 +36,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Merged {
             this.sequenceNumber = new INTImpl();
         }
         /**
-         * <summary>(no business name)</summary>
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
          * 
-         * <remarks><p>Required</p></remarks>
+         * <remarks>Relationship: 
+         * PRPM_MT301010CA.SequelTo.sequenceNumber 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Required</p> 
+         * Un-merged Business Name: (no business name specified) 
+         * Relationship: PRPM_MT303010CA.SequelTo.sequenceNumber 
+         * Conformance/Cardinality: REQUIRED (0-1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"sequenceNumber"})]
         public int? SequenceNumber {
@@ -46,6 +52,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Merged {
             set { this.sequenceNumber.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PRPM_MT301010CA.SequelTo.informRequest 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PRPM_MT303010CA.SequelTo.informRequest 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"informRequest"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Merged.InformRequest InformRequest {
             get { return this.informRequest; }

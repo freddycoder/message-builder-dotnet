@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,9 +28,9 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt110
 
 
     /**
-     * <summary>Payee Organisation</summary>
+     * <summary>Business Name: Payee Organisation</summary>
      * 
-     * <remarks><p>Organisation receiving payment.</p></remarks>
+     * <p>Organisation receiving payment.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"COCT_MT110200CA.PayeeOrganization"})]
     public class PayeeOrganisation : MessagePartBean, Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt110200ca.IPayeeChoice {
@@ -43,6 +43,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt110
             this.name = new STImpl();
             this.addr = new ADImpl();
         }
+        /**
+         * <summary>Relationship: COCT_MT110200CA.PayeeChoice.asRole</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"asRole"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt110200ca.PayeeRelationshipRole AsRole {
             get { return this.asRole; }
@@ -50,9 +55,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt110
         }
 
         /**
-         * <summary>Payee Organisation name</summary>
+         * <summary>Business Name: Payee Organisation name</summary>
          * 
-         * <remarks><p>name of organisation receiving payment.</p></remarks>
+         * <remarks>Relationship: 
+         * COCT_MT110200CA.PayeeOrganization.name 
+         * Conformance/Cardinality: MANDATORY (1) <p>name of 
+         * organisation receiving payment.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"name"})]
         public String Name {
@@ -61,7 +69,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt110
         }
 
         /**
-         * <summary>Payee Organisation address</summary>
+         * <summary>Business Name: Payee Organisation address</summary>
+         * 
+         * <remarks>Relationship: 
+         * COCT_MT110200CA.PayeeOrganization.addr 
+         * Conformance/Cardinality: REQUIRED (0-1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"addr"})]
         public PostalAddress Addr {

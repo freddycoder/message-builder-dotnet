@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
 
 
     /**
-     * <summary>DrugCost</summary>
+     * <summary>Business Name: DrugCost</summary>
      * 
      * <remarks>POME_MT010100CA.PotentialCharge: I:Drug Cost 
      * <p>Suggested cost of a drug (unit cost).</p> <p>Allows 
@@ -46,14 +46,18 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
             this.unitPriceAmt = new MOImpl();
         }
         /**
-         * <summary>DrugCost</summary>
+         * <summary>Business Name: DrugCost</summary>
          * 
-         * <remarks>I:Drug Cost <p>The average unit dose cost of the 
-         * drug.</p> <p>May influence prescriber and pharmacists 
-         * decisions as cost can impact compliance.</p> Drug Cost 
-         * <p>The average unit dose cost of the drug.</p> <p>May 
-         * influence prescriber and pharmacists decisions as cost can 
-         * impact compliance.</p></remarks>
+         * <remarks>Un-merged Business Name: DrugCost Relationship: 
+         * POME_MT010100CA.PotentialCharge.unitPriceAmt 
+         * Conformance/Cardinality: MANDATORY (1) <p>The average unit 
+         * dose cost of the drug.</p> <p>May influence prescriber and 
+         * pharmacists decisions as cost can impact compliance.</p> 
+         * Un-merged Business Name: DrugCost Relationship: 
+         * POME_MT010040CA.PotentialCharge.unitPriceAmt 
+         * Conformance/Cardinality: MANDATORY (1) <p>The average unit 
+         * dose cost of the drug.</p> <p>May influence prescriber and 
+         * pharmacists decisions as cost can impact compliance.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"unitPriceAmt"})]
         public Money UnitPriceAmt {

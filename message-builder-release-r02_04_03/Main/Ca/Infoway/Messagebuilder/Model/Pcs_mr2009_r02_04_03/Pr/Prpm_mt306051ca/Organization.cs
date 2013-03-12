@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,12 +28,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Prpm_mt306051c
 
 
     /**
-     * <summary>Organization</summary>
+     * <summary>Business Name: Organization</summary>
      * 
-     * <remarks><p>The scoping organization for the specified role 
-     * class</p> <p>Supports the requirement to supply additional 
-     * information regarding the assigning Organization of the 
-     * specified RoleClass</p></remarks>
+     * <p>Supports the requirement to supply additional information 
+     * regarding the assigning Organization of the specified 
+     * RoleClass</p> <p>The scoping organization for the specified 
+     * role class</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"PRPM_MT306051CA.Organization"})]
     public class Organization : MessagePartBean {
@@ -47,11 +47,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Prpm_mt306051c
             this.name = new STImpl();
         }
         /**
-         * <summary>Organization Id</summary>
+         * <summary>Business Name: Organization Id</summary>
          * 
-         * <remarks><p>The unique identifier of the Organization.</p> 
-         * <p>Required attribute supports the validation and 
-         * identification of the healthcare provider</p></remarks>
+         * <remarks>Relationship: PRPM_MT306051CA.Organization.id 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Required 
+         * attribute supports the validation and identification of the 
+         * healthcare provider</p> <p>The unique identifier of the 
+         * Organization.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -60,35 +62,19 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Prpm_mt306051c
         }
 
         /**
-         * <summary>(Issuing Representing Qualification Granting 
-         * Organization Name(s</summary>
+         * <summary>Business Name: (Issuing Representing Qualification 
+         * Granting Organization Name(s</summary>
          * 
-         * <remarks><p>The name of the organization supporting the 
-         * following three role classes:</p><p>1. Organization that is 
-         * responsible for registering the provider for a specific 
-         * healthcare provider role.</p><p>2. Organization associated 
-         * with a providers functional role.</p><p>3. Organization that 
-         * grants the qualifications or expertise.</p> <p>The name of 
-         * the organization supporting the following three role 
-         * classes:</p><p>1. Organization that is responsible for 
-         * registering the provider for a specific healthcare provider 
-         * role.</p><p>2. Organization associated with a providers 
-         * functional role.</p><p>3. Organization that grants the 
-         * qualifications or expertise.</p> <p>The name of the 
-         * organization supporting the following three role 
-         * classes:</p><p>1. Organization that is responsible for 
-         * registering the provider for a specific healthcare provider 
-         * role.</p><p>2. Organization associated with a providers 
-         * functional role.</p><p>3. Organization that grants the 
-         * qualifications or expertise.</p> <p>The name of the 
-         * organization supporting the following three role 
-         * classes:</p><p>1. Organization that is responsible for 
-         * registering the provider for a specific healthcare provider 
-         * role.</p><p>2. Organization associated with a providers 
-         * functional role.</p><p>3. Organization that grants the 
-         * qualifications or expertise.</p> <p>Required attribute 
-         * supports the validation and identification of the healthcare 
-         * provider.</p></remarks>
+         * <remarks>Relationship: PRPM_MT306051CA.Organization.name 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Required 
+         * attribute supports the validation and identification of the 
+         * healthcare provider.</p> <p>The name of the organization 
+         * supporting the following three role classes:</p><p>1. 
+         * Organization that is responsible for registering the 
+         * provider for a specific healthcare provider role.</p><p>2. 
+         * Organization associated with a providers functional 
+         * role.</p><p>3. Organization that grants the qualifications 
+         * or expertise.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"name"})]
         public String Name {
@@ -96,6 +82,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Prpm_mt306051c
             set { this.name.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PRPM_MT306051CA.Organization.territorialAuthority</summary>
+         * 
+         * <remarks>Conformance/Cardinality: REQUIRED (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"territorialAuthority"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pr.Prpm_mt306051ca.TerritorialAuthority TerritorialAuthority {
             get { return this.territorialAuthority; }

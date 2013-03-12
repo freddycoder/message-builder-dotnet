@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,7 +33,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Merged {
 
 
     /**
-     * <summary>PrescriptionDispenses</summary>
+     * <summary>Business Name: PrescriptionDispenses</summary>
      * 
      * <remarks>PORX_MT060340CA.MedicationDispense: Prescription 
      * Dispenses <p>Reported Issue is only permitted if Issue 
@@ -86,9 +86,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Merged {
             this.subjectOf2AnnotationIndicator = new BLImpl(false);
         }
         /**
-         * <summary>PrescriptionDispenseNumber</summary>
+         * <summary>Business Name: PrescriptionDispenseNumber</summary>
          * 
-         * <remarks>A:Prescription Dispense Number <p>The Prescription 
+         * <remarks>Un-merged Business Name: PrescriptionDispenseNumber 
+         * Relationship: PORX_MT060340CA.MedicationDispense.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>The Prescription 
          * Dispense Number is a globally unique number assigned to a 
          * dispense (single fill) by the EHR/DIS irrespective of the 
          * source of the dispense.</p><p>It is created by the EHR/DIS 
@@ -200,7 +202,21 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Merged {
          * mandatory requirement.</p> <p>Allows for the referencing of 
          * a specific dispense record.</p><p>Identifier for a dispensed 
          * record is needed so that dispenses may be uniquely 
-         * referenced. Thus the mandatory requirement.</p></remarks>
+         * referenced. Thus the mandatory requirement.</p> Un-merged 
+         * Business Name: PrescriptionDispenseNumber Relationship: 
+         * PORX_MT060160CA.MedicationDispense.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>The Prescription 
+         * Dispense Number is a globally unique number assigned to a 
+         * dispense (single fill) by the EHR/DIS irrespective of the 
+         * source of the dispense.</p><p>It is created by the EHR/DIS 
+         * once the dispense has passed all edits and validation.</p> 
+         * <p>The Prescription Dispense Number is a globally unique 
+         * number assigned to a dispense (single fill) by the EHR/DIS 
+         * irrespective of the source of the dispense.</p><p>It is 
+         * created by the EHR/DIS once the dispense has passed all 
+         * edits and validation.</p> 
+         * <p>DispensedItem.dispensedItemKey</p><p>Dispen
+         * ... [rest of documentation truncated due to excessive length]
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -209,20 +225,25 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Merged {
         }
 
         /**
-         * <summary>DispenseStatus</summary>
+         * <summary>Business Name: DispenseStatus</summary>
          * 
-         * <remarks>C:Dispense Status <p>Indicates the status of the 
-         * dispense record created on the EHR/DIS. If Active it means 
-         * that the dispense has been processed but not yet given to 
-         * the patient. If Complete, it indicates that the medication 
-         * has been delivered to the patient.</p> <p>Important in 
-         * understanding what medication the patient actually has on 
-         * hand, thus the attribute is mandatory. May also influence 
-         * the ability of a different pharmacy to dispense the 
-         * medication.</p> Dispense Status <p>Indicates the status of 
-         * the dispense record created on the EHR/DIS. If 'Active' it 
-         * means that the dispense has been processed but not yet given 
-         * to the patient. If 'Complete', it indicates that the 
+         * <remarks>Un-merged Business Name: DispenseStatus 
+         * Relationship: PORX_MT060340CA.MedicationDispense.statusCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the 
+         * status of the dispense record created on the EHR/DIS. If 
+         * 'Active' it means that the dispense has been processed but 
+         * not yet given to the patient. If 'Complete', it indicates 
+         * that the medication has been delivered to the patient.</p> 
+         * <p>Important in understanding what medication the patient 
+         * actually has on hand, thus the attribute is mandatory. May 
+         * also influence the ability of a different pharmacy to 
+         * dispense the medication.</p> Un-merged Business Name: 
+         * DispenseStatus Relationship: 
+         * PORX_MT060160CA.MedicationDispense.statusCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the 
+         * status of the dispense record created on the EHR/DIS. If 
+         * Active it means that the dispense has been processed but not 
+         * yet given to the patient. If Complete, it indicates that the 
          * medication has been delivered to the patient.</p> 
          * <p>Important in understanding what medication the patient 
          * actually has on hand, thus the attribute is mandatory. May 
@@ -235,24 +256,68 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Merged {
             set { this.statusCode.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PORX_MT060340CA.ResponsibleParty4.assignedPerson 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060160CA.ResponsibleParty3.assignedPerson 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"responsibleParty/assignedPerson"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Coct_mt090107ca.Provider ResponsiblePartyAssignedPerson {
             get { return this.responsiblePartyAssignedPerson; }
             set { this.responsiblePartyAssignedPerson = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PORX_MT060340CA.Performer3.assignedPerson 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060160CA.Performer3.assignedPerson 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"performer/assignedPerson"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Coct_mt090107ca.Provider PerformerAssignedPerson {
             get { return this.performerAssignedPerson; }
             set { this.performerAssignedPerson = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PORX_MT060340CA.MedicationDispense.location 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060160CA.MedicationDispense.location 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"location"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.CreatedAt Location {
             get { return this.location; }
             set { this.location = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PORX_MT060340CA.Component11.dosageInstruction 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060160CA.Component11.dosageInstruction 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"component1/dosageInstruction","component2/dosageInstruction"})]
         [Hl7MapByPartType(Name="component1", Type="PORX_MT060340CA.Component11")]
         [Hl7MapByPartType(Name="component1/dosageInstruction", Type="PORX_MT980040CA.DosageInstruction")]
@@ -262,6 +327,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Merged {
             get { return this.component2DosageInstruction; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PORX_MT060340CA.Component13.substitutionMade 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060160CA.Component13.substitutionMade 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"component2/substitutionMade","component3/substitutionMade"})]
         [Hl7MapByPartType(Name="component2", Type="PORX_MT060340CA.Component13")]
         [Hl7MapByPartType(Name="component2/substitutionMade", Type="PORX_MT060340CA.SubstitutionMade")]
@@ -272,6 +348,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Merged {
             set { this.component3SubstitutionMade = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: PORX_MT060340CA.Component.supplyEvent 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060160CA.Component.supplyEvent 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"component1/supplyEvent","component3/supplyEvent"})]
         [Hl7MapByPartType(Name="component1", Type="PORX_MT060160CA.Component")]
         [Hl7MapByPartType(Name="component1/supplyEvent", Type="PORX_MT060160CA.SupplyEvent")]
@@ -282,11 +368,32 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Merged {
             set { this.component1SupplyEvent = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PORX_MT060340CA.Subject10.controlActEvent 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060160CA.Subject.controlActEvent 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf1/controlActEvent"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Merged.StatusChanges> SubjectOf1ControlActEvent {
             get { return this.subjectOf1ControlActEvent; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: PORX_MT060340CA.Subject7.annotation 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060160CA.Subject7.annotation Conformance/Cardinality: 
+         * POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf2/annotation","subjectOf4/annotation"})]
         [Hl7MapByPartType(Name="subjectOf2", Type="PORX_MT060340CA.Subject7")]
         [Hl7MapByPartType(Name="subjectOf2/annotation", Type="COCT_MT120600CA.Annotation")]
@@ -296,12 +403,34 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Merged {
             get { return this.subjectOf4Annotation; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PORX_MT060340CA.Subject13.detectedIssueIndicator 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060160CA.Subject13.detectedIssueIndicator 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf3/detectedIssueIndicator"})]
         public bool? SubjectOf3DetectedIssueIndicator {
             get { return this.subjectOf3DetectedIssueIndicator.Value; }
             set { this.subjectOf3DetectedIssueIndicator.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PORX_MT060340CA.MedicationDispense.subjectOf4 
+         * Conformance/Cardinality: REQUIRED (0-25) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060160CA.MedicationDispense.subjectOf5 
+         * Conformance/Cardinality: REQUIRED (0-25)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf4","subjectOf5"})]
         [Hl7MapByPartType(Name="subjectOf4", Type="PORX_MT060340CA.Subject6")]
         [Hl7MapByPartType(Name="subjectOf5", Type="PORX_MT060160CA.Subject6")]
@@ -309,6 +438,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Merged {
             get { return this.subjectOf5; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PORX_MT060340CA.Subject12.annotationIndicator 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060160CA.Subject12.annotationIndicator 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf2/annotationIndicator","subjectOf5/annotationIndicator"})]
         [Hl7MapByPartType(Name="subjectOf2", Type="PORX_MT060160CA.Subject12")]
         [Hl7MapByPartType(Name="subjectOf2/annotationIndicator", Type="PORX_MT060160CA.AnnotationIndicator")]

@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,10 +27,10 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Coct_mt30000
 
 
     /**
-     * <summary><p>ID must be that of the patient, ordering 
-     * provider or dispensing provider</p></summary>
+     * <p>ID must be that of the patient, ordering provider or 
+     * dispensing provider</p>
      * 
-     * <remarks><p>Who did the substitution</p></remarks>
+     * <p>Who did the substitution</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"COCT_MT300000CA.SubstitutionRole"})]
     public class SubstitutionRole : MessagePartBean {
@@ -40,6 +40,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Coct_mt30000
         public SubstitutionRole() {
             this.id = new IIImpl();
         }
+        /**
+         * <summary>Relationship: COCT_MT300000CA.SubstitutionRole.id</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
             get { return this.id.Value; }

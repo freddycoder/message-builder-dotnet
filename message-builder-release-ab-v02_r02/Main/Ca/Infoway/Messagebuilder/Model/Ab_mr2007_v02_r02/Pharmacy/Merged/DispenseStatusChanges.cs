@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,10 +33,10 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
      * <summary>PORX_MT060210CA.ControlActEvent: Other Medication 
      * Status Changes</summary>
      * 
-     * <remarks><p>This records the history of changes that have 
-     * been made to the other medication record, including why the 
-     * changes were made, who made them and when.</p> <p>Provides 
-     * an audit trail of a patient's use of other medications.</p> 
+     * <p>This records the history of changes that have been made 
+     * to the other medication record, including why the changes 
+     * were made, who made them and when.</p> <p>Provides an audit 
+     * trail of a patient's use of other medications.</p> 
      * PORX_MT060040CA.ControlActEvent: Status Changes <p>This 
      * records the history of changes that have been made to the 
      * prescription, including why the changes were made, who made 
@@ -54,7 +54,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
      * the changes were made, who made them and when.</p> 
      * <p>Provides an audit trail of a patient's therapy 
      * adjustments. Status changes may affect evaluations of 
-     * compliance.</p></remarks>
+     * compliance.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"PORX_MT060010CA.ControlActEvent","PORX_MT060040CA.ControlActEvent","PORX_MT060090CA.ControlActEvent","PORX_MT060210CA.ControlActEvent"})]
     public class DispenseStatusChanges : MessagePartBean {
@@ -71,19 +71,32 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
             this.reasonCode = new CVImpl();
         }
         /**
-         * <summary>Change Type</summary>
+         * <summary>Un-merged Business Name: ChangeType</summary>
          * 
-         * <remarks><p>Identifies what kind of change occurred. 
-         * Examples include Suspended, Superseded, Released, Aborted 
-         * (stopped), etc.</p> <p>This attribute is mandatory to ensure 
-         * that change types are distinguishable.</p> Other Medication 
-         * Status Change Type <p>Identifies what kind of change 
-         * occurred. Examples include Completed, Aborted, etc.</p> 
-         * <p>This attribute is mandatory to ensure that change types 
-         * are distinguishable</p> Dispense Status Change Type 
-         * <p>Identifies what kind of change occurred. Examples include 
-         * Suspended, Aborted, etc.</p> <p>This attribute is mandatory 
-         * to ensure that change types are distinguishable.</p></remarks>
+         * <remarks>Relationship: PORX_MT060040CA.ControlActEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Identifies what 
+         * kind of change occurred. Examples include Suspended, 
+         * Superseded, Released, Aborted (stopped), etc.</p> <p>This 
+         * attribute is mandatory to ensure that change types are 
+         * distinguishable.</p> Un-merged Business Name: 
+         * OtherMedicationStatusChangeType Relationship: 
+         * PORX_MT060210CA.ControlActEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Identifies what 
+         * kind of change occurred. Examples include Completed, 
+         * Aborted, etc.</p> <p>This attribute is mandatory to ensure 
+         * that change types are distinguishable</p> Un-merged Business 
+         * Name: DispenseStatusChangeType Relationship: 
+         * PORX_MT060010CA.ControlActEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Identifies what 
+         * kind of change occurred. Examples include Suspended, 
+         * Aborted, etc.</p> <p>This attribute is mandatory to ensure 
+         * that change types are distinguishable.</p> Un-merged 
+         * Business Name: DispenseStatusChangeType Relationship: 
+         * PORX_MT060090CA.ControlActEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Identifies what 
+         * kind of change occurred. Examples include Suspended, 
+         * Aborted, etc.</p> <p>This attribute is mandatory to ensure 
+         * that change types are distinguishable.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public HL7TriggerEventCode Code {
@@ -92,17 +105,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
         }
 
         /**
-         * <summary>Dispense Status Change Effective Date</summary>
+         * <summary>Un-merged Business Name: ChangeEffectivePeriod</summary>
          * 
-         * <remarks><p>The date on which the various status changes of 
-         * a prescription dispense become valid and applicable. In the 
-         * case of a suspend, may also indicate the scheduled time at 
-         * which the status change will end.</p> <p>Allows applications 
-         * to sort and filter by time.</p><p>The effective date can be 
-         * defaulted to change date, and thus is mandatory.</p> 
-         * <p>Allows applications to sort and filter by time.</p><p>The 
-         * effective date can be defaulted to change date, and thus is 
-         * mandatory.</p> Change Effective Period <p>The date on which 
+         * <remarks>Relationship: 
+         * PORX_MT060040CA.ControlActEvent.effectiveTime 
+         * Conformance/Cardinality: MANDATORY (1) <p>The date on which 
          * the various status changes of a prescription become valid 
          * and applicable. In the case of a suspend, may also indicate 
          * the scheduled time at which the status change will end.</p> 
@@ -110,16 +117,40 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
          * effective date can be defaulted to change date, and thus is 
          * mandatory.</p> <p>Allows applications to sort and filter by 
          * time.</p><p>The effective date can be defaulted to change 
-         * date, and thus is mandatory.</p> Other Medication Status 
-         * Change Effective Period <p>The date on which the various 
-         * status changes of an other medication record become valid 
-         * and applicable. In the case of a suspend, may also indicate 
-         * the scheduled time at which the status change will end.</p> 
-         * <p>Allows applications to sort and filter by time.</p><p>The 
-         * effective date can be defaulted to change date, and thus is 
-         * mandatory.</p> <p>Allows applications to sort and filter by 
+         * date, and thus is mandatory.</p> Un-merged Business Name: 
+         * OtherMedicationStatusChangeEffectivePeriod Relationship: 
+         * PORX_MT060210CA.ControlActEvent.effectiveTime 
+         * Conformance/Cardinality: MANDATORY (1) <p>The date on which 
+         * the various status changes of an other medication record 
+         * become valid and applicable. In the case of a suspend, may 
+         * also indicate the scheduled time at which the status change 
+         * will end.</p> <p>Allows applications to sort and filter by 
          * time.</p><p>The effective date can be defaulted to change 
-         * date, and thus is mandatory.</p></remarks>
+         * date, and thus is mandatory.</p> <p>Allows applications to 
+         * sort and filter by time.</p><p>The effective date can be 
+         * defaulted to change date, and thus is mandatory.</p> 
+         * Un-merged Business Name: DispenseStatusChangeEffectiveDate 
+         * Relationship: PORX_MT060010CA.ControlActEvent.effectiveTime 
+         * Conformance/Cardinality: MANDATORY (1) <p>The date on which 
+         * the various status changes of a prescription dispense become 
+         * valid and applicable. In the case of a suspend, may also 
+         * indicate the scheduled time at which the status change will 
+         * end.</p> <p>Allows applications to sort and filter by 
+         * time.</p><p>The effective date can be defaulted to change 
+         * date, and thus is mandatory.</p> <p>Allows applications to 
+         * sort and filter by time.</p><p>The effective date can be 
+         * defaulted to change date, and thus is mandatory.</p> 
+         * Un-merged Business Name: DispenseStatusChangeEffectiveDate 
+         * Relationship: PORX_MT060090CA.ControlActEvent.effectiveTime 
+         * Conformance/Cardinality: MANDATORY (1) <p>The date on which 
+         * the various status changes of a prescription dispense become 
+         * valid and applicable. In the case of a suspend, may also 
+         * indicate the scheduled time at which the status change will 
+         * end.</p> <p>Allows applications to sort and filter by 
+         * time.</p><p>The effective date can be defaulted to change 
+         * date, and thus is mandatory.</p> <p>Allows applications to 
+         * sort and filter by time.</p><p>The effective date can be 
+         * defaulted to change date, and thus is mandatory.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"effectiveTime"})]
         public Interval<PlatformDate> EffectiveTime {
@@ -128,22 +159,36 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
         }
 
         /**
-         * <summary>Dispense Status Change Reason</summary>
+         * <summary>Un-merged Business Name: ChangeReason</summary>
          * 
-         * <remarks><p>Denotes the reason the status of the 
-         * prescription dispense was changed.</p> <p>Ensures consistent 
-         * terminology in capturing and interpreting reasons for 
-         * change. Allows CWE because not all reasons will correspond 
-         * to a pre-defined code.</p> Other Medication Status Change 
-         * Reason <p>Denotes the reason the status of the other 
-         * medication was changed.</p> <p>Ensures consistent 
-         * terminology in capturing and interpreting reasons for 
-         * change. Allows CWE because not all reasons will correspond 
-         * to a pre-defined code.</p> Change Reason <p>Denotes the 
+         * <remarks>Relationship: 
+         * PORX_MT060040CA.ControlActEvent.reasonCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Denotes the 
          * reason the status of the prescription was changed.</p> 
          * <p>Ensures consistent terminology in capturing and 
          * interpreting reasons for change. Allows CWE because not all 
-         * reasons will correspond to a pre-defined code.</p></remarks>
+         * reasons will correspond to a pre-defined code.</p> Un-merged 
+         * Business Name: OtherMedicationStatusChangeReason 
+         * Relationship: PORX_MT060210CA.ControlActEvent.reasonCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Denotes the 
+         * reason the status of the other medication was changed.</p> 
+         * <p>Ensures consistent terminology in capturing and 
+         * interpreting reasons for change. Allows CWE because not all 
+         * reasons will correspond to a pre-defined code.</p> Un-merged 
+         * Business Name: DispenseStatusChangeReason Relationship: 
+         * PORX_MT060010CA.ControlActEvent.reasonCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Denotes the 
+         * reason the status of the prescription dispense was 
+         * changed.</p> <p>Ensures consistent terminology in capturing 
+         * and interpreting reasons for change. Allows CWE because not 
+         * all reasons will correspond to a pre-defined code.</p> 
+         * Un-merged Business Name: DispenseStatusChangeReason 
+         * Relationship: PORX_MT060090CA.ControlActEvent.reasonCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Denotes the 
+         * reason the status of the prescription dispense was 
+         * changed.</p> <p>Ensures consistent terminology in capturing 
+         * and interpreting reasons for change. Allows CWE because not 
+         * all reasons will correspond to a pre-defined code.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"reasonCode"})]
         public ControlActReason ReasonCode {
@@ -151,12 +196,46 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
             set { this.reasonCode.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PORX_MT060040CA.ResponsibleParty4.assignedEntity 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060210CA.ResponsibleParty2.assignedEntity 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060010CA.ResponsibleParty2.assignedEntity 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060090CA.ResponsibleParty4.assignedEntity 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"responsibleParty/assignedEntity"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.HealthcareWorker ResponsiblePartyAssignedEntity {
             get { return this.responsiblePartyAssignedEntity; }
             set { this.responsiblePartyAssignedEntity = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * PORX_MT060040CA.ControlActEvent.author 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060210CA.ControlActEvent.author 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060010CA.ControlActEvent.author 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060090CA.ControlActEvent.author 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"author"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.Author1 Author {
             get { return this.author; }

@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,7 +35,10 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt400
             this.playingFormId = new IIImpl();
         }
         /**
-         * <summary>Form Number + Version</summary>
+         * <summary>Business Name: Form Number + Version</summary>
+         * 
+         * <remarks>Relationship: FICR_MT400001CA.Form.id 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"playingForm/id"})]
         public Identifier PlayingFormId {

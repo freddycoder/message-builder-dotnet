@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,8 @@
 /// ---------------------------------------------------------------------------------------------------
  
 namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
-	
+
+    using Ca.Infoway.Messagebuilder.Domainvalue;
 	using System;
 	using System.Collections;
 	using System.Collections.Generic;
@@ -41,8 +42,9 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 	///
 	public class EncapsulatedData {
 	
-		private Ca.Infoway.Messagebuilder.Domainvalue.MediaType mediaType;
+		private x_DocumentMediaType mediaType;
 		private String reference;
+        private String language;
 		private byte[] content;
 	
 		/// <summary>
@@ -58,13 +60,15 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		///
 		/// <param name="mediaType_0">the mediatype</param>
 		/// <param name="reference_1">a reference</param>
-		/// <param name="content_2">content within a byte array</param>
+        /// <param name="language_2">language</param>
+        /// <param name="content_3">content within a byte array</param>
 		public EncapsulatedData(
-				Ca.Infoway.Messagebuilder.Domainvalue.MediaType mediaType_0,
-				String reference_1, byte[] content_2) {
+				x_DocumentMediaType mediaType_0,
+				String reference_1, String lanuage_2, byte[] content_3) {
 			this.mediaType = mediaType_0;
 			this.reference = reference_1;
-			this.content = content_2;
+            this.language = lanuage_2;
+			this.content = content_3;
 		}
 	
 		/// <summary>
@@ -89,7 +93,7 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		/// </summary>
 		///
 		/// <returns>the media type</returns>
-		public virtual Ca.Infoway.Messagebuilder.Domainvalue.MediaType MediaType {
+		public virtual x_DocumentMediaType MediaType {
 		/// <summary>
 		/// Returns the media type.
 		/// </summary>
@@ -102,20 +106,38 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		
 	
 		/// <summary>
-		/// Returns the reference.
+		/// Returns the language.
 		/// </summary>
 		///
-		/// <returns>the reference</returns>
-		public String Reference {
+        /// <returns>the language</returns>
+        public String Language {
 		/// <summary>
-		/// Returns the reference.
+        /// Returns the language.
 		/// </summary>
 		///
-		/// <returns>the reference</returns>
+        /// <returns>the language</returns>
 		  get {
-				return this.reference;
+                return this.language;
 			}
 		}
-		
-	}
+
+        /// <summary>
+        /// Returns the reference.
+        /// </summary>
+        ///
+        /// <returns>the reference</returns>
+        public String Reference
+        {
+            /// <summary>
+            /// Returns the reference.
+            /// </summary>
+            ///
+            /// <returns>the reference</returns>
+            get
+            {
+                return this.reference;
+            }
+        }
+
+    }
 }

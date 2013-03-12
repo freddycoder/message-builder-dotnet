@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,22 +35,34 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Merged {
             this.text = new STImpl();
         }
         /**
-         * <summary>UsageInstructions</summary>
+         * <summary>Business Name: UsageInstructions</summary>
          * 
-         * <remarks>Usage Instructions <p>Indicates how the prescribed 
-         * device is intended to be used.</p> <p>Instructions for use 
-         * are a key part of any prescription</p> Usage Instructions 
-         * <p>Indicates how the patient is expected to use the 
-         * device.</p> <p>Communicates to other providers how the 
-         * patient is expected to use the dispensed device</p> Usage 
-         * Instructions <p>Indicates how the device is intended to be 
-         * used.</p> <p>Shows other providers the usage instructions 
-         * provided to the patient.</p> Usage Instructions <p>Indicates 
-         * how the device should be used by the patient.</p> 
-         * <p>Instructions are a key part of the prescription.</p> 
-         * Usage Instructions <p>Indicates how the prescribed device is 
-         * intended to be used.</p> <p>Usage instructions are a 
-         * critical part of a prescription.</p></remarks>
+         * <remarks>Un-merged Business Name: UsageInstructions 
+         * Relationship: PORX_MT060010CA.ProcedureRequest.text 
+         * Conformance/Cardinality: MANDATORY (1) <p>Shows other 
+         * providers the usage instructions provided to the 
+         * patient.</p> <p>Indicates how the device is intended to be 
+         * used.</p> Un-merged Business Name: UsageInstructions 
+         * Relationship: PORX_MT020060CA.ProcedureRequest.text 
+         * Conformance/Cardinality: MANDATORY (1) <p>Communicates to 
+         * other providers how the patient is expected to use the 
+         * dispensed device</p> <p>Indicates how the patient is 
+         * expected to use the device.</p> Un-merged Business Name: 
+         * UsageInstructions Relationship: 
+         * PORX_MT060040CA.ProcedureRequest.text 
+         * Conformance/Cardinality: MANDATORY (1) <p>Instructions for 
+         * use are a key part of any prescription</p> <p>Indicates how 
+         * the prescribed device is intended to be used.</p> Un-merged 
+         * Business Name: UsageInstructions Relationship: 
+         * PORX_MT010110CA.ProcedureRequest.text 
+         * Conformance/Cardinality: MANDATORY (1) <p>Instructions are a 
+         * key part of the prescription.</p> <p>Indicates how the 
+         * device should be used by the patient.</p> Un-merged Business 
+         * Name: UsageInstructions Relationship: 
+         * PORX_MT060060CA.ProcedureRequest.text 
+         * Conformance/Cardinality: MANDATORY (1) <p>Usage instructions 
+         * are a critical part of a prescription.</p> <p>Indicates how 
+         * the prescribed device is intended to be used.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"text"})]
         public String Text {

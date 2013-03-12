@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,11 +31,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Coct_mt30000
 
 
     /**
-     * <summary>Pharmacy Dispense</summary>
+     * <summary>Business Name: Pharmacy Dispense</summary>
      * 
-     * <remarks><p>Patient classes are not referenced in the 
-     * billable acts, as they are noted in the parent model (e.g. 
-     * Invoice message) as the CoveredPartyAsPatient</p></remarks>
+     * <p>Patient classes are not referenced in the billable acts, 
+     * as they are noted in the parent model (e.g. Invoice message) 
+     * as the CoveredPartyAsPatient</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"COCT_MT300000CA.SupplyEvent"})]
     public class PharmacyDispense : MessagePartBean, Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Coct_mt280001ca.IA_BillableActChoice {
@@ -59,6 +59,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Coct_mt30000
             this.quantity = new PQImpl();
             this.expectedUseTime = new IVLImpl<TS, Interval<PlatformDate>>();
         }
+        /**
+         * <summary>Relationship: COCT_MT300000CA.SupplyEvent.moodCode</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"moodCode"})]
         public x_ActMoodIntentEvent MoodCode {
             get { return (x_ActMoodIntentEvent) this.moodCode.Value; }
@@ -66,9 +71,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Coct_mt30000
         }
 
         /**
-         * <summary>Type of Dispense</summary>
+         * <summary>Business Name: Type of Dispense</summary>
          * 
-         * <remarks><p>partial fill/trial/completion of trial, etc.</p></remarks>
+         * <remarks>Relationship: COCT_MT300000CA.SupplyEvent.code 
+         * Conformance/Cardinality: POPULATED (1) <p>partial 
+         * fill/trial/completion of trial, etc.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public ActPharmacySupplyType Code {
@@ -77,12 +84,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Coct_mt30000
         }
 
         /**
-         * <summary>Dispense Time</summary>
+         * <summary>Business Name: Dispense Time</summary>
          * 
-         * <remarks><p>Dispense Time</p> <p>Date and Time to support 
-         * multiple dispense per day of the same product. E.g. 
+         * <remarks>Relationship: 
+         * COCT_MT300000CA.SupplyEvent.effectiveTime 
+         * Conformance/Cardinality: MANDATORY (1) <p>Date and Time to 
+         * support multiple dispense per day of the same product. E.g. 
          * methadone</p> <p>Must support hour/minute to handle 
-         * multi-dispense/day of same product - e.g. methadone</p></remarks>
+         * multi-dispense/day of same product - e.g. methadone</p> 
+         * <p>Dispense Time</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"effectiveTime"})]
         public PlatformDate EffectiveTime {
@@ -91,11 +101,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Coct_mt30000
         }
 
         /**
-         * <summary>Total Dispensed</summary>
+         * <summary>Business Name: Total Dispensed</summary>
          * 
-         * <remarks><p>Generally defaults to 'quantity billed'</p> 
-         * <p>Either Total Dispensed or Dispensed Days Supply must be 
-         * specified for billing.</p></remarks>
+         * <remarks>Relationship: COCT_MT300000CA.SupplyEvent.quantity 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Either Total 
+         * Dispensed or Dispensed Days Supply must be specified for 
+         * billing.</p> <p>Generally defaults to 'quantity billed'</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"quantity"})]
         public PhysicalQuantity Quantity {
@@ -104,10 +115,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Coct_mt30000
         }
 
         /**
-         * <summary>Dispensed Days Supply</summary>
+         * <summary>Business Name: Dispensed Days Supply</summary>
          * 
-         * <remarks><p>Either Total Dispensed or Dispensed Days Supply 
-         * must be specified for billing.</p></remarks>
+         * <remarks>Relationship: 
+         * COCT_MT300000CA.SupplyEvent.expectedUseTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Either Total 
+         * Dispensed or Dispensed Days Supply must be specified for 
+         * billing.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"expectedUseTime"})]
         public Interval<PlatformDate> ExpectedUseTime {
@@ -115,36 +129,71 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Coct_mt30000
             set { this.expectedUseTime.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: COCT_MT300000CA.Product.content</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"product/content"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Merged.DrugDispensedIn ProductContent {
             get { return this.productContent; }
             set { this.productContent = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * COCT_MT300000CA.ResponsibleProvider.pharmacistRole</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"performer/pharmacistRole"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Coct_mt300000ca.PharmacistRole PerformerPharmacistRole {
             get { return this.performerPharmacistRole; }
             set { this.performerPharmacistRole = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * COCT_MT300000CA.Origin.serviceDeliveryLocation</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"origin/serviceDeliveryLocation"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Merged.ServiceLocation OriginServiceDeliveryLocation {
             get { return this.originServiceDeliveryLocation; }
             set { this.originServiceDeliveryLocation = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * COCT_MT300000CA.Destination.serviceDeliveryLocation</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"destination/serviceDeliveryLocation"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Merged.ServiceLocation DestinationServiceDeliveryLocation {
             get { return this.destinationServiceDeliveryLocation; }
             set { this.destinationServiceDeliveryLocation = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * COCT_MT300000CA.SupplyEvent.pertinentInformation</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"pertinentInformation"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Coct_mt300000ca.DispenseInstructions PertinentInformation {
             get { return this.pertinentInformation; }
             set { this.pertinentInformation = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * COCT_MT300000CA.EncounterInformation.patientEncounter</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"componentOf/patientEncounter"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Merged.PatientEncounter ComponentOfPatientEncounter {
             get { return this.componentOfPatientEncounter; }

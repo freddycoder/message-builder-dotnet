@@ -1,7 +1,27 @@
+/**
+ * Copyright 2013 Canada Health Infoway, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Author:        $LastChangedBy: tmcgrady $
+ * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Revision:      $LastChangedRevision: 2623 $
+ */
 using System.Xml;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
+using Ca.Infoway.Messagebuilder.Datatype.Lang.Util;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser;
 using NUnit.Framework;
@@ -16,13 +36,14 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		public virtual void TestParseNullNode()
 		{
 			XmlNode node = CreateNode("<something nullFlavor=\"NI\" />");
-			AD ad = (AD)(new AdElementParser()).Parse(CreateContext(), node, this.xmlResult);
+			AD ad = (AD)(new AdElementParser()).Parse(CreateContext("AD.BASIC", SpecificationVersion.V02R02), node, this.xmlResult);
+			Assert.IsTrue(this.xmlResult.IsValid());
 			Assert.AreEqual(null, ad.Value, "null returned");
 		}
 
-		private ParseContext CreateContext()
+		private ParseContext CreateContext(string type, VersionNumber version)
 		{
-			return ParserContextImpl.Create("AD", typeof(PostalAddress), SpecificationVersion.V02R02, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
+			return ParserContextImpl.Create(type, typeof(PostalAddress), version, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
 				.POPULATED);
 		}
 
@@ -31,7 +52,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		public virtual void TestParseEmptyNode()
 		{
 			XmlNode node = CreateNode("<something/>");
-			AD ad = (AD)new AdElementParser().Parse(null, node, null);
+			AD ad = (AD)new AdElementParser().Parse(CreateContext("AD.BASIC", SpecificationVersion.V02R02), node, this.xmlResult);
+			Assert.IsTrue(this.xmlResult.IsValid());
 			Assert.IsNotNull(ad.Value, "empty node");
 			Assert.IsTrue(ad.Value.Parts.IsEmpty(), "empty node value");
 		}
@@ -41,7 +63,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		public virtual void TestParseTextNode()
 		{
 			XmlNode node = CreateNode("<something>text value</something>");
-			AD ad = (AD)new AdElementParser().Parse(null, node, null);
+			AD ad = (AD)new AdElementParser().Parse(CreateContext("AD.BASIC", SpecificationVersion.V02R02), node, this.xmlResult);
+			Assert.IsTrue(this.xmlResult.IsValid());
 			Assert.AreEqual(1, ad.Value.Parts.Count, "correct number of parts");
 			AssertPostalAddressPartAsExpected("text node", ad.Value.Parts[0], null, "text value", null);
 		}
@@ -51,7 +74,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		public virtual void TestParseTextNodeWithAttributes()
 		{
 			XmlNode node = CreateNode("<something representation=\"TXT\" mediaType=\"text/plain\">text value</something>");
-			AD ad = (AD)new AdElementParser().Parse(null, node, null);
+			AD ad = (AD)new AdElementParser().Parse(CreateContext("AD.BASIC", SpecificationVersion.V02R02), node, this.xmlResult);
+			Assert.IsTrue(this.xmlResult.IsValid());
 			Assert.AreEqual(1, ad.Value.Parts.Count, "correct number of parts");
 			AssertPostalAddressPartAsExpected("text node with attributes", ad.Value.Parts[0], null, "text value", null);
 		}
@@ -62,7 +86,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		{
 			XmlNode node = CreateNode("<something> <city>city name</city>freeform<delimiter>,</delimiter>\n<state code=\"ON\">Ontario</state></something>"
 				);
-			AD ad = (AD)new AdElementParser().Parse(null, node, null);
+			AD ad = (AD)new AdElementParser().Parse(CreateContext("AD.BASIC", SpecificationVersion.V02R02), node, this.xmlResult);
+			Assert.IsTrue(this.xmlResult.IsValid());
 			PostalAddress postalAddress = ad.Value;
 			Assert.AreEqual(0, postalAddress.Uses.Count, "number of name uses");
 			Assert.AreEqual(4, postalAddress.Parts.Count, "number of name parts");
@@ -78,15 +103,10 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		{
 			XmlNode node = CreateNode("<something><monkey>prefix 1</monkey>Organization name<delimiter>,</delimiter><suffix>Inc</suffix></something>"
 				);
-			try
-			{
-				new AdElementParser().Parse(null, node, null);
-				Assert.Fail("expected exception");
-			}
-			catch (XmlToModelTransformationException e)
-			{
-				Assert.AreEqual("Unexpected part of type: monkey", e.Message, "message");
-			}
+			new AdElementParser().Parse(CreateContext("AD.BASIC", SpecificationVersion.V02R02), node, this.xmlResult);
+			Assert.IsFalse(this.xmlResult.IsValid());
+			Assert.AreEqual("Address part type not valid: monkey (<monkey>)", this.xmlResult.GetHl7Errors()[0].GetMessage(), "message"
+				);
 		}
 
 		private void AssertPostalAddressPartAsExpected(string message, PostalAddressPart postalAddressPart, PostalAddressPartType
@@ -103,7 +123,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		public virtual void TestUsesNoUse()
 		{
 			XmlNode node = CreateNode("<something/>");
-			AD ad = (AD)new AdElementParser().Parse(null, node, null);
+			AD ad = (AD)new AdElementParser().Parse(CreateContext("AD.BASIC", SpecificationVersion.V02R02), node, this.xmlResult);
+			Assert.IsTrue(this.xmlResult.IsValid());
 			Assert.AreEqual(0, ad.Value.Uses.Count, "zero uses");
 		}
 
@@ -112,24 +133,27 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		public virtual void TestUsesOneUse()
 		{
 			XmlNode node = CreateNode("<something use=\"H\"/>");
-			AD ad = (AD)new AdElementParser().Parse(null, node, null);
+			AD ad = (AD)new AdElementParser().Parse(CreateContext("AD.BASIC", SpecificationVersion.V02R02), node, this.xmlResult);
+			Assert.IsTrue(this.xmlResult.IsValid());
 			Assert.AreEqual(1, ad.Value.Uses.Count, "one use");
-			Assert.IsTrue(ad.Value.Uses.Contains(Ca.Infoway.Messagebuilder.Datatype.Lang.PostalAddressUse.HOME), "contains HOME use");
+			Assert.IsTrue(ad.Value.Uses.Contains(Ca.Infoway.Messagebuilder.Domainvalue.Basic.X_BasicPostalAddressUse.HOME), "contains HOME use"
+				);
 		}
 
 		/// <exception cref="System.Exception"></exception>
 		[Test]
 		public virtual void TestUsesMultipleUses()
 		{
-			XmlNode node = CreateNode("<something use=\"H PUB PST\"/>");
-			AD ad = (AD)new AdElementParser().Parse(null, node, null);
+			XmlNode node = CreateNode("<something use=\"H PHYS PST\"/>");
+			AD ad = (AD)new AdElementParser().Parse(CreateContext("AD.BASIC", SpecificationVersion.V02R02), node, this.xmlResult);
+			Assert.IsTrue(this.xmlResult.IsValid());
 			PostalAddress postalAddress = ad.Value;
 			Assert.AreEqual(3, postalAddress.Uses.Count, "one use");
-			Assert.IsTrue(postalAddress.Uses.Contains(Ca.Infoway.Messagebuilder.Datatype.Lang.PostalAddressUse.HOME), "contains HOME use"
+			Assert.IsTrue(postalAddress.Uses.Contains(Ca.Infoway.Messagebuilder.Domainvalue.Basic.X_BasicPostalAddressUse.HOME), "contains HOME use"
 				);
-			Assert.IsTrue(postalAddress.Uses.Contains(Ca.Infoway.Messagebuilder.Datatype.Lang.PostalAddressUse.PUBLIC), "contains PUBLIC use"
-				);
-			Assert.IsTrue(postalAddress.Uses.Contains(Ca.Infoway.Messagebuilder.Datatype.Lang.PostalAddressUse.POSTAL), "contains POSTAL use"
+			Assert.IsTrue(postalAddress.Uses.Contains(Ca.Infoway.Messagebuilder.Domainvalue.Basic.X_BasicPostalAddressUse.PHYSICAL), 
+				"contains PHYS use");
+			Assert.IsTrue(postalAddress.Uses.Contains(Ca.Infoway.Messagebuilder.Domainvalue.Basic.X_BasicPostalAddressUse.POSTAL), "contains POSTAL use"
 				);
 		}
 
@@ -138,7 +162,9 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		public virtual void TestUsesUnknownUse()
 		{
 			XmlNode node = CreateNode("<something use=\"XXX\"/>");
-			AD ad = (AD)new AdElementParser().Parse(null, node, null);
+			AD ad = (AD)new AdElementParser().Parse(CreateContext("AD.BASIC", SpecificationVersion.V02R02), node, this.xmlResult);
+			Assert.IsFalse(this.xmlResult.IsValid());
+			Assert.AreEqual(1, this.xmlResult.GetHl7Errors().Count);
 			Assert.AreEqual(0, ad.Value.Uses.Count, "no uses");
 		}
 	}

@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,34 +32,20 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Merged {
 
 
     /**
-     * <summary>PaymentIntent</summary>
+     * <summary>Business Name: PaymentIntent</summary>
      * 
      * <remarks>FICR_MT610201CA.PaymentIntent: Payment Intent 
      * <p>Amt must be positive or 0 for</p><p>completed 
      * Adjudication Results</p><p>messages</p><p>Amt must be 
-     * negative or 0 for Invoice Cancel Results messages</p> <p>Amt 
-     * must be positive or 0 for</p><p>completed Adjudication 
-     * Results</p><p>messages</p><p>Amt must be negative or 0 for 
-     * Invoice Cancel Results messages</p> <p>Amt must be positive 
-     * or 0 for</p><p>completed Adjudication 
-     * Results</p><p>messages</p><p>Amt must be negative or 0 for 
-     * Invoice Cancel Results messages</p> <p>Amt must be positive 
-     * or 0 for</p><p>completed Adjudication 
-     * Results</p><p>messages</p><p>Amt must be negative or 0 for 
-     * Invoice Cancel Results messages</p> <p>If an Adjudicator 
-     * adjudicates for multiple insurance policies (EOBs) for 
-     * multiple Payors and/or Payees, there would be more than 1 
-     * Payment Intent payload in the Results message</p> 
-     * FICR_MT630000CA.PaymentIntent: Payment Intent <p>Net_amt 
-     * must be positive or 0 for</p><p>Adjudication Results 
-     * messages</p><p>Net_amt must be negative or 0 for Invoice 
-     * Cancel messages</p> <p>Net_amt must be positive or 0 
-     * for</p><p>Adjudication Results messages</p><p>Net_amt must 
-     * be negative or 0 for Invoice Cancel messages</p> <p>Net_amt 
-     * must be positive or 0 for</p><p>Adjudication Results 
-     * messages</p><p>Net_amt must be negative or 0 for Invoice 
-     * Cancel messages</p> <p>If an Adjudicator adjudicates for 
-     * multiple insurance policies (EOBs) for multiple Payors 
+     * negative or 0 for Invoice Cancel Results messages</p> <p>If 
+     * an Adjudicator adjudicates for multiple insurance policies 
+     * (EOBs) for multiple Payors and/or Payees, there would be 
+     * more than 1 Payment Intent payload in the Results 
+     * message</p> FICR_MT630000CA.PaymentIntent: Payment Intent 
+     * <p>Net_amt must be positive or 0 for</p><p>Adjudication 
+     * Results messages</p><p>Net_amt must be negative or 0 for 
+     * Invoice Cancel messages</p> <p>If an Adjudicator adjudicates 
+     * for multiple insurance policies (EOBs) for multiple Payors 
      * and/or Payees, there would be more than 1 Payment Intent 
      * payload in the Results message</p></remarks>
      */
@@ -80,29 +66,25 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Merged {
             this.reasonOf = new List<Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Ficr_mt610201ca.PaymentReason>();
         }
         /**
-         * <summary>PaymentIntentDateTime</summary>
+         * <summary>Business Name: PaymentIntentDateTime</summary>
          * 
-         * <remarks>Payment Intent Date/Time <p>Parment Intent 
-         * Date/Time - Time payor intends to make payment (e.g. date of 
-         * cheque/EFT run).</p> <p>For nullify, this would also be the 
-         * date the payor intends to make the payment.</p><p>For 
-         * Invoice Nullify Results: Effective time of the cancel is 
-         * noted in the control act wrapper.</p> <p>For nullify, this 
-         * would also be the date the payor intends to make the 
-         * payment.</p><p>For Invoice Nullify Results: Effective time 
-         * of the cancel is noted in the control act wrapper.</p> 
-         * Payment Intent Date/Time <p>Time payor intends to make 
+         * <remarks>Un-merged Business Name: PaymentIntentDateTime 
+         * Relationship: FICR_MT610201CA.PaymentIntent.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>For Invoice 
+         * Nullify Results: Effective time of the cancel is noted in 
+         * the control act wrapper.</p> <p>Time payor intends to make 
          * payment (e.g. date of cheque/EFT run). For nullify, this 
          * would also be the date the payor intends to make the 
          * payment.</p><p>For Invoice Nullify Results: Effective time 
          * of the cancel is noted in the control act wrapper.</p> 
-         * <p>Time payor intends to make payment (e.g. date of 
-         * cheque/EFT run). For nullify, this would also be the date 
-         * the payor intends to make the payment.</p><p>For Invoice 
-         * Nullify Results: Effective time of the cancel is noted in 
-         * the control act wrapper.</p> <p>For Invoice Nullify Results: 
-         * Effective time of the cancel is noted in the control act 
-         * wrapper.</p></remarks>
+         * Un-merged Business Name: PaymentIntentDateTime Relationship: 
+         * FICR_MT630000CA.PaymentIntent.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>For nullify, this 
+         * would also be the date the payor intends to make the 
+         * payment.</p><p>For Invoice Nullify Results: Effective time 
+         * of the cancel is noted in the control act wrapper.</p> 
+         * <p>Parment Intent Date/Time - Time payor intends to make 
+         * payment (e.g. date of cheque/EFT run).</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"effectiveTime"})]
         public PlatformDate EffectiveTime {
@@ -111,96 +93,31 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Merged {
         }
 
         /**
-         * <summary>Total intent payment amount</summary>
+         * <summary>Un-merged Business Name: TotalIntentPaymentAmount</summary>
          * 
-         * <remarks><p>Adjudication Results: The payment intent amount 
-         * cannot be mandatory for active adjudication 
-         * results.</p><p>For Invoice Nullify Results: the payment 
-         * intent is completed only, and therefore the amount must be 
-         * specified.</p><p>For completed Payment Intents, this field 
-         * is mandatory.</p> <p>Adjudication Results: The payment 
-         * intent amount cannot be mandatory for active adjudication 
-         * results.</p><p>For Invoice Nullify Results: the payment 
-         * intent is completed only, and therefore the amount must be 
-         * specified.</p><p>For completed Payment Intents, this field 
-         * is mandatory.</p> <p>Adjudication Results: The payment 
-         * intent amount cannot be mandatory for active adjudication 
-         * results.</p><p>For Invoice Nullify Results: the payment 
-         * intent is completed only, and therefore the amount must be 
-         * specified.</p><p>For completed Payment Intents, this field 
-         * is mandatory.</p> <p>Adjudication Results: The payment 
-         * intent amount cannot be mandatory for active adjudication 
-         * results.</p><p>For Invoice Nullify Results: the payment 
-         * intent is completed only, and therefore the amount must be 
-         * specified.</p><p>For completed Payment Intents, this field 
-         * is mandatory.</p><p>Amt must be positive or 0 
-         * for</p><p>completed Adjudication 
+         * <remarks>Relationship: FICR_MT610201CA.PaymentIntent.amt 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Adjudication 
+         * Results: The payment intent amount cannot be mandatory for 
+         * active adjudication results.</p><p>For Invoice Nullify 
+         * Results: the payment intent is completed only, and therefore 
+         * the amount must be specified.</p><p>For completed Payment 
+         * Intents, this field is mandatory.</p><p>Amt must be positive 
+         * or 0 for</p><p>completed Adjudication 
          * Results</p><p>messages</p><p>Amt must be negative or 0 for 
          * Invoice Cancel Results messages</p> <p>Adjudication Results: 
          * The payment intent amount cannot be mandatory for active 
          * adjudication results.</p><p>For Invoice Nullify Results: the 
          * payment intent is completed only, and therefore the amount 
          * must be specified.</p><p>For completed Payment Intents, this 
-         * field is mandatory.</p><p>Amt must be positive or 0 
-         * for</p><p>completed Adjudication 
-         * Results</p><p>messages</p><p>Amt must be negative or 0 for 
-         * Invoice Cancel Results messages</p> <p>Adjudication Results: 
-         * The payment intent amount cannot be mandatory for active 
-         * adjudication results.</p><p>For Invoice Nullify Results: the 
-         * payment intent is completed only, and therefore the amount 
-         * must be specified.</p><p>For completed Payment Intents, this 
-         * field is mandatory.</p><p>Amt must be positive or 0 
-         * for</p><p>completed Adjudication 
-         * Results</p><p>messages</p><p>Amt must be negative or 0 for 
-         * Invoice Cancel Results messages</p> <p>Adjudication Results: 
-         * The payment intent amount cannot be mandatory for active 
-         * adjudication results.</p><p>For Invoice Nullify Results: the 
-         * payment intent is completed only, and therefore the amount 
-         * must be specified.</p><p>For completed Payment Intents, this 
-         * field is mandatory.</p><p>Amt must be positive or 0 
-         * for</p><p>completed Adjudication 
-         * Results</p><p>messages</p><p>Amt must be negative or 0 for 
-         * Invoice Cancel Results messages</p> <p>Adjudication Results: 
-         * The payment intent amount cannot be mandatory for active 
-         * adjudication results.</p><p>For Invoice Nullify Results: the 
-         * payment intent is completed only, and therefore the amount 
-         * must be specified.</p><p>For completed Payment Intents, this 
-         * field is mandatory.</p><p>Amt must be positive or 0 
-         * for</p><p>completed Adjudication 
-         * Results</p><p>messages</p><p>Amt must be negative or 0 for 
-         * Invoice Cancel Results messages</p> <p>Adjudication Results: 
-         * The payment intent amount cannot be mandatory for active 
-         * adjudication results.</p><p>For Invoice Nullify Results: the 
-         * payment intent is completed only, and therefore the amount 
-         * must be specified.</p><p>For completed Payment Intents, this 
-         * field is mandatory.</p><p>Amt must be positive or 0 
-         * for</p><p>completed Adjudication 
-         * Results</p><p>messages</p><p>Amt must be negative or 0 for 
-         * Invoice Cancel Results messages</p> <p>Adjudication Results: 
-         * The payment intent amount cannot be mandatory for active 
-         * adjudication results.</p><p>For Invoice Nullify Results: the 
-         * payment intent is completed only, and therefore the amount 
-         * must be specified.</p><p>For completed Payment Intents, this 
-         * field is mandatory.</p><p>Amt must be positive or 0 
-         * for</p><p>completed Adjudication 
-         * Results</p><p>messages</p><p>Amt must be negative or 0 for 
-         * Invoice Cancel Results messages</p> payment amount 
-         * <p>payment amount</p> <p>Adjudication Results: The payment 
-         * intent amount cannot be mandatory for active adjudication 
+         * field is mandatory.</p> Un-merged Business Name: 
+         * PaymentAmount Relationship: 
+         * FICR_MT630000CA.PaymentIntent.amt Conformance/Cardinality: 
+         * MANDATORY (1) <p>Adjudication Results: The payment intent 
+         * amount cannot be mandatory for active adjudication 
          * results.</p><p>For Invoice Nullify Results: the payment 
          * intent is completed only, and therefore the amount must be 
          * specified.</p><p>For completed Payment Intents, this field 
-         * is mandatory.</p> <p>Adjudication Results: The payment 
-         * intent amount cannot be mandatory for active adjudication 
-         * results.</p><p>For Invoice Nullify Results: the payment 
-         * intent is completed only, and therefore the amount must be 
-         * specified.</p><p>For completed Payment Intents, this field 
-         * is mandatory.</p> <p>Adjudication Results: The payment 
-         * intent amount cannot be mandatory for active adjudication 
-         * results.</p><p>For Invoice Nullify Results: the payment 
-         * intent is completed only, and therefore the amount must be 
-         * specified.</p><p>For completed Payment Intents, this field 
-         * is mandatory.</p></remarks>
+         * is mandatory.</p> <p>payment amount</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"amt"})]
         public Money Amt {
@@ -208,23 +125,61 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Merged {
             set { this.amt.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * FICR_MT610201CA.PaymentIntentPayee.account 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * FICR_MT630000CA.PaymentIntentPayee.account 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"credit/account"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Coct_mt110200ca.PayeeAccount CreditAccount {
             get { return this.creditAccount; }
             set { this.creditAccount = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * FICR_MT610201CA.PaymentIntentPayor.account 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * FICR_MT630000CA.PaymentIntentPayor.account 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"debit/account"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Coct_mt110101ca.Account DebitAccount {
             get { return this.debitAccount; }
             set { this.debitAccount = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * FICR_MT610201CA.PertinentInformation.adjudicatorBillingTaxAccount 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"pertinentInformation/adjudicatorBillingTaxAccount"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Ficr_mt610201ca.AdjudicatorBillingTaxAccount> PertinentInformationAdjudicatorBillingTaxAccount {
             get { return this.pertinentInformationAdjudicatorBillingTaxAccount; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * FICR_MT610201CA.PaymentIntent.reasonOf 
+         * Conformance/Cardinality: POPULATED (1-10)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"reasonOf"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Ficr_mt610201ca.PaymentReason> ReasonOf {
             get { return this.reasonOf; }

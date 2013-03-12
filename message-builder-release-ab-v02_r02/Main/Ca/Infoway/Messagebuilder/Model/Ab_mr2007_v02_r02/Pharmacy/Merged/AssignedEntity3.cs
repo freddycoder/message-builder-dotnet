@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,21 +35,29 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Merged {
             this.assignedOrganizationName = new STImpl();
         }
         /**
-         * <summary>Formulary Owner Name</summary>
+         * <summary>Un-merged Business Name: 
+         * MedicationDocumentAuthorName</summary>
          * 
-         * <remarks><p>The name of the organization or facility 
-         * responsible for the formulary.</p> <p>Helps identify the 
-         * circumstances in which the formulary applies.</p> 
-         * D:Medication Document Author Name <p>The name of the 
+         * <remarks>Relationship: PORR_MT050016CA.Organization4.name 
+         * Conformance/Cardinality: MANDATORY (1) <p>The name of the 
          * organization responsible for creating the medication 
          * document.</p> <p>Helps the receiver evaluate the supplied 
-         * information.</p> Monograph Author Name <p>The name of the 
+         * information.</p> Un-merged Business Name: FormularyOwnerName 
+         * Relationship: POME_MT010040CA.Organization3.name 
+         * Conformance/Cardinality: MANDATORY (1) <p>The name of the 
+         * organization or facility responsible for the formulary.</p> 
+         * <p>Helps identify the circumstances in which the formulary 
+         * applies.</p> Un-merged Business Name: 
+         * MonitoringOrganizationName Relationship: 
+         * POME_MT010040CA.Organization2.name Conformance/Cardinality: 
+         * MANDATORY (1) <p>The name of the organization responsible 
+         * for the monitoring program</p> <p>Helps identify the program 
+         * and understand its context. May also indicate who to send 
+         * reports to.</p> Un-merged Business Name: MonographAuthorName 
+         * Relationship: POME_MT010040CA.Organization1.name 
+         * Conformance/Cardinality: MANDATORY (1) <p>The name of the 
          * organization responsible for creating the monograph</p> 
-         * <p>Helps the receiver evaluate the supplied information.</p> 
-         * Monitoring Organization Name <p>The name of the organization 
-         * responsible for the monitoring program</p> <p>Helps identify 
-         * the program and understand its context. May also indicate 
-         * who to send reports to.</p></remarks>
+         * <p>Helps the receiver evaluate the supplied information.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"assignedOrganization/name","representedOrganization/name"})]
         [Hl7MapByPartType(Name="assignedOrganization", Type="POME_MT010040CA.Organization1")]

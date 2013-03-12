@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,57 +32,61 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged {
     /**
      * <summary>COCT_MT090108CA.AssignedEntity: Healthcare Worker</summary>
      * 
-     * <remarks><p>The person organization assigned to carry out 
-     * the associated (linked by a participation) action and/or the 
-     * organization under whose authority they are acting.</p> 
      * <p>Critical to tracking responsibility and performing 
      * follow-up. The CMET supports both licensed providers as well 
      * as non-licensed providers such as technicians, 
      * receptionists, etc.</p> <p>All attributes other than the 
      * various identifiers are expected to be retrieved from the 
-     * provider registry.</p> COCT_MT090502CA.AssignedEntity: 
-     * Healthcare Organization <p>The organization under whose 
+     * provider registry.</p> <p>The person organization assigned 
+     * to carry out the associated (linked by a participation) 
+     * action and/or the organization under whose authority they 
+     * are acting.</p> COCT_MT090502CA.AssignedEntity: Healthcare 
+     * Organization <p>Critical to tracking responsibility and 
+     * performing follow-up.</p> <p>The organization under whose 
      * authority the associated action (linked by a participation) 
-     * was performed.</p> <p>Critical to tracking responsibility 
-     * and performing follow-up.</p></remarks>
+     * was performed.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"COCT_MT090108CA.AssignedEntity","COCT_MT090502CA.AssignedEntity"})]
     public class HealthcareWorker : MessagePartBean, Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged.IParty, Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt080100ca.IPerformerChoice, Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Merged.IRecipientChoice, Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.IChoice, Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.IActingPerson, Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.IAuthorPerson, Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.IRecipient, Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.IRoleChoice, Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.IEntererChoice, Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt011001ca.IAssignees, Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt911108ca.IActingPerson, Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Merged.IChangedBy {
 
-        private IList<II> id;
+        private SET<II, Identifier> id;
         private CV code;
         private LIST<TEL, TelecommunicationAddress> telecom;
         private Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.ActingPerson assignedPerson;
         private Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.ResponsibleOrganization representedOrganization;
 
         public HealthcareWorker() {
-            this.id = new List<II>();
+            this.id = new SETImpl<II, Identifier>(typeof(IIImpl));
             this.code = new CVImpl();
             this.telecom = new LISTImpl<TEL, TelecommunicationAddress>(typeof(TELImpl));
         }
         /**
-         * <summary>HealthcareWorkerIdentifier</summary>
+         * <summary>Business Name: HealthcareWorkerIdentifier</summary>
          * 
-         * <remarks>A:Healthcare Worker Identifier <p>Unique identifier 
-         * the person involved in the action.</p> <p>Allows unique 
+         * <remarks>Un-merged Business Name: HealthcareWorkerIdentifier 
+         * Relationship: COCT_MT090108CA.AssignedEntity.id 
+         * Conformance/Cardinality: MANDATORY (1-3) <p>Allows unique 
          * identification of the person which can be critical for 
          * authentication, permissions, drill-down and traceability and 
-         * is therefore mandatory.</p></remarks>
+         * is therefore mandatory.</p> <p>Unique identifier the person 
+         * involved in the action.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
-        public IList<Identifier> Id {
-            get { return new RawListWrapper<II, Identifier>(id, typeof(IIImpl)); }
+        public ICollection<Identifier> Id {
+            get { return this.id.RawSet(); }
         }
 
         /**
-         * <summary>HealthcareWorkerType</summary>
+         * <summary>Business Name: HealthcareWorkerType</summary>
          * 
-         * <remarks>B: Healthcare Worker Type <p>Indicates the 
-         * &quot;kind&quot; of healthcare participant, such as 
-         * &quot;physician&quot;, &quot;dentist&quot;, &quot;lab 
-         * technician&quot;, &quot;receptionist&quot;, etc.</p> 
-         * <p>Provides context around the actions of the participant 
-         * and is therefore mandatory.</p></remarks>
+         * <remarks>Un-merged Business Name: HealthcareWorkerType 
+         * Relationship: COCT_MT090108CA.AssignedEntity.code 
+         * Conformance/Cardinality: POPULATED (1) <p>Provides context 
+         * around the actions of the participant and is therefore 
+         * mandatory.</p> <p>Indicates the &quot;kind&quot; of 
+         * healthcare participant, such as &quot;physician&quot;, 
+         * &quot;dentist&quot;, &quot;lab technician&quot;, 
+         * &quot;receptionist&quot;, etc.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public AssignedRoleType Code {
@@ -91,25 +95,47 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged {
         }
 
         /**
-         * <summary>HealthcareWorkerPhoneAndEmails</summary>
+         * <summary>Business Name: HealthcareWorkerPhoneAndEmails</summary>
          * 
-         * <remarks>E: Healthcare Worker Phone and Emails <p>Indicates 
-         * phone and/or e-mail addresses at which the healthcare worker 
-         * can be reached.</p> <p>This is the most commonly used piece 
-         * of contact information and is returned here to avoid 
-         * unnecessary queries of the provider registry.</p></remarks>
+         * <remarks>Un-merged Business Name: 
+         * HealthcareWorkerPhoneAndEmails Relationship: 
+         * COCT_MT090108CA.AssignedEntity.telecom 
+         * Conformance/Cardinality: REQUIRED (0-5) <p>This is the most 
+         * commonly used piece of contact information and is returned 
+         * here to avoid unnecessary queries of the provider 
+         * registry.</p> <p>Indicates phone and/or e-mail addresses at 
+         * which the healthcare worker can be reached.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"telecom"})]
         public IList<TelecommunicationAddress> Telecom {
             get { return this.telecom.RawList(); }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * COCT_MT090108CA.AssignedEntity.assignedPerson 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"assignedPerson"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.ActingPerson AssignedPerson {
             get { return this.assignedPerson; }
             set { this.assignedPerson = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * COCT_MT090108CA.AssignedEntity.representedOrganization 
+         * Conformance/Cardinality: REQUIRED (0-1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * COCT_MT090502CA.AssignedEntity.representedOrganization 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"representedOrganization"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.ResponsibleOrganization RepresentedOrganization {
             get { return this.representedOrganization; }

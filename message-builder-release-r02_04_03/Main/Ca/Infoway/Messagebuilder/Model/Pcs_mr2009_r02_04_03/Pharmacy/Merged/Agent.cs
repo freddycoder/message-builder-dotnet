@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,23 +35,41 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Merged {
             this.id = new IIImpl();
         }
         /**
-         * <summary>SubstitutingPersonIdentifier</summary>
+         * <summary>Business Name: SubstitutingPersonIdentifier</summary>
          * 
-         * <remarks>Substituting Person Identifier <p>invariant( x) { 
-         * The identifier must be either the patient identifier, the 
-         * prescriber identifier or the dispenser identifier. }</p> 
-         * <p>Identity of the person who ultimately made the 
-         * substitution decision.</p> <p>Provides a trace of 
-         * responsibility for the substitution.</p> Substituting Person 
-         * Identifier <p>The identifier must be either the patient 
-         * identifier, the prescriber identifier or the dispenser 
-         * identifier</p> <p>The identity of the person who was 
-         * ultimately responsible for the drug substitution.</p><p>This 
-         * is either the patient, the prescriber of the dispenser.</p> 
-         * <p>The identity of the person who was ultimately responsible 
-         * for the drug substitution.</p><p>This is either the patient, 
-         * the prescriber of the dispenser.</p> <p>Provides a trace of 
-         * responsibility for the dispensed drug.</p></remarks>
+         * <remarks>Un-merged Business Name: 
+         * SubstitutingPersonIdentifier Relationship: 
+         * PORX_MT060090CA.Agent.id Conformance/Cardinality: MANDATORY 
+         * (1) <p>The identifier must be either the patient identifier, 
+         * the prescriber identifier or the dispenser identifier</p> 
+         * <p>Provides a trace of responsibility for the dispensed 
+         * drug.</p> <p>The identity of the person who was ultimately 
+         * responsible for the drug substitution.</p><p>This is either 
+         * the patient, the prescriber of the dispenser.</p> Un-merged 
+         * Business Name: SubstitutingPersonIdentifier Relationship: 
+         * PORX_MT060340CA.Agent.id Conformance/Cardinality: MANDATORY 
+         * (1) <p>The identifier must be either the patient identifier, 
+         * the prescriber identifier or the dispenser identifier</p> 
+         * <p>Provides a trace of responsibility for the dispensed 
+         * drug.</p> <p>The identity of the person who was ultimately 
+         * responsible for the drug substitution.</p><p>This is either 
+         * the patient, the prescriber of the dispenser.</p> Un-merged 
+         * Business Name: SubstitutingPersonIdentifier Relationship: 
+         * PORX_MT020070CA.Agent.id Conformance/Cardinality: MANDATORY 
+         * (1) <p>invariant( x) { The identifier must be either the 
+         * patient identifier, the prescriber identifier or the 
+         * dispenser identifier. }</p> <p>Provides a trace of 
+         * responsibility for the substitution.</p> <p>Identity of the 
+         * person who ultimately made the substitution decision.</p> 
+         * Un-merged Business Name: SubstitutingPersonIdentifier 
+         * Relationship: PORX_MT060160CA.Agent.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>The identifier 
+         * must be either the patient identifier, the prescriber 
+         * identifier or the dispenser identifier</p> <p>Provides a 
+         * trace of responsibility for the dispensed drug.</p> <p>The 
+         * identity of the person who was ultimately responsible for 
+         * the drug substitution.</p><p>This is either the patient, the 
+         * prescriber of the dispenser.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {

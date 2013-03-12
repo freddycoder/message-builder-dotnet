@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,10 +27,10 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Ficr_mt61020
 
 
     /**
-     * <summary>Adjudication Result Reason</summary>
+     * <summary>Business Name: Adjudication Result Reason</summary>
      * 
-     * <remarks><p>Reason / rationale that explain the adjudication 
-     * results.</p></remarks>
+     * <p>Reason / rationale that explain the adjudication 
+     * results.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"FICR_MT610201CA.AdjudicationResultReason"})]
     public class AdjudicationResultReason : MessagePartBean, Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Merged.IAdjudicationCodeChoice {
@@ -41,16 +41,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Ficr_mt61020
             this.value = new STImpl();
         }
         /**
-         * <summary>Adjudication Reason</summary>
+         * <summary>Business Name: Adjudication Reason</summary>
          * 
-         * <remarks><p>Reason / rationale that explain the adjudication 
-         * results.</p> <p>Domain is ActAdjudicationReason.</p><p>A 
-         * subset of these codes may be included in the COB CMET for 
-         * downstream adjudicators due to privacy 
-         * concerns/legislation.</p> <p>Domain is 
+         * <remarks>Relationship: 
+         * FICR_MT610201CA.AdjudicationResultReason.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Domain is 
          * ActAdjudicationReason.</p><p>A subset of these codes may be 
          * included in the COB CMET for downstream adjudicators due to 
-         * privacy concerns/legislation.</p></remarks>
+         * privacy concerns/legislation.</p> <p>Reason / rationale that 
+         * explain the adjudication results.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"value"})]
         public String Value {

@@ -1,4 +1,24 @@
-using System.Collections.Generic;
+/**
+ * Copyright 2013 Canada Health Infoway, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Author:        $LastChangedBy: tmcgrady $
+ * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Revision:      $LastChangedRevision: 2623 $
+ */
+using Ca.Infoway.Messagebuilder;
+using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter;
@@ -23,33 +43,17 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 	[DataTypeHandler("TEL.URI")]
 	public class TelUriPropertyFormatter : AbstractValueNullFlavorPropertyFormatter<TelecommunicationAddress>
 	{
-		private static readonly IList<string> ALLOWABLE_URL_SCHEMES = new List<string>();
+		private static readonly TelValidationUtils TEL_VALIDATION_UTILS = new TelValidationUtils();
 
-		static TelUriPropertyFormatter()
+		protected sealed override string GetValue(TelecommunicationAddress uri, FormatContext context, BareANY bareAny)
 		{
-			ALLOWABLE_URL_SCHEMES.Add("file");
-			ALLOWABLE_URL_SCHEMES.Add("ftp");
-			ALLOWABLE_URL_SCHEMES.Add("http");
-			ALLOWABLE_URL_SCHEMES.Add("https");
-			ALLOWABLE_URL_SCHEMES.Add("mailto");
-			ALLOWABLE_URL_SCHEMES.Add("nfs");
-		}
-
-		/// <exception cref="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.ModelToXmlTransformationException"></exception>
-		protected sealed override string GetValue(TelecommunicationAddress uri, FormatContext context)
-		{
-			ValidateUrlScheme(uri);
+			string type = context.Type;
+			StandardDataType specializationType = bareAny.DataType;
+			VersionNumber version = context.GetVersion();
+			Hl7Errors errors = context.GetModelToXmlResult();
+			TEL_VALIDATION_UTILS.ValidateTelecommunicationAddress(uri, type, specializationType.Type, version, null, context.GetPropertyPath
+				(), errors);
 			return uri.ToString();
-		}
-
-		/// <exception cref="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.ModelToXmlTransformationException"></exception>
-		protected virtual void ValidateUrlScheme(TelecommunicationAddress uri)
-		{
-			if (!ALLOWABLE_URL_SCHEMES.Contains(uri.UrlScheme.CodeValue))
-			{
-				throw new ModelToXmlTransformationException("URLScheme " + uri.UrlScheme.CodeValue + " is not supported for TEL.URI data"
-					);
-			}
 		}
 	}
 }

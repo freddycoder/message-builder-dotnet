@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Author:        $LastChangedBy: gng $
- * Last modified: $LastChangedDate: 2012-07-20 16:18:30 -0400 (Fri, 20 Jul 2012) $
- * Revision:      $LastChangedRevision: 5983 $
+ * Author:        $LastChangedBy: tmcgrady $
+ * Last modified: $LastChangedDate: 2013-03-01 17:48:17 -0500 (Fri, 01 Mar 2013) $
+ * Revision:      $LastChangedRevision: 6663 $
  */
 
 using Ca.Infoway.Messagebuilder.Platform;

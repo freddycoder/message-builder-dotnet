@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,35 +24,28 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged {
 
 
     /**
-     * <summary>ConsentGivenTo</summary>
+     * <summary>Business Name: ConsentGivenTo</summary>
      * 
      * <remarks>RCMR_MT010001CA.Receiver: *consent given to 
-     * <p>Identifies the beneficiary of the consent as being a 
-     * Provider or Service Location.</p> <p>Indicates who is being 
-     * authorized to receive the information, and is therefore 
-     * populated.</p> COCT_MT470012CA.Receiver: *consent given to 
-     * <p>Identifies the beneficiary of the consent as being a 
-     * Provider or Service Location.</p> <p>Indicates who is 
-     * receiving consent to view information.</p><p>This 
-     * participation is marked as &quot;populated&quot; as receiver 
-     * must be specified when keyword is involved.</p> <p>Indicates 
-     * who is receiving consent to view information.</p><p>This 
+     * <p>Indicates who is being authorized to receive the 
+     * information, and is therefore populated.</p> <p>Identifies 
+     * the beneficiary of the consent as being a Provider or 
+     * Service Location.</p> COCT_MT470012CA.Receiver: *consent 
+     * given to <p>Indicates who is receiving consent to view 
+     * information.</p><p>This participation is marked as 
+     * &quot;populated&quot; as receiver must be specified when 
+     * keyword is involved.</p> <p>Identifies the beneficiary of 
+     * the consent as being a Provider or Service Location.</p> 
+     * COCT_MT470002CA.Receiver: *consent given to <p>Indicates who 
+     * is receiving consent to view information.</p><p>This 
      * participation is marked as &quot;populated&quot; as receiver 
      * must be specified when keyword is involved.</p> 
-     * COCT_MT470002CA.Receiver: *consent given to <p>Identifies 
-     * the beneficiary of the consent as being a Provider or 
-     * Service Location.</p> <p>Indicates who is receiving consent 
-     * to view information.</p><p>This participation is marked as 
-     * &quot;populated&quot; as receiver must be specified when 
-     * keyword is involved.</p> <p>Indicates who is receiving 
-     * consent to view information.</p><p>This participation is 
-     * marked as &quot;populated&quot; as receiver must be 
-     * specified when keyword is involved.</p> 
-     * POIZ_MT030060CA.Receiver: (no business name) <p>Identifies 
-     * the beneficiary of the consent.</p> <p>Indicates who is 
-     * receiving consent to administer the vaccine. This 
-     * information may not always be known. As a result, this 
-     * association is required.</p></remarks>
+     * <p>Identifies the beneficiary of the consent as being a 
+     * Provider or Service Location.</p> POIZ_MT030060CA.Receiver: 
+     * (no business name) <p>Indicates who is receiving consent to 
+     * administer the vaccine. This information may not always be 
+     * known. As a result, this association is required.</p> 
+     * <p>Identifies the beneficiary of the consent.</p></remarks>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"COCT_MT470002CA.Receiver","COCT_MT470012CA.Receiver","POIZ_MT030050CA.Receiver","POIZ_MT030060CA.Receiver","POIZ_MT060150CA.Receiver","RCMR_MT010001CA.Receiver"})]
     public class ConsentGivenTo : MessagePartBean {
@@ -61,6 +54,26 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged {
 
         public ConsentGivenTo() {
         }
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: RCMR_MT010001CA.Receiver.recipient 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * COCT_MT470012CA.Receiver.recipient Conformance/Cardinality: 
+         * POPULATED (1) Un-merged Business Name: (no business name 
+         * specified) Relationship: COCT_MT470002CA.Receiver.recipient 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * POIZ_MT030060CA.Receiver.recipient Conformance/Cardinality: 
+         * POPULATED (1) Un-merged Business Name: (no business name 
+         * specified) Relationship: POIZ_MT060150CA.Receiver.recipient 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * POIZ_MT030050CA.Receiver.recipient Conformance/Cardinality: 
+         * POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"recipient"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.IRecipient Recipient {
             get { return this.recipient; }

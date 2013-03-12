@@ -1,3 +1,22 @@
+/**
+ * Copyright 2013 Canada Health Infoway, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Author:        $LastChangedBy: tmcgrady $
+ * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Revision:      $LastChangedRevision: 2623 $
+ */
 using System.Xml;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype;
@@ -52,8 +71,12 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			XmlToModelResult xmlResult = new XmlToModelResult();
 			string parseResult = (string)new EdSignatureElementParser().Parse(CreateEdContext(), invalidNode, xmlResult).BareValue;
 			Assert.IsNull(parseResult, "parse result");
-			Assert.AreEqual(1, xmlResult.GetHl7Errors().Count, "HL7 error count");
+			Assert.AreEqual(2, xmlResult.GetHl7Errors().Count, "HL7 error count");
 			Hl7Error hl7Error = xmlResult.GetHl7Errors()[0];
+			Assert.AreEqual("Attribute mediaType must be included with a value of \"text/xml\" for ED.SIGNATURE", hl7Error.GetMessage
+				(), "error message");
+			Assert.AreEqual(Hl7ErrorCode.DATA_TYPE_ERROR, hl7Error.GetHl7ErrorCode(), "error message code");
+			hl7Error = xmlResult.GetHl7Errors()[1];
 			Assert.AreEqual("Expected ED.SIGNATURE node to have a child element named signature", hl7Error.GetMessage(), "error message"
 				);
 			Assert.AreEqual(Hl7ErrorCode.DATA_TYPE_ERROR, hl7Error.GetHl7ErrorCode(), "error message code");
@@ -63,7 +86,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		[Test]
 		public virtual void TestParseValidNode()
 		{
-			XmlNode node = CreateNode("<something>" + "  <signature>signatureText</signature>" + "</something>");
+			XmlNode node = CreateNode("<something mediaType=\"text/xml\">" + "  <signature>signatureText</signature>" + "</something>"
+				);
 			Assert.AreEqual("signatureText", new EdSignatureElementParser().Parse(CreateEdContext(), node, null).BareValue, "signature"
 				);
 		}
@@ -72,7 +96,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		[Test]
 		public virtual void TestParseEmptySignatureNode()
 		{
-			XmlNode node = CreateNode("<something>" + "  <signature></signature>" + "</something>");
+			XmlNode node = CreateNode("<something mediaType=\"text/xml\">" + "  <signature></signature>" + "</something>");
 			Assert.AreEqual(string.Empty, new EdSignatureElementParser().Parse(CreateEdContext(), node, null).BareValue, "signature");
 		}
 
@@ -80,7 +104,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		[Test]
 		public virtual void TestParseEmptySignatureNodeAgain()
 		{
-			XmlNode node = CreateNode("<something>" + "  <signature/>" + "</something>");
+			XmlNode node = CreateNode("<something mediaType=\"text/xml\">" + "  <signature/>" + "</something>");
 			Assert.AreEqual(string.Empty, new EdSignatureElementParser().Parse(CreateEdContext(), node, null).BareValue, "signature");
 		}
 	}

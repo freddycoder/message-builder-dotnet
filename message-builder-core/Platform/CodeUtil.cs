@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,12 +26,12 @@ namespace Ca.Infoway.Messagebuilder.Platform
 {
 	public class CodeUtil
 	{
-		public static Code ConvertToCode(string codeAsString)
+		public static Code ConvertToCode(string codeAsString, String codeSystem)
 		{
 			Code result = null;
 			if (StringUtils.IsNotBlank(codeAsString))
 			{
-				result = new TrivialCodeResolver().Lookup<Code>(typeof(Code), codeAsString);
+				result = new TrivialCodeResolver().Lookup<Code>(typeof(Code), codeAsString, codeSystem);
 			}
 			return result;
 		}

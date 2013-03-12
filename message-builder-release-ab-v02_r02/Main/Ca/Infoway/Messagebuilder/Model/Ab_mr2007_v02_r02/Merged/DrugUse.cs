@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
 
 
     /**
-     * <summary>DrugUse</summary>
+     * <summary>Business Name: DrugUse</summary>
      * 
      * <remarks>PORX_MT060340CA.WorkingListEvent: Drug Use 
      * <p>Categorization of prescriptions based on the intended 
@@ -55,11 +55,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             this.code = new CVImpl();
         }
         /**
-         * <summary>D:Treatment Type</summary>
+         * <summary>Un-merged Business Name: TreatmentType</summary>
          * 
-         * <remarks><p>Describes the categorization of the therapy 
-         * envisioned by this prescription (e.g Continuous/Chronic, 
-         * Short-Term/Acute and &quot;As-Needed).</p> <p>Prescription 
+         * <remarks>Relationship: PORX_MT060340CA.WorkingListEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Describes the 
+         * categorization of the therapy envisioned by this 
+         * prescription (e.g Continuous/Chronic, Short-Term/Acute and 
+         * &quot;As-Needed).</p> <p>Prescription 
          * type</p><p>Prescription.drugUseIndicator</p> <p>Prescription 
          * type</p><p>Prescription.drugUseIndicator</p> <p>Allows 
          * categorizing prescription for presentation. May influence 
@@ -75,23 +77,10 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
          * as &quot;populated&quot; because the intended duration of 
          * the therapy should generally be known at prescribe time. 
          * However in some circumstances, it may not be known whether a 
-         * therapy will be short-term or long-term.</p> D:Treatment 
-         * Type <p>Describes the categorization of the therapy 
-         * envisioned by this prescription (e.g. Continuous/Chronic, 
-         * Short-Term/Acute and &quot;As-Needed).</p> <p>Allows 
-         * categorizing prescription for presentation. May influence 
-         * detection of duplicate therapy. May also be used to affect 
-         * how DUR processing is completed. The code is mandatory as 
-         * this information should be known at prescribe time.</p> 
-         * D:Prescription Treatment Type <p>Describes the 
-         * categorization of the therapy envisioned by this 
-         * prescription (e.g. Continuous/Chronic, Short-Term/Acute and 
-         * &quot;As-Needed).</p> <p>Allows categorizing prescription 
-         * for presentation. May influence detection of duplicate 
-         * therapy. May also be used to affect how DUR processing is 
-         * completed. The field is marked as &quot;mandatory&quot; 
-         * because the intended duration of the therapy should be known 
-         * at prescribe time.</p> D:Treatment Type <p>Describes the 
+         * therapy will be short-term or long-term.</p> Un-merged 
+         * Business Name: TreatmentType Relationship: 
+         * PORX_MT060160CA.WorkingListEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Describes the 
          * categorization of the therapy envisioned by this 
          * prescription (e.g. Continuous/Chronic, Short-Term/Acute and 
          * &quot;As-Needed).</p> <p>Prescription 
@@ -103,10 +92,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
          * &quot;populated&quot; because the intended duration of the 
          * therapy should generally be known at prescribe time. However 
          * in some circumstances, it may not be known whether a therapy 
-         * will be short-term or long-term.</p> D:Prescription 
-         * Treatment Type <p>Describes the categorization of the 
-         * therapy envisioned by this prescription (e.g. 
-         * Continuous/Chronic, Short-Term/Acute and 
+         * will be short-term or long-term.</p> Un-merged Business 
+         * Name: PrescriptionTreatmentType Relationship: 
+         * PORX_MT030040CA.WorkingListEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Describes the 
+         * categorization of the therapy envisioned by this 
+         * prescription (e.g. Continuous/Chronic, Short-Term/Acute and 
          * &quot;As-Needed).</p> <p>Allows categorizing prescription 
          * for presentation. May influence detection of duplicate 
          * therapy. May also be used to affect how DUR processing is 
@@ -117,7 +108,27 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
          * May also be used to affect how DUR processing is 
          * completed.</p><p>The field is marked mandatory because the 
          * intended duration of the therapy should be known at 
-         * prescribe time.</p></remarks>
+         * prescribe time.</p> Un-merged Business Name: TreatmentType 
+         * Relationship: PORX_MT010120CA.WorkingListEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Describes the 
+         * categorization of the therapy envisioned by this 
+         * prescription (e.g. Continuous/Chronic, Short-Term/Acute and 
+         * &quot;As-Needed).</p> <p>Allows categorizing prescription 
+         * for presentation. May influence detection of duplicate 
+         * therapy. May also be used to affect how DUR processing is 
+         * completed. The code is mandatory as this information should 
+         * be known at prescribe time.</p> Un-merged Business Name: 
+         * PrescriptionTreatmentType Relationship: 
+         * PORX_MT060190CA.WorkingListEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Describes the 
+         * categorization of the therapy envisioned by this 
+         * prescription (e.g. Continuous/Chronic, Short-Term/Acute and 
+         * &quot;As-Needed).</p> <p>Allows categorizing prescription 
+         * for presentation. May influence detection of duplicate 
+         * therapy. May also be used to affect how DUR processing is 
+         * completed. The field is marked as &quot;mandatory&quot; 
+         * because the intended duration of the therapy should be known 
+         * at prescribe time.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public ActTherapyDurationWorkingListCode Code {

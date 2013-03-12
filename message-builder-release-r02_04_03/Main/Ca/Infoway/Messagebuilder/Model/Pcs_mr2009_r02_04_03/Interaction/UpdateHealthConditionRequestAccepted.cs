@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,6 +25,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged;
 
 
+    /**
+     * <summary>Business Name: REPC_IN000033CA: Update health 
+     * condition request accepted</summary>
+     * 
+     * <p>Indicates that the requested severity, status, start 
+     * date, end date or other information about a 
+     * previously-recorded medical condition has been successfully 
+     * updated.</p> Message: MCCI_MT002300CA.Message Control Act: 
+     * MCAI_MT700226CA.ControlActEvent --> Payload: 
+     * COMT_MT001101CA.ActRequest
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"REPC_IN000033CA"})]
     public class UpdateHealthConditionRequestAccepted : HL7Message_1<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.TriggerEvent_2<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.ActRequest>>, IInteraction {
 

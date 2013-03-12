@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,7 +36,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt610
             this.time = new TSImpl();
         }
         /**
-         * <summary>Adjudication date/time</summary>
+         * <summary>Business Name: Adjudication date/time</summary>
+         * 
+         * <remarks>Relationship: 
+         * FICR_MT610201CA.AdjudicatedInvoiceAuthor.time 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"time"})]
         public PlatformDate Time {
@@ -44,6 +48,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt610
             set { this.time.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * FICR_MT610201CA.AdjudicatedInvoiceAuthor.adjudicatorRole</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"adjudicatorRole"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt610201ca.AdjudicatorRole AdjudicatorRole {
             get { return this.adjudicatorRole; }

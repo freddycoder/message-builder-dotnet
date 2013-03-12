@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -51,7 +51,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt600
             this.parentOrGuardianRoleRelationshipHolderName = new PNImpl();
         }
         /**
-         * <summary>Patient Name</summary>
+         * <summary>Business Name: Patient Name</summary>
+         * 
+         * <remarks>Relationship: 
+         * FICR_MT600201CA.CoveredPartyAsPatientPerson.name 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"name"})]
         public PersonName Name {
@@ -60,7 +64,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt600
         }
 
         /**
-         * <summary>Person Gender</summary>
+         * <summary>Business Name: Person Gender</summary>
+         * 
+         * <remarks>Relationship: 
+         * FICR_MT600201CA.CoveredPartyAsPatientPerson.administrativeGenderCode 
+         * Conformance/Cardinality: REQUIRED (0-1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"administrativeGenderCode"})]
         public AdministrativeGender AdministrativeGenderCode {
@@ -69,7 +77,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt600
         }
 
         /**
-         * <summary>Person Date of birth</summary>
+         * <summary>Business Name: Person Date of birth</summary>
+         * 
+         * <remarks>Relationship: 
+         * FICR_MT600201CA.CoveredPartyAsPatientPerson.birthTime 
+         * Conformance/Cardinality: REQUIRED (0-1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"birthTime"})]
         public PlatformDate BirthTime {
@@ -78,7 +90,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt600
         }
 
         /**
-         * <summary>Person multiple birth indicator</summary>
+         * <summary>Business Name: Person multiple birth indicator</summary>
+         * 
+         * <remarks>Relationship: 
+         * FICR_MT600201CA.CoveredPartyAsPatientPerson.multipleBirthInd 
+         * Conformance/Cardinality: REQUIRED (0-1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"multipleBirthInd"})]
         public bool? MultipleBirthInd {
@@ -87,7 +103,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt600
         }
 
         /**
-         * <summary>Person multiple birth order number</summary>
+         * <summary>Business Name: Person multiple birth order number</summary>
+         * 
+         * <remarks>Relationship: 
+         * FICR_MT600201CA.CoveredPartyAsPatientPerson.multipleBirthOrderNumber 
+         * Conformance/Cardinality: REQUIRED (0-1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"multipleBirthOrderNumber"})]
         public int? MultipleBirthOrderNumber {
@@ -96,7 +116,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt600
         }
 
         /**
-         * <summary>Id of parent</summary>
+         * <summary>Business Name: Id of parent</summary>
+         * 
+         * <remarks>Relationship: 
+         * FICR_MT600201CA.ParentOrGuardianRole.id 
+         * Conformance/Cardinality: REQUIRED (0-1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"parentOrGuardianRole/id"})]
         public Identifier ParentOrGuardianRoleId {
@@ -105,7 +129,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt600
         }
 
         /**
-         * <summary>Parent or Guardian Relationship to patient</summary>
+         * <summary>Business Name: Parent or Guardian Relationship to 
+         * patient</summary>
+         * 
+         * <remarks>Relationship: 
+         * FICR_MT600201CA.ParentOrGuardianRole.code 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"parentOrGuardianRole/code"})]
         public PersonalRelationshipRoleType ParentOrGuardianRoleCode {
@@ -114,7 +143,10 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt600
         }
 
         /**
-         * <summary>Name of Parent or Guardian</summary>
+         * <summary>Business Name: Name of Parent or Guardian</summary>
+         * 
+         * <remarks>Relationship: FICR_MT600201CA.ParentOrGuardian.name 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"parentOrGuardianRole/relationshipHolder/name"})]
         public PersonName ParentOrGuardianRoleRelationshipHolderName {

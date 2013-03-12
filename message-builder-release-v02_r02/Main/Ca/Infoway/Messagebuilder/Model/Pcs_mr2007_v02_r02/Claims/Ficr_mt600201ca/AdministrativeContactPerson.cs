@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,7 +37,10 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Ficr_mt60020
             this.telecom = new TELImpl();
         }
         /**
-         * <summary>Contact Person Name</summary>
+         * <summary>Business Name: Contact Person Name</summary>
+         * 
+         * <remarks>Relationship: FICR_MT600201CA.ContactPerson.name 
+         * Conformance/Cardinality: REQUIRED (0-1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"name"})]
         public PersonName Name {
@@ -46,7 +49,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Ficr_mt60020
         }
 
         /**
-         * <summary>contact person telephone or email details</summary>
+         * <summary>Business Name: contact person telephone or email 
+         * details</summary>
+         * 
+         * <remarks>Relationship: FICR_MT600201CA.ContactPerson.telecom 
+         * Conformance/Cardinality: REQUIRED (0-1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"telecom"})]
         public TelecommunicationAddress Telecom {

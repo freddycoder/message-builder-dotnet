@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,9 +40,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Merged {
             this.expectedUseTime = new IVLImpl<TS, Interval<PlatformDate>>();
         }
         /**
-         * <summary>MaximumFillsPermitted</summary>
+         * <summary>Business Name: MaximumFillsPermitted</summary>
          * 
-         * <remarks>Maximum Fills Permitted</remarks>
+         * <remarks>Un-merged Business Name: MaximumFillsPermitted 
+         * Relationship: FICR_MT490102CA.MaximumLimits.repeatNumber 
+         * Conformance/Cardinality: REQUIRED (0-1) Un-merged Business 
+         * Name: MaximumFillsPermitted Relationship: 
+         * FICR_MT400003CA.MaximumLimits.repeatNumber 
+         * Conformance/Cardinality: REQUIRED (0-1) Un-merged Business 
+         * Name: MaximumFillsPermitted Relationship: 
+         * FICR_MT400004CA.MaximumLimits.repeatNumber 
+         * Conformance/Cardinality: REQUIRED (0-1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"repeatNumber"})]
         public int? RepeatNumber {
@@ -51,9 +59,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Merged {
         }
 
         /**
-         * <summary>MaximumQuantitySupply</summary>
+         * <summary>Business Name: MaximumQuantitySupply</summary>
          * 
-         * <remarks>Maximum Quantity Supply</remarks>
+         * <remarks>Un-merged Business Name: MaximumQuantitySupply 
+         * Relationship: FICR_MT490102CA.MaximumLimits.quantity 
+         * Conformance/Cardinality: REQUIRED (0-1) Un-merged Business 
+         * Name: MaximumQuantitySupply Relationship: 
+         * FICR_MT400003CA.MaximumLimits.quantity 
+         * Conformance/Cardinality: REQUIRED (0-1) Un-merged Business 
+         * Name: MaximumQuantitySupply Relationship: 
+         * FICR_MT400004CA.MaximumLimits.quantity 
+         * Conformance/Cardinality: REQUIRED (0-1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"quantity"})]
         public PhysicalQuantity Quantity {
@@ -62,9 +78,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Merged {
         }
 
         /**
-         * <summary>MaximumDaysSupply</summary>
+         * <summary>Business Name: MaximumDaysSupply</summary>
          * 
-         * <remarks>Maximum Days Supply</remarks>
+         * <remarks>Un-merged Business Name: MaximumDaysSupply 
+         * Relationship: FICR_MT490102CA.MaximumLimits.expectedUseTime 
+         * Conformance/Cardinality: REQUIRED (0-1) Un-merged Business 
+         * Name: MaximumDaysSupply Relationship: 
+         * FICR_MT400003CA.MaximumLimits.expectedUseTime 
+         * Conformance/Cardinality: REQUIRED (0-1) Un-merged Business 
+         * Name: MaximumDaysSupply Relationship: 
+         * FICR_MT400004CA.MaximumLimits.expectedUseTime 
+         * Conformance/Cardinality: REQUIRED (0-1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"expectedUseTime"})]
         public Interval<PlatformDate> ExpectedUseTime {

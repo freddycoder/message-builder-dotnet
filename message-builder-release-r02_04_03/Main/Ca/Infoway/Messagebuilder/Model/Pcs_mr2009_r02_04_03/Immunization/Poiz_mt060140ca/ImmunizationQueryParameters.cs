@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,11 +30,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Poiz
 
 
     /**
-     * <summary>Immunization Query Parameters</summary>
+     * <summary>Business Name: Immunization Query Parameters</summary>
      * 
-     * <remarks><p>Defines the set of parameters that may be used 
-     * to filter the query response.</p> <p>Root class for 
-     * query.</p></remarks>
+     * <p>Root class for query.</p> <p>Defines the set of 
+     * parameters that may be used to filter the query 
+     * response.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"POIZ_MT060140CA.ParameterList"})]
     public class ImmunizationQueryParameters : MessagePartBean {
@@ -53,11 +53,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Poiz
             this.patientNameValue = new PNImpl();
         }
         /**
-         * <summary>A:Immunization Event ID</summary>
+         * <summary>Business Name: A:Immunization Event ID</summary>
          * 
-         * <remarks><p>Specifies the identifier of the immunization 
-         * event</p> <p>Allows for filtering of queries by immuniation 
-         * event ID. As a result, this attribute is mandatory.</p></remarks>
+         * <remarks>Relationship: 
+         * POIZ_MT060140CA.ImmunizationEventID.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows for 
+         * filtering of queries by immuniation event ID. As a result, 
+         * this attribute is mandatory.</p> <p>Specifies the identifier 
+         * of the immunization event</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"immunizationEventID/value"})]
         public Identifier ImmunizationEventIDValue {
@@ -66,11 +69,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Poiz
         }
 
         /**
-         * <summary>E:Patient Birth Date</summary>
+         * <summary>Business Name: E:Patient Birth Date</summary>
          * 
-         * <remarks><p>Indicates the date on which the patient was 
-         * born.</p> <p>Use to confirm identity of the patient for the 
-         * query. As a result, this attribute is required.</p></remarks>
+         * <remarks>Relationship: 
+         * POIZ_MT060140CA.PatientBirthDate.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Use to confirm 
+         * identity of the patient for the query. As a result, this 
+         * attribute is required.</p> <p>Indicates the date on which 
+         * the patient was born.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"patientBirthDate/value"})]
         public PlatformDate PatientBirthDateValue {
@@ -79,11 +85,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Poiz
         }
 
         /**
-         * <summary>D:Patient Gender</summary>
+         * <summary>Business Name: D:Patient Gender</summary>
          * 
-         * <remarks><p>Indicates the gender (sex) of the patient.</p> 
-         * <p>Used to confirm the identity of the patient for the 
-         * query. As a result, this attribute is required.</p></remarks>
+         * <remarks>Relationship: POIZ_MT060140CA.PatientGender.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Used to confirm 
+         * the identity of the patient for the query. As a result, this 
+         * attribute is required.</p> <p>Indicates the gender (sex) of 
+         * the patient.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"patientGender/value"})]
         public AdministrativeGender PatientGenderValue {
@@ -92,14 +100,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Poiz
         }
 
         /**
-         * <summary>B:Patient Identifiers</summary>
+         * <summary>Business Name: B:Patient Identifiers</summary>
          * 
-         * <remarks><p>Identifier of the patient who is the subject of 
-         * the patient immunization query. Filter the result set to 
-         * include only those records pertaining to the patient with 
-         * this Id.</p> <p>Allows filtering of result set by patient 
-         * ID. This information is used to verify the record. As a 
-         * result, this attribute is required.</p></remarks>
+         * <remarks>Relationship: POIZ_MT060140CA.PatientID.value 
+         * Conformance/Cardinality: MANDATORY (1-5) <p>Allows filtering 
+         * of result set by patient ID. This information is used to 
+         * verify the record. As a result, this attribute is 
+         * required.</p> <p>Identifier of the patient who is the 
+         * subject of the patient immunization query. Filter the result 
+         * set to include only those records pertaining to the patient 
+         * with this Id.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"patientID/value"})]
         public ICollection<Identifier> PatientIDValue {
@@ -107,20 +117,19 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Poiz
         }
 
         /**
-         * <summary>C:Patient Name</summary>
+         * <summary>Business Name: C:Patient Name</summary>
          * 
-         * <remarks><p>The name of the patient who is the subject of 
-         * the patient immunization query.</p><p>Filter the result set 
-         * to include only those records pertaining to the patient with 
-         * this name.</p> <p>The name of the patient who is the subject 
-         * of the patient immunization query.</p><p>Filter the result 
-         * set to include only those records pertaining to the patient 
-         * with this name.</p> <p>Allows filtering of result set by 
-         * patient name. This information is used to verify the record. 
-         * As a result, this attribute is required.</p> <p>Names are 
-         * messaged as iterations of the PN datatype, with specific 
-         * name parts identified as a type declaration in addition to 
-         * the text string.</p></remarks>
+         * <remarks>Relationship: POIZ_MT060140CA.PatientName.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows filtering 
+         * of result set by patient name. This information is used to 
+         * verify the record. As a result, this attribute is 
+         * required.</p> <p>Names are messaged as iterations of the PN 
+         * datatype, with specific name parts identified as a type 
+         * declaration in addition to the text string.</p> <p>The name 
+         * of the patient who is the subject of the patient 
+         * immunization query.</p><p>Filter the result set to include 
+         * only those records pertaining to the patient with this 
+         * name.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"patientName/value"})]
         public PersonName PatientNameValue {

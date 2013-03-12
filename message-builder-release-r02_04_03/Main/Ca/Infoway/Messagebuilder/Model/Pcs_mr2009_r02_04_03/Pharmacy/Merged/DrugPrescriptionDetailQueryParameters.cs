@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,12 +33,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Merged {
      * <summary>PORX_MT060280CA.ParameterList: Drug Prescription 
      * Detail Query Parameters</summary>
      * 
-     * <remarks><p>Defines the set of parameters that may be used 
-     * to filter the query response.</p> <p>Root class for query 
-     * definition.</p> PORX_MT060360CA.ParameterList: Generic Query 
-     * Parameters <p>Defines the set of parameters that may be used 
-     * to filter the query response.</p> <p>Root class for query 
-     * definition</p></remarks>
+     * <p>Root class for query definition.</p> <p>Defines the set 
+     * of parameters that may be used to filter the query 
+     * response.</p> PORX_MT060360CA.ParameterList: Generic Query 
+     * Parameters <p>Root class for query definition</p> <p>Defines 
+     * the set of parameters that may be used to filter the query 
+     * response.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"PORX_MT060280CA.ParameterList","PORX_MT060360CA.ParameterList"})]
     public class DrugPrescriptionDetailQueryParameters : MessagePartBean {
@@ -63,28 +63,22 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Merged {
             this.prescriptionDispenseNumberValue = new IIImpl();
         }
         /**
-         * <summary>CareCompositionIDs</summary>
+         * <summary>Business Name: CareCompositionIDs</summary>
          * 
-         * <remarks>Care Composition IDs <p>Desc: Filters the records 
-         * retrieved to only include those associated with the 
-         * specified encounter, episode or care event. If unspecified, 
-         * no filter is applied.</p><p>Note: When matching on care 
-         * composition id, systems should also retrieve records with a 
-         * fulfillment id to requisitions associated with the care 
-         * composition. E.g. When retrieving records associated with an 
-         * encounter which includes a referral, the retrieved records 
-         * should also include the care summary created in fulfillment 
-         * of the referral.</p> <p>Desc: Filters the records retrieved 
-         * to only include those associated with the specified 
-         * encounter, episode or care event. If unspecified, no filter 
-         * is applied.</p><p>Note: When matching on care composition 
-         * id, systems should also retrieve records with a fulfillment 
-         * id to requisitions associated with the care composition. 
-         * E.g. When retrieving records associated with an encounter 
-         * which includes a referral, the retrieved records should also 
+         * <remarks>Un-merged Business Name: CareCompositionIDs 
+         * Relationship: PORX_MT060280CA.CareCompositionID.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows retrieving 
+         * all records associated with an encounter, episode or care 
+         * event.</p> <p>Desc: Filters the records retrieved to only 
+         * include those associated with the specified encounter, 
+         * episode or care event. If unspecified, no filter is 
+         * applied.</p><p>Note: When matching on care composition id, 
+         * systems should also retrieve records with a fulfillment id 
+         * to requisitions associated with the care composition. E.g. 
+         * When retrieving records associated with an encounter which 
+         * includes a referral, the retrieved records should also 
          * include the care summary created in fulfillment of the 
-         * referral.</p> <p>Allows retrieving all records associated 
-         * with an encounter, episode or care event.</p></remarks>
+         * referral.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"careCompositionID/value"})]
         public IList<Identifier> CareCompositionIDValue {
@@ -92,15 +86,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Merged {
         }
 
         /**
-         * <summary>CareCompositionTypes</summary>
+         * <summary>Business Name: CareCompositionTypes</summary>
          * 
-         * <remarks>Care Composition Types <p>Filters the records 
-         * retrieved to only include those associated with the 
-         * specified 'kind' of encounter, episode or care event. If 
-         * unspecified, no filter is applied.</p> <p>Allows retrieving 
+         * <remarks>Un-merged Business Name: CareCompositionTypes 
+         * Relationship: PORX_MT060280CA.CareCompositionType.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows retrieving 
          * all records associated with a particular type of encounter, 
          * episode or care event. E.g.Orthopedic Clinic Encounter, ER 
-         * encounter, Walk-in encounter, etc.</p></remarks>
+         * encounter, Walk-in encounter, etc.</p> <p>Filters the 
+         * records retrieved to only include those associated with the 
+         * specified 'kind' of encounter, episode or care event. If 
+         * unspecified, no filter is applied.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"careCompositionType/value"})]
         public IList<ActCareEventType> CareCompositionTypeValue {
@@ -108,24 +104,19 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Merged {
         }
 
         /**
-         * <summary>IncludeEventHistoryIndicator</summary>
+         * <summary>Business Name: IncludeEventHistoryIndicator</summary>
          * 
-         * <remarks>Include Event History Indicator <p>Indicates 
-         * whether or not history of selected medication records are to 
-         * be returned along with the detailed 
-         * information.</p><p>&quot;Pending&quot; changes will be 
-         * returned regardless of the setting of this flag.</p> 
+         * <remarks>Un-merged Business Name: 
+         * IncludeEventHistoryIndicator Relationship: 
+         * PORX_MT060280CA.IncludeEventHistoryIndicator.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows for the 
+         * flexibility of omitting/including history in the retrieval 
+         * of the requested information.</p><p>Because the attribute is 
+         * always either 'TRUE' or 'FALSE' it is mandatory.</p> 
          * <p>Indicates whether or not history of selected medication 
          * records are to be returned along with the detailed 
          * information.</p><p>&quot;Pending&quot; changes will be 
-         * returned regardless of the setting of this flag.</p> 
-         * <p>Allows for the flexibility of omitting/including history 
-         * in the retrieval of the requested information.</p><p>Because 
-         * the attribute is always either 'TRUE' or 'FALSE' it is 
-         * mandatory.</p> <p>Allows for the flexibility of 
-         * omitting/including history in the retrieval of the requested 
-         * information.</p><p>Because the attribute is always either 
-         * 'TRUE' or 'FALSE' it is mandatory.</p></remarks>
+         * returned regardless of the setting of this flag.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"includeEventHistoryIndicator/value"})]
         public bool? IncludeEventHistoryIndicatorValue {
@@ -134,32 +125,28 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Merged {
         }
 
         /**
-         * <summary>IncludeIssuesIndicator</summary>
+         * <summary>Business Name: IncludeIssuesIndicator</summary>
          * 
-         * <remarks>Include Issues Indicator <p>Indicates whether or 
-         * not Issues (detected and/or managed) attached to the 
-         * prescription dispense record to be returned along with the 
-         * detailed information.</p> <p>Allows for the flexibility of 
-         * omitting/including issues in the retrieval of patient 
-         * medication data.</p><p>Because the attribute is boolean, it 
-         * must explicitly indicate a 'TRUE' or 'FALSE', and thus it is 
-         * mandatory.</p> <p>Allows for the flexibility of 
-         * omitting/including issues in the retrieval of patient 
-         * medication data.</p><p>Because the attribute is boolean, it 
-         * must explicitly indicate a 'TRUE' or 'FALSE', and thus it is 
-         * mandatory.</p> Include Issues Indicator <p>Indicates whether 
-         * or not issues (detected and/or managed) attached to the 
+         * <remarks>Un-merged Business Name: IncludeIssuesIndicator 
+         * Relationship: PORX_MT060280CA.IncludeIssuesIndicator.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows for the 
+         * flexibility of omitting/including issues in the retrieval of 
+         * medication detail profile data.</p><p>Because the attribute 
+         * is boolean, it must explicitly indicate a 'TRUE' or 'FALSE', 
+         * and thus it is mandatory.</p> <p>Indicates whether or not 
+         * issues (detected and/or managed) attached to the 
          * prescriptions, dispenses and other active medication records 
          * are to be returned along with the detailed information.</p> 
-         * <p>Allows for the flexibility of omitting/including issues 
-         * in the retrieval of medication detail profile 
-         * data.</p><p>Because the attribute is boolean, it must 
-         * explicitly indicate a 'TRUE' or 'FALSE', and thus it is 
-         * mandatory.</p> <p>Allows for the flexibility of 
-         * omitting/including issues in the retrieval of medication 
-         * detail profile data.</p><p>Because the attribute is boolean, 
-         * it must explicitly indicate a 'TRUE' or 'FALSE', and thus it 
-         * is mandatory.</p></remarks>
+         * Un-merged Business Name: IncludeIssuesIndicator 
+         * Relationship: PORX_MT060360CA.IncludeIssuesIndicator.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows for the 
+         * flexibility of omitting/including issues in the retrieval of 
+         * patient medication data.</p><p>Because the attribute is 
+         * boolean, it must explicitly indicate a 'TRUE' or 'FALSE', 
+         * and thus it is mandatory.</p> <p>Indicates whether or not 
+         * Issues (detected and/or managed) attached to the 
+         * prescription dispense record to be returned along with the 
+         * detailed information.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"includeIssuesIndicator/value"})]
         public bool? IncludeIssuesIndicatorValue {
@@ -168,30 +155,27 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Merged {
         }
 
         /**
-         * <summary>IncludeNotesIndicator</summary>
+         * <summary>Business Name: IncludeNotesIndicator</summary>
          * 
-         * <remarks>Include Notes Indicator <p>Indicates whether or not 
+         * <remarks>Un-merged Business Name: IncludeNotesIndicator 
+         * Relationship: PORX_MT060280CA.IncludeNotesIndicator.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows for the 
+         * flexibility of omitting/including notes in the retrieval of 
+         * information for medication data.</p><p>Because the attribute 
+         * is boolean, it must explicitly indicate a 'TRUE' or 'FALSE', 
+         * and thus it is mandatory.</p> <p>Indicates whether or not 
          * notes attached to the selected medication records are to be 
-         * returned along with the detailed information.</p> <p>Allows 
-         * for the flexibility of omitting/including notes in the 
-         * retrieval of information for medication data.</p><p>Because 
-         * the attribute is boolean, it must explicitly indicate a 
-         * 'TRUE' or 'FALSE', and thus it is mandatory.</p> <p>Allows 
-         * for the flexibility of omitting/including notes in the 
-         * retrieval of information for medication data.</p><p>Because 
-         * the attribute is boolean, it must explicitly indicate a 
-         * 'TRUE' or 'FALSE', and thus it is mandatory.</p> Include 
-         * Notes Indicator <p>Indicates whether or not notes attached 
-         * to the prescription dispense record are to be returned along 
-         * with the detailed information.</p> <p>Allows for the 
+         * returned along with the detailed information.</p> Un-merged 
+         * Business Name: IncludeNotesIndicator Relationship: 
+         * PORX_MT060360CA.IncludeNotesIndicator.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows for the 
          * flexibility of omitting/including notes in the retrieval of 
          * information for medication detail data.</p><p>Because the 
          * attribute is boolean, it must explicitly indicate a 'TRUE' 
-         * or 'FALSE', and thus it is mandatory.</p> <p>Allows for the 
-         * flexibility of omitting/including notes in the retrieval of 
-         * information for medication detail data.</p><p>Because the 
-         * attribute is boolean, it must explicitly indicate a 'TRUE' 
-         * or 'FALSE', and thus it is mandatory.</p></remarks>
+         * or 'FALSE', and thus it is mandatory.</p> <p>Indicates 
+         * whether or not notes attached to the prescription dispense 
+         * record are to be returned along with the detailed 
+         * information.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"includeNotesIndicator/value"})]
         public bool? IncludeNotesIndicatorValue {
@@ -200,21 +184,20 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Merged {
         }
 
         /**
-         * <summary>IncludePendingChangesIndicator</summary>
+         * <summary>Business Name: IncludePendingChangesIndicator</summary>
          * 
-         * <remarks>Include Pending Changes Indicator <p>Indicates 
+         * <remarks>Un-merged Business Name: 
+         * IncludePendingChangesIndicator Relationship: 
+         * PORX_MT060280CA.IncludePendingChangesIndicator.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows for the 
+         * flexibility of omitting/including future events in the 
+         * retrieval of the requested information.</p><p>Because the 
+         * attribute is boolean, it must explicitly indicate a 'TRUE' 
+         * or 'FALSE', and thus it is mandatory.</p> <p>Indicates 
          * whether to include future changes (e.g. status changes that 
          * aren't effective yet) associated with a prescription order 
          * and/or prescription dispense are to be returned along with 
-         * the detailed information.</p> <p>Allows for the flexibility 
-         * of omitting/including future events in the retrieval of the 
-         * requested information.</p><p>Because the attribute is 
-         * boolean, it must explicitly indicate a 'TRUE' or 'FALSE', 
-         * and thus it is mandatory.</p> <p>Allows for the flexibility 
-         * of omitting/including future events in the retrieval of the 
-         * requested information.</p><p>Because the attribute is 
-         * boolean, it must explicitly indicate a 'TRUE' or 'FALSE', 
-         * and thus it is mandatory.</p></remarks>
+         * the detailed information.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"includePendingChangesIndicator/value"})]
         public bool? IncludePendingChangesIndicatorValue {
@@ -223,16 +206,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Merged {
         }
 
         /**
-         * <summary>PrescriptionOrderNumber</summary>
+         * <summary>Business Name: PrescriptionOrderNumber</summary>
          * 
-         * <remarks>Prescription order Number <p>Identifier of the 
-         * prescription for which detailed information is 
-         * required.</p><p>The result set will be filtered to only the 
-         * specific prescription.</p> <p>Identifier of the prescription 
-         * for which detailed information is required.</p><p>The result 
-         * set will be filtered to only the specific prescription.</p> 
-         * <p>Identifies the prescription that is to be retrieved, and 
-         * is therefore mandatory.</p></remarks>
+         * <remarks>Un-merged Business Name: PrescriptionOrderNumber 
+         * Relationship: PORX_MT060280CA.PrescriptionOrderNumber.value 
+         * Conformance/Cardinality: MANDATORY (1-2) <p>Identifies the 
+         * prescription that is to be retrieved, and is therefore 
+         * mandatory.</p> <p>Identifier of the prescription for which 
+         * detailed information is required.</p><p>The result set will 
+         * be filtered to only the specific prescription.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"prescriptionOrderNumber/value"})]
         public ICollection<Identifier> PrescriptionOrderNumberValue {
@@ -240,14 +222,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Merged {
         }
 
         /**
-         * <summary>PrescriptionDispenseNumber</summary>
+         * <summary>Business Name: PrescriptionDispenseNumber</summary>
          * 
-         * <remarks>D:Prescription Dispense Number <p>Identifies which 
-         * prescription dispense record should be retrieved.</p> 
-         * <p>Allows for the retrieval of medication records relating 
-         * to a specific dispense record. A dispense cannot be 
-         * retrieved without the identifier of the record, and the 
-         * attribute is therefore mandatory.</p></remarks>
+         * <remarks>Un-merged Business Name: PrescriptionDispenseNumber 
+         * Relationship: 
+         * PORX_MT060360CA.PrescriptionDispenseNumber.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows for the 
+         * retrieval of medication records relating to a specific 
+         * dispense record. A dispense cannot be retrieved without the 
+         * identifier of the record, and the attribute is therefore 
+         * mandatory.</p> <p>Identifies which prescription dispense 
+         * record should be retrieved.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"prescriptionDispenseNumber/value"})]
         public Identifier PrescriptionDispenseNumberValue {

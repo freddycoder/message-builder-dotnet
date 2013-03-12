@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
 
 
     /**
-     * <summary>PrescriptionPatientMeasurements</summary>
+     * <summary>Business Name: PrescriptionPatientMeasurements</summary>
      * 
      * <remarks>PORX_MT060340CA.QuantityObservationEvent: 
      * Prescription Patient Measurements <p>This comprises the 
@@ -63,23 +63,40 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             this.value = new PQImpl();
         }
         /**
-         * <summary>PrescriptionPatientMeasurementType</summary>
+         * <summary>Business Name: PrescriptionPatientMeasurementType</summary>
          * 
-         * <remarks>Prescription Patient Measurement Type 
-         * <p>Identification of the type of observation that was made 
-         * about the patient. The only two allowable types are height 
-         * and weight.</p> <p>OBS.010-01</p><p>Clinical.495-H2</p> 
+         * <remarks>Un-merged Business Name: 
+         * PrescriptionPatientMeasurementType Relationship: 
+         * PORX_MT060340CA.QuantityObservationEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Identification of 
+         * the type of observation that was made about the patient. The 
+         * only two allowable types are height and weight.</p> 
+         * <p>OBS.010-01</p><p>Clinical.495-H2</p> 
          * <p>OBS.010-01</p><p>Clinical.495-H2</p> <p>Distinguishes 
          * height from weight.</p><p>Code is mandatory to ensure that 
          * measurements/observations are distinguishable.</p> 
          * <p>Distinguishes height from weight.</p><p>Code is mandatory 
          * to ensure that measurements/observations are 
-         * distinguishable.</p> Prescription Patient Measurement Type 
-         * <p>Identification of the type of measurement/observation 
-         * that was made about the patient. The only two allowable 
-         * types are height and weight.</p> <p>Distinguishes what kind 
-         * of information is being specified. Code is mandatory to 
-         * ensure that measurements/observations are 
+         * distinguishable.</p> Un-merged Business Name: 
+         * PrescriptionPatientMeasurementType Relationship: 
+         * PORX_MT010120CA.QuantityObservationEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Identification of 
+         * the type of measurement/observation that was made about the 
+         * patient. The only two allowable types are height and 
+         * weight.</p> <p>Distinguishes what kind of information is 
+         * being specified. Code is mandatory to ensure that 
+         * measurements/observations are distinguishable.</p> Un-merged 
+         * Business Name: PrescriptionPatientMeasurementType 
+         * Relationship: PORX_MT060160CA.QuantityObservationEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Identification of 
+         * the type of observation that was made about the patient. The 
+         * only two allowable types are height and weight.</p> 
+         * <p>OBS.010-01</p><p>Clinical.495-H2</p> 
+         * <p>OBS.010-01</p><p>Clinical.495-H2</p> <p>Distinguishes 
+         * height from weight.</p><p>Code is mandatory to ensure that 
+         * measurements/observations are distinguishable.</p> 
+         * <p>Distinguishes height from weight.</p><p>Code is mandatory 
+         * to ensure that measurements/observations are 
          * distinguishable.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
@@ -89,9 +106,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>Prescription Patient Measurement Time</summary>
+         * <summary>Un-merged Business Name: 
+         * PrescriptionPatientMeasurementTime</summary>
          * 
-         * <remarks><p>The date on which the measurement was made.</p> 
+         * <remarks>Relationship: 
+         * PORX_MT060340CA.QuantityObservationEvent.effectiveTime 
+         * Conformance/Cardinality: POPULATED (1) <p>The date on which 
+         * the measurement was made.</p> 
          * <p>OBS.010-04</p><p>Clinical.494-ZE</p><p>Clinical.495-H1</p> 
          * <p>OBS.010-04</p><p>Clinical.494-ZE</p><p>Clinical.495-H1</p> 
          * <p>OBS.010-04</p><p>Clinical.494-ZE</p><p>Clinical.495-H1</p> 
@@ -101,15 +122,32 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
          * specified.</p> <p>Allows provider to evaluate currency of 
          * the information.</p><p>The attribute is populated because 
          * the measurement time must be known or a null flavor must be 
-         * specified.</p> Prescription Patient Measurement Timestamp 
-         * <p>The date on which the measurement was made</p> <p>Allows 
+         * specified.</p> Un-merged Business Name: 
+         * PrescriptionPatientMeasurementTimestamp Relationship: 
+         * PORX_MT010120CA.QuantityObservationEvent.effectiveTime 
+         * Conformance/Cardinality: POPULATED (1) <p>The date on which 
+         * the measurement was made</p> <p>Allows providers to evaluate 
+         * currency of the information.</p><p>Because the date of 
+         * measurement determines the relevance of the information, 
+         * this attribute is defined as 'populated'.</p> <p>Allows 
          * providers to evaluate currency of the 
          * information.</p><p>Because the date of measurement 
          * determines the relevance of the information, this attribute 
-         * is defined as 'populated'.</p> <p>Allows providers to 
-         * evaluate currency of the information.</p><p>Because the date 
-         * of measurement determines the relevance of the information, 
-         * this attribute is defined as 'populated'.</p></remarks>
+         * is defined as 'populated'.</p> Un-merged Business Name: 
+         * PrescriptionPatientMeasurementTime Relationship: 
+         * PORX_MT060160CA.QuantityObservationEvent.effectiveTime 
+         * Conformance/Cardinality: POPULATED (1) <p>The date on which 
+         * the measurement was made.</p> 
+         * <p>OBS.010-04</p><p>Clinical.494-ZE</p><p>Clinical.495-H1</p> 
+         * <p>OBS.010-04</p><p>Clinical.494-ZE</p><p>Clinical.495-H1</p> 
+         * <p>OBS.010-04</p><p>Clinical.494-ZE</p><p>Clinical.495-H1</p> 
+         * <p>Allows provider to evaluate currency of the 
+         * information.</p><p>The attribute is populated because the 
+         * measurement time must be known or a null flavor must be 
+         * specified.</p> <p>Allows provider to evaluate currency of 
+         * the information.</p><p>The attribute is populated because 
+         * the measurement time must be known or a null flavor must be 
+         * specified.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"effectiveTime"})]
         public PlatformDate EffectiveTime {
@@ -118,9 +156,32 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>PrescriptionPatientMeasuredValue</summary>
+         * <summary>Business Name: PrescriptionPatientMeasuredValue</summary>
          * 
-         * <remarks>Prescription Patient Measured Value <p>The amount 
+         * <remarks>Un-merged Business Name: 
+         * PrescriptionPatientMeasuredValue Relationship: 
+         * PORX_MT060340CA.QuantityObservationEvent.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>The amount 
+         * (quantity and unit) that has been recorded for the patient's 
+         * height and/or weight. E.g. height in meters, weight in 
+         * kilograms, etc.</p> <p>OBS.010-02 
+         * (quantity)</p><p>OBS.010-03 (unit)</p><p>Clinical.595-H4 
+         * (value)</p><p>Clinical.495-H3 (unit)</p> <p>OBS.010-02 
+         * (quantity)</p><p>OBS.010-03 (unit)</p><p>Clinical.595-H4 
+         * (value)</p><p>Clinical.495-H3 (unit)</p> <p>OBS.010-02 
+         * (quantity)</p><p>OBS.010-03 (unit)</p><p>Clinical.595-H4 
+         * (value)</p><p>Clinical.495-H3 (unit)</p> <p>OBS.010-02 
+         * (quantity)</p><p>OBS.010-03 (unit)</p><p>Clinical.595-H4 
+         * (value)</p><p>Clinical.495-H3 (unit)</p> <p>Provides 
+         * comparable representation of the measurement. May be used in 
+         * calculations.</p><p>The attribute is mandatory because the 
+         * measurement value must be known.</p> <p>Provides comparable 
+         * representation of the measurement. May be used in 
+         * calculations.</p><p>The attribute is mandatory because the 
+         * measurement value must be known.</p> Un-merged Business 
+         * Name: PrescriptionPatientMeasuredValue Relationship: 
+         * PORX_MT010120CA.QuantityObservationEvent.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>The amount 
          * (quantity and unit) that has been recorded for the specific 
          * type of observation. E.g. height in meters, weight in 
          * kilograms.</p> <p>Provides comparable representation of the 
@@ -130,10 +191,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
          * representation of the measurement. May be used in 
          * calculations.</p><p>Attribute is defined as 'mandatory' to 
          * ensure that a value is supplied, if there is a 
-         * measurement.</p> Prescription Patient Measured Value <p>The 
-         * amount (quantity and unit) that has been recorded for the 
-         * patient's height and/or weight. E.g. height in meters, 
-         * weight in kilograms, etc.</p> <p>OBS.010-02 
+         * measurement.</p> Un-merged Business Name: 
+         * PrescriptionPatientMeasuredValue Relationship: 
+         * PORX_MT060160CA.QuantityObservationEvent.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>The amount 
+         * (quantity and unit) that has been recorded for the patient's 
+         * height and/or weight. E.g. height in meters, weight in 
+         * kilograms, etc.</p> <p>OBS.010-02 
          * (quantity)</p><p>OBS.010-03 (unit)</p><p>Clinical.595-H4 
          * (value)</p><p>Clinical.495-H3 (unit)</p> <p>OBS.010-02 
          * (quantity)</p><p>OBS.010-03 (unit)</p><p>Clinical.595-H4 

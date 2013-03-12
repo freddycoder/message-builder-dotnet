@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,22 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Merged;
 
 
+    /**
+     * <summary>Business Name: PORX_IN010100CA: Revise assigned 
+     * dispense responsibility req.</summary>
+     * 
+     * <p>Requests that the responsibility for fulfilling the 
+     * dispense portion of a prescription be changed to the 
+     * specified facility. Changing to a null flavor of 
+     * &quot;&quot;Not Applicable&quot;&quot; means that no 
+     * facility has responsibility. Changing to a null flavor of 
+     * &quot;&quot;Unknown&quot;&quot; means that the 
+     * responsibility has been transferred to a facility outside 
+     * the list of registered facilities.</p> Message: 
+     * MCCI_MT002100CA.Message Control Act: 
+     * MCAI_MT700211CA.ControlActEvent --> Payload: 
+     * PORX_MT010140CA.SupplyRequest
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"PORX_IN010100CA"})]
     public class ReviseAssignedDispenseResponsibilityReq : HL7Message_1<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Mcai_mt700211ca.TriggerEvent<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Merged.DispenseInstructions>>, IInteraction {
 

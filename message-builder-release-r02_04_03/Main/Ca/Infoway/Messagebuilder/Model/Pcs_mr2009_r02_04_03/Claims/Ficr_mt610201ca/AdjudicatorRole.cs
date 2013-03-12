@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,9 +27,9 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt610
 
 
     /**
-     * <summary><p>NECST only: To note a contact person 
-     * (adjudicator) for the Provider to contact in case of 
-     * questions on the EOB, use Adjudication Information codes</p></summary>
+     * <p>NECST only: To note a contact person (adjudicator) for 
+     * the Provider to contact in case of questions on the EOB, use 
+     * Adjudication Information codes</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"FICR_MT610201CA.AdjudicatorRole"})]
     public class AdjudicatorRole : MessagePartBean {
@@ -43,7 +43,10 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt610
             this.playingAdjudicatorPersonName = new PNImpl();
         }
         /**
-         * <summary>Adjudicator ID</summary>
+         * <summary>Business Name: Adjudicator ID</summary>
+         * 
+         * <remarks>Relationship: FICR_MT610201CA.AdjudicatorRole.id 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -52,7 +55,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt610
         }
 
         /**
-         * <summary>Adjudicator Person Name</summary>
+         * <summary>Business Name: Adjudicator Person Name</summary>
+         * 
+         * <remarks>Relationship: 
+         * FICR_MT610201CA.AdjudicatorPerson.name 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"playingAdjudicatorPerson/name"})]
         public PersonName PlayingAdjudicatorPersonName {
@@ -60,6 +67,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt610
             set { this.playingAdjudicatorPersonName.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * FICR_MT610201CA.DirectAuthorityOver.insuranceCarrierRole</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"directAuthority/insuranceCarrierRole"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt610201ca.InsuranceCarrierRole DirectAuthorityInsuranceCarrierRole {
             get { return this.directAuthorityInsuranceCarrierRole; }

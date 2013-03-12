@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,10 +30,10 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Porx_mt0
 
 
     /**
-     * <summary><p>Defines the set of parameters that may be used 
-     * to filter the query response.</p></summary>
+     * <p>Root class for query definition</p>
      * 
-     * <remarks><p>Root class for query definition</p></remarks>
+     * <p>Defines the set of parameters that may be used to filter 
+     * the query response.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"PORX_MT060130CA.ParameterList"})]
     public class ParameterList : MessagePartBean {
@@ -56,19 +56,19 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Porx_mt0
             this.rxDispenseIndicatorValue = new List<CV>();
         }
         /**
-         * <summary>Administration Effective Period</summary>
+         * <summary>Business Name: Administration Effective Period</summary>
          * 
-         * <remarks><p>Indicates the period for which the request/query 
-         * applies.</p><p>Filter the result set to include only those 
-         * items that are 'effective' in the indicated period.</p> 
-         * <p>Indicates the period for which the request/query 
-         * applies.</p><p>Filter the result set to include only those 
-         * items that are 'effective' in the indicated period.</p> 
-         * <p>Allows the requester to specify the period of interest 
-         * for the retrieval. Useful for constraining run-away 
-         * queries.</p> <p>The determination for applicability for 
-         * inclusion in the query response should be considered to be 
-         * the 'Pick up date plus the days supply'</p></remarks>
+         * <remarks>Relationship: 
+         * PORX_MT060130CA.AdministrationEffectivePeriod.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows the 
+         * requester to specify the period of interest for the 
+         * retrieval. Useful for constraining run-away queries.</p> 
+         * <p>The determination for applicability for inclusion in the 
+         * query response should be considered to be the 'Pick up date 
+         * plus the days supply'</p> <p>Indicates the period for which 
+         * the request/query applies.</p><p>Filter the result set to 
+         * include only those items that are 'effective' in the 
+         * indicated period.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"administrationEffectivePeriod/value"})]
         public Interval<PlatformDate> AdministrationEffectivePeriodValue {
@@ -77,19 +77,19 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Porx_mt0
         }
 
         /**
-         * <summary>Amended in Time Range</summary>
+         * <summary>Business Name: Amended in Time Range</summary>
          * 
-         * <remarks><p>Indicates that the returned records should be 
-         * filtered to only include those which have been amended in 
-         * some way (had status changed, been annotated, prescription 
-         * was dispensed, etc.) within the indicated time-period. This 
-         * will commonly be used to 'retrieve everything that has been 
-         * amended since xxx'.</p> <p>Allows the requester to specify 
-         * the event period of interest for the retrieval of medication 
-         * records.</p><p>Useful for constraining run-away queries.</p> 
-         * <p>Allows the requester to specify the event period of 
-         * interest for the retrieval of medication 
-         * records.</p><p>Useful for constraining run-away queries.</p></remarks>
+         * <remarks>Relationship: 
+         * PORX_MT060130CA.AmendedInTimeRange.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows the 
+         * requester to specify the event period of interest for the 
+         * retrieval of medication records.</p><p>Useful for 
+         * constraining run-away queries.</p> <p>Indicates that the 
+         * returned records should be filtered to only include those 
+         * which have been amended in some way (had status changed, 
+         * been annotated, prescription was dispensed, etc.) within the 
+         * indicated time-period. This will commonly be used to 
+         * 'retrieve everything that has been amended since xxx'.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"amendedInTimeRange/value"})]
         public Interval<PlatformDate> AmendedInTimeRangeValue {
@@ -98,9 +98,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Porx_mt0
         }
 
         /**
-         * <summary>Care Composition IDs</summary>
+         * <summary>Business Name: Care Composition IDs</summary>
          * 
-         * <remarks><p>Filters the records retrieved to only include 
+         * <remarks>Relationship: 
+         * PORX_MT060130CA.CareCompositionID.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows retrieving 
+         * all records associated with an encounter, episode or care 
+         * event.</p> <p>Filters the records retrieved to only include 
          * those associated with the specified encounter, episode or 
          * care event. If unspecified, no filter is 
          * applied.</p><p>Note: When matching on care composition id, 
@@ -109,17 +113,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Porx_mt0
          * When retrieving records associated with an encounter which 
          * includes a referral, the retrieved records should also 
          * include the care summary created in fulfillment of the 
-         * referral.</p> <p>Filters the records retrieved to only 
-         * include those associated with the specified encounter, 
-         * episode or care event. If unspecified, no filter is 
-         * applied.</p><p>Note: When matching on care composition id, 
-         * systems should also retrieve records with a fulfillment id 
-         * to requisitions associated with the care composition. E.g. 
-         * When retrieving records associated with an encounter which 
-         * includes a referral, the retrieved records should also 
-         * include the care summary created in fulfillment of the 
-         * referral.</p> <p>Allows retrieving all records associated 
-         * with an encounter, episode or care event.</p></remarks>
+         * referral.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"careCompositionID/value"})]
         public IList<Identifier> CareCompositionIDValue {
@@ -127,15 +121,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Porx_mt0
         }
 
         /**
-         * <summary>Care Composition Types</summary>
+         * <summary>Business Name: Care Composition Types</summary>
          * 
-         * <remarks><p>Filters the records retrieved to only include 
-         * those associated with the specified 'kind' of encounter, 
-         * episode or care event. If unspecified, no filter is 
-         * applied.</p> <p>Allows retrieving all records associated 
-         * with a particular type of encounter, episode or care event. 
-         * E.g.Orthopedic Clinic Encounter, ER encounter, Walk-in 
-         * encounter, etc.</p></remarks>
+         * <remarks>Relationship: 
+         * PORX_MT060130CA.CareCompositionType.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows retrieving 
+         * all records associated with a particular type of encounter, 
+         * episode or care event. E.g.Orthopedic Clinic Encounter, ER 
+         * encounter, Walk-in encounter, etc.</p> <p>Filters the 
+         * records retrieved to only include those associated with the 
+         * specified 'kind' of encounter, episode or care event. If 
+         * unspecified, no filter is applied.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"careCompositionType/value"})]
         public IList<ActCareEventType> CareCompositionTypeValue {
@@ -143,19 +139,20 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Porx_mt0
         }
 
         /**
-         * <summary>Issue Filter Code</summary>
+         * <summary>Business Name: Issue Filter Code</summary>
          * 
-         * <remarks><p>Indicates whether records to be returned (e.g. 
+         * <remarks>Relationship: PORX_MT060130CA.IssueFilterCode.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>By filtering 
+         * returned records to include only those which have unmanaged 
+         * issues or any issues at all, allows a provider to focus on 
+         * those aspects of care where extra attention is needed. 
+         * Because the attribute must be known, it is mandatory.</p> 
+         * <p>Indicates whether records to be returned (e.g. 
          * prescription order, prescription dispense and/or other 
          * medication) should be filtered to those with at least one 
          * persistent un-managed issue (against the record), with at 
          * least one persistent issues or should return all records, 
-         * independent of the presence of persistent issues.</p> <p>By 
-         * filtering returned records to include only those which have 
-         * unmanaged issues or any issues at all, allows a provider to 
-         * focus on those aspects of care where extra attention is 
-         * needed. Because the attribute must be known, it is 
-         * mandatory.</p></remarks>
+         * independent of the presence of persistent issues.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"issueFilterCode/value"})]
         public IssueFilterCode IssueFilterCodeValue {
@@ -164,24 +161,23 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Porx_mt0
         }
 
         /**
-         * <summary>Most Recent By Drug Indicator</summary>
+         * <summary>Business Name: Most Recent By Drug Indicator</summary>
          * 
-         * <remarks><p>Indicates whether or not the medication records 
-         * are to be retrieved based on the most recent by Drug Code. 
-         * If true, only the most recent prescription, dispense or 
-         * other active medication for a particular drug generic 
+         * <remarks>Relationship: 
+         * PORX_MT060130CA.MostRecentByDrugIndicator.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Helps decrease the 
+         * volume of records returned, while still maintaining 
+         * information on all drugs that the patient is 
+         * on.</p><p>Because this is a boolean attribute whose value 
+         * must be known to evaluate the query, the attribute is 
+         * mandatory.</p> <p>Indicates whether or not the medication 
+         * records are to be retrieved based on the most recent by Drug 
+         * Code. If true, only the most recent prescription, dispense 
+         * or other active medication for a particular drug generic 
          * classification will be returned. The default is 'FALSE' 
          * indicating that retrieval of prescription, dispense and 
          * other active medication records should not be limited to one 
-         * per drug.</p> <p>Helps decrease the volume of records 
-         * returned, while still maintaining information on all drugs 
-         * that the patient is on.</p><p>Because this is a boolean 
-         * attribute whose value must be known to evaluate the query, 
-         * the attribute is mandatory.</p> <p>Helps decrease the volume 
-         * of records returned, while still maintaining information on 
-         * all drugs that the patient is on.</p><p>Because this is a 
-         * boolean attribute whose value must be known to evaluate the 
-         * query, the attribute is mandatory.</p></remarks>
+         * per drug.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"mostRecentByDrugIndicator/value"})]
         public bool? MostRecentByDrugIndicatorValue {
@@ -190,21 +186,18 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Porx_mt0
         }
 
         /**
-         * <summary>Rx Dispenser Indicators</summary>
+         * <summary>Business Name: Rx Dispenser Indicators</summary>
          * 
-         * <remarks><p>A coded value indicating the dispensing (fill) 
-         * status of the prescription to be included in the result set. 
-         * Rx Dispense Indicators include: ND (Never Dispensed), DRR 
-         * (Dispensed with Refills Remaining), etc.</p><p>The 
-         * repetition of 3 allows for retrieval based on all three Rx 
-         * Dispense Indicators.</p> <p>A coded value indicating the 
-         * dispensing (fill) status of the prescription to be included 
-         * in the result set. Rx Dispense Indicators include: ND (Never 
-         * Dispensed), DRR (Dispensed with Refills Remaining), 
-         * etc.</p><p>The repetition of 3 allows for retrieval based on 
-         * all three Rx Dispense Indicators.</p> <p>Allows for finer 
+         * <remarks>Relationship: 
+         * PORX_MT060130CA.RxDispenseIndicator.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows for finer 
          * sub-set of prescriptions to be retrieved based on the fill 
-         * status of the prescription.</p></remarks>
+         * status of the prescription.</p> <p>A coded value indicating 
+         * the dispensing (fill) status of the prescription to be 
+         * included in the result set. Rx Dispense Indicators include: 
+         * ND (Never Dispensed), DRR (Dispensed with Refills 
+         * Remaining), etc.</p><p>The repetition of 3 allows for 
+         * retrieval based on all three Rx Dispense Indicators.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"rxDispenseIndicator/value"})]
         public IList<PrescriptionDispenseFilterCode> RxDispenseIndicatorValue {

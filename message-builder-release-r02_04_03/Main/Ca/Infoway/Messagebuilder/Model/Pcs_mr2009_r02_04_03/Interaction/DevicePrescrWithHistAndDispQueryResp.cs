@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,18 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Porx_mt060040ca;
 
 
+    /**
+     * <summary>Business Name: PORX_IN060020CA: Device prescr. with 
+     * hist. and disp. query resp.</summary>
+     * 
+     * <p>Returns detailed information about a single identified 
+     * device prescription, including history of changes and all 
+     * fulfilling dispense events.</p> Message: 
+     * MCCI_MT002300CA.Message Control Act: 
+     * QUQI_MT120006CA.ControlActEvent --> Payload: 
+     * PORX_MT060040CA.DeviceRequest --> Payload: 
+     * PORX_MT060280CA.ParameterList
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"PORX_IN060020CA"})]
     public class DevicePrescrWithHistAndDispQueryResp : HL7Message_1<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.TriggerEvent_6<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Porx_mt060040ca.Prescription,Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Merged.DrugPrescriptionDetailQueryParameters>>, IInteraction {
 

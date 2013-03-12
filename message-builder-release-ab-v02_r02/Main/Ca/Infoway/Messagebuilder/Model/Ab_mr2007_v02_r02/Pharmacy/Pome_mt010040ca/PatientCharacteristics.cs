@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,13 +29,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Pome_mt0100
 
 
     /**
-     * <summary>Patient Characteristics</summary>
+     * <summary>Business Name: Patient Characteristics</summary>
      * 
-     * <remarks><p>Value should be mandatory if not using 
-     * SNOMED</p> <p>Indicates a characteristic that should be 
-     * possessed by the patient for the dose to be appropriate.</p> 
-     * <p>Allows filtering of dosages to be appropriate to the 
-     * patient.</p></remarks>
+     * <p>Value should be mandatory if not using SNOMED</p> 
+     * <p>Indicates a characteristic that should be possessed by 
+     * the patient for the dose to be appropriate.</p> <p>Allows 
+     * filtering of dosages to be appropriate to the patient.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"POME_MT010040CA.ObservationEventCriterion"})]
     public class PatientCharacteristics : MessagePartBean {
@@ -50,14 +49,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Pome_mt0100
             this.value = new IVLImpl<PQ, Interval<PhysicalQuantity>>();
         }
         /**
-         * <summary>Patient Characteristic Type</summary>
+         * <summary>Business Name: Patient Characteristic Type</summary>
          * 
-         * <remarks><p>Indicates the type of patient characteristic 
-         * being expressed. E.g. Height, weight, age, lab values, etc. 
-         * If negation indicator is true, then this indicates a 
-         * characteristic the patient should *not* have.</p> <p>Needed 
-         * to identify what type of characteristic is being expressed, 
-         * and therefore mandatory.</p></remarks>
+         * <remarks>Relationship: 
+         * POME_MT010040CA.ObservationEventCriterion.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the type 
+         * of patient characteristic being expressed. E.g. Height, 
+         * weight, age, lab values, etc. If negation indicator is true, 
+         * then this indicates a characteristic the patient should 
+         * *not* have.</p> <p>Needed to identify what type of 
+         * characteristic is being expressed, and therefore 
+         * mandatory.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public ObservationDosageDefinitionPreconditionType Code {
@@ -66,16 +68,18 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Pome_mt0100
         }
 
         /**
-         * <summary>Exclude characteristic?</summary>
+         * <summary>Business Name: Exclude characteristic?</summary>
          * 
-         * <remarks><p>If true, indicates that the characteristic is 
-         * one which should *not* be held by the patient for the dosage 
-         * to apply.</p> <p>Many dosages are inappropriate for patients 
-         * with certain characteristics (e.g. INR values, 
-         * etc.)</p><p>Because it must be known whether the 
-         * characteristic is included or excluded, this element is 
-         * mandatory.</p> <p>Many dosages are inappropriate for 
-         * patients with certain characteristics (e.g. INR values, 
+         * <remarks>Relationship: 
+         * POME_MT010040CA.ObservationEventCriterion.negationInd 
+         * Conformance/Cardinality: MANDATORY (1) <p>If true, indicates 
+         * that the characteristic is one which should *not* be held by 
+         * the patient for the dosage to apply.</p> <p>Many dosages are 
+         * inappropriate for patients with certain characteristics 
+         * (e.g. INR values, etc.)</p><p>Because it must be known 
+         * whether the characteristic is included or excluded, this 
+         * element is mandatory.</p> <p>Many dosages are inappropriate 
+         * for patients with certain characteristics (e.g. INR values, 
          * etc.)</p><p>Because it must be known whether the 
          * characteristic is included or excluded, this element is 
          * mandatory.</p></remarks>
@@ -87,19 +91,22 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Pome_mt0100
         }
 
         /**
-         * <summary>Patient Characteristic Value</summary>
+         * <summary>Business Name: Patient Characteristic Value</summary>
          * 
-         * <remarks><p>Indicates the specific value or range of values 
-         * of the characteristic a patient should have for the dosage 
-         * to be appropriate.</p> <p>Allows comparison to actual 
-         * patient characteristics to see if the dosage is applicable. 
-         * In some circumstances, the specific range may not be known, 
-         * thus the field is &quot;populated&quot;</p><p>Example: This 
-         * dosage specification applies to people over 60 
-         * pounds&quot;.</p> <p>Allows comparison to actual patient 
-         * characteristics to see if the dosage is applicable. In some 
-         * circumstances, the specific range may not be known, thus the 
-         * field is &quot;populated&quot;</p><p>Example: This dosage 
+         * <remarks>Relationship: 
+         * POME_MT010040CA.ObservationEventCriterion.value 
+         * Conformance/Cardinality: POPULATED (1) <p>Indicates the 
+         * specific value or range of values of the characteristic a 
+         * patient should have for the dosage to be appropriate.</p> 
+         * <p>Allows comparison to actual patient characteristics to 
+         * see if the dosage is applicable. In some circumstances, the 
+         * specific range may not be known, thus the field is 
+         * &quot;populated&quot;</p><p>Example: This dosage 
+         * specification applies to people over 60 pounds&quot;.</p> 
+         * <p>Allows comparison to actual patient characteristics to 
+         * see if the dosage is applicable. In some circumstances, the 
+         * specific range may not be known, thus the field is 
+         * &quot;populated&quot;</p><p>Example: This dosage 
          * specification applies to people over 60 pounds&quot;.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"value"})]

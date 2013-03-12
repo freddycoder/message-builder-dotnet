@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -47,6 +47,7 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		private const long serialVersionUID = -3182973493107028067L;
 		private String root;
 		private String extension;
+        private String version;
 	
 		/// <summary>
 		/// Constructs an empty identifier.
@@ -61,20 +62,44 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		///
 		/// <param name="oid">the csystem</param>
 		/// <param name="extension_0">the extension</param>
-		public Identifier(Oid oid, String extension_0) : this((oid == null) ? null : oid.Root, extension_0) {
+		public Identifier(Oid oid, String extension_0) : this((oid == null) ? null : oid.Root, extension_0, null) {
 		}
-	
-		/// <summary>
+
+        /// <summary>
+        /// Constructs an Identifier with the supplied parameters.
+        /// </summary>
+        ///
+        /// <param name="oid">the csystem</param>
+        /// <param name="extension_0">the extension</param>
+        /// <param name="version_1">the version</param>
+        public Identifier(Oid oid, String extension_0, String version_1)
+            : this((oid == null) ? null : oid.Root, extension_0, version_1)
+        {
+        }
+
+        /// <summary>
 		/// Constructs an Identifier with the supplied parameters.
 		/// </summary>
 		///
 		/// <param name="root_0">the root</param>
 		/// <param name="extension_1">the extension</param>
-		public Identifier(String root_0, String extension_1) {
-			this.root = root_0;
-			this.extension = extension_1;
+		public Identifier(String root_0, String extension_1) : this(root_0, extension_1, null) 
+        {
 		}
-	
+
+        /// <summary>
+        /// Constructs an Identifier with the supplied parameters.
+        /// </summary>
+        ///
+        /// <param name="root_0">the root</param>
+        /// <param name="extension_1">the extension</param>
+        /// <param name="version_2">the version</param>
+        public Identifier(String root_0, String extension_1, String version_2) {
+            this.root = root_0;
+            this.extension = extension_1;
+            this.version = version_2;
+        }
+
 		/// <summary>
 		/// Constructs an Identifier with the supplied parameters.
 		/// </summary>
@@ -106,6 +131,33 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 				this.extension = value;
 			}
 		}
+
+        /// <summary>
+        /// Sets the version.
+        /// </summary>
+        ///
+        /// <param name="version_0">the version</param>
+        public String Version
+        {
+            /// <summary>
+            /// Returns the version.
+            /// </summary>
+            ///
+            /// <returns>the version</returns>
+            get
+            {
+                return version;
+            }
+            /// <summary>
+            /// Sets the version.
+            /// </summary>
+            ///
+            /// <param name="version_0">the version</param>
+            set
+            {
+                this.version = value;
+            }
+        }
 		
 	
 		/// <summary>
@@ -139,7 +191,7 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		///
 		/// <returns>the string representation of this object</returns>
 		public override  System.String ToString() {
-			return "root={" + this.root + "},extension={" + this.extension + "}";
+            return "root={" + this.root + "},extension={" + this.extension + "}" + (this.version == null ? "" : ",version={" + this.version + "}");
 		}
 	
 		/// <summary>
@@ -148,7 +200,7 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		///
 		/// <returns>the hashc of this object</returns>
 		public override int GetHashCode() {
-			return new HashCodeBuilder().Append(this.root).Append(this.extension)
+			return new HashCodeBuilder().Append(this.root).Append(this.extension).Append(this.version)
 					.ToHashCode();
 		}
 	
@@ -169,8 +221,11 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		}
 	
 		private bool Equals(Identifier that) {
-			return new EqualsBuilder().Append(this.root, that.root).Append(
-					this.extension, that.extension).IsEquals();
+			return new EqualsBuilder()
+                .Append(this.root, that.root)
+                .Append(this.extension, that.extension)
+                .Append(this.version, that.version)
+                .IsEquals();
 		}
 	}
 }

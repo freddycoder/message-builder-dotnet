@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,6 +30,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Qucr_mt83020
 
         public AdjudicatedResultOutcome() {
         }
+        /**
+         * <summary>Relationship: 
+         * QUCR_MT830201CA.AdjudicatedResultOutcome.adjudicationResult</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"adjudicationResult"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Qucr_mt830201ca.ResultOfAdjudication AdjudicationResult {
             get { return this.adjudicationResult; }

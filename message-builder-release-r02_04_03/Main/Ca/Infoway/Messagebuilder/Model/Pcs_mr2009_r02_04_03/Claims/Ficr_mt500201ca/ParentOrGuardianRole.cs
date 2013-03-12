@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,6 +27,9 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt500
     using Ca.Infoway.Messagebuilder.Model;
 
 
+    /**
+     * <p></p>
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"FICR_MT500201CA.ParentOrGuardianRole"})]
     public class ParentOrGuardianRole : MessagePartBean {
 
@@ -40,7 +43,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt500
             this.relationshipHolderName = new PNImpl();
         }
         /**
-         * <summary>Id of parent</summary>
+         * <summary>Business Name: Id of parent</summary>
+         * 
+         * <remarks>Relationship: 
+         * FICR_MT500201CA.ParentOrGuardianRole.id 
+         * Conformance/Cardinality: REQUIRED (0-1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -49,7 +56,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt500
         }
 
         /**
-         * <summary>Parent or Guardian Relationship to patient</summary>
+         * <summary>Business Name: Parent or Guardian Relationship to 
+         * patient</summary>
+         * 
+         * <remarks>Relationship: 
+         * FICR_MT500201CA.ParentOrGuardianRole.code 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public PersonalRelationshipRoleType Code {
@@ -58,7 +70,10 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt500
         }
 
         /**
-         * <summary>Name of Parent or Guardian</summary>
+         * <summary>Business Name: Name of Parent or Guardian</summary>
+         * 
+         * <remarks>Relationship: FICR_MT500201CA.ParentOrGuardian.name 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"relationshipHolder/name"})]
         public PersonName RelationshipHolderName {

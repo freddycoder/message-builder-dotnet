@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,18 +27,18 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merg
 
 
     /**
-     * <summary>AntigenCount</summary>
+     * <summary>Business Name: AntigenCount</summary>
      * 
      * <remarks>POIZ_MT030050CA.AntigenCount: Antigen Count 
-     * <p>Represents the asserted antigen count.</p> <p>Allows for 
-     * an immunization registry to communicate the current antigen 
-     * count value.</p> POIZ_MT060150CA.AntigenCount: Antigen Count 
-     * <p>Represents the asserted antigen count.</p> <p>Allows for 
-     * an immunization registry to communicate the current antigen 
-     * count value.</p> POIZ_MT030060CA.AntigenCount: Antigen Count 
-     * <p>Represents the asserted antigen count.</p> <p>Allows for 
-     * an immunization registry to communicate the current antigen 
-     * count value.</p></remarks>
+     * <p>Allows for an immunization registry to communicate the 
+     * current antigen count value.</p> <p>Represents the asserted 
+     * antigen count.</p> POIZ_MT060150CA.AntigenCount: Antigen 
+     * Count <p>Allows for an immunization registry to communicate 
+     * the current antigen count value.</p> <p>Represents the 
+     * asserted antigen count.</p> POIZ_MT030060CA.AntigenCount: 
+     * Antigen Count <p>Allows for an immunization registry to 
+     * communicate the current antigen count value.</p> 
+     * <p>Represents the asserted antigen count.</p></remarks>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"POIZ_MT030050CA.AntigenCount","POIZ_MT030060CA.AntigenCount","POIZ_MT060150CA.AntigenCount"})]
     public class AntigenCount : MessagePartBean {
@@ -49,11 +49,24 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merg
             this.value = new INTImpl();
         }
         /**
-         * <summary>AntigenCountValue</summary>
+         * <summary>Business Name: AntigenCountValue</summary>
          * 
-         * <remarks>Antigen Count Value <p>Represents the asserted 
-         * antigen count.</p> <p>Allows for an immunization registry to 
-         * communicate the current antigen count value.</p></remarks>
+         * <remarks>Un-merged Business Name: AntigenCountValue 
+         * Relationship: POIZ_MT030050CA.AntigenCount.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows for an 
+         * immunization registry to communicate the current antigen 
+         * count value.</p> <p>Represents the asserted antigen 
+         * count.</p> Un-merged Business Name: AntigenCountValue 
+         * Relationship: POIZ_MT060150CA.AntigenCount.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows for an 
+         * immunization registry to communicate the current antigen 
+         * count value.</p> <p>Represents the asserted antigen 
+         * count.</p> Un-merged Business Name: AntigenCountValue 
+         * Relationship: POIZ_MT030060CA.AntigenCount.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows for an 
+         * immunization registry to communicate the current antigen 
+         * count value.</p> <p>Represents the asserted antigen 
+         * count.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"value"})]
         public int? Value {

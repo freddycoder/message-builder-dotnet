@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,11 +28,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Porx_mt0
 
 
     /**
-     * <summary>Remaining Dispenses</summary>
+     * <summary>Business Name: Remaining Dispenses</summary>
      * 
-     * <remarks><p>Indicates dispenses yet to be made against the 
-     * prescription</p> <p>Allows updating the quantity remaining 
-     * to be dispensed.</p></remarks>
+     * <p>Allows updating the quantity remaining to be 
+     * dispensed.</p> <p>Indicates dispenses yet to be made against 
+     * the prescription</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"PORX_MT010140CA.SupplyEvent"})]
     public class RemainingDispenses : MessagePartBean {
@@ -44,17 +44,19 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Porx_mt0
             this.quantity = new PQImpl();
         }
         /**
-         * <summary>C:Remaining Quantity</summary>
+         * <summary>Business Name: C:Remaining Quantity</summary>
          * 
-         * <remarks><p>Indicates the remaining quantity to be 
-         * dispensed.</p> <p>Used to adjust quantity asserted with the 
-         * electronic version of a prescription when fills have been 
-         * issued by non-electronic pharmacies. Particularly important 
-         * when the electronic version is being made 'authoritative' 
-         * again.</p> <p>The specified remaining fill quantity may 
-         * never be greater than the remaining quantity recorded in the 
-         * electronic system. If not specified, the quantity remaining 
-         * will be left unchanged.</p></remarks>
+         * <remarks>Relationship: PORX_MT010140CA.SupplyEvent.quantity 
+         * Conformance/Cardinality: MANDATORY (1) <p>Used to adjust 
+         * quantity asserted with the electronic version of a 
+         * prescription when fills have been issued by non-electronic 
+         * pharmacies. Particularly important when the electronic 
+         * version is being made 'authoritative' again.</p> <p>The 
+         * specified remaining fill quantity may never be greater than 
+         * the remaining quantity recorded in the electronic system. If 
+         * not specified, the quantity remaining will be left 
+         * unchanged.</p> <p>Indicates the remaining quantity to be 
+         * dispensed.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"quantity"})]
         public PhysicalQuantity Quantity {
@@ -62,6 +64,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Porx_mt0
             set { this.quantity.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: PORX_MT010140CA.Product.medication</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"product/medication"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt220100ca.DrugProduct ProductMedication {
             get { return this.productMedication; }

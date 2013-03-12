@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
 
 
     /**
-     * <summary>DrugIngredients</summary>
+     * <summary>Business Name: DrugIngredients</summary>
      * 
      * <remarks>COCT_MT220210CA.Substance: Drug Ingredients <p>Must 
      * specify at least one of Drug Ingredient Identifier and Drug 
@@ -86,9 +86,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             this.name = new STImpl();
         }
         /**
-         * <summary>DrugIngredientIdentifier</summary>
+         * <summary>Business Name: DrugIngredientIdentifier</summary>
          * 
-         * <remarks>A:Drug Ingredient Identifier <p>The unique 
+         * <remarks>Un-merged Business Name: DrugIngredientIdentifier 
+         * Relationship: COCT_MT220200CA.Substance.code 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The unique 
          * identifier for the drug or chemical.</p> 
          * <p>CompoundIngredient.IngredientDrug.activeIngredientCode</p><p>CompoundIngredient.IngredientDrug.DIN</p><p>CompoundIngredient.IngredientDrug.hcAigNumber</p><p>CompoundIngredient.IngredientDrug.standardProductId(mnemonic)</p><p>CompoundIngredient.IngredientDrug.standardProductIdType(code 
          * system)</p><p>ZPB3.6(mnemonic)</p><p>ZPB3.7(print 
@@ -136,8 +138,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
          * <p>Allows un-ambiguous identification of the ingredients of 
          * a drug for performing various alert checking.</p><p>Also 
          * allows for the identification of antigens as specific class 
-         * of ingredients in vaccines.</p> A:Drug Ingredient Identifier 
-         * <p>The unique identifier for the drug or chemical.</p> 
+         * of ingredients in vaccines.</p> Un-merged Business Name: 
+         * DrugIngredientIdentifier Relationship: 
+         * COCT_MT220210CA.Substance.code Conformance/Cardinality: 
+         * REQUIRED (0-1) <p>The unique identifier for the drug or 
+         * chemical.</p> 
          * <p>CompoundIngredient.IngredientDrug.activeIngredientCode</p><p>CompoundIngredient.IngredientDrug.DIN</p><p>CompoundIngredient.IngredientDrug.hcAigNumber</p><p>CompoundIngredient.IngredientDrug.standardProductId(mnemonic)</p><p>CompoundIngredient.IngredientDrug.standardProductIdType(code 
          * system)</p><p>ZPB3.6(mnemonic)</p><p>ZPB3.7(print 
          * name)</p><p>ZPJ1.1(mnemonic)</p><p>ZPJ1.2(print 
@@ -174,10 +179,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
          * system)</p><p>ZPB3.6(mnemonic)</p><p>ZPB3.7(print 
          * name)</p><p>ZPJ1.1(mnemonic)</p><p>ZPJ1.2(print 
          * name)</p><p>ZCP.2</p> 
-         * <p>CompoundIngredient.IngredientDrug.activeIngredientCode</p><p>CompoundIngredient.IngredientDrug.DIN</p><p>CompoundIngredient.IngredientDrug.hcAigNumber</p><p>CompoundIngredient.IngredientDrug.standardProductId(mnemonic)</p><p>CompoundIngredient.IngredientDrug.standardProductIdType(code 
-         * system)</p><p>ZPB3.6(mnemonic)</p><p>ZPB3.7(print 
-         * name)</p><p>ZPJ1.1(mnemonic)</p><p>ZPJ1.2(print 
-        
+         * <p>CompoundIngredient.IngredientDrug.activeIngredientCode</p><p>CompoundIngredient.IngredientDrug.DIN</p><p>CompoundIngredient.Ingr
          * ... [rest of documentation truncated due to excessive length]
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
@@ -187,28 +189,51 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>Ingredient Name</summary>
+         * <summary>Un-merged Business Name: DrugIngredientName</summary>
          * 
-         * <remarks><p>The name of the contained drug or chemical.</p> 
-         * <p>Used for communication between and display to 
-         * providers.</p><p>This attribute is marked as 
-         * &quot;populated&quot; as an ingredient name should be 
-         * available in most cases.</p> <p>Used for communication 
-         * between and display to providers.</p><p>This attribute is 
-         * marked as &quot;populated&quot; as an ingredient name should 
-         * be available in most cases.</p> K:Ingredient Name <p>The 
-         * name of the contained drug or chemical.</p> <p>Used for 
-         * communication between and display to providers.</p><p>This 
-         * attribute is marked as &quot;populated&quot; as an 
-         * ingredient name should be available in most cases.</p> 
-         * <p>Used for communication between and display to 
-         * providers.</p><p>This attribute is marked as 
-         * &quot;populated&quot; as an ingredient name should be 
-         * available in most cases.</p> B:Drug Ingredient Name <p>The 
-         * name of the contained drug or chemical.</p> 
+         * <remarks>Relationship: COCT_MT220200CA.Substance.name 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The name of the 
+         * contained drug or chemical.</p> 
          * <p>CompoundIngredient.IngredientDrug.drugProductName</p> 
          * <p>Used for communication between and display to 
-         * providers.</p></remarks>
+         * providers.</p> Un-merged Business Name: DrugIngredientName 
+         * Relationship: COCT_MT220210CA.Substance.name 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The name of the 
+         * contained drug or chemical.</p> 
+         * <p>CompoundIngredient.IngredientDrug.drugProductName</p> 
+         * <p>Used for communication between and display to 
+         * providers.</p> Un-merged Business Name: IngredientName 
+         * Relationship: POME_MT010100CA.Substance.name 
+         * Conformance/Cardinality: POPULATED (1) <p>The name of the 
+         * contained drug or chemical.</p> <p>Used for communication 
+         * between and display to providers.</p><p>This attribute is 
+         * marked as &quot;populated&quot; as an ingredient name should 
+         * be available in most cases.</p> <p>Used for communication 
+         * between and display to providers.</p><p>This attribute is 
+         * marked as &quot;populated&quot; as an ingredient name should 
+         * be available in most cases.</p> Un-merged Business Name: 
+         * DrugIngredientName Relationship: 
+         * COCT_MT220100CA.Substance.name Conformance/Cardinality: 
+         * REQUIRED (0-1) <p>The name of the contained drug or 
+         * chemical.</p> 
+         * <p>CompoundIngredient.IngredientDrug.drugProductName</p> 
+         * <p>Used for communication between and display to 
+         * providers.</p> Un-merged Business Name: DrugIngredientName 
+         * Relationship: COCT_MT220110CA.Substance.name 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The name of the 
+         * contained drug or chemical.</p> 
+         * <p>CompoundIngredient.IngredientDrug.drugProductName</p> 
+         * <p>Used for communication between and display to 
+         * providers.</p> Un-merged Business Name: IngredientName 
+         * Relationship: POME_MT010040CA.Substance.name 
+         * Conformance/Cardinality: POPULATED (1) <p>The name of the 
+         * contained drug or chemical.</p> <p>Used for communication 
+         * between and display to providers.</p><p>This attribute is 
+         * marked as &quot;populated&quot; as an ingredient name should 
+         * be available in most cases.</p> <p>Used for communication 
+         * between and display to providers.</p><p>This attribute is 
+         * marked as &quot;populated&quot; as an ingredient name should 
+         * be available in most cases.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"name"})]
         public String Name {

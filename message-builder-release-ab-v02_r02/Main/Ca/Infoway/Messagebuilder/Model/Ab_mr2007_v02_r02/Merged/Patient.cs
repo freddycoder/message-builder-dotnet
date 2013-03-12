@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
 
 
     /**
-     * <summary>Patient</summary>
+     * <summary>Business Name: Patient</summary>
      * 
      * <remarks>COCT_MT050201CA.Patient: Patient <p>A person who is 
      * receiving or may receive healthcare services and has had 
@@ -66,18 +66,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             this.patientPersonBirthTime = new TSImpl();
         }
         /**
-         * <summary>A:Patient ID</summary>
+         * <summary>Un-merged Business Name: PatientIdentifier</summary>
          * 
-         * <remarks><p>Unique identifier assigned to a person by 
-         * Federal, Provincial and Territorial jurisdiction for the 
-         * purposes of uniquely identifying the person within the 
-         * EHR.</p><p>The EHR will define which identifier to use 
-         * within a jurisdiction.</p> <p>Unique identifier assigned to 
-         * a person by Federal, Provincial and Territorial jurisdiction 
-         * for the purposes of uniquely identifying the person within 
-         * the EHR.</p><p>The EHR will define which identifier to use 
-         * within a jurisdiction.</p> <p>C39 
-         * (Extension)</p><p>PTT.050.01 (Extension)</p><p>PTT.050.02 
+         * <remarks>Relationship: COCT_MT050201CA.Patient.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>Unique identifier 
+         * issued as part of the patient identity verification 
+         * process.</p> <p>C39 (Extension)</p><p>PTT.050.01 
+         * (Extension)</p><p>PTT.050.02 
          * (Root)</p><p>A.1</p><p>PID.2</p><p>Patient.332-CY 
          * (Extension)</p><p>Patient.331-CX 
          * (Root)</p><p>Claim.330-CW</p><p>Health Card 
@@ -168,13 +163,20 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
          * Number</p><p>PID.2</p><p>PID.4</p><p>ZDU.2</p><p>ZKW.3</p><p>Jurisdiction 
          * (Root)</p><p>Person.PHN (Extension)</p> <p>Allows a patient 
          * to be referred to unambiguously. Because this is the 
-         * principal mechanism for identifying humans, the attribute is 
-         * mandatory. If an identifier is not known, it should be 
-         * looked up using the 'client registry' capabilities of the 
-         * EHR application.</p> A:Patient Identifier <p>Unique 
-         * identifier issued as part of the patient identity 
-         * verification process.</p> <p>C39 
-         * (Extension)</p><p>PTT.050.01 (Extension)</p><p>PTT.050.02 
+         * principal mechanism for identifying patients to electronic 
+         * systems, the attribute is mandatory.</p> Un-merged Business 
+         * Name: PatientID Relationship: COCT_MT050203CA.Patient.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>Unique identifier 
+         * assigned to a person by Federal, Provincial and Territorial 
+         * jurisdiction for the purposes of uniquely identifying the 
+         * person within the EHR.</p><p>The EHR will define which 
+         * identifier to use within a jurisdiction.</p> <p>Unique 
+         * identifier assigned to a person by Federal, Provincial and 
+         * Territorial jurisdiction for the purposes of uniquely 
+         * identifying the person within the EHR.</p><p>The EHR will 
+         * define which identifier to use within a jurisdiction.</p> 
+         * <p>C39 (Extension)</p><p>PTT.050.01 
+         * (Extension)</p><p>PTT.050.02 
          * (Root)</p><p>A.1</p><p>PID.2</p><p>Patient.332-CY 
          * (Extension)</p><p>Patient.331-CX 
          * (Root)</p><p>Claim.330-CW</p><p>Health Card 
@@ -220,9 +222,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
          * (Root)</p><p>A.1</p><p>PID.2</p><p>Patient.332-CY 
          * (Extension)</p><p>Patient.331-CX 
          * (Root)</p><p>Claim.330-CW</p><p>Health Card 
-         * Number</p><p>PID.2</p><p>PID.4</p><p>ZDU.2</p><p>ZKW.3</p><p>Jurisdiction 
-         * (Root)</p><p>Person.PHN (Extension)</p> <p>C39 
-         * (Extension
+         * Number</p><p>PID.2</p>
          * ... [rest of documentation truncated due to excessive length]
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
@@ -232,10 +232,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>PatientContactAddress</summary>
+         * <summary>Business Name: PatientContactAddress</summary>
          * 
-         * <remarks>C:Patient Contact Address <p>Physical address for 
-         * the patient where they may be visited or found for the 
+         * <remarks>Un-merged Business Name: PatientContactAddress 
+         * Relationship: COCT_MT050203CA.Patient.addr 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Physical address 
+         * for the patient where they may be visited or found for the 
          * purposes of this particular action. Generally only specified 
          * when different from the addresses stored on the client 
          * registry. E.g. address on a prescription issued when a 
@@ -404,10 +406,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
          * (partType=SAL)</p><p>PTT.060-02 
          * (partType=CTY)</p><p>PTT.060-03 
          * (partType=CNT)</p><p>PTT.060-04 
-         * (partType=ZIP)</p><p>PID.11</p><p>Patient.322-CM 
-         * (partType=SAL)</p><p>Patient.323-CN 
-         * (partType=CTY)</p><p>Patient.324-CO 
-      
+         * (partType=
          * ... [rest of documentation truncated due to excessive length]
          */
         [Hl7XmlMappingAttribute(new string[] {"addr"})]
@@ -417,15 +416,18 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>PatientContactPhoneAndEMails</summary>
+         * <summary>Business Name: PatientContactPhoneAndEMails</summary>
          * 
-         * <remarks>D:Patient Contact Phone and E-mails <p>Telephone, 
-         * fax or e-mail addresses intended as the principal means of 
-         * contact for the patient with regard to the current action. 
-         * E.g. the phone number to reach the patient at regarding the 
-         * results of an ordered test.</p><p>On a prescription, this 
-         * enables the communication of patient contact information to 
-         * the dispenser for the specific prescription. This can be a 
+         * <remarks>Un-merged Business Name: 
+         * PatientContactPhoneAndEMails Relationship: 
+         * COCT_MT050203CA.Patient.telecom Conformance/Cardinality: 
+         * POPULATED (1-5) <p>Telephone, fax or e-mail addresses 
+         * intended as the principal means of contact for the patient 
+         * with regard to the current action. E.g. the phone number to 
+         * reach the patient at regarding the results of an ordered 
+         * test.</p><p>On a prescription, this enables the 
+         * communication of patient contact information to the 
+         * dispenser for the specific prescription. This can be a 
          * phone/fax number and/or email address</p> <p>Telephone, fax 
          * or e-mail addresses intended as the principal means of 
          * contact for the patient with regard to the current action. 
@@ -527,13 +529,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>PatientName</summary>
+         * <summary>Business Name: PatientName</summary>
          * 
-         * <remarks>B:Patient Name <p>The name by which the patient is 
-         * known and which apply to a particular clinical action being 
-         * reported or recorded. For a prescription, this will be the 
-         * name traditionally printed on the paper script or the name 
-         * that appears on the patient's chart.</p> <p>ZPA.1 
+         * <remarks>Un-merged Business Name: PatientName Relationship: 
+         * COCT_MT050203CA.Person.name Conformance/Cardinality: 
+         * MANDATORY (1) <p>The name by which the patient is known and 
+         * which apply to a particular clinical action being reported 
+         * or recorded. For a prescription, this will be the name 
+         * traditionally printed on the paper script or the name that 
+         * appears on the patient's chart.</p> <p>ZPA.1 
          * (partType=Given)</p><p>ZPA.2 (partType=Family)</p><p>ZPA.3 
          * (partType=Given - all repetitions except first)</p><p>C37 
          * (partType=Given)</p><p>C38 
@@ -690,9 +694,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
          * (partType=Family)</p><p>ZPA.3 (partType=Given - all 
          * repetitions except first)</p><p>C37 
          * (partType=Given)</p><p>C38 
-         * (partType=Family)</p><p>PTT.030-01 
-         * (partType=Family)</p><p>PTT.030-02 (partType=Given - 1st 
-         * occurrence)</p><p>PTT.030-03 (pa
+         * (partT
          * ... [rest of documentation truncated due to excessive length]
          */
         [Hl7XmlMappingAttribute(new string[] {"patientPerson/name"})]
@@ -702,11 +704,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>PatientGender</summary>
+         * <summary>Business Name: PatientGender</summary>
          * 
-         * <remarks>F:Patient Gender <p>Indicates the gender (sex) of 
-         * the patient. Complex genetic genders are handled as 
-         * observations if they are considered relevant.</p> <p>C40 
+         * <remarks>Un-merged Business Name: PatientGender 
+         * Relationship: 
+         * COCT_MT050203CA.Person.administrativeGenderCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the 
+         * gender (sex) of the patient. Complex genetic genders are 
+         * handled as observations if they are considered relevant.</p> 
+         * <p>C40 
          * eScript:PTT.040</p><p>3</p><p>Sex</p><p>PID.8</p><p>Patient.305-C5</p><p>PID.8</p> 
          * <p>C40 
          * eScript:PTT.040</p><p>3</p><p>Sex</p><p>PID.8</p><p>Patient.305-C5</p><p>PID.8</p> 
@@ -735,10 +741,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>PatientBirthDate</summary>
+         * <summary>Business Name: PatientBirthDate</summary>
          * 
-         * <remarks>E:Patient Birth Date <p>Indicates the date on which 
-         * the patient was born.</p> 
+         * <remarks>Un-merged Business Name: PatientBirthDate 
+         * Relationship: COCT_MT050203CA.Person.birthTime 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the date 
+         * on which the patient was born.</p> 
          * <p>C34</p><p>PTT.020</p><p>A.2b</p><p>HC-SA</p><p>PID.7</p><p>patient.304-C4</p><p>PID.7</p> 
          * <p>C34</p><p>PTT.020</p><p>A.2b</p><p>HC-SA</p><p>PID.7</p><p>patient.304-C4</p><p>PID.7</p> 
          * <p>C34</p><p>PTT.020</p><p>A.2b</p><p>HC-SA</p><p>PID.7</p><p>patient.304-C4</p><p>PID.7</p> 

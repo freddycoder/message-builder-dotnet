@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,11 +30,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Si.Comt_mt400001ca {
 
 
     /**
-     * <summary>Maskable Record</summary>
+     * <summary>Business Name: Maskable Record</summary>
      * 
-     * <remarks><p>A particular record or type of record for which 
-     * masking is supported.</p> <p>The root construct for masking 
-     * and unmasking specific record or type of record.</p></remarks>
+     * <p>A particular record or type of record for which masking 
+     * is supported.</p> <p>The root construct for masking and 
+     * unmasking specific record or type of record.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"COMT_MT400001CA.MaskableActType"})]
     public class MaskableRecord : MessagePartBean {
@@ -51,16 +51,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Si.Comt_mt400001ca {
             this.confidentialityCode = new SETImpl<CV, Code>(typeof(CVImpl));
         }
         /**
-         * <summary>C:Record Identifier</summary>
+         * <summary>Business Name: C:Record Identifier</summary>
          * 
-         * <remarks><p>The identifier of the prescription, dispense, 
-         * allergy, lab test result or other record for which the 
-         * masking status is being changed.</p> <p>Allows unique 
-         * reference to a particular record to be masked or 
-         * unmasked.</p> <p>In many systems, masking a 'child' may 
-         * result in automatic masking of the parent. For example, 
-         * masking a dispense record may cause the prescription to 
-         * become masked as well.</p></remarks>
+         * <remarks>Relationship: COMT_MT400001CA.MaskableActType.id 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The identifier of 
+         * the prescription, dispense, allergy, lab test result or 
+         * other record for which the masking status is being 
+         * changed.</p> <p>Allows unique reference to a particular 
+         * record to be masked or unmasked.</p> <p>In many systems, 
+         * masking a 'child' may result in automatic masking of the 
+         * parent. For example, masking a dispense record may cause the 
+         * prescription to become masked as well.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -69,12 +70,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Si.Comt_mt400001ca {
         }
 
         /**
-         * <summary>B:Record Type</summary>
+         * <summary>Business Name: B:Record Type</summary>
          * 
-         * <remarks><p>Indicates a detailed type of record to be 
-         * masked. E.g. All lab tests of a given type.</p> <p>Allows 
-         * automatic masking of a particular type of record rather than 
-         * requiring each occurrence to be masked individually.</p></remarks>
+         * <remarks>Relationship: COMT_MT400001CA.MaskableActType.code 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates a 
+         * detailed type of record to be masked. E.g. All lab tests of 
+         * a given type.</p> <p>Allows automatic masking of a 
+         * particular type of record rather than requiring each 
+         * occurrence to be masked individually.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public ActInformationCategoryCode Code {
@@ -83,25 +86,38 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Si.Comt_mt400001ca {
         }
 
         /**
-         * <summary>A:Masked Indicator</summary>
+         * <summary>Business Name: A:Masked Indicator</summary>
          * 
-         * <remarks><p>Indicates the new value for the masking status 
-         * of the item.</p> <p>Forces the sender of the message to 
-         * assert what the new value should be, rather than performing 
-         * a 'toggle' and potentially ending up in the wrong state. 
-         * Therefore, the attribute is mandatory.</p></remarks>
+         * <remarks>Relationship: 
+         * COMT_MT400001CA.MaskableActType.confidentialityCode 
+         * Conformance/Cardinality: MANDATORY (1-2) <p>Indicates the 
+         * new value for the masking status of the item.</p> <p>Forces 
+         * the sender of the message to assert what the new value 
+         * should be, rather than performing a 'toggle' and potentially 
+         * ending up in the wrong state. Therefore, the attribute is 
+         * mandatory.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"confidentialityCode"})]
         public ICollection<x_NormalRestrictedTabooConfidentialityKind> ConfidentialityCode {
             get { return this.confidentialityCode.RawSet<x_NormalRestrictedTabooConfidentialityKind>(); }
         }
 
+        /**
+         * <summary>Relationship: COMT_MT400001CA.DirectTarget.role</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"directTarget/role"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Si.Comt_mt400001ca.Role DirectTargetRole {
             get { return this.directTargetRole; }
             set { this.directTargetRole = value; }
         }
 
+        /**
+         * <summary>Relationship: COMT_MT400001CA.Reason.diagnosis</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"reason/diagnosis"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Si.Comt_mt400001ca.Diagnosis ReasonDiagnosis {
             get { return this.reasonDiagnosis; }

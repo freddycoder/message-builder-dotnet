@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
 
 
     /**
-     * <summary>Consent</summary>
+     * <summary>Business Name: Consent</summary>
      * 
      * <remarks>RCMR_MT010001CA.ConsentEvent: Consent <p>If code is 
      * INFA, then InformDefinition must be present, otherwise it 
@@ -99,16 +99,21 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             this.reasonCode = new CVImpl();
         }
         /**
-         * <summary>ConsentFormNumber</summary>
+         * <summary>Business Name: ConsentFormNumber</summary>
          * 
-         * <remarks>D:Consent Form Number <p>A unique identifier for a 
-         * specific consent for a patient.</p> <p>Provides a traceable 
-         * audit link between a physical consent form and its 
-         * electronic record</p> D:Consent Form Number <p>A unique 
+         * <remarks>Un-merged Business Name: ConsentFormNumber 
+         * Relationship: COCT_MT470012CA.ConsentEvent.id 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>A unique 
          * identifier for a specific consent for a patient, client or 
          * provider.</p> <p>Authorization.formNumber</p> <p>Provides a 
          * traceable audit link between a physical consent form and its 
-         * electronic record</p></remarks>
+         * electronic record</p> Un-merged Business Name: 
+         * ConsentFormNumber Relationship: 
+         * RCMR_MT010001CA.ConsentEvent.id Conformance/Cardinality: 
+         * REQUIRED (0-1) <p>A unique identifier for a specific consent 
+         * for a patient.</p> <p>Provides a traceable audit link 
+         * between a physical consent form and its electronic 
+         * record</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -117,12 +122,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>ConsentType</summary>
+         * <summary>Business Name: ConsentType</summary>
          * 
-         * <remarks>A:Consent Type <p>Indicates the type of consent 
-         * being given: Information access or Information 
-         * maintenance.</p> <p>Distinguishes what type of consent is 
-         * being dealt with and is therefore mandatory.</p></remarks>
+         * <remarks>Un-merged Business Name: ConsentType Relationship: 
+         * RCMR_MT010001CA.ConsentEvent.code Conformance/Cardinality: 
+         * MANDATORY (1) <p>Indicates the type of consent being given: 
+         * Information access or Information maintenance.</p> 
+         * <p>Distinguishes what type of consent is being dealt with 
+         * and is therefore mandatory.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public ActConsentType Code {
@@ -131,15 +138,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>ConsentRefusedIndicator</summary>
+         * <summary>Business Name: ConsentRefusedIndicator</summary>
          * 
-         * <remarks>B:Consent Refused Indicator <p>Must be either not 
-         * present or non-null.</p> <p>If true, indicates that consent 
-         * has explicitly *not* been given.</p> <p>Primarily applies 
-         * for global &quot;participation&quot; consent, when there is 
-         * a need to track whether the patient has consented, not 
-         * consented, or has not recorded a decision.</p><p>Because not 
-         * all jurisdictions will track &quot;participation&quot; 
+         * <remarks>Un-merged Business Name: ConsentRefusedIndicator 
+         * Relationship: RCMR_MT010001CA.ConsentEvent.negationInd 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>Must be either 
+         * not present or non-null.</p> <p>If true, indicates that 
+         * consent has explicitly *not* been given.</p> <p>Primarily 
+         * applies for global &quot;participation&quot; consent, when 
+         * there is a need to track whether the patient has consented, 
+         * not consented, or has not recorded a decision.</p><p>Because 
+         * not all jurisdictions will track &quot;participation&quot; 
          * consent, this attribute is optional. In jurisdictions where 
          * it is supported, the element must always be valued as either 
          * true or false.</p> <p>Primarily applies for global 
@@ -158,16 +167,21 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>ConsentEffectiveAndEndTime</summary>
+         * <summary>Business Name: ConsentEffectiveAndEndTime</summary>
          * 
-         * <remarks>C:Consent Effective and End Time <p>Indicates the 
+         * <remarks>Un-merged Business Name: ConsentEffectiveAndEndTime 
+         * Relationship: COCT_MT470012CA.ConsentEvent.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
          * time that the consent will expire. 'Low' is effective time 
          * and 'High' is end time.</p> <p>Authorization.endTime 
          * (high)</p> <p>Most consents are not open-ended, to ensure 
          * the patient, client, or provider retains a level of 
-         * control.</p> C:Consent Effective and End Time <p>Indicates 
-         * the time that the consent will expire. 'Low' is effective 
-         * time and 'High' is end time.</p> <p>Most consents are not 
+         * control.</p> Un-merged Business Name: 
+         * ConsentEffectiveAndEndTime Relationship: 
+         * RCMR_MT010001CA.ConsentEvent.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
+         * time that the consent will expire. 'Low' is effective time 
+         * and 'High' is end time.</p> <p>Most consents are not 
          * open-ended, to ensure the patient retains a level of 
          * control</p></remarks>
          */
@@ -178,18 +192,23 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>ConsentOverrideReason</summary>
+         * <summary>Business Name: ConsentOverrideReason</summary>
          * 
-         * <remarks>E:Consent Override Reason <p>Indicates a reason for 
-         * overriding a patient's consent rules or accessing 
-         * information without consent.</p> <p>Important for audit 
-         * purposes</p> E:Consent Override Reason <p>Indicates a reason 
-         * for overriding a patient's (or client or provider) consent 
-         * rules.</p> <p>Authorization.reason 
+         * <remarks>Un-merged Business Name: ConsentOverrideReason 
+         * Relationship: COCT_MT470012CA.ConsentEvent.reasonCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates a 
+         * reason for overriding a patient's (or client or provider) 
+         * consent rules.</p> <p>Authorization.reason 
          * (mnemonic)</p><p>Authorization.comment (original text)</p> 
          * <p>Authorization.reason 
          * (mnemonic)</p><p>Authorization.comment (original text)</p> 
-         * <p>Important for audit purposes</p></remarks>
+         * <p>Important for audit purposes</p> Un-merged Business Name: 
+         * ConsentOverrideReason Relationship: 
+         * RCMR_MT010001CA.ConsentEvent.reasonCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates a 
+         * reason for overriding a patient's consent rules or accessing 
+         * information without consent.</p> <p>Important for audit 
+         * purposes</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"reasonCode"})]
         public ActConsentInformationAccessReason ReasonCode {
@@ -197,30 +216,72 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             set { this.reasonCode.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: COCT_MT470012CA.ConsentEvent.author1 
+         * Conformance/Cardinality: REQUIRED (0-1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * RCMR_MT010001CA.ConsentEvent.author1 
+         * Conformance/Cardinality: REQUIRED (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"author1"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.ConsentedToBy Author1 {
             get { return this.author1; }
             set { this.author1 = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: COCT_MT470012CA.ConsentEvent.author2 
+         * Conformance/Cardinality: REQUIRED (0-1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * RCMR_MT010001CA.ConsentEvent.author2 
+         * Conformance/Cardinality: REQUIRED (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"author2"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.ConsentOverriddenBy Author2 {
             get { return this.author2; }
             set { this.author2 = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * RCMR_MT010001CA.Component.permissionToInform 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"component/permissionToInform"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Si.Rcmr_mt010001ca.InformationAccess ComponentPermissionToInform {
             get { return this.componentPermissionToInform; }
             set { this.componentPermissionToInform = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: COCT_MT470012CA.ConsentEvent.subject1 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subject1"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged.ConsentPertainsTo Subject1 {
             get { return this.subject1; }
             set { this.subject1 = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: COCT_MT470012CA.ConsentEvent.subject2 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subject2"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.Controls Subject2 {
             get { return this.subject2; }

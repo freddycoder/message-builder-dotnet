@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,8 +30,8 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
     /**
      * <summary>QUQI_MT020000CA.Subject: d:caused</summary>
      * 
-     * <remarks><p>This is the list of clinical and business issues 
-     * that have been detected and/or managed involving the current 
+     * <p>This is the list of clinical and business issues that 
+     * have been detected and/or managed involving the current 
      * action.</p> <p>Any trigger event can result in errors or may 
      * allow for errors to be overridden or managed.</p> 
      * MFMI_MT700726CA.Subject: d:caused <p>This is the list of 
@@ -180,7 +180,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
      * issues have been managed by the dispenser.</p> <p>Allows a 
      * dispenser to override alerts and business rules, as well as 
      * providing a permanent record of management steps.</p> 
-     * QUQI_MT120008CA.Subject: d:caused <p>
+     * QUQI_MT120008CA.Subject: d:caused <p>This is t
      * ... [rest of documentation truncated due to excessive length]
      */
     [Hl7PartTypeMappingAttribute(new string[] {"MCAI_MT700210CA.Subject","MCAI_MT700211CA.Subject","MCAI_MT700212CA.Subject","MCAI_MT700216CA.Subject","MCAI_MT700217CA.Subject","MCAI_MT700218CA.Subject","MCAI_MT700220CA.Subject","MCAI_MT700221CA.Subject","MCAI_MT700222CA.Subject","MCAI_MT700226CA.Subject","MCAI_MT700227CA.Subject","MCAI_MT700230CA.Subject","MCAI_MT700231CA.Subject","MCAI_MT700232CA.Subject","MCAI_MT700236CA.Subject","MCAI_MT700237CA.Subject","MFMI_MT700711CA.Subject","MFMI_MT700716CA.Subject","MFMI_MT700726CA.Subject","MFMI_MT700746CA.Subject","MFMI_MT700751CA.Subject2","PORX_MT060010CA.Subject6","PORX_MT060040CA.Subject6","PORX_MT060090CA.Subject6","PORX_MT060160CA.Subject6","PORX_MT060210CA.Subject","PORX_MT060340CA.Subject6","QUQI_MT020000CA.Subject","QUQI_MT020002CA.Subject","QUQI_MT120006CA.Subject","QUQI_MT120008CA.Subject"})]
@@ -196,24 +196,145 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             this.contextControlCode = new CSImpl();
             this.contextConductionInd = new BLImpl();
         }
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * MFMI_MT700726CA.Subject.detectedIssueEvent 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * QUQI_MT020000CA.Subject.detectedIssueEvent 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCAI_MT700210CA.Subject.detectedIssueEvent 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCAI_MT700220CA.Subject.detectedIssueEvent 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCAI_MT700222CA.Subject.detectedIssueEvent 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCAI_MT700216CA.Subject.detectedIssueEvent 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCAI_MT700227CA.Subject.detectedIssueEvent 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCAI_MT700230CA.Subject.detectedIssueEvent 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060210CA.Subject.detectedIssueEvent 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060160CA.Subject6.detectedIssueEvent 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MFMI_MT700751CA.Subject2.detectedIssueEvent 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCAI_MT700237CA.Subject.detectedIssueEvent 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * QUQI_MT020002CA.Subject.detectedIssueEvent 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCAI_MT700221CA.Subject.detectedIssueEvent 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCAI_MT700232CA.Subject.detectedIssueEvent 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MFMI_MT700746CA.Subject.detectedIssueEvent 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060040CA.Subject6.detectedIssueEvent 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCAI_MT700218CA.Subject.detectedIssueEvent 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCAI_MT700231CA.Subject.detectedIssueEvent 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060090CA.Subject6.detectedIssueEvent 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060340CA.Subject6.detectedIssueEvent 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCAI_MT700212CA.Subject.detectedIssueEvent 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCAI_MT700211CA.Subject.detectedIssueEvent 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCAI_MT700236CA.Subject.detectedIssueEvent 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCAI_MT700226CA.Subject.detectedIssueEvent 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCAI_MT700217CA.Subject.detectedIssueEvent 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PORX_MT060010CA.Subject6.detectedIssueEvent 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MFMI_MT700716CA.Subject.detectedIssueEvent 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * QUQI_MT120006CA.Subject.detectedIssueEvent 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * QUQI_MT120008CA.Subject.detectedIssueEvent 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MFMI_MT700711CA.Subject.detectedIssueEvent 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"detectedIssueEvent"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.Issues DetectedIssueEvent {
             get { return this.detectedIssueEvent; }
             set { this.detectedIssueEvent = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: MFMI_MT700746CA.Subject.typeCode 
+         * Conformance/Cardinality: OPTIONAL (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"typeCode"})]
         public ActRelationshipType TypeCode {
             get { return (ActRelationshipType) this.typeCode.Value; }
             set { this.typeCode.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * MFMI_MT700746CA.Subject.contextControlCode 
+         * Conformance/Cardinality: OPTIONAL (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"contextControlCode"})]
         public ContextControl ContextControlCode {
             get { return (ContextControl) this.contextControlCode.Value; }
             set { this.contextControlCode.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * MFMI_MT700746CA.Subject.contextConductionInd 
+         * Conformance/Cardinality: OPTIONAL (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"contextConductionInd"})]
         public bool? ContextConductionInd {
             get { return this.contextConductionInd.Value; }

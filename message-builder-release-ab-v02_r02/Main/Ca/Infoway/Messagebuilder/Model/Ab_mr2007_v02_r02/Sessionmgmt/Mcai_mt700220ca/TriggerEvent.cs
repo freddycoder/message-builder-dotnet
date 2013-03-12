@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,14 +31,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Mcai_mt7
 
 
     /**
-     * <summary>Trigger Event</summary>
+     * <summary>Business Name: Trigger Event</summary>
      * 
-     * <remarks><p>Identifies the action that resulted in this 
-     * message being sent.</p> <p>Key to understanding what action 
-     * a message represents.</p> <p>There may be constraints on the 
-     * usage of the effectiveTime and reasonCode attributes in the 
+     * <p>Identifies the action that resulted in this message being 
+     * sent.</p> <p>Key to understanding what action a message 
+     * represents.</p> <p>There may be constraints on the usage of 
+     * the effectiveTime and reasonCode attributes in the 
      * definition of the interaction or the trigger events which 
-     * are conveyed with this wrapper.</p></remarks>
+     * are conveyed with this wrapper.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"MCAI_MT700220CA.ControlActEvent"})]
     public class TriggerEvent<ACT> : MessagePartBean {
@@ -58,19 +58,21 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Mcai_mt7
             this.subjectOf = new List<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.Caused>();
         }
         /**
-         * <summary>B:Event Identifier</summary>
+         * <summary>Business Name: B:Event Identifier</summary>
          * 
-         * <remarks><p>A unique identifier for this particular event 
-         * assigned by the system in which the event occurred.</p> 
-         * <p>Allows the event to be referenced (for retractions) and 
-         * also indicates whether multiple interactions were caused by 
-         * the same triggering event. The attribute is therefore 
-         * mandatory.</p> <p>These identifiers should be stored for use 
-         * in 'retractions'. They should be stored in such a way that 
-         * they are associated with the item that was modified by this 
-         * event. For example, a system should be able to show the list 
-         * of trigger event identifiers for the actions that have been 
-         * recorded against a particular prescription.</p></remarks>
+         * <remarks>Relationship: MCAI_MT700220CA.ControlActEvent.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>A unique 
+         * identifier for this particular event assigned by the system 
+         * in which the event occurred.</p> <p>Allows the event to be 
+         * referenced (for retractions) and also indicates whether 
+         * multiple interactions were caused by the same triggering 
+         * event. The attribute is therefore mandatory.</p> <p>These 
+         * identifiers should be stored for use in 'retractions'. They 
+         * should be stored in such a way that they are associated with 
+         * the item that was modified by this event. For example, a 
+         * system should be able to show the list of trigger event 
+         * identifiers for the actions that have been recorded against 
+         * a particular prescription.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -79,11 +81,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Mcai_mt7
         }
 
         /**
-         * <summary>A:Event Type</summary>
+         * <summary>Business Name: A:Event Type</summary>
          * 
-         * <remarks><p>Identifies the trigger event that occurred.</p> 
-         * <p>This is mandatory because it is essential to 
-         * understanding the meaning of the event.</p></remarks>
+         * <remarks>Relationship: MCAI_MT700220CA.ControlActEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Identifies the 
+         * trigger event that occurred.</p> <p>This is mandatory 
+         * because it is essential to understanding the meaning of the 
+         * event.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public HL7TriggerEventCode Code {
@@ -92,14 +96,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Mcai_mt7
         }
 
         /**
-         * <summary>C:Event Effective Period</summary>
+         * <summary>Business Name: C:Event Effective Period</summary>
          * 
-         * <remarks><p>Indicates the time the change occurred. If not 
-         * populated, the assumption is the same time the message was 
-         * constructed.</p> <p>The time a change becomes effective may 
-         * differ from the time the event is recorded. (I.e. it may be 
-         * in the future or the past). For changes such as 'suspend', 
-         * an intended end date may also be indicated.</p></remarks>
+         * <remarks>Relationship: 
+         * MCAI_MT700220CA.ControlActEvent.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
+         * time the change occurred. If not populated, the assumption 
+         * is the same time the message was constructed.</p> <p>The 
+         * time a change becomes effective may differ from the time the 
+         * event is recorded. (I.e. it may be in the future or the 
+         * past). For changes such as 'suspend', an intended end date 
+         * may also be indicated.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"effectiveTime"})]
         public PlatformDate EffectiveTime {
@@ -108,15 +115,18 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Mcai_mt7
         }
 
         /**
-         * <summary>E:Event Reason</summary>
+         * <summary>Business Name: E:Event Reason</summary>
          * 
-         * <remarks><p>Identifies why this specific query, modification 
-         * request, or modification occurred.</p> <p>Allows identifying 
-         * a reason for a specific action, such as 'reason for hold'. 
-         * Also allows identifying reason for accessing information for 
-         * a query.</p> <p>The domain associated with this attribute 
-         * will vary for each interaction and will be noted as part of 
-         * the interaction description.</p></remarks>
+         * <remarks>Relationship: 
+         * MCAI_MT700220CA.ControlActEvent.reasonCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Identifies why 
+         * this specific query, modification request, or modification 
+         * occurred.</p> <p>Allows identifying a reason for a specific 
+         * action, such as 'reason for hold'. Also allows identifying 
+         * reason for accessing information for a query.</p> <p>The 
+         * domain associated with this attribute will vary for each 
+         * interaction and will be noted as part of the interaction 
+         * description.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"reasonCode"})]
         public ControlActReason ReasonCode {
@@ -124,12 +134,24 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Mcai_mt7
             set { this.reasonCode.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * MCAI_MT700220CA.ControlActEvent.subject</summary>
+         * 
+         * <remarks>Conformance/Cardinality: REQUIRED (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subject"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.RefersTo<ACT> Subject {
             get { return this.subject; }
             set { this.subject = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * MCAI_MT700220CA.ControlActEvent.subjectOf</summary>
+         * 
+         * <remarks>Conformance/Cardinality: REQUIRED (0-50)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.Caused> SubjectOf {
             get { return this.subjectOf; }

@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,12 +28,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Ficr_mt61020
 
 
     /**
-     * <summary>Adjudicator</summary>
+     * <summary>Business Name: Adjudicator</summary>
      * 
-     * <remarks><p>Adjudicator Information</p> <p>Mandatory for 
-     * Root AdjudicatedInvoiceElementGroup, otherwise not 
-     * specified.</p> <p>Mandatory for Root 
-     * AdjudicatedInvoiceElementGroup, otherwise not specified.</p></remarks>
+     * <p>Mandatory for Root AdjudicatedInvoiceElementGroup, 
+     * otherwise not specified.</p> <p>Mandatory for Root 
+     * AdjudicatedInvoiceElementGroup, otherwise not specified.</p> 
+     * <p>Adjudicator Information</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"FICR_MT610201CA.AdjudicatedInvoiceAuthor"})]
     public class Adjudicator : MessagePartBean {
@@ -45,13 +45,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Ficr_mt61020
             this.time = new TSImpl();
         }
         /**
-         * <summary>Adjudication date/time</summary>
+         * <summary>Business Name: Adjudication date/time</summary>
          * 
-         * <remarks><p>Adjudication date/time</p> <p>Used in Pharmacy 
+         * <remarks>Relationship: 
+         * FICR_MT610201CA.AdjudicatedInvoiceAuthor.time 
+         * Conformance/Cardinality: MANDATORY (1) <p>Used in Pharmacy 
          * for daily totals.</p><p>For Invoice (COB): Will only be 
-         * valued for electronic EOBs.</p> <p>Used in Pharmacy for 
-         * daily totals.</p><p>For Invoice (COB): Will only be valued 
-         * for electronic EOBs.</p> <p>Used in RX for daily totals.</p></remarks>
+         * valued for electronic EOBs.</p> <p>Used in RX for daily 
+         * totals.</p> <p>Adjudication date/time</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"time"})]
         public PlatformDate Time {
@@ -59,6 +60,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Ficr_mt61020
             set { this.time.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * FICR_MT610201CA.AdjudicatedInvoiceAuthor.adjudicatorRole</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"adjudicatorRole"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2007_v02_r02.Claims.Merged.AdjudicatorRole AdjudicatorRole {
             get { return this.adjudicatorRole; }

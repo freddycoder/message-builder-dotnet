@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
 
 
     /**
-     * <summary>CreatedBy</summary>
+     * <summary>Business Name: CreatedBy</summary>
      * 
      * <remarks>MCAI_MT700211CA.Author: a:*created by <p>Indicates 
      * the person responsible for the event that caused this 
@@ -190,7 +190,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
      * <p>Choice of Patient CMET is as follows:</p><p>1. 
      * 'identified' when supporting Patient Session 
      * Tokens.</p><p>2. 'informational' when passing through non 
-     * Client- Registry patient f
+     * Client- Reg
      * ... [rest of documentation truncated due to excessive length]
      */
     [Hl7PartTypeMappingAttribute(new string[] {"MCAI_MT700210CA.Author","MCAI_MT700211CA.Author","MCAI_MT700212CA.Author","MCAI_MT700221CA.Author","MCAI_MT700230CA.Author","MCAI_MT700231CA.Author","MCAI_MT700232CA.Author","QUQI_MT020000CA.Author","QUQI_MT020002CA.Author"})]
@@ -208,11 +208,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             this.signatureText = new EDImpl<String>();
         }
         /**
-         * <summary>TimeOfCreation</summary>
+         * <summary>Business Name: TimeOfCreation</summary>
          * 
-         * <remarks>D:Time of Creation <p>The time the person 
-         * responsible for the event made the decision for it to occur. 
-         * This may be different than the time the change became 
+         * <remarks>Un-merged Business Name: TimeOfCreation 
+         * Relationship: MCAI_MT700211CA.Author.time 
+         * Conformance/Cardinality: MANDATORY (1) <p>The time the 
+         * person responsible for the event made the decision for it to 
+         * occur. This may be different than the time the change became 
          * effective. (E.g. If a provider decides today to put a 
          * prescription on hold starting next Tuesday, the time of 
          * creation would be today and the change effective period 
@@ -225,13 +227,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
          * and the change effective period would be next 
          * Tuesday.)</p><p>This date can be back-dated.</p> <p>The time 
          * a change is made is a critical piece of audit information 
-         * and is therefore mandatory.</p> D:Time of Creation <p>The 
-         * time the person responsible for the event made the decision 
-         * for it to occur. This may be different than the time the 
-         * change became effective. (E.g. If a provider decides today 
-         * to put a prescription on hold starting next Tuesday, the 
-         * time of creation would be today and the change effective 
-         * period would be next Tuesday.)</p><p>This date can be 
+         * and is therefore mandatory.</p> Un-merged Business Name: 
+         * TimeOfCreation Relationship: QUQI_MT020002CA.Author.time 
+         * Conformance/Cardinality: MANDATORY (1) <p>The time the 
+         * person responsible for the event made the decision for it to 
+         * occur. This may be different than the time the change became 
+         * effective. (E.g. If a provider decides today to put a 
+         * prescription on hold starting next Tuesday, the time of 
+         * creation would be today and the change effective period 
+         * would be next Tuesday.)</p><p>This date can be 
          * back-dated.</p> <p>The time the person responsible for the 
          * event made the decision for it to occur. This may be 
          * different than the time the change became effective. (E.g. 
@@ -240,7 +244,117 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
          * and the change effective period would be next 
          * Tuesday.)</p><p>This date can be back-dated.</p> <p>The time 
          * a change is made is a critical piece of audit information 
-         * and is therefore mandatory.</p></remarks>
+         * and is therefore mandatory.</p> Un-merged Business Name: 
+         * TimeOfCreation Relationship: MCAI_MT700212CA.Author.time 
+         * Conformance/Cardinality: MANDATORY (1) <p>The time the 
+         * person responsible for the event made the decision for it to 
+         * occur. This may be different than the time the change became 
+         * effective. (E.g. If a provider decides today to put a 
+         * prescription on hold starting next Tuesday, the time of 
+         * creation would be today and the change effective period 
+         * would be next Tuesday.)</p><p>This date can be 
+         * back-dated.</p> <p>The time the person responsible for the 
+         * event made the decision for it to occur. This may be 
+         * different than the time the change became effective. (E.g. 
+         * If a provider decides today to put a prescription on hold 
+         * starting next Tuesday, the time of creation would be today 
+         * and the change effective period would be next 
+         * Tuesday.)</p><p>This date can be back-dated.</p> <p>The time 
+         * a change is made is a critical piece of audit information 
+         * and is therefore mandatory.</p> Un-merged Business Name: 
+         * TimeOfCreation Relationship: MCAI_MT700232CA.Author.time 
+         * Conformance/Cardinality: MANDATORY (1) <p>The time the 
+         * person responsible for the event made the decision for it to 
+         * occur. This may be different than the time the change became 
+         * effective. (E.g. If a provider decides today to put a 
+         * prescription on hold starting next Tuesday, the time of 
+         * creation would be today and the change effective period 
+         * would be next Tuesday.)</p><p>This date can be 
+         * back-dated.</p> <p>The time the person responsible for the 
+         * event made the decision for it to occur. This may be 
+         * different than the time the change became effective. (E.g. 
+         * If a provider decides today to put a prescription on hold 
+         * starting next Tuesday, the time of creation would be today 
+         * and the change effective period would be next 
+         * Tuesday.)</p><p>This date can be back-dated.</p> <p>The time 
+         * a change is made is a critical piece of audit information 
+         * and is therefore mandatory.</p> Un-merged Business Name: 
+         * TimeOfCreation Relationship: QUQI_MT020000CA.Author.time 
+         * Conformance/Cardinality: MANDATORY (1) <p>The time the 
+         * person responsible for the event made the decision for it to 
+         * occur. This may be different than the time the change became 
+         * effective. (E.g. If a provider decides today to put a 
+         * prescription on hold starting next Tuesday, the time of 
+         * creation would be today and the change effective period 
+         * would be next Tuesday.)</p><p>This date can be 
+         * back-dated.</p> <p>The time the person responsible for the 
+         * event made the decision for it to occur. This may be 
+         * different than the time the change became effective. (E.g. 
+         * If a provider decides today to put a prescription on hold 
+         * starting next Tuesday, the time of creation would be today 
+         * and the change effective period would be next 
+         * Tuesday.)</p><p>This date can be back-dated.</p> <p>The time 
+         * a change is made is a critical piece of audit information 
+         * and is therefore mandatory.</p> Un-merged Business Name: 
+         * TimeOfCreation Relationship: MCAI_MT700210CA.Author.time 
+         * Conformance/Cardinality: MANDATORY (1) <p>The time the 
+         * person responsible for the event made the decision for it to 
+         * occur. This may be different than the time the change became 
+         * effective. (E.g. If a provider decides today to put a 
+         * prescription on hold starting next Tuesday, the time of 
+         * creation would be today and the change effective period 
+         * would be next Tuesday.)</p><p>This date can be 
+         * back-dated.</p> <p>The time the person responsible for the 
+         * event made the decision for it to occur. This may be 
+         * different than the time the change became effective. (E.g. 
+         * If a provider decides today to put a prescription on hold 
+         * starting next Tuesday, the time of creation would be today 
+         * and the change effective period would be next 
+         * Tuesday.)</p><p>This date can be back-dated.</p> <p>The time 
+         * a change is made is a critical piece of audit information 
+         * and is therefore mandatory.</p> Un-merged Business Name: 
+         * TimeOfCreation Relationship: MCAI_MT700230CA.Author.time 
+         * Conformance/Cardinality: MANDATORY (1) <p>The time the 
+         * person responsible for the event made the decision for it to 
+         * occur. This may be different than the time the change became 
+         * effective. (E.g. If a provider decides today to put a 
+         * prescription on hold starting next Tuesday, the time of 
+         * creation would be today and the change effective period 
+         * would be next Tuesday.)</p><p>This date can be 
+         * back-dated.</p> <p>The time the person responsible for the 
+         * event made the decision for it to occur. This may be 
+         * different than the time the change became effective. (E.g. 
+         * If a provider decides today to put a prescription on hold 
+         * starting next Tuesday, the time of creation would be today 
+         * and the change effective period would be next 
+         * Tuesday.)</p><p>This date can be back-dated.</p> <p>The time 
+         * a change is made is a critical piece of audit information 
+         * and is therefore mandatory.</p> Un-merged Business Name: 
+         * TimeOfCreation Relationship: MCAI_MT700231CA.Author.time 
+         * Conformance/Cardinality: MANDATORY (1) <p>The time the 
+         * person responsible for the event made the decision for it to 
+         * occur. This may be different than the time the change became 
+         * effective. (E.g. If a provider decides today to put a 
+         * prescription on hold starting next Tuesday, the time of 
+         * creation would be today and the change effective period 
+         * would be next Tuesday.)</p><p>This date can be 
+         * back-dated.</p> <p>The time the person responsible for the 
+         * event made the decision for it to occur. This may be 
+         * different than the time the change became effective. (E.g. 
+         * If a provider decides today to put a prescription on hold 
+         * starting next Tuesday, the time of creation would be today 
+         * and the change effective period would be next 
+         * Tuesday.)</p><p>This date can be back-dated.</p> <p>The time 
+         * a change is made is a critical piece of audit information 
+         * and is therefore mandatory.</p> Un-merged Business Name: 
+         * TimeOfCreation Relationship: MCAI_MT700221CA.Author.time 
+         * Conformance/Cardinality: MANDATORY (1) <p>The time the 
+         * person responsible for the event made the decision for it to 
+         * occur. This may be different than the time the change became 
+         * effective. (E.g. If a provider decides today to put a 
+         * prescription on hold starting next Tuesday, the time of 
+         * creation 
+         * ... [rest of documentation truncated due to excessive length]
          */
         [Hl7XmlMappingAttribute(new string[] {"time"})]
         public PlatformDate Time {
@@ -249,16 +363,62 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>InformationReceivedMethod</summary>
+         * <summary>Business Name: InformationReceivedMethod</summary>
          * 
-         * <remarks>F:Information Received Method <p>Indicates how the 
+         * <remarks>Un-merged Business Name: InformationReceivedMethod 
+         * Relationship: MCAI_MT700211CA.Author.modeCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates how the 
          * person who recorded the event became aware of it.. E.g. 
          * Verbal, written, fax, etc.</p> <p>May have ramifications for 
          * the audit trail and reliability of the information.</p> 
-         * F:Information Received Method <p>Indicates how the person 
-         * who recorded the event became aware of it.. E.g. Verbal, 
-         * written, fax, etc.</p> <p>May have ramifications for the 
-         * audit trail and reliability of the information.</p></remarks>
+         * Un-merged Business Name: InformationReceivedMethod 
+         * Relationship: QUQI_MT020002CA.Author.modeCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates how the 
+         * person who recorded the event became aware of it.. E.g. 
+         * Verbal, written, fax, etc.</p> <p>May have ramifications for 
+         * the audit trail and reliability of the information.</p> 
+         * Un-merged Business Name: InformationReceivedMethod 
+         * Relationship: MCAI_MT700212CA.Author.modeCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates how the 
+         * person who recorded the event became aware of it.. E.g. 
+         * Verbal, written, fax, etc.</p> <p>May have ramifications for 
+         * the audit trail and reliability of the information.</p> 
+         * Un-merged Business Name: InformationReceivedMethod 
+         * Relationship: MCAI_MT700232CA.Author.modeCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates how the 
+         * person who recorded the event became aware of it.. E.g. 
+         * Verbal, written, fax, etc.</p> <p>May have ramifications for 
+         * the audit trail and reliability of the information.</p> 
+         * Un-merged Business Name: InformationReceivedMethod 
+         * Relationship: QUQI_MT020000CA.Author.modeCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates how the 
+         * person who recorded the event became aware of it.. E.g. 
+         * Verbal, written, fax, etc.</p> <p>May have ramifications for 
+         * the audit trail and reliability of the information.</p> 
+         * Un-merged Business Name: InformationReceivedMethod 
+         * Relationship: MCAI_MT700210CA.Author.modeCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates how the 
+         * person who recorded the event became aware of it.. E.g. 
+         * Verbal, written, fax, etc.</p> <p>May have ramifications for 
+         * the audit trail and reliability of the information.</p> 
+         * Un-merged Business Name: InformationReceivedMethod 
+         * Relationship: MCAI_MT700230CA.Author.modeCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates how the 
+         * person who recorded the event became aware of it.. E.g. 
+         * Verbal, written, fax, etc.</p> <p>May have ramifications for 
+         * the audit trail and reliability of the information.</p> 
+         * Un-merged Business Name: InformationReceivedMethod 
+         * Relationship: MCAI_MT700231CA.Author.modeCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates how the 
+         * person who recorded the event became aware of it.. E.g. 
+         * Verbal, written, fax, etc.</p> <p>May have ramifications for 
+         * the audit trail and reliability of the information.</p> 
+         * Un-merged Business Name: InformationReceivedMethod 
+         * Relationship: MCAI_MT700221CA.Author.modeCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates how the 
+         * person who recorded the event became aware of it.. E.g. 
+         * Verbal, written, fax, etc.</p> <p>May have ramifications for 
+         * the audit trail and reliability of the information.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"modeCode"})]
         public ParticipationMode ModeCode {
@@ -267,19 +427,80 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>DigitalSignature</summary>
+         * <summary>Business Name: DigitalSignature</summary>
          * 
-         * <remarks>G:Digital Signature <p>Indicates the formal digital 
-         * signature of the message content.</p> <p>Digital signatures 
-         * may be needed for authentication of message content. The 
-         * attribute is marked as optional because it is not yet clear 
-         * whether there is a use-case for this, or where it will be 
-         * used.</p> G:Digital Signature <p>Indicates the formal 
-         * digital signature of the message content.</p> <p>Digital 
-         * signatures may be needed for authentication of message 
-         * content. The attribute is marked as optional because it is 
-         * not yet clear whether there is a use-case for this, or where 
-         * it will be used.</p></remarks>
+         * <remarks>Un-merged Business Name: DigitalSignature 
+         * Relationship: MCAI_MT700211CA.Author.signatureText 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>Indicates the 
+         * formal digital signature of the message content.</p> 
+         * <p>Digital signatures may be needed for authentication of 
+         * message content. The attribute is marked as optional because 
+         * it is not yet clear whether there is a use-case for this, or 
+         * where it will be used.</p> Un-merged Business Name: 
+         * DigitalSignature Relationship: 
+         * QUQI_MT020002CA.Author.signatureText 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>Indicates the 
+         * formal digital signature of the message content.</p> 
+         * <p>Digital signatures may be needed for authentication of 
+         * message content. The attribute is marked as optional because 
+         * it is not yet clear whether there is a use-case for this, or 
+         * where it will be used.</p> Un-merged Business Name: 
+         * DigitalSignature Relationship: 
+         * MCAI_MT700212CA.Author.signatureText 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>Indicates the 
+         * formal digital signature of the message content.</p> 
+         * <p>Digital signatures may be needed for authentication of 
+         * message content. The attribute is marked as optional because 
+         * it is not yet clear whether there is a use-case for this, or 
+         * where it will be used.</p> Un-merged Business Name: 
+         * DigitalSignature Relationship: 
+         * MCAI_MT700232CA.Author.signatureText 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>Indicates the 
+         * formal digital signature of the message content.</p> 
+         * <p>Digital signatures may be needed for authentication of 
+         * message content. The attribute is marked as optional because 
+         * it is not yet clear whether there is a use-case for this, or 
+         * where it will be used.</p> Un-merged Business Name: 
+         * DigitalSignature Relationship: 
+         * QUQI_MT020000CA.Author.signatureText 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>Indicates the 
+         * formal digital signature of the message content.</p> 
+         * <p>Digital signatures may be needed for authentication of 
+         * message content. The attribute is marked as optional because 
+         * it is not yet clear whether there is a use-case for this, or 
+         * where it will be used.</p> Un-merged Business Name: 
+         * DigitalSignature Relationship: 
+         * MCAI_MT700210CA.Author.signatureText 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>Indicates the 
+         * formal digital signature of the message content.</p> 
+         * <p>Digital signatures may be needed for authentication of 
+         * message content. The attribute is marked as optional because 
+         * it is not yet clear whether there is a use-case for this, or 
+         * where it will be used.</p> Un-merged Business Name: 
+         * DigitalSignature Relationship: 
+         * MCAI_MT700230CA.Author.signatureText 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>Indicates the 
+         * formal digital signature of the message content.</p> 
+         * <p>Digital signatures may be needed for authentication of 
+         * message content. The attribute is marked as optional because 
+         * it is not yet clear whether there is a use-case for this, or 
+         * where it will be used.</p> Un-merged Business Name: 
+         * DigitalSignature Relationship: 
+         * MCAI_MT700231CA.Author.signatureText 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>Indicates the 
+         * formal digital signature of the message content.</p> 
+         * <p>Digital signatures may be needed for authentication of 
+         * message content. The attribute is marked as optional because 
+         * it is not yet clear whether there is a use-case for this, or 
+         * where it will be used.</p> Un-merged Business Name: 
+         * DigitalSignature Relationship: 
+         * MCAI_MT700221CA.Author.signatureText 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>Indicates the 
+         * formal digital signature of the message content.</p> 
+         * <p>Digital signatures may be needed for authentication of 
+         * message content. The attribute is marked as optional because 
+         * it is not yet clear whether there is a use-case for this, or 
+         * where it will be used.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"signatureText"})]
         public String SignatureText {
@@ -287,12 +508,44 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             set { this.signatureText.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: MCAI_MT700211CA.Author.authorPerson 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * QUQI_MT020002CA.Author.authorPerson Conformance/Cardinality: 
+         * POPULATED (1) Un-merged Business Name: (no business name 
+         * specified) Relationship: MCAI_MT700212CA.Author.authorPerson 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCAI_MT700232CA.Author.authorPerson Conformance/Cardinality: 
+         * POPULATED (1) Un-merged Business Name: (no business name 
+         * specified) Relationship: QUQI_MT020000CA.Author.authorPerson 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCAI_MT700230CA.Author.authorPerson Conformance/Cardinality: 
+         * POPULATED (1) Un-merged Business Name: (no business name 
+         * specified) Relationship: MCAI_MT700231CA.Author.authorPerson 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * MCAI_MT700221CA.Author.authorPerson Conformance/Cardinality: 
+         * POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"authorPerson"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged.IAuthorPerson AuthorPerson {
             get { return this.authorPerson; }
             set { this.authorPerson = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: MCAI_MT700210CA.Author.assignedPerson 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"assignedPerson"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Coct_mt090107ca.Provider AssignedPerson {
             get { return this.assignedPerson; }

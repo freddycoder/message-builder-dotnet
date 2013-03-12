@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,12 +27,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Pome_mt0
 
 
     /**
-     * <summary>Drug Half-Life</summary>
+     * <summary>Business Name: Drug Half-Life</summary>
      * 
-     * <remarks><p>Specification of the length of time a particular 
-     * drug remains in the body (as active)</p> <p>Impacts 
-     * contraindication checking for drugs no longer being taken by 
-     * patients.</p></remarks>
+     * <p>Impacts contraindication checking for drugs no longer 
+     * being taken by patients.</p> <p>Specification of the length 
+     * of time a particular drug remains in the body (as 
+     * active)</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"POME_MT010040CA.HalfLife"})]
     public class DrugHalfLife : MessagePartBean {
@@ -43,19 +43,21 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Pome_mt0
             this.value = new PQImpl();
         }
         /**
-         * <summary>Half-Life Period</summary>
+         * <summary>Business Name: Half-Life Period</summary>
          * 
-         * <remarks><p>Different drugs are absorbed and degraded by the 
-         * body at different rates. The half-life indicates the length 
-         * of time necessary for a human body to degrade the drug to 
-         * half its original potency. The actual time-period will vary 
-         * from person to person based on mass, renal function, liver 
-         * function, route of administration and other factors</p> 
-         * <p>Depending on the half-life, a drug may remain present and 
-         * active in a patient's system long after they cease taking 
-         * it. Understanding this time period is essential to 
-         * appropriate dosing, and also to identifying when to include 
-         * medications in drug-drug interaction checking.</p></remarks>
+         * <remarks>Relationship: POME_MT010040CA.HalfLife.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Depending on the 
+         * half-life, a drug may remain present and active in a 
+         * patient's system long after they cease taking it. 
+         * Understanding this time period is essential to appropriate 
+         * dosing, and also to identifying when to include medications 
+         * in drug-drug interaction checking.</p> <p>Different drugs 
+         * are absorbed and degraded by the body at different rates. 
+         * The half-life indicates the length of time necessary for a 
+         * human body to degrade the drug to half its original potency. 
+         * The actual time-period will vary from person to person based 
+         * on mass, renal function, liver function, route of 
+         * administration and other factors</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"value"})]
         public PhysicalQuantity Value {

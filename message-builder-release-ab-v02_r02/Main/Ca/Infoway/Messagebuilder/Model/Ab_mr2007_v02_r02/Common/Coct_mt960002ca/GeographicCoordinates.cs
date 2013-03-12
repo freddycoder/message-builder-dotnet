@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,14 +28,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Coct_mt960002
 
 
     /**
-     * <summary>Geographic Coordinates</summary>
+     * <summary>Business Name: Geographic Coordinates</summary>
      * 
-     * <remarks><p>Allows the capturing of a physical location 
-     * according to a particular coordinate system, such as GPS, 
-     * legal designation (lot, block, plan), range-meridian, 
-     * etc.</p> <p>Some locations cannot be described by postal 
-     * addresses. Also, geographic coordinates allow calculation of 
-     * distances and proximity</p></remarks>
+     * <p>Allows the capturing of a physical location according to 
+     * a particular coordinate system, such as GPS, legal 
+     * designation (lot, block, plan), range-meridian, etc.</p> 
+     * <p>Some locations cannot be described by postal addresses. 
+     * Also, geographic coordinates allow calculation of distances 
+     * and proximity</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"COCT_MT960002CA.Position"})]
     public class GeographicCoordinates : MessagePartBean {
@@ -48,12 +48,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Coct_mt960002
             this.componentPositionCoordinate = new List<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Coct_mt960002ca.CoordinateAxis>();
         }
         /**
-         * <summary>Coordinate System</summary>
+         * <summary>Business Name: Coordinate System</summary>
          * 
-         * <remarks><p>Identifies the coordinate system inclusive of 
-         * any transformation projections.</p> <p>Essential for 
-         * interpretting the specified coordinates and therefore 
-         * mandatory</p></remarks>
+         * <remarks>Relationship: COCT_MT960002CA.Position.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Identifies the 
+         * coordinate system inclusive of any transformation 
+         * projections.</p> <p>Essential for interpretting the 
+         * specified coordinates and therefore mandatory</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public PositionObservationCode Code {
@@ -61,6 +62,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Coct_mt960002
             set { this.code.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * COCT_MT960002CA.Component1.positionCoordinate</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"component/positionCoordinate"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Coct_mt960002ca.CoordinateAxis> ComponentPositionCoordinate {
             get { return this.componentPositionCoordinate; }

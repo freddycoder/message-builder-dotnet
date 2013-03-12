@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Porx_mt010120ca;
 
 
+    /**
+     * <summary>Business Name: PORX_IN010420CA: Prescription 
+     * clinical pre-determination check</summary>
+     * 
+     * <p>Requests the specified medication prescription proposal 
+     * be reviewed, and any detected issues be identified.</p> 
+     * Message: MCCI_MT002100CA.Message Control Act: 
+     * MCAI_MT700210CA.ControlActEvent --> Payload: 
+     * PORX_MT010120CA.CombinedMedicationRequest
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"PORX_IN010420CA"})]
     public class PrescriptionClinicalPreDeterminationCheck : HL7Message_1<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Mcai_mt700210ca.TriggerEvent<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Porx_mt010120ca.Prescription>>, IInteraction {
 

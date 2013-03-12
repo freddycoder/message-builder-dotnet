@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt110
 
 
     /**
-     * <summary><p>Payor identifier, assigned by adjudicator.</p></summary>
+     * <p>Payor identifier, assigned by adjudicator.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"COCT_MT110101CA.Account"})]
     public class Account : MessagePartBean {
@@ -39,9 +39,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt110
             this.holderPayorRoleId = new SETImpl<II, Identifier>(typeof(IIImpl));
         }
         /**
-         * <summary>Payor identifier</summary>
+         * <summary>Business Name: Payor identifier</summary>
          * 
-         * <remarks><p>assigned by adjudicator</p></remarks>
+         * <remarks>Relationship: COCT_MT110101CA.PayorRole.id 
+         * Conformance/Cardinality: MANDATORY (*) <p>assigned by 
+         * adjudicator</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"holder/payorRole/id"})]
         public ICollection<Identifier> HolderPayorRoleId {

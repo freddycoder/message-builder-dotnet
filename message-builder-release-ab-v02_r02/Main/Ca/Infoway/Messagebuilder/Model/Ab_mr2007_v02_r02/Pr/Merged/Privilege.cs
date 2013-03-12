@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Merged {
 
 
     /**
-     * <summary>Privilege</summary>
+     * <summary>Business Name: Privilege</summary>
      * 
      * <remarks>PRPM_MT303010CA.Privilege: Privilege <p>A record of 
      * something that is being done, has been done, can be done, or 
@@ -82,16 +82,33 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Merged {
             this.subjectOf = new List<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Merged.Subject4>();
         }
         /**
-         * <summary>RestrictionsToPracticeIdentifier</summary>
+         * <summary>Business Name: RestrictionsToPracticeIdentifier</summary>
          * 
-         * <remarks>Restrictions to Practice Identifier <p>Unique 
-         * identifier for the restriction.</p> <p>Populated attribute 
-         * supports the validation and identification of the healthcare 
-         * provider and his/her given privileges</p> Restrictions to 
-         * Practice Identifier <p>Unique identifier for the 
-         * restriction.</p> <p>Required attribute supports the 
-         * validation and identification of the healthcare provider and 
-         * his/her given privileges</p></remarks>
+         * <remarks>Un-merged Business Name: 
+         * RestrictionsToPracticeIdentifier Relationship: 
+         * PRPM_MT303010CA.Privilege.id Conformance/Cardinality: 
+         * POPULATED (1) <p>Unique identifier for the restriction.</p> 
+         * <p>Populated attribute supports the validation and 
+         * identification of the healthcare provider and his/her given 
+         * privileges</p> Un-merged Business Name: 
+         * RestrictionsToPracticeIdentifier Relationship: 
+         * PRPM_MT301010CA.Privilege.id Conformance/Cardinality: 
+         * POPULATED (1) <p>Unique identifier for the restriction.</p> 
+         * <p>Populated attribute supports the validation and 
+         * identification of the healthcare provider and his/her given 
+         * privileges</p> Un-merged Business Name: 
+         * RestrictionsToPracticeIdentifier Relationship: 
+         * PRPM_MT309000CA.Privilege.id Conformance/Cardinality: 
+         * POPULATED (1) <p>Unique identifier for the restriction.</p> 
+         * <p>Populated attribute supports the validation and 
+         * identification of the healthcare provider and his/her given 
+         * privileges</p> Un-merged Business Name: 
+         * RestrictionsToPracticeIdentifier Relationship: 
+         * PRPM_MT306011CA.Privilege.id Conformance/Cardinality: 
+         * REQUIRED (0-1) <p>Unique identifier for the restriction.</p> 
+         * <p>Required attribute supports the validation and 
+         * identification of the healthcare provider and his/her given 
+         * privileges</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -100,18 +117,29 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Merged {
         }
 
         /**
-         * <summary>RestrictionsToPracticeType</summary>
+         * <summary>Business Name: RestrictionsToPracticeType</summary>
          * 
-         * <remarks>Restrictions to Practice Type <p>Type of 
-         * restriction.</p> <p>Required attribute supports the 
+         * <remarks>Un-merged Business Name: RestrictionsToPracticeType 
+         * Relationship: PRPM_MT303010CA.Privilege.code 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Type of 
+         * restriction.</p> <p>Mandatory attribute supports the 
          * validation and identification of the healthcare provider and 
          * his/her given privileges</p> <p>If Restrictions to Practice 
          * are included in the message, then Type Must Exist</p> 
-         * Restrictions to Practice Type <p>Type of restriction.</p> 
-         * <p>Mandatory attribute supports the validation and 
-         * identification of the healthcare provider and his/her given 
-         * privileges</p> <p>If Restrictions to Practice are included 
-         * in the message, then Type Must Exist</p></remarks>
+         * Un-merged Business Name: RestrictionsToPracticeType 
+         * Relationship: PRPM_MT301010CA.Privilege.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Type of 
+         * restriction.</p> <p>Mandatory attribute supports the 
+         * validation and identification of the healthcare provider and 
+         * his/her given privileges</p> <p>If Restrictions to Practice 
+         * are included in the message, then Type Must Exist</p> 
+         * Un-merged Business Name: RestrictionsToPracticeType 
+         * Relationship: PRPM_MT306011CA.Privilege.code 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Type of 
+         * restriction.</p> <p>Required attribute supports the 
+         * validation and identification of the healthcare provider and 
+         * his/her given privileges</p> <p>If Restrictions to Practice 
+         * are included in the message, then Type Must Exist</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public ActCode Code {
@@ -120,13 +148,28 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Merged {
         }
 
         /**
-         * <summary>RestrictionsToPracticeNegationIndicator</summary>
+         * <summary>Business Name: 
+         * RestrictionsToPracticeNegationIndicator</summary>
          * 
-         * <remarks>Restrictions to Practice Negation Indicator 
-         * <p>Indicating that the privilege is a restriction.</p> 
-         * <p>Required attribute supports the validation and 
-         * identification of the healthcare provider and his/her given 
-         * privileges</p></remarks>
+         * <remarks>Un-merged Business Name: 
+         * RestrictionsToPracticeNegationIndicator Relationship: 
+         * PRPM_MT303010CA.Privilege.negationInd 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicating that 
+         * the privilege is a restriction.</p> <p>Required attribute 
+         * supports the validation and identification of the healthcare 
+         * provider and his/her given privileges</p> Un-merged Business 
+         * Name: RestrictionsToPracticeNegationIndicator Relationship: 
+         * PRPM_MT301010CA.Privilege.negationInd 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicating that 
+         * the privilege is a restriction.</p> <p>Required attribute 
+         * supports the validation and identification of the healthcare 
+         * provider and his/her given privileges</p> Un-merged Business 
+         * Name: RestrictionsToPracticeNegationIndicator Relationship: 
+         * PRPM_MT306011CA.Privilege.negationInd 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicating that 
+         * the privilege is a restriction.</p> <p>Required attribute 
+         * supports the validation and identification of the healthcare 
+         * provider and his/her given privileges</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"negationInd"})]
         public bool? NegationInd {
@@ -135,12 +178,26 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Merged {
         }
 
         /**
-         * <summary>RestrictionsToPracticeText</summary>
+         * <summary>Business Name: RestrictionsToPracticeText</summary>
          * 
-         * <remarks>Restrictions to Practice Text <p>Comments 
+         * <remarks>Un-merged Business Name: RestrictionsToPracticeText 
+         * Relationship: PRPM_MT303010CA.Privilege.text 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Comments 
          * pertaining to the restriction.</p> <p>Required attribute 
          * supports the validation and identification of the healthcare 
-         * provider and his/her given privileges</p></remarks>
+         * provider and his/her given privileges</p> Un-merged Business 
+         * Name: RestrictionsToPracticeText Relationship: 
+         * PRPM_MT301010CA.Privilege.text Conformance/Cardinality: 
+         * REQUIRED (0-1) <p>Comments pertaining to the 
+         * restriction.</p> <p>Required attribute supports the 
+         * validation and identification of the healthcare provider and 
+         * his/her given privileges</p> Un-merged Business Name: 
+         * RestrictionsToPracticeText Relationship: 
+         * PRPM_MT306011CA.Privilege.text Conformance/Cardinality: 
+         * REQUIRED (0-1) <p>Comments pertaining to the 
+         * restriction.</p> <p>Required attribute supports the 
+         * validation and identification of the healthcare provider and 
+         * his/her given privileges</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"text"})]
         public String Text {
@@ -149,20 +206,37 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Merged {
         }
 
         /**
-         * <summary>Restrictions to Practice Effective Date</summary>
+         * <summary>Un-merged Business Name: 
+         * RestrictionsToPracticeEffectiveDate</summary>
          * 
-         * <remarks><p>Effective date of the restriction.</p> 
-         * <p>Mandatory attribute supports the validation and 
-         * identification of the healthcare provider and his/her given 
-         * privileges</p> <p>If Restrictions to Practice are included 
-         * in the message, then Effective Date Must Exist</p> 
-         * Restrictions to Practice Effective Date <p>Effective date of 
-         * the restriction.</p> <p>Required attribute supports the 
+         * <remarks>Relationship: 
+         * PRPM_MT303010CA.Privilege.effectiveTime 
+         * Conformance/Cardinality: POPULATED (1) <p>Effective date of 
+         * the restriction.</p> <p>Mandatory attribute supports the 
          * validation and identification of the healthcare provider and 
          * his/her given privileges</p> <p>If Restrictions to Practice 
          * are included in the message, then Effective Date Must 
-         * Exist</p> Restrictions to Practice Type <p>Effective date of 
+         * Exist</p> Un-merged Business Name: 
+         * RestrictionsToPracticeEffectiveDate Relationship: 
+         * PRPM_MT301010CA.Privilege.effectiveTime 
+         * Conformance/Cardinality: MANDATORY (1) <p>Effective date of 
+         * the restriction.</p> <p>Mandatory attribute supports the 
+         * validation and identification of the healthcare provider and 
+         * his/her given privileges</p> <p>If Restrictions to Practice 
+         * are included in the message, then Effective Date Must 
+         * Exist</p> Un-merged Business Name: 
+         * RestrictionsToPracticeType Relationship: 
+         * PRPM_MT309000CA.Privilege.effectiveTime 
+         * Conformance/Cardinality: POPULATED (1) <p>Effective date of 
          * the restriction.</p> <p>Populated attribute supports the 
+         * validation and identification of the healthcare provider and 
+         * his/her given privileges</p> <p>If Restrictions to Practice 
+         * are included in the message, then Effective Date Must 
+         * Exist</p> Un-merged Business Name: 
+         * RestrictionsToPracticeEffectiveDate Relationship: 
+         * PRPM_MT306011CA.Privilege.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Effective date of 
+         * the restriction.</p> <p>Required attribute supports the 
          * validation and identification of the healthcare provider and 
          * his/her given privileges</p> <p>If Restrictions to Practice 
          * are included in the message, then Effective Date Must 
@@ -175,15 +249,19 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Merged {
         }
 
         /**
-         * <summary>RestrictionsToPracticeConfidentialityCode</summary>
+         * <summary>Business Name: 
+         * RestrictionsToPracticeConfidentialityCode</summary>
          * 
-         * <remarks>Restrictions to Practice Confidentiality Code 
-         * <p>Indicates the degree to which the restriction to practice 
-         * is to be kept confidential.</p> <p>Required attribute 
-         * supports the validation and identification of the healthcare 
-         * provider and his/her given privileges</p> <p>Data in the EHR 
-         * may at some point (and in some jurisdictions) be accessed 
-         * directly by patients. Some health information may be deemed 
+         * <remarks>Un-merged Business Name: 
+         * RestrictionsToPracticeConfidentialityCode Relationship: 
+         * PRPM_MT303010CA.Privilege.confidentialityCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>dicates the 
+         * degree to which the restriction to practice is to be kept 
+         * confidential.</p> <p>Required attribute supports the 
+         * validation and identification of the healthcare provider and 
+         * his/her given privileges</p> <p>Data in the EHR may at some 
+         * point (and in some jurisdictions) be accessed directly by 
+         * patients. Some health information may be deemed 
          * inappropriate for direct access by patients and requires 
          * interpretation by a clinician (e.g. prescription of 
          * placebos, analysis of certain psychiatric conditions, etc) 
@@ -194,18 +272,23 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Merged {
          * need to be flagged as not for disclosure to patient and or 
          * next of kin. There may be professional policy and or 
          * legislative guidelines about when/if records may be flagged 
-         * as not for direct disclosure.</p> Restrictions to Practice 
-         * Confidentiality Code <p>Indicates the degree to which the 
-         * restriction to practice is to be kept confidential.</p> 
-         * <p>Required attribute supports the validation and 
-         * identification of the healthcare provider and his/her given 
-         * privileges</p> Restrictions to Practice Confidentiality Code 
-         * <p>dicates the degree to which the restriction to practice 
-         * is to be kept confidential.</p> <p>Required attribute 
-         * supports the validation and identification of the healthcare 
-         * provider and his/her given privileges</p> <p>Data in the EHR 
-         * may at some point (and in some jurisdictions) be accessed 
-         * directly by patients. Some health information may be deemed 
+         * as not for direct disclosure.</p> Un-merged Business Name: 
+         * RestrictionsToPracticeConfidentialityCode Relationship: 
+         * PRPM_MT301010CA.Privilege.confidentialityCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
+         * degree to which the restriction to practice is to be kept 
+         * confidential.</p> <p>Required attribute supports the 
+         * validation and identification of the healthcare provider and 
+         * his/her given privileges</p> Un-merged Business Name: 
+         * RestrictionsToPracticeConfidentialityCode Relationship: 
+         * PRPM_MT306011CA.Privilege.confidentialityCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
+         * degree to which the restriction to practice is to be kept 
+         * confidential.</p> <p>Required attribute supports the 
+         * validation and identification of the healthcare provider and 
+         * his/her given privileges</p> <p>Data in the EHR may at some 
+         * point (and in some jurisdictions) be accessed directly by 
+         * patients. Some health information may be deemed 
          * inappropriate for direct access by patients and requires 
          * interpretation by a clinician (e.g. prescription of 
          * placebos, analysis of certain psychiatric conditions, etc) 
@@ -224,6 +307,21 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Merged {
             set { this.confidentialityCode.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: PRPM_MT303010CA.Privilege.subjectOf 
+         * Conformance/Cardinality: REQUIRED (0-10) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PRPM_MT301010CA.Privilege.subjectOf Conformance/Cardinality: 
+         * REQUIRED (0-10) Un-merged Business Name: (no business name 
+         * specified) Relationship: PRPM_MT309000CA.Privilege.subjectOf 
+         * Conformance/Cardinality: REQUIRED (0-10) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * PRPM_MT306011CA.Privilege.subjectOf Conformance/Cardinality: 
+         * REQUIRED (0-10)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Merged.Subject4> SubjectOf {
             get { return this.subjectOf; }

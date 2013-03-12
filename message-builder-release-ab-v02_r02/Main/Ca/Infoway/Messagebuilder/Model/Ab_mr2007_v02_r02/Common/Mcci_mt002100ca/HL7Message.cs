@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,11 +31,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Mcci_mt002100
 
 
     /**
-     * <summary>HL7 Message</summary>
+     * <summary>Business Name: HL7 Message</summary>
      * 
-     * <remarks><p>The root class of all messages.</p> <p>Conveys 
+     * <p>The root class of all messages.</p> <p>Conveys 
      * information about the interaction and how it is to be 
-     * processed</p></remarks>
+     * processed</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"MCCI_MT002100CA.Message"})]
     public class HL7Message<CAE> : MessagePartBean {
@@ -66,9 +66,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Mcci_mt002100
             this.attentionLine = new List<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.RoutingInstructionLines>();
         }
         /**
-         * <summary>A:Message Identifier</summary>
+         * <summary>Business Name: A:Message Identifier</summary>
          * 
-         * <remarks><p>A unique identifier for the message.</p> 
+         * <remarks>Relationship: MCCI_MT002100CA.Message.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>A unique 
+         * identifier for the message.</p> 
          * <p>soap:Header\wsa:MessageID</p> <p>Allows detection of 
          * duplicate messages, and allows tying acknowledgments to the 
          * message they are acknowledging. The attribute is therefore 
@@ -81,13 +83,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Mcci_mt002100
         }
 
         /**
-         * <summary>G:Message Timestamp</summary>
+         * <summary>Business Name: G:Message Timestamp</summary>
          * 
-         * <remarks><p>Indicates the time this particular message 
-         * instance was constructed.</p> <p>Allows identification of 
-         * how current the information in a message is. Also provides a 
-         * baseline for identifying the time-zone of other times within 
-         * the message. As a result, the attribute is mandatory.</p></remarks>
+         * <remarks>Relationship: MCCI_MT002100CA.Message.creationTime 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the time 
+         * this particular message instance was constructed.</p> 
+         * <p>Allows identification of how current the information in a 
+         * message is. Also provides a baseline for identifying the 
+         * time-zone of other times within the message. As a result, 
+         * the attribute is mandatory.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"creationTime"})]
         public PlatformDate CreationTime {
@@ -96,14 +100,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Mcci_mt002100
         }
 
         /**
-         * <summary>H:Security Token</summary>
+         * <summary>Business Name: H:Security Token</summary>
          * 
-         * <remarks><p>A locally-defined field used to maintain a 
-         * session, identify a user, and/or perform some other function 
-         * related to authenticating the message source.</p> <p>Allows 
-         * jurisdictions and applications to communicate authentication 
-         * and session information. The attribute is optional because 
-         * not all jurisdictions will require this capability.</p></remarks>
+         * <remarks>Relationship: MCCI_MT002100CA.Message.securityText 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>A locally-defined 
+         * field used to maintain a session, identify a user, and/or 
+         * perform some other function related to authenticating the 
+         * message source.</p> <p>Allows jurisdictions and applications 
+         * to communicate authentication and session information. The 
+         * attribute is optional because not all jurisdictions will 
+         * require this capability.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"securityText"})]
         public String SecurityText {
@@ -112,14 +118,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Mcci_mt002100
         }
 
         /**
-         * <summary>DA: Response Type</summary>
+         * <summary>Business Name: DA: Response Type</summary>
          * 
-         * <remarks><p>Identifies whether the response is desired 
-         * immediately (as a direct acknowledgement), on a deferred 
-         * basis (as a subsequent independent interaction) or via queue 
-         * using polling.</p> <p>soap:Header\wsa:Action (after the 
-         * second underscore, if any, 
-         * &#226;&#128;&#156;D&#226;&#128;&#157; otherwise)</p> 
+         * <remarks>Relationship: 
+         * MCCI_MT002100CA.Message.responseModeCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>Identifies whether 
+         * the response is desired immediately (as a direct 
+         * acknowledgement), on a deferred basis (as a subsequent 
+         * independent interaction) or via queue using polling.</p> 
+         * <p>soap:Header\wsa:Action (after the second underscore, if 
+         * any, &#226;&#128;&#156;D&#226;&#128;&#157; otherwise)</p> 
          * <p>Essential to determining receiver behavior and therefore 
          * mandatory.</p></remarks>
          */
@@ -130,10 +138,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Mcci_mt002100
         }
 
         /**
-         * <summary>B:Interaction Type</summary>
+         * <summary>Business Name: B:Interaction Type</summary>
          * 
-         * <remarks><p>Indicates the interaction conveyed by this 
-         * message.</p> <p>soap:Header\wsa:Action (after 
+         * <remarks>Relationship: MCCI_MT002100CA.Message.interactionId 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the 
+         * interaction conveyed by this message.</p> 
+         * <p>soap:Header\wsa:Action (after 
          * &#226;&#128;&#156;urn:hl7-org:v3:&#226;&#128;&#157; and 
          * before the second underscore, if any)</p> <p>Identifies what 
          * the receiving application should do, and how the message 
@@ -147,12 +157,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Mcci_mt002100
         }
 
         /**
-         * <summary>F:Conformance Profile Identifiers</summary>
+         * <summary>Business Name: F:Conformance Profile Identifiers</summary>
          * 
-         * <remarks><p>Identifies the conformance profile(s) this 
-         * message complies with.</p> <p>Indicates any additional 
-         * validation that may be appropriate. Also influences what 
-         * extensions can be processed.</p></remarks>
+         * <remarks>Relationship: MCCI_MT002100CA.Message.profileId 
+         * Conformance/Cardinality: REQUIRED (0-10) <p>Identifies the 
+         * conformance profile(s) this message complies with.</p> 
+         * <p>Indicates any additional validation that may be 
+         * appropriate. Also influences what extensions can be 
+         * processed.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"profileId"})]
         public IList<Identifier> ProfileId {
@@ -160,15 +172,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Mcci_mt002100
         }
 
         /**
-         * <summary>DB:Processing Code</summary>
+         * <summary>Business Name: DB:Processing Code</summary>
          * 
-         * <remarks><p>Indicates whether this message is intended to be 
-         * processed as production, test or debug message.</p> 
-         * <p>soap:Header\wsa:To\(portion between second-last 
-         * &#226;&#128;&#156;\&#226;&#128;&#157; and third-last 
-         * &#226;&#128;&#156;\&#226;&#128;&#157;)</p> <p>Indicates how 
-         * the message should be handled and is therefore 
-         * mandatory.</p></remarks>
+         * <remarks>Relationship: 
+         * MCCI_MT002100CA.Message.processingCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates whether 
+         * this message is intended to be processed as production, test 
+         * or debug message.</p> <p>soap:Header\wsa:To\(portion between 
+         * second-last &#226;&#128;&#156;\&#226;&#128;&#157; and 
+         * third-last &#226;&#128;&#156;\&#226;&#128;&#157;)</p> 
+         * <p>Indicates how the message should be handled and is 
+         * therefore mandatory.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"processingCode"})]
         public ProcessingID ProcessingCode {
@@ -177,15 +191,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Mcci_mt002100
         }
 
         /**
-         * <summary>E:Desired Acknowledgment Type</summary>
+         * <summary>Business Name: E:Desired Acknowledgment Type</summary>
          * 
-         * <remarks><p>Indicates how the message is expected to be 
-         * acknowledged.</p> <p>Provides support for immediate, 
-         * deferred and polling mode and distinguishes which mode is 
-         * desired. The attribute is therefore mandatory.</p> <p>When 
-         * using SOAP, this attribute MUST be set to NE (Never). 
-         * (Accept acknowledgements are handled via the transport 
-         * protocol, not HL7.)</p></remarks>
+         * <remarks>Relationship: MCCI_MT002100CA.Message.acceptAckCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates how the 
+         * message is expected to be acknowledged.</p> <p>Provides 
+         * support for immediate, deferred and polling mode and 
+         * distinguishes which mode is desired. The attribute is 
+         * therefore mandatory.</p> <p>When using SOAP, this attribute 
+         * MUST be set to NE (Never). (Accept acknowledgements are 
+         * handled via the transport protocol, not HL7.)</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"acceptAckCode"})]
         public AcknowledgementCondition AcceptAckCode {
@@ -193,29 +208,55 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Mcci_mt002100
             set { this.acceptAckCode.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: MCCI_MT002100CA.Message.receiver</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"receiver"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.Receiver Receiver {
             get { return this.receiver; }
             set { this.receiver = value; }
         }
 
+        /**
+         * <summary>Relationship: MCCI_MT002100CA.Message.respondTo</summary>
+         * 
+         * <remarks>Conformance/Cardinality: OPTIONAL (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"respondTo"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.ToBeRespondedToBy RespondTo {
             get { return this.respondTo; }
             set { this.respondTo = value; }
         }
 
+        /**
+         * <summary>Relationship: MCCI_MT002100CA.Message.sender</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"sender"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.Sender Sender {
             get { return this.sender; }
             set { this.sender = value; }
         }
 
+        /**
+         * <summary>Relationship: MCCI_MT002100CA.Message.attentionLine</summary>
+         * 
+         * <remarks>Conformance/Cardinality: OPTIONAL (0-5)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"attentionLine"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.RoutingInstructionLines> AttentionLine {
             get { return this.attentionLine; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * MCCI_MT002100CA.Message.controlActEvent</summary>
+         * 
+         * <remarks>Conformance/Cardinality: REQUIRED (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"controlActEvent"})]
         public CAE ControlActEvent {
             get { return this.controlActEvent; }

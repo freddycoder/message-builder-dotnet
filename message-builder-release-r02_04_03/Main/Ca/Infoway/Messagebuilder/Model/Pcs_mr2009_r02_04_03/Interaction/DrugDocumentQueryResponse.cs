@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,6 +25,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Merged;
 
 
+    /**
+     * <summary>Business Name: POME_IN010020CA: Drug document query 
+     * response</summary>
+     * 
+     * <p>Returns one or more drug, protocol or contraindication 
+     * monographs as text, HTML, PDF or CDA documents.</p> Message: 
+     * MCCI_MT002300CA.Message Control Act: 
+     * QUQI_MT120008CA.ControlActEvent --> Payload: 
+     * PORR_MT050016CA.Document --> Payload: 
+     * POME_MT010050CA.ParameterList
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"POME_IN010020CA"})]
     public class DrugDocumentQueryResponse : HL7Message_1<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.TriggerEvent_6<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Merged.Monographs,Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Merged.DrugQueryParameters>>, IInteraction {
 

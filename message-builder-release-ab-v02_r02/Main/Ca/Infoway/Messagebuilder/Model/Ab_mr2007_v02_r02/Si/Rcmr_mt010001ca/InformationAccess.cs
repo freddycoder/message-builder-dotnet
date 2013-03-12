@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,12 +29,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Si.Rcmr_mt010001ca {
 
 
     /**
-     * <summary>Information Access</summary>
+     * <summary>Business Name: Information Access</summary>
      * 
-     * <remarks><p>Describes the type of information access being 
-     * consented to.</p> <p>Allows fine-grained control over the 
-     * types of information access is granted to and who is granted 
-     * access.</p></remarks>
+     * <p>Describes the type of information access being consented 
+     * to.</p> <p>Allows fine-grained control over the types of 
+     * information access is granted to and who is granted 
+     * access.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"RCMR_MT010001CA.PermissionToInform"})]
     public class InformationAccess : MessagePartBean {
@@ -45,6 +45,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Si.Rcmr_mt010001ca {
         public InformationAccess() {
             this.subjectRecordTypeCode = new List<CV>();
         }
+        /**
+         * <summary>Relationship: 
+         * RCMR_MT010001CA.PermissionToInform.receiver</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"receiver"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.ConsentGivenTo Receiver {
             get { return this.receiver; }
@@ -52,15 +58,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Si.Rcmr_mt010001ca {
         }
 
         /**
-         * <summary>B:Consent Information Types</summary>
+         * <summary>Business Name: B:Consent Information Types</summary>
          * 
-         * <remarks><p>The type of patient information that can be 
-         * accessed or modified.</p> <p>Different consents may need 
-         * access to different types of patient information (e.g. 
-         * demographics, medications, allergies, lab results). 
-         * Understanding the type of information the consent applies to 
-         * is critical to controlling access, and therefore the 
-         * attribute is mandatory.</p></remarks>
+         * <remarks>Relationship: RCMR_MT010001CA.RecordType.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>The type of 
+         * patient information that can be accessed or modified.</p> 
+         * <p>Different consents may need access to different types of 
+         * patient information (e.g. demographics, medications, 
+         * allergies, lab results). Understanding the type of 
+         * information the consent applies to is critical to 
+         * controlling access, and therefore the attribute is 
+         * mandatory.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"subject/recordType/code"})]
         public IList<ActInformationAccessTypeCode> SubjectRecordTypeCode {

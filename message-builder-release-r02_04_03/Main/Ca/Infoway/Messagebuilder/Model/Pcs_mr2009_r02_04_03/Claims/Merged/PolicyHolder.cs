@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,9 +36,20 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Merged {
             this.id = new IIImpl();
         }
         /**
-         * <summary>PolicyHolderIdentifier</summary>
+         * <summary>Business Name: PolicyHolderIdentifier</summary>
          * 
-         * <remarks>Policy Holder Identifier</remarks>
+         * <remarks>Un-merged Business Name: PolicyHolderIdentifier 
+         * Relationship: FICR_MT490102CA.PolicyHolder.id 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: PolicyHolderIdentifier Relationship: 
+         * FICR_MT400003CA.PolicyHolder.id Conformance/Cardinality: 
+         * MANDATORY (1) Un-merged Business Name: 
+         * PolicyHolderIdentifier Relationship: 
+         * FICR_MT400004CA.PolicyHolder.id Conformance/Cardinality: 
+         * MANDATORY (1) Un-merged Business Name: 
+         * PolicyHolderIdentifier Relationship: 
+         * FICR_MT400001CA.PolicyHolder.id Conformance/Cardinality: 
+         * MANDATORY (1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -46,6 +57,23 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Merged {
             set { this.id.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * FICR_MT490102CA.PolicyHolder.policyHolderChoice 
+         * Conformance/Cardinality: REQUIRED (0-1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * FICR_MT400003CA.PolicyHolder.policyHolderChoice 
+         * Conformance/Cardinality: REQUIRED (0-1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * FICR_MT400004CA.PolicyHolder.policyHolderChoice 
+         * Conformance/Cardinality: REQUIRED (0-1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * FICR_MT400001CA.PolicyHolder.policyHolderChoice 
+         * Conformance/Cardinality: REQUIRED (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"policyHolderChoice"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Merged.IPolicyHolderChoice PolicyHolderChoice {
             get { return this.policyHolderChoice; }

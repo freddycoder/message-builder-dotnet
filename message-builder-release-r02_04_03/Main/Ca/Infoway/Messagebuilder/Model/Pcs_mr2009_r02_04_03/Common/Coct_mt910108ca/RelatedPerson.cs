@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,25 +29,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt910
 
 
     /**
-     * <summary>Related Person</summary>
+     * <summary>Business Name: Related Person</summary>
      * 
-     * <remarks><p>Describes a person (other than a health-care 
-     * provider or employee) who is providing information and 
-     * making decision on behalf of the patient, in relation to the 
-     * delivery of healthcare for the patient. E.g. Patient's 
-     * mother. Also used with a relationship of &quot;self&quot; 
-     * when the patient themselves is providing the 
-     * care.</p><p>Represents information retrieved from the client 
-     * registry.</p> <p>Describes a person (other than a 
-     * health-care provider or employee) who is providing 
-     * information and making decision on behalf of the patient, in 
-     * relation to the delivery of healthcare for the patient. E.g. 
-     * Patient's mother. Also used with a relationship of 
-     * &quot;self&quot; when the patient themselves is providing 
-     * the care.</p><p>Represents information retrieved from the 
-     * client registry.</p> <p>Important for tracking source of 
-     * information for decision making and other actions taken on 
-     * behalf of a patient.</p></remarks>
+     * <p>Important for tracking source of information for decision 
+     * making and other actions taken on behalf of a patient.</p> 
+     * <p>Describes a person (other than a health-care provider or 
+     * employee) who is providing information and making decision 
+     * on behalf of the patient, in relation to the delivery of 
+     * healthcare for the patient. E.g. Patient's mother. Also used 
+     * with a relationship of &quot;self&quot; when the patient 
+     * themselves is providing the care.</p><p>Represents 
+     * information retrieved from the client registry.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"COCT_MT910108CA.PersonalRelationship"})]
     public class RelatedPerson : MessagePartBean, Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt911108ca.IActingPerson {
@@ -61,182 +53,32 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt910
             this.code = new CVImpl();
         }
         /**
-         * <summary>B:Related Person Identifier</summary>
+         * <summary>Business Name: B:Related Person Identifier</summary>
          * 
-         * <remarks><p>A unique identifier for the related person (as 
-         * found in a client registry).</p> <p>ZPB1.6 
-         * (Root)</p><p>ZPB1.7 (EXtension)</p><p>ZPB2.8 
-         * (Root)</p><p>ZPB2.9 (EXtension)</p><p>ZPB3.11 
-         * (Root)</p><p>ZPB3.12 (EXtension)</p><p>ZPB3.18 
-         * (Root)</p><p>ZPB3.19 (EXtension)</p><p>D60 (Root)</p><p>D61 
-         * (Extension)</p><p>D76</p><p>PVD.020-01 
-         * (Extension)</p><p>PVD.020-02 
-         * (Root)</p><p>PharmacyProvider.444-E9 
-         * (Extension)</p><p>PharmacyProvider.465-E7 
-         * (Root)</p><p>Prescriber.446-EZ 
-         * (Extension)</p><p>PharmacyProvider.411-DB 
-         * (Root)</p><p>ZDP.18.1 (Extension)</p><p>ZDP.18.2 
-         * (Root)</p><p>ZDP.19.1 (Extension)</p><p>ZDP.19.2 
-         * (Root)</p><p>ZDP.10.1 (Extension)</p><p>ZDP.10.2 
-         * (Root)</p><p>Provider.PproviderExternalKey 
-         * (Extension)</p><p>Provider.providerKey 
-         * (Extension)</p><p>Provider.wellnetProviderId 
-         * (Extension)</p><p>ProviderRegistration.Identifier 
-         * (Extension)</p><p>ProviderRegistration.IdentifierDomain 
-         * (part of Extension)</p><p>ProviderRegistrationjurisdiction 
-         * (part of Extension)</p> <p>ZPB1.6 (Root)</p><p>ZPB1.7 
-         * (EXtension)</p><p>ZPB2.8 (Root)</p><p>ZPB2.9 
-         * (EXtension)</p><p>ZPB3.11 (Root)</p><p>ZPB3.12 
-         * (EXtension)</p><p>ZPB3.18 (Root)</p><p>ZPB3.19 
-         * (EXtension)</p><p>D60 (Root)</p><p>D61 
-         * (Extension)</p><p>D76</p><p>PVD.020-01 
-         * (Extension)</p><p>PVD.020-02 
-         * (Root)</p><p>PharmacyProvider.444-E9 
-         * (Extension)</p><p>PharmacyProvider.465-E7 
-         * (Root)</p><p>Prescriber.446-EZ 
-         * (Extension)</p><p>PharmacyProvider.411-DB 
-         * (Root)</p><p>ZDP.18.1 (Extension)</p><p>ZDP.18.2 
-         * (Root)</p><p>ZDP.19.1 (Extension)</p><p>ZDP.19.2 
-         * (Root)</p><p>ZDP.10.1 (Extension)</p><p>ZDP.10.2 
-         * (Root)</p><p>Provider.PproviderExternalKey 
-         * (Extension)</p><p>Provider.providerKey 
-         * (Extension)</p><p>Provider.wellnetProviderId 
-         * (Extension)</p><p>ProviderRegistration.Identifier 
-         * (Extension)</p><p>ProviderRegistration.IdentifierDomain 
-         * (part of Extension)</p><p>ProviderRegistrationjurisdiction 
-         * (part of Extension)</p> <p>ZPB1.6 (Root)</p><p>ZPB1.7 
-         * (EXtension)</p><p>ZPB2.8 (Root)</p><p>ZPB2.9 
-         * (EXtension)</p><p>ZPB3.11 (Root)</p><p>ZPB3.12 
-         * (EXtension)</p><p>ZPB3.18 (Root)</p><p>ZPB3.19 
-         * (EXtension)</p><p>D60 (Root)</p><p>D61 
-         * (Extension)</p><p>D76</p><p>PVD.020-01 
-         * (Extension)</p><p>PVD.020-02 
-         * (Root)</p><p>PharmacyProvider.444-E9 
-         * (Extension)</p><p>PharmacyProvider.465-E7 
-         * (Root)</p><p>Prescriber.446-EZ 
-         * (Extension)</p><p>PharmacyProvider.411-DB 
-         * (Root)</p><p>ZDP.18.1 (Extension)</p><p>ZDP.18.2 
-         * (Root)</p><p>ZDP.19.1 (Extension)</p><p>ZDP.19.2 
-         * (Root)</p><p>ZDP.10.1 (Extension)</p><p>ZDP.10.2 
-         * (Root)</p><p>Provider.PproviderExternalKey 
-         * (Extension)</p><p>Provider.providerKey 
-         * (Extension)</p><p>Provider.wellnetProviderId 
-         * (Extension)</p><p>ProviderRegistration.Identifier 
-         * (Extension)</p><p>ProviderRegistration.IdentifierDomain 
-         * (part of Extension)</p><p>ProviderRegistrationjurisdiction 
-         * (part of Extension)</p> <p>ZPB1.6 (Root)</p><p>ZPB1.7 
-         * (EXtension)</p><p>ZPB2.8 (Root)</p><p>ZPB2.9 
-         * (EXtension)</p><p>ZPB3.11 (Root)</p><p>ZPB3.12 
-         * (EXtension)</p><p>ZPB3.18 (Root)</p><p>ZPB3.19 
-         * (EXtension)</p><p>D60 (Root)</p><p>D61 
-         * (Extension)</p><p>D76</p><p>PVD.020-01 
-         * (Extension)</p><p>PVD.020-02 
-         * (Root)</p><p>PharmacyProvider.444-E9 
-         * (Extension)</p><p>PharmacyProvider.465-E7 
-         * (Root)</p><p>Prescriber.446-EZ 
-         * (Extension)</p><p>PharmacyProvider.411-DB 
-         * (Root)</p><p>ZDP.18.1 (Extension)</p><p>ZDP.18.2 
-         * (Root)</p><p>ZDP.19.1 (Extension)</p><p>ZDP.19.2 
-         * (Root)</p><p>ZDP.10.1 (Extension)</p><p>ZDP.10.2 
-         * (Root)</p><p>Provider.PproviderExternalKey 
-         * (Extension)</p><p>Provider.providerKey 
-         * (Extension)</p><p>Provider.wellnetProviderId 
-         * (Extension)</p><p>ProviderRegistration.Identifier 
-         * (Extension)</p><p>ProviderRegistration.IdentifierDomain 
-         * (part of Extension)</p><p>ProviderRegistrationjurisdiction 
-         * (part of Extension)</p> <p>ZPB1.6 (Root)</p><p>ZPB1.7 
-         * (EXtension)</p><p>ZPB2.8 (Root)</p><p>ZPB2.9 
-         * (EXtension)</p><p>ZPB3.11 (Root)</p><p>ZPB3.12 
-         * (EXtension)</p><p>ZPB3.18 (Root)</p><p>ZPB3.19 
-         * (EXtension)</p><p>D60 (Root)</p><p>D61 
-         * (Extension)</p><p>D76</p><p>PVD.020-01 
-         * (Extension)</p><p>PVD.020-02 
-         * (Root)</p><p>PharmacyProvider.444-E9 
-         * (Extension)</p><p>PharmacyProvider.465-E7 
-         * (Root)</p><p>Prescriber.446-EZ 
-         * (Extension)</p><p>PharmacyProvider.411-DB 
-         * (Root)</p><p>ZDP.18.1 (Extension)</p><p>ZDP.18.2 
-         * (Root)</p><p>ZDP.19.1 (Extension)</p><p>ZDP.19.2 
-         * (Root)</p><p>ZDP.10.1 (Extension)</p><p>ZDP.10.2 
-         * (Root)</p><p>Provider.PproviderExternalKey 
-         * (Extension)</p><p>Provider.providerKey 
-         * (Extension)</p><p>Provider.wellnetProviderId 
-         * (Extension)</p><p>ProviderRegistration.Identifier 
-         * (Extension)</p><p>ProviderRegistration.IdentifierDomain 
-         * (part of Extension)</p><p>ProviderRegistrationjurisdiction 
-         * (part of Extension)</p> <p>ZPB1.6 (Root)</p><p>ZPB1.7 
-         * (EXtension)</p><p>ZPB2.8 (Root)</p><p>ZPB2.9 
-         * (EXtension)</p><p>ZPB3.11 (Root)</p><p>ZPB3.12 
-         * (EXtension)</p><p>ZPB3.18 (Root)</p><p>ZPB3.19 
-         * (EXtension)</p><p>D60 (Root)</p><p>D61 
-         * (Extension)</p><p>D76</p><p>PVD.020-01 
-         * (Extension)</p><p>PVD.020-02 
-         * (Root)</p><p>PharmacyProvider.444-E9 
-         * (Extension)</p><p>PharmacyProvider.465-E7 
-         * (Root)</p><p>Prescriber.446-EZ 
-         * (Extension)</p><p>PharmacyProvider.411-DB 
-         * (Root)</p><p>ZDP.18.1 (Extension)</p><p>ZDP.18.2 
-         * (Root)</p><p>ZDP.19.1 (Extension)</p><p>ZDP.19.2 
-         * (Root)</p><p>ZDP.10.1 (Extension)</p><p>ZDP.10.2 
-         * (Root)</p><p>Provider.PproviderExternalKey 
-         * (Extension)</p><p>Provider.providerKey 
-         * (Extension)</p><p>Provider.wellnetProviderId 
-         * (Extension)</p><p>ProviderRegistration.Identifier 
-         * (Extension)</p><p>ProviderRegistration.IdentifierDomain 
-         * (part of Extension)</p><p>ProviderRegistrationjurisdiction 
-         * (part of Extension)</p> <p>ZPB1.6 (Root)</p><p>ZPB1.7 
-         * (EXtension)</p><p>ZPB2.8 (Root)</p><p>ZPB2.9 
-         * (EXtension)</p><p>ZPB3.11 (Root)</p><p>ZPB3.12 
-         * (EXtension)</p><p>ZPB3.18 (Root)</p><p>ZPB3.19 
-         * (EXtension)</p><p>D60 (Root)</p><p>D61 
-         * (Extension)</p><p>D76</p><p>PVD.020-01 
-         * (Extension)</p><p>PVD.020-02 
-         * (Root)</p><p>PharmacyProvider.444-E9 
-         * (Extension)</p><p>PharmacyProvider.465-E7 
-         * (Root)</p><p>Prescriber.446-EZ 
-         * (Extension)</p><p>PharmacyProvider.411-DB 
-         * (Root)</p><p>ZDP.18.1 (Extension)</p><p>ZDP.18.2 
-         * (Root)</p><p>ZDP.19.1 (Extension)</p><p>ZDP.19.2 
-         * (Root)</p><p>ZDP.10.1 (Extension)</p><p>ZDP.10.2 
-         * (Root)</p><p>Provider.PproviderExternalKey 
-         * (Extension)</p><p>Provider.providerKey 
-         * (Extension)</p><p>Provider.wellnetProviderId 
-         * (Extension)</p><p>ProviderRegistration.Identifier 
-         * (Extension)</p><p>ProviderRegistration.IdentifierDomain 
-         * (part of Extension)</p><p>ProviderRegistrationjurisdiction 
-         * (part of Extension)</p> <p>ZPB1.6 (Root)</p><p>ZPB1.7 
-         * (EXtension)</p><p>ZPB2.8 (Root)</p><p>ZPB2.9 
-         * (EXtension)</p><p>ZPB3.11 (Root)</p><p>ZPB3.12 
-         * (EXtension)</p><p>ZPB3.18 (Root)</p><p>ZPB3.19 
-         * (EXtension)</p><p>D60 (Root)</p><p>D61 
-         * (Extension)</p><p>D76</p><p>PVD.020-01 
-         * (Extension)</p><p>PVD.020-02 
-         * (Root)</p><p>PharmacyProvider.444-E9 
-         * (Extension)</p><p>PharmacyProvider.465-E7 
-         * (Root)</p><p>Prescriber.446-EZ 
-         * (Extension)</p><p>PharmacyProvider.411-DB 
-         * (Root)</p><p>ZDP.18.1 (Extension)</p><p>ZDP.18.2 
-         * (Root)</p><p>ZDP.19.1 (Extension)</p><p>ZDP.19.2 
-         * (Root)</p><p>ZDP.10.1 (Extension)</p><p>ZDP.10.2 
-         * (Root)</p><p>Provider.PproviderExternalKey 
-         * (Extension)</p><p>Provider.providerKey 
-         * (Extension)</p><p>Provider.wellnetProviderId 
-         * (Extension)</p><p>ProviderRegistration.Identifier 
-         * (Extension)</p><p>ProviderRegistration.IdentifierDomain 
-         * (part of Extension)</p><p>ProviderRegistrationjurisdiction 
-         * (part of Extension)</p> <p>ZPB1.6 (Root)</p><p>ZPB1.7 
-         * (EXtension)</p><p>ZPB2.8 (Root)</p><p>ZPB2.9 
-         * (EXtension)</p><p>ZPB3.11 (Root)</p><p>ZPB3.12 
-         * (EXtension)</p><p>ZPB3.18 (Root)</p><p>ZPB3.19 
-         * (EXtension)</p><p>D60 (Root)</p><p>D61 
-         * (Extension)</p><p>D76</p><p>PVD.020-01 
-         * (Extension)</p><p>PVD.020-02 
-         * (Root)</p><p>PharmacyProvider.444-E9 
-         * (Extension)</p><p>PharmacyProvider.465-E7 
-         * (Root)</p><p>Prescriber.446-EZ 
-         * (Extension)</p><p>PharmacyProvider.411-DB 
-         * (Root)</p><p>ZDP.18.
-         * ... [rest of documentation truncated due to excessive length]
+         * <remarks>Relationship: 
+         * COCT_MT910108CA.PersonalRelationship.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>ZPB1.6 (Root)</p> 
+         * <p>ZPB1.7 (EXtension)</p> <p>ZPB2.8 (Root)</p> <p>ZPB2.9 
+         * (EXtension)</p> <p>ZPB3.11 (Root)</p> <p>ZPB3.12 
+         * (EXtension)</p> <p>ZPB3.18 (Root)</p> <p>ZPB3.19 
+         * (EXtension)</p> <p>D60 (Root)</p> <p>D61 (Extension)</p> 
+         * <p>D76</p> <p>PVD.020-01 (Extension)</p> <p>PVD.020-02 
+         * (Root)</p> <p>PharmacyProvider.444-E9 (Extension)</p> 
+         * <p>PharmacyProvider.465-E7 (Root)</p> <p>Prescriber.446-EZ 
+         * (Extension)</p> <p>PharmacyProvider.411-DB (Root)</p> 
+         * <p>ZDP.18.1 (Extension)</p> <p>ZDP.18.2 (Root)</p> 
+         * <p>ZDP.19.1 (Extension)</p> <p>ZDP.19.2 (Root)</p> 
+         * <p>ZDP.10.1 (Extension)</p> <p>ZDP.10.2 (Root)</p> 
+         * <p>Provider.PproviderExternalKey (Extension)</p> 
+         * <p>Provider.providerKey (Extension)</p> 
+         * <p>Provider.wellnetProviderId (Extension)</p> 
+         * <p>ProviderRegistration.Identifier (Extension)</p> 
+         * <p>ProviderRegistration.IdentifierDomain (part of 
+         * Extension)</p> <p>ProviderRegistrationjurisdiction (part of 
+         * Extension)</p> <p>Allows a person to be uniquely referred to 
+         * and retrieved from the client registry and is therefore 
+         * mandatory.</p> <p>A unique identifier for the related person 
+         * (as found in a client registry).</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -245,13 +87,26 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt910
         }
 
         /**
-         * <summary>C:Responsible Person Type</summary>
+         * <summary>Business Name: C:Responsible Person Type</summary>
          * 
-         * <remarks><p>A coded value indicating how the person is 
-         * related to the patient. If the code is &quot;SELF&quot;, it 
-         * indicates that the action was performed by the patient 
-         * themselves.</p> </p> </p> <p>EPHS:this cmet is used for 
-         * self-reports as well as reports by other related parties</p></remarks>
+         * <remarks>Relationship: 
+         * COCT_MT910108CA.PersonalRelationship.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Essential for 
+         * understanding the authority to perform certain actions as 
+         * well as the context of the information and is therefore 
+         * mandatory. E.g. A 'friend' may not be able to make consent 
+         * decisions, but may be able to pick up dispenses.</p><p> 
+         * <i>The element uses CWE to allow for the capture of 
+         * Responsible Person Type concepts not presently supported by 
+         * the approved code system(s). In this case, the 
+         * human-to-human benefit of capturing additional non-coded 
+         * values outweighs the penalties of capturing some information 
+         * that will not be amenable to searching or categorizing.</i> 
+         * </p> <p>EPHS:this cmet is used for self-reports as well as 
+         * reports by other related parties</p> <p>A coded value 
+         * indicating how the person is related to the patient. If the 
+         * code is &quot;SELF&quot;, it indicates that the action was 
+         * performed by the patient themselves.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public x_SimplePersonalRelationship Code {
@@ -259,6 +114,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt910
             set { this.code.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * COCT_MT910108CA.PersonalRelationship.relationshipHolder</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"relationshipHolder"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.ActingPerson RelationshipHolder {
             get { return this.relationshipHolder; }

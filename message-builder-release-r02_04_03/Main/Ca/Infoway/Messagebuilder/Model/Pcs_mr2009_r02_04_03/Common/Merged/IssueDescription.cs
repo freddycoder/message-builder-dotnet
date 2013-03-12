@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,16 +29,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged {
 
 
     /**
-     * <summary>IssueDescription</summary>
+     * <summary>Business Name: IssueDescription</summary>
      * 
      * <remarks>COCT_MT260030CA.DetectedIssueDefinition: Issue 
-     * Description <p>This is the decision support rule that 
-     * triggered the issue.</p> <p>Provides detailed background for 
-     * providers in evaluating the issue.</p> 
+     * Description <p>Provides detailed background for providers in 
+     * evaluating the issue.</p> <p>This is the decision support 
+     * rule that triggered the issue.</p> 
      * COCT_MT260010CA.DetectedIssueDefinition: Issue Description 
-     * <p>This is the decision support rule that triggered the 
-     * issue.</p> <p>Provides detailed background for providers in 
-     * evaluating the issue.</p></remarks>
+     * <p>Provides detailed background for providers in evaluating 
+     * the issue.</p> <p>This is the decision support rule that 
+     * triggered the issue.</p></remarks>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"COCT_MT260010CA.DetectedIssueDefinition","COCT_MT260020CA.DetectedIssueDefinition","COCT_MT260030CA.DetectedIssueDefinition"})]
     public class IssueDescription : MessagePartBean {
@@ -55,27 +55,31 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged {
             this.authorTime = new TSImpl();
         }
         /**
-         * <summary>IssueMonographId</summary>
+         * <summary>Business Name: IssueMonographId</summary>
          * 
-         * <remarks>A:Issue Monograph Id A:Issue Monograph Id 
+         * <remarks>Un-merged Business Name: IssueMonographId 
+         * Relationship: COCT_MT260020CA.DetectedIssueDefinition.id 
+         * Conformance/Cardinality: REQUIRED (0-1) Un-merged Business 
+         * Name: IssueMonographId Relationship: 
+         * COCT_MT260030CA.DetectedIssueDefinition.id 
+         * Conformance/Cardinality: REQUIRED (0-1) 
+         * <p>DDIMonograph.DDIMonographId</p> <p>ZPE.2</p> 
+         * <p>MB.05.03C</p> <p>ZPS.14</p> <p>ZDU.5.2</p> 
+         * <p>A_DetectedMedicationIssue</p> <p>Monograph Code</p> 
+         * <p>Allows applications to match with local Knowledge-bases 
+         * and avoid displaying duplicate issues to providers.</p> 
          * <p>Knowledgebase organization specific identifier for the 
-         * issue definition.</p> 
-         * <p>DDIMonograph.DDIMonographId</p><p>ZPE.2</p><p>MB.05.03C</p><p>ZPS.14</p><p>ZDU.5.2</p><p>A_DetectedMedicationIssue</p><p>Monograph 
-         * Code</p> 
-         * <p>DDIMonograph.DDIMonographId</p><p>ZPE.2</p><p>MB.05.03C</p><p>ZPS.14</p><p>ZDU.5.2</p><p>A_DetectedMedicationIssue</p><p>Monograph 
-         * Code</p> 
-         * <p>DDIMonograph.DDIMonographId</p><p>ZPE.2</p><p>MB.05.03C</p><p>ZPS.14</p><p>ZDU.5.2</p><p>A_DetectedMedicationIssue</p><p>Monograph 
-         * Code</p> 
-         * <p>DDIMonograph.DDIMonographId</p><p>ZPE.2</p><p>MB.05.03C</p><p>ZPS.14</p><p>ZDU.5.2</p><p>A_DetectedMedicationIssue</p><p>Monograph 
-         * Code</p> 
-         * <p>DDIMonograph.DDIMonographId</p><p>ZPE.2</p><p>MB.05.03C</p><p>ZPS.14</p><p>ZDU.5.2</p><p>A_DetectedMedicationIssue</p><p>Monograph 
-         * Code</p> 
-         * <p>DDIMonograph.DDIMonographId</p><p>ZPE.2</p><p>MB.05.03C</p><p>ZPS.14</p><p>ZDU.5.2</p><p>A_DetectedMedicationIssue</p><p>Monograph 
-         * Code</p> 
-         * <p>DDIMonograph.DDIMonographId</p><p>ZPE.2</p><p>MB.05.03C</p><p>ZPS.14</p><p>ZDU.5.2</p><p>A_DetectedMedicationIssue</p><p>Monograph 
-         * Code</p> <p>Allows applications to match with local 
-         * Knowledge-bases and avoid displaying duplicate issues to 
-         * providers.</p></remarks>
+         * issue definition.</p> Un-merged Business Name: 
+         * IssueMonographId Relationship: 
+         * COCT_MT260010CA.DetectedIssueDefinition.id 
+         * Conformance/Cardinality: REQUIRED (0-1) 
+         * <p>DDIMonograph.DDIMonographId</p> <p>ZPE.2</p> 
+         * <p>MB.05.03C</p> <p>ZPS.14</p> <p>ZDU.5.2</p> 
+         * <p>A_DetectedMedicationIssue</p> <p>Monograph Code</p> 
+         * <p>Allows applications to match with local Knowledge-bases 
+         * and avoid displaying duplicate issues to providers.</p> 
+         * <p>Knowledgebase organization specific identifier for the 
+         * issue definition.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -84,14 +88,25 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged {
         }
 
         /**
-         * <summary>IssueDescription</summary>
+         * <summary>Business Name: IssueDescription</summary>
          * 
-         * <remarks>C:Issue Description <p>A free form textual 
-         * description of the issue. This is usually in the form of a 
-         * monograph.</p> <p>Monograph URI (Reference)</p><p>Monograph 
-         * description</p> <p>Monograph URI (Reference)</p><p>Monograph 
-         * description</p> <p>Provides detailed clinical background on 
-         * reasons for issue.</p> C:Issue Description</remarks>
+         * <remarks>Un-merged Business Name: IssueDescription 
+         * Relationship: COCT_MT260020CA.DetectedIssueDefinition.text 
+         * Conformance/Cardinality: REQUIRED (0-1) Un-merged Business 
+         * Name: IssueDescription Relationship: 
+         * COCT_MT260030CA.DetectedIssueDefinition.text 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Monograph URI 
+         * (Reference)</p> <p>Monograph description</p> <p>Provides 
+         * detailed clinical background on reasons for issue.</p> <p>A 
+         * free form textual description of the issue. This is usually 
+         * in the form of a monograph.</p> Un-merged Business Name: 
+         * IssueDescription Relationship: 
+         * COCT_MT260010CA.DetectedIssueDefinition.text 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Monograph URI 
+         * (Reference)</p> <p>Monograph description</p> <p>Provides 
+         * detailed clinical background on reasons for issue.</p> <p>A 
+         * free form textual description of the issue. This is usually 
+         * in the form of a monograph.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"text"})]
         public EncapsulatedData Text {
@@ -100,17 +115,28 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged {
         }
 
         /**
-         * <summary>IssueMonographEffectiveDate</summary>
+         * <summary>Business Name: IssueMonographEffectiveDate</summary>
          * 
-         * <remarks>B:Issue Monograph Effective Date <p>The date and 
-         * time on which the monograph becomes valid and 
-         * applicable.</p> 
-         * <p>DDIMonograph.EffectiveDate</p><p>A_DetectedMedicationIssue</p> 
-         * <p>DDIMonograph.EffectiveDate</p><p>A_DetectedMedicationIssue</p> 
-         * <p>Allows detailed matching of local knowledgebase record 
-         * with that of the central. (The monograph id may remain the 
-         * same, but the effective date will always change).</p> 
-         * B:Issue Monograph Effective Date</remarks>
+         * <remarks>Un-merged Business Name: 
+         * IssueMonographEffectiveDate Relationship: 
+         * COCT_MT260020CA.Author2.time Conformance/Cardinality: 
+         * REQUIRED (0-1) Un-merged Business Name: 
+         * IssueMonographEffectiveDate Relationship: 
+         * COCT_MT260030CA.Author2.time Conformance/Cardinality: 
+         * REQUIRED (0-1) <p>DDIMonograph.EffectiveDate</p> 
+         * <p>A_DetectedMedicationIssue</p> <p>Allows detailed matching 
+         * of local knowledgebase record with that of the central. (The 
+         * monograph id may remain the same, but the effective date 
+         * will always change).</p> <p>The date and time on which the 
+         * monograph becomes valid and applicable.</p> Un-merged 
+         * Business Name: IssueMonographEffectiveDate Relationship: 
+         * COCT_MT260010CA.Author2.time Conformance/Cardinality: 
+         * REQUIRED (0-1) <p>DDIMonograph.EffectiveDate</p> 
+         * <p>A_DetectedMedicationIssue</p> <p>Allows detailed matching 
+         * of local knowledgebase record with that of the central. (The 
+         * monograph id may remain the same, but the effective date 
+         * will always change).</p> <p>The date and time on which the 
+         * monograph becomes valid and applicable.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"author/time"})]
         public PlatformDate AuthorTime {
@@ -118,12 +144,40 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged {
             set { this.authorTime.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * COCT_MT260020CA.AssignedEntity.assignedOrganization 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * COCT_MT260030CA.AssignedEntity.assignedOrganization 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * COCT_MT260010CA.AssignedEntity.assignedOrganization 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"author/assignedEntity/assignedOrganization"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.ResponsibleOrganization AuthorAssignedEntityAssignedOrganization {
             get { return this.authorAssignedEntityAssignedOrganization; }
             set { this.authorAssignedEntityAssignedOrganization = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * COCT_MT260020CA.Component.substanceAdministrationEventCriterion 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * COCT_MT260030CA.Component.substanceAdministrationEventCriterion 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * COCT_MT260010CA.Component.substanceAdministrationEventCriterion 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"component/substanceAdministrationEventCriterion"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.RecommendedDosage ComponentSubstanceAdministrationEventCriterion {
             get { return this.componentSubstanceAdministrationEventCriterion; }

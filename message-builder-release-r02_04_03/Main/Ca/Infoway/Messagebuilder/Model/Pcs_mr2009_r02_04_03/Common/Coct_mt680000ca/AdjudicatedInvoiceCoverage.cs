@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,10 +27,10 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt680
 
 
     /**
-     * <summary><p>Association is required, 1..1 and not mandatory, 
-     * as EOB may have been generated from a non-HL7 EOB and the 
-     * Provider s/w will not know the Policy Type to put in the 
-     * target act.</p></summary>
+     * <p>Association is required, 1..1 and not mandatory, as EOB 
+     * may have been generated from a non-HL7 EOB and the Provider 
+     * s/w will not know the Policy Type to put in the target 
+     * act.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"COCT_MT680000CA.AdjudicatedInvoiceCoverage"})]
     public class AdjudicatedInvoiceCoverage : MessagePartBean {
@@ -42,10 +42,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt680
             this.sequenceNumber = new INTImpl();
         }
         /**
-         * <summary>COB Priority</summary>
+         * <summary>Business Name: COB Priority</summary>
          * 
-         * <remarks><p>COB priority as adjudicated primary, secondary, 
-         * etc.</p></remarks>
+         * <remarks>Relationship: 
+         * COCT_MT680000CA.AdjudicatedInvoiceCoverage.sequenceNumber 
+         * Conformance/Cardinality: MANDATORY (1) <p>COB priority as 
+         * adjudicated primary, secondary, etc.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"sequenceNumber"})]
         public int? SequenceNumber {
@@ -53,6 +55,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt680
             set { this.sequenceNumber.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * COCT_MT680000CA.AdjudicatedInvoiceCoverage.policyOrAccount</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"policyOrAccount"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt680000ca.FinancialContractPolicyAccount PolicyOrAccount {
             get { return this.policyOrAccount; }

@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,11 +28,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Pome_mt0100
 
 
     /**
-     * <summary>has characteristic</summary>
+     * <summary>Business Name: has characteristic</summary>
      * 
-     * <remarks><p>Filters medications by their appearance.</p> 
-     * <p>Used to hold characteristic type and value pair as one 
-     * set of query parameter item.</p></remarks>
+     * <p>Filters medications by their appearance.</p> <p>Used to 
+     * hold characteristic type and value pair as one set of query 
+     * parameter item.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"POME_MT010090CA.DrugCharacteristics"})]
     public class HasCharacteristic : MessagePartBean {
@@ -45,18 +45,21 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Pome_mt0100
             this.drugCharacteristicTypeValue = new CVImpl();
         }
         /**
-         * <summary>G:Drug Characteristic</summary>
+         * <summary>Business Name: G:Drug Characteristic</summary>
          * 
-         * <remarks><p>Information pertaining to a specific instance of 
-         * drug characteristic (color - red, shape - triangular, 
-         * markings etc).</p> <p>Provides the 'value' part of the 
-         * name-value pair describing the characteristic of drug 
-         * product to be retrieved. Example:</p><p>type: 
-         * color</p><p>value: blue</p><p>type: shape</p><p>value: 
-         * rectangular</p><p>The attribute is mandatory because there's 
-         * no point searching for a characteristic without specifying a 
-         * value.</p> <p>Provides the 'value' part of the name-value 
-         * pair describing the characteristic of drug product to be 
+         * <remarks>Relationship: 
+         * POME_MT010090CA.DrugCharacteristic.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>Information 
+         * pertaining to a specific instance of drug characteristic 
+         * (color - red, shape - triangular, markings etc).</p> 
+         * <p>Provides the 'value' part of the name-value pair 
+         * describing the characteristic of drug product to be 
+         * retrieved. Example:</p><p>type: color</p><p>value: 
+         * blue</p><p>type: shape</p><p>value: rectangular</p><p>The 
+         * attribute is mandatory because there's no point searching 
+         * for a characteristic without specifying a value.</p> 
+         * <p>Provides the 'value' part of the name-value pair 
+         * describing the characteristic of drug product to be 
          * retrieved. Example:</p><p>type: color</p><p>value: 
          * blue</p><p>type: shape</p><p>value: rectangular</p><p>The 
          * attribute is mandatory because there's no point searching 
@@ -93,15 +96,18 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pharmacy.Pome_mt0100
         }
 
         /**
-         * <summary>H:Drug Characteristic Type Code</summary>
+         * <summary>Business Name: H:Drug Characteristic Type Code</summary>
          * 
-         * <remarks><p>A coded value denoting the type of physical 
-         * characteristic of a drug. Characteristics include: Color, 
-         * Shape, Markings, Size, etc.</p> <p>Allows retrieval based on 
-         * specific characteristic of a drug. The attribute is 
-         * mandatory because there's no point searching for a 
-         * characteristic without identifying what kind of 
-         * characteristic is being searched by.</p></remarks>
+         * <remarks>Relationship: 
+         * POME_MT010090CA.DrugCharacteristicType.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>A coded value 
+         * denoting the type of physical characteristic of a drug. 
+         * Characteristics include: Color, Shape, Markings, Size, 
+         * etc.</p> <p>Allows retrieval based on specific 
+         * characteristic of a drug. The attribute is mandatory because 
+         * there's no point searching for a characteristic without 
+         * identifying what kind of characteristic is being searched 
+         * by.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"drugCharacteristicType/value"})]
         public MedicationObservationType DrugCharacteristicTypeValue {

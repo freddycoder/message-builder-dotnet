@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
 
 
     /**
-     * <summary>OtherIndications</summary>
+     * <summary>Business Name: OtherIndications</summary>
      * 
      * <remarks>COCT_MT120402CA.OtherIndication: Other indications 
      * <p>Must have at least one of code or text</p> <p>Describes 
@@ -52,21 +52,26 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             this.text = new STImpl();
         }
         /**
-         * <summary>OtherIndication</summary>
+         * <summary>Business Name: OtherIndication</summary>
          * 
-         * <remarks>Other Indication <p>A code indicating some other 
-         * action which is the reason for a therapy.</p> <p>Allows for 
-         * coded representation of a non-condition based indication 
-         * such as administration of a contrast agent for a lab 
-         * test.</p> Other Indication <p>A code indicating some other 
-         * action which is the reason for a therapy.</p> <p>EPHS: vocab 
-         * proposal needed for simple concepts of i) sign or symptom 
-         * related to investigation disease ii) sign or symptom not 
-         * related to investigation disease. EPHS: act.code value 
-         * needed for encounter reason; reason for treatment; 
+         * <remarks>Un-merged Business Name: OtherIndication 
+         * Relationship: COCT_MT120402CA.OtherIndication.code 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>A code indicating 
+         * some other action which is the reason for a therapy.</p> 
+         * <p>EPHS: vocab proposal needed for simple concepts of i) 
+         * sign or symptom related to investigation disease ii) sign or 
+         * symptom not related to investigation disease. EPHS: act.code 
+         * value needed for encounter reason; reason for treatment; 
          * immunization interpretation reason</p> <p>Allows for coded 
          * representation of a non-condition based indication such as 
-         * administration of a contrast agent for a lab test.</p></remarks>
+         * administration of a contrast agent for a lab test.</p> 
+         * Un-merged Business Name: OtherIndication Relationship: 
+         * PORX_MT980050CA.OtherIndication.code 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>A code indicating 
+         * some other action which is the reason for a therapy.</p> 
+         * <p>Allows for coded representation of a non-condition based 
+         * indication such as administration of a contrast agent for a 
+         * lab test.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public ActNonConditionIndicationCode Code {
@@ -75,15 +80,21 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>OtherIndicationAdHocDescription</summary>
+         * <summary>Business Name: OtherIndicationAdHocDescription</summary>
          * 
-         * <remarks>Other indication ad-hoc description <p>A textual 
+         * <remarks>Un-merged Business Name: 
+         * OtherIndicationAdHocDescription Relationship: 
+         * COCT_MT120402CA.OtherIndication.text 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>A textual 
          * description of an indication not meant to be either 
          * diagnosis or symptom.</p> <p>Provides ability to describe 
          * indication without labeling it a diagnosis or symptom. 
          * Attribute as free form text is the only information 
-         * allowed.</p> Other indication ad-hoc description <p>A 
-         * textual description of an indication not meant to be either 
+         * allowed.</p> Un-merged Business Name: 
+         * OtherIndicationAdHocDescription Relationship: 
+         * PORX_MT980050CA.OtherIndication.text 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>A textual 
+         * description of an indication not meant to be either 
          * diagnosis or symptom.</p> <p>Provides ability to describe 
          * indication without labeling it a diagnosis or symptom. 
          * Attribute as free form text is the only information 

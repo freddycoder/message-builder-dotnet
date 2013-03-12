@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Cr.Prpa_mt101001ca;
 
 
+    /**
+     * <summary>Business Name: PRPA_IN101001CA: New Person Added 
+     * Notification</summary>
+     * 
+     * <p>This interaction occurs after a new person is added to a 
+     * person registry. An informer sends to a tracker a copy of 
+     * the new person record.</p> Message: MCCI_MT002100CA.Message 
+     * Control Act: MFMI_MT700717CA.ControlActEvent --> Payload: 
+     * PRPA_MT101001CA.IdentifiedEntity
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"PRPA_IN101001CA"})]
     public class NewPersonAddedNotification : HL7Message_1<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Mfmi_mt700717ca.TriggerEvent<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Cr.Prpa_mt101001ca.IdentifiedClient>>, IInteraction {
 

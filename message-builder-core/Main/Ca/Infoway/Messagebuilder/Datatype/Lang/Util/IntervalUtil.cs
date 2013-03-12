@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -150,11 +150,11 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang.Util {
 		private static long GetHigh(Interval<Ca.Infoway.Messagebuilder.PlatformDate> interval) {
 			Ca.Infoway.Messagebuilder.PlatformDate high = interval.High;
 			if (high == null) {
-				if (Ca.Infoway.Messagebuilder.Datatype.Lang.Representation.LOW.Equals(interval.Representation)) {
+				if (Representation.LOW.Equals(interval.Representation)) {
 					return Int64.MaxValue;
-				} else if (Ca.Infoway.Messagebuilder.Datatype.Lang.Representation.SIMPLE.Equals(interval.Representation)) {
+				} else if (Representation.SIMPLE.Equals(interval.Representation)) {
 					return interval.Value.Time;
-				} else if (Ca.Infoway.Messagebuilder.Datatype.Lang.Representation.CENTRE.Equals(interval.Representation)) {
+				} else if (Representation.CENTRE.Equals(interval.Representation)) {
 					return interval.Centre.Time;
 				} else {
 					return Int64.MinValue;
@@ -166,11 +166,11 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang.Util {
 		private static long GetLow(Interval<Ca.Infoway.Messagebuilder.PlatformDate> interval) {
 			Ca.Infoway.Messagebuilder.PlatformDate low = interval.Low;
 			if (low == null) {
-				if (Ca.Infoway.Messagebuilder.Datatype.Lang.Representation.HIGH.Equals(interval.Representation)) {
+				if (Representation.HIGH.Equals(interval.Representation)) {
 					return Int64.MinValue;
-				} else if (Ca.Infoway.Messagebuilder.Datatype.Lang.Representation.SIMPLE.Equals(interval.Representation)) {
+				} else if (Representation.SIMPLE.Equals(interval.Representation)) {
 					return interval.Value.Time;
-				} else if (Ca.Infoway.Messagebuilder.Datatype.Lang.Representation.CENTRE.Equals(interval.Representation)) {
+				} else if (Representation.CENTRE.Equals(interval.Representation)) {
 					return interval.Centre.Time;
 				} else {
 					return Int64.MaxValue;

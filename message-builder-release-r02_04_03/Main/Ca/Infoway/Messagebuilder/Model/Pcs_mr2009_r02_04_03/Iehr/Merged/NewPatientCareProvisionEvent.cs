@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,9 +35,25 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged {
             this.id = new IIImpl();
         }
         /**
-         * <summary>ReplacedByRecordId</summary>
+         * <summary>Business Name: ReplacedByRecordId</summary>
          * 
-         * <remarks>G:Replaced by Record Id </p> </p></remarks>
+         * <remarks>Un-merged Business Name: ReplacedByRecordId 
+         * Relationship: 
+         * REPC_MT500004CA.NewPatientCareProvisionEvent.id 
+         * Conformance/Cardinality: MANDATORY (1) <p> <i>Used in 
+         * circumstances where a newer or corrected version of the 
+         * record of this event exists.</i> </p> <p> <i>Used to 
+         * identify the record that supersedes the current record. This 
+         * attribute is set when a new record identifies the current 
+         * record as being replaced.</i> </p> Un-merged Business Name: 
+         * ReplacedByRecordId Relationship: 
+         * REPC_MT500003CA.NewPatientCareProvisionEvent.id 
+         * Conformance/Cardinality: MANDATORY (1) <p> <i>Used in 
+         * circumstances where a newer or corrected version of the 
+         * record of this event exists.</i> </p> <p> <i>Used to 
+         * identify the record that supersedes the current record. This 
+         * attribute is set when a new record identifies the current 
+         * record as being replaced.</i> </p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {

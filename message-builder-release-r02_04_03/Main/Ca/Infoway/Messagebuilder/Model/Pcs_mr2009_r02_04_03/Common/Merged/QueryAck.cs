@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -45,13 +45,28 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged {
             this.resultRemainingQuantity = new INTImpl();
         }
         /**
-         * <summary>QueryResponseIdentifier</summary>
+         * <summary>Business Name: QueryResponseIdentifier</summary>
          * 
-         * <remarks>H:Query Response Identifier <p>Identifies the query 
-         * being acknowledged</p> <p>Allows linking of a response back 
-         * to the request that triggered it and is therefore mandatory. 
+         * <remarks>Un-merged Business Name: QueryResponseIdentifier 
+         * Relationship: QUQI_MT120006CA.QueryAck.queryId 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows linking of 
+         * a response back to the request that triggered it and is 
+         * therefore mandatory. Particularly useful when responses are 
+         * deferred or queued.</p> <p>Identifies the query being 
+         * acknowledged</p> Un-merged Business Name: 
+         * QueryResponseIdentifier Relationship: 
+         * QUQI_MT120008CA.QueryAck.queryId Conformance/Cardinality: 
+         * MANDATORY (1) <p>Allows linking of a response back to the 
+         * request that triggered it and is therefore mandatory. 
          * Particularly useful when responses are deferred or 
-         * queued.</p></remarks>
+         * queued.</p> <p>Identifies the query being acknowledged</p> 
+         * Un-merged Business Name: QueryResponseIdentifier 
+         * Relationship: MFMI_MT700746CA.QueryAck.queryId 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows linking of 
+         * a response back to the request that triggered it and is 
+         * therefore mandatory. Particularly useful when responses are 
+         * deferred or queued.</p> <p>Identifies the query being 
+         * acknowledged</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"queryId"})]
         public Identifier QueryId {
@@ -60,11 +75,23 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged {
         }
 
         /**
-         * <summary>QueryStatus</summary>
+         * <summary>Business Name: QueryStatus</summary>
          * 
-         * <remarks>I:Query Status <p>Indicates whether the query was 
-         * successful or not.</p> <p>Used to control receiver logic and 
-         * is therefore mandatory.</p></remarks>
+         * <remarks>Un-merged Business Name: QueryStatus Relationship: 
+         * QUQI_MT120006CA.QueryAck.queryResponseCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>Used to control 
+         * receiver logic and is therefore mandatory.</p> <p>Indicates 
+         * whether the query was successful or not.</p> Un-merged 
+         * Business Name: QueryStatus Relationship: 
+         * QUQI_MT120008CA.QueryAck.queryResponseCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>Used to control 
+         * receiver logic and is therefore mandatory.</p> <p>Indicates 
+         * whether the query was successful or not.</p> Un-merged 
+         * Business Name: QueryStatus Relationship: 
+         * MFMI_MT700746CA.QueryAck.queryResponseCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>Used to control 
+         * receiver logic and is therefore mandatory.</p> <p>Indicates 
+         * whether the query was successful or not.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"queryResponseCode"})]
         public QueryResponse QueryResponseCode {
@@ -73,13 +100,29 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged {
         }
 
         /**
-         * <summary>TotalMatchingRows</summary>
+         * <summary>Business Name: TotalMatchingRows</summary>
          * 
-         * <remarks>J:Total Matching Rows <p>Identifies the total 
-         * number of rows identified that matched the query.</p> 
-         * <p>Indicates the overall size of the result-set and is 
-         * therefore mandatory. Particularly useful when only part of 
-         * the result set is actually returned.</p></remarks>
+         * <remarks>Un-merged Business Name: TotalMatchingRows 
+         * Relationship: QUQI_MT120006CA.QueryAck.resultTotalQuantity 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the 
+         * overall size of the result-set and is therefore mandatory. 
+         * Particularly useful when only part of the result set is 
+         * actually returned.</p> <p>Identifies the total number of 
+         * rows identified that matched the query.</p> Un-merged 
+         * Business Name: TotalMatchingRows Relationship: 
+         * QUQI_MT120008CA.QueryAck.resultTotalQuantity 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the 
+         * overall size of the result-set and is therefore mandatory. 
+         * Particularly useful when only part of the result set is 
+         * actually returned.</p> <p>Identifies the total number of 
+         * rows identified that matched the query.</p> Un-merged 
+         * Business Name: TotalMatchingRows Relationship: 
+         * MFMI_MT700746CA.QueryAck.resultTotalQuantity 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the 
+         * overall size of the result-set and is therefore mandatory. 
+         * Particularly useful when only part of the result set is 
+         * actually returned.</p> <p>Identifies the total number of 
+         * rows identified that matched the query.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"resultTotalQuantity"})]
         public int? ResultTotalQuantity {
@@ -88,15 +131,26 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged {
         }
 
         /**
-         * <summary>ReturnedRows</summary>
+         * <summary>Business Name: ReturnedRows</summary>
          * 
-         * <remarks>K:Returned Rows <p>Identifies the number of rows 
-         * returned as part of this particular query response.</p> 
-         * <p>Provides a quick overview of the results of the query and 
-         * is therefore mandatory</p> K:Returned Rows <p>Identifies the 
-         * number of rows returned as part of this particular query 
-         * response.</p> <p>Provides a quick overview of the results of 
-         * the query and is therefore mandatory.</p></remarks>
+         * <remarks>Un-merged Business Name: ReturnedRows Relationship: 
+         * QUQI_MT120006CA.QueryAck.resultCurrentQuantity 
+         * Conformance/Cardinality: MANDATORY (1) <p>Provides a quick 
+         * overview of the results of the query and is therefore 
+         * mandatory.</p> <p>Identifies the number of rows returned as 
+         * part of this particular query response.</p> Un-merged 
+         * Business Name: ReturnedRows Relationship: 
+         * QUQI_MT120008CA.QueryAck.resultCurrentQuantity 
+         * Conformance/Cardinality: MANDATORY (1) <p>Provides a quick 
+         * overview of the results of the query and is therefore 
+         * mandatory.</p> <p>Identifies the number of rows returned as 
+         * part of this particular query response.</p> Un-merged 
+         * Business Name: ReturnedRows Relationship: 
+         * MFMI_MT700746CA.QueryAck.resultCurrentQuantity 
+         * Conformance/Cardinality: MANDATORY (1) <p>Provides a quick 
+         * overview of the results of the query and is therefore 
+         * mandatory</p> <p>Identifies the number of rows returned as 
+         * part of this particular query response.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"resultCurrentQuantity"})]
         public int? ResultCurrentQuantity {
@@ -105,12 +159,27 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged {
         }
 
         /**
-         * <summary>RemainingRows</summary>
+         * <summary>Business Name: RemainingRows</summary>
          * 
-         * <remarks>L:Remaining Rows <p>Indicates the number of rows 
-         * that still exist after the last row returned in this 
-         * response.</p> <p>Identifies how much data remains to be 
-         * queried and is therefore mandatory.</p></remarks>
+         * <remarks>Un-merged Business Name: RemainingRows 
+         * Relationship: 
+         * QUQI_MT120006CA.QueryAck.resultRemainingQuantity 
+         * Conformance/Cardinality: MANDATORY (1) <p>Identifies how 
+         * much data remains to be queried and is therefore 
+         * mandatory.</p> <p>Indicates the number of rows that still 
+         * exist after the last row returned in this response.</p> 
+         * Un-merged Business Name: RemainingRows Relationship: 
+         * QUQI_MT120008CA.QueryAck.resultRemainingQuantity 
+         * Conformance/Cardinality: MANDATORY (1) <p>Identifies how 
+         * much data remains to be queried and is therefore 
+         * mandatory.</p> <p>Indicates the number of rows that still 
+         * exist after the last row returned in this response.</p> 
+         * Un-merged Business Name: RemainingRows Relationship: 
+         * MFMI_MT700746CA.QueryAck.resultRemainingQuantity 
+         * Conformance/Cardinality: MANDATORY (1) <p>Identifies how 
+         * much data remains to be queried and is therefore 
+         * mandatory.</p> <p>Indicates the number of rows that still 
+         * exist after the last row returned in this response.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"resultRemainingQuantity"})]
         public int? ResultRemainingQuantity {

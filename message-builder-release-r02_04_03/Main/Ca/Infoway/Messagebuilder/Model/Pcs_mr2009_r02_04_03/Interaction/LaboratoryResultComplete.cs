@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,23 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt004999ca;
 
 
+    /**
+     * <summary>Business Name: POLB_IN124200CA: Laboratory Result 
+     * Complete</summary>
+     * 
+     * <p>This interaction is a Result Complete with Receiver 
+     * Responsibilities (i.e., the sending system utilizes messages 
+     * that require application-level responses). This interaction 
+     * signals completion of the result as well as the Filler's 
+     * Promise for the result. The expected responses to this 
+     * interaction are confirm or reject</p> Message: 
+     * MCCI_MT002100CA.Message Control Act: 
+     * MCAI_MT700210CA.ControlActEvent --> Payload: 
+     * POLB_MT004999CA.ResultInstancePayloadChoice ----> Payload 
+     * Choice: POLB_MT004000CA.ResultChoice ----> Payload Choice: 
+     * POLB_MT004100CA.ObservationReport ----> Payload Choice: 
+     * POLB_MT004200CA.ObservationChoice
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"POLB_IN124200CA"})]
     public class LaboratoryResultComplete : HL7Message_1<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Mcai_mt700210ca.TriggerEvent<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Polb_mt004999ca.IResultInstancePayloadChoice>>, IInteraction {
 

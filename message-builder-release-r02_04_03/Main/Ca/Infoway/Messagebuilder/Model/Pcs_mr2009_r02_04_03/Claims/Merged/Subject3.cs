@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,9 +36,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Merged {
             this.negationInd = new BLImpl();
         }
         /**
-         * <summary>IncludesExcludesProduct</summary>
+         * <summary>Business Name: IncludesExcludesProduct</summary>
          * 
-         * <remarks>Includes / Excludes Product</remarks>
+         * <remarks>Un-merged Business Name: IncludesExcludesProduct 
+         * Relationship: FICR_MT400003CA.Subject.negationInd 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: IncludesExcludesProduct Relationship: 
+         * FICR_MT400004CA.Subject.negationInd Conformance/Cardinality: 
+         * MANDATORY (1) Un-merged Business Name: 
+         * IncludesExcludesProduct Relationship: 
+         * FICR_MT490102CA.Subject4.negationInd 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"negationInd"})]
         public bool? NegationInd {
@@ -46,6 +54,35 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Merged {
             set { this.negationInd.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * FICR_MT400003CA.Subject.specialAuthorizationChoice 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * FICR_MT490101CA.Subject3.specialAuthorizationChoice 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * FICR_MT400004CA.Subject.specialAuthorizationChoice 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * FICR_MT400001CA.Subject3.specialAuthorizationChoice 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * FICR_MT400003CA.Subject3.specialAuthorizationChoice 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * FICR_MT490102CA.Subject4.specialAuthorizationChoice 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * FICR_MT400004CA.Subject3.specialAuthorizationChoice 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * FICR_MT490102CA.Subject3.specialAuthorizationChoice 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"specialAuthorizationChoice"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Merged.ISpecialAuthorizationChoice SpecialAuthorizationChoice {
             get { return this.specialAuthorizationChoice; }

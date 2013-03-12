@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Cr.Merged {
 
 
     /**
-     * <summary>OtherIDsNonHealthcareIdentifiers</summary>
+     * <summary>Business Name: OtherIDsNonHealthcareIdentifiers</summary>
      * 
      * <remarks>PRPA_MT101104CA.OtherIDs: Other IDs Non Healthcare 
      * Identifiers <p>Identifiers used for the focal person by 
@@ -77,11 +77,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Cr.Merged {
             this.assigningIdOrganizationName = new STImpl();
         }
         /**
-         * <summary>(no business name)</summary>
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
          * 
-         * <remarks><p>A code specifying the major category of a Role 
-         * as defined by HL7 vocabulary.</p> <p>Provides a means to 
-         * identify Roles played by entities</p></remarks>
+         * <remarks>Relationship: PRPA_MT101104CA.OtherIDs.classCode 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>A code specifying 
+         * the major category of a Role as defined by HL7 
+         * vocabulary.</p> <p>Provides a means to identify Roles played 
+         * by entities</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"classCode"})]
         public RoleClass ClassCode {
@@ -90,16 +93,33 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Cr.Merged {
         }
 
         /**
-         * <summary>NonHealthcareIdentification</summary>
+         * <summary>Business Name: NonHealthcareIdentification</summary>
          * 
-         * <remarks>NonHealthcare Identification <p>Other 
-         * non-healthcare identifiers for the Client (e.g. Drivers 
-         * License, RCMP, DND, Social Insurance Number)</p> 
+         * <remarks>Un-merged Business Name: 
+         * NonHealthcareIdentification Relationship: 
+         * PRPA_MT101104CA.OtherIDs.id Conformance/Cardinality: 
+         * MANDATORY (1) <p>Other non-healthcare identifiers for the 
+         * Client (e.g. Drivers License, RCMP, DND, Social Insurance 
+         * Number)</p> <p>Mandatory attribute supports the 
+         * identification of the client</p> Un-merged Business Name: 
+         * NonHealthcareIdentification Relationship: 
+         * PRPA_MT101002CA.OtherIDs.id Conformance/Cardinality: 
+         * MANDATORY (1) <p>Other non-healthcare identifiers for the 
+         * Client (e.g. Passport, SIN, DND, DIAND, Drivers License)</p> 
          * <p>Mandatory attribute supports the identification of the 
-         * client</p> NonHealthcare Identification <p>Other 
-         * non-healthcare identifiers for the Client (e.g. Passport, 
-         * SIN, DND, DIAND, Drivers License)</p> <p>Mandatory attribute 
-         * supports the identification of the client</p></remarks>
+         * client</p> Un-merged Business Name: 
+         * NonHealthcareIdentification Relationship: 
+         * PRPA_MT101106CA.OtherIDs.id Conformance/Cardinality: 
+         * MANDATORY (1) <p>Other non-healthcare identifiers for the 
+         * Client (e.g. Drivers License, RCMP, DND, Social Insurance 
+         * Number)</p> <p>Mandatory attribute supports the 
+         * identification of the client</p> Un-merged Business Name: 
+         * NonHealthcareIdentification Relationship: 
+         * PRPA_MT101001CA.OtherIDs.id Conformance/Cardinality: 
+         * MANDATORY (1) <p>Other non-healthcare identifiers for the 
+         * Client (e.g. Passport, SIN, DND, DIAND, Drivers License)</p> 
+         * <p>Mandatory attribute supports the identification of the 
+         * client</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -108,12 +128,33 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Cr.Merged {
         }
 
         /**
-         * <summary>NonHealthcareIdentificationCode</summary>
+         * <summary>Business Name: NonHealthcareIdentificationCode</summary>
          * 
-         * <remarks>NonHealthcare Identification Code <p>A pan Canadian 
-         * code further specifying the kind of Role such as Drivers 
-         * License, RCMP, DND, Social Insurance Number</p> <p>Populated 
-         * attribute supports the identification of the client</p></remarks>
+         * <remarks>Un-merged Business Name: 
+         * NonHealthcareIdentificationCode Relationship: 
+         * PRPA_MT101104CA.OtherIDs.code Conformance/Cardinality: 
+         * POPULATED (1) <p>A pan Canadian code further specifying the 
+         * kind of Role such as Drivers License, RCMP, DND, Social 
+         * Insurance Number</p> <p>Populated attribute supports the 
+         * identification of the client</p> Un-merged Business Name: 
+         * NonHealthcareIdentificationCode Relationship: 
+         * PRPA_MT101002CA.OtherIDs.code Conformance/Cardinality: 
+         * POPULATED (1) <p>A pan Canadian code further specifying the 
+         * kind of Role such as Drivers License, RCMP, DND, Social 
+         * Insurance Number</p> <p>Populated attribute supports the 
+         * identification of the client</p> Un-merged Business Name: 
+         * NonHealthcareIdentificationCode Relationship: 
+         * PRPA_MT101106CA.OtherIDs.code Conformance/Cardinality: 
+         * POPULATED (1) <p>A pan Canadian code further specifying the 
+         * kind of Role such as Drivers License, RCMP, DND, Social 
+         * Insurance Number</p> <p>Populated attribute supports the 
+         * identification of the client</p> Un-merged Business Name: 
+         * NonHealthcareIdentificationCode Relationship: 
+         * PRPA_MT101001CA.OtherIDs.code Conformance/Cardinality: 
+         * POPULATED (1) <p>A pan Canadian code further specifying the 
+         * kind of Role such as Drivers License, RCMP, DND, Social 
+         * Insurance Number</p> <p>Populated attribute supports the 
+         * identification of the client</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public OtherIDsRoleCode Code {
@@ -122,21 +163,25 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Cr.Merged {
         }
 
         /**
-         * <summary>(no business name)</summary>
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
          * 
-         * <remarks><p>An HL7 defined value representing the class or 
-         * category that the Entity instance 
-         * represents.</p><p>Examples: Person, Animal, Chemical 
-         * Substance, Group, Organization</p> <p>An HL7 defined value 
-         * representing the class or category that the Entity instance 
-         * represents.</p><p>Examples: Person, Animal, Chemical 
-         * Substance, Group, Organization</p> <p>Due to the extremely 
-         * large number of potential values for a code set representing 
-         * all physical things in the universe, the class code 
-         * indicates both the subtype branch of the Entity hierarchy 
-         * used as well as a high level classifier to represent the 
-         * instance of Entity. This can be used to constrain the 
-         * eligible value domains for the Entity.code attribute.</p> 
+         * <remarks>Relationship: 
+         * PRPA_MT101104CA.IdOrganization.classCode 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>An HL7 defined 
+         * value representing the class or category that the Entity 
+         * instance represents.</p><p>Examples: Person, Animal, 
+         * Chemical Substance, Group, Organization</p> <p>An HL7 
+         * defined value representing the class or category that the 
+         * Entity instance represents.</p><p>Examples: Person, Animal, 
+         * Chemical Substance, Group, Organization</p> <p>Due to the 
+         * extremely large number of potential values for a code set 
+         * representing all physical things in the universe, the class 
+         * code indicates both the subtype branch of the Entity 
+         * hierarchy used as well as a high level classifier to 
+         * represent the instance of Entity. This can be used to 
+         * constrain the eligible value domains for the Entity.code 
+         * attribute.</p> 
          * <p>http://www.hl7.org/v3ballot/html/infrastructure/vocabulary/EntityClass.htm</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"assigningIdOrganization/classCode"})]
@@ -146,21 +191,24 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Cr.Merged {
         }
 
         /**
-         * <summary>(no business name)</summary>
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
          * 
-         * <remarks><p>An HL7 defined value representing whether the 
-         * Entity represents a kind-of or a specific 
-         * instance.</p><p>Examples: 1 human being (an instance), 3 
-         * syringes (quantified kind) or the population of Indianapolis 
-         * (kind of group)</p> <p>An HL7 defined value representing 
-         * whether the Entity represents a kind-of or a specific 
-         * instance.</p><p>Examples: 1 human being (an instance), 3 
-         * syringes (quantified kind) or the population of Indianapolis 
-         * (kind of group)</p> <p>An Entity may at times represent 
-         * information concerning a specific instance (the most 
-         * common), a quantifiable group with common characteristics or 
-         * a general type of Entity. This code distinguishes these 
-         * different representations.</p> 
+         * <remarks>Relationship: 
+         * PRPA_MT101104CA.IdOrganization.determinerCode 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>An HL7 defined 
+         * value representing whether the Entity represents a kind-of 
+         * or a specific instance.</p><p>Examples: 1 human being (an 
+         * instance), 3 syringes (quantified kind) or the population of 
+         * Indianapolis (kind of group)</p> <p>An HL7 defined value 
+         * representing whether the Entity represents a kind-of or a 
+         * specific instance.</p><p>Examples: 1 human being (an 
+         * instance), 3 syringes (quantified kind) or the population of 
+         * Indianapolis (kind of group)</p> <p>An Entity may at times 
+         * represent information concerning a specific instance (the 
+         * most common), a quantifiable group with common 
+         * characteristics or a general type of Entity. This code 
+         * distinguishes these different representations.</p> 
          * <p>http://www.hl7.org/v3ballot/html/infrastructure/vocabulary/EntityDeterminer.htm</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"assigningIdOrganization/determinerCode"})]
@@ -170,13 +218,35 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Cr.Merged {
         }
 
         /**
-         * <summary>NonHealthcareOrganizationIdentifier</summary>
+         * <summary>Business Name: NonHealthcareOrganizationIdentifier</summary>
          * 
-         * <remarks>NonHealthcare Organization Identifier <p>Unique 
-         * identifier for the organization that assigned the 
-         * non-healthcare identifier for the client.</p> <p>Mandatory 
-         * attribute supports the identification of the organization 
-         * assigning the identifier to the client</p></remarks>
+         * <remarks>Un-merged Business Name: 
+         * NonHealthcareOrganizationIdentifier Relationship: 
+         * PRPA_MT101104CA.IdOrganization.id Conformance/Cardinality: 
+         * MANDATORY (1) <p>Unique identifier for the organization that 
+         * assigned the non-healthcare identifier for the client.</p> 
+         * <p>Mandatory attribute supports the identification of the 
+         * organization assigning the identifier to the client</p> 
+         * Un-merged Business Name: NonHealthcareOrganizationIdentifier 
+         * Relationship: PRPA_MT101002CA.IdOrganization.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>Unique identifier 
+         * for the organization that assigned the non-healthcare 
+         * identifier for the client.</p> <p>Mandatory attribute 
+         * supports the identification of the organization assigning 
+         * the identifier to the client</p> Un-merged Business Name: 
+         * NonHealthcareOrganizationIdentifier Relationship: 
+         * PRPA_MT101106CA.IdOrganization.id Conformance/Cardinality: 
+         * MANDATORY (1) <p>Unique identifier for the organization that 
+         * assigned the non-healthcare identifier for the client.</p> 
+         * <p>Mandatory attribute supports the identification of the 
+         * organization assigning the identifier to the client</p> 
+         * Un-merged Business Name: NonHealthcareOrganizationIdentifier 
+         * Relationship: PRPA_MT101001CA.IdOrganization.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>Unique identifier 
+         * for the organization that assigned the non-healthcare 
+         * identifier for the client.</p> <p>Mandatory attribute 
+         * supports the identification of the organization assigning 
+         * the identifier to the client</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"assigningIdOrganization/id"})]
         public Identifier AssigningIdOrganizationId {
@@ -185,12 +255,33 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Cr.Merged {
         }
 
         /**
-         * <summary>NonHealthcareOrganizationName</summary>
+         * <summary>Business Name: NonHealthcareOrganizationName</summary>
          * 
-         * <remarks>NonHealthcare Organization Name <p>A name for the 
-         * non-healthcare organization</p> <p>Populated attribute 
-         * supports the identification of the organization assigning 
-         * the identifier to the client</p></remarks>
+         * <remarks>Un-merged Business Name: 
+         * NonHealthcareOrganizationName Relationship: 
+         * PRPA_MT101104CA.IdOrganization.name Conformance/Cardinality: 
+         * POPULATED (1) <p>A name for the non-healthcare 
+         * organization</p> <p>Populated attribute supports the 
+         * identification of the organization assigning the identifier 
+         * to the client</p> Un-merged Business Name: 
+         * NonHealthcareOrganizationName Relationship: 
+         * PRPA_MT101002CA.IdOrganization.name Conformance/Cardinality: 
+         * POPULATED (1) <p>A name for the non-healthcare 
+         * organization</p> <p>Populated attribute supports the 
+         * identification of the organization assigning the identifier 
+         * to the client</p> Un-merged Business Name: 
+         * NonHealthcareOrganizationName Relationship: 
+         * PRPA_MT101106CA.IdOrganization.name Conformance/Cardinality: 
+         * REQUIRED (0-1) <p>A name for the non-healthcare 
+         * organization</p> <p>Populated attribute supports the 
+         * identification of the organization assigning the identifier 
+         * to the client</p> Un-merged Business Name: 
+         * NonHealthcareOrganizationName Relationship: 
+         * PRPA_MT101001CA.IdOrganization.name Conformance/Cardinality: 
+         * POPULATED (1) <p>A name for the non-healthcare 
+         * organization</p> <p>Populated attribute supports the 
+         * identification of the organization assigning the identifier 
+         * to the client</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"assigningIdOrganization/name"})]
         public String AssigningIdOrganizationName {

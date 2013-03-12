@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,13 +31,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
     /**
      * <summary>COCT_MT090310CA.AssignedDevice: EHR Repository</summary>
      * 
-     * <remarks><p>Identification of the EHR infostructure 
-     * responsible for the storage and management of the 
-     * record.</p> <p>Provides context about the record and its 
-     * management.</p> COCT_MT090302CA.AssignedDevice: Application 
-     * <p>An identification of a system/application that can 
-     * initiate an event to change the status of an object.</p> 
-     * <p>Allows an application to be uniquely identified.</p></remarks>
+     * <p>Identification of the EHR infostructure responsible for 
+     * the storage and management of the record.</p> <p>Provides 
+     * context about the record and its management.</p> 
+     * COCT_MT090302CA.AssignedDevice: Application <p>An 
+     * identification of a system/application that can initiate an 
+     * event to change the status of an object.</p> <p>Allows an 
+     * application to be uniquely identified.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"COCT_MT090302CA.AssignedDevice","COCT_MT090310CA.AssignedDevice"})]
     public class EHRRepository : MessagePartBean, Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.IChangedBy {
@@ -63,6 +63,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             this.representedRepositoryJurisdictionName = new STImpl();
             this.assignedDeviceName = new STImpl();
         }
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * COCT_MT090310CA.AssignedDevice.classCode 
+         * Conformance/Cardinality: OPTIONAL (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"classCode"})]
         public RoleClass ClassCode {
             get { return (RoleClass) this.classCode.Value; }
@@ -70,12 +78,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>Repository Identifier</summary>
+         * <summary>Un-merged Business Name: RepositoryIdentifier</summary>
          * 
-         * <remarks><p>A unique identifier for the EHR repository.</p> 
-         * <p>Allows repositories to be uniquely identified for linking 
-         * or grouping purposes and is therefore mandatory.</p> 
-         * C:Application Id <p>Unique identifier of an application or a 
+         * <remarks>Relationship: COCT_MT090310CA.AssignedDevice.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>A unique 
+         * identifier for the EHR repository.</p> <p>Allows 
+         * repositories to be uniquely identified for linking or 
+         * grouping purposes and is therefore mandatory.</p> Un-merged 
+         * Business Name: ApplicationId Relationship: 
+         * COCT_MT090302CA.AssignedDevice.id Conformance/Cardinality: 
+         * MANDATORY (1) <p>Unique identifier of an application or a 
          * system.</p> <p>PVD.020-01 (extension)</p><p>PVD.020-02 
          * (root)</p><p>Dispensing Pharmacy number</p><p>Pharmacy 
          * Identifier</p><p>Facility.facilityKey</p><p>DispensedItem.facilityKey</p> 
@@ -107,12 +119,27 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             set { this.id.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: COCT_MT090310CA.Repository.classCode 
+         * Conformance/Cardinality: OPTIONAL (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"assignedRepository/classCode"})]
         public EntityClass AssignedRepositoryClassCode {
             get { return (EntityClass) this.assignedRepositoryClassCode.Value; }
             set { this.assignedRepositoryClassCode.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * COCT_MT090310CA.Repository.determinerCode 
+         * Conformance/Cardinality: OPTIONAL (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"assignedRepository/determinerCode"})]
         public EntityDeterminer AssignedRepositoryDeterminerCode {
             get { return (EntityDeterminer) this.assignedRepositoryDeterminerCode.Value; }
@@ -120,13 +147,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>RepositoryName</summary>
+         * <summary>Business Name: RepositoryName</summary>
          * 
-         * <remarks>Repository Name <p>The name of the repository which 
-         * is responsible for maintaining the record. E.g. 
-         * &quot;Ontario Health Respository #3&quot;</p> <p>Provides a 
-         * human-readable name for the repository and is therefore 
-         * mandatory</p></remarks>
+         * <remarks>Un-merged Business Name: RepositoryName 
+         * Relationship: COCT_MT090310CA.Repository.name 
+         * Conformance/Cardinality: MANDATORY (1) <p>The name of the 
+         * repository which is responsible for maintaining the record. 
+         * E.g. &quot;Ontario Health Respository #3&quot;</p> 
+         * <p>Provides a human-readable name for the repository and is 
+         * therefore mandatory</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"assignedRepository/name"})]
         public String AssignedRepositoryName {
@@ -134,12 +163,28 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             set { this.assignedRepositoryName.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * COCT_MT090310CA.RepositoryJurisdiction.classCode 
+         * Conformance/Cardinality: OPTIONAL (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"representedRepositoryJurisdiction/classCode"})]
         public EntityClass RepresentedRepositoryJurisdictionClassCode {
             get { return (EntityClass) this.representedRepositoryJurisdictionClassCode.Value; }
             set { this.representedRepositoryJurisdictionClassCode.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * COCT_MT090310CA.RepositoryJurisdiction.determinerCode 
+         * Conformance/Cardinality: OPTIONAL (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"representedRepositoryJurisdiction/determinerCode"})]
         public EntityDeterminer RepresentedRepositoryJurisdictionDeterminerCode {
             get { return (EntityDeterminer) this.representedRepositoryJurisdictionDeterminerCode.Value; }
@@ -147,9 +192,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>RepositoryJurisdictionName</summary>
+         * <summary>Business Name: RepositoryJurisdictionName</summary>
          * 
-         * <remarks>Repository Jurisdiction Name <p>The name of the 
+         * <remarks>Un-merged Business Name: RepositoryJurisdictionName 
+         * Relationship: COCT_MT090310CA.RepositoryJurisdiction.name 
+         * Conformance/Cardinality: MANDATORY (1) <p>The name of the 
          * jurisdiction that is responsible for the EHR infostructure 
          * that contains and manages the record.</p> <p>Establishes 
          * business context for determining custodianship, and is 
@@ -162,14 +209,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>ApplicationName</summary>
+         * <summary>Business Name: ApplicationName</summary>
          * 
-         * <remarks>B:Application Name <p>The name assigned to the 
-         * application/system.</p> <p>PVD.070</p><p>Dispensing Pharmacy 
-         * Name</p><p>Facility.name</p> <p>PVD.070</p><p>Dispensing 
+         * <remarks>Un-merged Business Name: ApplicationName 
+         * Relationship: COCT_MT090302CA.Device.name 
+         * Conformance/Cardinality: MANDATORY (1) <p>The name assigned 
+         * to the application/system.</p> <p>PVD.070</p><p>Dispensing 
          * Pharmacy Name</p><p>Facility.name</p> 
          * <p>PVD.070</p><p>Dispensing Pharmacy 
-         * Name</p><p>Facility.name</p> <p>Used for human 
+         * Name</p><p>Facility.name</p> <p>PVD.070</p><p>Dispensing 
+         * Pharmacy Name</p><p>Facility.name</p> <p>Used for human 
          * communication. The name of the application must be known and 
          * is therefore marked as 'mandatory'.</p></remarks>
          */

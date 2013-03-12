@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,7 +35,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Cr.Prpa_mt101103c
             this.value = new CVImpl();
         }
         /**
-         * <summary>Client Next of Kin</summary>
+         * <summary>Business Name: Client Next of Kin</summary>
+         * 
+         * <remarks>Relationship: 
+         * PRPA_MT101103CA.PersonalRelationshipCode.value 
+         * Conformance/Cardinality: REQUIRED (0-1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"value"})]
         public PersonalRelationshipRoleType Value {

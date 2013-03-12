@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
 
 
     /**
-     * <summary>DosagePreconditions</summary>
+     * <summary>Business Name: DosagePreconditions</summary>
      * 
      * <remarks>PORX_MT980010CA.ObservationEventCriterion: Dosage 
      * Preconditions <p>A condition that must be true for the 
@@ -72,22 +72,62 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             this.value = new URGImpl<PQ, PhysicalQuantity>();
         }
         /**
-         * <summary>DosagePreconditionType</summary>
+         * <summary>Business Name: DosagePreconditionType</summary>
          * 
-         * <remarks>A:Dosage Precondition Type <p>Indicates the type of 
-         * characteristic against which the patient is evaluated. This 
-         * includes age, weight, height, etc.</p> <p>Allows the 
+         * <remarks>Un-merged Business Name: DosagePreconditionType 
+         * Relationship: PORX_MT980010CA.ObservationEventCriterion.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the type 
+         * of characteristic against which the patient is evaluated. 
+         * This includes age, weight, height, etc.</p> <p>Allows the 
          * specification of multiple preconditions for a dosage 
          * specification, such as Age Range, Weight Range, etc. This is 
          * mandatory because the precondition range cannot be evaluated 
-         * without knowing the precondition type.</p> A:Dosage 
-         * Precondition Type <p>Indicates the type of characteristic 
-         * against which the patient is evaluated. This includes age, 
-         * weight, height, etc.</p> <p>Allows the specification of 
-         * multiple preconditions for a dosage specification, such as 
-         * Age Range, Weight Range, etc. This is mandatory because the 
-         * precondition range cannot be evaluated without knowing the 
-         * precondition type.</p></remarks>
+         * without knowing the precondition type.</p> Un-merged 
+         * Business Name: DosagePreconditionType Relationship: 
+         * COCT_MT260030CA.ObservationEventCriterion.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the type 
+         * of characteristic against which the patient is evaluated. 
+         * This includes age, weight, height, etc.</p> <p>Allows the 
+         * specification of multiple preconditions for a dosage 
+         * specification, such as Age Range, Weight Range, etc. This is 
+         * mandatory because the precondition range cannot be evaluated 
+         * without knowing the precondition type.</p> Un-merged 
+         * Business Name: DosagePreconditionType Relationship: 
+         * PORX_MT980020CA.ObservationEventCriterion.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the type 
+         * of characteristic against which the patient is evaluated. 
+         * This includes age, weight, height, etc.</p> <p>Allows the 
+         * specification of multiple preconditions for a dosage 
+         * specification, such as Age Range, Weight Range, etc. This is 
+         * mandatory because the precondition range cannot be evaluated 
+         * without knowing the precondition type.</p> Un-merged 
+         * Business Name: DosagePreconditionType Relationship: 
+         * COCT_MT260010CA.ObservationEventCriterion.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the type 
+         * of characteristic against which the patient is evaluated. 
+         * This includes age, weight, height, etc.</p> <p>Allows the 
+         * specification of multiple preconditions for a dosage 
+         * specification, such as Age Range, Weight Range, etc. This is 
+         * mandatory because the precondition range cannot be evaluated 
+         * without knowing the precondition type.</p> Un-merged 
+         * Business Name: DosagePreconditionType Relationship: 
+         * PORX_MT980030CA.ObservationEventCriterion.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the type 
+         * of characteristic against which the patient is evaluated. 
+         * This includes age, weight, height, etc.</p> <p>Allows the 
+         * specification of multiple preconditions for a dosage 
+         * specification, such as Age Range, Weight Range, etc. This is 
+         * mandatory because the precondition range cannot be evaluated 
+         * without knowing the precondition type.</p> Un-merged 
+         * Business Name: DosagePreconditionType Relationship: 
+         * COCT_MT260020CA.ObservationEventCriterion.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the type 
+         * of characteristic against which the patient is evaluated. 
+         * This includes age, weight, height, etc.</p> <p>Allows the 
+         * specification of multiple preconditions for a dosage 
+         * specification, such as Age Range, Weight Range, etc. This is 
+         * mandatory because the precondition range cannot be evaluated 
+         * without knowing the precondition type.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public ObservationDosageDefinitionPreconditionType Code {
@@ -96,14 +136,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>DosagePreconditionValue</summary>
+         * <summary>Business Name: DosagePreconditionValue</summary>
          * 
-         * <remarks>B:Dosage Precondition Value <p>A specific value or 
-         * range of values of the Dosage Precondition Type, for which 
-         * the recommended dosage applies.</p><p>This includes min-max 
-         * age range, min-max weights, etc.</p><p>This is a mandatory 
-         * attribute as the values of the measurements must be 
-         * known.</p> <p>A specific value or range of values of the 
+         * <remarks>Un-merged Business Name: DosagePreconditionValue 
+         * Relationship: 
+         * PORX_MT980010CA.ObservationEventCriterion.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>A specific value 
+         * or range of values of the Dosage Precondition Type, for 
+         * which the recommended dosage applies.</p><p>This includes 
+         * min-max age range, min-max weights, etc.</p><p>This is a 
+         * mandatory attribute as the values of the measurements must 
+         * be known.</p> <p>A specific value or range of values of the 
          * Dosage Precondition Type, for which the recommended dosage 
          * applies.</p><p>This includes min-max age range, min-max 
          * weights, etc.</p><p>This is a mandatory attribute as the 
@@ -125,121 +168,118 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
          * based on criteria unless the specific criterion used is 
          * expressed.</p> <p>If not specified, it means that the range 
          * is based on a criteria (e.g. weight), but the specific range 
-         * on which the criteria is based is not known.</p> B:Dosage 
-         * Precondition Value <p>A specific value or range of values of 
-         * the Dosage Precondition Type, for which the recommended 
-         * dosage applies.</p><p>This includes min-max age range, 
-         * min-max weights, etc.</p><p>This is a mandatory attribute as 
-         * the values of the measurements must be known.</p> <p>A 
-         * specific value or range of values of the Dosage Precondition 
-         * Type, for which the recommended dosage applies.</p><p>This 
-         * includes min-max age range, min-max weights, etc.</p><p>This 
-         * is a mandatory attribute as the values of the measurements 
-         * must be known.</p> <p>A specific value or range of values of 
-         * the Dosage Precondition Type, for which the recommended 
-         * dosage applies.</p><p>This includes min-max age range, 
-         * min-max weights, etc.</p><p>This is a mandatory attribute as 
-         * the values of the measurements must be known.</p> <p>Minimum 
-         * Age</p><p>Maximum Age</p> <p>Minimum Age</p><p>Maximum 
-         * Age</p> <p>Allows direct comparison of the patient's 
-         * characteristics with the minimum and maximum values 
-         * specified.</p><p>The element is mandatory because there's no 
-         * point in identifying that the dosage range is based on 
-         * criteria unless the specific criterion used is 
-         * expressed.</p> <p>Allows direct comparison of the patient's 
-         * characteristics with the minimum and maximum values 
-         * specified.</p><p>The element is mandatory because there's no 
-         * point in identifying that the dosage range is based on 
-         * criteria unless the specific criterion used is 
-         * expressed.</p> <p>If not specified, it means that the range 
-         * is based on a criteria (e.g. weight), but the specific range 
-         * on which the criteria is based is not known.</p> B:Dosage 
-         * Precondition Value <p>A specific value or range of values of 
-         * the Dosage Precondition Type, for which the recommended 
-         * dosage applies.</p><p>This includes min-max age range, 
-         * min-max weights, etc.</p><p>This attribute is mandatory as 
-         * the specific range of values must be known.</p> <p>A 
-         * specific value or range of values of the Dosage Precondition 
-         * Type, for which the recommended dosage applies.</p><p>This 
-         * includes min-max age range, min-max weights, etc.</p><p>This 
-         * attribute is mandatory as the specific range of values must 
-         * be known.</p> <p>A specific value or range of values of the 
+         * on which the criteria is based is not known.</p> Un-merged 
+         * Business Name: DosagePreconditionValue Relationship: 
+         * COCT_MT260030CA.ObservationEventCriterion.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>A specific value 
+         * or range of values of the Dosage Precondition Type, for 
+         * which the recommended dosage applies.</p><p>This includes 
+         * min-max age range, min-max weights, etc.</p><p>This is a 
+         * mandatory attribute as the specific range of values must be 
+         * known.</p> <p>A specific value or range of values of the 
          * Dosage Precondition Type, for which the recommended dosage 
          * applies.</p><p>This includes min-max age range, min-max 
-         * weights, etc.</p><p>This attribute is mandatory as the 
-         * specific range of values must be known.</p> <p>Minimum 
-         * Age</p><p>Maximum Age</p> <p>Minimum Age</p><p>Maximum 
-         * Age</p> <p>Allows direct comparison of the patient's 
-         * characteristics with the minimum and maximum values 
-         * specified.</p><p>The element is mandatory because there's no 
-         * point in identifying that the dosage range is based on 
-         * criteria unless the specific criterion used is 
-         * expressed.</p> <p>Allows direct comparison of the patient's 
-         * characteristics with the minimum and maximum values 
-         * specified.</p><p>The element is mandatory because there's no 
-         * point in identifying that the dosage range is based on 
-         * criteria unless the specific criterion used is 
-         * expressed.</p> <p>If not specified, it means that the range 
-         * is based on a criteria (e.g. weight), but the specific range 
-         * on which the criteria is based is not known.</p> B:Dosage 
-         * Precondition Value <p>A specific value or range of values of 
-         * the Dosage Precondition Type, for which the recommended 
-         * dosage applies.</p><p>This includes min-max age range, 
-         * min-max weights, etc.</p><p>This attribute is mandatory as 
-         * the specific range of values must be known.</p> <p>A 
-         * specific value or range of values of the Dosage Precondition 
-         * Type, for which the recommended dosage applies.</p><p>This 
-         * includes min-max age range, min-max weights, etc.</p><p>This 
-         * attribute is mandatory as the specific range of values must 
-         * be known.</p> <p>A specific value or range of values of the 
-         * Dosage Precondition Type, for which the recommended dosage 
-         * applies.</p><p>This includes min-max age range, min-max 
-         * weights, etc.</p><p>This attribute is mandatory as the 
-         * specific range of values must be known.</p> <p>Minimum 
-         * Age</p><p>Maximum Age</p> <p>Minimum Age</p><p>Maximum 
-         * Age</p> <p>Allows direct comparison of the patient's 
-         * characteristics with the minimum and maximum values 
-         * specified.</p><p>The element is mandatory because there's no 
-         * point in identifying that the dosage range is based on 
-         * criteria unless the specific criterion used is 
-         * expressed.</p> <p>Allows direct comparison of the patient's 
-         * characteristics with the minimum and maximum values 
-         * specified.</p><p>The element is mandatory because there's no 
-         * point in identifying that the dosage range is based on 
-         * criteria unless the specific criterion used is 
-         * expressed.</p> <p>If not specified, it means that the range 
-         * is based on a criteria (e.g. weight), but the specific range 
-         * on which the criteria is based is not known.</p> B:Dosage 
-         * Precondition Value <p>A specific value or range of values of 
-         * the Dosage Precondition Type, for which the recommended 
-         * dosage applies.</p><p>This includes min-max age range, 
-         * min-max weights, etc.</p><p>This is a mandatory attribute as 
-         * the specific range of values must be known.</p> <p>A 
-         * specific value or range of values of the Dosage Precondition 
-         * Type, for which the recommended dosage applies.</p><p>This 
+         * weights, etc.</p><p>This is a mandatory attribute as the 
+         * specific range of values must be known.</p> <p>A specific 
+         * value or range of values of the Dosage Precondition Type, 
+         * for which the recommended dosage applies.</p><p>This 
          * includes min-max age range, min-max weights, etc.</p><p>This 
          * is a mandatory attribute as the specific range of values 
-         * must be known.</p> <p>A specific value or range of values of 
-         * the Dosage Precondition Type, for which the recommended 
-         * dosage applies.</p><p>This includes min-max age range, 
-         * min-max weights, etc.</p><p>This is a mandatory attribute as 
-         * the specific range of values must be known.</p> <p>Minimum 
-         * Age</p><p>Maximum Age</p> <p>Minimum Age</p><p>Maximum 
-         * Age</p> <p>Allows direct comparison of the patient's 
-         * characteristics with the minimum and maximum values 
-         * specified.</p><p>The element is mandatory because there's no 
-         * point in identifying that the dosage range is based on 
-         * criteria unless the specific criterion used is 
-         * expressed.</p> <p>Allows direct comparison of the patient's 
-         * characteristics with the minimum and maximum values 
-         * specified.</p><p>The element is mandatory because there's no 
-         * point in identifying that the dosage range is based on 
-         * criteria unless the specific criterion used is 
+         * must be known.</p> <p>Minimum Age</p><p>Maximum Age</p> 
+         * <p>Minimum Age</p><p>Maximum Age</p> <p>Allows direct 
+         * comparison of the patient's characteristics with the minimum 
+         * and maximum values specified.</p><p>The element is mandatory 
+         * because there's no point in identifying that the dosage 
+         * range is based on criteria unless the specific criterion 
+         * used is expressed.</p> <p>Allows direct comparison of the 
+         * patient's characteristics with the minimum and maximum 
+         * values specified.</p><p>The element is mandatory because 
+         * there's no point in identifying that the dosage range is 
+         * based on criteria unless the specific criterion used is 
          * expressed.</p> <p>If not specified, it means that the range 
          * is based on a criteria (e.g. weight), but the specific range 
-         * on which the criteria is based is not known.</p> B:Dosage 
-         * Precondition Value <p>A specific value or range of values of 
-         * the Dosage Precondition Type, f
+         * on which the criteria is based is not known.</p> Un-merged 
+         * Business Name: DosagePreconditionValue Relationship: 
+         * PORX_MT980020CA.ObservationEventCriterion.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>A specific value 
+         * or range of values of the Dosage Precondition Type, for 
+         * which the recommended dosage applies.</p><p>This includes 
+         * min-max age range, min-max weights, etc.</p><p>This 
+         * attribute is mandatory as the specific range of values must 
+         * be known.</p> <p>A specific value or range of values of the 
+         * Dosage Precondition Type, for which the recommended dosage 
+         * applies.</p><p>This includes min-max age range, min-max 
+         * weights, etc.</p><p>This attribute is mandatory as the 
+         * specific range of values must be known.</p> <p>A specific 
+         * value or range of values of the Dosage Precondition Type, 
+         * for which the recommended dosage applies.</p><p>This 
+         * includes min-max age range, min-max weights, etc.</p><p>This 
+         * attribute is mandatory as the specific range of values must 
+         * be known.</p> <p>Minimum Age</p><p>Maximum Age</p> 
+         * <p>Minimum Age</p><p>Maximum Age</p> <p>Allows direct 
+         * comparison of the patient's characteristics with the minimum 
+         * and maximum values specified.</p><p>The element is mandatory 
+         * because there's no point in identifying that the dosage 
+         * range is based on criteria unless the specific criterion 
+         * used is expressed.</p> <p>Allows direct comparison of the 
+         * patient's characteristics with the minimum and maximum 
+         * values specified.</p><p>The element is mandatory because 
+         * there's no point in identifying that the dosage range is 
+         * based on criteria unless the specific criterion used is 
+         * expressed.</p> <p>If not specified, it means that the range 
+         * is based on a criteria (e.g. weight), but the specific range 
+         * on which the criteria is based is not known.</p> Un-merged 
+         * Business Name: DosagePreconditionValue Relationship: 
+         * COCT_MT260010CA.ObservationEventCriterion.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>A specific value 
+         * or range of values of the Dosage Precondition Type, for 
+         * which the recommended dosage applies.</p><p>This includes 
+         * min-max age range, min-max weights, etc.</p><p>This is a 
+         * mandatory attribute as the values of the measurements must 
+         * be known.</p> <p>A specific value or range of values of the 
+         * Dosage Precondition Type, for which the recommended dosage 
+         * applies.</p><p>This includes min-max age range, min-max 
+         * weights, etc.</p><p>This is a mandatory attribute as the 
+         * values of the measurements must be known.</p> <p>A specific 
+         * value or range of values of the Dosage Precondition Type, 
+         * for which the recommended dosage applies.</p><p>This 
+         * includes min-max age range, min-max weights, etc.</p><p>This 
+         * is a mandatory attribute as the values of the measurements 
+         * must be known.</p> <p>Minimum Age</p><p>Maximum Age</p> 
+         * <p>Minimum Age</p><p>Maximum Age</p> <p>Allows direct 
+         * comparison of the patient's characteristics with the minimum 
+         * and maximum values specified.</p><p>The element is mandatory 
+         * because there's no point in identifying that the dosage 
+         * range is based on criteria unless the specific criterion 
+         * used is expressed.</p> <p>Allows direct comparison of the 
+         * patient's characteristics with the minimum and maximum 
+         * values specified.</p><p>The element is mandatory because 
+         * there's no point in identifying that the dosage range is 
+         * based on criteria unless the specific criterion used is 
+         * expressed.</p> <p>If not specified, it means that the range 
+         * is based on a criteria (e.g. weight), but the specific range 
+         * on which the criteria is based is not known.</p> Un-merged 
+         * Business Name: DosagePreconditionValue Relationship: 
+         * PORX_MT980030CA.ObservationEventCriterion.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>A specific value 
+         * or range of values of the Dosage Precondition Type, for 
+         * which the recommended dosage applies.</p><p>This includes 
+         * min-max age range, min-max weights, etc.</p><p>This is a 
+         * mandatory attribute as the specific range of values must be 
+         * known.</p> <p>A specific value or range of values of the 
+         * Dosage Precondition Type, for which the recommended dosage 
+         * applies.</p><p>This includes min-max age range, min-max 
+         * weights, etc.</p><p>This is a mandatory attribute as the 
+         * specific range of values must be known.</p> <p>A specific 
+         * value or range of values of the Dosage Precondition Type, 
+         * for which the recommended dosage applies.</p><p>This 
+         * includes min-max age range, min-max weights, etc.</p><p>This 
+         * is a mandatory attribute as the specific range of values 
+         * must be known.</p> <p>Minimum Age</p><p>Maximum Age</p> 
+         * <p>Minimum Age</p><p>Maximum Age</p> <p>Allows direct 
+         * comparison of the patient's characteristics with the minimum 
+         * and maximum values specified.</p><p>The element is mandatory 
+         * because there's no point in identify
          * ... [rest of documentation truncated due to excessive length]
          */
         [Hl7XmlMappingAttribute(new string[] {"value"})]

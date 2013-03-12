@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,18 +38,21 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Cr.Prpa_mt101103c
             this.semanticsText = new STImpl();
         }
         /**
-         * <summary>Mother's Maiden Name</summary>
+         * <summary>Business Name: Mother's Maiden Name</summary>
          * 
-         * <remarks><p>This query parameter is the maiden name of the 
-         * focal person's mother.</p> <p>It is included as a parameter 
-         * because it is a common attribute for confirming the identity 
-         * of persons in some person registries.</p> <p>This parameter 
-         * does not map to a single RIM attribute, instead, in RIM 
-         * terms Mother's maiden name is the person name part of 
-         * &quot;family&quot; with an EntityNamePartQualifier of 
-         * &quot;birth&quot; for the person who is the player in a 
-         * PersonalRelationship of type of &quot;mother&quot; to the 
-         * focal person.</p></remarks>
+         * <remarks>Relationship: 
+         * PRPA_MT101103CA.MothersMaidenName.value 
+         * Conformance/Cardinality: MANDATORY (1) <p>It is included as 
+         * a parameter because it is a common attribute for confirming 
+         * the identity of persons in some person registries.</p> 
+         * <p>This parameter does not map to a single RIM attribute, 
+         * instead, in RIM terms Mother's maiden name is the person 
+         * name part of &quot;family&quot; with an 
+         * EntityNamePartQualifier of &quot;birth&quot; for the person 
+         * who is the player in a PersonalRelationship of type of 
+         * &quot;mother&quot; to the focal person.</p> <p>This query 
+         * parameter is the maiden name of the focal person's 
+         * mother.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"value"})]
         public PersonName Value {
@@ -57,6 +60,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Cr.Prpa_mt101103c
             set { this.value.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PRPA_MT101103CA.MothersMaidenName.semanticsText</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"semanticsText"})]
         public String SemanticsText {
             get { return this.semanticsText.Value; }

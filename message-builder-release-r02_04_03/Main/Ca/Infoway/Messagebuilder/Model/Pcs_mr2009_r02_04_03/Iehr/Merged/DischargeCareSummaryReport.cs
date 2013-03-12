@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,24 +31,24 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged {
 
 
     /**
-     * <summary>DischargeCareSummaryReport</summary>
+     * <summary>Business Name: DischargeCareSummaryReport</summary>
      * 
      * <remarks>REPC_MT220001CA.PatientCareProvisionEvent: B: 
-     * Discharge/Care Summary Report <p>Discrete information about 
-     * the encounter, episode or other event for which the 
-     * discharge or care report is being written.</p> <p>Provides 
-     * contextual overview information for searching and 
-     * filtering</p> REPC_MT220002CA.PatientCareProvisionEvent: B: 
-     * Discharge/Care Summary Report <p>Discrete information about 
-     * the encounter, episode or other event for which the 
-     * discharge or care report is being written.</p> <p>Provides 
-     * contextual overview information for searching and 
-     * filtering</p> REPC_MT220003CA.PatientCareProvisionEvent: B: 
-     * Discharge/Care Summary Report <p>Discrete information about 
-     * the encounter, episode or other event for which the 
-     * discharge or care report is being written.</p> <p>Provides 
-     * contextual overview information for searching and 
-     * filtering</p></remarks>
+     * Discharge/Care Summary Report <p>Provides contextual 
+     * overview information for searching and filtering</p> 
+     * <p>Discrete information about the encounter, episode or 
+     * other event for which the discharge or care report is being 
+     * written.</p> REPC_MT220002CA.PatientCareProvisionEvent: B: 
+     * Discharge/Care Summary Report <p>Provides contextual 
+     * overview information for searching and filtering</p> 
+     * <p>Discrete information about the encounter, episode or 
+     * other event for which the discharge or care report is being 
+     * written.</p> REPC_MT220003CA.PatientCareProvisionEvent: B: 
+     * Discharge/Care Summary Report <p>Provides contextual 
+     * overview information for searching and filtering</p> 
+     * <p>Discrete information about the encounter, episode or 
+     * other event for which the discharge or care report is being 
+     * written.</p></remarks>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"REPC_MT220001CA.PatientCareProvisionEvent","REPC_MT220002CA.PatientCareProvisionEvent","REPC_MT220003CA.PatientCareProvisionEvent"})]
     public class DischargeCareSummaryReport : MessagePartBean, Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged.IDocumentContent_2 {
@@ -72,19 +72,50 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged {
             this.dischargeDispositionCode = new CVImpl();
             this.outcomeConditionEvent = new List<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged.DischargeDiagnoses>();
         }
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * REPC_MT220001CA.DocumentContent.reason 
+         * Conformance/Cardinality: REQUIRED (0-5) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT220002CA.DocumentContent.reason 
+         * Conformance/Cardinality: REQUIRED (0-5) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT220003CA.DocumentContent.reason 
+         * Conformance/Cardinality: REQUIRED (0-5)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"reason"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.BecauseOf> Reason {
             get { return this.reason; }
         }
 
         /**
-         * <summary>ReportedOnCareCompositionLink</summary>
+         * <summary>Business Name: ReportedOnCareCompositionLink</summary>
          * 
-         * <remarks>M:Reported on Care Composition Link <p>Provides the 
-         * identifier of the discrete encounter, episode or care event 
-         * being reported on.</p> <p>Allows for drill-down and for 
-         * direct association between the report and the discrete 
-         * record.</p></remarks>
+         * <remarks>Un-merged Business Name: 
+         * ReportedOnCareCompositionLink Relationship: 
+         * REPC_MT220001CA.PatientCareProvisionEvent.id 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Allows for 
+         * drill-down and for direct association between the report and 
+         * the discrete record.</p> <p>Provides the identifier of the 
+         * discrete encounter, episode or care event being reported 
+         * on.</p> Un-merged Business Name: 
+         * ReportedOnCareCompositionLink Relationship: 
+         * REPC_MT220002CA.PatientCareProvisionEvent.id 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Allows for 
+         * drill-down and for direct association between the report and 
+         * the discrete record.</p> <p>Provides the identifier of the 
+         * discrete encounter, episode or care event being reported 
+         * on.</p> Un-merged Business Name: 
+         * ReportedOnCareCompositionLink Relationship: 
+         * REPC_MT220003CA.PatientCareProvisionEvent.id 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Allows for 
+         * drill-down and for direct association between the report and 
+         * the discrete record.</p> <p>Provides the identifier of the 
+         * discrete encounter, episode or care event being reported 
+         * on.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -93,30 +124,66 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged {
         }
 
         /**
-         * <summary>DischargeCareSummaryReportType</summary>
+         * <summary>Business Name: DischargeCareSummaryReportType</summary>
          * 
-         * <remarks>C: Discharge/Care Summary Report Type <p>Identifies 
-         * the type or category Summary Report represented by this 
-         * record.</p><p>The discharge / care report summarizes the 
-         * events and activities that happened during care including 
-         * who is responsible for the care provided. The report is sent 
-         * at the termination of care. In this case, the performer is 
-         * the sending provider.</p><p>Examples: Inpatient stay, 
-         * cardiology, etc.</p> <p>Identifies the type or category 
-         * Summary Report represented by this record.</p><p>The 
-         * discharge / care report summarizes the events and activities 
-         * that happened during care including who is responsible for 
-         * the care provided. The report is sent at the termination of 
-         * care. In this case, the performer is the sending 
-         * provider.</p><p>Examples: Inpatient stay, cardiology, 
-         * etc.</p> <p>Identifies the type or category Summary Report 
+         * <remarks>Un-merged Business Name: 
+         * DischargeCareSummaryReportType Relationship: 
+         * REPC_MT220001CA.PatientCareProvisionEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p> <i>Discharge/Care 
+         * Summary Report Type is used for searching and for organizing 
+         * Discharge-Care Summary records as well as sorting them for 
+         * presentation.</i> </p><p> <i>This is a key attribute for 
+         * understanding the type of record and is therefore 
+         * mandatory.</i> </p><p> <i>This element makes use of the CD 
+         * datatype to allow for use of the SNOMED code system that in 
+         * some circumstances requires the use of post-coordination. 
+         * Post-coordination is only supported by the CD datatype.</i> 
+         * </p> <p>Identifies the type or category Summary Report 
          * represented by this record.</p><p>The discharge / care 
          * report summarizes the events and activities that happened 
          * during care including who is responsible for the care 
          * provided. The report is sent at the termination of care. In 
          * this case, the performer is the sending 
          * provider.</p><p>Examples: Inpatient stay, cardiology, 
-         * etc.</p> </p> </p> </p></remarks>
+         * etc.</p> Un-merged Business Name: 
+         * DischargeCareSummaryReportType Relationship: 
+         * REPC_MT220002CA.PatientCareProvisionEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p> <i>Discharge/Care 
+         * Summary Report Type is used for searching and for organizing 
+         * Discharge-Care Summary records as well as sorting them for 
+         * presentation.</i> </p><p> <i>This is a key attribute for 
+         * understanding the type of record and is therefore 
+         * mandatory.</i> </p><p> <i>This element makes use of the CD 
+         * datatype to allow for use of the SNOMED code system that in 
+         * some circumstances requires the use of post-coordination. 
+         * Post-coordination is only supported by the CD datatype.</i> 
+         * </p> <p>Identifies the type or category Summary Report 
+         * represented by this record.</p><p>The discharge / care 
+         * report summarizes the events and activities that happened 
+         * during care including who is responsible for the care 
+         * provided. The report is sent at the termination of care. In 
+         * this case, the performer is the sending 
+         * provider.</p><p>Examples: Inpatient stay, cardiology, 
+         * etc.</p> Un-merged Business Name: 
+         * DischargeCareSummaryReportType Relationship: 
+         * REPC_MT220003CA.PatientCareProvisionEvent.code 
+         * Conformance/Cardinality: MANDATORY (1) <p> <i>Discharge/Care 
+         * Summary Report Type is used for searching and for organizing 
+         * Discharge-Care Summary records as well as sorting them for 
+         * presentation.</i> </p><p> <i>This is a key attribute for 
+         * understanding the type of record and is therefore 
+         * mandatory.</i> </p><p> <i>This element makes use of the CD 
+         * datatype to allow for use of the SNOMED code system that in 
+         * some circumstances requires the use of post-coordination. 
+         * Post-coordination is only supported by the CD datatype.</i> 
+         * </p> <p>Identifies the type or category Summary Report 
+         * represented by this record.</p><p>The discharge / care 
+         * report summarizes the events and activities that happened 
+         * during care including who is responsible for the care 
+         * provided. The report is sent at the termination of care. In 
+         * this case, the performer is the sending 
+         * provider.</p><p>Examples: Inpatient stay, cardiology, 
+         * etc.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public ActCareEventType Code {
@@ -125,17 +192,51 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged {
         }
 
         /**
-         * <summary>PreliminaryFinalIndicator</summary>
+         * <summary>Business Name: PreliminaryFinalIndicator</summary>
          * 
-         * <remarks>D: Preliminary/Final Indicator </p><p>If the status 
-         * is 'active' it means that the assessment is ongoing and the 
-         * report is preliminary. If the status is 'completed' it means 
-         * that the assessment is finished and the report is considered 
-         * complete.</p> </p><p>If the status is 'active' it means that 
-         * the assessment is ongoing and the report is preliminary. If 
-         * the status is 'completed' it means that the assessment is 
-         * finished and the report is considered complete.</p> </p> 
-         * </p></remarks>
+         * <remarks>Un-merged Business Name: PreliminaryFinalIndicator 
+         * Relationship: 
+         * REPC_MT220001CA.PatientCareProvisionEvent.statusCode 
+         * Conformance/Cardinality: POPULATED (1) <p> <i>Status is 
+         * frequently used to filter query responses as well as to sort 
+         * records for presentation. It also affects how the 
+         * Discharge-Care Summary record is interpreted.</i> </p><p> 
+         * <i>Because the status won't always be known, the attribute 
+         * is marked as 'populated' to allow the use of null 
+         * flavors.</i> </p> <p> <i>This identifies the current state 
+         * of the Discharge-Care Summary record.</i> </p><p>If the 
+         * status is 'active' it means that the assessment is ongoing 
+         * and the report is preliminary. If the status is 'completed' 
+         * it means that the assessment is finished and the report is 
+         * considered complete.</p> Un-merged Business Name: 
+         * PreliminaryFinalIndicator Relationship: 
+         * REPC_MT220002CA.PatientCareProvisionEvent.statusCode 
+         * Conformance/Cardinality: POPULATED (1) <p> <i>Status is 
+         * frequently used to filter query responses as well as to sort 
+         * records for presentation. It also affects how the 
+         * Discharge-Care Summary record is interpreted.</i> </p><p> 
+         * <i>Because the status won't always be known, the attribute 
+         * is marked as 'populated' to allow the use of null 
+         * flavors.</i> </p> <p> <i>This identifies the current state 
+         * of the Discharge-Care Summary record.</i> </p><p>If the 
+         * status is 'active' it means that the assessment is ongoing 
+         * and the report is preliminary. If the status is 'completed' 
+         * it means that the assessment is finished and the report is 
+         * considered complete.</p> Un-merged Business Name: 
+         * PreliminaryFinalIndicator Relationship: 
+         * REPC_MT220003CA.PatientCareProvisionEvent.statusCode 
+         * Conformance/Cardinality: POPULATED (1) <p> <i>Status is 
+         * frequently used to filter query responses as well as to sort 
+         * records for presentation. It also affects how the 
+         * Discharge-Care Summary record is interpreted.</i> </p><p> 
+         * <i>Because the status won't always be known, the attribute 
+         * is marked as 'populated' to allow the use of null 
+         * flavors.</i> </p> <p> <i>This identifies the current state 
+         * of the Discharge-Care Summary record.</i> </p><p>If the 
+         * status is 'active' it means that the assessment is ongoing 
+         * and the report is preliminary. If the status is 'completed' 
+         * it means that the assessment is finished and the report is 
+         * considered complete.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"statusCode"})]
         public x_ActStatusActiveComplete StatusCode {
@@ -144,25 +245,41 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged {
         }
 
         /**
-         * <summary>DischargeCareSummaryReportPeriod</summary>
+         * <summary>Business Name: DischargeCareSummaryReportPeriod</summary>
          * 
-         * <remarks>F: Discharge/Care Summary Report Period 
-         * <p>Indicates the period of care to which the discharge or 
-         * care report applies. For an encounter discharge assessment, 
-         * this would be the admission and discharge date.</p> 
-         * <p>Identifies the time-period of relevance to the record 
-         * which is useful in filtering and organizing 
-         * &quot;time-view&quot; presentations of data. Because the 
-         * period covered by a discharge or care summary should always 
-         * be known, this attribute is mandatory.</p> F: Discharge/Care 
-         * Summary Report Period <p>Indicates the period of care to 
-         * which the discharge or care report applies. For an encounter 
-         * discharge assessment, this would be the admit and discharge 
-         * date.</p> <p>Identifies the time-period of relevance to the 
-         * record which is useful in filtering and organizing 
-         * &quot;time-view&quot; presentations of data. Because the 
-         * period covered by a discharge or care summary should always 
-         * be known, this attribute is mandatory.</p></remarks>
+         * <remarks>Un-merged Business Name: 
+         * DischargeCareSummaryReportPeriod Relationship: 
+         * REPC_MT220001CA.PatientCareProvisionEvent.effectiveTime 
+         * Conformance/Cardinality: MANDATORY (1) <p>Identifies the 
+         * time-period of relevance to the record which is useful in 
+         * filtering and organizing &quot;time-view&quot; presentations 
+         * of data. Because the period covered by a discharge or care 
+         * summary should always be known, this attribute is 
+         * mandatory.</p> <p>Indicates the period of care to which the 
+         * discharge or care report applies. For an encounter discharge 
+         * assessment, this would be the admission and discharge 
+         * date.</p> Un-merged Business Name: 
+         * DischargeCareSummaryReportPeriod Relationship: 
+         * REPC_MT220002CA.PatientCareProvisionEvent.effectiveTime 
+         * Conformance/Cardinality: MANDATORY (1) <p>Identifies the 
+         * time-period of relevance to the record which is useful in 
+         * filtering and organizing &quot;time-view&quot; presentations 
+         * of data. Because the period covered by a discharge or care 
+         * summary should always be known, this attribute is 
+         * mandatory.</p> <p>Indicates the period of care to which the 
+         * discharge or care report applies. For an encounter discharge 
+         * assessment, this would be the admit and discharge date.</p> 
+         * Un-merged Business Name: DischargeCareSummaryReportPeriod 
+         * Relationship: 
+         * REPC_MT220003CA.PatientCareProvisionEvent.effectiveTime 
+         * Conformance/Cardinality: MANDATORY (1) <p>Identifies the 
+         * time-period of relevance to the record which is useful in 
+         * filtering and organizing &quot;time-view&quot; presentations 
+         * of data. Because the period covered by a discharge or care 
+         * summary should always be known, this attribute is 
+         * mandatory.</p> <p>Indicates the period of care to which the 
+         * discharge or care report applies. For an encounter discharge 
+         * assessment, this would be the admit and discharge date.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"effectiveTime"})]
         public Interval<PlatformDate> EffectiveTime {
@@ -171,15 +288,39 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged {
         }
 
         /**
-         * <summary>DischargeDisposition</summary>
+         * <summary>Business Name: DischargeDisposition</summary>
          * 
-         * <remarks>N:Discharge Disposition <p>Indicates the manner in 
-         * which the patient left the encounter or other care event. 
-         * E.g. 'Deceased', 'Discharged to home', 'Discharged to 
-         * isolation'</p> <p>May be important in planning subsequent 
-         * care for the patient. Something must be said about discharge 
-         * condition but in some circumstances the value may not be 
-         * known. Thus the attribute is treated as 'populated'.</p></remarks>
+         * <remarks>Un-merged Business Name: DischargeDisposition 
+         * Relationship: 
+         * REPC_MT220001CA.PatientCareProvisionEvent.dischargeDispositionCode 
+         * Conformance/Cardinality: POPULATED (1) <p>May be important 
+         * in planning subsequent care for the patient. Something must 
+         * be said about discharge condition but in some circumstances 
+         * the value may not be known. Thus the attribute is treated as 
+         * 'populated'.</p> <p>Indicates the manner in which the 
+         * patient left the encounter or other care event. E.g. 
+         * 'Deceased', 'Discharged to home', 'Discharged to 
+         * isolation'</p> Un-merged Business Name: DischargeDisposition 
+         * Relationship: 
+         * REPC_MT220002CA.PatientCareProvisionEvent.dischargeDispositionCode 
+         * Conformance/Cardinality: POPULATED (1) <p>May be important 
+         * in planning subsequent care for the patient. Something must 
+         * be said about discharge condition but in some circumstances 
+         * the value may not be known. Thus the attribute is treated as 
+         * 'populated'.</p> <p>Indicates the manner in which the 
+         * patient left the encounter or other care event. E.g. 
+         * 'Deceased', 'Discharged to home', 'Discharged to 
+         * isolation'</p> Un-merged Business Name: DischargeDisposition 
+         * Relationship: 
+         * REPC_MT220003CA.PatientCareProvisionEvent.dischargeDispositionCode 
+         * Conformance/Cardinality: POPULATED (1) <p>May be important 
+         * in planning subsequent care for the patient. Something must 
+         * be said about discharge condition but in some circumstances 
+         * the value may not be known. Thus the attribute is treated as 
+         * 'populated'.</p> <p>Indicates the manner in which the 
+         * patient left the encounter or other care event. E.g. 
+         * 'Deceased', 'Discharged to home', 'Discharged to 
+         * isolation'</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"dischargeDispositionCode"})]
         public EncounterDischargeDisposition DischargeDispositionCode {
@@ -187,17 +328,59 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged {
             set { this.dischargeDispositionCode.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * REPC_MT220001CA.PatientCareProvisionEvent.location 
+         * Conformance/Cardinality: REQUIRED (0-1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT220002CA.PatientCareProvisionEvent.location 
+         * Conformance/Cardinality: REQUIRED (0-1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT220003CA.PatientCareProvisionEvent.location 
+         * Conformance/Cardinality: REQUIRED (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"location"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.OccurredAt Location {
             get { return this.location; }
             set { this.location = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * REPC_MT220001CA.Outcome.conditionEvent 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT220002CA.Outcome.conditionEvent 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT220003CA.Outcome.conditionEvent 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"outcome/conditionEvent"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged.DischargeDiagnoses> OutcomeConditionEvent {
             get { return this.outcomeConditionEvent; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * REPC_MT220001CA.InFulfillmentOf.actRequest 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT220002CA.InFulfillmentOf.actRequest 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * REPC_MT220003CA.InFulfillmentOf.actRequest 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"inFulfillmentOf/actRequest"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged.Request_1 InFulfillmentOfActRequest {
             get { return this.inFulfillmentOfActRequest; }

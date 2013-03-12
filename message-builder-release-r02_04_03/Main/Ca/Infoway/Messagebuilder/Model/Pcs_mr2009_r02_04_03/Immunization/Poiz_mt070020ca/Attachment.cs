@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,7 +37,10 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Poiz
             this.text = new EDImpl<EncapsulatedData>();
         }
         /**
-         * <summary>Attachment Identifier</summary>
+         * <summary>Business Name: Attachment Identifier</summary>
+         * 
+         * <remarks>Relationship: POIZ_MT070020CA.Attachment.id 
+         * Conformance/Cardinality: REQUIRED (0-1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -46,7 +49,10 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Poiz
         }
 
         /**
-         * <summary>Attachment Content</summary>
+         * <summary>Business Name: Attachment Content</summary>
+         * 
+         * <remarks>Relationship: POIZ_MT070020CA.Attachment.text 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"text"})]
         public EncapsulatedData Text {

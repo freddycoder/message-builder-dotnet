@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,12 +27,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Poiz
 
 
     /**
-     * <summary><p>Identifies the source of the immunization 
-     * information as someone who has a personal relationship with 
-     * the patient.</p></summary>
+     * <p>Supplies contextual information about the source of the 
+     * immunization report.</p>
      * 
-     * <remarks><p>Supplies contextual information about the source 
-     * of the immunization report.</p></remarks>
+     * <p>Identifies the source of the immunization information as 
+     * someone who has a personal relationship with the 
+     * patient.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"POIZ_MT030060CA.PersonalRelationshipRole"})]
     public class PersonalRelationshipRole : MessagePartBean, Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Merged.IInformationSourceChoice {
@@ -43,12 +43,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Immunization.Poiz
             this.code = new CVImpl();
         }
         /**
-         * <summary>Personal Relationship Type</summary>
+         * <summary>Business Name: Personal Relationship Type</summary>
          * 
-         * <remarks><p>Describes the personal relationship between the 
-         * information source and the patient.</p> <p>Useful for 
+         * <remarks>Relationship: 
+         * POIZ_MT030060CA.PersonalRelationshipRole.code 
+         * Conformance/Cardinality: POPULATED (1) <p>Useful for 
          * categorizing sources of immunization information. As a 
-         * result, this attribute is populated.</p></remarks>
+         * result, this attribute is populated.</p> <p>Describes the 
+         * personal relationship between the information source and the 
+         * patient.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public PersonalRelationshipRoleType Code {

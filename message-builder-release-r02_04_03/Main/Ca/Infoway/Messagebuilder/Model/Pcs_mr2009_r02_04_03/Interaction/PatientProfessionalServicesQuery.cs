@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,6 +25,20 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt610004ca;
 
 
+    /**
+     * <summary>Business Name: REPC_IN000041CA: Patient 
+     * professional services query</summary>
+     * 
+     * <p>Requests retrieval of all professional services provided 
+     * to a patient, potentially filtered by the provider who 
+     * delivered the service, the type of service provided, the 
+     * time-range in which the service was provided, and/or the 
+     * time-range in which information about the service was last 
+     * updated (via adding an annotation).</p> Message: 
+     * MCCI_MT002100CA.Message Control Act: 
+     * QUQI_MT020000CA.ControlActEvent --> Payload: 
+     * REPC_MT610004CA.ParameterList
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"REPC_IN000041CA"})]
     public class PatientProfessionalServicesQuery : HL7Message_1<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.TriggerEvent_5<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt610004ca.QueryDefinition>>, IInteraction {
 

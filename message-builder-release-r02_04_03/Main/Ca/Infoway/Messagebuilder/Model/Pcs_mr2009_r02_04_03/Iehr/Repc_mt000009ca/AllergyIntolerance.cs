@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,12 +34,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt00000
 
 
     /**
-     * <summary>Allergy/Intolerance</summary>
+     * <summary>Business Name: Allergy/Intolerance</summary>
      * 
-     * <remarks><p>A record of a patient's allergy or 
-     * intolerance.</p> <p>Necessary component of a person's 
-     * overall medication and clinical profile. Helps with drug 
-     * contraindication checking.</p></remarks>
+     * <p>Necessary component of a person's overall medication and 
+     * clinical profile. Helps with drug contraindication 
+     * checking.</p> <p>A record of a patient's allergy or 
+     * intolerance.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"REPC_MT000009CA.IntoleranceCondition"})]
     public class AllergyIntolerance : MessagePartBean {
@@ -77,12 +77,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt00000
             this.componentOfPatientCareProvisionEvent = new List<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.CareCompositions>();
         }
         /**
-         * <summary>D:Allergy/Intolerance Record Id</summary>
+         * <summary>Business Name: D:Allergy/Intolerance Record Id</summary>
          * 
-         * <remarks><p>Unique identifier for an allergy/intolerance 
-         * record.</p> <p>Allows for direct referencing of an 
-         * allergy/intolerance record when querying or performing 
-         * updates and is therefore mandatory.</p></remarks>
+         * <remarks>Relationship: 
+         * REPC_MT000009CA.IntoleranceCondition.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows for direct 
+         * referencing of an allergy/intolerance record when querying 
+         * or performing updates and is therefore mandatory.</p> 
+         * <p>Unique identifier for an allergy/intolerance record.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -91,15 +93,18 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt00000
         }
 
         /**
-         * <summary>A:Allergy/Intolerance Type</summary>
+         * <summary>Business Name: A:Allergy/Intolerance Type</summary>
          * 
-         * <remarks><p>A coded value denoting whether the record 
-         * pertains to an intolerance or a true allergy. (Allergies 
-         * result from immunologic reactions. Intolerances do not.)</p> 
-         * <p>Allows for the separation of allergy and intolerance 
-         * records. The type of condition is critical to understanding 
-         * the record and is therefore mandatory. It is expressed as a 
-         * CD to allow for SNOMED post-coordination.</p></remarks>
+         * <remarks>Relationship: 
+         * REPC_MT000009CA.IntoleranceCondition.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows for the 
+         * separation of allergy and intolerance records. The type of 
+         * condition is critical to understanding the record and is 
+         * therefore mandatory. It is expressed as a CD to allow for 
+         * SNOMED post-coordination.</p> <p>A coded value denoting 
+         * whether the record pertains to an intolerance or a true 
+         * allergy. (Allergies result from immunologic reactions. 
+         * Intolerances do not.)</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public ObservationIntoleranceType Code {
@@ -108,15 +113,18 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt00000
         }
 
         /**
-         * <summary>G:Allergy/Intolerance Refuted</summary>
+         * <summary>Business Name: G:Allergy/Intolerance Refuted</summary>
          * 
-         * <remarks><p>An indication that the allergy/intolerance has 
-         * been refuted. I.e. A clinician has positively determined 
-         * that the patient does not suffer from a particular allergy 
-         * or intolerance.</p> <p>Allows providers to refute a 
-         * previously confirmed or suspected allergy. Because it is 
-         * essential to know whether the record refutes or affirms an 
-         * allergy, this attribute is mandatory.</p></remarks>
+         * <remarks>Relationship: 
+         * REPC_MT000009CA.IntoleranceCondition.negationInd 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows providers 
+         * to refute a previously confirmed or suspected allergy. 
+         * Because it is essential to know whether the record refutes 
+         * or affirms an allergy, this attribute is mandatory.</p> 
+         * <p>An indication that the allergy/intolerance has been 
+         * refuted. I.e. A clinician has positively determined that the 
+         * patient does not suffer from a particular allergy or 
+         * intolerance.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"negationInd"})]
         public bool? NegationInd {
@@ -125,14 +133,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt00000
         }
 
         /**
-         * <summary>E:Allergy/Intolerance Status</summary>
+         * <summary>Business Name: E:Allergy/Intolerance Status</summary>
          * 
-         * <remarks><p>&quot;Identifies what kind of change occurred. 
-         * Allergy/Intolerance change types are Revise, Reactivate and 
-         * Complete</p> <p>Allows providers to evaluate the relevance 
-         * of a recorded allergy/intolerance. The status has a default 
-         * value of 'active' and is therefore mandatory.</p> <p>System 
-         * must default the status to 'ACTIVE'.</p></remarks>
+         * <remarks>Relationship: 
+         * REPC_MT000009CA.IntoleranceCondition.statusCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>Allows providers 
+         * to evaluate the relevance of a recorded allergy/intolerance. 
+         * The status has a default value of 'active' and is therefore 
+         * mandatory.</p> <p>System must default the status to 
+         * 'ACTIVE'.</p> <p>&quot;Identifies what kind of change 
+         * occurred. Allergy/Intolerance change types are Revise, 
+         * Reactivate and Complete</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"statusCode"})]
         public ActStatus StatusCode {
@@ -141,11 +152,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt00000
         }
 
         /**
-         * <summary>I:Allergy/Intolerance Date</summary>
+         * <summary>Business Name: I:Allergy/Intolerance Date</summary>
          * 
-         * <remarks><p>The date on which the recorded allergy is 
-         * considered active.</p> <p>Allows providers to evaluate the 
-         * period of relevance for the allergy/intolerance record.</p></remarks>
+         * <remarks>Relationship: 
+         * REPC_MT000009CA.IntoleranceCondition.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Allows providers 
+         * to evaluate the period of relevance for the 
+         * allergy/intolerance record.</p> <p>The date on which the 
+         * recorded allergy is considered active.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"effectiveTime"})]
         public PlatformDate EffectiveTime {
@@ -154,13 +168,25 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt00000
         }
 
         /**
-         * <summary>H:Allergy/Intolerance Masking Indicators</summary>
+         * <summary>Business Name: H:Allergy/Intolerance Masking 
+         * Indicators</summary>
          * 
-         * <remarks><p>Communicates the desire of the patient to 
-         * restrict access to this Health Condition record. Provides 
-         * support for additional confidentiality constraint, giving 
-         * patients a level of control over their information. Methods 
-         * for accessing masked event records will be governed by each 
+         * <remarks>Relationship: 
+         * REPC_MT000009CA.IntoleranceCondition.confidentialityCode 
+         * Conformance/Cardinality: REQUIRED (0-2) <p>Provides support 
+         * for additional confidentiality constraint to reflect the 
+         * wishes of the patient.</p><p>Taboo allows the provider to 
+         * request restricted access to patient or their care 
+         * giver.</p><p>Constraint: Cant have both normal and one of 
+         * the other codes simultaneously.</p><p>The attribute is 
+         * required because even if a jurisdiction doesn't support 
+         * masking on the way in, it will need to need to communicate 
+         * masked data returned from other jurisdictions.</p> 
+         * <p>Communicates the desire of the patient to restrict access 
+         * to this Health Condition record. Provides support for 
+         * additional confidentiality constraint, giving patients a 
+         * level of control over their information. Methods for 
+         * accessing masked event records will be governed by each 
          * jurisdiction (e.g. court orders, shared secret/consent, 
          * etc.). Can also be used to communicate that the information 
          * is deemed to be sensitive and should not be communicated or 
@@ -173,41 +199,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt00000
          * of the other codes can be asserted to indicate masking by 
          * the patient from providers or masking by a provider from the 
          * patient, respectively. 'normal' should never be asserted 
-         * with one of the other codes.</p> <p>Provides support for 
-         * additional confidentiality constraint to reflect the wishes 
-         * of the patient.</p><p>Taboo allows the provider to request 
-         * restricted access to patient or their care 
-         * giver.</p><p>Constraint: Cant have both normal and one of 
-         * the other codes simultaneously.</p><p>The attribute is 
-         * required because even if a jurisdiction doesn't support 
-         * masking on the way in, it will need to need to communicate 
-         * masked data returned from other jurisdictions.</p> 
-         * <p>Provides support for additional confidentiality 
-         * constraint to reflect the wishes of the patient.</p><p>Taboo 
-         * allows the provider to request restricted access to patient 
-         * or their care giver.</p><p>Constraint: Cant have both normal 
-         * and one of the other codes simultaneously.</p><p>The 
-         * attribute is required because even if a jurisdiction doesn't 
-         * support masking on the way in, it will need to need to 
-         * communicate masked data returned from other 
-         * jurisdictions.</p> <p>Provides support for additional 
-         * confidentiality constraint to reflect the wishes of the 
-         * patient.</p><p>Taboo allows the provider to request 
-         * restricted access to patient or their care 
-         * giver.</p><p>Constraint: Cant have both normal and one of 
-         * the other codes simultaneously.</p><p>The attribute is 
-         * required because even if a jurisdiction doesn't support 
-         * masking on the way in, it will need to need to communicate 
-         * masked data returned from other jurisdictions.</p> 
-         * <p>Provides support for additional confidentiality 
-         * constraint to reflect the wishes of the patient.</p><p>Taboo 
-         * allows the provider to request restricted access to patient 
-         * or their care giver.</p><p>Constraint: Cant have both normal 
-         * and one of the other codes simultaneously.</p><p>The 
-         * attribute is required because even if a jurisdiction doesn't 
-         * support masking on the way in, it will need to need to 
-         * communicate masked data returned from other 
-         * jurisdictions.</p></remarks>
+         * with one of the other codes.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"confidentialityCode"})]
         public ICollection<x_BasicConfidentialityKind> ConfidentialityCode {
@@ -215,24 +207,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt00000
         }
 
         /**
-         * <summary>F:Confirmed Indicator</summary>
+         * <summary>Business Name: F:Confirmed Indicator</summary>
          * 
-         * <remarks><p>An indication of the level of confidence/surety 
-         * placed in the recorded information.</p><p>The two valid 
-         * codes are:</p><p>- U (stated with uncertainty) -Specifies 
-         * that the author of the act affirms the uncertainty of the 
-         * act statement. In other words, they know that parts of the 
-         * act statement are not certain or are inferred. An example of 
-         * this is an inferred prescription where some order data is 
-         * inferred from a supply event (i.e. dispense).</p><p>- N 
-         * (stated with no assertion of uncertainty) - Specifies that 
-         * the act statement is made without any explicit expression of 
-         * certainty/uncertainty. This is the normal statement, meaning 
-         * that it may not be free of errors and uncertainty may still 
-         * exist. In healthcare, N is believed to express certainty to 
-         * the strength possible.</p><p>An allergy or intolerance 
-         * record is always used in drug contraindication checking 
-         * whether the record is U or N.</p> <p>An indication of the 
+         * <remarks>Relationship: 
+         * REPC_MT000009CA.IntoleranceCondition.uncertaintyCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>Helps other 
+         * providers to make appropriate decisions in their management 
+         * of allergy or intolerance contraindications.</p><p>Attribute 
+         * is mandatory because an allergy or intolerance record must 
+         * be tagged as either U or N.</p> <p>An indication of the 
          * level of confidence/surety placed in the recorded 
          * information.</p><p>The two valid codes are:</p><p>- U 
          * (stated with uncertainty) -Specifies that the author of the 
@@ -248,63 +231,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt00000
          * healthcare, N is believed to express certainty to the 
          * strength possible.</p><p>An allergy or intolerance record is 
          * always used in drug contraindication checking whether the 
-         * record is U or N.</p> <p>An indication of the level of 
-         * confidence/surety placed in the recorded 
-         * information.</p><p>The two valid codes are:</p><p>- U 
-         * (stated with uncertainty) -Specifies that the author of the 
-         * act affirms the uncertainty of the act statement. In other 
-         * words, they know that parts of the act statement are not 
-         * certain or are inferred. An example of this is an inferred 
-         * prescription where some order data is inferred from a supply 
-         * event (i.e. dispense).</p><p>- N (stated with no assertion 
-         * of uncertainty) - Specifies that the act statement is made 
-         * without any explicit expression of certainty/uncertainty. 
-         * This is the normal statement, meaning that it may not be 
-         * free of errors and uncertainty may still exist. In 
-         * healthcare, N is believed to express certainty to the 
-         * strength possible.</p><p>An allergy or intolerance record is 
-         * always used in drug contraindication checking whether the 
-         * record is U or N.</p> <p>An indication of the level of 
-         * confidence/surety placed in the recorded 
-         * information.</p><p>The two valid codes are:</p><p>- U 
-         * (stated with uncertainty) -Specifies that the author of the 
-         * act affirms the uncertainty of the act statement. In other 
-         * words, they know that parts of the act statement are not 
-         * certain or are inferred. An example of this is an inferred 
-         * prescription where some order data is inferred from a supply 
-         * event (i.e. dispense).</p><p>- N (stated with no assertion 
-         * of uncertainty) - Specifies that the act statement is made 
-         * without any explicit expression of certainty/uncertainty. 
-         * This is the normal statement, meaning that it may not be 
-         * free of errors and uncertainty may still exist. In 
-         * healthcare, N is believed to express certainty to the 
-         * strength possible.</p><p>An allergy or intolerance record is 
-         * always used in drug contraindication checking whether the 
-         * record is U or N.</p> <p>An indication of the level of 
-         * confidence/surety placed in the recorded 
-         * information.</p><p>The two valid codes are:</p><p>- U 
-         * (stated with uncertainty) -Specifies that the author of the 
-         * act affirms the uncertainty of the act statement. In other 
-         * words, they know that parts of the act statement are not 
-         * certain or are inferred. An example of this is an inferred 
-         * prescription where some order data is inferred from a supply 
-         * event (i.e. dispense).</p><p>- N (stated with no assertion 
-         * of uncertainty) - Specifies that the act statement is made 
-         * without any explicit expression of certainty/uncertainty. 
-         * This is the normal statement, meaning that it may not be 
-         * free of errors and uncertainty may still exist. In 
-         * healthcare, N is believed to express certainty to the 
-         * strength possible.</p><p>An allergy or intolerance record is 
-         * always used in drug contraindication checking whether the 
-         * record is U or N.</p> <p>Helps other providers to make 
-         * appropriate decisions in their management of allergy or 
-         * intolerance contraindications.</p><p>Attribute is mandatory 
-         * because an allergy or intolerance record must be tagged as 
-         * either U or N.</p> <p>Helps other providers to make 
-         * appropriate decisions in their management of allergy or 
-         * intolerance contraindications.</p><p>Attribute is mandatory 
-         * because an allergy or intolerance record must be tagged as 
-         * either U or N.</p></remarks>
+         * record is U or N.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"uncertaintyCode"})]
         public ActUncertainty UncertaintyCode {
@@ -313,13 +240,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt00000
         }
 
         /**
-         * <summary>B:Agent</summary>
+         * <summary>Business Name: B:Agent</summary>
          * 
-         * <remarks><p>Value is not permitted when using SNOMED, 
-         * mandatory otherwise</p> <p>Indicates the substance to which 
-         * the patient is allergic</p> <p>Critical for identifying the 
-         * allergy or intolerance. However, because the attribute is 
-         * not used for SNOMED, it is optional.</p></remarks>
+         * <remarks>Relationship: 
+         * REPC_MT000009CA.IntoleranceCondition.value 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>Value is not 
+         * permitted when using SNOMED, mandatory otherwise</p> 
+         * <p>Critical for identifying the allergy or intolerance. 
+         * However, because the attribute is not used for SNOMED, it is 
+         * optional.</p> <p>Indicates the substance to which the 
+         * patient is allergic</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"value"})]
         public IntoleranceValue Value {
@@ -327,58 +257,117 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt00000
             set { this.value.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * REPC_MT000009CA.ResponsibleParty.assignedEntity</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"responsibleParty/assignedEntity"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.HealthcareWorker ResponsiblePartyAssignedEntity {
             get { return this.responsiblePartyAssignedEntity; }
             set { this.responsiblePartyAssignedEntity = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * REPC_MT000009CA.IntoleranceCondition.author</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"author"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.RefusedBy Author {
             get { return this.author; }
             set { this.author = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * REPC_MT000009CA.IntoleranceCondition.informant</summary>
+         * 
+         * <remarks>Conformance/Cardinality: REQUIRED (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"informant"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged.ReportedBy Informant {
             get { return this.informant; }
             set { this.informant = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * REPC_MT000009CA.IntoleranceCondition.location</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"location"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.OccurredAt Location {
             get { return this.location; }
             set { this.location = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * REPC_MT000009CA.ReplacementOf.intoleranceCondition</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"replacementOf/intoleranceCondition"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Repc_mt000009ca.AllergyIntolerance ReplacementOfIntoleranceCondition {
             get { return this.replacementOfIntoleranceCondition; }
             set { this.replacementOfIntoleranceCondition = value; }
         }
 
+        /**
+         * <summary>Relationship: REPC_MT000009CA.Support.records</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"support/records"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged.IRecords> SupportRecords {
             get { return this.supportRecords; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * REPC_MT000009CA.Subject4.controlActEvent</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf1/controlActEvent"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged.AllergyIntoleranceStatusChanges SubjectOf1ControlActEvent {
             get { return this.subjectOf1ControlActEvent; }
             set { this.subjectOf1ControlActEvent = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * REPC_MT000009CA.IntoleranceCondition.subjectOf2</summary>
+         * 
+         * <remarks>Conformance/Cardinality: REQUIRED (0-99)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf2"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.Includes> SubjectOf2 {
             get { return this.subjectOf2; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * REPC_MT000009CA.Subject1.severityObservation</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"subjectOf3/severityObservation"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.AllergyIntoleranceSeverityLevel SubjectOf3SeverityObservation {
             get { return this.subjectOf3SeverityObservation; }
             set { this.subjectOf3SeverityObservation = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * REPC_MT000009CA.Component.patientCareProvisionEvent</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"componentOf/patientCareProvisionEvent"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.CareCompositions> ComponentOfPatientCareProvisionEvent {
             get { return this.componentOfPatientCareProvisionEvent; }

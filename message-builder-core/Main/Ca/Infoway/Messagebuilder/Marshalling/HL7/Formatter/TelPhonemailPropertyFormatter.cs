@@ -1,5 +1,26 @@
+/**
+ * Copyright 2013 Canada Health Infoway, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Author:        $LastChangedBy: tmcgrady $
+ * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Revision:      $LastChangedRevision: 2623 $
+ */
 using System.Collections.Generic;
 using System.Text;
+using Ca.Infoway.Messagebuilder;
+using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter;
@@ -22,75 +43,44 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 	/// The TEL.PHONEMAIL variant defined by CeRx is for personal contact addresses only.
 	/// The only valid URLSchemes are FAX, MAILTO and TELEPHONE.
 	/// </remarks>
-	[DataTypeHandler(new string[] { "TEL.PHONEMAIL", "TEL" })]
+	[DataTypeHandler(new string[] { "TEL.ALL", "TEL.PHONEMAIL", "TEL" })]
 	public class TelPhonemailPropertyFormatter : AbstractValueNullFlavorPropertyFormatter<TelecommunicationAddress>
 	{
-		private static readonly IList<string> ALLOWABLE_URL_SCHEMES;
+		private static readonly TelValidationUtils TEL_VALIDATION_UTILS = new TelValidationUtils();
 
-		private static readonly IList<string> ALLOWABLE_TELECOMMUNICATION_USES;
-
-		static TelPhonemailPropertyFormatter()
+		protected sealed override string GetValue(TelecommunicationAddress phonemail, FormatContext context, BareANY bareAny)
 		{
-			ALLOWABLE_URL_SCHEMES = new List<string>();
-			ALLOWABLE_URL_SCHEMES.Add("fax");
-			ALLOWABLE_URL_SCHEMES.Add("mailto");
-			ALLOWABLE_URL_SCHEMES.Add("tel");
-			ALLOWABLE_TELECOMMUNICATION_USES = new List<string>();
-			ALLOWABLE_TELECOMMUNICATION_USES.Add("EC");
-			ALLOWABLE_TELECOMMUNICATION_USES.Add("H");
-			ALLOWABLE_TELECOMMUNICATION_USES.Add("MC");
-			ALLOWABLE_TELECOMMUNICATION_USES.Add("PG");
-			ALLOWABLE_TELECOMMUNICATION_USES.Add("TMP");
-			ALLOWABLE_TELECOMMUNICATION_USES.Add("WP");
-		}
-
-		/// <exception cref="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.ModelToXmlTransformationException"></exception>
-		protected sealed override string GetValue(TelecommunicationAddress phonemail, FormatContext context)
-		{
-			ValidateUrlScheme(phonemail);
+			string type = context.Type;
+			string specializationType = bareAny.DataType == null ? null : bareAny.DataType.Type;
+			VersionNumber version = context.GetVersion();
+			Hl7Errors errors = context.GetModelToXmlResult();
+			TEL_VALIDATION_UTILS.ValidateTelecommunicationAddress(phonemail, type, specializationType, version, null, context.GetPropertyPath
+				(), errors);
 			return phonemail.ToString();
 		}
 
-		/// <exception cref="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.ModelToXmlTransformationException"></exception>
-		protected sealed override void AddOtherAttributesIfNecessary(TelecommunicationAddress phonemail, IDictionary<string, string
-			> attributes)
+		protected override void AddOtherAttributesIfNecessary(TelecommunicationAddress phonemail, IDictionary<string, string> attributes
+			, FormatContext context, BareANY bareAny)
 		{
 			if (!phonemail.AddressUses.IsEmpty())
 			{
+				string actualType = TEL_VALIDATION_UTILS.DetermineActualType(phonemail, context.Type, bareAny.DataType.Type, context.GetVersion
+					(), null, context.GetPropertyPath(), context.GetModelToXmlResult(), false);
 				StringBuilder useValue = new StringBuilder();
 				bool isFirst = true;
 				foreach (Ca.Infoway.Messagebuilder.Domainvalue.TelecommunicationAddressUse addressUse in phonemail.AddressUses)
 				{
-					ValidateTelecommunicationAddressUse(addressUse);
-					if (!isFirst)
+					if (TEL_VALIDATION_UTILS.IsAllowableUse(actualType, addressUse, context.GetVersion()))
 					{
-						useValue.Append(XmlRenderingUtils.SPACE);
+						if (!isFirst)
+						{
+							useValue.Append(XmlRenderingUtils.SPACE);
+						}
+						useValue.Append(addressUse.CodeValue);
+						isFirst = false;
 					}
-					useValue.Append(addressUse.CodeValue);
-					isFirst = false;
 				}
 				attributes["use"] = useValue.ToString();
-			}
-		}
-
-		/// <exception cref="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.ModelToXmlTransformationException"></exception>
-		protected virtual void ValidateUrlScheme(TelecommunicationAddress telcomAddress)
-		{
-			if (!ALLOWABLE_URL_SCHEMES.Contains(telcomAddress.UrlScheme.CodeValue))
-			{
-				throw new ModelToXmlTransformationException("URLScheme " + telcomAddress.UrlScheme.CodeValue + " is not supported for TEL.PHONEMAIL data"
-					);
-			}
-		}
-
-		/// <exception cref="Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.ModelToXmlTransformationException"></exception>
-		protected virtual void ValidateTelecommunicationAddressUse(Ca.Infoway.Messagebuilder.Domainvalue.TelecommunicationAddressUse
-			 telcomAddressUse)
-		{
-			if (!ALLOWABLE_TELECOMMUNICATION_USES.Contains(telcomAddressUse.CodeValue))
-			{
-				throw new ModelToXmlTransformationException("Telecommunication address use " + telcomAddressUse.CodeValue + " is not supported for TEL.PHONEMAIL data"
-					);
 			}
 		}
 	}

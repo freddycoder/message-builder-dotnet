@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -44,7 +44,10 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt490
             this.administerableMedicineFormCode = new CVImpl();
         }
         /**
-         * <summary>Drug Code</summary>
+         * <summary>Business Name: Drug Code</summary>
+         * 
+         * <remarks>Relationship: FICR_MT490102CA.Medicine.code 
+         * Conformance/Cardinality: REQUIRED (0-1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"administerableMedicine/code"})]
         public ClinicalDrug AdministerableMedicineCode {
@@ -53,7 +56,10 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt490
         }
 
         /**
-         * <summary>Drug Name</summary>
+         * <summary>Business Name: Drug Name</summary>
+         * 
+         * <remarks>Relationship: FICR_MT490102CA.Medicine.name 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"administerableMedicine/name"})]
         public String AdministerableMedicineName {
@@ -62,7 +68,10 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt490
         }
 
         /**
-         * <summary>Drug Description</summary>
+         * <summary>Business Name: Drug Description</summary>
+         * 
+         * <remarks>Relationship: FICR_MT490102CA.Medicine.desc 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"administerableMedicine/desc"})]
         public String AdministerableMedicineDesc {
@@ -71,12 +80,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt490
         }
 
         /**
-         * <summary>Drug Form</summary>
+         * <summary>Business Name: Drug Form</summary>
          * 
-         * <remarks><p>Indicates the form in which the drug product 
-         * must be, or has been manufactured or custom prepared. 
-         * Examples include: tablet, suspension, liquid, injectable, 
-         * capsule, etc.</p></remarks>
+         * <remarks>Relationship: FICR_MT490102CA.Medicine.formCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
+         * form in which the drug product must be, or has been 
+         * manufactured or custom prepared. Examples include: tablet, 
+         * suspension, liquid, injectable, capsule, etc.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"administerableMedicine/formCode"})]
         public OrderableDrugForm AdministerableMedicineFormCode {
@@ -84,6 +94,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt490
             set { this.administerableMedicineFormCode.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: FICR_MT490102CA.Medicine.ingredient</summary>
+         * 
+         * <remarks>Conformance/Cardinality: REQUIRED (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"administerableMedicine/ingredient"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.DrugContains AdministerableMedicineIngredient {
             get { return this.administerableMedicineIngredient; }

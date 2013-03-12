@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,8 @@
 /// ---------------------------------------------------------------------------------------------------
  
 namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
-	
+
+    using Ca.Infoway.Messagebuilder.Datatype.Lang.Util;
 	using Ca.Infoway.Messagebuilder;
 	using System;
 	using System.Collections;
@@ -66,7 +67,7 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		/// <returns>the constructed PeriodicIntervalTime</returns>
 		public static PeriodicIntervalTime CreatePeriod(DateDiff period_0) {
 			Ca.Infoway.Messagebuilder.Validate.NotNull(period_0);
-			return new PeriodicIntervalTime(period_0, null, null, null, Ca.Infoway.Messagebuilder.Datatype.Lang.Representation.PERIOD);
+			return new PeriodicIntervalTime(period_0, null, null, null, Representation.PERIOD);
 		}
 	
 		/// <summary>
@@ -77,7 +78,7 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		/// <returns>the constructed PeriodicIntervalTime</returns>
 		public static PeriodicIntervalTime CreatePhase(Interval<Ca.Infoway.Messagebuilder.PlatformDate> phase_0) {
 			Ca.Infoway.Messagebuilder.Validate.NotNull(phase_0);
-			return new PeriodicIntervalTime(null, phase_0, null, null, Ca.Infoway.Messagebuilder.Datatype.Lang.Representation.PHASE);
+			return new PeriodicIntervalTime(null, phase_0, null, null, Representation.PHASE);
 		}
 	
 		/// <summary>
@@ -90,7 +91,7 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		public static PeriodicIntervalTime CreatePeriodPhase(DateDiff period_0,
 				Interval<Ca.Infoway.Messagebuilder.PlatformDate> phase_1) {
 			Ca.Infoway.Messagebuilder.Validate.NotNull(phase_1);
-			return new PeriodicIntervalTime(period_0, phase_1, null, null, Ca.Infoway.Messagebuilder.Datatype.Lang.Representation.PERIOD_PHASE);
+			return new PeriodicIntervalTime(period_0, phase_1, null, null, Representation.PERIOD_PHASE);
 		}
 	
 		/// <summary>
@@ -103,7 +104,7 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		public static PeriodicIntervalTime CreateFrequency(Int32? repetitions_0,
 				PhysicalQuantity quantity_1) {
 			return new PeriodicIntervalTime(null, null, repetitions_0, quantity_1,
-					Ca.Infoway.Messagebuilder.Datatype.Lang.Representation.FREQUENCY);
+					Representation.FREQUENCY);
 		}
 	
 		/// <summary>

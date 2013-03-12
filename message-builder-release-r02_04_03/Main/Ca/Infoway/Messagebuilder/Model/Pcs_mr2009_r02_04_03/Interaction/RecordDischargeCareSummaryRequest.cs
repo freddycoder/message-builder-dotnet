@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged;
 
 
+    /**
+     * <summary>Business Name: REPC_IN000076CA: Record discharge/ 
+     * care summary request</summary>
+     * 
+     * <p>Seeks to add a Discharge/Care Summary that has 
+     * occurred.</p> Message: MCCI_MT002100CA.Message Control Act: 
+     * MCAI_MT700210CA.ControlActEvent --> Payload: 
+     * REPC_MT220001CA.Document
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"REPC_IN000076CA"})]
     public class RecordDischargeCareSummaryRequest : HL7Message_1<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Mcai_mt700210ca.TriggerEvent<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Iehr.Merged.DischargeCareSummary>>, IInteraction {
 

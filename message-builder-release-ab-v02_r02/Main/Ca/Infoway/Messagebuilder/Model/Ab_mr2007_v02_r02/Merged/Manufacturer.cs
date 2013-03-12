@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
 
 
     /**
-     * <summary>Manufacturer</summary>
+     * <summary>Business Name: Manufacturer</summary>
      * 
      * <remarks>POME_MT010040CA.Manufacturer: Manufacturer 
      * <p>Identity of the organization that manufactured the drug 
@@ -55,19 +55,31 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             this.name = new STImpl();
         }
         /**
-         * <summary>Organization Id</summary>
+         * <summary>Un-merged Business Name: ManufacturerId</summary>
          * 
-         * <remarks><p>An identifier denoting a specific drug 
-         * manufacturer.</p> <p>Allows sending of identifiers in place 
-         * of manufacturer name. May be used in drug search where 
-         * specific manufacturer is a criterion.</p> Manufacturer Id 
-         * <p>An identifier denoting a specific drug manufacturer.</p> 
-         * <p>Allows sending of identifiers in place of manufacturer 
-         * name. May be used in drug search where specific manufacturer 
-         * is a criterion.</p> Manufacturer Id <p>An identifier 
+         * <remarks>Relationship: POME_MT010040CA.Manufacturer.id 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>An identifier 
          * denoting a specific drug manufacturer.</p> <p>Allows sending 
          * of identifiers in place of manufacturer name. May be used in 
-         * drug search where specific manufacturer is a criterion.</p></remarks>
+         * drug search where specific manufacturer is a criterion.</p> 
+         * Un-merged Business Name: OrganizationId Relationship: 
+         * POME_MT010100CA.Manufacturer.id Conformance/Cardinality: 
+         * REQUIRED (0-1) <p>An identifier denoting a specific drug 
+         * manufacturer.</p> <p>Allows sending of identifiers in place 
+         * of manufacturer name. May be used in drug search where 
+         * specific manufacturer is a criterion.</p> Un-merged Business 
+         * Name: ManufacturerId Relationship: 
+         * COCT_MT220210CA.Manufacturer.id Conformance/Cardinality: 
+         * REQUIRED (0-1) <p>An identifier denoting a specific drug 
+         * manufacturer.</p> <p>Allows sending of identifiers in place 
+         * of manufacturer name. May be used in drug search where 
+         * specific manufacturer is a criterion.</p> Un-merged Business 
+         * Name: ManufacturerId Relationship: 
+         * COCT_MT220110CA.Manufacturer.id Conformance/Cardinality: 
+         * REQUIRED (0-1) <p>An identifier denoting a specific drug 
+         * manufacturer.</p> <p>Allows sending of identifiers in place 
+         * of manufacturer name. May be used in drug search where 
+         * specific manufacturer is a criterion.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -76,27 +88,41 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>ManufacturerName</summary>
+         * <summary>Business Name: ManufacturerName</summary>
          * 
-         * <remarks>Manufacturer Name <p>The name of the drug 
-         * manufacturer.</p> <p>Used for reporting.</p><p>The attribute 
-         * is marked as &quot;mandatory&quot; because there will always 
-         * be a name for an organization.</p> <p>Used for 
-         * reporting.</p><p>The attribute is marked as 
-         * &quot;mandatory&quot; because there will always be a name 
-         * for an organization.</p> Manufacturer Name <p>The name of 
-         * the drug manufacturer.</p> <p>Used in reporting.</p><p>The 
+         * <remarks>Un-merged Business Name: ManufacturerName 
+         * Relationship: POME_MT010040CA.Manufacturer.name 
+         * Conformance/Cardinality: MANDATORY (1) <p>The name of the 
+         * drug manufacturer.</p> <p>Used in reporting.</p><p>The 
          * attribute is marked as &quot;mandatory&quot; because there 
          * will always be a name for an organization.</p> <p>Used in 
          * reporting.</p><p>The attribute is marked as 
          * &quot;mandatory&quot; because there will always be a name 
-         * for an organization.</p> Manufacturer Name <p>The name of 
-         * the drug manufacturer.</p> <p>Used in reporting.</p><p>The 
-         * attribute is marked as &quot;mandatory&quot; because there 
-         * will always be a name for an organization.</p> <p>Used in 
-         * reporting.</p><p>The attribute is marked as 
+         * for an organization.</p> Un-merged Business Name: 
+         * ManufacturerName Relationship: 
+         * POME_MT010100CA.Manufacturer.name Conformance/Cardinality: 
+         * MANDATORY (1) <p>The name of the drug manufacturer.</p> 
+         * <p>Used in reporting.</p><p>The attribute is marked as 
          * &quot;mandatory&quot; because there will always be a name 
-         * for an organization.</p></remarks>
+         * for an organization.</p> <p>Used in reporting.</p><p>The 
+         * attribute is marked as &quot;mandatory&quot; because there 
+         * will always be a name for an organization.</p> Un-merged 
+         * Business Name: ManufacturerName Relationship: 
+         * COCT_MT220210CA.Manufacturer.name Conformance/Cardinality: 
+         * MANDATORY (1) <p>The name of the drug manufacturer.</p> 
+         * <p>Used in reporting.</p><p>The attribute is marked as 
+         * &quot;mandatory&quot; because there will always be a name 
+         * for an organization.</p> <p>Used in reporting.</p><p>The 
+         * attribute is marked as &quot;mandatory&quot; because there 
+         * will always be a name for an organization.</p> Un-merged 
+         * Business Name: ManufacturerName Relationship: 
+         * COCT_MT220110CA.Manufacturer.name Conformance/Cardinality: 
+         * MANDATORY (1) <p>The name of the drug manufacturer.</p> 
+         * <p>Used for reporting.</p><p>The attribute is marked as 
+         * &quot;mandatory&quot; because there will always be a name 
+         * for an organization.</p> <p>Used for reporting.</p><p>The 
+         * attribute is marked as &quot;mandatory&quot; because there 
+         * will always be a name for an organization.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"name"})]
         public String Name {

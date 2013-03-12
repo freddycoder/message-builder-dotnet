@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,14 +33,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged {
 
 
     /**
-     * <summary>ActiveMedication</summary>
+     * <summary>Business Name: ActiveMedication</summary>
      * 
      * <remarks>COCT_MT260010CA.SubstanceAdministration: Active 
-     * Medication <p>Indicates an active medication (prescription 
-     * or non-prescription medication) that is recorded in the 
+     * Medication <p>Allows providers to identify the offending 
+     * drugs when determining their management approach.</p> 
+     * <p>Indicates an active medication (prescription or 
+     * non-prescription medication) that is recorded in the 
      * patients record and which contributed to triggering the 
-     * issue.</p> <p>Allows providers to identify the offending 
-     * drugs when determining their management approach.</p></remarks>
+     * issue.</p></remarks>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"COCT_MT260010CA.SubstanceAdministration","COCT_MT260020CA.SubstanceAdministration","FICR_MT400001CA.SubstanceAdministration","FICR_MT400003CA.SubstanceAdministration","FICR_MT400004CA.SubstanceAdministration","FICR_MT490101CA.SubstanceAdministration","FICR_MT490102CA.SubstanceAdministration"})]
     public class ActiveMedication : MessagePartBean, Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Merged.ISpecialAuthorizationChoice, Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.ICausalActs {
@@ -66,19 +67,33 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged {
             this.confidentialityCode = new SETImpl<CV, Code>(typeof(CVImpl));
         }
         /**
-         * <summary>D:Active Medication Dose Quantity</summary>
+         * <summary>Un-merged Business Name: DrugDoseStrength</summary>
          * 
-         * <remarks><p>The amount of medication administered to the 
-         * patient</p> <p>Requested Dosage 
-         * Level</p><p>ZPS.12</p><p>ZDU.4.4</p><p>Contraindication.dosageAmount</p> 
-         * <p>Requested Dosage 
-         * Level</p><p>ZPS.12</p><p>ZDU.4.4</p><p>Contraindication.dosageAmount</p> 
-         * <p>Requested Dosage 
-         * Level</p><p>ZPS.12</p><p>ZDU.4.4</p><p>Contraindication.dosageAmount</p> 
-         * <p>Requested Dosage 
-         * Level</p><p>ZPS.12</p><p>ZDU.4.4</p><p>Contraindication.dosageAmount</p> 
-         * <p>Used in Low Dose/High Dose issues.</p> Drug Dose Strength 
-         * D:Active Medication Dose Quantity</remarks>
+         * <remarks>Relationship: 
+         * FICR_MT490102CA.SubstanceAdministration.doseQuantity 
+         * Conformance/Cardinality: REQUIRED (0-1) Un-merged Business 
+         * Name: DrugDoseStrength Relationship: 
+         * FICR_MT400001CA.SubstanceAdministration.doseQuantity 
+         * Conformance/Cardinality: REQUIRED (0-1) Un-merged Business 
+         * Name: DrugDoseStrength Relationship: 
+         * FICR_MT400003CA.SubstanceAdministration.doseQuantity 
+         * Conformance/Cardinality: REQUIRED (0-1) Un-merged Business 
+         * Name: DrugDoseStrength Relationship: 
+         * FICR_MT400004CA.SubstanceAdministration.doseQuantity 
+         * Conformance/Cardinality: REQUIRED (0-1) Un-merged Business 
+         * Name: DrugDoseStrength Relationship: 
+         * FICR_MT490101CA.SubstanceAdministration.doseQuantity 
+         * Conformance/Cardinality: REQUIRED (0-1) Un-merged Business 
+         * Name: ActiveMedicationDoseQuantity Relationship: 
+         * COCT_MT260010CA.SubstanceAdministration.doseQuantity 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Requested Dosage 
+         * Level</p> <p>ZPS.12</p> <p>ZDU.4.4</p> 
+         * <p>Contraindication.dosageAmount</p> <p>Used in Low 
+         * Dose/High Dose issues.</p> <p>The amount of medication 
+         * administered to the patient</p> Un-merged Business Name: 
+         * ActiveMedicationDoseQuantity Relationship: 
+         * COCT_MT260020CA.SubstanceAdministration.doseQuantity 
+         * Conformance/Cardinality: REQUIRED (0-1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"doseQuantity"})]
         public PhysicalQuantity DoseQuantity {
@@ -86,12 +101,37 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged {
             set { this.doseQuantity.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * FICR_MT490102CA.DirectTarget.medication 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"directTarget/medication"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Ficr_mt490102ca.Medication DirectTargetMedication {
             get { return this.directTargetMedication; }
             set { this.directTargetMedication = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * FICR_MT400001CA.Medication.administerableMedicine 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * FICR_MT400003CA.Medication.administerableMedicine 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * FICR_MT400004CA.Medication.administerableMedicine 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * FICR_MT490101CA.Medication.administerableMedicine 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"directTarget/medication/administerableMedicine"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.Medicine DirectTargetMedicationAdministerableMedicine {
             get { return this.directTargetMedicationAdministerableMedicine; }
@@ -99,15 +139,20 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged {
         }
 
         /**
-         * <summary>OtherMedicationIndicator</summary>
+         * <summary>Business Name: OtherMedicationIndicator</summary>
          * 
-         * <remarks>Other Medication Indicator <p>If the attribute is 
-         * 'RQO', represents a prescription or dispense record. 
-         * Otherwise if 'EVN', it represents an 'Other Medication' 
-         * record.</p> <p>Knowing whether a drug is prescribed or not 
-         * can influence actions taken to mitigate an issue. This 
-         * attribute is therefore mandatory.</p> Other Medication 
-         * Indicator</remarks>
+         * <remarks>Un-merged Business Name: OtherMedicationIndicator 
+         * Relationship: 
+         * COCT_MT260010CA.SubstanceAdministration.moodCode 
+         * Conformance/Cardinality: MANDATORY (1) <p>Knowing whether a 
+         * drug is prescribed or not can influence actions taken to 
+         * mitigate an issue. This attribute is therefore 
+         * mandatory.</p> <p>If the attribute is 'RQO', represents a 
+         * prescription or dispense record. Otherwise if 'EVN', it 
+         * represents an 'Other Medication' record.</p> Un-merged 
+         * Business Name: OtherMedicationIndicator Relationship: 
+         * COCT_MT260020CA.SubstanceAdministration.moodCode 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"moodCode"})]
         public x_ActMoodRequestEvent MoodCode {
@@ -116,28 +161,26 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged {
         }
 
         /**
-         * <summary>ActiveMedicationRecordNumber</summary>
+         * <summary>Business Name: ActiveMedicationRecordNumber</summary>
          * 
-         * <remarks>A:Active Medication Record Number A:Active 
-         * Medication Record Number <p>Unique identifier of the 
-         * prescription or other medication drug record that triggered 
-         * the issue.</p> 
-         * <p>DDI/DuplicateTherapy.InteractingPrescriptionNumber</p><p>InteractingPrescription.PrescriptionExternalKey</p><p>InteractingPrescription.PrescriptionNumber</p><p>DDI/Dosage/Duplicate 
-         * Therapy.SourceNumber (All senders must uniquely identify 
-         * prescriptions on request)</p> 
-         * <p>DDI/DuplicateTherapy.InteractingPrescriptionNumber</p><p>InteractingPrescription.PrescriptionExternalKey</p><p>InteractingPrescription.PrescriptionNumber</p><p>DDI/Dosage/Duplicate 
-         * Therapy.SourceNumber (All senders must uniquely identify 
-         * prescriptions on request)</p> 
-         * <p>DDI/DuplicateTherapy.InteractingPrescriptionNumber</p><p>InteractingPrescription.PrescriptionExternalKey</p><p>InteractingPrescription.PrescriptionNumber</p><p>DDI/Dosage/Duplicate 
-         * Therapy.SourceNumber (All senders must uniquely identify 
-         * prescriptions on request)</p> 
-         * <p>DDI/DuplicateTherapy.InteractingPrescriptionNumber</p><p>InteractingPrescription.PrescriptionExternalKey</p><p>InteractingPrescription.PrescriptionNumber</p><p>DDI/Dosage/Duplicate 
-         * Therapy.SourceNumber (All senders must uniquely identify 
-         * prescriptions on request)</p> <p>Allows provider to 
-         * drill-down and retrieve additional information about the 
-         * implicated drug therapy to either modify the therapy or to 
-         * learn more information in determining their management 
-         * approach for the issue.</p></remarks>
+         * <remarks>Un-merged Business Name: 
+         * ActiveMedicationRecordNumber Relationship: 
+         * COCT_MT260010CA.SubstanceAdministration.id 
+         * Conformance/Cardinality: POPULATED (1) 
+         * <p>DDI/DuplicateTherapy.InteractingPrescriptionNumber</p> 
+         * <p>InteractingPrescription.PrescriptionExternalKey</p> 
+         * <p>InteractingPrescription.PrescriptionNumber</p> 
+         * <p>DDI/Dosage/Duplicate Therapy.SourceNumber (All senders 
+         * must uniquely identify prescriptions on request)</p> 
+         * <p>Allows provider to drill-down and retrieve additional 
+         * information about the implicated drug therapy to either 
+         * modify the therapy or to learn more information in 
+         * determining their management approach for the issue.</p> 
+         * <p>Unique identifier of the prescription or other medication 
+         * drug record that triggered the issue.</p> Un-merged Business 
+         * Name: ActiveMedicationRecordNumber Relationship: 
+         * COCT_MT260020CA.SubstanceAdministration.id 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -146,19 +189,20 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged {
         }
 
         /**
-         * <summary>AdministrationType</summary>
+         * <summary>Business Name: AdministrationType</summary>
          * 
-         * <remarks>Administration Type <p>Identifies whether the 
-         * interaction is with a drug or a vaccine. For SNOMED, may 
+         * <remarks>Un-merged Business Name: AdministrationType 
+         * Relationship: COCT_MT260010CA.SubstanceAdministration.code 
+         * Conformance/Cardinality: POPULATED (1) <p>Needed to 
+         * determine what to do about the issue. Because the medication 
+         * can be masked, this element is only marked as 
+         * 'populated'.</p><p>The element allows a full 'CD' type to 
+         * support SNOMED implementations.</p> <p>Identifies whether 
+         * the interaction is with a drug or a vaccine. For SNOMED, may 
          * also indicate the specific drug or vaccine at issue.</p> 
-         * <p>Needed to determine what to do about the issue. Because 
-         * the medication can be masked, this element is only marked as 
-         * 'populated'.</p><p>The element allows a full 'CD' type to 
-         * support SNOMED implementations.</p> <p>Needed to determine 
-         * what to do about the issue. Because the medication can be 
-         * masked, this element is only marked as 
-         * 'populated'.</p><p>The element allows a full 'CD' type to 
-         * support SNOMED implementations.</p> Administration Type</remarks>
+         * Un-merged Business Name: AdministrationType Relationship: 
+         * COCT_MT260020CA.SubstanceAdministration.code 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public ActSubstanceAdministrationCode Code {
@@ -167,16 +211,22 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged {
         }
 
         /**
-         * <summary>ActiveMedicationStatus</summary>
+         * <summary>Business Name: ActiveMedicationStatus</summary>
          * 
-         * <remarks>B:Active Medication Status B:Active Medication 
-         * Status <p>Indicates the status of the medication record at 
-         * the time of the issue.</p> <p>ZPB3.8 (aborted = 
+         * <remarks>Un-merged Business Name: ActiveMedicationStatus 
+         * Relationship: 
+         * COCT_MT260010CA.SubstanceAdministration.statusCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>ZPB3.8 (aborted = 
          * discontinued; nullified = reversed/system reversed; 
          * active=filled/not-filled)</p> <p>Used to determine the 
          * relevance of the issue and the need to manage it. For 
          * example, if the medication is on hold, it may be less of an 
-         * issue than if it is being actively taken.</p></remarks>
+         * issue than if it is being actively taken.</p> <p>Indicates 
+         * the status of the medication record at the time of the 
+         * issue.</p> Un-merged Business Name: ActiveMedicationStatus 
+         * Relationship: 
+         * COCT_MT260020CA.SubstanceAdministration.statusCode 
+         * Conformance/Cardinality: REQUIRED (0-1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"statusCode"})]
         public ActStatus StatusCode {
@@ -185,14 +235,19 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged {
         }
 
         /**
-         * <summary>ActiveMedicationTimeRange</summary>
+         * <summary>Business Name: ActiveMedicationTimeRange</summary>
          * 
-         * <remarks>C:Active Medication Time-range C:Active Medication 
-         * Time-range <p>The date and time during which the patient is 
-         * expected to be taking the drug which triggered the 
-         * issue.</p> <p>Requested Duration</p> <p>Allows the provider 
-         * to evaluate duplicate therapy and similar timing-based 
-         * issues.</p></remarks>
+         * <remarks>Un-merged Business Name: ActiveMedicationTimeRange 
+         * Relationship: 
+         * COCT_MT260010CA.SubstanceAdministration.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Requested 
+         * Duration</p> <p>Allows the provider to evaluate duplicate 
+         * therapy and similar timing-based issues.</p> <p>The date and 
+         * time during which the patient is expected to be taking the 
+         * drug which triggered the issue.</p> Un-merged Business Name: 
+         * ActiveMedicationTimeRange Relationship: 
+         * COCT_MT260020CA.SubstanceAdministration.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"effectiveTime"})]
         public Interval<PlatformDate> EffectiveTime {
@@ -201,24 +256,37 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged {
         }
 
         /**
-         * <summary>ActiveMedicationMaskingIndicator</summary>
+         * <summary>Business Name: ActiveMedicationMaskingIndicator</summary>
          * 
-         * <remarks>E:Active Medication Masking Indicator <p>An 
-         * indication of sensitivity surrounding the related drug, and 
-         * thus defines the required sensitivity for the detected 
-         * issue.</p> <p>Conveys the patients wishes relating to the 
-         * sensitivity of the drug information.</p><p>The attribute is 
-         * optional because not all systems will support masking.</p> 
-         * <p>Conveys the patients wishes relating to the sensitivity 
-         * of the drug information.</p><p>The attribute is optional 
-         * because not all systems will support masking.</p> E:Active 
-         * Medication Masking Indicator</remarks>
+         * <remarks>Un-merged Business Name: 
+         * ActiveMedicationMaskingIndicator Relationship: 
+         * COCT_MT260010CA.SubstanceAdministration.confidentialityCode 
+         * Conformance/Cardinality: OPTIONAL (0-2) <p>Conveys the 
+         * patients wishes relating to the sensitivity of the drug 
+         * information.</p><p>The attribute is optional because not all 
+         * systems will support masking.</p> <p>An indication of 
+         * sensitivity surrounding the related drug, and thus defines 
+         * the required sensitivity for the detected issue.</p> 
+         * Un-merged Business Name: ActiveMedicationMaskingIndicator 
+         * Relationship: 
+         * COCT_MT260020CA.SubstanceAdministration.confidentialityCode 
+         * Conformance/Cardinality: OPTIONAL (0-2)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"confidentialityCode"})]
         public ICollection<x_BasicConfidentialityKind> ConfidentialityCode {
             get { return this.confidentialityCode.RawSet<x_BasicConfidentialityKind>(); }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: COCT_MT260010CA.Consumable.medication 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * COCT_MT260020CA.Consumable.medication 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"consumable/medication"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt220100ca.DrugProduct ConsumableMedication {
             get { return this.consumableMedication; }

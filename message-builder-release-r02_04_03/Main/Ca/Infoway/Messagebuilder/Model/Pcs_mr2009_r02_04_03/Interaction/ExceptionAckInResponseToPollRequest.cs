@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,6 +24,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged;
 
 
+    /**
+     * <summary>Business Name: MCCI_IN100005CA: Exception Ack in 
+     * Response to Poll Request</summary>
+     * 
+     * <p>Communication level acknowledgement indicating exception 
+     * as to why message payload not returned by poll request that 
+     * has been received. Note: This interaction is invoked, where 
+     * appropriate, as a receiver responsibility.</p> Message: 
+     * MCCI_MT002200CA.Message
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"MCCI_IN100005CA"})]
     public class ExceptionAckInResponseToPollRequest : HL7Message_2, IInteraction {
 

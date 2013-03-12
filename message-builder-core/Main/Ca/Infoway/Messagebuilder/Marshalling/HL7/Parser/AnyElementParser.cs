@@ -1,9 +1,27 @@
+/**
+ * Copyright 2013 Canada Health Infoway, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Author:        $LastChangedBy: tmcgrady $
+ * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Revision:      $LastChangedRevision: 2623 $
+ */
 using System;
 using System.Xml;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Datatype.Impl;
-using Ca.Infoway.Messagebuilder.Lang;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser;
 using ILOG.J2CsMapping.Collections.Generics;
@@ -37,7 +55,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			if (StringUtils.IsNotBlank(specializationType))
 			{
 				ElementParser elementParser = ParserRegistry.GetInstance().Get(specializationType);
-				if (elementParser == null || !AnyHelper.IsValidTypeForAny(parentType, specializationType))
+				if (elementParser == null || !IsValidTypeForAny(parentType, specializationType))
 				{
 					xmlToModelResult.AddHl7Error(Hl7Error.CreateInvalidTypeError(specializationType, parentType, (XmlElement)node));
 				}
@@ -59,6 +77,28 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			return result;
 		}
 
+		private bool IsValidTypeForAny(string parentType, string specializationType)
+		{
+			if (StringUtils.IsBlank(specializationType))
+			{
+				return false;
+			}
+			bool valid = AnyHelper.IsValidTypeForAny(parentType, specializationType);
+			if (!valid)
+			{
+				// unqualify only the inner types
+				string innerUnqualified = Hl7DataTypeName.UnqualifyInnerTypes(specializationType);
+				valid = AnyHelper.IsValidTypeForAny(parentType, innerUnqualified);
+			}
+			if (!valid)
+			{
+				// unqualify both outer and inner types)
+				string bothUnqualified = Hl7DataTypeName.Unqualify(specializationType);
+				valid = AnyHelper.IsValidTypeForAny(parentType, bothUnqualified);
+			}
+			return valid;
+		}
+
 		/// <summary>The specialization type attribute is used to check against valid ANY types.</summary>
 		/// <remarks>
 		/// The specialization type attribute is used to check against valid ANY types. This has a bit of "magic"
@@ -76,33 +116,39 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			{
 				// some cases don't need "specializationType". Treat xsi:type as specializationType (internally)
 				// e.g. URG_PQ, ST
-				rawSpecializationType = GetXsiType(node);
-			}
-			string result = rawSpecializationType;
-			if (StringUtils.IsNotBlank(rawSpecializationType) && !AnyHelper.IsValidTypeForAny(parentType, rawSpecializationType))
-			{
-				string unqualify = Hl7DataTypeName.Unqualify(rawSpecializationType);
-				string validType = GetValidType(unqualify, parentType);
-				if (validType != null)
+				string xsiType = GetXsiType(node);
+				if (xsiType != null)
 				{
-					result = validType;
+					string innerSpecializationType = null;
+					XmlNodeList childNodes = node.ChildNodes;
+					for (int i = 0; i < childNodes.Count; i++)
+					{
+						XmlNode child = childNodes.Item(0);
+						innerSpecializationType = GetAttributeValue(child, AbstractElementParser.SPECIALIZATION_TYPE);
+						if (StringUtils.IsNotBlank(innerSpecializationType))
+						{
+							break;
+						}
+					}
+					if (innerSpecializationType != null)
+					{
+						// the "true" specialization type, in this case, is found by combining the xsi type with the inner specialization type
+						int xsiTypeIndex = xsiType.IndexOf("_");
+						xsiType = (xsiTypeIndex >= 0 ? Ca.Infoway.Messagebuilder.StringUtils.Substring(xsiType, 0, xsiTypeIndex) : xsiType);
+						rawSpecializationType = xsiType + "_" + innerSpecializationType;
+					}
+					else
+					{
+						rawSpecializationType = xsiType;
+					}
 				}
 			}
-			return result;
-		}
-
-		private string GetValidType(string hl7Type, string parentType)
-		{
-			string result = null;
-			StandardDataType dataType = EnumPattern.ValueOf<StandardDataType>(hl7Type);
-			if (dataType != null)
+			if (rawSpecializationType != null && rawSpecializationType.Contains("_") && rawSpecializationType.IndexOf('_') == rawSpecializationType
+				.LastIndexOf('_'))
 			{
-				if (AnyHelper.IsValidTypeForAny(parentType, dataType.Type))
-				{
-					result = dataType.Type;
-				}
+				rawSpecializationType = rawSpecializationType.Replace("_", "<") + ">";
 			}
-			return result;
+			return rawSpecializationType;
 		}
 	}
 }

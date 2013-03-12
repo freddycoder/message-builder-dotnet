@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,8 +32,8 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
      * <summary>PRPM_MT303010CA.ServiceDeliveryLocation: Service 
      * Delivery Location</summary>
      * 
-     * <remarks><p>A role played by a place at which services may 
-     * be provided. The RIM defines two specializations of service 
+     * <p>A role played by a place at which services may be 
+     * provided. The RIM defines two specializations of service 
      * delivery location: 1. incidental service delivery location - 
      * A role played by a place at which health care services may 
      * be provided without prior designation or authorization and 
@@ -110,7 +110,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
      * PORX_MT060090CA.ServiceDeliveryLocation: Dispense Ship-To 
      * Location <p>The location where the dispensed product is 
      * expected to be delivered.</p> <p>Important as part of a 
-     * claim for justifying shipping charges.</p></remarks>
+     * claim for justifying shipping charges.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"PORX_MT010110CA.ServiceDeliveryLocation","PORX_MT010120CA.ServiceDeliveryLocation","PORX_MT020060CA.ServiceDeliveryLocation","PORX_MT020070CA.ServiceDeliveryLocation","PORX_MT060010CA.ServiceDeliveryLocation","PORX_MT060040CA.ServiceDeliveryLocation","PORX_MT060040CA.ServiceDeliveryLocation2","PORX_MT060090CA.ServiceDeliveryLocation","PORX_MT060160CA.ServiceDeliveryLocation","PORX_MT060160CA.ServiceDeliveryLocation2","PORX_MT060340CA.ServiceDeliveryLocation","PORX_MT060340CA.ServiceDeliveryLocation2","PRPM_MT301010CA.ServiceDeliveryLocation","PRPM_MT303010CA.ServiceDeliveryLocation"})]
     public class DispenseShipToLocation : MessagePartBean, Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.IChoice {
@@ -131,9 +131,18 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
             this.locationName = new STImpl();
         }
         /**
-         * <summary>ServiceDeliveryLocationIdentifier</summary>
+         * <summary>Business Name: ServiceDeliveryLocationIdentifier</summary>
          * 
-         * <remarks>Service Delivery Location Identifier <p>A unique 
+         * <remarks>Un-merged Business Name: 
+         * ServiceDeliveryLocationIdentifier Relationship: 
+         * PRPM_MT303010CA.ServiceDeliveryLocation.id 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>A unique 
+         * identifier for the service delivery location.</p> 
+         * <p>Required attribute supports the validation and 
+         * identification of the service delivery location</p> 
+         * Un-merged Business Name: ServiceDeliveryLocationIdentifier 
+         * Relationship: PRPM_MT301010CA.ServiceDeliveryLocation.id 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>A unique 
          * identifier for the service delivery location.</p> 
          * <p>Required attribute supports the validation and 
          * identification of the service delivery location</p></remarks>
@@ -145,9 +154,18 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>ServiceDeliveryLocationType</summary>
+         * <summary>Business Name: ServiceDeliveryLocationType</summary>
          * 
-         * <remarks>Service Delivery Location Type <p>The code 
+         * <remarks>Un-merged Business Name: 
+         * ServiceDeliveryLocationType Relationship: 
+         * PRPM_MT303010CA.ServiceDeliveryLocation.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>The code 
+         * identifying the specific service delivery location</p> 
+         * <p>Mandatory attribute supports the validation and 
+         * identification of the service delivery location</p> 
+         * Un-merged Business Name: ServiceDeliveryLocationType 
+         * Relationship: PRPM_MT301010CA.ServiceDeliveryLocation.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>The code 
          * identifying the specific service delivery location</p> 
          * <p>Mandatory attribute supports the validation and 
          * identification of the service delivery location</p></remarks>
@@ -159,40 +177,99 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>Service Delivery Location Address</summary>
+         * <summary>Un-merged Business Name: 
+         * ServiceDeliveryLocationAddress</summary>
          * 
-         * <remarks><p>Address of the specific service delivery 
-         * location</p> <p>Populated attribute supports the validation 
-         * and identification of the service delivery location</p> Ship 
-         * To Address <p>Indicates where the dispensed product was 
-         * sent.</p> <p>Important as part of a claim for justifying 
-         * shipping charges.</p> Ship To Address <p>Indicates where the 
-         * dispensed product was sent.</p> <p>Important as part of a 
-         * claim for justifying shipping charges.</p> H:Prescription 
-         * Ship to Address <p>Indicates the location the dispensed 
-         * medication should be shipped to, at the request of the 
-         * patient or provider.</p> <p>In some cases drugs need to be 
-         * delivered to the patient instead of being picked up. In 
-         * other cases, drugs need to be shipped to the physician's 
-         * office to replace stock used for the patient.</p> 
-         * H:Prescription Ship to Address <p>Indicates the location the 
-         * dispensed device should be shipped to, at the request of the 
-         * patient or provider.</p> <p>In some cases devices need to be 
-         * delivered to the patient instead of being picked up. In 
-         * other cases, devices need to be shipped to the physician's 
-         * office to replace stock used for the patient.</p> I:Ship-To 
-         * Address <p>Indicates where the dispensed product was 
-         * sent.</p> <p>Important as part of a claim for justifying 
-         * shipping charges.</p> H:Prescription Ship to Address 
-         * <p>Indicates the location the dispensed medication should be 
-         * shipped to, at the request of the patient or provider.</p> 
-         * <p>In some cases drugs need to be delivered to the patient 
-         * instead of being picked up. In other cases, drugs need to be 
-         * shipped to the physician's office to replace stock used for 
-         * the patient.</p> Service Delivery Location Address 
-         * <p>Address of the specific service delivery location</p> 
-         * <p>Required attribute supports the validation and 
-         * identification of the service delivery location</p></remarks>
+         * <remarks>Relationship: 
+         * PRPM_MT303010CA.ServiceDeliveryLocation.addr 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Address of the 
+         * specific service delivery location</p> <p>Required attribute 
+         * supports the validation and identification of the service 
+         * delivery location</p> Un-merged Business Name: 
+         * PrescriptionShipToAddress Relationship: 
+         * PORX_MT060040CA.ServiceDeliveryLocation2.addr 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the 
+         * location the dispensed device should be shipped to, at the 
+         * request of the patient or provider.</p> <p>In some cases 
+         * devices need to be delivered to the patient instead of being 
+         * picked up. In other cases, devices need to be shipped to the 
+         * physician's office to replace stock used for the 
+         * patient.</p> Un-merged Business Name: ShipToAddress 
+         * Relationship: PORX_MT060340CA.ServiceDeliveryLocation.addr 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates where 
+         * the dispensed product was sent.</p> <p>Important as part of 
+         * a claim for justifying shipping charges.</p> Un-merged 
+         * Business Name: ShipToAddress Relationship: 
+         * PORX_MT020070CA.ServiceDeliveryLocation.addr 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates where 
+         * the dispensed product was sent.</p> <p>Important as part of 
+         * a claim for justifying shipping charges.</p> Un-merged 
+         * Business Name: ShipToAddress Relationship: 
+         * PORX_MT020060CA.ServiceDeliveryLocation.addr 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates where 
+         * the dispensed product was sent.</p> <p>Important as part of 
+         * a claim for justifying shipping charges.</p> Un-merged 
+         * Business Name: PrescriptionShipToAddress Relationship: 
+         * PORX_MT060160CA.ServiceDeliveryLocation2.addr 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the 
+         * location the dispensed medication should be shipped to, at 
+         * the request of the patient or provider.</p> <p>In some cases 
+         * drugs need to be delivered to the patient instead of being 
+         * picked up. In other cases, drugs need to be shipped to the 
+         * physician's office to replace stock used for the 
+         * patient.</p> Un-merged Business Name: ShipToAddress 
+         * Relationship: PORX_MT060010CA.ServiceDeliveryLocation.addr 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates where 
+         * the dispensed product was sent.</p> <p>Important as part of 
+         * a claim for justifying shipping charges.</p> Un-merged 
+         * Business Name: ShipToAddress Relationship: 
+         * PORX_MT060160CA.ServiceDeliveryLocation.addr 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates where 
+         * the dispensed product was sent.</p> <p>Important as part of 
+         * a claim for justifying shipping charges.</p> Un-merged 
+         * Business Name: ShipToAddress Relationship: 
+         * PORX_MT060040CA.ServiceDeliveryLocation.addr 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates where 
+         * the dispensed product was sent.</p> <p>Important as part of 
+         * a claim for justifying shipping charges.</p> Un-merged 
+         * Business Name: PrescriptionShipToAddress Relationship: 
+         * PORX_MT010120CA.ServiceDeliveryLocation.addr 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the 
+         * location the dispensed medication should be shipped to, at 
+         * the request of the patient or provider.</p> <p>In some cases 
+         * drugs need to be delivered to the patient instead of being 
+         * picked up. In other cases, drugs need to be shipped to the 
+         * physician's office to replace stock used for the 
+         * patient.</p> Un-merged Business Name: 
+         * PrescriptionShipToAddress Relationship: 
+         * PORX_MT060340CA.ServiceDeliveryLocation2.addr 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the 
+         * location the dispensed medication should be shipped to, at 
+         * the request of the patient or provider.</p> <p>In some cases 
+         * drugs need to be delivered to the patient instead of being 
+         * picked up. In other cases, drugs need to be shipped to the 
+         * physician's office to replace stock used for the 
+         * patient.</p> Un-merged Business Name: 
+         * ServiceDeliveryLocationAddress Relationship: 
+         * PRPM_MT301010CA.ServiceDeliveryLocation.addr 
+         * Conformance/Cardinality: POPULATED (1) <p>Address of the 
+         * specific service delivery location</p> <p>Populated 
+         * attribute supports the validation and identification of the 
+         * service delivery location</p> Un-merged Business Name: 
+         * ShipToAddress Relationship: 
+         * PORX_MT060090CA.ServiceDeliveryLocation.addr 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates where 
+         * the dispensed product was sent.</p> <p>Important as part of 
+         * a claim for justifying shipping charges.</p> Un-merged 
+         * Business Name: PrescriptionShipToAddress Relationship: 
+         * PORX_MT010110CA.ServiceDeliveryLocation.addr 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the 
+         * location the dispensed device should be shipped to, at the 
+         * request of the patient or provider.</p> <p>In some cases 
+         * devices need to be delivered to the patient instead of being 
+         * picked up. In other cases, devices need to be shipped to the 
+         * physician's office to replace stock used for the 
+         * patient.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"addr"})]
         public PostalAddress Addr {
@@ -201,10 +278,19 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>ServiceDeliveryLocationTelecom</summary>
+         * <summary>Business Name: ServiceDeliveryLocationTelecom</summary>
          * 
-         * <remarks>Service Delivery Location Telecom <p>The telecom 
-         * for the specific service delivery location</p> <p>Required 
+         * <remarks>Un-merged Business Name: 
+         * ServiceDeliveryLocationTelecom Relationship: 
+         * PRPM_MT303010CA.ServiceDeliveryLocation.telecom 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The telecom for 
+         * the specific service delivery location</p> <p>Required 
+         * attribute supports the validation and identification of the 
+         * service delivery location</p> Un-merged Business Name: 
+         * ServiceDeliveryLocationTelecom Relationship: 
+         * PRPM_MT301010CA.ServiceDeliveryLocation.telecom 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>The telecom for 
+         * the specific service delivery location</p> <p>Required 
          * attribute supports the validation and identification of the 
          * service delivery location</p></remarks>
          */
@@ -215,12 +301,21 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>ServiceDeliveryLocationEffectiveDate</summary>
+         * <summary>Business Name: ServiceDeliveryLocationEffectiveDate</summary>
          * 
-         * <remarks>Service Delivery Location Effective Date 
-         * <p>Effective date of the specific service delivery 
-         * location</p> <p>Required attribute supports the validation 
-         * and identification of the service delivery location</p></remarks>
+         * <remarks>Un-merged Business Name: 
+         * ServiceDeliveryLocationEffectiveDate Relationship: 
+         * PRPM_MT303010CA.ServiceDeliveryLocation.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Effective date of 
+         * the specific service delivery location</p> <p>Required 
+         * attribute supports the validation and identification of the 
+         * service delivery location</p> Un-merged Business Name: 
+         * ServiceDeliveryLocationEffectiveDate Relationship: 
+         * PRPM_MT301010CA.ServiceDeliveryLocation.effectiveTime 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Effective date of 
+         * the specific service delivery location</p> <p>Required 
+         * attribute supports the validation and identification of the 
+         * service delivery location</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"effectiveTime"})]
         public Interval<PlatformDate> EffectiveTime {
@@ -229,9 +324,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged {
         }
 
         /**
-         * <summary>ServiceDeliveryLocationName</summary>
+         * <summary>Business Name: ServiceDeliveryLocationName</summary>
          * 
-         * <remarks>Service Delivery Location Name <p>The name of the 
+         * <remarks>Un-merged Business Name: 
+         * ServiceDeliveryLocationName Relationship: 
+         * PRPM_MT303010CA.Place.name Conformance/Cardinality: 
+         * MANDATORY (1) <p>The name of the service delivery 
+         * location</p> <p>Mandatory attribute supports the validation 
+         * and identification of the service delivery location</p> 
+         * Un-merged Business Name: ServiceDeliveryLocationName 
+         * Relationship: PRPM_MT301010CA.Place.name 
+         * Conformance/Cardinality: MANDATORY (1) <p>The name of the 
          * service delivery location</p> <p>Mandatory attribute 
          * supports the validation and identification of the service 
          * delivery location</p></remarks>

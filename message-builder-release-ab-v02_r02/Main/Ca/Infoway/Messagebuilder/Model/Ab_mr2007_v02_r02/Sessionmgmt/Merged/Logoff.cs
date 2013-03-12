@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,8 +32,8 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Merged {
     /**
      * <summary>COMT_MT900002AB.ActPermission: Logoff</summary>
      * 
-     * <remarks><p>Represents the ending of a request for access to 
-     * a system.</p> <p>For security reasons, access permissions 
+     * <p>Represents the ending of a request for access to a 
+     * system.</p> <p>For security reasons, access permissions 
      * should be revoked when they are no longer required</p> 
      * COMT_MT900004AB.ActPermission: Logon <p>Represents a request 
      * to being given permission to access a system.</p> <p>Rather 
@@ -41,7 +41,7 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Merged {
      * authentication, some jurisdictions will require direct 
      * authentication to the central EHR application. This message 
      * is used where that authentication does not occur via other 
-     * standards.</p></remarks>
+     * standards.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"COMT_MT900002AB.ActPermission","COMT_MT900004AB.ActPermission"})]
     public class Logoff : MessagePartBean {
@@ -58,15 +58,19 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Merged {
             this.componentTransactionPermission = new List<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Comt_mt900004ab.TransactionPermission>();
         }
         /**
-         * <summary>A:Security Token</summary>
+         * <summary>Un-merged Business Name: AuthenticationToken</summary>
          * 
-         * <remarks><p>A unique token indicating that the user has been 
-         * authenticated to the system.</p> <p>The token is needed for 
-         * inclusion in subsequent messages to identify that the 
+         * <remarks>Relationship: COMT_MT900002AB.ActPermission.id 
+         * Conformance/Cardinality: MANDATORY (1) <p>Indicates the 
+         * authentication token to be revoked/ended</p> <p>Needed to 
+         * identify which session is to be logged off.</p> Un-merged 
+         * Business Name: SecurityToken Relationship: 
+         * COMT_MT900004AB.ActPermission.id Conformance/Cardinality: 
+         * MANDATORY (1) <p>A unique token indicating that the user has 
+         * been authenticated to the system.</p> <p>The token is needed 
+         * for inclusion in subsequent messages to identify that the 
          * transaction is being performed under the auspices of an 
-         * authenticated user.</p> Authentication Token <p>Indicates 
-         * the authentication token to be revoked/ended</p> <p>Needed 
-         * to identify which session is to be logged off.</p></remarks>
+         * authenticated user.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -75,12 +79,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Merged {
         }
 
         /**
-         * <summary>PasswordExpiryDate</summary>
+         * <summary>Business Name: PasswordExpiryDate</summary>
          * 
-         * <remarks>C: Password Expiry Date <p>Indicates the last date 
-         * that the current password for the authenticating user will 
-         * be considered valid.</p> <p>Ensures the user is aware of 
-         * when their password is next scheduled to expire.</p></remarks>
+         * <remarks>Un-merged Business Name: PasswordExpiryDate 
+         * Relationship: COMT_MT900004AB.Performer.time 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Indicates the 
+         * last date that the current password for the authenticating 
+         * user will be considered valid.</p> <p>Ensures the user is 
+         * aware of when their password is next scheduled to 
+         * expire.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"performer/time"})]
         public Interval<PlatformDate> PerformerTime {
@@ -89,12 +96,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Merged {
         }
 
         /**
-         * <summary>ProviderId</summary>
+         * <summary>Business Name: ProviderId</summary>
          * 
-         * <remarks>B: Provider id <p>The identifier of the provider 
-         * logged on</p> <p>Links the user id to the provider id</p> 
-         * <p>The Wellnet Provider Id of the assigned person is 
-         * returned.</p></remarks>
+         * <remarks>Un-merged Business Name: ProviderId Relationship: 
+         * COMT_MT900004AB.AssignedEntity.id Conformance/Cardinality: 
+         * MANDATORY (1) <p>The identifier of the provider logged 
+         * on</p> <p>Links the user id to the provider id</p> <p>The 
+         * Wellnet Provider Id of the assigned person is returned.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"performer/assignedEntity/id"})]
         public Identifier PerformerAssignedEntityId {
@@ -102,6 +110,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Merged {
             set { this.performerAssignedEntityId.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * COMT_MT900004AB.Component.transactionPermission 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"component/transactionPermission"})]
         public IList<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Comt_mt900004ab.TransactionPermission> ComponentTransactionPermission {
             get { return this.componentTransactionPermission; }

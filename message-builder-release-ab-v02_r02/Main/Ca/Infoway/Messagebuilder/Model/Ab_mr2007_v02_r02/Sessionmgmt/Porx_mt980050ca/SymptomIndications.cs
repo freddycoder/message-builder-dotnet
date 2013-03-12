@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,15 +28,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Porx_mt9
 
 
     /**
-     * <summary>Symptom Indications</summary>
+     * <summary>Business Name: Symptom Indications</summary>
      * 
-     * <remarks><p>Code must be fixed to SYMPT if not using 
+     * <p>Code must be fixed to SYMPT if not using 
      * SNOMED</p><p>Value is mandatory if not using SNOMED</p> 
      * <p>Code must be fixed to SYMPT if not using 
      * SNOMED</p><p>Value is mandatory if not using SNOMED</p> 
      * <p>Describes symptom-related indications</p> <p>Allows 
      * separation of conditions from symptoms from other forms of 
-     * indication.</p></remarks>
+     * indication.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"PORX_MT980050CA.ObservationSymptom"})]
     public class SymptomIndications : MessagePartBean, Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.IIndications {
@@ -51,14 +51,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Porx_mt9
             this.value = new CVImpl();
         }
         /**
-         * <summary>Symptom Type</summary>
+         * <summary>Business Name: Symptom Type</summary>
          * 
-         * <remarks><p>Identifies the category of symptom being 
-         * communicated.</p> <p>Indicates that this observation is 
-         * expressing a symptom, and is therefore mandatory. It is set 
-         * to CD because SNOMED codes may require post-coordination</p> 
-         * <p>For SNOMED, this will communicate the full symptom. For 
-         * non-SNOMED this will be a fixed value of SYMPT</p></remarks>
+         * <remarks>Relationship: 
+         * PORX_MT980050CA.ObservationSymptom.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>Identifies the 
+         * category of symptom being communicated.</p> <p>Indicates 
+         * that this observation is expressing a symptom, and is 
+         * therefore mandatory. It is set to CD because SNOMED codes 
+         * may require post-coordination</p> <p>For SNOMED, this will 
+         * communicate the full symptom. For non-SNOMED this will be a 
+         * fixed value of SYMPT</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public ActCode Code {
@@ -67,10 +70,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Porx_mt9
         }
 
         /**
-         * <summary>Free Form Symptom Indication</summary>
+         * <summary>Business Name: Free Form Symptom Indication</summary>
          * 
-         * <remarks><p>A free form description to augment the specified 
-         * symptom.</p> <p>Provides greater flexibility in specifying 
+         * <remarks>Relationship: 
+         * PORX_MT980050CA.ObservationSymptom.text 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>A free form 
+         * description to augment the specified symptom.</p> 
+         * <p>Provides greater flexibility in specifying 
          * indication.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"text"})]
@@ -80,13 +86,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Sessionmgmt.Porx_mt9
         }
 
         /**
-         * <summary>A:Symptom Code</summary>
+         * <summary>Business Name: A:Symptom Code</summary>
          * 
-         * <remarks><p>A coded representation of the symptom that is 
-         * the reason for the current therapy.</p> <p>Allows 
-         * cross-checking the use of a therapy against its indication. 
-         * Also allows analysis of best practices, etc. The attribute 
-         * is optional because it is not used for SNOMED.</p></remarks>
+         * <remarks>Relationship: 
+         * PORX_MT980050CA.ObservationSymptom.value 
+         * Conformance/Cardinality: OPTIONAL (0-1) <p>A coded 
+         * representation of the symptom that is the reason for the 
+         * current therapy.</p> <p>Allows cross-checking the use of a 
+         * therapy against its indication. Also allows analysis of best 
+         * practices, etc. The attribute is optional because it is not 
+         * used for SNOMED.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"value"})]
         public SymptomValue Value {

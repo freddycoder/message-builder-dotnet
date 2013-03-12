@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,13 +27,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt303010ca {
 
 
     /**
-     * <summary>Territorial Authority</summary>
+     * <summary>Business Name: Territorial Authority</summary>
      * 
-     * <remarks><p>RoleClass necessary to support the Jurisdiction 
-     * within which the scoping organization exists</p> <p>Supports 
+     * <p>RoleClass necessary to support the Jurisdiction within 
+     * which the scoping organization exists</p> <p>Supports 
      * business requirement to provide additional information 
      * regarding the jurisdication within the scoping organization 
-     * exists.</p></remarks>
+     * exists.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"PRPM_MT303010CA.TerritorialAuthority"})]
     public class TerritorialAuthority : MessagePartBean {
@@ -47,11 +47,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt303010ca {
             this.territoryCode = new CVImpl();
         }
         /**
-         * <summary>Territorial Authority Type</summary>
+         * <summary>Business Name: Territorial Authority Type</summary>
          * 
-         * <remarks><p>The code identifying the specific Territorial 
-         * Authority</p> <p>Mandatory attribute supports the validation 
-         * and identification of the healthcare provider</p></remarks>
+         * <remarks>Relationship: 
+         * PRPM_MT303010CA.TerritorialAuthority.code 
+         * Conformance/Cardinality: POPULATED (1) <p>The code 
+         * identifying the specific Territorial Authority</p> 
+         * <p>Mandatory attribute supports the validation and 
+         * identification of the healthcare provider</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public RoleCode Code {
@@ -60,14 +63,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt303010ca {
         }
 
         /**
-         * <summary>Jurisdiction Type</summary>
+         * <summary>Business Name: Jurisdiction Type</summary>
          * 
-         * <remarks><p>A character value that represents the Canadian 
-         * provincial or territorial geographical area within which the 
-         * Provider is operating.</p> <p>Mandatory attribute supports 
-         * the validation and identification of the healthcare 
-         * provider</p> <p>If Jurisdiction is included in the message, 
-         * then Territorial Authority Type is Expected to Exist.</p></remarks>
+         * <remarks>Relationship: PRPM_MT303010CA.Jurisdiction.code 
+         * Conformance/Cardinality: MANDATORY (1) <p>A character value 
+         * that represents the Canadian provincial or territorial 
+         * geographical area within which the Provider is 
+         * operating.</p> <p>Mandatory attribute supports the 
+         * validation and identification of the healthcare provider</p> 
+         * <p>If Jurisdiction is included in the message, then 
+         * Territorial Authority Type is Expected to Exist.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"territory/code"})]
         public PlaceEntityType TerritoryCode {
@@ -75,6 +80,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt303010ca {
             set { this.territoryCode.Value = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * PRPM_MT303010CA.Part.territorialAuthority</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"part/territorialAuthority"})]
         public Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Pr.Prpm_mt303010ca.TerritorialAuthority PartTerritorialAuthority {
             get { return this.partTerritorialAuthority; }

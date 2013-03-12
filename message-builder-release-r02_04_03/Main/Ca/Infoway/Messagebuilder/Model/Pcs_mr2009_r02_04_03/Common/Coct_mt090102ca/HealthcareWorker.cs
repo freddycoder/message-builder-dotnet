@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,15 +29,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt090
 
 
     /**
-     * <summary>Healthcare Worker</summary>
+     * <summary>Business Name: Healthcare Worker</summary>
      * 
-     * <remarks><p>The person assigned to carry out the associated 
-     * action (linked by a participation) and/or the 
+     * <p>Critical to tracking responsibility and performing 
+     * follow-up. The CMET supports both licensed providers as well 
+     * as non-licensed providers such as technicians, 
+     * receptionists, etc.</p> <p>The person assigned to carry out 
+     * the associated action (linked by a participation) and/or the 
      * organization/group under whose authority they are 
-     * acting.</p> <p>Critical to tracking responsibility and 
-     * performing follow-up. The CMET supports both licensed 
-     * providers as well as non-licensed providers such as 
-     * technicians, receptionists, etc.</p></remarks>
+     * acting.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"COCT_MT090102CA.AssignedEntity"})]
     public class HealthcareWorker : MessagePartBean, Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt080100ca.IPerformerChoice, Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Merged.IRecipientChoice, Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.IActingPerson, Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.IAuthorPerson, Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.IRecipient, Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.IRoleChoice, Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.IEntererChoice, Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt011001ca.IAssignees {
@@ -50,24 +50,38 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Coct_mt090
             this.id = new SETImpl<II, Identifier>(typeof(IIImpl));
         }
         /**
-         * <summary>A: Healthcare Worker Identifier</summary>
+         * <summary>Business Name: A: Healthcare Worker Identifier</summary>
          * 
-         * <remarks><p>Unique identifier the person involved in the 
-         * action.</p> <p>Allows unique identification of the person 
-         * which can be critical for authentication, permissions, 
-         * drill-down and traceability and is therefore mandatory.</p></remarks>
+         * <remarks>Relationship: COCT_MT090102CA.AssignedEntity.id 
+         * Conformance/Cardinality: MANDATORY (1-3) <p>Allows unique 
+         * identification of the person which can be critical for 
+         * authentication, permissions, drill-down and traceability and 
+         * is therefore mandatory.</p> <p>Unique identifier the person 
+         * involved in the action.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public ICollection<Identifier> Id {
             get { return this.id.RawSet(); }
         }
 
+        /**
+         * <summary>Relationship: 
+         * COCT_MT090102CA.AssignedEntity.assignedPerson</summary>
+         * 
+         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"assignedPerson"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.ActingPerson AssignedPerson {
             get { return this.assignedPerson; }
             set { this.assignedPerson = value; }
         }
 
+        /**
+         * <summary>Relationship: 
+         * COCT_MT090102CA.AssignedEntity.representedOrganization</summary>
+         * 
+         * <remarks>Conformance/Cardinality: REQUIRED (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"representedOrganization"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.ResponsibleOrganization RepresentedOrganization {
             get { return this.representedOrganization; }

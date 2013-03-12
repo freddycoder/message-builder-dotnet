@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -45,9 +45,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Merged {
             this.contactCallBackPersonTelecom = new SETImpl<TEL, TelecommunicationAddress>(typeof(TELImpl));
         }
         /**
-         * <summary>AdministrativeContactID</summary>
+         * <summary>Business Name: AdministrativeContactID</summary>
          * 
-         * <remarks>Administrative Contact ID</remarks>
+         * <remarks>Un-merged Business Name: AdministrativeContactID 
+         * Relationship: FICR_MT500201CA.ContactParty.id 
+         * Conformance/Cardinality: REQUIRED (0-1) Un-merged Business 
+         * Name: AdministrativeContactID Relationship: 
+         * FICR_MT600201CA.ContactParty.id Conformance/Cardinality: 
+         * REQUIRED (0-1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"id"})]
         public Identifier Id {
@@ -56,9 +61,15 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Merged {
         }
 
         /**
-         * <summary>Call Back Contact Type</summary>
+         * <summary>Un-merged Business Name: AdministrativeContactType</summary>
          * 
-         * <remarks>Administrative Contact Type</remarks>
+         * <remarks>Relationship: FICR_MT500201CA.ContactParty.code 
+         * Conformance/Cardinality: MANDATORY (1) Un-merged Business 
+         * Name: AdministrativeContactType Relationship: 
+         * FICR_MT600201CA.ContactParty.code Conformance/Cardinality: 
+         * MANDATORY (1) Un-merged Business Name: CallBackContactType 
+         * Relationship: FICR_MT400001CA.ContactParty.code 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"code"})]
         public AdministrativeContactRoleType Code {
@@ -66,6 +77,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Merged {
             set { this.code.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * FICR_MT500201CA.ContactParty.contactPerson 
+         * Conformance/Cardinality: REQUIRED (0-1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * FICR_MT600201CA.ContactParty.contactPerson 
+         * Conformance/Cardinality: REQUIRED (0-1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"contactPerson"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.ContactPerson ContactPerson {
             get { return this.contactPerson; }
@@ -73,9 +95,11 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Merged {
         }
 
         /**
-         * <summary>CallBackContactPersonName</summary>
+         * <summary>Business Name: CallBackContactPersonName</summary>
          * 
-         * <remarks>Call Back Contact Person Name</remarks>
+         * <remarks>Un-merged Business Name: CallBackContactPersonName 
+         * Relationship: FICR_MT400001CA.CallBackPerson.name 
+         * Conformance/Cardinality: MANDATORY (1)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"contactCallBackPerson/name"})]
         public PersonName ContactCallBackPersonName {
@@ -84,9 +108,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Claims.Merged {
         }
 
         /**
-         * <summary>CallBackContactPersonTelecom</summary>
+         * <summary>Business Name: CallBackContactPersonTelecom</summary>
          * 
-         * <remarks>Call Back Contact Person Telecom</remarks>
+         * <remarks>Un-merged Business Name: 
+         * CallBackContactPersonTelecom Relationship: 
+         * FICR_MT400001CA.CallBackPerson.telecom 
+         * Conformance/Cardinality: REQUIRED (0-5)</remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"contactCallBackPerson/telecom"})]
         public ICollection<TelecommunicationAddress> ContactCallBackPersonTelecom {

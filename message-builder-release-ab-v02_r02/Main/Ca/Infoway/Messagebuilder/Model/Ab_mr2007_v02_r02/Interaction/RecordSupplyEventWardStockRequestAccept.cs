@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,14 @@ namespace Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged;
 
 
+    /**
+     * <summary>Business Name: PORX_IN020220CA: Record supply event 
+     * (ward stock) request accept</summary>
+     * 
+     * <remarks>Message: MCCI_MT002100CA.Message Control Act: 
+     * MCAI_MT700226CA.ControlActEvent --> Payload: 
+     * PORX_MT020030CA.SupplyEvent</remarks>
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"PORX_IN020220CA"})]
     public class RecordSupplyEventWardStockRequestAccept : HL7Message<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Common.Merged.TriggerEvent_1<Ca.Infoway.Messagebuilder.Model.Ab_mr2007_v02_r02.Merged.Dispense>>, IInteraction {
 

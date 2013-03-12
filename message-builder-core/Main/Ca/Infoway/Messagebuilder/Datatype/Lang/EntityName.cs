@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,7 +26,8 @@
 namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 	
 	using Ca.Infoway.Messagebuilder;
-	using System;
+    using Ca.Infoway.Messagebuilder.Domainvalue.Basic;
+    using System;
 	using System.Collections.Generic;
 	using System.ComponentModel;
 	using System.Runtime.CompilerServices;

@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,21 +29,20 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged {
 
 
     /**
-     * <summary>ConsentedToBy</summary>
+     * <summary>Business Name: ConsentedToBy</summary>
      * 
      * <remarks>COCT_MT470012CA.Author: b:consented to by 
-     * <p>Indicates that the consent was provided by the patient, 
-     * client, provider or representative.</p> 
-     * <p>Authorization.Person</p><p>Authorization.signatory(PT)</p> 
-     * <p>Authorization.Person</p><p>Authorization.signatory(PT)</p> 
-     * <p>Consent can be provided by the patient or representative 
-     * or the provider.</p> COCT_MT470002CA.Author: b:consented to 
-     * by <p>Indicates that the consent was provided by the patient 
-     * or representative.</p> 
-     * <p>Authorization.Person</p><p>Authorization.signatory(PT)</p> 
-     * <p>Authorization.Person</p><p>Authorization.signatory(PT)</p> 
-     * <p>Consent can be provided by the patient or representative 
-     * or the provider.</p></remarks>
+     * <p>Authorization.Person</p> 
+     * <p>Authorization.signatory(PT)</p> <p>Consent can be 
+     * provided by the patient or representative or the 
+     * provider.</p> <p>Indicates that the consent was provided by 
+     * the patient, client, provider or representative.</p> 
+     * COCT_MT470002CA.Author: b:consented to by 
+     * <p>Authorization.Person</p> 
+     * <p>Authorization.signatory(PT)</p> <p>Consent can be 
+     * provided by the patient or representative or the 
+     * provider.</p> <p>Indicates that the consent was provided by 
+     * the patient or representative.</p></remarks>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"COCT_MT470002CA.Author","COCT_MT470012CA.Author"})]
     public class ConsentedToBy : MessagePartBean {
@@ -57,11 +56,18 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged {
             this.signatureText = new STImpl();
         }
         /**
-         * <summary>PatientConsentMechanism</summary>
+         * <summary>Business Name: PatientConsentMechanism</summary>
          * 
-         * <remarks>Patient Consent Mechanism <p>Indicates whether the 
-         * patient's consent is written or verbal.</p> <p>Verbal 
-         * consents may trigger a higher level of auditing.</p></remarks>
+         * <remarks>Un-merged Business Name: PatientConsentMechanism 
+         * Relationship: COCT_MT470012CA.Author.modeCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Verbal consents 
+         * may trigger a higher level of auditing.</p> <p>Indicates 
+         * whether the patient's consent is written or verbal.</p> 
+         * Un-merged Business Name: PatientConsentMechanism 
+         * Relationship: COCT_MT470002CA.Author.modeCode 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Verbal consents 
+         * may trigger a higher level of auditing.</p> <p>Indicates 
+         * whether the patient's consent is written or verbal.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"modeCode"})]
         public x_PhysicalVerbalParticipationMode ModeCode {
@@ -70,12 +76,20 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged {
         }
 
         /**
-         * <summary>Keyword</summary>
+         * <summary>Business Name: Keyword</summary>
          * 
-         * <remarks>Keyword <p>Indicates the keyword appropriate to the 
-         * action being performed by the message.</p> <p>Allows 
-         * providers who know the keyword to access information 
-         * protected by patient keywords.</p></remarks>
+         * <remarks>Un-merged Business Name: Keyword Relationship: 
+         * COCT_MT470012CA.Author.signatureText 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Allows providers 
+         * who know the keyword to access information protected by 
+         * patient keywords.</p> <p>Indicates the keyword appropriate 
+         * to the action being performed by the message.</p> Un-merged 
+         * Business Name: Keyword Relationship: 
+         * COCT_MT470002CA.Author.signatureText 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Allows providers 
+         * who know the keyword to access information protected by 
+         * patient keywords.</p> <p>Indicates the keyword appropriate 
+         * to the action being performed by the message.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"signatureText"})]
         public String SignatureText {
@@ -83,6 +97,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged {
             set { this.signatureText.Value = value; }
         }
 
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: 
+         * COCT_MT470012CA.Author.personalRelationship 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * COCT_MT470002CA.Author.personalRelationship 
+         * Conformance/Cardinality: POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"personalRelationship"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.RelatedPerson PersonalRelationship {
             get { return this.personalRelationship; }

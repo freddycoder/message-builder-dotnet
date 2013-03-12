@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,16 +30,16 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Merged {
     /**
      * <summary>POLB_MT004100CA.Specimen1: Culture Specimen</summary>
      * 
-     * <remarks><p>Associates the specimens as received with the 
-     * culture observation (before processing). Specimen processing 
-     * and subsequent reporting is communicated using the Isolate 
+     * <p>Associates the specimens as received with the culture 
+     * observation (before processing). Specimen processing and 
+     * subsequent reporting is communicated using the Isolate 
      * Specimen participation.</p> POLB_MT004200CA.Specimen: Report 
      * Section Specimen <p>At least 1 specimen must be specified on 
      * a Result.</p> <p>Associates the specimens as received with a 
      * diagnosis report section. This includes specimens subsequent 
      * to processing. Specimens originally received (and not 
      * processed) are communicated using the Report Specimen 
-     * participation.</p></remarks>
+     * participation.</p>
      */
     [Hl7PartTypeMappingAttribute(new string[] {"POLB_MT002000CA.Specimen","POLB_MT004000CA.Specimen","POLB_MT004100CA.Specimen1","POLB_MT004200CA.Specimen"})]
     public class ReportSectionSpecimen : MessagePartBean {
@@ -50,6 +50,21 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Merged {
         public ReportSectionSpecimen() {
             this.sequenceNumber = new INTImpl();
         }
+        /**
+         * <summary>Un-merged Business Name: (no business name 
+         * specified)</summary>
+         * 
+         * <remarks>Relationship: POLB_MT004100CA.Specimen1.specimen 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * POLB_MT002000CA.Specimen.specimen Conformance/Cardinality: 
+         * POPULATED (1) Un-merged Business Name: (no business name 
+         * specified) Relationship: POLB_MT004200CA.Specimen.specimen 
+         * Conformance/Cardinality: POPULATED (1) Un-merged Business 
+         * Name: (no business name specified) Relationship: 
+         * POLB_MT004000CA.Specimen.specimen Conformance/Cardinality: 
+         * POPULATED (1)</remarks>
+         */
         [Hl7XmlMappingAttribute(new string[] {"specimen"})]
         public Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Merged.SpecimenRole Specimen {
             get { return this.specimen; }
@@ -57,12 +72,20 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Lab.Merged {
         }
 
         /**
-         * <summary>SpecimenSequenceNumber</summary>
+         * <summary>Business Name: SpecimenSequenceNumber</summary>
          * 
-         * <remarks>Specimen Sequence Number <p>Order in which the 
-         * specimen is to appear in the message.</p> Specimen Sequence 
-         * Number <p>Specifies the order in which the specimen is to 
-         * appear in the message.</p></remarks>
+         * <remarks>Un-merged Business Name: SpecimenSequenceNumber 
+         * Relationship: POLB_MT002000CA.Specimen.sequenceNumber 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Order in which 
+         * the specimen is to appear in the message.</p> Un-merged 
+         * Business Name: SpecimenSequenceNumber Relationship: 
+         * POLB_MT004200CA.Specimen.sequenceNumber 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Order in which 
+         * the specimen is to appear in the message.</p> Un-merged 
+         * Business Name: SpecimenSequenceNumber Relationship: 
+         * POLB_MT004000CA.Specimen.sequenceNumber 
+         * Conformance/Cardinality: REQUIRED (0-1) <p>Specifies the 
+         * order in which the specimen is to appear in the message.</p></remarks>
          */
         [Hl7XmlMappingAttribute(new string[] {"sequenceNumber"})]
         public int? SequenceNumber {

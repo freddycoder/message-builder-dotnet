@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Canada Health Infoway, Inc.
+ * Copyright 2013 Canada Health Infoway, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,6 +25,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Interaction {
     using Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Porx_mt050010ca;
 
 
+    /**
+     * <summary>Business Name: PORX_IN050010CA: Drug 
+     * contraindications query</summary>
+     * 
+     * <p>Requests retrieval of the contraindications associated 
+     * with issuing a particular combination of drugs based only on 
+     * a list of concomitant medications.</p> Message: 
+     * MCCI_MT002100CA.Message Control Act: 
+     * QUQI_MT020002CA.ControlActEvent --> Payload: 
+     * PORX_MT050010CA.ParameterList
+     */
     [Hl7PartTypeMappingAttribute(new string[] {"PORX_IN050010CA"})]
     public class DrugContraindicationsQuery : HL7Message_1<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Common.Merged.TriggerEvent_5<Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Pharmacy.Porx_mt050010ca.GenericQueryParameters>>, IInteraction {
 
