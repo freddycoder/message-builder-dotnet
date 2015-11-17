@@ -1,0 +1,610 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9E61E51A-0A9B-45D3-86D9-D45CD5BB3F56}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>messagebuilderreleasev01_r04_4</RootNamespace>
+    <AssemblyName>message-builder-release-v01_r04_4</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <ReleaseVersion>1.5.8.2</ReleaseVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>message-builder-release-v01_r04_4.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\message-builder-compatibility\message-builder-compatibility.csproj">
+      <Project>{6821E6B6-3A4D-4D4D-A9D0-147878B4FDEE}</Project>
+      <Name>message-builder-compatibility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\message-builder-core\message-builder-core.csproj">
+      <Project>{4139D4DB-FBAB-4951-92EA-B5F7BABD8746}</Project>
+      <Name>message-builder-core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\message-builder-xml\message-builder-xml.csproj">
+      <Project>{262BF0B7-4E11-43DA-B5E5-EAAE02EF9845}</Project>
+      <Name>message-builder-xml</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <EmbeddedResource Include="MainResource\messageSet_pcs_cerx_v01_r04_4.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Common\Coct_mt040205ca\ResponsiblePerson.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Common\Coct_mt050202ca\Patient.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Common\Coct_mt050203ca\Patient.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Common\Coct_mt050303ca\AnimalPatient.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Common\Coct_mt090107ca\Provider.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Common\Coct_mt090302ca\Application.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Common\Coct_mt120600ca\Notes.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Common\Coct_mt141007ca\DeviceProduct.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Common\Coct_mt220100ca\DrugProduct.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Common\Coct_mt220110ca\DrugProduct.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Common\Coct_mt220200ca\DrugProduct.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Common\Coct_mt220210ca\DrugProduct.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Common\Coct_mt240003ca\ServiceLocation.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Common\Coct_mt470000ca\AccessType.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Common\Coct_mt470000ca\Consent.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Common\Coct_mt470000ca\ConsentByPatient.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Common\Coct_mt470000ca\ConsentedToBy.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Common\Coct_mt470000ca\IConsenter.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Common\Mcai_mt700210ca\TriggerEvent.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Common\Mcai_mt700211ca\TriggerEvent.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Common\Mcai_mt700220ca\TriggerEvent.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Common\Mcai_mt700221ca\TriggerEvent.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Common\Mcai_mt700222ca\TriggerEvent.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Common\Mcai_mt700223ca\TriggerEvent.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Common\Mcci_mt000100ca\HL7Message.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Common\Mcci_mt000200ca\HL7Message.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Common\Mcci_mt000300ca\HL7Message.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Common\Mcci_mt102001ca\HL7Message.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Common\Merged\Acknowledgement.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Common\Merged\ErrorsOrWarnings.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Common\Merged\QueryDefinition.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Common\Merged\Receiver.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Common\Merged\RefersTo.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Common\Merged\RoutingInstructionLines.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Common\Merged\Sender.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Common\Merged\ToBeRespondedToBy.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Common\Quqi_mt020000ca\TriggerEvent.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Common\Quqi_mt120000ca\QueryResponseInformation.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Common\Quqi_mt120000ca\TriggerEvent.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Domainvalue\ActConsentInformationAccessOverrideReason.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Domainvalue\ActDiagnosisCode.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Domainvalue\ActInformationAccessCode.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Domainvalue\ActMedicationTherapyDurationWorkingListCode.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Domainvalue\ActMonitoringProtocolType.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Domainvalue\ActNonObservationIndicationCode.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Domainvalue\ActProfessionalServiceCodePrimary.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Domainvalue\ActProfessionalServiceCodeSecondary.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Domainvalue\ActRelationshipCheckpoint.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Domainvalue\ActRelationshipJoin.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Domainvalue\ActRelationshipSplit.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Domainvalue\BindingRealm.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Domainvalue\Calendar.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Domainvalue\CalendarCycle.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Domainvalue\CalendarCycleOneLetter.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Domainvalue\CalendarCycleTwoLetter.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Domainvalue\CalendarType.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Domainvalue\Charset.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Domainvalue\CodingRationale.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Domainvalue\CompressionAlgorithm.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Domainvalue\ContextConductionStyle.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Domainvalue\DiagnosisValuePrimary.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Domainvalue\DiagnosisValueSecondary.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Domainvalue\DispensableDrugForm.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Domainvalue\DRUG.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Domainvalue\EntityNamePartQualifierR2.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Domainvalue\EntityNamePartTypeR2.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Domainvalue\EntityNameUseR2.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Domainvalue\EntityStatus.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Domainvalue\GTSAbbreviation.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Domainvalue\HL7ITSVersionCode.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Domainvalue\HL7UpdateMode.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Domainvalue\IdentifierReliability.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Domainvalue\IdentifierScope.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Domainvalue\IntegrityCheckAlgorithm.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Domainvalue\ManagedParticipationStatus.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Domainvalue\MedicalDeviceTypePrimary.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Domainvalue\MedicalDeviceTypeSecondary.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Domainvalue\ModifyIndicator.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Domainvalue\NonDrugAgentEntityPrimary.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Domainvalue\NonDrugAgentEntitySecondary.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Domainvalue\ObservationAllergyTestTypePrimary.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Domainvalue\ObservationAllergyTestTypeSecondary.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Domainvalue\ObservationIntoleranceTypePrimary.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Domainvalue\ObservationIntoleranceTypeSecondary.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Domainvalue\ParticipationSubset.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Domainvalue\PharmacySupplyEventAbortReason.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Domainvalue\ProbabilityDistributionType.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Domainvalue\QueryPriority.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Domainvalue\QueryStatusCode.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Domainvalue\RelationalOperator.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Domainvalue\RelationshipConjunction.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Domainvalue\ResponseLevel.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Domainvalue\RoleLinkStatus.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Domainvalue\SetOperator.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Domainvalue\SeverityObservationPrimary.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Domainvalue\SeverityObservationSecondary.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Domainvalue\SpecimenRoleType.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Domainvalue\SubjectReactionPrimary.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Domainvalue\SubjectReactionSecondary.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Domainvalue\SubstanceAdministrationTypePrimary.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Domainvalue\SymptomValuePrimary.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Domainvalue\SymptomValueSecondary.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Domainvalue\TransmissionRelationshipTypeCode.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Domainvalue\TriggerEventID.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Iehr\Merged\AgentCategory.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Iehr\Merged\AllergyTests.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Iehr\Merged\ComponentMeasurements.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Iehr\Merged\Exposures.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Iehr\Merged\IParty.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Iehr\Merged\IRecords.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Iehr\Merged\MedicalConditionStatusChanges.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Iehr\Merged\ObservationEvent.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Iehr\Merged\OrderForService.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Iehr\Merged\ReactionAssessments.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Iehr\Merged\ReportedBy.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Iehr\Repc_mt000001ca\AllergyIntolerance.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Iehr\Repc_mt000002ca\ReportedReaction.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Iehr\Repc_mt000003ca\MedicalCondition.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Iehr\Repc_mt000004ca\AllergyIntoleranceQueryParameters.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Iehr\Repc_mt000005ca\AllergyIntolerance.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Iehr\Repc_mt000005ca\IRecords.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Iehr\Repc_mt000006ca\ReportedReaction.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Iehr\Repc_mt000007ca\IConsenter.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Iehr\Repc_mt000007ca\MedicalCondition.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Iehr\Repc_mt000008ca\ConditionHistoryQueryParameters.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Iehr\Repc_mt000009ca\AllergyIntolerance.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Iehr\Repc_mt000009ca\IRecords.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Iehr\Repc_mt000010ca\MedicalCondition.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Iehr\Repc_mt000012ca\IChoice.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Iehr\Repc_mt000012ca\ReportedReaction.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Iehr\Repc_mt000013ca\AllergyIntolerance.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Iehr\Repc_mt000014ca\MedicalCondition.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Iehr\Repc_mt000015ca\MedicalConditionsQueryParameters.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Iehr\Repc_mt000016ca\AdverseReactionsQueryParameters.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Iehr\Repc_mt000017ca\ProfessionalService.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Iehr\Repc_mt000018ca\PatientMeasurements.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Iehr\Repc_mt100001ca\ProfessionalService.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Iehr\Repc_mt100002ca\PatientMeasurement.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Iehr\Repc_mt120001ca\ProfessionalServiceQueryParameters.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Iehr\Repc_mt120002ca\CommonObservationQueryParameters.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Immunization\Merged\ImmunizationCourse.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Immunization\Merged\InformationSourceRole.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Immunization\Merged\NextImmunizationPlan.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Immunization\Merged\NextPlannedImmunization.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Immunization\Merged\PartOf.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Immunization\Poiz_mt030050ca\Immunization.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Immunization\Poiz_mt030050ca\InformantionSourceRole.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Immunization\Poiz_mt030060ca\Immunizations.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Immunization\Poiz_mt060140ca\GenericQueryParameters.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Immunization\Poiz_mt060150ca\Immunizations.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\AbortDispenseAuthorizationRequest.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\AbortDispenseAuthorizationRequestAccepted.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\AbortDispenseAuthorizationRequestRefused.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\AbortPrescriptionRequest.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\AbortPrescriptionRequestAccepted.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\AbortPrescriptionRequestRefused.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\AcceptAck.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\ActivateDevicePrescriptionRequest.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\ActivateDevicePrescriptionRequestAccepted.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\ActivateDevicePrescriptionRequestRefused.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\ActivatePrescriptionRequest.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\ActivatePrescriptionRequestAccepted.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\ActivatePrescriptionRequestRefused.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\AddAllergyIntoleranceRequest.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\AddAllergyIntoleranceRequestAccepted.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\AddAllergyIntoleranceRequestRefused.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\AddIssueManagementRequest.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\AddIssueManagementRequestAccepted.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\AddIssueManagementRequestRefused.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\AddNoteToRecordRequest.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\AddNoteToRecordRequestAccepted.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\AddNoteToRecordRequestRefused.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\AddPatientNoteRequest.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\AddPatientNoteRequestAccepted.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\AddPatientNoteRequestRefused.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\BroadcastMessage.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\ChangeItemMaskingRequest.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\ChangeItemMaskingRequestAccepted.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\ChangeItemMaskingRequestRefused.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\DeprecatePatientNoteRequest.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\DeprecatePatientNoteRequestAccepted.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\DeprecatePatientNoteRequestRefused.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\DevicePrescrFulfillRequestNoResp.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\DevicePrescriptionDetailQuery.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\DevicePrescriptionDetailQueryResponse.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\DevicePrescriptionDispenseDetailQuery.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\DevicePrescriptionDispenseDetailQueryResponse.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\DevicePrescriptionDispenseSummaryQuery.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\DevicePrescriptionDispenseSummaryQueryResp.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\DevicePrescriptionFillsQuery.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\DevicePrescriptionFillsQueryResponse.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\DevicePrescriptionSummaryQuery.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\DevicePrescriptionSummaryQueryResponse.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\DevicePrescrWithHistAndDispQuery.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\DevicePrescrWithHistAndDispQueryResp.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\DispensePickupNotification.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\DrugContraindicationsQuery.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\DrugDocumentQuery.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\DrugDocumentQueryResponse.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\DrugProductDetailQuery.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\DrugProductDetailQueryResponse.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\DrugRegimenContraindicationsQueryResponse.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\DrugSearchQuery.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\DrugSearchQueryResponse.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\ImmunizationsQuery.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\ImmunizationsQueryResponse.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\MedicationDispenseDetailQuery.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\MedicationDispenseDetailQueryResponse.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\MedicationDispenseSummaryQuery.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\MedicationDispenseSummaryQueryResponse.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\MedicationPrescriptionDetailQuery.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\MedicationPrescriptionDetailQueryResponse.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\MedicationPrescriptionFillsQuery.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\MedicationPrescriptionFillsQueryResponse.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\MedicationPrescriptionSummaryQuery.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\MedicationPrescriptionSummaryQueryResponse.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\MedicationProfileDetailGenericQuery.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\MedicationProfileDetailGenericQueryResp.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\MedicationProfileDetailQuery.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\MedicationProfileDetailQueryResponse.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\MedicationProfileSummaryQuery.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\MedicationProfileSummaryQueryResponse.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\MedPrescrWithHistAndDispensesQuery.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\MedPrescrWithHistAndDispensesQueryResp.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\OtherMedicationDetailQuery.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\OtherMedicationDetailQueryResponse.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\PatientAdverseReactionsQuery.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\PatientAdverseReactionsQueryResponse.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\PatientAllergyIntoleranceQuery.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\PatientAllergyIntoleranceQueryResponse.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\PatientAllergyIntoleranceWithHistQuery.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\PatientAllergyIntoleranceWithHistQueryResp.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\PatientBasicObservationsQuery.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\PatientBasicObservationsQueryResponse.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\PatientDrugContraindicationsQuery.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\PatientDrugContraindicationsQueryResponse.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\PatientMedicalConditionsQuery.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\PatientMedicalConditionsQueryResponse.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\PatientMedicalConditionWithHistQuery.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\PatientMedicalConditionWithHistQueryResp.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\PatientNoteQuery.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\PatientNoteQueryResponse.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\PatientPharmacyProfServicesQuery.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\PatientPharmacyProfServicesQueryResponse.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\PrescriptionClinicalPreDeterminationCheck.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\PrescriptionClinicalPreDeterminationNotOk.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\PrescriptionClinicalPreDeterminationOk.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\PrescriptionFulfillmentRequestNoResp.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\PrescriptionRenewalRequest.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\PrescriptionRenewalRequestAccepted.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\PrescriptionRenewalRequestRefused.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\RecordAdverseReactionRequest.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\RecordAdverseReactionRequestAccepted.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\RecordAdverseReactionRequestRefused.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\RecordConsentOrOverrideRequest.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\RecordConsentOrOverrideRequestAccepted.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\RecordConsentOrOverrideRequestRefused.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\RecordDeviceDispenseProcessingRequest.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\RecordDeviceDispProcessingRequestAccepted.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\RecordDeviceDispProcessingRequestRefused.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\RecordDispensePickupRequest.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\RecordDispensePickupRequestAccepted.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\RecordDispensePickupRequestRefused.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\RecordDispenseProcessingRequest.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\RecordDispenseProcessingRequestAccepted.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\RecordDispenseProcessingRequestRefused.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\RecordDispenseReversalRequest.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\RecordDispenseReversalRequestAccepted.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\RecordDispenseReversalRequestRefused.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\RecordImmunizationRequest.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\RecordImmunizationRequestAccepted.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\RecordImmunizationRequestRefused.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\RecordMedicalConditionRequest.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\RecordMedicalConditionRequestAccepted.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\RecordMedicalConditionRequestRefused.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\RecordOtherMedicationRequest.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\RecordOtherMedicationRequestAccepted.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\RecordOtherMedicationRequestRefused.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\RecordPatientBasicObservationRequest.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\RecordPatientBasicObservationRequestAccepted.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\RecordPatientBasicObservationRequestRefused.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\RecordPharmacyProfServiceRequest.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\RecordPharmacyProfServiceRequestAccepted.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\RecordPharmacyProfServiceRequestRefused.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\RecordRefusalToDispenseRequest.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\RecordRefusalToDispenseRequestAccepted.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\RecordRefusalToDispenseRequestRefused.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\RecordSupplyEventWardStockRequest.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\RecordSupplyEventWardStockRequestAccept.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\RecordSupplyEventWardStockRequestRefused.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\RequestPollQueueStatus.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\ResumePrescriptionRequest.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\ResumePrescriptionRequestAccepted.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\ResumePrescriptionRequestRefused.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\RetractActionRequest.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\RetractActionRequestAccepted.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\RetractActionRequestRefused.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\RetractImmunizationRequest.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\RetractImmunizationRequestAccepted.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\RetractImmunizationRequestRefused.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\ReturnPollQueueStatus.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\ReviseAssignedDispenseResponsibilityNotif.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\ReviseAssignedDispenseResponsibilityReq.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\ReviseAssignedDispenseResponsibilityReqAcc.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\ReviseAssignedDispenseResponsibilityReqRef.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\SendPollTransmission.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\SuspendPrescriptionRequest.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\SuspendPrescriptionRequestAccepted.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\SuspendPrescriptionRequestRefused.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\UnfilledPrescrByPrescriberQuery.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\UnfilledPrescrByPrescriberQueryResponse.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\UnfilledPrescriptionsQuery.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\UnfilledPrescriptionsQueryResponse.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\UpdateAdverseReactionRequest.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\UpdateAdverseReactionRequestAccepted.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\UpdateAdverseReactionRequestRefused.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\UpdateAllergyIntoleranceRequest.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\UpdateAllergyIntoleranceRequestAccepted.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\UpdateAllergyIntoleranceRequestRefused.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\UpdateImmunizationRequest.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\UpdateImmunizationRequestAccepted.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\UpdateImmunizationRequestRefused.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\UpdateKeywordRequest.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\UpdateKeywordRequestAccepted.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\UpdateKeywordRequestRefused.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\UpdateMedicalConditionRequest.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\UpdateMedicalConditionRequestAccepted.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\UpdateMedicalConditionRequestRefused.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\UpdateOtherMedicationRequest.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\UpdateOtherMedicationRequestAccepted.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Interaction\UpdateOtherMedicationRequestRefused.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Merged\AllergyIntoleranceSeverityLevel.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Merged\ConsentGivenTo.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Merged\DispensedIn.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Merged\DrugContains.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Merged\DrugIngredients.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Merged\IRecipient.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Merged\Manufacturer.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Merged\PrescribedBy.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Merged\RecordedAt.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Merged\RefusedBy.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Merged\ActiveMedication.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Merged\Agent.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Merged\AllowedSubstitution.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Merged\AppearanceCharacteristics.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Merged\AssignedEntity.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Merged\CarrierRole.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Merged\Classifies.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Merged\Component2.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Merged\Component3.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Merged\CoverageExtensions_1.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Merged\CoverageExtensions_2.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Merged\Dispense.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Merged\Dispensed.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Merged\DispenseDetails.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Merged\DispenseInstructions_1.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Merged\DispenseInstructions_2.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Merged\DispenseShipToLocation.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Merged\DosagePreconditions.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Merged\DrugCost.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Merged\DrugUse.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Merged\ExtendedDispenseInstructions.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Merged\FirstDispenseInformation_1.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Merged\FirstDispenseInformation_2.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Merged\FirstFill.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Merged\GroupedWithin.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Merged\IChangedBy.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Merged\Includes.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Merged\IPatient.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Merged\IssueDescription.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Merged\IssueManagements.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Merged\Issues.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Merged\LastDispenseInformation_1.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Merged\LastDispenseInformation_2.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Merged\NotEligibleForTrial.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Merged\ParentPrescription.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Merged\PatientCodedObservations.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Merged\PatientMeasurableObservations.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Merged\PrescribedBecauseOf.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Merged\PrescribedBy.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Merged\Prescription.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Merged\PrescriptionDispenses.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Merged\PrescriptionPatientMeasurements.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Merged\PrescriptionReference.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Merged\PreviousDispenseInformation_1.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Merged\PreviousDispenseInformation_2.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Merged\ProcedureRequest.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Merged\Protocols.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Merged\RecommendedDosage.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Merged\RefusalToFills.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Merged\RemainingDispenseInformation_1.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Merged\RemainingDispenseInformation_2.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Merged\StatusChanges.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Merged\SubsequentSupplyRequest.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Merged\Substitution.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Merged\SupplementalFillInformation.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Merged\SupplyEvent.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Merged\SupplyOrder.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Merged\Underwriter.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Pome_mt010030ca\DrugQueryParameters.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Pome_mt010040ca\DispenseInformation.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Pome_mt010040ca\DrugHalfLife.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Pome_mt010040ca\DrugOrCompound.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Pome_mt010040ca\DrugValidityPeriod.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Pome_mt010040ca\Formularies.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Pome_mt010040ca\Medication.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Pome_mt010040ca\MonitoringPrograms.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Pome_mt010040ca\Monographs.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Pome_mt010040ca\Patient.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Pome_mt010040ca\PatientCharacteristics.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Pome_mt010040ca\RecommendedAdministrationInstructions.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Pome_mt010040ca\SubsequentDispense.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Pome_mt010050ca\GenericQueryParameters.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Pome_mt010090ca\DrugQueryParameters.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Pome_mt010090ca\HasCharacteristic.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Pome_mt010100ca\Medication.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porr_mt050016ca\MedicationDocuments.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt010110ca\Prescription.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt010110ca\PriorDeviceRequest.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt010120ca\Component2.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt010120ca\DispenseInstructions.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt010120ca\DrugDispenseInstructions.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt010120ca\Includes.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt010120ca\Prescription.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt010120ca\PriorCombinedMedicationRequest.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt010140ca\ActRequest.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt010140ca\DispenseInstructions.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt010140ca\RemainingDispenses.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt020020ca\DispensePickup.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt020030ca\PrescriptionDispenseResponse.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt020050ca\OfficeSupply.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt020060ca\PrescriptionDispense.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt020060ca\PrescriptionReference.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt020070ca\PrescriptionDispense.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt020070ca\SupplyEvent.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt030040ca\Prescription.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt040010ca\OtherMedication.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt040020ca\OtherMedication.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt050010ca\GenericQueryParameters.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt050020ca\GenericQueryParameters.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt060010ca\Dispense.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt060020ca\Dispense.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt060030ca\GenericQueryParameters.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt060040ca\Prescription.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt060040ca\PrescriptionDispenses.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt060060ca\Prescription.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt060070ca\QueryParameters.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt060080ca\GenericQueryParameters.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt060090ca\Dispense.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt060100ca\Dispense.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt060110ca\ParameterList.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt060130ca\ParameterList.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt060160ca\DispenseInstructions.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt060160ca\IMedicationRecord.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt060160ca\Includes.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt060160ca\OtherMedications.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt060160ca\Prescription.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt060170ca\GenericQueryParameters.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt060180ca\MedicationProfileGenericQueryParameters.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt060190ca\IMedicationRecord.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt060190ca\OtherMedication.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt060200ca\ParameterList.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt060210ca\OtherMedication.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt060220ca\ParameterList.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt060240ca\UnfilledPrescriptionQueryParameters.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt060270ca\ParameterList.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt060280ca\DrugPrescriptionDetailQueryParameters.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt060300ca\IPrescription.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt060340ca\DispenseInstructions.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt060340ca\Includes.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt060340ca\Prescription.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt060350ca\IPrescription.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt060360ca\GenericQueryParameters.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt980010ca\ICausalActs.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt980010ca\Issues.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt980020ca\ICausalActs.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt980020ca\Issues.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt980030ca\ActiveMedication.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt980030ca\Dispense.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt980030ca\Dispensed.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt980030ca\ICausalActs.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt980030ca\Issues.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt980040ca\AdditionalSIGInstruction.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt980040ca\AdministrationInstructions.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt980040ca\AdministrationPrecondition.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt980040ca\ConsistsOf.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt980040ca\IMedication.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt980040ca\StructuredDosageLines.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt980050ca\DiagnosisIndications.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt980050ca\IIndications.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt980050ca\OtherIndications.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt980050ca\SymptomIndications.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt990010ca\ReferencedRecord.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Pharmacy\Porx_mt990020ca\ReferencedRecord.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Si\Comt_mt001101ca\ReferencedRecord.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Si\Comt_mt001103ca\ReferencedRecord.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Si\Comt_mt300001ca\Comment.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Si\Comt_mt300002ca\GenericQueryParameters.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Si\Comt_mt300003ca\Comment.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Si\Comt_mt301001ca\AnnotatedAct.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Si\Comt_mt301001ca\Comment.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Si\Comt_mt400001ca\Diagnosis.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Si\Comt_mt400001ca\MaskableRecord.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Si\Comt_mt400001ca\Role.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Si\Comt_mt500001ca\BroadcastMessage.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Si\Merged\IConsenter.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Si\Merged\Patient.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Si\Rcmr_mt010001ca\Consent.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Si\Rcmr_mt010001ca\ConsentedToBy.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Si\Rcmr_mt010001ca\InformationAccess.cs"/>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_4\Si\Rcmr_mt010002ca\Keyword.cs"/>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="message-builder-release-v01_r04_4.snk" />
+  </ItemGroup>
+</Project>

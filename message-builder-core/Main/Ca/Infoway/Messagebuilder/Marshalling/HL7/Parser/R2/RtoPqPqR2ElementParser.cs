@@ -1,0 +1,70 @@
+/**
+ * Copyright 2013 Canada Health Infoway, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Author:        $LastChangedBy: tmcgrady $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
+ * Revision:      $LastChangedRevision: 2623 $
+ */
+using System.Xml;
+using Ca.Infoway.Messagebuilder.Datatype.Lang;
+using Ca.Infoway.Messagebuilder.Marshalling.HL7;
+using Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser;
+using Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.R2;
+using Ca.Infoway.Messagebuilder.Xml;
+
+namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.R2
+{
+	/// <summary>
+	/// RTO - Ratio (physical quantity, physical quantity)
+	/// Parses into a Ratio of physical quantities.
+	/// </summary>
+	/// <remarks>
+	/// RTO - Ratio (physical quantity, physical quantity)
+	/// Parses into a Ratio of physical quantities. The elements looks like this:
+	/// 
+	/// 
+	/// 
+	/// 
+	/// http://www.hl7.org/v3ballot/html/infrastructure/itsxml/datatypes-its-xml.htm#dtimpl-RTO
+	/// </remarks>
+	[DataTypeHandler("RTO<PQ,PQ>")]
+	internal class RtoPqPqR2ElementParser : AbstractRtoR2ElementParser<PhysicalQuantity, PhysicalQuantity>
+	{
+		internal PqR2ElementParser parser = new PqR2ElementParser();
+
+		protected override PhysicalQuantity GetNumeratorValue(XmlElement element, string type, ParseContext context, XmlToModelResult
+			 xmlToModelResult)
+		{
+			return GetValue(element, type, context, xmlToModelResult);
+		}
+
+		protected override PhysicalQuantity GetDenominatorValue(XmlElement element, string type, ParseContext context, XmlToModelResult
+			 xmlToModelResult)
+		{
+			return GetValue(element, type, context, xmlToModelResult);
+		}
+
+		private PhysicalQuantity GetValue(XmlElement element, string type, ParseContext context, XmlToModelResult xmlToModelResult
+			)
+		{
+			// inner types (numerator and denominator) are guaranteed to be of type PQ.x due to the DataTypeHandler annotation; no need to validate this is a PQ
+			// create new (mandatory) context
+			ParseContext innerContext = ParseContextImpl.Create(type, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY, Cardinality
+				.Create("1"), context);
+			// this loses any null flavor info; however, since both numerator and denominator are mandatory this is not a problem
+			return (PhysicalQuantity)this.parser.Parse(innerContext, (XmlNode)element, xmlToModelResult).BareValue;
+		}
+	}
+}
