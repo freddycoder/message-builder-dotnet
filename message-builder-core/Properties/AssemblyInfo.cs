@@ -13,11 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Author:        $LastChangedBy: sdoxsee $
- * Last modified: $LastChangedDate: 2012-01-04 16:05:28 -0500 (Wed, 04 Jan 2012) $
- * Revision:      $LastChangedRevision: 3190 $
+ * Author:        $LastChangedBy: gng $
+ * Last modified: $LastChangedDate: 2015-11-19 18:20:12 -0500 (Fri, 30 Jan 2015) $
+ * Revision:      $LastChangedRevision: 9755 $
  */
-
 using System.Reflection;
 using System.Runtime.InteropServices;
 using Ca.Infoway.Messagebuilder.Annotation;

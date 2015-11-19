@@ -1,3 +1,5 @@
+﻿extensions: designer.cs generated.cs
+extensions: .cs .cpp .h
 /**
  * Copyright 2013 Canada Health Infoway, Inc.
  *
@@ -17,11 +19,14 @@
  * Last modified: $LastChangedDate: 2015-11-19 18:20:12 -0500 (Fri, 30 Jan 2015) $
  * Revision:      $LastChangedRevision: 9755 $
  */
-namespace Ca.Infoway.Messagebuilder.Domainvalue
-{
-	/// <summary>The Interface ActSubstanceAdministrationImmunizationCode.</summary>
-	/// <remarks>The Interface ActSubstanceAdministrationImmunizationCode.</remarks>
-	public interface ActSubstanceAdministrationImmunizationCode : Ca.Infoway.Messagebuilder.Domainvalue.ActCode
-	{
-	}
-}
+
+extensions: .aspx .ascx
+<%-- 
+Sample license text.
+--%>
+extensions: .vb
+'Sample license text.
+extensions:  .xml .config .xsd
+<!--
+Sample license text.
+-->

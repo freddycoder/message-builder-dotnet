@@ -13,11 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-09-20 16:51:13 -0400 (Tue, 20 Sep 2011) $
- * Revision:      $LastChangedRevision: 2998 $
+ * Author:        $LastChangedBy: gng $
+ * Last modified: $LastChangedDate: 2015-11-19 18:20:12 -0500 (Fri, 30 Jan 2015) $
+ * Revision:      $LastChangedRevision: 9755 $
  */
-
 namespace Ca.Infoway.Messagebuilder.Datatype.Lang.Util
 {
 	/// <summary>This class wraps a standard Date and provides for a datePattern to be supplied.</summary>
