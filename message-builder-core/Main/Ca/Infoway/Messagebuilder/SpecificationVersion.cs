@@ -1,22 +1,3 @@
-/**
- * Copyright 2013 Canada Health Infoway, Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *        http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
- * Revision:      $LastChangedRevision: 2623 $
- */
 using System.Collections.Generic;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Lang;
@@ -92,6 +73,9 @@ namespace Ca.Infoway.Messagebuilder
 		public static readonly Ca.Infoway.Messagebuilder.SpecificationVersion R02_04_03_IMM_AB = new Ca.Infoway.Messagebuilder.SpecificationVersion
 			("R02_04_03_IMM_AB", "Alberta (Immunization)", Hl7BaseVersion.MR2009);
 
+		public static readonly Ca.Infoway.Messagebuilder.SpecificationVersion R02_04_03_SHR_AB = new Ca.Infoway.Messagebuilder.SpecificationVersion
+			("R02_04_03_SHR_AB", "Alberta (Shared Health Record)", Hl7BaseVersion.MR2009);
+
 		public static readonly Ca.Infoway.Messagebuilder.SpecificationVersion V01R04_3_ON = new Ca.Infoway.Messagebuilder.SpecificationVersion
 			("V01R04_3_ON", "ON Drug", Hl7BaseVersion.CERX);
 
@@ -104,6 +88,12 @@ namespace Ca.Infoway.Messagebuilder
 		public static readonly Ca.Infoway.Messagebuilder.SpecificationVersion V01R04_3_NS = new Ca.Infoway.Messagebuilder.SpecificationVersion
 			("V01R04_3_NS", "NS Drug (CeRx)", Hl7BaseVersion.CERX);
 
+		public static readonly Ca.Infoway.Messagebuilder.SpecificationVersion R02_03_NB = new Ca.Infoway.Messagebuilder.SpecificationVersion
+			("R02_03_NB", "NB Registries (R02_03)", Hl7BaseVersion.MR2009);
+
+		public static readonly Ca.Infoway.Messagebuilder.SpecificationVersion V01R04_3_NB = new Ca.Infoway.Messagebuilder.SpecificationVersion
+			("V01R04_3_NB", "NB Drug (CeRx)", Hl7BaseVersion.CERX);
+
 		public static readonly Ca.Infoway.Messagebuilder.SpecificationVersion CCDA_R1_1 = new Ca.Infoway.Messagebuilder.SpecificationVersion
 			("CCDA_R1_1", "CDA (CCDA_R1_1)", Hl7BaseVersion.MR2009);
 
@@ -113,12 +103,17 @@ namespace Ca.Infoway.Messagebuilder
 		public static readonly Ca.Infoway.Messagebuilder.SpecificationVersion PCS_CDA_R1_2 = new Ca.Infoway.Messagebuilder.SpecificationVersion
 			("PCS_CDA_R1_2", "CDA (PCS_CDA_R1_2)", Hl7BaseVersion.MR2009);
 
+		public static readonly Ca.Infoway.Messagebuilder.SpecificationVersion CDA_AB_SHR = new Ca.Infoway.Messagebuilder.SpecificationVersion
+			("CDA_AB_SHR", "Alberta CDA (Shared Health Record)", Hl7BaseVersion.MR2009);
+
 		static SpecificationVersion()
 		{
 			// ON Drug
 			// BC V02R04
 			// NS releases
+			// NB releases
 			// CDA releases
+			// AB CDA
 			V01R04_3.RegisterHl7ReleaseByDatatype("II.BUS", Hl7BaseVersion.MR2009);
 			V01R04_3.RegisterHl7ReleaseByDatatype("II.VER", Hl7BaseVersion.MR2009);
 			V01R04_3.RegisterHl7ReleaseByDatatype("II.BUS_AND_VER", Hl7BaseVersion.MR2009);

@@ -1,5 +1,7 @@
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "message-builder-compatibility", "message-builder-compatibility\message-builder-compatibility.csproj", "{6821E6B6-3A4D-4D4D-A9D0-147878B4FDEE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "message-builder-core", "message-builder-core\message-builder-core.csproj", "{4139D4DB-FBAB-4951-92EA-B5F7BABD8746}"
@@ -37,6 +39,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "message-builder-ccda-r1_1", "message-builder-ccda-r1_1\message-builder-ccda-r1_1.csproj", "{5D181889-F125-4747-A1FD-82D01D4D705A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "message-builder-ccda-pcs-r1_1", "message-builder-ccda-pcs-r1_1\message-builder-ccda-pcs-r1_1.csproj", "{3F34D868-A2E1-49FD-B2F8-8278C4ADDB35}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "message-builder-release-ab_r02_04_03_shr", "message-builder-release-ab_r02_04_03_shr\message-builder-release-ab_r02_04_03_shr.csproj", "{C542229C-BBE5-4457-8D4A-0B57C2C2A142}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "message-builder-release-cda-ab-shr", "message-builder-release-cda-ab-shr\message-builder-release-cda-ab-shr.csproj", "{BD2C5B3D-9CCC-4CBC-89CD-FC56C7461B04}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -244,6 +250,30 @@ Global
 		{3F34D868-A2E1-49FD-B2F8-8278C4ADDB35}.Release|Mixed Platforms.Build.0 = Release|x86
 		{3F34D868-A2E1-49FD-B2F8-8278C4ADDB35}.Release|x86.ActiveCfg = Release|x86
 		{3F34D868-A2E1-49FD-B2F8-8278C4ADDB35}.Release|x86.Build.0 = Release|x86
+		{C542229C-BBE5-4457-8D4A-0B57C2C2A142}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C542229C-BBE5-4457-8D4A-0B57C2C2A142}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C542229C-BBE5-4457-8D4A-0B57C2C2A142}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{C542229C-BBE5-4457-8D4A-0B57C2C2A142}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{C542229C-BBE5-4457-8D4A-0B57C2C2A142}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C542229C-BBE5-4457-8D4A-0B57C2C2A142}.Debug|x86.Build.0 = Debug|Any CPU
+		{C542229C-BBE5-4457-8D4A-0B57C2C2A142}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C542229C-BBE5-4457-8D4A-0B57C2C2A142}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C542229C-BBE5-4457-8D4A-0B57C2C2A142}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{C542229C-BBE5-4457-8D4A-0B57C2C2A142}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{C542229C-BBE5-4457-8D4A-0B57C2C2A142}.Release|x86.ActiveCfg = Release|Any CPU
+		{C542229C-BBE5-4457-8D4A-0B57C2C2A142}.Release|x86.Build.0 = Release|Any CPU
+		{BD2C5B3D-9CCC-4CBC-89CD-FC56C7461B04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD2C5B3D-9CCC-4CBC-89CD-FC56C7461B04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD2C5B3D-9CCC-4CBC-89CD-FC56C7461B04}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{BD2C5B3D-9CCC-4CBC-89CD-FC56C7461B04}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{BD2C5B3D-9CCC-4CBC-89CD-FC56C7461B04}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{BD2C5B3D-9CCC-4CBC-89CD-FC56C7461B04}.Debug|x86.Build.0 = Debug|Any CPU
+		{BD2C5B3D-9CCC-4CBC-89CD-FC56C7461B04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD2C5B3D-9CCC-4CBC-89CD-FC56C7461B04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD2C5B3D-9CCC-4CBC-89CD-FC56C7461B04}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{BD2C5B3D-9CCC-4CBC-89CD-FC56C7461B04}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{BD2C5B3D-9CCC-4CBC-89CD-FC56C7461B04}.Release|x86.ActiveCfg = Release|Any CPU
+		{BD2C5B3D-9CCC-4CBC-89CD-FC56C7461B04}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
