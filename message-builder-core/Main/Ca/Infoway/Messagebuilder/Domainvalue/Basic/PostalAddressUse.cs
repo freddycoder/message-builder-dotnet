@@ -155,7 +155,10 @@ namespace Ca.Infoway.Messagebuilder.Domainvalue.Basic
 				return Ca.Infoway.Messagebuilder.Codesystem.CodeSystem.VOCABULARY_POSTAL_ADDRESS_USE.Root;
 			}
 		}
-		
+
+		public virtual String CodeSystemName {
+            get { return null; }
+        }
 	
 		/// <summary>
 		/// Returns the c value for this enum.

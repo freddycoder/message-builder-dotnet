@@ -25,8 +25,9 @@
  
 namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 	
-	using Ca.Infoway.Messagebuilder.Domainvalue;
-	using System;
+	using Ca.Infoway.Messagebuilder;
+    using Ca.Infoway.Messagebuilder.Domainvalue;
+    using System;
 	using System.Collections;
 	using System.Collections.Generic;
 	using System.ComponentModel;
@@ -116,5 +117,36 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 			get { return this.value_ren; }
 		}
 	
+	
+        public override int GetHashCode()
+        {
+            return new HashCodeBuilder()
+		            .Append(this.value_ren)
+		            .Append(this.nullFlavor)
+                    .ToHashCode();
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+            else if (obj.GetType() != GetType())
+            {
+                return false;
+            } else {
+                return Equals((Diff<T>) obj);
+            }
+        }
+    
+        private bool Equals(Diff<T> that)
+        {
+            return new EqualsBuilder()
+                    .Append(this.value_ren, that.value_ren)
+                    .Append(this.nullFlavor, that.nullFlavor)
+                    .IsEquals();
+        }
+    
 	}
 }

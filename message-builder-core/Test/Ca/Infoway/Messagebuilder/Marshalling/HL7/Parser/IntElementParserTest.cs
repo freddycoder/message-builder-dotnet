@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System;
@@ -44,8 +44,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 
 		private ParseContext CreateContext(string hl7Type)
 		{
-			return ParserContextImpl.Create(hl7Type, typeof(Int32?), SpecificationVersion.V02R02, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
-				.POPULATED);
+			return ParseContextImpl.Create(hl7Type, typeof(Int32?), SpecificationVersion.V02R02, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
+				.POPULATED, null, null, false);
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -97,6 +97,27 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 				).BareValue, "correct value returned");
 			Assert.IsFalse(this.xmlResult.IsValid(), "error");
 			Assert.AreEqual(1, this.xmlResult.GetHl7Errors().Count, "1 error expected");
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void TestParseValueAttributeInvalidNegative2()
+		{
+			XmlNode node = CreateNode("<something value=\"-1\" />");
+			Assert.AreEqual(System.Convert.ToInt32("-1"), new IntElementParser().Parse(CreateContext("INT.NONNEG"), node, this.xmlResult
+				).BareValue, "correct value returned");
+			Assert.IsFalse(this.xmlResult.IsValid(), "error");
+			Assert.AreEqual(1, this.xmlResult.GetHl7Errors().Count, "1 error expected");
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void TestParseValueAttributeValidNegative()
+		{
+			XmlNode node = CreateNode("<something value=\"-1\" />");
+			Assert.AreEqual(System.Convert.ToInt32("-1"), new IntElementParser().Parse(CreateContext("INT"), node, this.xmlResult).BareValue
+				, "correct value returned");
+			Assert.IsTrue(this.xmlResult.IsValid(), "no errors");
 		}
 
 		/// <exception cref="System.Exception"></exception>

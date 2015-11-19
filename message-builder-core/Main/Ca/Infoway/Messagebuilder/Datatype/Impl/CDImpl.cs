@@ -61,10 +61,6 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Impl {
 	
 		private const long serialVersionUID = 1152929036065255121L;
 	
-		private String displayName;
-		private readonly IList<CD> translations;
-		private String originalText;
-	
 		/// <summary>
 		/// Constructs an empty CD.
 		/// </summary>
@@ -96,75 +92,7 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Impl {
 		/// <param name="nullFlavor">a  null flavor</param>
 		/// <param name="dataType">an HL7 datatype</param>
 		public CDImpl(Code value_ren, NullFlavor nullFlavor, StandardDataType dataType) : base(null, value_ren, nullFlavor, dataType) {
-			this.translations = new List<CD>();
 		}
-	
-		/// <summary>
-		/// Sets the display name.
-		/// </summary>
-		///
-		/// <param name="displayName_0">the display name</param>
-		public virtual String DisplayName {
-		/// <summary>
-		/// Returns the display name.
-		/// </summary>
-		///
-		/// <returns>the display name</returns>
-		  get {
-				return this.displayName;
-			}
-		/// <summary>
-		/// Sets the display name.
-		/// </summary>
-		///
-		/// <param name="displayName_0">the display name</param>
-		  set {
-				this.displayName = value;
-			}
-		}
-		
-	
-		/// <summary>
-		/// Returns the translations for this CD.
-		/// </summary>
-		///
-		/// <returns>the translations for this CD</returns>
-		public virtual IList<CD> Translations {
-		/// <summary>
-		/// Returns the translations for this CD.
-		/// </summary>
-		///
-		/// <returns>the translations for this CD</returns>
-		  get {
-				return this.translations;
-			}
-		}
-		
-	
-		/// <summary>
-		/// Sets the original text.
-		/// </summary>
-		///
-		/// <param name="originalText_0">the original text</param>
-		public virtual String OriginalText {
-		/// <summary>
-		/// Returns the original text.
-		/// </summary>
-		///
-		/// <returns>the original text</returns>
-		  get {
-				return originalText;
-			}
-		/// <summary>
-		/// Sets the original text.
-		/// </summary>
-		///
-		/// <param name="originalText_0">the original text</param>
-		  set {
-				this.originalText = value;
-			}
-		}
-		
 	
 	}
 }

@@ -14,15 +14,18 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System.Xml;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype;
+using Ca.Infoway.Messagebuilder.Datatype.Lang.Util;
+using Ca.Infoway.Messagebuilder.Error;
 using Ca.Infoway.Messagebuilder.J5goodies;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser;
+using Ca.Infoway.Messagebuilder.Platform;
 using NUnit.Framework;
 
 namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
@@ -44,8 +47,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 
 		private ParseContext CreateContext()
 		{
-			return ParserContextImpl.Create("TS", typeof(PlatformDate), SpecificationVersion.V02R02, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
-				.POPULATED);
+			return ParseContextImpl.Create("TS", typeof(PlatformDate), SpecificationVersion.V02R02, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
+				.POPULATED, null, null, false);
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -89,6 +92,28 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		}
 
 		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void TestParseValidValueAttributeWithTimeZoneMinus()
+		{
+			PlatformDate calendar = DateUtil.GetDate(2008, 2, 31, 15, 58, 57, 862);
+			string expectedValue = "20080331155857.8620" + GetCurrentTimeZone(calendar);
+			AssertValidValueAttribute(calendar, expectedValue);
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void TestParseValidValueAttributeWithTimeZonePlusHasCorrectDatePattern()
+		{
+			PlatformDate calendar = DateUtil.GetDate(2008, 2, 31, 10, 58, 57, 862, TimeZoneUtil.GetTimeZone("America/New_York"));
+			string value = "20080331155857.8620+0100";
+			AssertValidValueAttribute(calendar, value);
+			XmlNode node = CreateNode("<something value=\"" + value + "\" />");
+			PlatformDate parsedDate = (PlatformDate)(new TsElementParser()).Parse(CreateContext(), node, this.xmlResult).BareValue;
+			Assert.IsTrue(parsedDate is DateWithPattern, "is messagebuilder date");
+			Assert.AreEqual("yyyyMMddHHmmss.SSS0ZZZZZ", ((DateWithPattern)parsedDate).DatePattern, "correct date pattern");
+		}
+
+		/// <exception cref="System.Exception"></exception>
 		private void AssertValidValueAttribute(PlatformDate expectedResult, string value)
 		{
 			XmlNode node = CreateNode("<something value=\"" + value + "\" />");
@@ -102,7 +127,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		{
 			XmlNode node = CreateNode("<something value=\"19990355\" />");
 			XmlToModelResult result = new XmlToModelResult();
-			new TsElementParser().Parse(null, node, result);
+			new TsElementParser().Parse(new TrivialContext("TS.DATETIME"), node, result);
 			Assert.IsFalse(result.IsValid(), "valid date");
 			Assert.AreEqual(1, result.GetHl7Errors().Count, "one error");
 			Hl7Error hl7Error = result.GetHl7Errors()[0];
@@ -113,13 +138,32 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 
 		/// <exception cref="System.Exception"></exception>
 		[Test]
+		public virtual void TestParseValidDateForExceptionCase()
+		{
+			PlatformDate expectedResult = DateUtil.GetDate(2008, 5, 25, 14, 16, 10, 0);
+			string value = "20080625141610" + GetCurrentTimeZone(expectedResult);
+			XmlNode node = CreateNode("<something value=\"" + value + "\" />");
+			ParseContext context = ParseContextImpl.Create("TS.FULLDATETIME", typeof(PlatformDate), SpecificationVersion.R02_04_02, null
+				, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.POPULATED, null, null, false);
+			AssertDateEquals("correct value returned " + value, MarshallingTestCase.FULL_DATE_TIME, expectedResult, (PlatformDate)(new 
+				TsElementParser()).Parse(context, node, this.xmlResult).BareValue);
+			Assert.AreEqual(0, this.xmlResult.GetHl7Errors().Count, "no error");
+			context = ParseContextImpl.Create("TS.FULLDATETIME", typeof(PlatformDate), SpecificationVersion.V01R04_3, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
+				.POPULATED, null, null, false);
+			AssertDateEquals("correct value returned " + value, MarshallingTestCase.FULL_DATE_TIME, expectedResult, (PlatformDate)(new 
+				TsElementParser()).Parse(context, node, this.xmlResult).BareValue);
+			Assert.AreEqual(1, this.xmlResult.GetHl7Errors().Count, "one error");
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
 		public virtual void TestParseDateTimeWithMissingTimezoneForNonCeRx()
 		{
 			PlatformDate expectedResult = DateUtil.GetDate(2008, 5, 25, 14, 16, 00, 0);
 			string value = "200806251416";
 			XmlNode node = CreateNode("<something value=\"" + value + "\" />");
-			ParseContext context = ParserContextImpl.Create("TS.DATETIME", typeof(PlatformDate), SpecificationVersion.R02_04_02, null
-				, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.POPULATED);
+			ParseContext context = ParseContextImpl.Create("TS.DATETIME", typeof(PlatformDate), SpecificationVersion.R02_04_02, null, 
+				null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.POPULATED, null, null, false);
 			AssertDateEquals("correct value returned " + value, MarshallingTestCase.FULL_DATE_TIME, expectedResult, (PlatformDate)(new 
 				TsElementParser()).Parse(context, node, this.xmlResult).BareValue);
 			Assert.AreEqual(1, this.xmlResult.GetHl7Errors().Count, "has timezone missing error");
@@ -132,14 +176,57 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			PlatformDate expectedResult = DateUtil.GetDate(2008, 5, 25, 14, 16, 00, 0);
 			string value = "200806251416";
 			XmlNode node = CreateNode("<something value=\"" + value + "\" />");
-			ParseContext context = ParserContextImpl.Create("TS.DATETIME", typeof(PlatformDate), SpecificationVersion.V01R04_3, null, 
-				null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.POPULATED);
+			ParseContext context = ParseContextImpl.Create("TS.DATETIME", typeof(PlatformDate), SpecificationVersion.V01R04_3, null, 
+				null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.POPULATED, null, null, false);
 			AssertDateEquals("correct value returned " + value, MarshallingTestCase.FULL_DATE_TIME, expectedResult, (PlatformDate)(new 
 				TsElementParser()).Parse(context, node, this.xmlResult).BareValue);
 			Assert.AreEqual(0, this.xmlResult.GetHl7Errors().Count, "no timezone missing error");
 		}
 
-		//        assertTrue("no errors after relaxing validation", this.xmlResult.getHl7Errors().isEmpty());
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void TestParseFullDatePartTimeWithMissingTimezoneForNonCeRx()
+		{
+			PlatformDate expectedResult = DateUtil.GetDate(2008, 5, 25, 14, 16, 00, 0);
+			string value = "200806251416";
+			XmlNode node = CreateNode("<something value=\"" + value + "\" />");
+			ParseContext context = ParseContextImpl.Create("TS.FULLDATEPARTTIME", typeof(PlatformDate), SpecificationVersion.R02_04_02
+				, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.POPULATED, null, null, false);
+			AssertDateEquals("correct value returned " + value, MarshallingTestCase.FULL_DATE_TIME, expectedResult, (PlatformDate)(new 
+				TsElementParser()).Parse(context, node, this.xmlResult).BareValue);
+			Assert.AreEqual(1, this.xmlResult.GetHl7Errors().Count, "has timezone missing error");
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void TestParseFullDatePartTimeWithMissingTimezoneForCeRx()
+		{
+			PlatformDate expectedResult = DateUtil.GetDate(2008, 5, 25, 14, 16, 00, 0);
+			string value = "200806251416";
+			XmlNode node = CreateNode("<something value=\"" + value + "\" />");
+			ParseContext context = ParseContextImpl.Create("TS.FULLDATEPARTTIME", typeof(PlatformDate), SpecificationVersion.V01R04_3
+				, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.POPULATED, null, null, false);
+			AssertDateEquals("correct value returned " + value, MarshallingTestCase.FULL_DATE_TIME, expectedResult, (PlatformDate)(new 
+				TsElementParser()).Parse(context, node, this.xmlResult).BareValue);
+			Assert.AreEqual(0, this.xmlResult.GetHl7Errors().Count, "no timezone missing error");
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void TestParseNoFullDateTimeSpecificationTypeForAbstractFullDateWithTime()
+		{
+			PlatformDate expectedResult = DateUtil.GetDate(2008, 5, 25, 14, 16, 10, 0);
+			string value = "20080625141610" + GetCurrentTimeZone(expectedResult);
+			XmlNode node = CreateNode("<something value=\"" + value + "\" />");
+			ParseContext context = ParseContextImpl.Create("TS.FULLDATEWITHTIME", typeof(PlatformDate), SpecificationVersion.R02_04_02
+				, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.POPULATED, null, null, false);
+			AssertDateEquals("correct value returned " + value, MarshallingTestCase.FULL_DATE_TIME, expectedResult, (PlatformDate)(new 
+				TsElementParser()).Parse(context, node, this.xmlResult).BareValue);
+			//        assertTrue("no errors after relaxing validation", this.xmlResult.getHl7Errors().isEmpty());
+			Assert.IsFalse(this.xmlResult.IsValid(), "no errors after relaxing validation");
+			Assert.AreEqual(1, this.xmlResult.GetHl7Errors().Count);
+		}
+
 		/// <exception cref="System.Exception"></exception>
 		[Test]
 		public virtual void TestParseNoFullDateSpecificationTypeForAbstractFullDateWithTime()
@@ -147,8 +234,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			PlatformDate expectedResult = DateUtil.GetDate(2008, 5, 25, 0, 0, 0, 0);
 			string value = "20080625";
 			XmlNode node = CreateNode("<something value=\"" + value + "\" />");
-			ParseContext context = ParserContextImpl.Create("TS.FULLDATEWITHTIME", typeof(PlatformDate), SpecificationVersion.R02_04_02
-				, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.POPULATED);
+			ParseContext context = ParseContextImpl.Create("TS.FULLDATEWITHTIME", typeof(PlatformDate), SpecificationVersion.R02_04_02
+				, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.POPULATED, null, null, false);
 			AssertDateEquals("correct value returned " + value, MarshallingTestCase.FULL_DATE, expectedResult, (PlatformDate)(new TsElementParser
 				()).Parse(context, node, this.xmlResult).BareValue);
 			//        assertTrue("no errors after relaxing validation", this.xmlResult.getHl7Errors().isEmpty());
@@ -163,8 +250,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			PlatformDate expectedResult = DateUtil.GetDate(2008, 5, 25, 0, 0, 0, 0);
 			string value = "20080625";
 			XmlNode node = CreateNode("<something value=\"" + value + "\" specializationType=\"TS.DATETIME\" />");
-			ParseContext context = ParserContextImpl.Create("TS.FULLDATEWITHTIME", typeof(PlatformDate), SpecificationVersion.R02_04_02
-				, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.POPULATED);
+			ParseContext context = ParseContextImpl.Create("TS.FULLDATEWITHTIME", typeof(PlatformDate), SpecificationVersion.R02_04_02
+				, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.POPULATED, null, null, false);
 			AssertDateEquals("correct value returned " + value, MarshallingTestCase.FULL_DATE, expectedResult, (PlatformDate)(new TsElementParser
 				()).Parse(context, node, this.xmlResult).BareValue);
 			Assert.AreEqual(1, this.xmlResult.GetHl7Errors().Count, "one error");
@@ -179,13 +266,90 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			PlatformDate expectedResult = DateUtil.GetDate(2008, 5, 25, 0, 0, 0, 0);
 			string value = "20080625";
 			XmlNode node = CreateNode("<something value=\"" + value + "\" specializationType=\"TS.FULLDATE\" />");
-			ParseContext context = ParserContextImpl.Create("TS.FULLDATEWITHTIME", typeof(PlatformDate), SpecificationVersion.R02_04_02
-				, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.POPULATED);
+			ParseContext context = ParseContextImpl.Create("TS.FULLDATEWITHTIME", typeof(PlatformDate), SpecificationVersion.R02_04_02
+				, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.POPULATED, null, null, false);
 			AssertDateEquals("correct value returned " + value, MarshallingTestCase.FULL_DATE, expectedResult, (PlatformDate)(new TsElementParser
 				()).Parse(context, node, this.xmlResult).BareValue);
 			Assert.IsTrue(this.xmlResult.GetHl7Errors().IsEmpty(), "no errors");
 		}
-		//Date expectedResult = DateUtil.getDate(2008, 5, 24, 23, 0, 0, 0);
-		//Date expectedResult = DateUtil.getDate(2008, 5, 24);
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void TestParseValidFullDateTimeSpecificationTypeForAbstractFullDateWithTime()
+		{
+			PlatformDate expectedResult = DateUtil.GetDate(2008, 5, 25, 14, 16, 10, 0);
+			string value = "20080625141610" + GetCurrentTimeZone(expectedResult);
+			XmlNode node = CreateNode("<something value=\"" + value + "\" specializationType=\"TS.FULLDATETIME\" />");
+			ParseContext context = ParseContextImpl.Create("TS.FULLDATEWITHTIME", typeof(PlatformDate), SpecificationVersion.R02_04_02
+				, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.POPULATED, null, null, false);
+			AssertDateEquals("correct value returned " + value, MarshallingTestCase.FULL_DATE_TIME, expectedResult, (PlatformDate)(new 
+				TsElementParser()).Parse(context, node, this.xmlResult).BareValue);
+			Assert.IsTrue(this.xmlResult.GetHl7Errors().IsEmpty(), "no errors");
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void TestParseValidFullDateTimeButWithFullDateSpecificationTypeForAbstractFullDateWithTime()
+		{
+			PlatformDate expectedResult = DateUtil.GetDate(2008, 5, 25, 14, 16, 10, 0);
+			string value = "20080625141610" + GetCurrentTimeZone(expectedResult);
+			XmlNode node = CreateNode("<something value=\"" + value + "\" specializationType=\"TS.FULLDATE\" />");
+			ParseContext context = ParseContextImpl.Create("TS.FULLDATEWITHTIME", typeof(PlatformDate), SpecificationVersion.R02_04_02
+				, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.POPULATED, null, null, false);
+			AssertDateEquals("correct value returned " + value, MarshallingTestCase.FULL_DATE_TIME, expectedResult, (PlatformDate)(new 
+				TsElementParser()).Parse(context, node, this.xmlResult).BareValue);
+			Assert.AreEqual(1, this.xmlResult.GetHl7Errors().Count, "one error");
+			string expectedErrorMsg = "The timestamp element <something specializationType=\"TS.FULLDATE\" " + "value=\"20080625141610"
+				 + GetCurrentTimeZone(expectedResult) + "\"/> appears to be formatted as type TS.FULLDATETIME, " + "but should be TS.FULLDATE.";
+			Assert.IsTrue(this.xmlResult.GetHl7Errors()[0].GetMessage().Equals(expectedErrorMsg), "specialization type error");
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void DateShouldBeUnaffectedByDateTimeTimeZone()
+		{
+			PlatformDate expectedResult = DateUtil.GetDate(2008, 5, 25);
+			string value = "20080625";
+			XmlNode node = CreateNode("<something value=\"" + value + "\" specializationType=\"TS.FULLDATE\" />");
+			ParseContext context = ParseContextImpl.Create("TS.FULLDATE", typeof(PlatformDate), SpecificationVersion.R02_04_02, null, 
+				TimeZoneUtil.GetTimeZone("GMT-3"), Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.POPULATED, null, null, null, null, false
+				);
+			PlatformDate date = (PlatformDate)new TsElementParser().Parse(context, node, this.xmlResult).BareValue;
+			AssertDateEquals("should not be different even though different time zone", MarshallingTestCase.FULL_DATE, expectedResult
+				, date);
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void ShouldBeConvertedDueToTimeZone()
+		{
+			PlatformDate expectedResult = DateUtil.GetDate(2008, 5, 24, 23, 0, 0, 0, TimeZoneUtil.GetTimeZone("America/New_York"));
+			string value = "20080625";
+			XmlNode node = CreateNode("<something value=\"" + value + "\" specializationType=\"TS.FULLDATEWITHTIME\" />");
+			ParseContext context = ParseContextImpl.Create("TS.FULLDATEWITHTIME", typeof(PlatformDate), SpecificationVersion.R02_04_02
+				, null, TimeZoneUtil.GetTimeZone("GMT-3"), Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.POPULATED, null, null, null, null
+				, false);
+			PlatformDate date = (PlatformDate)new TsElementParser().Parse(context, node, this.xmlResult).BareValue;
+			AssertDateEquals("should have been converted due to time zone", MarshallingTestCase.FULL_DATE_TIME, expectedResult, date);
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void DateShouldBeAffectedByDateTimeZone()
+		{
+			PlatformDate expectedResult = DateUtil.GetDate(2008, 5, 24, 23, 0, 0, 0, TimeZoneUtil.GetTimeZone("America/New_York"));
+			string value = "20080625";
+			XmlNode node = CreateNode("<something value=\"" + value + "\" specializationType=\"TS.FULLDATE\" />");
+			ParseContext context = ParseContextImpl.Create("TS.FULLDATE", typeof(PlatformDate), SpecificationVersion.R02_04_02, TimeZoneUtil
+				.GetTimeZone("GMT-3"), null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.POPULATED, null, null, null, null, false);
+			PlatformDate date = (PlatformDate)new TsElementParser().Parse(context, node, this.xmlResult).BareValue;
+			AssertDateEquals("should not be different even though different time zone", MarshallingTestCase.FULL_DATE, expectedResult
+				, date);
+		}
+
+		private string GetCurrentTimeZone(PlatformDate calendar)
+		{
+			return DateFormatUtil.Format(calendar, "Z");
+		}
 	}
 }

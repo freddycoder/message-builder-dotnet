@@ -14,11 +14,11 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System.Collections.Generic;
-using Ca.Infoway.Messagebuilder.Marshalling.HL7;
+using Ca.Infoway.Messagebuilder.Error;
 
 namespace Ca.Infoway.Messagebuilder.Marshalling.HL7
 {
@@ -43,9 +43,31 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7
 			this.xmlMessage = xmlMessage;
 		}
 
+		public virtual bool HasErrors()
+		{
+			return HasErrorLevel(ErrorLevel.ERROR);
+		}
+
+		public virtual bool HasWarnings()
+		{
+			return HasErrorLevel(ErrorLevel.WARNING);
+		}
+
 		public virtual bool IsValid()
 		{
-			return this.hl7Errors.Count == 0;
+			return !(HasErrors() || HasWarnings());
+		}
+
+		private bool HasErrorLevel(ErrorLevel level)
+		{
+			foreach (Hl7Error hl7Error in this.hl7Errors)
+			{
+				if (hl7Error.GetHl7ErrorLevel() == level)
+				{
+					return true;
+				}
+			}
+			return false;
 		}
 
 		public virtual void AddHl7Error(Hl7Error hl7Error)

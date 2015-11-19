@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2013-03-01 17:48:17 -0500 (Fri, 01 Mar 2013) $
- * Revision:      $LastChangedRevision: 6663 $
+ * Author:        $LastChangedBy: gng $
+ * Last modified: $LastChangedDate: 2013-03-14 19:00:15 -0400 (Thu, 14 Mar 2013) $
+ * Revision:      $LastChangedRevision: 6714 $
  */
 
 /// ---------------------------------------------------------------------------------------------------
@@ -75,6 +75,11 @@ namespace Ca.Infoway.Messagebuilder.J5goodies {
 		/// </summary>
 		///
 		public static readonly String PDF = "application/pdf";
+        /// <summary>
+        /// The MIME type for SVG documents.
+        /// </summary>
+        ///
+	    public static readonly String SVG = "image/svg+xml";
 		/// <summary>
 		/// The MIME type for Microsoft PowerPoint documents.
 		/// </summary>

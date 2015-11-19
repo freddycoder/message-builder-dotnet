@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-09-20 16:51:13 -0400 (Tue, 20 Sep 2011) $
- * Revision:      $LastChangedRevision: 2998 $
+ * Author:        $LastChangedBy: jroberts $
+ * Last modified: $LastChangedDate: 2014-08-11 11:35:13 -0400 (Mon, 11 Aug 2014) $
+ * Revision:      $LastChangedRevision: 8844 $
  */
 
 /// ---------------------------------------------------------------------------------------------------
@@ -41,7 +41,8 @@ namespace Ca.Infoway.Messagebuilder.Datatype {
 	/// It is expected that the flavor name may change in a future release. 
 	/// </summary>
 	///
-	public interface REAL : QTY<BigDecimal> {
+    public interface REAL : QTY<BigDecimal>, SetOperatorType
+    {
 	
 	}
 }

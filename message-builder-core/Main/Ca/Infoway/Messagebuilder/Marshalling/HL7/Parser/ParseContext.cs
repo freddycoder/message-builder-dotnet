@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System;
@@ -29,14 +29,22 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 
 		VersionNumber GetVersion();
 
-		TimeZone GetDateTimeZone();
+		TimeZoneInfo GetDateTimeZone();
 
-		TimeZone GetDateTimeTimeZone();
+		TimeZoneInfo GetDateTimeTimeZone();
 
 		Int32? GetLength();
 
 		CodingStrength GetCodingStrength();
 
 		Ca.Infoway.Messagebuilder.Xml.ConformanceLevel GetConformance();
+
+		Cardinality GetCardinality();
+
+		ConstrainedDatatype GetConstraints();
+
+		bool IsCda();
+
+		bool IsFixedValue();
 	}
 }

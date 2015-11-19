@@ -107,5 +107,35 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 			}
 		}
 		
+        public override int GetHashCode()
+        {
+            return new HashCodeBuilder()
+		            .Append(this.value_ren)
+		            .Append(this.operat)
+                    .ToHashCode();
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+            else if (obj.GetType() != GetType())
+            {
+                return false;
+            } else {
+                return Equals((SetComponent<T>) obj);
+            }
+        }
+    
+        private bool Equals(SetComponent<T> that)
+        {
+            return new EqualsBuilder()
+                    .Append(this.value_ren, that.value_ren)
+                    .Append(this.operat, that.operat)
+                    .IsEquals();
+        }
+    
 	}
 }

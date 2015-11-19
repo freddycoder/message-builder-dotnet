@@ -14,12 +14,12 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System.Collections.Generic;
+using Ca.Infoway.Messagebuilder.Error;
 using Ca.Infoway.Messagebuilder.Marshalling;
-using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 
 namespace Ca.Infoway.Messagebuilder.Marshalling
 {
@@ -53,7 +53,16 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 		{
 			get
 			{
-				return this.hl7Errors.IsEmpty() ? null : this.hl7Errors[0].ToString();
+				Hl7Error firstError = null;
+				foreach (Hl7Error hl7Error in this.hl7Errors)
+				{
+					if (hl7Error.GetHl7ErrorLevel() == ErrorLevel.ERROR)
+					{
+						firstError = hl7Error;
+						break;
+					}
+				}
+				return firstError == null ? string.Empty : firstError.ToString();
 			}
 		}
 	}

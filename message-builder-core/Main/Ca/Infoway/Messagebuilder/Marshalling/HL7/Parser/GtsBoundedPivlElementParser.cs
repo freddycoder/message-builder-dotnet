@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System;
@@ -24,9 +24,11 @@ using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Datatype.Impl;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
+using Ca.Infoway.Messagebuilder.Error;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser;
 using Ca.Infoway.Messagebuilder.Util.Xml;
+using Ca.Infoway.Messagebuilder.Xml;
 using ILOG.J2CsMapping.Collections.Generics;
 using ILOG.J2CsMapping.Text;
 
@@ -79,8 +81,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		private Interval<PlatformDate> ParseDuration(ParseContext context, XmlToModelResult xmlResult, XmlElement durationElement
 			)
 		{
-			ParseContext subContext = ParserContextImpl.Create("IVL<TS.FULLDATE>", typeof(Interval<object>), context.GetVersion(), context
-				.GetDateTimeZone(), context.GetDateTimeTimeZone(), Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY);
+			ParseContext subContext = ParseContextImpl.Create("IVL<TS.FULLDATE>", typeof(Interval<object>), Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
+				.MANDATORY, Cardinality.Create("1"), context);
 			return (Interval<PlatformDate>)ParserRegistry.GetInstance().Get("IVL<TS.FULLDATE>").Parse(subContext, Arrays.AsList((XmlNode
 				)durationElement), xmlResult).BareValue;
 		}
@@ -88,8 +90,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		private PeriodicIntervalTime ParseFrequency(ParseContext context, XmlToModelResult xmlToModelResult, XmlElement durationElement
 			)
 		{
-			ParseContext subContext = ParserContextImpl.Create("PIVL<TS.DATETIME>", typeof(PeriodicIntervalTime), context.GetVersion(
-				), context.GetDateTimeZone(), context.GetDateTimeTimeZone(), Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY);
+			ParseContext subContext = ParseContextImpl.Create("PIVL<TS.DATETIME>", typeof(PeriodicIntervalTime), Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
+				.MANDATORY, Cardinality.Create("1"), context);
 			return (PeriodicIntervalTime)ParserRegistry.GetInstance().Get("PIVL<TS.DATETIME>").Parse(subContext, Arrays.AsList((XmlNode
 				)durationElement), xmlToModelResult).BareValue;
 		}
@@ -98,24 +100,25 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		{
 			IList<XmlElement> result = new List<XmlElement>();
 			XmlNodeList list = element.ChildNodes;
-			int length = list == null ? 0 : list.Count;
-			for (int i = 0; i < length; i++)
+			if (list != null)
 			{
-				XmlNode node = list.Item(i);
-				if (node.NodeType != System.Xml.XmlNodeType.Element)
+				foreach (XmlNode node in new XmlNodeListIterable(list))
 				{
-				}
-				else
-				{
-					// skip it
-					if (StringUtils.Equals("comp", NodeUtil.GetLocalOrTagName((XmlElement)node)))
+					if (node.NodeType != System.Xml.XmlNodeType.Element)
 					{
-						result.Add((XmlElement)node);
 					}
 					else
 					{
-						xmlToModelResult.AddHl7Error(new Hl7Error(Hl7ErrorCode.DATA_TYPE_ERROR, System.String.Format("Unexpected tag {0} in GTS.BOUNDEDPIVL"
-							, XmlDescriber.DescribeSingleElement((XmlElement)node)), (XmlElement)node));
+						// skip it
+						if (StringUtils.Equals("comp", NodeUtil.GetLocalOrTagName((XmlElement)node)))
+						{
+							result.Add((XmlElement)node);
+						}
+						else
+						{
+							xmlToModelResult.AddHl7Error(new Hl7Error(Hl7ErrorCode.DATA_TYPE_ERROR, System.String.Format("Unexpected tag {0} in GTS.BOUNDEDPIVL"
+								, XmlDescriber.DescribeSingleElement((XmlElement)node)), (XmlElement)node));
+						}
 					}
 				}
 			}

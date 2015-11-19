@@ -14,10 +14,13 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
+using System;
+using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype;
+using Ca.Infoway.Messagebuilder.Error;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter;
 using ILOG.J2CsMapping.Text;
@@ -46,8 +49,13 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 
 		public override string Format(FormatContext context, BareANY hl7Value, int indentLevel)
 		{
+			if (hl7Value == null)
+			{
+				return string.Empty;
+			}
 			StandardDataType specializationType = hl7Value.DataType;
-			ValidateSpecializationType(specializationType, context);
+			bool valueOmitted = hl7Value.HasNullFlavor() && hl7Value.BareValue == null;
+			ValidateSpecializationType(specializationType, valueOmitted, context);
 			PropertyFormatter formatter = fullDateTimeFormatter;
 			string formatterSpecializationType = StandardDataType.TS_FULLDATETIME.Type;
 			if (StandardDataType.TS_FULLDATE == specializationType)
@@ -55,23 +63,39 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 				formatter = fullDateFormatter;
 				formatterSpecializationType = StandardDataType.TS_FULLDATE.Type;
 			}
-			return formatter.Format(new FormatContextImpl(context.GetModelToXmlResult(), context.GetPropertyPath(), context.GetElementName
-				(), formatterSpecializationType, context.GetConformanceLevel(), true, context.GetVersion(), context.GetDateTimeZone(), context
-				.GetDateTimeTimeZone(), null), hl7Value, indentLevel);
+			return formatter.Format(new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl(formatterSpecializationType
+				, true, context), hl7Value, indentLevel);
 		}
 
-		private void ValidateSpecializationType(StandardDataType specializationType, FormatContext context)
+		private void ValidateSpecializationType(StandardDataType specializationType, bool valueOmitted, FormatContext context)
 		{
-			if (specializationType == StandardDataType.TS)
+			if (specializationType == StandardDataType.TS || specializationType == null)
 			{
-				context.GetModelToXmlResult().AddHl7Error(new Hl7Error(Hl7ErrorCode.DATA_TYPE_ERROR, System.String.Format("No specializationType provided. Value should be TS.FULLDATE or TS.FULLDATETIME. TS.FULLDATETIME will be assumed."
-					, specializationType.Type), context.GetPropertyPath()));
+				if (Ca.Infoway.Messagebuilder.BooleanUtils.ValueOf(Runtime.GetProperty(TsDateFormats.ABSTRACT_TS_IGNORE_SPECIALIZATION_TYPE_ERROR_PROPERTY_NAME
+					)))
+				{
+				}
+				else
+				{
+					// user has specified that this validation error should be suppressed
+					if (valueOmitted)
+					{
+					}
+					else
+					{
+						// RM16399 - there are some cases where it is valid to omit a specialization type (such as when not providing a TS value)
+						// do nothing; other potential errors will be caught by the default concrete TS formatter 
+						context.GetModelToXmlResult().AddHl7Error(new Hl7Error(Hl7ErrorCode.DATA_TYPE_ERROR, System.String.Format("No specializationType provided. Value should be one of TS.FULLDATE / TS.FULLDATETIME / TS.FULLDATEPARTTIME. TS.FULLDATETIME will be assumed."
+							, specializationType.Type), context.GetPropertyPath()));
+					}
+				}
 			}
 			else
 			{
-				if (specializationType != StandardDataType.TS_FULLDATE && specializationType != StandardDataType.TS_FULLDATETIME)
+				if (specializationType != StandardDataType.TS_FULLDATE && specializationType != StandardDataType.TS_FULLDATETIME && specializationType
+					 != StandardDataType.TS_FULLDATEPARTTIME)
 				{
-					context.GetModelToXmlResult().AddHl7Error(new Hl7Error(Hl7ErrorCode.DATA_TYPE_ERROR, System.String.Format("Invalid specializationType: {0}. Value should be TS.FULLDATE or TS.FULLDATETIME. TS.FULLDATETIME will be assumed."
+					context.GetModelToXmlResult().AddHl7Error(new Hl7Error(Hl7ErrorCode.DATA_TYPE_ERROR, System.String.Format("Invalid specializationType: {0}. Value should be one of TS.FULLDATE / TS.FULLDATETIME / TS.FULLDATEPARTTIME. TS.FULLDATETIME will be assumed."
 						, specializationType.Type), context.GetPropertyPath()));
 				}
 			}

@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System.Collections.Generic;
@@ -23,8 +23,8 @@ using Ca.Infoway.Messagebuilder.Datatype.Lang;
 using Ca.Infoway.Messagebuilder.Marshalling;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter;
-using Ca.Infoway.Messagebuilder.Terminology;
-using Ca.Infoway.Messagebuilder.Terminology.Configurator;
+using Ca.Infoway.Messagebuilder.Resolver;
+using Ca.Infoway.Messagebuilder.Resolver.Configurator;
 using ILOG.J2CsMapping.Collections.Generics;
 using NUnit.Framework;
 
@@ -33,21 +33,28 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 	public abstract class FormatterTestCase
 	{
 		[SetUp]
-		public virtual void Setup()
+		public virtual void FormatterTestCaseSetup()
 		{
 			DefaultCodeResolutionConfigurator.ConfigureCodeResolversWithTrivialDefault();
+			result = new ModelToXmlResult();
 		}
 
-		[NUnit.Framework.TearDown]
-		public virtual void TearDown()
+		//NUnit does not create a new instance for each test method
+		[TearDown]
+		public virtual void FormatterTestCaseTearDown()
 		{
 			CodeResolverRegistry.UnregisterAll();
 			this.result.ClearErrors();
 		}
 
-		protected ModelToXmlResult result = new ModelToXmlResult();
+		protected ModelToXmlResult result;
 
 		protected virtual void AssertXml(string description, string expected, string actual)
+		{
+			AssertXml(description, expected, actual, false);
+		}
+
+		protected virtual void AssertXml(string description, string expected, string actual, bool ignoreWhitespace)
 		{
 			if (actual.Contains("<!--"))
 			{
@@ -55,7 +62,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 				string rest = StringUtils.SubstringAfter(StringUtils.SubstringAfter(actual, "<!--"), "-->");
 				actual = first + rest;
 			}
-			Assert.AreEqual(WhitespaceUtil.NormalizeWhitespace(expected), WhitespaceUtil.NormalizeWhitespace(actual), description);
+			Assert.AreEqual(WhitespaceUtil.NormalizeWhitespace(expected, ignoreWhitespace), WhitespaceUtil.NormalizeWhitespace(actual
+				, ignoreWhitespace), description);
 		}
 
 		/// <exception cref="ILOG.J2CsMapping.Util.ParseException"></exception>
@@ -76,7 +84,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 
 		protected virtual FormatContext GetContext(string name, string type, VersionNumber version)
 		{
-			return new FormatContextImpl(this.result, null, name, type, null, false, version, null, null, null);
+			return new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl(this.result, null, name, type, null, null
+				, false, version, null, null, null, false);
 		}
 
 		protected ICollection<Code> MakeSet(params Code[] codes)
@@ -87,6 +96,19 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		protected ICollection<string> MakeSet(params string[] strings)
 		{
 			return new System.Collections.Generic.SortedSet<string>(Arrays.AsList(strings));
+		}
+
+		protected IList<TelecommunicationAddress> MakeTelecommunicationAddressList(params string[] strings)
+		{
+			IList<TelecommunicationAddress> result = new List<TelecommunicationAddress>();
+			foreach (string s in strings)
+			{
+				TelecommunicationAddress address = new TelecommunicationAddress();
+				address.Address = s;
+				address.UrlScheme = CeRxDomainTestValues.MAILTO;
+				result.Add(address);
+			}
+			return result;
 		}
 
 		protected ICollection<TelecommunicationAddress> MakeTelecommunicationAddressSet(params string[] strings)

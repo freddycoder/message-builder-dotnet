@@ -14,12 +14,13 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System.Collections.Generic;
 using System.Xml;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
+using Ca.Infoway.Messagebuilder.Util.Xml;
 
 namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 {
@@ -28,9 +29,12 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		protected virtual IList<XmlNode> AsList(XmlNodeList list)
 		{
 			IList<XmlNode> result = new List<XmlNode>();
-			for (int i = 0,  length = list == null ? 0 : list.Count; i < length; i++)
+			if (list != null)
 			{
-				result.Add(list.Item(i));
+				foreach (XmlNode childNode in new XmlNodeListIterable(list))
+				{
+					result.Add(childNode);
+				}
 			}
 			return result;
 		}

@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using Ca.Infoway.Messagebuilder;
@@ -59,14 +59,20 @@ namespace Ca.Infoway.Messagebuilder.Xml
 			this.code = code;
 		}
 
-		public virtual string GetDescription()
+		public virtual string Description
 		{
-			return WordUtils.CapitalizeFully(Name);
+			get
+			{
+				return WordUtils.CapitalizeFully(Name);
+			}
 		}
 
-		public virtual string GetCode()
+		public virtual string Code
 		{
-			return this.code;
+			get
+			{
+				return this.code;
+			}
 		}
 	}
 }

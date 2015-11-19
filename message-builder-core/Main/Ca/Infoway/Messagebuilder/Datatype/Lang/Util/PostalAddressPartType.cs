@@ -135,6 +135,7 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang.Util {
             basicPartTypes = ILOG.J2CsMapping.Collections.Generics.Collections.UnmodifiableSet(set1);
 
             ILOG.J2CsMapping.Collections.Generics.ISet<PostalAddressPartType> set2 = new HashedSet<PostalAddressPartType>();
+            ILOG.J2CsMapping.Collections.Generics.Collections.Add(set2, DELIMITER);
             ILOG.J2CsMapping.Collections.Generics.Collections.Add(set2, CITY);
             ILOG.J2CsMapping.Collections.Generics.Collections.Add(set2, STATE);
             ILOG.J2CsMapping.Collections.Generics.Collections.Add(set2, POSTAL_CODE);
@@ -205,6 +206,10 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang.Util {
 				return this.codeValue;
 			}
 		}
+
+        public virtual String CodeSystemName {
+            get { return null; }
+        }
 
         public static bool IsBasicAddressPartType(PostalAddressPartType partToCheck)
         {

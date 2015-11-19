@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using Ca.Infoway.Messagebuilder;
@@ -33,6 +33,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		public virtual void TestFormatValueNull()
 		{
 			string result = new ScPropertyFormatter().Format(GetContext("name"), null);
+			Assert.IsTrue(this.result.IsValid());
 			Assert.IsTrue(StringUtils.IsBlank(result), "named null format");
 		}
 
@@ -43,6 +44,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			ScPropertyFormatter formatter = new ScPropertyFormatter();
 			CodedString<Code> codedString = new CodedString<Code>("something", null);
 			string result = formatter.Format(GetContext("name"), new SCImpl<Code>(codedString));
+			Assert.IsTrue(this.result.IsValid());
 			Assert.AreEqual(AddLineSeparator("<name>something</name>"), result, "something in text node");
 		}
 
@@ -51,10 +53,12 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		public virtual void TestFormatValueCode()
 		{
 			ScPropertyFormatter formatter = new ScPropertyFormatter();
-			CodedString<Code> codedString = new CodedString<Code>("something", Ca.Infoway.Messagebuilder.Domainvalue.Basic.State.ALBERTA
-				);
+			CodedString<Code> codedString = new CodedString<Code>("something", Ca.Infoway.Messagebuilder.Domainvalue.Basic.UnitsOfMeasureCaseSensitive
+				.CENTIMETRE, "aDisplayName", "aCodeSystemName", "aCodeSystemVersion");
 			string result = formatter.Format(GetContext("name"), new SCImpl<Code>(codedString));
-			Assert.AreEqual(AddLineSeparator("<name code=\"AB\">something</name>"), result, "something in text node");
+			Assert.IsTrue(this.result.IsValid());
+			Assert.AreEqual(AddLineSeparator("<name code=\"cm\" codeSystem=\"2.16.840.1.113883.5.141\" codeSystemName=\"aCodeSystemName\" codeSystemVersion=\"aCodeSystemVersion\" displayName=\"aDisplayName\">something</name>"
+				), result, "something in text node");
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -64,6 +68,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			ScPropertyFormatter formatter = new ScPropertyFormatter();
 			CodedString<Code> codedString = new CodedString<Code>("<cats think they're > humans & dogs 99% of the time/>", null);
 			string result = formatter.Format(GetContext("name"), new SCImpl<Code>(codedString));
+			Assert.IsTrue(this.result.IsValid());
 			Assert.AreEqual("<name>&lt;cats think they&apos;re &gt; humans &amp; dogs 99% of the time/&gt;</name>".Trim(), result.Trim
 				(), "something in text node");
 		}

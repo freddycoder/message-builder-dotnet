@@ -14,14 +14,16 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System;
 using System.Xml;
 using Ca.Infoway.Messagebuilder;
+using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
 using Ca.Infoway.Messagebuilder.Datatype.Lang.Util;
+using Ca.Infoway.Messagebuilder.Domainvalue;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser;
 using NUnit.Framework;
@@ -70,6 +72,63 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 
 		/// <exception cref="System.Exception"></exception>
 		[Test]
+		public virtual void TestParseUrgForBC()
+		{
+			ParseContext context = ParseContextImpl.Create("URG<PQ.LAB>", null, SpecificationVersion.V02R04_BC, null, null, null, null
+				, null, null, null, false);
+			string xml = "<value specializationType=\"URG_PQ.LAB\" unit=\"1\" xsi:type=\"URG_PQ\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">"
+				 + "<originalText mediaType=\"text/plain\" representation=\"TXT\">&lt;124</originalText>" + "<low inclusive=\"true\" nullFlavor=\"NI\" specializationType=\"PQ.LAB\" value=\"1\" />"
+				 + "<high inclusive=\"false\" specializationType=\"PQ.LAB\" unit=\"g/L\" value=\"124\"/>" + "</value>";
+			XmlNode node = CreateNode(xml);
+			BareANY URG = new UrgPqElementParser().Parse(context, node, this.xmlResult);
+			UncertainRange<PhysicalQuantity> range = (UncertainRange<PhysicalQuantity>)URG.BareValue;
+			Assert.IsNotNull(range, "null");
+			Assert.IsTrue(this.xmlResult.IsValid());
+			Assert.AreEqual(Representation.LOW_HIGH, range.Representation, "representation");
+			Assert.AreEqual("<124", ((ANYMetaData)URG).OriginalText, "OT");
+			Assert.IsTrue(range.LowInclusive.Value, "low inclusive");
+			Assert.AreEqual(Ca.Infoway.Messagebuilder.Domainvalue.Nullflavor.NullFlavor.NO_INFORMATION, range.LowNullFlavor, "low NF"
+				);
+			Assert.AreEqual(BigDecimal.ONE, range.Low.Quantity, "low value");
+			Assert.IsNull(range.Low.Unit, "low unit");
+			Assert.IsFalse(range.HighInclusive.Value, "high inclusive");
+			Assert.IsNull(range.HighNullFlavor, "high NF");
+			Assert.AreEqual(new BigDecimal("124"), range.High.Quantity, "high value");
+			Assert.AreEqual("g/L", range.High.Unit.CodeValue, "high units");
+			Assert.IsTrue(range.High.Unit is x_LabUnitsOfMeasure);
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void TestParseUrgForBCAlt()
+		{
+			ParseContext context = ParseContextImpl.Create("URG<PQ.LAB>", null, SpecificationVersion.V02R04_BC, null, null, null, null
+				, null, null, null, false);
+			string xml = "<value specializationType=\"URG_PQ.LAB\" unit=\"1\" xsi:type=\"URG_PQ\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">"
+				 + "<originalText mediaType=\"text/plain\" representation=\"TXT\">&lt;124</originalText>" + "<low inclusive=\"true\" nullFlavor=\"NI\" specializationType=\"PQ.LAB\" unit=\"1\" />"
+				 + "<high inclusive=\"false\" specializationType=\"PQ.LAB\" unit=\"g/L\" value=\"124\"/>" + "</value>";
+			XmlNode node = CreateNode(xml);
+			BareANY URG = new UrgPqElementParser().Parse(context, node, this.xmlResult);
+			UncertainRange<PhysicalQuantity> range = (UncertainRange<PhysicalQuantity>)URG.BareValue;
+			Assert.IsNotNull(range, "null");
+			Assert.IsTrue(this.xmlResult.IsValid());
+			Assert.AreEqual(Representation.LOW_HIGH, range.Representation, "representation");
+			Assert.AreEqual("<124", ((ANYMetaData)URG).OriginalText, "OT");
+			Assert.IsTrue(range.LowInclusive.Value, "low inclusive");
+			Assert.AreEqual(Ca.Infoway.Messagebuilder.Domainvalue.Nullflavor.NullFlavor.NO_INFORMATION, range.LowNullFlavor, "low NF"
+				);
+			Assert.IsNull(range.Low.Quantity, "low value");
+			Assert.AreEqual("1", range.Low.Unit.CodeValue, "low unit");
+			Assert.IsNull(range.Low.Unit.CodeSystem, "low unit");
+			Assert.IsFalse(range.HighInclusive.Value, "high inclusive");
+			Assert.IsNull(range.HighNullFlavor, "high NF");
+			Assert.AreEqual(new BigDecimal("124"), range.High.Quantity, "high value");
+			Assert.AreEqual("g/L", range.High.Unit.CodeValue, "high units");
+			Assert.IsTrue(range.High.Unit is x_LabUnitsOfMeasure);
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
 		public virtual void TestReportError()
 		{
 			XmlNode node = CreateNode("<range><low value=\"123\" unit=\"m\" /><high value=\"567\" unit=\"h\" /></range>");
@@ -89,7 +148,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 
 		private ParseContext CreateContext()
 		{
-			return ParserContextImpl.Create("URG<PQ.BASIC>", null, SpecificationVersion.R02_04_02, null, null, null, null, null);
+			return ParseContextImpl.Create("URG<PQ.BASIC>", null, SpecificationVersion.R02_04_02, null, null, null, null, null, null, 
+				null, false);
 		}
 	}
 }

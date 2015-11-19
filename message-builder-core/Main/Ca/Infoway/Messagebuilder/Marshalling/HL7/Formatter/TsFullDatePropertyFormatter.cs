@@ -14,13 +14,14 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Datatype.Lang.Util;
+using Ca.Infoway.Messagebuilder.Error;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter;
 using Ca.Infoway.Messagebuilder.Platform;
@@ -50,7 +51,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 
 		protected override string GetValue(PlatformDate date, FormatContext context, BareANY bareAny)
 		{
-			TimeZone timeZone = context != null && context.GetDateTimeZone() != null ? context.GetDateTimeZone() : System.TimeZone.CurrentTimeZone;
+			TimeZoneInfo timeZone = context != null && context.GetDateTimeZone() != null ? context.GetDateTimeZone() : System.TimeZoneInfo.Local;
 			string datePattern = DetermineDatePattern(date);
 			ValidateDatePattern(datePattern, context);
 			return DateFormatUtil.Format(date, datePattern, timeZone);

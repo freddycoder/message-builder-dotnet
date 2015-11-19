@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System.Xml;
@@ -45,8 +45,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 
 		private ParseContext CreateContext()
 		{
-			return ParserContextImpl.Create("ON", typeof(OrganizationName), SpecificationVersion.V02R02, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
-				.POPULATED);
+			return ParseContextImpl.Create("ON", typeof(OrganizationName), SpecificationVersion.V02R02, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
+				.POPULATED, null, null, false);
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -82,7 +82,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			Assert.AreEqual(4, organizationName.Parts.Count, "number of name parts");
 			AssertNamePartAsExpected("prefix prefix 1", organizationName.Parts[0], OrganizationNamePartType.PREFIX, "prefix 1");
 			AssertNamePartAsExpected("name", organizationName.Parts[1], null, "Organization name");
-			AssertNamePartAsExpected("delimiter comma", organizationName.Parts[2], OrganizationNamePartType.DELIMETER, ",");
+			AssertNamePartAsExpected("delimiter comma", organizationName.Parts[2], OrganizationNamePartType.DELIMITER, ",");
 			AssertNamePartAsExpected("suffix Inc", organizationName.Parts[3], OrganizationNamePartType.SUFFIX, "Inc");
 		}
 

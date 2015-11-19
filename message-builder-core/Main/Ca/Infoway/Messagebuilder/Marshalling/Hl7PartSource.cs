@@ -14,10 +14,11 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System;
+using System.Collections.Generic;
 using System.Xml;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Marshalling;
@@ -78,12 +79,12 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 			return this.hl7InteractionSource.GetVersion();
 		}
 
-		public virtual TimeZone GetDateTimeZone()
+		public virtual TimeZoneInfo GetDateTimeZone()
 		{
 			return this.hl7InteractionSource.GetDateTimeZone();
 		}
 
-		public virtual TimeZone GetDateTimeTimeZone()
+		public virtual TimeZoneInfo GetDateTimeTimeZone()
 		{
 			return this.hl7InteractionSource.GetDateTimeTimeZone();
 		}
@@ -104,8 +105,15 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 		public virtual Ca.Infoway.Messagebuilder.Marshalling.Hl7PartSource CreatePartSource(Relationship relationship, XmlElement
 			 currentElement)
 		{
-			return new Ca.Infoway.Messagebuilder.Marshalling.Hl7PartSource(this.hl7InteractionSource, ResolveType(relationship, currentElement
-				), currentElement, ResolveTopmostType(relationship, currentElement));
+			return CreatePartSourceForSpecificType(relationship, currentElement, null);
+		}
+
+		public virtual Ca.Infoway.Messagebuilder.Marshalling.Hl7PartSource CreatePartSourceForSpecificType(Relationship relationship
+			, XmlElement currentElement, string type)
+		{
+			string resolvedType = (type == null ? ResolveType(relationship, currentElement) : type);
+			return new Ca.Infoway.Messagebuilder.Marshalling.Hl7PartSource(this.hl7InteractionSource, resolvedType, currentElement, ResolveTopmostType
+				(relationship, currentElement));
 		}
 
 		private string ResolveType(Relationship relationship, XmlElement currentElement)
@@ -122,7 +130,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 
 		public virtual Relationship GetRelationship(string name)
 		{
-			Relationship result = this.messagePart.GetRelationship(name, this.hl7InteractionSource.GetInteraction());
+			Relationship result = this.messagePart.GetRelationship(name, null, this.hl7InteractionSource.GetInteraction());
 			if (result == null && !StringUtils.Equals(this.messagePart.Name, this.originalMessagePart.Name))
 			{
 				result = GetNestedRelationship(this.originalMessagePart, name);
@@ -130,16 +138,17 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 			return result;
 		}
 
+		// looks for a matching relationship within "supertype"/abstract message parts 
 		private Relationship GetNestedRelationship(MessagePart part, string name)
 		{
-			Relationship relationship = part.GetRelationship(name, this.hl7InteractionSource.GetInteraction());
+			Relationship relationship = part.GetRelationship(name, null, this.hl7InteractionSource.GetInteraction());
 			if (relationship == null)
 			{
-				foreach (string childType in part.SpecializationChilds)
+				foreach (SpecializationChild childType in part.SpecializationChilds)
 				{
-					if (TypeIsAssignable(childType))
+					if (TypeIsAssignable(childType.Name))
 					{
-						MessagePart childPart = GetService().GetMessagePart(GetVersion(), childType);
+						MessagePart childPart = GetService().GetMessagePart(GetVersion(), childType.Name);
 						relationship = GetNestedRelationship(childPart, name);
 						if (relationship != null)
 						{
@@ -151,6 +160,26 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 			return relationship;
 		}
 
+		public virtual IList<Relationship> GetAllRelationships()
+		{
+			IList<Relationship> allRelationships = new List<Relationship>();
+			GetAllRelationships(this.originalMessagePart, allRelationships);
+			return allRelationships;
+		}
+
+		private void GetAllRelationships(MessagePart part, IList<Relationship> relationships)
+		{
+			relationships.AddAll(part.Relationships);
+			foreach (SpecializationChild childType in part.SpecializationChilds)
+			{
+				if (TypeIsAssignable(childType.Name))
+				{
+					MessagePart childPart = GetService().GetMessagePart(GetVersion(), childType.Name);
+					GetAllRelationships(childPart, relationships);
+				}
+			}
+		}
+
 		/// <summary>Is our type an implementation of the given child type?</summary>
 		/// <param name="childType"></param>
 		/// <returns>whether our type is an implementation of the given child type</returns>
@@ -158,15 +187,15 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 		{
 			bool result = false;
 			MessagePart childPart = GetService().GetMessagePart(GetVersion(), childType);
-			if (!childPart.Abstract)
+			if (!childPart.IsAbstract)
 			{
 				result = StringUtils.Equals(Type, childPart.Name);
 			}
 			else
 			{
-				foreach (string specializationChild in childPart.SpecializationChilds)
+				foreach (SpecializationChild specializationChild in childPart.SpecializationChilds)
 				{
-					if (TypeIsAssignable(specializationChild))
+					if (TypeIsAssignable(specializationChild.Name))
 					{
 						result = true;
 						break;
@@ -184,6 +213,16 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 		public virtual Interaction GetInteraction()
 		{
 			return this.hl7InteractionSource.GetConversionContext().GetInteraction();
+		}
+
+		public virtual bool IsR2()
+		{
+			return this.hl7InteractionSource.IsR2();
+		}
+
+		public virtual bool IsCda()
+		{
+			return this.hl7InteractionSource.IsCda();
 		}
 	}
 }

@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using Ca.Infoway.Messagebuilder.Domainvalue;
@@ -98,7 +98,7 @@ namespace Ca.Infoway.Messagebuilder.Domainvalue.Basic
 			("MILLIGRAM", "mg");
 
 		public static readonly Ca.Infoway.Messagebuilder.Domainvalue.Basic.X_DrugUnitsOfMeasure MILLILITRE = new Ca.Infoway.Messagebuilder.Domainvalue.Basic.X_DrugUnitsOfMeasure
-			("MILLILITRE", "ml");
+			("MILLILITRE", "mL");
 
 		public static readonly Ca.Infoway.Messagebuilder.Domainvalue.Basic.X_DrugUnitsOfMeasure SQUARE_MILLIMETRE = new Ca.Infoway.Messagebuilder.Domainvalue.Basic.X_DrugUnitsOfMeasure
 			("SQUARE_MILLIMETRE", "mm2");
@@ -119,7 +119,7 @@ namespace Ca.Infoway.Messagebuilder.Domainvalue.Basic
 			("NANOGRAM", "ng");
 
 		public static readonly Ca.Infoway.Messagebuilder.Domainvalue.Basic.X_DrugUnitsOfMeasure NANOLITRE = new Ca.Infoway.Messagebuilder.Domainvalue.Basic.X_DrugUnitsOfMeasure
-			("NANOLITRE", "nl");
+			("NANOLITRE", "nL");
 
 		public static readonly Ca.Infoway.Messagebuilder.Domainvalue.Basic.X_DrugUnitsOfMeasure UNIT = new Ca.Infoway.Messagebuilder.Domainvalue.Basic.X_DrugUnitsOfMeasure
 			("UNIT", "U");
@@ -128,7 +128,7 @@ namespace Ca.Infoway.Messagebuilder.Domainvalue.Basic
 			("MICROGRAM", "ug");
 
 		public static readonly Ca.Infoway.Messagebuilder.Domainvalue.Basic.X_DrugUnitsOfMeasure MICROLITRE = new Ca.Infoway.Messagebuilder.Domainvalue.Basic.X_DrugUnitsOfMeasure
-			("MICROLITRE", "ul");
+			("MICROLITRE", "uL");
 
 		public static readonly Ca.Infoway.Messagebuilder.Domainvalue.Basic.X_DrugUnitsOfMeasure MICROMOLE = new Ca.Infoway.Messagebuilder.Domainvalue.Basic.X_DrugUnitsOfMeasure
 			("MICROMOLE", "umol");
@@ -153,6 +153,15 @@ namespace Ca.Infoway.Messagebuilder.Domainvalue.Basic
 			get
 			{
 				return Ca.Infoway.Messagebuilder.Codesystem.CodeSystem.VOCABULARY_UNIFORM_UNIT_OF_MEASURE.Root;
+			}
+		}
+
+		/// <summary><inheritDoc></inheritDoc></summary>
+		public virtual string CodeSystemName
+		{
+			get
+			{
+				return null;
 			}
 		}
 	}

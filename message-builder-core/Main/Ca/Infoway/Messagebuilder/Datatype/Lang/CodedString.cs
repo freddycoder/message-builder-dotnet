@@ -42,18 +42,40 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		private readonly T code;
 		private readonly String value_ren;
 	
+        // these would normally be on Code itself, but they are not used in the pan-Canadian standards and only apply to SC
+        private readonly String displayName;
+        private readonly String codeSystemName;
+        private readonly String codeSystemVersion;
+    
 		/// <summary>
 		/// Constructs a CodedString based on a value and a c. 
 		/// </summary>
 		///
 		/// <param name="value">the value of the SC</param>
 		/// <param name="code_0">the c for the SC</param>
-		public CodedString(String value_ren, T code_0) {
-			this.value_ren = value_ren;
-			this.code = code_0;
+        public CodedString(String value_ren, T code_0) : this(value_ren, code_0, null, null, null)
+        {
 		}
-	
-		/// <summary>
+
+        /// <summary>
+        /// Constructs a CodedString based on a value and a c and code system properties. 
+        /// </summary>
+        ///
+        /// <param name="value">the value of the SC</param>
+        /// <param name="code_0">the c for the SC</param>
+        /// <param name="displayName">alternate display name for the SC</param>
+        /// <param name="codeSystemName">name of code system for the provided code</param>
+        /// <param name="codeSystemVersion">version of code system for the provided code</param>
+        public CodedString(String value_ren, T code_0, String displayName_0, String codeSystemName_0, String codeSystemVersion_0)
+        {
+            this.value_ren = value_ren;
+            this.code = code_0;
+            this.displayName = displayName_0;
+            this.codeSystemName = codeSystemName_0;
+            this.codeSystemVersion = codeSystemVersion_0;
+        }
+
+        /// <summary>
 		/// Returns the c.
 		/// </summary>
 		///
@@ -85,7 +107,95 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 				return this.value_ren;
 			}
 		}
-		
+
+        /// <summary>
+        /// Returns the displayName.
+        /// </summary>
+        ///
+        /// <returns>the displayName</returns>
+        public String DisplayName
+        {
+            /// <summary>
+            /// Returns the displayName.
+            /// </summary>
+            ///
+            /// <returns>the displayName</returns>
+            get
+            {
+                return this.displayName;
+            }
+        }
+
+        /// <summary>
+        /// Returns the codeSystemName.
+        /// </summary>
+        ///
+        /// <returns>the codeSystemName</returns>
+        public String CodeSystemName
+        {
+            /// <summary>
+            /// Returns the codeSystemName.
+            /// </summary>
+            ///
+            /// <returns>the codeSystemName</returns>
+            get
+            {
+                return this.codeSystemName;
+            }
+        }
+
+        /// <summary>
+        /// Returns the codeSystemVersion.
+        /// </summary>
+        ///
+        /// <returns>the codeSystemVersion</returns>
+        public String CodeSystemVersion
+        {
+            /// <summary>
+            /// Returns the codeSystemVersion.
+            /// </summary>
+            ///
+            /// <returns>the codeSystemVersion</returns>
+            get
+            {
+                return this.codeSystemVersion;
+            }
+        }
+
+        public override int GetHashCode()
+        {
+            return new HashCodeBuilder()
+		            .Append(this.code)
+		            .Append(this.value_ren)
+                    .Append(this.displayName)
+                    .Append(this.codeSystemName)
+                    .Append(this.codeSystemVersion)
+                    .ToHashCode();
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null) {
+                return false;
+            }
+            else if (obj.GetType() != GetType())
+            {
+                return false;
+            } else {
+                return Equals((CodedString<T>) obj);
+            }
+        }
+    
+        private bool Equals(CodedString<T> that)
+        {
+            return new EqualsBuilder()
+                    .Append(this.code, that.code)
+                    .Append(this.value_ren, that.value_ren)
+                    .Append(this.displayName, that.displayName)
+                    .Append(this.codeSystemName, that.codeSystemName)
+                    .Append(this.codeSystemVersion, that.codeSystemVersion)
+                    .IsEquals();
+        }
 	
 	}
 }

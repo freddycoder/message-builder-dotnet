@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2013-03-01 17:48:17 -0500 (Fri, 01 Mar 2013) $
- * Revision:      $LastChangedRevision: 6663 $
+ * Author:        $LastChangedBy: jmis $
+ * Last modified: $LastChangedDate: 2015-05-27 08:43:37 -0400 (Wed, 27 May 2015) $
+ * Revision:      $LastChangedRevision: 9535 $
  */
 
 /// ---------------------------------------------------------------------------------------------------
@@ -48,42 +48,34 @@ namespace Ca.Infoway.Messagebuilder.Terminology.Codeset.Dao {
 	///
 	public class HibernateCodeSetDao : HibernateDaoSupport, 
 			MutableCodeSetDao {
-	
-		public sealed class Anonymous_C12 : IHibernateCallback {
+
+        public sealed class Anonymous_C13 : IHibernateCallback
+        {
+            private readonly String f_version;
+
+            public Object DoInHibernate(ISession session)
+            {
+
+                ICriteria criteriaValueSet = session
+                        .CreateCriteria(typeof(ValueSet));
+                criteriaValueSet.Add(NHibernate.Criterion.Restrictions
+                        .Eq("version", f_version));
+
+                return criteriaValueSet.List();
+            }
+
+            public Anonymous_C13(String version)
+            {
+                this.f_version = version;
+            }
+        }
+
+        public sealed class Anonymous_C12 : IHibernateCallback
+        {
 			private readonly String f_code;
 			private readonly Type f_domainType;
-	
-			public Object DoInHibernate(ISession session) {
-			
-				ICriteria criteriaValueSet = session
-						.CreateCriteria(typeof(ValueSetEntry));
-			
-				ICriteria criteriaCodedValue = criteriaValueSet
-						.CreateCriteria("codedValue");
-				criteriaCodedValue.Add(NHibernate.Criterion.Restrictions.Eq("code", f_code));
-			
-				ICriteria criteriaVocabularyDomain = criteriaValueSet
-						.CreateCriteria("valueSet").CreateCriteria(
-								"vocabularyDomains");
-				criteriaVocabularyDomain
-						.Add(NHibernate.Criterion.Restrictions
-								.Eq(
-										"type",
-										f_domainType.Name));
-			
-				return criteriaValueSet.List();
-			}
-	
-			public Anonymous_C12(String code, Type vocabularyDomainType) {
-				this.f_code = code;
-				this.f_domainType = vocabularyDomainType;
-			}
-		}
-	
-		public sealed class Anonymous_C11 : IHibernateCallback {
-			private readonly String f_code;
-			private readonly String f_systemOid;
-			private readonly Type f_domainType;
+            private readonly String f_version;
+            private readonly bool f_ignoreCase;
 	
 			public Object DoInHibernate(ISession session) {
 			
@@ -92,16 +84,62 @@ namespace Ca.Infoway.Messagebuilder.Terminology.Codeset.Dao {
 			
 				ICriteria criteriaCodedValue = criteriaValueSetEntry
 						.CreateCriteria("codedValue");
-				criteriaCodedValue.Add(NHibernate.Criterion.Restrictions.Eq("code", f_code));
+                NHibernate.Criterion.SimpleExpression codeCriteria = NHibernate.Criterion.Restrictions.Eq("code", f_code);
+                if (f_ignoreCase) {
+                    codeCriteria.IgnoreCase();
+                }
+				criteriaCodedValue.Add(codeCriteria);
+
+                ICriteria criteriaValueSet = criteriaValueSetEntry.CreateCriteria("valuset");
+                criteriaValueSet.Add(NHibernate.Criterion.Restrictions.Eq("version", f_version));
+
+				ICriteria criteriaVocabularyDomain = criteriaValueSet.CreateCriteria(
+								"vocabularyDomains");
+				criteriaVocabularyDomain
+						.Add(NHibernate.Criterion.Restrictions
+								.Eq(
+										"type",
+										f_domainType.Name));
+			
+				return criteriaValueSetEntry.List();
+			}
+	
+			public Anonymous_C12(String code, Type vocabularyDomainType, String version, bool ignoreCase) {
+				this.f_code = code;
+				this.f_domainType = vocabularyDomainType;
+                this.f_version = version;
+                this.f_ignoreCase = ignoreCase;
+			}
+		}
+	
+		public sealed class Anonymous_C11 : IHibernateCallback {
+			private readonly String f_code;
+			private readonly String f_systemOid;
+			private readonly Type f_domainType;
+            private readonly String f_version;
+            private readonly bool f_ignoreCase;
+	
+			public Object DoInHibernate(ISession session) {
+			
+				ICriteria criteriaValueSetEntry = session
+						.CreateCriteria(typeof(ValueSetEntry));
+			
+				ICriteria criteriaCodedValue = criteriaValueSetEntry
+						.CreateCriteria("codedValue");
+                var codeCriteria = NHibernate.Criterion.Restrictions.Eq("code", f_code);
+                codeCriteria.IgnoreCase();
+				criteriaCodedValue.Add(codeCriteria);
 			
 				ICriteria criteriaCodeSystem = criteriaCodedValue
 						.CreateCriteria("codeSystem");
 			
 				criteriaCodeSystem.Add(NHibernate.Criterion.Restrictions.Eq("oid",
 						f_systemOid));
-			
-				ICriteria criteriaVocabularyDomain = criteriaValueSetEntry
-						.CreateCriteria("valueSet").CreateCriteria(
+
+                ICriteria criteriaValueSet = criteriaValueSetEntry.CreateCriteria("valueSet");
+                criteriaValueSet.Add(NHibernate.Criterion.Restrictions.Eq("version", f_version));
+                
+                ICriteria criteriaVocabularyDomain = criteriaValueSet.CreateCriteria(
 								"vocabularyDomains");
 				criteriaVocabularyDomain
 						.Add(NHibernate.Criterion.Restrictions
@@ -114,10 +152,12 @@ namespace Ca.Infoway.Messagebuilder.Terminology.Codeset.Dao {
 			}
 	
 			public Anonymous_C11(String code, String codeSystemOid,
-					Type vocabularyDomainType) {
+					Type vocabularyDomainType, String version, bool ignoreCase) {
 				this.f_code = code;
 				this.f_systemOid = codeSystemOid;
 				this.f_domainType = vocabularyDomainType;
+                this.f_version = version;
+                this.f_ignoreCase = ignoreCase;
 			}
 		}
 	
@@ -150,15 +190,19 @@ namespace Ca.Infoway.Messagebuilder.Terminology.Codeset.Dao {
 	
 		public sealed class Anonymous_C8 : IHibernateCallback {
 			private readonly String f_name;
+            private readonly String f_version;
 	
 			public Object DoInHibernate(ISession session) {
 			
 				ICriteria criteriaValueSetEntry = session
 						.CreateCriteria(typeof(ValueSetEntry));
 			
-				ICriteria criteriaValue = criteriaValueSetEntry
+				ICriteria criteriaValueSet = criteriaValueSetEntry
 						.CreateCriteria("valueSet");
-				ICriteria criteriaVocabularyDomain = criteriaValue
+                criteriaValueSet.Add(NHibernate.Criterion.Restrictions
+                        .Eq("version", f_version));
+
+				ICriteria criteriaVocabularyDomain = criteriaValueSet
 						.CreateCriteria("vocabularyDomains");
 				criteriaVocabularyDomain.Add(NHibernate.Criterion.Restrictions
 						.Eq("type", f_name));
@@ -166,8 +210,9 @@ namespace Ca.Infoway.Messagebuilder.Terminology.Codeset.Dao {
 				return criteriaValueSetEntry.List();
 			}
 	
-			public Anonymous_C8(String domainName) {
+			public Anonymous_C8(String domainName, String version) {
 				this.f_name = domainName;
+                this.f_version = version;
 			}
 		}
 	
@@ -178,10 +223,10 @@ namespace Ca.Infoway.Messagebuilder.Terminology.Codeset.Dao {
 				public Object DoInHibernate(ISession session) {
 					ICriteria criteria = session
 							.CreateCriteria(typeof(VocabularyDomain));
-					outer_HibernateCodeSetDao.ContrainOnTypeIfRequired(criteria, f_criteria);
-					outer_HibernateCodeSetDao.ContrainOnBusinessNameIfRequired(criteria,
+					outer_HibernateCodeSetDao.ConstrainOnTypeIfRequired(criteria, f_criteria);
+					outer_HibernateCodeSetDao.ConstrainOnBusinessNameIfRequired(criteria,
 							f_criteria);
-					outer_HibernateCodeSetDao.ContrainOnDescriptionIfRequired(criteria,
+					outer_HibernateCodeSetDao.ConstrainOnDescriptionIfRequired(criteria,
 							f_criteria);
 					criteria.AddOrder(NHibernate.Criterion.Order.Asc("type"));
 					return criteria.List();
@@ -270,16 +315,19 @@ namespace Ca.Infoway.Messagebuilder.Terminology.Codeset.Dao {
 		public sealed class Anonymous_C2 : IHibernateCallback {
 			private readonly String f_setName;
 			private readonly Code f_code;
+            private readonly String f_version;
 	
 			public Object DoInHibernate(ISession session) {
 			
 				ICriteria criteria = session
 						.CreateCriteria(typeof(ValueSetEntry));
-				criteria.CreateCriteria("valueSet").Add(
-						NHibernate.Criterion.Restrictions.Eq("name", f_setName));
+
+				ICriteria criteriaValueSet = criteria.CreateCriteria("valueSet");
+
+                criteriaValueSet.Add(NHibernate.Criterion.Restrictions.Eq("name", f_setName));
+                criteriaValueSet.Add(NHibernate.Criterion.Restrictions.Eq("version", f_version));
 			
-				ICriteria codedValueCriteria = criteria
-						.CreateCriteria("codedValue");
+				ICriteria codedValueCriteria = criteria.CreateCriteria("codedValue");
 				codedValueCriteria.Add(NHibernate.Criterion.Restrictions.Eq("code", f_code
 						.CodeValue));
 				codedValueCriteria.CreateCriteria("codeSystem").Add(
@@ -288,25 +336,29 @@ namespace Ca.Infoway.Messagebuilder.Terminology.Codeset.Dao {
 				return criteria.UniqueResult();
 			}
 	
-			public Anonymous_C2(String valueSetName, Code code) {
+			public Anonymous_C2(String valueSetName, Code code, String version) {
 				this.f_setName = valueSetName;
 				this.f_code = code;
+                this.f_version = version;
 			}
 		}
 	
 		public sealed class Anonymous_C1 : IHibernateCallback {
 			private readonly String f_name;
+            private readonly String f_version;
 	
 			public Object DoInHibernate(ISession session) {
 				ICriteria criteria = session
 						.CreateCriteria(typeof(ValueSet));
 				criteria.Add(NHibernate.Criterion.Restrictions.Eq("name", f_name));
-				return criteria.UniqueResult();
+                criteria.Add(NHibernate.Criterion.Restrictions.Eq("version", f_version));
+                return criteria.UniqueResult();
 			}
 	
-			public Anonymous_C1(String name) {
+			public Anonymous_C1(String name, String version) {
 				this.f_name = name;
-			}
+                this.f_version = version;
+            }
 		}
 	
 		public sealed class Anonymous_C0 : IHibernateCallback {
@@ -338,8 +390,8 @@ namespace Ca.Infoway.Messagebuilder.Terminology.Codeset.Dao {
 		/// </summary>
 		///
 		public virtual IList<CodedValue> SelectCodedValuesByVocabularyDomain(
-				Type vocabularyDomainType) {
-			return ConvertValueSetsToCodedValues(SelectValueSetsByVocabularyDomain(vocabularyDomainType));
+				Type vocabularyDomainType, String version) {
+			return ConvertValueSetsToCodedValues(SelectValueSetsByVocabularyDomain(vocabularyDomainType, version));
 		}
 	
 		/// <summary>
@@ -348,9 +400,9 @@ namespace Ca.Infoway.Messagebuilder.Terminology.Codeset.Dao {
 		///
 		/* @SuppressWarnings("unchecked")*/
 		public virtual IList<ValueSetEntry> SelectValueSetsByCode(
-				Type vocabularyDomainType, String code) {
+				Type vocabularyDomainType, String code, String version, bool ignoreCase) {
 			IList<ValueSetEntry> valueSets = (IList<ValueSetEntry>) HibernateTemplate.ExecuteFind(
-					new HibernateCodeSetDao.Anonymous_C12(code, vocabularyDomainType));
+					new HibernateCodeSetDao.Anonymous_C12(code, vocabularyDomainType, version, ignoreCase));
 			return valueSets;
 	
 		}
@@ -362,9 +414,9 @@ namespace Ca.Infoway.Messagebuilder.Terminology.Codeset.Dao {
 		/* @SuppressWarnings("unchecked")*/
 		public virtual ValueSetEntry FindValueByCodeSystem(
 				Type vocabularyDomainType, String code,
-				String codeSystemOid) {
+				String codeSystemOid, String version, bool ignoreCase) {
 			return (ValueSetEntry) HibernateTemplate.Execute(
-					new HibernateCodeSetDao.Anonymous_C11(code, codeSystemOid, vocabularyDomainType));
+					new HibernateCodeSetDao.Anonymous_C11(code, codeSystemOid, vocabularyDomainType, version, ignoreCase));
 		}
 	
 		private IList<CodedValue> ConvertValueSetsToCodedValues(
@@ -404,8 +456,8 @@ namespace Ca.Infoway.Messagebuilder.Terminology.Codeset.Dao {
 		/// </summary>
 		///
 		public virtual IList<ValueSetEntry> SelectValueSetsByVocabularyDomain(
-				Type vocabularyDomainType) {
-			return SelectValueSetsByVocabularyDomain(vocabularyDomainType.Name);
+				Type vocabularyDomainType, String version) {
+			return SelectValueSetsByVocabularyDomain(vocabularyDomainType.Name, version);
 		}
 	
 		/// <summary>
@@ -414,11 +466,22 @@ namespace Ca.Infoway.Messagebuilder.Terminology.Codeset.Dao {
 		///
 		/* @SuppressWarnings("unchecked")*/
 		public virtual IList<ValueSetEntry> SelectValueSetsByVocabularyDomain(
-				String domainName) {
-			return (IList<ValueSetEntry>) HibernateTemplate.ExecuteFind(new HibernateCodeSetDao.Anonymous_C8(domainName));
+				String domainName, String version) {
+			return (IList<ValueSetEntry>) HibernateTemplate.ExecuteFind(new HibernateCodeSetDao.Anonymous_C8(domainName, version));
 		}
-	
-		/// <summary>
+
+        /// <summary>
+        /// {@inheritDoc}
+        /// </summary>
+        ///
+        /* @SuppressWarnings("unchecked")*/
+        public virtual IList<ValueSet> SelectValueSetsByVersion(
+                String version)
+        {
+            return (IList<ValueSet>)HibernateTemplate.ExecuteFind(new HibernateCodeSetDao.Anonymous_C13(version));
+        }
+
+        /// <summary>
 		/// {@inheritDoc}
 		/// </summary>
 		///
@@ -430,7 +493,7 @@ namespace Ca.Infoway.Messagebuilder.Terminology.Codeset.Dao {
 	
 		}
 	
-		internal void ContrainOnTypeIfRequired(ICriteria criteria,
+		internal void ConstrainOnTypeIfRequired(ICriteria criteria,
 				CodeSearchCriteria searchCriteria) {
 			if (!Ca.Infoway.Messagebuilder.StringUtils.IsEmpty(searchCriteria.Type)) {
 				criteria.Add(NHibernate.Criterion.Restrictions.Like("type", searchCriteria.Type
@@ -439,15 +502,16 @@ namespace Ca.Infoway.Messagebuilder.Terminology.Codeset.Dao {
 			}
 		}
 	
-		internal void ContrainOnBusinessNameIfRequired(ICriteria criteria,
+		internal void ConstrainOnBusinessNameIfRequired(ICriteria criteria,
 				CodeSearchCriteria searchCriteria) {
 			if (!Ca.Infoway.Messagebuilder.StringUtils.IsEmpty(searchCriteria.BusinessName)) {
                 criteria.Add(NHibernate.Criterion.Restrictions.Like("businessName", searchCriteria.BusinessName.Trim(), NHibernate.Criterion.MatchMode.Anywhere));
 			}
 		}
-	
-		internal void ContrainOnDescriptionIfRequired(ICriteria criteria,
-				CodeSearchCriteria searchCriteria) {
+
+        internal void ConstrainOnDescriptionIfRequired(ICriteria criteria,
+                CodeSearchCriteria searchCriteria)
+        {
 			if (!Ca.Infoway.Messagebuilder.StringUtils.IsEmpty(searchCriteria.Description)) {
                 criteria.Add(NHibernate.Criterion.Restrictions.Like("description", searchCriteria.Description.Trim(),
                     NHibernate.Criterion.MatchMode.Anywhere));
@@ -554,8 +618,8 @@ namespace Ca.Infoway.Messagebuilder.Terminology.Codeset.Dao {
 		/// </summary>
 		///
 		public virtual IList<ValueSetEntry> SelectValueSetsByVocabularyDomain(
-				String jurisdiction, VocabularyDomain vocabularyDomain) {
-			return SelectValueSetsByVocabularyDomain(vocabularyDomain.Type);
+				String jurisdiction, VocabularyDomain vocabularyDomain, String version) {
+			return SelectValueSetsByVocabularyDomain(vocabularyDomain.Type, version);
 		}
 	
 		/// <summary>
@@ -564,7 +628,10 @@ namespace Ca.Infoway.Messagebuilder.Terminology.Codeset.Dao {
 		///
 		/* @SuppressWarnings("unchecked")*/
 		public virtual CodedValue FindCodedValue(Code code) {
-			CodedValue result = null;
+
+            // TM - *not* modifying this method to use version, as it does not reference the valueset table, even though it does deal with codes
+
+            CodedValue result = null;
 	
 			if (code != null) {
 				result = (CodedValue) HibernateTemplate.Execute(
@@ -596,9 +663,9 @@ namespace Ca.Infoway.Messagebuilder.Terminology.Codeset.Dao {
 		///
 		/* @SuppressWarnings("unchecked")*/
 		public virtual ValueSetEntry FindValueSetEntry(String valueSetName,
-				Code code) {
+				Code code, String version) {
 			return (ValueSetEntry) HibernateTemplate.Execute(
-					new HibernateCodeSetDao.Anonymous_C2(valueSetName, code));
+					new HibernateCodeSetDao.Anonymous_C2(valueSetName, code, version));
 		}
 	
 		/// <summary>
@@ -614,9 +681,9 @@ namespace Ca.Infoway.Messagebuilder.Terminology.Codeset.Dao {
 		/// </summary>
 		///
 		/* @SuppressWarnings("unchecked")*/
-		public virtual ValueSet FindValueSet(String name) {
+		public virtual ValueSet FindValueSet(String name, String version) {
 			return (ValueSet) HibernateTemplate.Execute(
-					new HibernateCodeSetDao.Anonymous_C1(name));
+					new HibernateCodeSetDao.Anonymous_C1(name, version));
 		}
 	
 		/// <summary>

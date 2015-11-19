@@ -13,16 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2013-03-01 17:48:17 -0500 (Fri, 01 Mar 2013) $
- * Revision:      $LastChangedRevision: 6663 $
+ * Author:        $LastChangedBy: jmis $
+ * Last modified: $LastChangedDate: 2015-05-27 08:43:37 -0400 (Wed, 27 May 2015) $
+ * Revision:      $LastChangedRevision: 9535 $
  */
-
 using System.Collections.Generic;
 using Ca.Infoway.Messagebuilder;
+using Ca.Infoway.Messagebuilder.Lang;
 using Ca.Infoway.Messagebuilder.Xml;
 using Platform.SimpleXml;
-using Ca.Infoway.Messagebuilder.Lang;
 
 namespace Ca.Infoway.Messagebuilder.Xml
 {
@@ -31,27 +30,37 @@ namespace Ca.Infoway.Messagebuilder.Xml
 	/// A message part.  An example message part might be represent the type
 	/// "MCCI_MT700751CA.ControlActEvent".
 	/// </remarks>
-	/// <author><a href="http://www.intelliware.ca/">Intelliware Development</a></author>
+	/// <author>Intelliware Development</author>
 	[RootAttribute]
-	public class MessagePart : Documentable
+	public class MessagePart : Documentable, HasDifferences, Named
 	{
 		[XmlAttributeAttribute(Required = false)]
 		private string name;
 
 		[XmlAttributeAttribute(Required = false, Name = "abstract")]
-		private bool @abstract;
+		private bool isAbstract;
+
+		[XmlAttributeAttribute(Required = false)]
+		private bool templateParameter;
+
+		[ElementListAttribute(Inline = true, Required = false)]
+		[NamespaceAttribute(Prefix = "regen", Reference = "regen_ns")]
+		private IList<Difference> differences = new List<Difference>();
 
 		[ElementAttribute(Required = false)]
 		private Ca.Infoway.Messagebuilder.Xml.Documentation documentation;
 
-        [XmlAttributeAttribute(Required = false)]
-        private string rimClass;
+		[XmlAttributeAttribute(Required = false)]
+		private string rimClass;
+
+		[XmlAttributeAttribute(Required = false)]
+		private string derivedFromClass;
 
 		[ElementListAttribute(Required = false, Inline = true)]
 		private IList<Relationship> relationships = new List<Relationship>();
 
 		[ElementListAttribute(Required = false, Inline = true, Entry = "specializationChild")]
-		private IList<string> specializationChilds = new List<string>();
+		private IList<SpecializationChild> specializationChilds = new List<SpecializationChild>();
 
 		/// <summary>Default constructor.</summary>
 		/// <remarks>Default constructor.</remarks>
@@ -67,11 +76,6 @@ namespace Ca.Infoway.Messagebuilder.Xml
 			this.name = name;
 		}
 
-		public virtual string GetName()
-		{
-			return this.name;
-		}
-		
 		/// <summary>Get the name.</summary>
 		/// <remarks>Get the name.</remarks>
 		/// <returns>the name.</returns>
@@ -110,6 +114,19 @@ namespace Ca.Infoway.Messagebuilder.Xml
 			}
 		}
 
+		public virtual string DerivedFromClass
+		{
+			get
+			{
+				return derivedFromClass;
+			}
+			set
+			{
+				string derivedFromClass = value;
+				this.derivedFromClass = derivedFromClass;
+			}
+		}
+
 		/// <summary>Get the list of relationships.</summary>
 		/// <remarks>Get the list of relationships.</remarks>
 		/// <returns>- the relationships</returns>
@@ -120,11 +137,11 @@ namespace Ca.Infoway.Messagebuilder.Xml
 		{
 			get
 			{
-                foreach (Relationship relationship in this.relationships)
-                {
-                    relationship.ParentType = this.name;
-                }
-                return this.relationships;
+				foreach (Relationship relationship in this.relationships)
+				{
+					relationship.ParentType = this.name;
+				}
+				return this.relationships;
 			}
 			set
 			{
@@ -139,16 +156,16 @@ namespace Ca.Infoway.Messagebuilder.Xml
 		/// <summary>Set the abstractness.</summary>
 		/// <remarks>Set the abstractness.</remarks>
 		/// <value>- the new abstractness value</value>
-		public virtual bool Abstract
+		public virtual bool IsAbstract
 		{
 			get
 			{
-				return this.@abstract;
+				return this.isAbstract;
 			}
 			set
 			{
 				bool isAbstract = value;
-				this.@abstract = isAbstract;
+				this.isAbstract = isAbstract;
 			}
 		}
 
@@ -159,27 +176,102 @@ namespace Ca.Infoway.Messagebuilder.Xml
 		public static Ca.Infoway.Messagebuilder.Xml.MessagePart CreateAbstractPart(string name)
 		{
 			Ca.Infoway.Messagebuilder.Xml.MessagePart part = new Ca.Infoway.Messagebuilder.Xml.MessagePart(name);
-			part.Abstract = true;
+			part.IsAbstract = true;
+			return part;
+		}
+
+		public virtual bool TemplateParameter
+		{
+			get
+			{
+				return templateParameter;
+			}
+			set
+			{
+				bool templateParameter = value;
+				this.templateParameter = templateParameter;
+			}
+		}
+
+		/// <summary>Factory method for creating a template parameter.</summary>
+		/// <remarks>Factory method for creating a template parameter.</remarks>
+		/// <param name="name">- the type name of the message part</param>
+		/// <returns>- the newly-constructed message part</returns>
+		public static Ca.Infoway.Messagebuilder.Xml.MessagePart CreateTemplateParameter(string name)
+		{
+			Ca.Infoway.Messagebuilder.Xml.MessagePart part = new Ca.Infoway.Messagebuilder.Xml.MessagePart(name);
+			part.TemplateParameter = true;
 			return part;
 		}
 
 		/// <summary>Get the list of names of the child types.</summary>
 		/// <remarks>Get the list of names of the child types.</remarks>
 		/// <returns>the child types.</returns>
-		/// <summary>Set the list of child types.</summary>
-		/// <remarks>Set the list of child types.</remarks>
-		/// <value>- the new child types</value>
-		public virtual IList<string> SpecializationChilds
+		public virtual IList<SpecializationChild> SpecializationChilds
 		{
 			get
 			{
 				return this.specializationChilds;
 			}
-			set
+		}
+
+		/// <summary>
+		/// Determines whether the message part has a specialization child
+		/// matching the given name
+		/// </summary>
+		/// <param name="the">name to test</param>
+		/// <returns>true if the name matches</returns>
+		public virtual SpecializationChild GetSpecializationChild(string childName)
+		{
+			SpecializationChild result = null;
+			foreach (SpecializationChild child in this.specializationChilds)
 			{
-				IList<string> specializationChilds = value;
-				this.specializationChilds = specializationChilds;
+				if (child.Name.Equals(childName))
+				{
+					result = child;
+					break;
+				}
 			}
+			return result;
+		}
+
+		/// <summary>Add a child to the list of child types.</summary>
+		/// <remarks>Add a child to the list of child types.</remarks>
+		/// <param name="specializationChild">- the new child</param>
+		public virtual void AddSpecializationChild(SpecializationChild specializationChild)
+		{
+			this.specializationChilds.Add(specializationChild);
+		}
+
+		/// <summary>Remove a specialization child from the list by name</summary>
+		/// <param name="childName">the name of the child to remove</param>
+		public virtual void RemoveSpecializationChild(string childName)
+		{
+			// TM - modified to remove usage of iterator.remove() to facilitate translation
+			int index = -1;
+			for (int i = 0; i < this.specializationChilds.Count; i++)
+			{
+				if (this.specializationChilds[i].Name.Equals(childName))
+				{
+					index = i;
+					break;
+				}
+			}
+			if (index >= 0)
+			{
+				this.specializationChilds.RemoveAt(index);
+			}
+		}
+
+		/// <summary>
+		/// Determines whether the message part has a specialization child
+		/// matching the given name
+		/// </summary>
+		/// <param name="the">name to test</param>
+		/// <returns>true if the name matches</returns>
+		public virtual bool HasSpecializationChild(string childName)
+		{
+			return GetSpecializationChild(childName) != null;
 		}
 
 		/// <summary>Get a specific relationship by name.</summary>
@@ -188,7 +280,16 @@ namespace Ca.Infoway.Messagebuilder.Xml
 		/// <returns>- the relationship</returns>
 		public virtual Relationship GetRelationship(string name)
 		{
-			return GetRelationship(name, null);
+			return GetRelationship(name, null, null);
+		}
+
+		/// <summary>Get a specific relationship by name.</summary>
+		/// <remarks>Get a specific relationship by name.</remarks>
+		/// <param name="name">- the name of the relationship</param>
+		/// <returns>- the relationship</returns>
+		public virtual Relationship GetRelationship(string name, string namespaze)
+		{
+			return GetRelationship(name, namespaze, null);
 		}
 
 		/// <summary>Get a specific relationship by name.</summary>
@@ -196,13 +297,14 @@ namespace Ca.Infoway.Messagebuilder.Xml
 		/// <param name="name">- the name of the relationship</param>
 		/// <param name="interaction">- the interaction (used to resolve names of template parameters) or null</param>
 		/// <returns>- the relationship</returns>
-		public virtual Relationship GetRelationship(string name, Interaction interaction)
+		public virtual Relationship GetRelationship(string name, string namespaze, Interaction interaction)
 		{
 			Relationship result = null;
 			//First look for children matching 'name'
 			foreach (Relationship relationship in this.relationships)
 			{
-				if (MatchesRelationshipByName(name, relationship) || MatchesRelationshipByTraversalName(name, relationship, interaction))
+				if (MatchesRelationshipByName(name, namespaze, relationship) || MatchesRelationshipByTraversalName(name, relationship, interaction
+					))
 				{
 					result = relationship;
 					break;
@@ -220,11 +322,10 @@ namespace Ca.Infoway.Messagebuilder.Xml
 					}
 				}
 			}
-
-            if (result != null) {
-                result.ParentType = this.name;
-            }
-
+			if (result != null)
+			{
+				result.ParentType = this.name;
+			}
 			return result;
 		}
 
@@ -233,11 +334,13 @@ namespace Ca.Infoway.Messagebuilder.Xml
 			return relationship.Choice && relationship.FindChoiceOption(ChoiceSupport.ChoiceOptionNamePredicate(name)) != null;
 		}
 
-		private bool MatchesRelationshipByName(string name, Relationship relationship)
+		private bool MatchesRelationshipByName(string name, string namespaze, Relationship relationship)
 		{
+			// TM - removing check against namespace; this may eventually be reinstated
 			return StringUtils.IsNotBlank(name) && name.Equals(relationship.Name);
 		}
 
+		// && (StringUtils.equals(namespace, relationship.getNamespace()));
 		private bool MatchesRelationshipByTraversalName(string name, Relationship relationship, Interaction interaction)
 		{
 			if (interaction != null && relationship.TemplateRelationship)
@@ -282,30 +385,42 @@ namespace Ca.Infoway.Messagebuilder.Xml
 			return result;
 		}
 
-        /// <summary>Get the conformance level.</summary>
-        /// <remarks>Get the conformance level.</remarks>
-        /// <returns>the conformance level.</returns>
-        /// <summary>Set the conformance level.</summary>
-        /// <remarks>Set the conformance level.</remarks>
-        /// <value>the conformance level.</value>
-        public virtual Ca.Infoway.Messagebuilder.Xml.RimClass RimClass
-        {
-            get
-            {
-                if (this.rimClass != null)
-                {
-                    return EnumPattern.ValueOf<Ca.Infoway.Messagebuilder.Xml.RimClass>(this.rimClass);
-                }
-                else
-                {
-                    return null;
-                }
-            }
-            set
-            {
-                Ca.Infoway.Messagebuilder.Xml.RimClass rimClass = value;
-                this.rimClass = rimClass == null ? null : rimClass.Name;
-            }
-        }
+		/// <summary>Records the differences between message parts of different release versions during regen.</summary>
+		/// <remarks>Records the differences between message parts of different release versions during regen.</remarks>
+		/// <returns>list of differences</returns>
+		public virtual IList<Difference> Differences
+		{
+			get
+			{
+				return this.differences;
+			}
+			set
+			{
+				IList<Difference> differences = value;
+				this.differences = differences;
+			}
+		}
+
+		public virtual void AddDifference(Difference difference)
+		{
+			this.differences.Add(difference);
+		}
+
+		public virtual Ca.Infoway.Messagebuilder.Xml.RimClass RimClass
+		{
+			get
+			{
+				if (this.rimClass != null)
+				{
+					return EnumPattern.ValueOf<Ca.Infoway.Messagebuilder.Xml.RimClass>(this.rimClass);
+				}
+				return null;
+			}
+			set
+			{
+				Ca.Infoway.Messagebuilder.Xml.RimClass rimClass = value;
+				this.rimClass = rimClass == null ? null : rimClass.Name;
+			}
+		}
 	}
 }

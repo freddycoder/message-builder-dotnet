@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System.Collections.Generic;
@@ -156,7 +156,7 @@ namespace Ca.Infoway.Messagebuilder.DevTools
 			this.respondTo = respondTo;
 		}
 
-		// FIXME - TM - this currently does not work due to the nature of MessageBeanFactory handling collections
+		// FIXME - TM (see RM19207) - this currently does not work due to the nature of MessageBeanFactory handling collections
 		public virtual IList<RoutingInstructionLinesValueHolder> GetAttentionLine()
 		{
 			return attentionLine;

@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using Ca.Infoway.Messagebuilder;
@@ -56,10 +56,64 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 
 		/// <exception cref="System.Exception"></exception>
 		[Test]
+		public virtual void TestFormatCdataValueNull()
+		{
+			AbstractPropertyFormatter formatter = new StPropertyFormatter();
+			FormatContext context = GetContext("name");
+			STImpl dataType = new STImpl((string)null);
+			dataType.IsCdata = true;
+			string result = formatter.Format(context, dataType);
+			Assert.AreEqual(AddLineSeparator("<name nullFlavor=\"NI\"/>"), result, "something in text node");
+			AssertNoErrors(context);
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void TestFormatCdataValueEmpty()
+		{
+			AbstractPropertyFormatter formatter = new StPropertyFormatter();
+			FormatContext context = GetContext("name");
+			STImpl dataType = new STImpl(string.Empty);
+			dataType.IsCdata = true;
+			string result = formatter.Format(context, dataType);
+			Assert.AreEqual(AddLineSeparator("<name><![CDATA[]]></name>"), result, "something in text node");
+			AssertNoErrors(context);
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void TestFormatCdataValueNonNull()
+		{
+			AbstractPropertyFormatter formatter = new StPropertyFormatter();
+			FormatContext context = GetContext("name");
+			STImpl dataType = new STImpl("something");
+			dataType.IsCdata = true;
+			string result = formatter.Format(context, dataType);
+			Assert.AreEqual(AddLineSeparator("<name><![CDATA[something]]></name>"), result, "something in text node");
+			AssertNoErrors(context);
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void TestFormatCdataValueNonNullWithSpecialCharacters()
+		{
+			AbstractPropertyFormatter formatter = new StPropertyFormatter();
+			FormatContext context = GetContext("name");
+			STImpl dataType = new STImpl("<cats think they're > humans & dogs 99% of the time/>");
+			dataType.IsCdata = true;
+			string result = formatter.Format(context, dataType);
+			Assert.AreEqual(AddLineSeparator("<name><![CDATA[<cats think they're > humans & dogs 99% of the time/>]]></name>"), result
+				, "something in text node");
+			AssertNoErrors(context);
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
 		public virtual void TestFormatValueNonNullWithLanguageNotAllowed()
 		{
 			AbstractPropertyFormatter formatter = new StPropertyFormatter();
-			FormatContextImpl context = new FormatContextImpl(new ModelToXmlResult(), null, "name", "ST", null);
+			Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl context = new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl
+				(new ModelToXmlResult(), null, "name", "ST", null, null, false);
 			string result = formatter.Format(context, new STImpl("something", "fr-CA"));
 			Assert.AreEqual(AddLineSeparator("<name>something</name>"), RemoveErrorComments(result), "something in text node");
 			Assert.AreEqual(1, context.GetModelToXmlResult().GetHl7Errors().Count, "error from language not allowed");
@@ -70,7 +124,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		public virtual void TestFormatValueNonNullWithLanguageFr()
 		{
 			AbstractPropertyFormatter formatter = new StPropertyFormatter();
-			FormatContext context = new FormatContextImpl(new ModelToXmlResult(), null, "name", "ST.LANG", null);
+			FormatContext context = new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl(new ModelToXmlResult(), 
+				null, "name", "ST.LANG", null, null, false);
 			string result = formatter.Format(context, new STImpl("something", "fr-CA"));
 			Assert.AreEqual(AddLineSeparator("<name language=\"fr-CA\">something</name>"), result, "something in text node");
 			AssertNoErrors(context);
@@ -81,7 +136,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		public virtual void TestFormatValueNonNullWithLanguageEn()
 		{
 			AbstractPropertyFormatter formatter = new StPropertyFormatter();
-			FormatContextImpl context = new FormatContextImpl(new ModelToXmlResult(), null, "name", "ST.LANG", null);
+			Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl context = new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl
+				(new ModelToXmlResult(), null, "name", "ST.LANG", null, null, false);
 			string result = formatter.Format(context, new STImpl("something", "en-CA"));
 			Assert.AreEqual(AddLineSeparator("<name language=\"en-CA\">something</name>"), result, "something in text node");
 			AssertNoErrors(context);
@@ -92,7 +148,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		public virtual void TestFormatValueNonNullWithIncorrectLanguage()
 		{
 			AbstractPropertyFormatter formatter = new StPropertyFormatter();
-			FormatContextImpl context = new FormatContextImpl(new ModelToXmlResult(), null, "name", "ST.LANG", null);
+			Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl context = new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl
+				(new ModelToXmlResult(), null, "name", "ST.LANG", null, null, false);
 			string result = formatter.Format(context, new STImpl("something", "it-CA"));
 			Assert.AreEqual(AddLineSeparator("<name language=\"en-CA\">something</name>"), RemoveErrorComments(result), "something in text node"
 				);
@@ -104,7 +161,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		public virtual void TestFormatValueNonNullWithBlankLanguage()
 		{
 			AbstractPropertyFormatter formatter = new StPropertyFormatter();
-			FormatContextImpl context = new FormatContextImpl(new ModelToXmlResult(), null, "name", "ST.LANG", null);
+			Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl context = new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl
+				(new ModelToXmlResult(), null, "name", "ST.LANG", null, null, false);
 			string result = formatter.Format(context, new STImpl("something", string.Empty));
 			Assert.AreEqual(AddLineSeparator("<name language=\"en-CA\">something</name>"), RemoveErrorComments(result), "something in text node"
 				);
@@ -116,7 +174,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		public virtual void TestFormatValueNonNullWithNullLanguage()
 		{
 			AbstractPropertyFormatter formatter = new StPropertyFormatter();
-			FormatContextImpl context = new FormatContextImpl(new ModelToXmlResult(), null, "name", "ST.LANG", null);
+			Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl context = new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl
+				(new ModelToXmlResult(), null, "name", "ST.LANG", null, null, false);
 			string result = formatter.Format(context, new STImpl("something", null));
 			Assert.AreEqual(AddLineSeparator("<name language=\"en-CA\">something</name>"), RemoveErrorComments(result), "something in text node"
 				);

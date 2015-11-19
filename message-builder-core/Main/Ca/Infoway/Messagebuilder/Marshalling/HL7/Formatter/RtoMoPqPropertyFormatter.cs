@@ -14,13 +14,14 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using Ca.Infoway.Messagebuilder.Datatype.Impl;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter;
+using Ca.Infoway.Messagebuilder.Xml;
 
 namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 {
@@ -43,16 +44,18 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		protected override string FormatNumerator(FormatContext context, Money numerator, int indentLevel)
 		{
 			string numeratorType = Hl7DataTypeName.Create(context.Type).GetInnerTypes()[0].ToString();
-			FormatContext newContext = new FormatContextImpl(numeratorType, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY, 
-				"numerator", context);
+			FormatContext newContext = new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl(numeratorType, context
+				.IsSpecializationType(), Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY, Cardinality.Create("1"), "numerator", 
+				context);
 			return this.moFormatter.Format(newContext, new MOImpl(numerator), indentLevel);
 		}
 
 		protected override string FormatDenominator(FormatContext context, PhysicalQuantity denominator, int indentLevel)
 		{
 			string denominatorType = Hl7DataTypeName.Create(context.Type).GetInnerTypes()[1].ToString();
-			FormatContext newContext = new FormatContextImpl(denominatorType, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY
-				, "denominator", context);
+			FormatContext newContext = new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl(denominatorType, context
+				.IsSpecializationType(), Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY, Cardinality.Create("1"), "denominator"
+				, context);
 			return this.pqFormatter.Format(newContext, new PQImpl(denominator), indentLevel);
 		}
 	}

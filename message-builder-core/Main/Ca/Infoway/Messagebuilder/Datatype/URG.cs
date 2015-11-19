@@ -48,6 +48,27 @@ namespace Ca.Infoway.Messagebuilder.Datatype {
 	/// <param name="T"> any quantity(QTY)-based HL7 datatype</param>
 	/// <param name="V"> the underlying quantity datatype</param>
 	public interface URG<T, V> : IVL<T, UncertainRange<V>>  where T : QTY<V> {
-	
-	}
+
+        /// <summary>
+        /// Returns the original text.
+        /// </summary>
+        ///
+        /// <returns>the original text</returns>
+        String OriginalText
+        {
+            /// <summary>
+            /// Returns the original text.
+            /// </summary>
+            ///
+            /// <returns>the original text</returns>
+            get;
+            /// <summary>
+            /// Sets the original text.
+            /// </summary>
+            ///
+            /// <param name="OriginalText">the original text</param>
+            set;
+        }
+
+    }
 }

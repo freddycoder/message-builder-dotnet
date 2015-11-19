@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using Ca.Infoway.Messagebuilder;
@@ -51,14 +51,14 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 				(Ca.Infoway.Messagebuilder.Domainvalue.Basic.X_DocumentMediaType.PLAIN_TEXT, null, null, System.Text.ASCIIEncoding.ASCII.GetBytes
 				("this is some text & some \"more\""))));
 			Assert.IsTrue(this.result.IsValid());
-			Assert.AreEqual(expectedResult, result, "something in text node");
+			AssertXml("something in text node", expectedResult, result, true);
 		}
 
 		/// <exception cref="System.Exception"></exception>
 		[Test]
 		public virtual void TestFormatValueMissingContent()
 		{
-			string expectedResult = "<name mediaType=\"text/plain\">" + "</name>" + SystemUtils.LINE_SEPARATOR;
+			string expectedResult = "<name mediaType=\"text/plain\"/>";
 			string result = new EdPropertyFormatter().Format(GetContext("name", "ED.DOC"), new EDImpl<EncapsulatedData>(new EncapsulatedData
 				(Ca.Infoway.Messagebuilder.Domainvalue.Basic.X_DocumentMediaType.PLAIN_TEXT, null, null, System.Text.ASCIIEncoding.ASCII.GetBytes
 				(string.Empty))));
@@ -78,7 +78,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			edImp.DataType = StandardDataType.ED_DOC;
 			string result = new EdPropertyFormatter().Format(GetContext("name", "ED.DOCORREF"), edImp);
 			Assert.IsTrue(this.result.IsValid());
-			Assert.AreEqual(expectedResult, result, "something in text node");
+			AssertXml("something in text node", expectedResult, result, true);
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -92,7 +92,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			string result = new EdPropertyFormatter().Format(GetContext("name", "ED.DOCORREF"), edImp);
 			Assert.IsFalse(this.result.IsValid());
 			Assert.AreEqual(1, this.result.GetHl7Errors().Count);
-			Assert.AreEqual(expectedResult, result, "something in text node");
+			AssertXml("something in text node", expectedResult, result, true);
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -107,19 +107,19 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			string result = new EdPropertyFormatter().Format(GetContext("name", "ED.DOCORREF"), edImp);
 			Assert.IsFalse(this.result.IsValid());
 			Assert.AreEqual(1, this.result.GetHl7Errors().Count);
-			Assert.AreEqual(expectedResult, result, "something in text node");
+			AssertXml("something in text node", expectedResult, result, true);
 		}
 
 		/// <exception cref="System.Exception"></exception>
 		[Test]
 		public virtual void TestFormatValueWithNoMediaType()
 		{
-			string expectedResult = "<name representation=\"B64\">" + "dGhpcyBpcyBzb21lIHRleHQ=</name>" + SystemUtils.LINE_SEPARATOR;
+			string expectedResult = "<name>" + "this is some text</name>" + SystemUtils.LINE_SEPARATOR;
 			string result = new EdPropertyFormatter().Format(GetContext("name", "ED.DOC"), new EDImpl<EncapsulatedData>(new EncapsulatedData
 				(null, null, null, System.Text.ASCIIEncoding.ASCII.GetBytes("this is some text"))));
 			Assert.IsFalse(this.result.IsValid());
 			Assert.AreEqual(1, this.result.GetHl7Errors().Count);
-			Assert.AreEqual(expectedResult, result, "something in text node");
+			AssertXml("something in text node", expectedResult, result, true);
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -131,11 +131,13 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			string expectedResult = "<name compression=\"GZ\" language=\"en-CA\" mediaType=\"text/xml\" representation=\"B64\">" + finalContent
 				 + "</name>" + SystemUtils.LINE_SEPARATOR;
 			EncapsulatedData data = new CompressedData(Ca.Infoway.Messagebuilder.Domainvalue.Basic.X_DocumentMediaType.XML_TEXT, null
-				, content, Compression.GZIP, "en-CA");
+				, System.Text.ASCIIEncoding.ASCII.GetBytes(finalContent), Compression.GZIP, "en-CA");
+			data.Representation = EdRepresentation.B64;
 			string result = new EdPropertyFormatter().Format(GetContext("name", "ED.DOC"), new EDImpl<EncapsulatedData>(data));
 			Assert.IsTrue(this.result.IsValid());
 			Assert.AreEqual(ClearPayload(expectedResult), ClearPayload(result), "element");
-			Assert.AreEqual(DecodeAndUnzip(ExtractPayload(result)), "<xml>foo</xml>", "element payload");
+			string extractPayload = ExtractPayload(result);
+			Assert.AreEqual(DecodeAndUnzip(extractPayload), "<xml>foo</xml>", "element payload");
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -143,25 +145,24 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		public virtual void TestFormatValueCompressedXmlDataEmptyContent()
 		{
 			byte[] content = System.Text.ASCIIEncoding.ASCII.GetBytes(string.Empty);
-			string finalContent = Base64.EncodeBase64String(Compression.Gzip(content));
-			string expectedResult = "<name compression=\"GZ\" language=\"en-CA\" mediaType=\"text/xml\" representation=\"B64\">" + finalContent
-				 + "</name>" + SystemUtils.LINE_SEPARATOR;
+			string expectedResult = "<name compression=\"GZ\" language=\"en-CA\" mediaType=\"text/xml\"/>" + SystemUtils.LINE_SEPARATOR;
 			EncapsulatedData data = new CompressedData(Ca.Infoway.Messagebuilder.Domainvalue.Basic.X_DocumentMediaType.XML_TEXT, null
 				, content, Compression.GZIP, "en-CA");
 			string result = new EdPropertyFormatter().Format(GetContext("name", "ED.DOC"), new EDImpl<EncapsulatedData>(data));
 			Assert.IsFalse(this.result.IsValid());
 			Assert.AreEqual(1, this.result.GetHl7Errors().Count);
 			Assert.AreEqual(ClearPayload(expectedResult), ClearPayload(result), "element");
-			Assert.AreEqual(DecodeAndUnzip(ExtractPayload(result)), string.Empty, "element payload");
 		}
 
 		/// <exception cref="System.Exception"></exception>
 		[Test]
 		public virtual void TestFormatValueCompressedXmlDataNullContent()
 		{
-			string expectedResult = "<name compression=\"GZ\" language=\"en-CA\" mediaType=\"text/xml\" representation=\"B64\"><reference value=\"http://www.i-proving.ca\"/></name>";
-			EncapsulatedData data = new CompressedData(Ca.Infoway.Messagebuilder.Domainvalue.Basic.X_DocumentMediaType.XML_TEXT, "http://www.i-proving.ca"
+			string expectedResult = "<name compression=\"GZ\" language=\"en-CA\" mediaType=\"text/xml\"><reference value=\"http://www.i-proving.ca\"/></name>";
+			EncapsulatedData data = new CompressedData(Ca.Infoway.Messagebuilder.Domainvalue.Basic.X_DocumentMediaType.XML_TEXT, null
 				, null, Compression.GZIP, "en-CA");
+			data.ReferenceObj = new TelecommunicationAddress(Ca.Infoway.Messagebuilder.Domainvalue.Basic.URLScheme.HTTP, "www.i-proving.ca"
+				);
 			string result = new EdPropertyFormatter().Format(GetContext("name", "ED.DOC"), new EDImpl<EncapsulatedData>(data));
 			Assert.IsFalse(this.result.IsValid());
 			Assert.AreEqual(1, this.result.GetHl7Errors().Count);
@@ -178,7 +179,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			string expectedResult = "<name compression=\"GZ\" language=\"en-CA\" mediaType=\"text/plain\" representation=\"B64\">" + 
 				finalContent + "</name>" + SystemUtils.LINE_SEPARATOR;
 			EncapsulatedData data = new CompressedData(Ca.Infoway.Messagebuilder.Domainvalue.Basic.X_DocumentMediaType.PLAIN_TEXT, null
-				, content, Compression.GZIP, "en-CA");
+				, System.Text.ASCIIEncoding.ASCII.GetBytes(finalContent), Compression.GZIP, "en-CA");
+			data.Representation = EdRepresentation.B64;
 			string result = new EdPropertyFormatter().Format(GetContext("name", "ED.DOC"), new EDImpl<EncapsulatedData>(data));
 			Assert.IsTrue(this.result.IsValid());
 			Assert.AreEqual(ClearPayload(expectedResult), ClearPayload(result), "element");
@@ -201,7 +203,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 				, null, System.Text.ASCIIEncoding.ASCII.GetBytes("<cats think they're > humans & dogs 99% of the time/>"));
 			string result = new EdPropertyFormatter().Format(GetContext("name", "ED.DOC"), new EDImpl<EncapsulatedData>(ed));
 			Assert.IsTrue(this.result.IsValid());
-			Assert.AreEqual(expectedResult.Trim(), result.Trim(), "something in text node");
+			AssertXml("something in text node", expectedResult.Trim(), result.Trim(), true);
 		}
 
 		private string ClearPayload(string result)
@@ -213,7 +215,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 
 		private string ExtractPayload(string result)
 		{
-			return System.Text.RegularExpressions.Regex.Replace(result, "(<name.*>(.*)</name>)", "$2");
+			return System.Text.RegularExpressions.Regex.Replace(result, "(?s)(<name.*>(.*)</name>)", "$2").Trim();
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -245,7 +247,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		[Test]
 		public virtual void TestMissingReference()
 		{
-			string expectedResult = "<text mediaType=\"text/html\"></text>";
+			string expectedResult = "<text mediaType=\"text/html\"/>";
 			EncapsulatedData data = new EncapsulatedData(Ca.Infoway.Messagebuilder.Domainvalue.Basic.X_DocumentMediaType.HTML_TEXT, null
 				, null, null);
 			string result = new EdPropertyFormatter().Format(GetContext("text", "ED.DOCREF"), new EDImpl<EncapsulatedData>(data));

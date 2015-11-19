@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2013-03-01 17:48:17 -0500 (Fri, 01 Mar 2013) $
- * Revision:      $LastChangedRevision: 6663 $
+ * Author:        $LastChangedBy: jmis $
+ * Last modified: $LastChangedDate: 2015-05-27 08:43:37 -0400 (Wed, 27 May 2015) $
+ * Revision:      $LastChangedRevision: 9535 $
  */
 
 /// ---------------------------------------------------------------------------------------------------
@@ -34,7 +34,7 @@ namespace Ca.Infoway.Messagebuilder.J5goodies {
 	using System.ComponentModel;
 	using System.Runtime.CompilerServices;
 	using System.Xml;
-	
+ 	
 	/// <summary>
 	/// A utility to make XPath operations easier.
 	/// This utility supports both namespace-based and non-namespaced based operations. 
@@ -80,5 +80,12 @@ namespace Ca.Infoway.Messagebuilder.J5goodies {
 			XmlDocument document = bs.OwnerDocument;
 			return document.SelectSingleNode(xpathExpression);
 		}
+
+        public XmlNodeList GetNodes(XmlNode bs, string xpathExpression, string prefix, string namespaze) {
+            XmlDocument document = bs is XmlDocument ? (XmlDocument)bs : bs.OwnerDocument;
+            XmlNamespaceManager nameSpaceManager = new XmlNamespaceManager(document.NameTable);
+            nameSpaceManager.AddNamespace(prefix, namespaze);
+            return bs.SelectNodes(xpathExpression, nameSpaceManager);
+        }
 	}
 }

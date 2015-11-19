@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System.Xml;
@@ -22,7 +22,8 @@ using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Marshalling;
 using Ca.Infoway.Messagebuilder.Model.Cr;
 using Ca.Infoway.Messagebuilder.Model.Mock;
-using Ca.Infoway.Messagebuilder.Terminology;
+using Ca.Infoway.Messagebuilder.Resolver;
+using Ca.Infoway.Messagebuilder.Resolver.Configurator;
 using Ca.Infoway.Messagebuilder.Util.Xml;
 using Ca.Infoway.Messagebuilder.Xml;
 using Ca.Infoway.Messagebuilder.Xml.Service;
@@ -47,12 +48,13 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 			 + "  <initialQuantityCode nullFlavor=\"OTH\" codeSystem=\"2.16.840.1.113883.5.1\" />" + "  <parameterList>" + "    <personName>"
 			 + "      <value><given>J</given><family>Smith</family></value>" + "    </personName>" + "  </parameterList>" + "</queryByParameter>";
 
-		// FIXME - TM - 3 tests are commented out below and should be re-implemented
+		// FIXME - TM - 3 tests are commented out below and should be re-implemented (possibly related to RM19204)
 		/// <exception cref="System.Exception"></exception>
 		[NUnit.Framework.SetUp]
 		public virtual void SetUp()
 		{
 			MockMessageBeanRegistry.Initialize();
+			DefaultCodeResolutionConfigurator.ConfigureCodeResolversWithTrivialDefault();
 			CodeResolverRegistry.Register(new TrivialCodeResolver());
 			this.service = new MockTestCaseMessageDefinitionService();
 		}
@@ -149,8 +151,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 		//		assertEquals("second reason null flavor", NullFlavor.OTHER, bean.getReasons().get(1).getNullFlavor());
 		//	}
 		/// <exception cref="System.IO.IOException"></exception>
-		/// <exception cref="org.xml.sax.SAXException"></exception>
-		/// <exception cref="javax.xml.xpath.XPathExpressionException"></exception>
+		/// <exception cref="Platform.Xml.Sax.SAXException"></exception>
+		/// <exception cref="System.Xml.XPath.XPathException"></exception>
 		private object MapPartSourceToTeal(VersionNumber version, string xml, string relationshipType)
 		{
 			XmlDocument document1 = new DocumentFactory().CreateFromString(xml);

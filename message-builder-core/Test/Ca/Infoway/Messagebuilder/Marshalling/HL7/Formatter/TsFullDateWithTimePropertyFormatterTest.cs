@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using Ca.Infoway.Messagebuilder;
@@ -39,8 +39,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			PlatformDate date = DateUtil.GetDate(1999, 3, 23);
 			TS ts = new TSImpl(date);
 			ts.DataType = StandardDataType.TS_FULLDATE;
-			FormatContext context = new FormatContextImpl(result, null, "tsValue", "TS.FULLDATEWITHTIME", null, false, SpecificationVersion
-				.R02_04_02, null, null, null);
+			FormatContext context = new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl(result, null, "tsValue"
+				, "TS.FULLDATEWITHTIME", null, null, false, SpecificationVersion.R02_04_02, null, null, null, false);
 			string xmlOutput = this.formatter.Format(context, ts);
 			Assert.IsTrue(result.GetHl7Errors().IsEmpty(), "no errors");
 			Assert.AreEqual("<tsValue specializationType=\"TS.FULLDATE\" value=\"19990423\" xsi:type=\"TS\"/>", xmlOutput.Trim(), "output as expected"
@@ -54,8 +54,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			PlatformDate date = DateUtil.GetDate(1999, 3, 23, 1, 2, 3, 0);
 			TS ts = new TSImpl(date);
 			ts.DataType = StandardDataType.TS_FULLDATETIME;
-			FormatContext context = new FormatContextImpl(result, null, "tsValue", "TS.FULLDATEWITHTIME", null, false, SpecificationVersion
-				.R02_04_02, null, null, null);
+			FormatContext context = new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl(result, null, "tsValue"
+				, "TS.FULLDATEWITHTIME", null, null, false, SpecificationVersion.R02_04_02, null, null, null, false);
 			string xmlOutput = this.formatter.Format(context, ts);
 			// avoid having to assess the timezone
 			Assert.IsTrue(result.GetHl7Errors().IsEmpty(), "no errors");
@@ -69,11 +69,11 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			ModelToXmlResult result = new ModelToXmlResult();
 			PlatformDate date = DateUtil.GetDate(1999, 3, 23, 1, 2, 3, 0);
 			TS ts = new TSImpl(date);
-			FormatContext context = new FormatContextImpl(result, null, "tsValue", "TS.FULLDATEWITHTIME", null, false, SpecificationVersion
-				.R02_04_02, null, null, null);
+			FormatContext context = new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl(result, null, "tsValue"
+				, "TS.FULLDATEWITHTIME", null, null, false, SpecificationVersion.R02_04_02, null, null, null, false);
 			string xmlOutput = this.formatter.Format(context, ts);
 			Assert.AreEqual(1, result.GetHl7Errors().Count, "1 error");
-			Assert.AreEqual("No specializationType provided. Value should be TS.FULLDATE or TS.FULLDATETIME. TS.FULLDATETIME will be assumed."
+			Assert.AreEqual("No specializationType provided. Value should be one of TS.FULLDATE / TS.FULLDATETIME / TS.FULLDATEPARTTIME. TS.FULLDATETIME will be assumed."
 				, result.GetHl7Errors()[0].GetMessage());
 			// avoid having to assess the timezone
 			Assert.IsTrue(xmlOutput.Trim().StartsWith("<tsValue specializationType=\"TS.FULLDATETIME\" value=\"19990423010203.0000"));
@@ -87,15 +87,29 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			PlatformDate date = DateUtil.GetDate(1999, 3, 23, 1, 2, 3, 0);
 			TS ts = new TSImpl(date);
 			ts.DataType = StandardDataType.TS_DATETIME;
-			FormatContext context = new FormatContextImpl(result, null, "tsValue", "TS.FULLDATEWITHTIME", null, false, SpecificationVersion
-				.R02_04_02, null, null, null);
+			FormatContext context = new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl(result, null, "tsValue"
+				, "TS.FULLDATEWITHTIME", null, null, false, SpecificationVersion.R02_04_02, null, null, null, false);
 			string xmlOutput = this.formatter.Format(context, ts);
 			Assert.AreEqual(1, result.GetHl7Errors().Count, "1 error");
-			Assert.AreEqual("Invalid specializationType: TS.DATETIME. Value should be TS.FULLDATE or TS.FULLDATETIME. TS.FULLDATETIME will be assumed."
+			Assert.AreEqual("Invalid specializationType: TS.DATETIME. Value should be one of TS.FULLDATE / TS.FULLDATETIME / TS.FULLDATEPARTTIME. TS.FULLDATETIME will be assumed."
 				, result.GetHl7Errors()[0].GetMessage());
 			// avoid having to assess the timezone
 			Assert.IsTrue(xmlOutput.Trim().StartsWith("<tsValue specializationType=\"TS.FULLDATETIME\" value=\"19990423010203.0000"));
 			Assert.IsTrue(xmlOutput.Trim().EndsWith("\" xsi:type=\"TS\"/>"));
+		}
+
+		[Test]
+		public virtual void ShouldProduceResultWithNoErrorsWhenNullFlavorSupplied()
+		{
+			// writing test based on RM16399
+			ModelToXmlResult result = new ModelToXmlResult();
+			TS ts = new TSImpl(Ca.Infoway.Messagebuilder.Domainvalue.Nullflavor.NullFlavor.ASKED_BUT_UNKNOWN);
+			FormatContext context = new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl(result, null, "tsValue"
+				, "TS.FULLDATEWITHTIME", Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL, null, false, SpecificationVersion.R02_04_02
+				, null, null, null, false);
+			string xmlOutput = this.formatter.Format(context, ts);
+			Assert.IsTrue(result.IsValid());
+			Assert.AreEqual("<tsValue nullFlavor=\"ASKU\"/>", xmlOutput.Trim());
 		}
 	}
 }

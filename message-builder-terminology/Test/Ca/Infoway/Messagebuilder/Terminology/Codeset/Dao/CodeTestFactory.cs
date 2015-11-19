@@ -50,7 +50,8 @@ namespace Ca.Infoway.Messagebuilder.Terminology.Codeset.Dao {
 				this.f_object = obj0;
 			}
 		}
-	
+
+        private static int uniqueNameSuffix = 1;
 		private readonly IList<Object> createdObjects;
 		private readonly DaoTestSupport testSupport;
 	
@@ -60,14 +61,20 @@ namespace Ca.Infoway.Messagebuilder.Terminology.Codeset.Dao {
 			SessionFactory = testSupport_0.SessionFactory;
 		}
 	
-		public ValueSetEntry CreateValueSet(CodedValue codedValue,
+		public ValueSetEntry CreateValueSet(CodedValue codedValue, String version,
 				params VocabularyDomain[] vocabularyDomain) {
+
+            ValueSet valueSet = new ValueSet();
+            valueSet.Name  = "testValueSetName" + uniqueNameSuffix;
+            valueSet.Version = version;
+            uniqueNameSuffix++;
+
 			ValueSetEntry result = new ValueSetEntry();
 			result.CodedValue = codedValue;
 			result.Sequence = 1;
 			result.Active = ILOG.J2CsMapping.Util.BooleanUtil.TRUE;
 			result.Common = ILOG.J2CsMapping.Util.BooleanUtil.TRUE;
-			result.ValueSet = new ValueSet();
+			result.ValueSet = valueSet;
 			/* foreach */
 			foreach (VocabularyDomain domain  in  vocabularyDomain) {
 				ILOG.J2CsMapping.Collections.Generics.Collections.Add(result.ValueSet.VocabularyDomains,domain);

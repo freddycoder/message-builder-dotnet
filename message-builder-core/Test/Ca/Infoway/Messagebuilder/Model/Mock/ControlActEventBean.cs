@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System.Collections.Generic;
@@ -23,7 +23,6 @@ using Ca.Infoway.Messagebuilder.Annotation;
 using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Datatype.Impl;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
-using Ca.Infoway.Messagebuilder.Datatype.Lang.Util;
 using Ca.Infoway.Messagebuilder.Domainvalue;
 using Ca.Infoway.Messagebuilder.Model;
 using Ca.Infoway.Messagebuilder.Model.Mock;
@@ -58,14 +57,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Mock
 		private AssignedPersonBean dataEnterer;
 
 		[Hl7XmlMappingAttribute("id")]
-		public virtual Identifier GetEventId()
+		public virtual Identifier EventId
 		{
-			return this.eventId.Value;
-		}
-
-		public virtual void SetEventId(Identifier eventId)
-		{
-			this.eventId.Value = eventId;
+			get
+			{
+				return this.eventId.Value;
+			}
+			set
+			{
+				Identifier eventId = value;
+				this.eventId.Value = eventId;
+			}
 		}
 
 		[Hl7XmlMappingAttribute("code")]
@@ -83,14 +85,17 @@ namespace Ca.Infoway.Messagebuilder.Model.Mock
 		}
 
 		[Hl7XmlMappingAttribute("statusCode")]
-		public virtual ActStatus GetStatusCode()
+		public virtual ActStatus StatusCode
 		{
-			return (ActStatus)this.statusCode.Value;
-		}
-
-		public virtual void SetStatusCode(ActStatus statusCode)
-		{
-			this.statusCode.Value = statusCode;
+			get
+			{
+				return (ActStatus)this.statusCode.Value;
+			}
+			set
+			{
+				ActStatus statusCode = value;
+				this.statusCode.Value = statusCode;
+			}
 		}
 
 		public virtual Interval<PlatformDate> GetEffectiveTimeAsInterval()
@@ -104,75 +109,96 @@ namespace Ca.Infoway.Messagebuilder.Model.Mock
 		}
 
 		[Hl7XmlMappingAttribute("effectiveTime")]
-		public virtual PlatformDate GetEffectiveTime()
+		public virtual PlatformDate EffectiveTime
 		{
-			return this.effectiveTime.Value;
-		}
-
-		public virtual void SetEffectiveTime(PlatformDate date)
-		{
-			this.effectiveTime.Value = date;
+			get
+			{
+				return this.effectiveTime.Value;
+			}
+			set
+			{
+				PlatformDate date = value;
+				this.effectiveTime.Value = date;
+			}
 		}
 
 		[Hl7XmlMappingAttribute("author")]
-		public virtual AuthorBean GetAuthor()
+		public virtual AuthorBean Author
 		{
-			return this.author;
-		}
-
-		public virtual void SetAuthor(AuthorBean author)
-		{
-			this.author = author;
+			get
+			{
+				return this.author;
+			}
+			set
+			{
+				AuthorBean author = value;
+				this.author = author;
+			}
 		}
 
 		[Hl7XmlMappingAttribute(new string[] { "subjectOf1/detectedIssueEvent", "subjectOf/detectedIssueEvent" })]
-		public virtual IList<DetectedIssueBean> GetIssues()
+		public virtual IList<DetectedIssueBean> Issues
 		{
-			return this.issues;
+			get
+			{
+				return this.issues;
+			}
 		}
 
 		[Hl7XmlMappingAttribute("location/serviceDeliveryLocation")]
-		public virtual ServiceDeliveryLocationBean GetLocation()
+		public virtual ServiceDeliveryLocationBean Location
 		{
-			return this.location;
-		}
-
-		public virtual void SetLocation(ServiceDeliveryLocationBean location)
-		{
-			this.location = location;
+			get
+			{
+				return this.location;
+			}
+			set
+			{
+				ServiceDeliveryLocationBean location = value;
+				this.location = location;
+			}
 		}
 
 		[Hl7XmlMappingAttribute(new string[] { "responsibleParty/assignedPerson", "responsibleParty/assignedEntity" })]
-		public virtual AssignedPersonBean GetResponsibleParty()
+		public virtual AssignedPersonBean ResponsibleParty
 		{
-			return this.responsibleParty;
-		}
-
-		public virtual void SetResponsibleParty(AssignedPersonBean responsibleParty)
-		{
-			this.responsibleParty = responsibleParty;
+			get
+			{
+				return this.responsibleParty;
+			}
+			set
+			{
+				AssignedPersonBean responsibleParty = value;
+				this.responsibleParty = responsibleParty;
+			}
 		}
 
 		[Hl7XmlMappingAttribute("reasonCode")]
-		public virtual ControlActReason GetReasonCode()
+		public virtual ControlActReason ReasonCode
 		{
-			return (ControlActReason)this.reasonCode.Value;
-		}
-
-		public virtual void SetReasonCode(ControlActReason reasonCode)
-		{
-			this.reasonCode.Value = reasonCode;
+			get
+			{
+				return (ControlActReason)this.reasonCode.Value;
+			}
+			set
+			{
+				ControlActReason reasonCode = value;
+				this.reasonCode.Value = reasonCode;
+			}
 		}
 
 		[Hl7XmlMappingAttribute("dataEnterer/assignedPerson")]
-		public virtual AssignedPersonBean GetDataEnterer()
+		public virtual AssignedPersonBean DataEnterer
 		{
-			return dataEnterer;
-		}
-
-		public virtual void SetDataEnterer(AssignedPersonBean dataEnterer)
-		{
-			this.dataEnterer = dataEnterer;
+			get
+			{
+				return dataEnterer;
+			}
+			set
+			{
+				AssignedPersonBean dataEnterer = value;
+				this.dataEnterer = dataEnterer;
+			}
 		}
 	}
 }

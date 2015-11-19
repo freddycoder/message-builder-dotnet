@@ -14,14 +14,14 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype.Impl;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter;
-using Ca.Infoway.Messagebuilder.Terminology.Configurator;
+using Ca.Infoway.Messagebuilder.Resolver.Configurator;
 using NUnit.Framework;
 
 namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
@@ -30,7 +30,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 	public class RtoPqPqPropertyFormatterTest : FormatterTestCase
 	{
 		[SetUp]
-		public override void Setup()
+		public virtual void Setup()
 		{
 			DefaultCodeResolutionConfigurator.ConfigureCodeResolversWithTrivialDefault();
 		}
@@ -46,7 +46,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 				.MILLILITRE);
 			string result = new RtoPqPqPropertyFormatter().Format(GetContext("name", "RTO<PQ.DRUG,PQ.DRUG>"), new RTOImpl<PhysicalQuantity
 				, PhysicalQuantity>(ratio));
-			AssertXml("result", "<name><numerator unit=\"mg\" value=\"1.00\"/><denominator unit=\"ml\" value=\"10.00\"/></name>", result
+			AssertXml("result", "<name><numerator unit=\"mg\" value=\"1.00\"/><denominator unit=\"mL\" value=\"10.00\"/></name>", result
 				);
 		}
 

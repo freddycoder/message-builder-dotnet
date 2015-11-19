@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System;
@@ -39,7 +39,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 	/// http://www.hl7.org/v3ballot/html/infrastructure/itsxml/datatypes-its-xml.htm#dtimpl-EN
 	/// </remarks>
 	[DataTypeHandler("EN")]
-	internal class EnPropertyFormatter : AbstractNullFlavorPropertyFormatter<EntityName>
+	internal class EnPropertyFormatter : AbstractEntityNamePropertyFormatter<EntityName>
 	{
 		private readonly OnPropertyFormatter onPropertyFormatter = new OnPropertyFormatter();
 
@@ -47,27 +47,40 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 
 		private readonly TnPropertyFormatter tnPropertyFormatter = new TnPropertyFormatter();
 
-		internal override string FormatNonNullValue(FormatContext context, EntityName value, int indentLevel)
+		protected override string FormatNonNullValue(FormatContext context, EntityName value, int indentLevel)
 		{
-			if (value == null || value.GetType().IsAssignableFrom(typeof(TrivialName)))
+			// this code is delegating to the appropriate formatter based on the type of the
+			// object set as the value; specializationType needs to also be set, but we can infer it
+			// (note that this is a bit different from how other formatters treat abstract types)
+			if (value == null || value.GetType().IsAssignableFrom(typeof(EntityName)))
 			{
-				return this.tnPropertyFormatter.Format(context, new TNImpl((TrivialName)value), indentLevel);
+				return base.FormatNonNullValue(context, value, indentLevel);
 			}
 			else
 			{
-				if (value.GetType().IsAssignableFrom(typeof(PersonName)))
+				if (value.GetType().IsAssignableFrom(typeof(TrivialName)))
 				{
-					return this.pnPropertyFormatter.Format(context, new PNImpl((PersonName)value), indentLevel);
+					context = new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl("TN", true, context);
+					return this.tnPropertyFormatter.Format(context, new TNImpl((TrivialName)value), indentLevel);
 				}
 				else
 				{
-					if (value.GetType().IsAssignableFrom(typeof(OrganizationName)))
+					if (value.GetType().IsAssignableFrom(typeof(PersonName)))
 					{
-						return this.onPropertyFormatter.Format(context, new ONImpl((OrganizationName)value), indentLevel);
+						context = new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl("PN", true, context);
+						return this.pnPropertyFormatter.Format(context, new PNImpl((PersonName)value), indentLevel);
 					}
 					else
 					{
-						throw new ArgumentException("Can not handle values of type " + value.GetType());
+						if (value.GetType().IsAssignableFrom(typeof(OrganizationName)))
+						{
+							context = new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl("ON", true, context);
+							return this.onPropertyFormatter.Format(context, new ONImpl((OrganizationName)value), indentLevel);
+						}
+						else
+						{
+							throw new ArgumentException("EN can not handle values of type " + value.GetType());
+						}
 					}
 				}
 			}

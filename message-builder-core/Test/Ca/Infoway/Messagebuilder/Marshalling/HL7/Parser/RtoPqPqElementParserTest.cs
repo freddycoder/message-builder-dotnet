@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System.Xml;
@@ -44,8 +44,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 
 		private ParseContext CreateContext()
 		{
-			return ParserContextImpl.Create("RTO<PQ.DRUG,PQ.DRUG>", typeof(Ratio<object, object>), SpecificationVersion.V02R02, null, 
-				null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.POPULATED);
+			return ParseContextImpl.Create("RTO<PQ.DRUG,PQ.DRUG>", typeof(Ratio<object, object>), SpecificationVersion.V02R02, null, 
+				null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.POPULATED, null, null, false);
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -64,7 +64,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		[Test]
 		public virtual void TestParseValidAttributes()
 		{
-			XmlNode node = CreateNode("<something><numerator value=\"1234.45\" unit=\"mg\"/><denominator value=\"2345.67\" unit=\"ml\" /></something>"
+			XmlNode node = CreateNode("<something xsi:type=\"RTO_PQ_PQ\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><numerator value=\"1234.45\" unit=\"mg\"/><denominator value=\"2345.67\" unit=\"mL\" /></something>"
 				);
 			Ratio<PhysicalQuantity, PhysicalQuantity> ratio = (Ratio<PhysicalQuantity, PhysicalQuantity>)new RtoPqPqElementParser().Parse
 				(CreateContext(), node, this.xmlResult).BareValue;

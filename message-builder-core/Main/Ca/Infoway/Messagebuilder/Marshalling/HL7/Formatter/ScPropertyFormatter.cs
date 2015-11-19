@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System.Collections.Generic;
@@ -43,30 +43,49 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 	[DataTypeHandler("SC")]
 	internal class ScPropertyFormatter : AbstractNullFlavorPropertyFormatter<CodedString<Code>>
 	{
-		internal override string FormatNonNullValue(FormatContext context, CodedString<Code> value, int indentLevel)
+		private CodedStringValidationUtils codedStringValidationUtils = new CodedStringValidationUtils();
+
+		protected override string FormatNonNullValue(FormatContext context, CodedString<Code> value, int indentLevel)
 		{
+			bool codeProvided = value.Code == null ? false : StringUtils.IsNotBlank(value.Code.CodeValue);
+			bool codeSystemProvided = value.Code == null ? false : StringUtils.IsNotBlank(value.Code.CodeSystem);
+			this.codedStringValidationUtils.ValidateCodedString(value, codeProvided, codeSystemProvided, null, context.GetPropertyPath
+				(), context.GetModelToXmlResult());
 			StringBuilder buffer = new StringBuilder();
-			buffer.Append(CreateElement(context, GetAttributeNameValuePairs(value.Code), indentLevel, false, false));
+			buffer.Append(CreateElement(context, GetAttributeNameValuePairs(value), indentLevel, false, false));
 			buffer.Append(XmlStringEscape.Escape(value.Value));
 			buffer.Append(CreateElementClosure(context, 0, true));
 			return buffer.ToString();
 		}
 
-		private IDictionary<string, string> GetAttributeNameValuePairs(Code code)
+		private IDictionary<string, string> GetAttributeNameValuePairs(CodedString<Code> value)
 		{
 			IDictionary<string, string> result = new Dictionary<string, string>();
+			Code code = value.Code;
 			if (code != null)
 			{
-				string value = code.CodeValue;
-				if (value == null)
+				string codeValue = code.CodeValue;
+				if (codeValue == null)
 				{
-					value = code.ToString();
+					codeValue = code.ToString();
 				}
-				result["code"] = value;
+				result["code"] = codeValue;
 				string codeSystem = code.CodeSystem;
 				if (StringUtils.IsNotEmpty(codeSystem))
 				{
 					result["codeSystem"] = codeSystem;
+				}
+				if (StringUtils.IsNotEmpty(value.DisplayName))
+				{
+					result["displayName"] = value.DisplayName;
+				}
+				if (StringUtils.IsNotEmpty(value.CodeSystemName))
+				{
+					result["codeSystemName"] = value.CodeSystemName;
+				}
+				if (StringUtils.IsNotEmpty(value.CodeSystemVersion))
+				{
+					result["codeSystemVersion"] = value.CodeSystemVersion;
 				}
 			}
 			return result;

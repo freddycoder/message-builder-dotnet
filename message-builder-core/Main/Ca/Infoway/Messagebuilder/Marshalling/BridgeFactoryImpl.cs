@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System;
@@ -28,9 +28,9 @@ using Ca.Infoway.Messagebuilder.Marshalling;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Model;
 using Ca.Infoway.Messagebuilder.Platform;
-using Ca.Infoway.Messagebuilder.Util.Xml;
 using Ca.Infoway.Messagebuilder.Xml;
 using Ca.Infoway.Messagebuilder.Xml.Service;
+using Ca.Infoway.Messagebuilder.Xml.Util;
 using ILOG.J2CsMapping.Text;
 using log4net;
 
@@ -71,7 +71,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 			foreach (Relationship relationship in currentMessagePart.GetRelationships())
 			{
 				object o = sorter.Get(relationship);
-				if (relationship.Attribute && relationship.Fixed)
+				if (relationship.Attribute && relationship.HasFixedValue())
 				{
 					relationships.Add(new FixedValueAttributeBeanBridge(relationship, (BareANY)null));
 				}
@@ -120,8 +120,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 							if (o == null)
 							{
 								CreateWarningIfPropertyIsNotMapped(sorter, currentMessagePart, relationship);
-								if (relationship.Conformance == Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY || relationship.Conformance == Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
-									.POPULATED)
+								if (ConformanceLevelUtil.IsMandatory(relationship) || ConformanceLevelUtil.IsPopulated(relationship))
 								{
 									relationships.Add(new AssociationBridgeImpl(relationship, CreateNullPartBridge(relationship, interaction)));
 								}
@@ -135,25 +134,24 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 					}
 				}
 			}
-			if (sorter.GetPropertyName() == null || sorter.GetPropertyName().Equals("null"))
-			{
-				System.Console.Out.WriteLine("not correct");
-			}
+			//		if (sorter.getPropertyName() == null || sorter.getPropertyName().equals("null")) {
+			//			System.out.println("not correct");
+			//		}
 			return new PartBridgeImpl(sorter.GetPropertyName(), sorter.GetBean(), currentMessagePart.GetName(), relationships, context
 				.IsCollapsed(), nullPart);
 		}
 
 		private void CreateWarningIfConformanceLevelIsNotAllowed(Relationship relationship)
 		{
-			if (ConformanceLevelUtil.IsIgnoredNotAllowed() && relationship.Conformance == Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
-				.IGNORED)
+			// FIXME - TM (see RM19206) - IGNORED/NOT_ALLOWED - these should log a warning in the Hl7Errors bean, not just as a log message
+			if (ConformanceLevelUtil.IsIgnoredNotAllowed() && ConformanceLevelUtil.IsIgnored(relationship))
 			{
 				this.log.Debug(System.String.Format(relationship.Association ? ConformanceLevelUtil.ASSOCIATION_IS_IGNORED_AND_CAN_NOT_BE_USED
 					 : ConformanceLevelUtil.ATTRIBUTE_IS_IGNORED_AND_CAN_NOT_BE_USED, relationship.Name));
 			}
 			else
 			{
-				if (relationship.Conformance == Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.NOT_ALLOWED)
+				if (ConformanceLevelUtil.IsNotAllowed(relationship))
 				{
 					this.log.Debug(System.String.Format(relationship.Association ? ConformanceLevelUtil.ASSOCIATION_IS_NOT_ALLOWED : ConformanceLevelUtil
 						.ATTRIBUTE_IS_NOT_ALLOWED, relationship.Name));
@@ -179,14 +177,15 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 
 		private bool IsIndicator(Relationship relationship)
 		{
-			bool result = (!relationship.Mandatory && !relationship.Choice && relationship.Type != null && !relationship.Structural);
+			bool result = (!ConformanceLevelUtil.IsMandatory(relationship) && !relationship.Choice && relationship.Type != null && !relationship
+				.Structural);
 			if (result)
 			{
 				string type = relationship.Type;
 				MessagePart messagePart = this.service.GetMessagePart(this.version, type);
 				foreach (Relationship innerRelationship in messagePart.Relationships)
 				{
-					if (!innerRelationship.Fixed)
+					if (!innerRelationship.HasFixedValue())
 					{
 						result = false;
 						break;
@@ -243,7 +242,6 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 				object o = sorter.Get(relationship);
 				BeanProperty property = (BeanProperty)o;
 				object value = property.Get();
-				MessagePartHolder part = GetMessagePart(interaction, relationship, value);
 				if (relationship.Cardinality.Multiple && value is IEnumerable)
 				{
 					this.log.Debug("Association " + Describer.Describe(currentMessagePart, relationship) + " maps to collection property " + 
@@ -258,7 +256,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 							() + " of collection property " + Describer.Describe(sorter.GetBeanType(), property));
 						object elementValue = ListElementUtil.GetElement(value, context.GetIndex());
 						// use the indexed object's part instead
-						part = GetMessagePart(interaction, relationship, elementValue);
+						MessagePartHolder part = GetMessagePart(interaction, relationship, elementValue);
 						return new AssociationBridgeImpl(relationship, CreatePartBridgeFromBean(property.Name + "[" + context.GetIndex() + "]", elementValue
 							, interaction, part));
 					}
@@ -271,6 +269,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 						{
 							value = ListElementUtil.IsEmpty(value) ? null : ListElementUtil.GetElement(value, 0);
 						}
+						MessagePartHolder part = GetMessagePart(interaction, relationship, value);
 						return new AssociationBridgeImpl(relationship, CreatePartBridgeFromBean(property.Name, value, interaction, part));
 					}
 				}
@@ -289,8 +288,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 					, i), false));
 			}
 			// bug 13240 - if empty collection and pop/mand, add a placeholder bridge - this will output a nullflavor element, and a warning for mandatory
-			if (list.IsEmpty() && (relationship.Conformance == Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.POPULATED || relationship
-				.Conformance == Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY))
+			if (list.IsEmpty() && (ConformanceLevelUtil.IsPopulated(relationship) || ConformanceLevelUtil.IsMandatory(relationship)))
 			{
 				list.Add(CreatePartBridgeFromBean(string.Empty, null, interaction, GetMessagePart(interaction, relationship, null)));
 			}
@@ -311,11 +309,11 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 			IList<PartBridge> list = new List<PartBridge>();
 			foreach (object @object in value)
 			{
-				list.Add(CreatePartBridgeFromBean(propertyName, @object, interaction, GetMessagePart(interaction, relationship, value)));
+				list.Add(CreatePartBridgeFromBean(propertyName, @object, interaction, GetMessagePart(interaction, relationship, @object))
+					);
 			}
 			// bug 13240 - if empty collection and pop/mand, add a placeholder bridge - this will output a nullflavor element, and a warning for mandatory
-			if (list.IsEmpty() && (relationship.Conformance == Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.POPULATED || relationship
-				.Conformance == Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY))
+			if (list.IsEmpty() && (ConformanceLevelUtil.IsPopulated(relationship) || ConformanceLevelUtil.IsMandatory(relationship)))
 			{
 				list.Add(CreatePartBridgeFromBean(propertyName, null, interaction, GetMessagePart(interaction, relationship, value)));
 			}
@@ -395,7 +393,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 		private bool IsNewfoundland(VersionNumber version)
 		{
 			// this version is not currently supported by MB and is not in the SpecificationVersion enum
-			// TODO - TM - NEWFOUNDLAND TEST HACK
+			// TM - NEWFOUNDLAND TEST HACK
 			return version != null && StringUtils.Equals(version.VersionLiteral, "NEWFOUNDLAND");
 		}
 
@@ -421,6 +419,15 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 		{
 			MessageTypeKey type = MessageBeanRegistry.GetInstance().GetMessageTypeKey(this.version, tealBean);
 			return this.service.GetInteraction(this.version, type.GetMessageId());
+		}
+
+		public virtual ConstrainedDatatype GetConstraints(Relationship relationship)
+		{
+			if (StringUtils.IsNotBlank(relationship.ConstrainedType))
+			{
+				return this.service.GetConstraints(this.version, relationship.ConstrainedType);
+			}
+			return null;
 		}
 	}
 }

@@ -14,8 +14,8 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2013-03-01 17:48:17 -0500 (Fri, 01 Mar 2013) $
- * Revision:      $LastChangedRevision: 6663 $
+ * Last modified: $LastChangedDate: 2013-04-03 19:07:44 -0400 (Wed, 03 Apr 2013) $
+ * Revision:      $LastChangedRevision: 6763 $
  */
 
 
@@ -89,7 +89,6 @@ namespace Ca.Infoway.Messagebuilder
 		}
 		
 		public static void AddElement(Object list, Object element) {
-			System.Console.WriteLine("----> " + element.GetType());
 			MethodInfo method = FindAddMethod (list);
 			if (method != null) {
 				method.Invoke(list, new Object[] { element });

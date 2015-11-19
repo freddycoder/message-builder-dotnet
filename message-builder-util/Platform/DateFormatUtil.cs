@@ -13,26 +13,34 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2013-03-01 17:48:17 -0500 (Fri, 01 Mar 2013) $
- * Revision:      $LastChangedRevision: 6663 $
+ * Author:        $LastChangedBy: jmis $
+ * Last modified: $LastChangedDate: 2015-05-27 08:43:37 -0400 (Wed, 27 May 2015) $
+ * Revision:      $LastChangedRevision: 9535 $
  */
 
 using System;
+using System.Collections.Generic;
 
 namespace Ca.Infoway.Messagebuilder.Platform
 {
 	public class DateFormatUtil
 	{
-		public static PlatformDate Parse(String dateString, String pattern, TimeZone timeZone) {
-			// FIXME - use timeZone
-            return DateUtils.ParseDate(AddColonToTimeZone(dateString), new[] { MakePatternDotNetCompatible(pattern) });
+        public static PlatformDate Parse(String dateString, String pattern, TimeZoneInfo timeZone)
+        {
+            return DateUtils.ParseDate(AddColonToTimeZone(dateString), new[] { MakePatternDotNetCompatible(pattern) }, timeZone);
 		}
 
 		public static bool IsMatchingPattern(String dateString, String pattern) {
-		    try { 
-				DateUtils.ParseDate(AddColonToTimeZone(dateString), new[] { MakePatternDotNetCompatible(pattern) }); 
-			} 
+
+            if (dateString.Length != pattern.Length) {
+                return false;
+            }
+
+		    try {
+                string addColon = AddColonToTimeZone(dateString);
+                string[] makeCompatible = new[] { MakePatternDotNetCompatible(pattern) };
+                DateUtils.ParseDate(addColon, makeCompatible);
+            } 
 			catch (Exception e) {
 				return false;
 			}
@@ -40,15 +48,17 @@ namespace Ca.Infoway.Messagebuilder.Platform
 		}
 		
 		public static String Format(PlatformDate date, String datePattern) {
-			return Format(date, datePattern, TimeZone.CurrentTimeZone);
+			return Format(date, datePattern, TimeZoneInfo.Local);
 		}
 		
-		public static String Format(PlatformDate date, String datePattern, TimeZone timeZone) {
-			// FIXME - use timeZone
+		public static String Format(PlatformDate date, String datePattern, TimeZoneInfo timeZone) {
 			if (date==null) {
 				return "";
 			} else {
 				DateTime dateTime = date;
+                if (timeZone != null) {
+                    dateTime = TimeZoneInfo.ConvertTime(dateTime, timeZone);
+                }
 				return RemoveColonFromTimeZone(dateTime.ToString(MakePatternDotNetCompatible(datePattern)));
 			}
 		}
@@ -69,7 +79,14 @@ namespace Ca.Infoway.Messagebuilder.Platform
 		}
 		
 		private static string MakePatternDotNetCompatible(string datePattern) {
-			return StringUtils.Replace(StringUtils.Replace(datePattern, "ZZZZZ", "zzz"), "SSS", "fff");
+            string result = datePattern;
+            if (datePattern.IndexOf("ZZZZZ") >= 0) {
+                result = StringUtils.Replace(datePattern, "ZZZZZ", "zzz");
+            } else {
+                result = StringUtils.Replace(datePattern, "Z", "zzz");
+            }
+            result = StringUtils.Replace(result, "SSS", "fff");
+			return result;
 		}
 	}
 }

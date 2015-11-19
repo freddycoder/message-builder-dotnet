@@ -14,11 +14,9 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
-using System.Collections.Generic;
-using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Lang;
 
 namespace Ca.Infoway.Messagebuilder.Domainvalue.Nullflavor
@@ -28,6 +26,10 @@ namespace Ca.Infoway.Messagebuilder.Domainvalue.Nullflavor
 	[System.Serializable]
 	public class NullFlavor : EnumPattern, Ca.Infoway.Messagebuilder.Domainvalue.NullFlavor
 	{
+		static NullFlavor()
+		{
+		}
+
 		private const long serialVersionUID = 7363875379566291402L;
 
 		public static readonly Ca.Infoway.Messagebuilder.Domainvalue.Nullflavor.NullFlavor NO_INFORMATION = new Ca.Infoway.Messagebuilder.Domainvalue.Nullflavor.NullFlavor
@@ -94,38 +96,12 @@ namespace Ca.Infoway.Messagebuilder.Domainvalue.Nullflavor
 			}
 		}
 
-		/// <summary>* fast Code lookup **.</summary>
-		/// <remarks>* fast Code lookup **.</remarks>
-		/// <param name="codeValue">the code value</param>
-		/// <returns>the null flavor</returns>
-		public static Ca.Infoway.Messagebuilder.Domainvalue.Nullflavor.NullFlavor Lookup(string codeValue)
+		/// <summary><inheritDoc></inheritDoc></summary>
+		public virtual string CodeSystemName
 		{
-			if (StringUtils.IsBlank(codeValue))
+			get
 			{
 				return null;
-			}
-			else
-			{
-				if (codeToNullFlavor.ContainsKey(codeValue))
-				{
-					return codeToNullFlavor.SafeGet(codeValue);
-				}
-				else
-				{
-					return null;
-				}
-			}
-		}
-
-		private static readonly IDictionary<string, Ca.Infoway.Messagebuilder.Domainvalue.Nullflavor.NullFlavor> codeToNullFlavor;
-
-		static NullFlavor()
-		{
-			codeToNullFlavor = new Dictionary<string, Ca.Infoway.Messagebuilder.Domainvalue.Nullflavor.NullFlavor>();
-			foreach (Ca.Infoway.Messagebuilder.Domainvalue.Nullflavor.NullFlavor nullFlavor in EnumPattern.Values<Ca.Infoway.Messagebuilder.Domainvalue.Nullflavor.NullFlavor
-				>())
-			{
-				codeToNullFlavor[nullFlavor.CodeValue] = nullFlavor;
 			}
 		}
 	}

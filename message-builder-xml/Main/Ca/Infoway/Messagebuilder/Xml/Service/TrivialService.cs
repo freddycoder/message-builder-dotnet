@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2013-03-01 17:48:17 -0500 (Fri, 01 Mar 2013) $
- * Revision:      $LastChangedRevision: 6663 $
+ * Author:        $LastChangedBy: jmis $
+ * Last modified: $LastChangedDate: 2015-05-27 08:43:37 -0400 (Wed, 27 May 2015) $
+ * Revision:      $LastChangedRevision: 9535 $
  */
 
 /// ---------------------------------------------------------------------------------------------------
@@ -34,6 +34,10 @@ namespace Ca.Infoway.Messagebuilder.Xml.Service {
 	using System.Runtime.CompilerServices;
 	
 	internal class TrivialService : MessageDefinitionService {
+
+        public virtual void Initialize()
+        {
+        }
 	
 		public virtual Interaction GetInteraction(VersionNumber version, String type) {
 			return null;
@@ -68,5 +72,35 @@ namespace Ca.Infoway.Messagebuilder.Xml.Service {
 		public virtual ICollection<String> GetSupportedVersionsForInteraction(String type) {
 			return null;
 		}
+
+		public virtual ICollection<MessagePart> GetAllMessageParts(VersionNumber version) {
+			return null;
+		}
+
+        public virtual bool IsR2(VersionNumber version)
+        {
+            return false;
+        }
+
+        public virtual bool IsCda(VersionNumber version)
+        {
+            return false;
+        }
+
+        public virtual ConstrainedDatatype GetConstraints(VersionNumber version, string constrainedType)
+        {
+            return null;
+        }
+
+        public virtual IList<SchematronContext> GetAllSchematronContexts(VersionNumber version)
+        {
+            return null;
+        }
+
+        public virtual IList<PackageLocation> GetAllPackageLocations(VersionNumber version)
+        {
+            return null;
+        }
+
 	}
 }

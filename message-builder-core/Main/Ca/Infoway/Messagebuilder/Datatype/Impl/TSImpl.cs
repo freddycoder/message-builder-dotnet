@@ -27,6 +27,7 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Impl {
 	
 	using Ca.Infoway.Messagebuilder;
 	using Ca.Infoway.Messagebuilder.Datatype;
+	using Ca.Infoway.Messagebuilder.Datatype.Lang.Util;
 	using Ca.Infoway.Messagebuilder.Domainvalue;
 	using System;
 	using System.Collections;
@@ -72,6 +73,17 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Impl {
 		/// <param name="date">the initial value</param>
 		public TSImpl(PlatformDate date) : base(typeof(PlatformDate), date, null, Ca.Infoway.Messagebuilder.Datatype.StandardDataType.TS) {
 		}
+
+        /// <summary>
+        /// Constructs a TS using the given date and operator.
+        /// </summary>
+        /// <param name="date">the initial value</param>
+        /// <param name="setOperator">the initial operator</param>
+        public TSImpl(PlatformDate date, SetOperator setOperator)  :
+            base(typeof(PlatformDate), date, null, StandardDataType.TS)
+        {
+            base.Operator = setOperator;
+        }
 	
 		/// <summary>
 		/// Constructs a TS using the given null flavor.

@@ -41,35 +41,5 @@ namespace Ca.Infoway.Messagebuilder.Datatype {
 	/// <param name="V"> the Interval   type, or a subclass</param>
 	public interface IVL<T, V> : ANY<V> /* where T : QTY<?>  where V : Interval<?> */ {
 	
-		/// <summary>
-		/// Determines whether the low bound is closed.
-		/// </summary>
-		///
-		/// <returns>whether the low bound is closed</returns>
-		bool LowClosed {
-		/// <summary>
-		/// Determines whether the low bound is closed.
-		/// </summary>
-		///
-		/// <returns>whether the low bound is closed</returns>
-		  get;
-		}
-		
-	
-		/// <summary>
-		/// Determines whether the high bound is closed.
-		/// </summary>
-		///
-		/// <returns>whether the high bound is closed</returns>
-		bool HighClosed {
-		/// <summary>
-		/// Determines whether the high bound is closed.
-		/// </summary>
-		///
-		/// <returns>whether the high bound is closed</returns>
-		  get;
-		}
-		
-	
 	}
 }

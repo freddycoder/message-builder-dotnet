@@ -14,16 +14,16 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System.Xml;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
-using Ca.Infoway.Messagebuilder.Datatype.Lang.Util;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser;
+using Ca.Infoway.Messagebuilder.Resolver.Configurator;
 using NUnit.Framework;
 
 namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
@@ -37,6 +37,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		[NUnit.Framework.SetUp]
 		public override void SetUp()
 		{
+			DefaultCodeResolutionConfigurator.ConfigureCodeResolversWithTrivialDefault();
 			this.result = new XmlToModelResult();
 		}
 
@@ -52,8 +53,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 
 		private ParseContext CreateContext()
 		{
-			return ParserContextImpl.Create("MO", typeof(Money), SpecificationVersion.V02R02, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
-				.POPULATED);
+			return ParseContextImpl.Create("MO", typeof(Money), SpecificationVersion.V02R02, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
+				.POPULATED, null, null, false);
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -84,7 +85,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			XmlNode node = CreateNode("<something value=\"12.00\" currency=\"CAD\" />");
 			Money result = (Money)new MoElementParser().Parse(CreateContext(), node, this.result).BareValue;
 			Assert.IsTrue(this.result.IsValid(), "result");
-			AssertResultAsExpected(result, new BigDecimal("12.00"), Currency.CANADIAN_DOLLAR);
+			AssertResultAsExpected(result, new BigDecimal("12.00"), Ca.Infoway.Messagebuilder.Domainvalue.Basic.Currency.CANADIAN_DOLLAR
+				);
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -94,7 +96,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			XmlNode node = CreateNode("<something value=\"12345678901.12\" currency=\"CAD\" />");
 			Money result = (Money)new MoElementParser().Parse(CreateContext(), node, this.result).BareValue;
 			Assert.IsTrue(this.result.IsValid(), "result");
-			AssertResultAsExpected(result, new BigDecimal("12345678901.12"), Currency.CANADIAN_DOLLAR);
+			AssertResultAsExpected(result, new BigDecimal("12345678901.12"), Ca.Infoway.Messagebuilder.Domainvalue.Basic.Currency.CANADIAN_DOLLAR
+				);
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -104,7 +107,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			XmlNode node = CreateNode("<something currency=\"CAD\" value=\"12\" />");
 			Money result = (Money)new MoElementParser().Parse(CreateContext(), node, this.result).BareValue;
 			Assert.IsTrue(this.result.IsValid(), "result");
-			AssertResultAsExpected(result, new BigDecimal("12"), Currency.CANADIAN_DOLLAR);
+			AssertResultAsExpected(result, new BigDecimal("12"), Ca.Infoway.Messagebuilder.Domainvalue.Basic.Currency.CANADIAN_DOLLAR
+				);
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -114,7 +118,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			XmlNode node = CreateNode("<something value=\".4\" currency=\"CAD\" something=\"monkey\" />");
 			Money result = (Money)new MoElementParser().Parse(CreateContext(), node, this.result).BareValue;
 			Assert.IsTrue(this.result.IsValid(), "result");
-			AssertResultAsExpected(result, new BigDecimal(".4"), Currency.CANADIAN_DOLLAR);
+			AssertResultAsExpected(result, new BigDecimal(".4"), Ca.Infoway.Messagebuilder.Domainvalue.Basic.Currency.CANADIAN_DOLLAR
+				);
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -125,7 +130,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			Money parseResult = (Money)new MoElementParser().Parse(CreateContext(), node, this.result).BareValue;
 			Assert.IsFalse(this.result.IsValid());
 			Assert.AreEqual(1, this.result.GetHl7Errors().Count);
-			AssertResultAsExpected(parseResult, null, Currency.CANADIAN_DOLLAR);
+			AssertResultAsExpected(parseResult, null, Ca.Infoway.Messagebuilder.Domainvalue.Basic.Currency.CANADIAN_DOLLAR);
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -136,7 +141,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			Money parseResult = (Money)new MoElementParser().Parse(CreateContext(), node, this.result).BareValue;
 			Assert.IsFalse(this.result.IsValid());
 			Assert.AreEqual(1, this.result.GetHl7Errors().Count);
-			AssertResultAsExpected(parseResult, null, Currency.CANADIAN_DOLLAR);
+			AssertResultAsExpected(parseResult, null, Ca.Infoway.Messagebuilder.Domainvalue.Basic.Currency.CANADIAN_DOLLAR);
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -147,7 +152,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			Money parseResult = (Money)new MoElementParser().Parse(CreateContext(), node, this.result).BareValue;
 			Assert.IsFalse(this.result.IsValid());
 			Assert.AreEqual(2, this.result.GetHl7Errors().Count);
-			AssertResultAsExpected(parseResult, new BigDecimal("123456789012.123"), Currency.CANADIAN_DOLLAR);
+			AssertResultAsExpected(parseResult, new BigDecimal("123456789012.123"), Ca.Infoway.Messagebuilder.Domainvalue.Basic.Currency
+				.CANADIAN_DOLLAR);
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -158,7 +164,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			Money parseResult = (Money)new MoElementParser().Parse(CreateContext(), node, this.result).BareValue;
 			Assert.IsFalse(this.result.IsValid());
 			// not all digits; not a number (the first error does not occur for .NET)
-			AssertResultAsExpected(parseResult, null, Currency.CANADIAN_DOLLAR);
+			AssertResultAsExpected(parseResult, null, Ca.Infoway.Messagebuilder.Domainvalue.Basic.Currency.CANADIAN_DOLLAR);
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -170,7 +176,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			Assert.IsFalse(this.result.IsValid());
 			Assert.AreEqual(1, this.result.GetHl7Errors().Count);
 			// not all digits; not a number
-			AssertResultAsExpected(parseResult, null, Currency.CANADIAN_DOLLAR);
+			AssertResultAsExpected(parseResult, null, Ca.Infoway.Messagebuilder.Domainvalue.Basic.Currency.CANADIAN_DOLLAR);
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -192,7 +198,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			Money parseResult = (Money)new MoElementParser().Parse(CreateContext(), node, this.result).BareValue;
 			Assert.IsFalse(result.IsValid(), "result");
 			Assert.AreEqual(1, this.result.GetHl7Errors().Count);
-			AssertResultAsExpected(parseResult, new BigDecimal("123.0"), Currency.US_DOLLAR);
+			AssertResultAsExpected(parseResult, new BigDecimal("123.0"), Ca.Infoway.Messagebuilder.Domainvalue.Basic.Currency.US_DOLLAR
+				);
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -212,7 +219,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			}
 		}
 
-		private void AssertResultAsExpected(Money result, BigDecimal value, Currency currency)
+		private void AssertResultAsExpected(Money result, BigDecimal value, Ca.Infoway.Messagebuilder.Domainvalue.Basic.Currency 
+			currency)
 		{
 			Assert.IsNotNull(result, "populated result returned");
 			if (result.Amount == null)

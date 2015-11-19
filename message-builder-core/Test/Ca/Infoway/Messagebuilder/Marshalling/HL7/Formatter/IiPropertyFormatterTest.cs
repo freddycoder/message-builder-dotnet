@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System.Collections.Generic;
@@ -32,6 +32,16 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 	[TestFixture]
 	public class IiPropertyFormatterTest : MarshallingTestCase
 	{
+		private class TestableIiPropertyFormatter : IiPropertyFormatter, TestableAbstractValueNullFlavorPropertyFormatter<Identifier
+			>
+		{
+			public virtual IDictionary<string, string> GetAttributeNameValuePairsForTest(FormatContext context, Identifier t, BareANY
+				 bareAny)
+			{
+				return base.GetAttributeNameValuePairs(context, t, bareAny);
+			}
+		}
+
 		/// <exception cref="System.Exception"></exception>
 		[Test]
 		public virtual void TestGetAttributeNameValuePairsForValidII()
@@ -40,15 +50,17 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			II iiHl7 = new IIImpl();
 			iiHl7.DataType = StandardDataType.II_BUS;
 			ModelToXmlResult modelToXmlResult = new ModelToXmlResult();
-			FormatContextImpl context = new FormatContextImpl(modelToXmlResult, null, "name", "II", null, false, SpecificationVersion
-				.R02_04_02, null, null, null);
-			IDictionary<string, string> result = new IiPropertyFormatter().GetAttributeNameValuePairs(context, ii, iiHl7);
-			Assert.AreEqual(4, result.Count, "map size");
+			Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl context = new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl
+				(modelToXmlResult, null, "name", "II", null, null, false, SpecificationVersion.R02_04_02, null, null, null, false);
+			IDictionary<string, string> result = new IiPropertyFormatterTest.TestableIiPropertyFormatter().GetAttributeNameValuePairsForTest
+				(context, ii, iiHl7);
+			Assert.AreEqual(5, result.Count, "map size");
 			Assert.IsTrue(modelToXmlResult.GetHl7Errors().IsEmpty(), "no errors");
 			AssertKeyValuePairInMap(result, "root", "11.22.33.44");
 			AssertKeyValuePairInMap(result, "extension", "extensionString");
 			AssertKeyValuePairInMap(result, "use", "BUS");
 			AssertKeyValuePairInMap(result, "specializationType", "II.BUS");
+			AssertKeyValuePairInMap(result, "xsi:type", "II");
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -59,9 +71,10 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			II iiHl7 = new IIImpl();
 			iiHl7.DataType = StandardDataType.II_BUS_AND_VER;
 			ModelToXmlResult modelToXmlResult = new ModelToXmlResult();
-			FormatContextImpl context = new FormatContextImpl(modelToXmlResult, null, "name", "II", null, false, SpecificationVersion
-				.R02_04_02, null, null, null);
-			IDictionary<string, string> result = new IiPropertyFormatter().GetAttributeNameValuePairs(context, ii, iiHl7);
+			Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl context = new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl
+				(modelToXmlResult, null, "name", "II", null, null, false, SpecificationVersion.R02_04_02, null, null, null, false);
+			IDictionary<string, string> result = new IiPropertyFormatterTest.TestableIiPropertyFormatter().GetAttributeNameValuePairsForTest
+				(context, ii, iiHl7);
 			Assert.AreEqual(2, result.Count, "map size");
 			Assert.IsFalse(modelToXmlResult.GetHl7Errors().IsEmpty(), "errors");
 			Assert.AreEqual(1, modelToXmlResult.GetHl7Errors().Count);
@@ -78,9 +91,10 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			Identifier ii = new Identifier("11.22.33.44", "extensionString");
 			II iiHl7 = new IIImpl();
 			ModelToXmlResult modelToXmlResult = new ModelToXmlResult();
-			FormatContextImpl context = new FormatContextImpl(modelToXmlResult, null, "name", "II", null, false, SpecificationVersion
-				.V01R04_3, null, null, null);
-			IDictionary<string, string> result = new IiPropertyFormatter().GetAttributeNameValuePairs(context, ii, iiHl7);
+			Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl context = new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl
+				(modelToXmlResult, null, "name", "II", null, null, false, SpecificationVersion.V01R04_3, null, null, null, false);
+			IDictionary<string, string> result = new IiPropertyFormatterTest.TestableIiPropertyFormatter().GetAttributeNameValuePairsForTest
+				(context, ii, iiHl7);
 			Assert.AreEqual(2, result.Count, "map size");
 			Assert.IsTrue(modelToXmlResult.GetHl7Errors().IsEmpty(), "no errors");
 			AssertKeyValuePairInMap(result, "root", "11.22.33.44");
@@ -95,9 +109,10 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			Identifier ii = new Identifier(randomUUID.ToString());
 			II iiHl7 = new IIImpl();
 			ModelToXmlResult modelToXmlResult = new ModelToXmlResult();
-			FormatContextImpl context = new FormatContextImpl(modelToXmlResult, null, "name", "II.TOKEN", null, false, SpecificationVersion
-				.R02_04_02, null, null, null);
-			IDictionary<string, string> result = new IiPropertyFormatter().GetAttributeNameValuePairs(context, ii, iiHl7);
+			Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl context = new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl
+				(modelToXmlResult, null, "name", "II.TOKEN", null, null, false, SpecificationVersion.R02_04_02, null, null, null, false);
+			IDictionary<string, string> result = new IiPropertyFormatterTest.TestableIiPropertyFormatter().GetAttributeNameValuePairsForTest
+				(context, ii, iiHl7);
 			Assert.AreEqual(1, result.Count, "map size");
 			Assert.IsTrue(modelToXmlResult.GetHl7Errors().IsEmpty(), "no errors");
 			AssertKeyValuePairInMap(result, "root", randomUUID.ToString());
@@ -110,9 +125,10 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			Identifier ii = new Identifier("1.2.3.4");
 			II iiHl7 = new IIImpl();
 			ModelToXmlResult modelToXmlResult = new ModelToXmlResult();
-			FormatContextImpl context = new FormatContextImpl(modelToXmlResult, null, "name", "II.TOKEN", null, false, SpecificationVersion
-				.R02_04_02, null, null, null);
-			IDictionary<string, string> result = new IiPropertyFormatter().GetAttributeNameValuePairs(context, ii, iiHl7);
+			Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl context = new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl
+				(modelToXmlResult, null, "name", "II.TOKEN", null, null, false, SpecificationVersion.R02_04_02, null, null, null, false);
+			IDictionary<string, string> result = new IiPropertyFormatterTest.TestableIiPropertyFormatter().GetAttributeNameValuePairsForTest
+				(context, ii, iiHl7);
 			Assert.AreEqual(1, result.Count, "map size");
 			Assert.IsFalse(modelToXmlResult.GetHl7Errors().IsEmpty());
 			Assert.AreEqual(1, modelToXmlResult.GetHl7Errors().Count);
@@ -127,9 +143,10 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			Identifier ii = new Identifier("11.22.33.44");
 			II iiHl7 = new IIImpl();
 			ModelToXmlResult modelToXmlResult = new ModelToXmlResult();
-			FormatContextImpl context = new FormatContextImpl(modelToXmlResult, null, "name", "II.OID", null, false, SpecificationVersion
-				.R02_04_02, null, null, null);
-			IDictionary<string, string> result = new IiPropertyFormatter().GetAttributeNameValuePairs(context, ii, iiHl7);
+			Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl context = new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl
+				(modelToXmlResult, null, "name", "II.OID", null, null, false, SpecificationVersion.R02_04_02, null, null, null, false);
+			IDictionary<string, string> result = new IiPropertyFormatterTest.TestableIiPropertyFormatter().GetAttributeNameValuePairsForTest
+				(context, ii, iiHl7);
 			Assert.AreEqual(2, result.Count, "map size");
 			Assert.IsTrue(modelToXmlResult.GetHl7Errors().IsEmpty(), "no errors");
 			AssertKeyValuePairInMap(result, "root", "11.22.33.44");
@@ -143,9 +160,10 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			Identifier ii = new Identifier("11.22.33.44", "shouldNotBeHere");
 			II iiHl7 = new IIImpl();
 			ModelToXmlResult modelToXmlResult = new ModelToXmlResult();
-			FormatContextImpl context = new FormatContextImpl(modelToXmlResult, null, "name", "II.OID", null, false, SpecificationVersion
-				.R02_04_02, null, null, null);
-			IDictionary<string, string> result = new IiPropertyFormatter().GetAttributeNameValuePairs(context, ii, iiHl7);
+			Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl context = new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl
+				(modelToXmlResult, null, "name", "II.OID", null, null, false, SpecificationVersion.R02_04_02, null, null, null, false);
+			IDictionary<string, string> result = new IiPropertyFormatterTest.TestableIiPropertyFormatter().GetAttributeNameValuePairsForTest
+				(context, ii, iiHl7);
 			Assert.AreEqual(3, result.Count, "map size");
 			Assert.IsFalse(modelToXmlResult.GetHl7Errors().IsEmpty());
 			Assert.AreEqual(1, modelToXmlResult.GetHl7Errors().Count);
@@ -163,9 +181,10 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			Identifier ii = new Identifier(tooLongRoot);
 			II iiHl7 = new IIImpl();
 			ModelToXmlResult modelToXmlResult = new ModelToXmlResult();
-			FormatContextImpl context = new FormatContextImpl(modelToXmlResult, null, "name", "II.OID", null, false, SpecificationVersion
-				.R02_04_02, null, null, null);
-			IDictionary<string, string> result = new IiPropertyFormatter().GetAttributeNameValuePairs(context, ii, iiHl7);
+			Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl context = new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl
+				(modelToXmlResult, null, "name", "II.OID", null, null, false, SpecificationVersion.R02_04_02, null, null, null, false);
+			IDictionary<string, string> result = new IiPropertyFormatterTest.TestableIiPropertyFormatter().GetAttributeNameValuePairsForTest
+				(context, ii, iiHl7);
 			Assert.AreEqual(2, result.Count, "map size");
 			Assert.IsFalse(modelToXmlResult.GetHl7Errors().IsEmpty());
 			Assert.AreEqual(1, modelToXmlResult.GetHl7Errors().Count);
@@ -183,9 +202,10 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			Identifier ii = new Identifier(randomUUID.ToString());
 			II iiHl7 = new IIImpl();
 			ModelToXmlResult modelToXmlResult = new ModelToXmlResult();
-			FormatContextImpl context = new FormatContextImpl(modelToXmlResult, null, "name", "II.OID", null, false, SpecificationVersion
-				.R02_04_02, null, null, null);
-			IDictionary<string, string> result = new IiPropertyFormatter().GetAttributeNameValuePairs(context, ii, iiHl7);
+			Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl context = new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl
+				(modelToXmlResult, null, "name", "II.OID", null, null, false, SpecificationVersion.R02_04_02, null, null, null, false);
+			IDictionary<string, string> result = new IiPropertyFormatterTest.TestableIiPropertyFormatter().GetAttributeNameValuePairsForTest
+				(context, ii, iiHl7);
 			Assert.AreEqual(2, result.Count, "map size");
 			Assert.IsFalse(modelToXmlResult.GetHl7Errors().IsEmpty());
 			Assert.AreEqual(1, modelToXmlResult.GetHl7Errors().Count);
@@ -202,9 +222,10 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			Identifier ii = new Identifier("11.22.33.44");
 			II iiHl7 = new IIImpl();
 			ModelToXmlResult modelToXmlResult = new ModelToXmlResult();
-			FormatContextImpl context = new FormatContextImpl(modelToXmlResult, null, "name", "II.OID", null, false, SpecificationVersion
-				.V02R02, null, null, null);
-			IDictionary<string, string> result = new IiPropertyFormatter().GetAttributeNameValuePairs(context, ii, iiHl7);
+			Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl context = new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl
+				(modelToXmlResult, null, "name", "II.OID", null, null, false, SpecificationVersion.V02R02, null, null, null, false);
+			IDictionary<string, string> result = new IiPropertyFormatterTest.TestableIiPropertyFormatter().GetAttributeNameValuePairsForTest
+				(context, ii, iiHl7);
 			Assert.AreEqual(1, result.Count, "map size");
 			Assert.IsTrue(modelToXmlResult.GetHl7Errors().IsEmpty(), "no errors");
 			AssertKeyValuePairInMap(result, "root", "11.22.33.44");
@@ -217,9 +238,10 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			Identifier ii = new Identifier("11.22.33.44", "extensionString");
 			II iiHl7 = new IIImpl();
 			ModelToXmlResult modelToXmlResult = new ModelToXmlResult();
-			FormatContextImpl context = new FormatContextImpl(modelToXmlResult, null, "name", "II.BUS", null, false, SpecificationVersion
-				.R02_04_02, null, null, null);
-			IDictionary<string, string> result = new IiPropertyFormatter().GetAttributeNameValuePairs(context, ii, iiHl7);
+			Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl context = new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl
+				(modelToXmlResult, null, "name", "II.BUS", null, null, false, SpecificationVersion.R02_04_02, null, null, null, false);
+			IDictionary<string, string> result = new IiPropertyFormatterTest.TestableIiPropertyFormatter().GetAttributeNameValuePairsForTest
+				(context, ii, iiHl7);
 			Assert.AreEqual(3, result.Count, "map size");
 			Assert.IsTrue(modelToXmlResult.GetHl7Errors().IsEmpty(), "no errors");
 			AssertKeyValuePairInMap(result, "root", "11.22.33.44");
@@ -235,9 +257,10 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			Identifier ii = new Identifier(randomUUID.ToString());
 			II iiHl7 = new IIImpl();
 			ModelToXmlResult modelToXmlResult = new ModelToXmlResult();
-			FormatContextImpl context = new FormatContextImpl(modelToXmlResult, null, "name", "II.BUS", null, false, SpecificationVersion
-				.R02_04_02, null, null, null);
-			IDictionary<string, string> result = new IiPropertyFormatter().GetAttributeNameValuePairs(context, ii, iiHl7);
+			Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl context = new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl
+				(modelToXmlResult, null, "name", "II.BUS", null, null, false, SpecificationVersion.R02_04_02, null, null, null, false);
+			IDictionary<string, string> result = new IiPropertyFormatterTest.TestableIiPropertyFormatter().GetAttributeNameValuePairsForTest
+				(context, ii, iiHl7);
 			Assert.AreEqual(2, result.Count, "map size");
 			Assert.IsTrue(modelToXmlResult.GetHl7Errors().IsEmpty(), "no errors");
 			AssertKeyValuePairInMap(result, "root", randomUUID.ToString());
@@ -252,9 +275,10 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			Identifier ii = new Identifier(randomUUID.ToString());
 			II iiHl7 = new IIImpl();
 			ModelToXmlResult modelToXmlResult = new ModelToXmlResult();
-			FormatContextImpl context = new FormatContextImpl(modelToXmlResult, null, "name", "II.VER", null, false, SpecificationVersion
-				.R02_04_02, null, null, null);
-			IDictionary<string, string> result = new IiPropertyFormatter().GetAttributeNameValuePairs(context, ii, iiHl7);
+			Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl context = new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl
+				(modelToXmlResult, null, "name", "II.VER", null, null, false, SpecificationVersion.R02_04_02, null, null, null, false);
+			IDictionary<string, string> result = new IiPropertyFormatterTest.TestableIiPropertyFormatter().GetAttributeNameValuePairsForTest
+				(context, ii, iiHl7);
 			Assert.AreEqual(2, result.Count, "map size");
 			Assert.IsTrue(modelToXmlResult.GetHl7Errors().IsEmpty(), "no errors");
 			AssertKeyValuePairInMap(result, "root", randomUUID.ToString());
@@ -269,15 +293,84 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			II iiHl7 = new IIImpl();
 			iiHl7.DataType = StandardDataType.II_BUS;
 			ModelToXmlResult modelToXmlResult = new ModelToXmlResult();
-			FormatContextImpl context = new FormatContextImpl(modelToXmlResult, null, "name", "II.BUS_AND_VER", null, false, SpecificationVersion
-				.R02_04_02, null, null, null);
-			IDictionary<string, string> result = new IiPropertyFormatter().GetAttributeNameValuePairs(context, ii, iiHl7);
-			Assert.AreEqual(4, result.Count, "map size");
+			Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl context = new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl
+				(modelToXmlResult, null, "name", "II.BUS_AND_VER", null, null, false, SpecificationVersion.R02_04_02, null, null, null, 
+				false);
+			IDictionary<string, string> result = new IiPropertyFormatterTest.TestableIiPropertyFormatter().GetAttributeNameValuePairsForTest
+				(context, ii, iiHl7);
+			Assert.AreEqual(5, result.Count, "map size");
 			Assert.IsTrue(modelToXmlResult.GetHl7Errors().IsEmpty(), "no errors");
 			AssertKeyValuePairInMap(result, "root", "11.22.33.44");
 			AssertKeyValuePairInMap(result, "extension", "extensionString");
 			AssertKeyValuePairInMap(result, "use", "BUS");
 			AssertKeyValuePairInMap(result, "specializationType", "II.BUS");
+			AssertKeyValuePairInMap(result, "xsi:type", "II");
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void TestGetAttributeNameValuePairsForValidII_BUS_AND_VER_BUSforCerxWithNewMaxRoot()
+		{
+			Identifier ii = new Identifier("123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.1234567890"
+				, "extensionString");
+			II iiHl7 = new IIImpl();
+			iiHl7.DataType = StandardDataType.II_BUS;
+			ModelToXmlResult modelToXmlResult = new ModelToXmlResult();
+			Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl context = new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl
+				(modelToXmlResult, null, "name", "II.BUS_AND_VER", null, null, false, SpecificationVersion.V01R04_3, null, null, null, false
+				);
+			IDictionary<string, string> result = new IiPropertyFormatterTest.TestableIiPropertyFormatter().GetAttributeNameValuePairsForTest
+				(context, ii, iiHl7);
+			Assert.AreEqual(5, result.Count, "map size");
+			Assert.IsTrue(modelToXmlResult.GetHl7Errors().IsEmpty(), "no errors");
+			AssertKeyValuePairInMap(result, "root", "123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.1234567890"
+				);
+			AssertKeyValuePairInMap(result, "extension", "extensionString");
+			AssertKeyValuePairInMap(result, "use", "BUS");
+			AssertKeyValuePairInMap(result, "specializationType", "II.BUS");
+			AssertKeyValuePairInMap(result, "xsi:type", "II");
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void TestGetAttributeNameValuePairsForValidII_VERforCerx()
+		{
+			string uuid = UUID.RandomUUID().ToString();
+			Identifier ii = new Identifier(uuid);
+			II iiHl7 = new IIImpl();
+			iiHl7.DataType = StandardDataType.II_VER;
+			ModelToXmlResult modelToXmlResult = new ModelToXmlResult();
+			Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl context = new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl
+				(modelToXmlResult, null, "name", "II.VER", null, null, false, SpecificationVersion.V01R04_3, null, null, null, false);
+			IDictionary<string, string> result = new IiPropertyFormatterTest.TestableIiPropertyFormatter().GetAttributeNameValuePairsForTest
+				(context, ii, iiHl7);
+			Assert.AreEqual(2, result.Count, "map size");
+			Assert.IsTrue(modelToXmlResult.GetHl7Errors().IsEmpty(), "no errors");
+			AssertKeyValuePairInMap(result, "root", uuid);
+			AssertKeyValuePairInMap(result, "use", "VER");
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void TestGetAttributeNameValuePairsForValidII_BUSforCerxWithInvalidRoot()
+		{
+			Identifier ii = new Identifier("123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.1"
+				, "extensionString");
+			II iiHl7 = new IIImpl();
+			iiHl7.DataType = StandardDataType.II_BUS;
+			ModelToXmlResult modelToXmlResult = new ModelToXmlResult();
+			Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl context = new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl
+				(modelToXmlResult, null, "name", "II.BUS", null, null, false, SpecificationVersion.V01R04_3, null, null, null, false);
+			IDictionary<string, string> result = new IiPropertyFormatterTest.TestableIiPropertyFormatter().GetAttributeNameValuePairsForTest
+				(context, ii, iiHl7);
+			Assert.AreEqual(3, result.Count, "map size");
+			Assert.IsFalse(modelToXmlResult.GetHl7Errors().IsEmpty(), "1 error");
+			Assert.AreEqual(1, modelToXmlResult.GetHl7Errors().Count, "1 error");
+			Assert.IsTrue(modelToXmlResult.GetHl7Errors()[0].GetMessage().Contains("200"));
+			AssertKeyValuePairInMap(result, "root", "123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.1"
+				);
+			AssertKeyValuePairInMap(result, "extension", "extensionString");
+			AssertKeyValuePairInMap(result, "use", "BUS");
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -288,10 +381,12 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			II iiHl7 = new IIImpl();
 			iiHl7.DataType = StandardDataType.II_OID;
 			ModelToXmlResult modelToXmlResult = new ModelToXmlResult();
-			FormatContextImpl context = new FormatContextImpl(modelToXmlResult, null, "name", "II.BUS_AND_VER", null, false, SpecificationVersion
-				.R02_04_02, null, null, null);
-			IDictionary<string, string> result = new IiPropertyFormatter().GetAttributeNameValuePairs(context, ii, iiHl7);
-			Assert.AreEqual(4, result.Count, "map size");
+			Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl context = new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl
+				(modelToXmlResult, null, "name", "II.BUS_AND_VER", null, null, false, SpecificationVersion.R02_04_02, null, null, null, 
+				false);
+			IDictionary<string, string> result = new IiPropertyFormatterTest.TestableIiPropertyFormatter().GetAttributeNameValuePairsForTest
+				(context, ii, iiHl7);
+			Assert.AreEqual(5, result.Count, "map size");
 			Assert.IsFalse(modelToXmlResult.GetHl7Errors().IsEmpty(), "errors");
 			Assert.AreEqual(1, modelToXmlResult.GetHl7Errors().Count);
 			Assert.AreEqual("Specialization type must be II.BUS or II.VER; II.BUS will be assumed. Invalid specialization type II.OID"
@@ -300,6 +395,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			AssertKeyValuePairInMap(result, "extension", "extensionString");
 			AssertKeyValuePairInMap(result, "use", "BUS");
 			AssertKeyValuePairInMap(result, "specializationType", "II.BUS");
+			AssertKeyValuePairInMap(result, "xsi:type", "II");
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -310,9 +406,10 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			II iiHl7 = new IIImpl();
 			iiHl7.DataType = StandardDataType.II_OID;
 			ModelToXmlResult modelToXmlResult = new ModelToXmlResult();
-			FormatContextImpl context = new FormatContextImpl(modelToXmlResult, null, "name", "II.BUS", null, false, SpecificationVersion
-				.R02_04_02, null, null, null);
-			IDictionary<string, string> result = new IiPropertyFormatter().GetAttributeNameValuePairs(context, ii, iiHl7);
+			Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl context = new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl
+				(modelToXmlResult, null, "name", "II.BUS", null, null, false, SpecificationVersion.R02_04_02, null, null, null, false);
+			IDictionary<string, string> result = new IiPropertyFormatterTest.TestableIiPropertyFormatter().GetAttributeNameValuePairsForTest
+				(context, ii, iiHl7);
 			Assert.AreEqual(3, result.Count, "map size");
 			Assert.IsFalse(modelToXmlResult.GetHl7Errors().IsEmpty(), "errors");
 			Assert.AreEqual(1, modelToXmlResult.GetHl7Errors().Count);
@@ -330,9 +427,11 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			Identifier ii = new Identifier("11.22.33.44", "extensionString");
 			II iiHl7 = new IIImpl();
 			ModelToXmlResult modelToXmlResult = new ModelToXmlResult();
-			FormatContextImpl context = new FormatContextImpl(modelToXmlResult, null, "name", "II.PUBLIC", null, false, SpecificationVersion
-				.R02_04_02, null, null, null);
-			IDictionary<string, string> result = new IiPropertyFormatter().GetAttributeNameValuePairs(context, ii, iiHl7);
+			Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl context = new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl
+				(modelToXmlResult, null, "name", "II.PUBLIC", null, null, false, SpecificationVersion.R02_04_02, null, null, null, false
+				);
+			IDictionary<string, string> result = new IiPropertyFormatterTest.TestableIiPropertyFormatter().GetAttributeNameValuePairsForTest
+				(context, ii, iiHl7);
 			Assert.AreEqual(4, result.Count, "map size");
 			Assert.IsTrue(modelToXmlResult.GetHl7Errors().IsEmpty(), "no errors");
 			AssertKeyValuePairInMap(result, "root", "11.22.33.44");
@@ -348,9 +447,11 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			Identifier ii = new Identifier("11.22.33.44", "extensionStrngTooLong");
 			II iiHl7 = new IIImpl();
 			ModelToXmlResult modelToXmlResult = new ModelToXmlResult();
-			FormatContextImpl context = new FormatContextImpl(modelToXmlResult, null, "name", "II.PUBLIC", null, false, SpecificationVersion
-				.R02_04_02, null, null, null);
-			IDictionary<string, string> result = new IiPropertyFormatter().GetAttributeNameValuePairs(context, ii, iiHl7);
+			Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl context = new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl
+				(modelToXmlResult, null, "name", "II.PUBLIC", null, null, false, SpecificationVersion.R02_04_02, null, null, null, false
+				);
+			IDictionary<string, string> result = new IiPropertyFormatterTest.TestableIiPropertyFormatter().GetAttributeNameValuePairsForTest
+				(context, ii, iiHl7);
 			Assert.AreEqual(4, result.Count, "map size");
 			Assert.IsFalse(modelToXmlResult.GetHl7Errors().IsEmpty(), "errors");
 			Assert.AreEqual(1, modelToXmlResult.GetHl7Errors().Count);
@@ -369,9 +470,10 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			Identifier ii = new Identifier("11.22.33.44", "extensionString");
 			II iiHl7 = new IIImpl();
 			ModelToXmlResult modelToXmlResult = new ModelToXmlResult();
-			FormatContextImpl context = new FormatContextImpl(modelToXmlResult, null, "name", "II.PUBLIC", null, false, SpecificationVersion
-				.V02R02, null, null, null);
-			IDictionary<string, string> result = new IiPropertyFormatter().GetAttributeNameValuePairs(context, ii, iiHl7);
+			Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl context = new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl
+				(modelToXmlResult, null, "name", "II.PUBLIC", null, null, false, SpecificationVersion.V02R02, null, null, null, false);
+			IDictionary<string, string> result = new IiPropertyFormatterTest.TestableIiPropertyFormatter().GetAttributeNameValuePairsForTest
+				(context, ii, iiHl7);
 			Assert.AreEqual(3, result.Count, "map size");
 			Assert.IsTrue(modelToXmlResult.GetHl7Errors().IsEmpty(), "no errors");
 			AssertKeyValuePairInMap(result, "root", "11.22.33.44");
@@ -386,9 +488,11 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			Identifier ii = new Identifier("11.22.33.44", "extensionString", "a_version_string");
 			II iiHl7 = new IIImpl();
 			ModelToXmlResult modelToXmlResult = new ModelToXmlResult();
-			FormatContextImpl context = new FormatContextImpl(modelToXmlResult, null, "name", "II.PUBLICVER", null, false, SpecificationVersion
-				.R02_04_02, null, null, null);
-			IDictionary<string, string> result = new IiPropertyFormatter().GetAttributeNameValuePairs(context, ii, iiHl7);
+			Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl context = new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl
+				(modelToXmlResult, null, "name", "II.PUBLICVER", null, null, false, SpecificationVersion.R02_04_02, null, null, null, false
+				);
+			IDictionary<string, string> result = new IiPropertyFormatterTest.TestableIiPropertyFormatter().GetAttributeNameValuePairsForTest
+				(context, ii, iiHl7);
 			Assert.AreEqual(4, result.Count, "map size");
 			Assert.IsTrue(modelToXmlResult.GetHl7Errors().IsEmpty(), "no errors");
 			AssertKeyValuePairInMap(result, "root", "11.22.33.44");
@@ -404,9 +508,11 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			Identifier ii = new Identifier("11.22.33.44", "extensionString", "a_version_string");
 			II iiHl7 = new IIImpl();
 			ModelToXmlResult modelToXmlResult = new ModelToXmlResult();
-			FormatContextImpl context = new FormatContextImpl(modelToXmlResult, null, "name", "II.BUSVER", null, false, SpecificationVersion
-				.R02_04_02, null, null, null);
-			IDictionary<string, string> result = new IiPropertyFormatter().GetAttributeNameValuePairs(context, ii, iiHl7);
+			Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl context = new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl
+				(modelToXmlResult, null, "name", "II.BUSVER", null, null, false, SpecificationVersion.R02_04_02, null, null, null, false
+				);
+			IDictionary<string, string> result = new IiPropertyFormatterTest.TestableIiPropertyFormatter().GetAttributeNameValuePairsForTest
+				(context, ii, iiHl7);
 			Assert.AreEqual(4, result.Count, "map size");
 			Assert.IsTrue(modelToXmlResult.GetHl7Errors().IsEmpty(), "no errors");
 			AssertKeyValuePairInMap(result, "root", "11.22.33.44");
@@ -420,8 +526,9 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		public virtual void TestGetAttributeNameValuePairsAllFilledIn()
 		{
 			Identifier ii = new Identifier("11.22.33.44", "extensionString");
-			IDictionary<string, string> result = new IiPropertyFormatter().GetAttributeNameValuePairs(new FormatContextImpl(new ModelToXmlResult
-				(), null, "name", null, null), ii, new IIImpl(ii));
+			IDictionary<string, string> result = new IiPropertyFormatterTest.TestableIiPropertyFormatter().GetAttributeNameValuePairsForTest
+				(new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl(new ModelToXmlResult(), null, "name", null, null
+				, null, false), ii, new IIImpl(ii));
 			Assert.AreEqual(2, result.Count, "map size");
 			AssertKeyValuePairInMap(result, "root", "11.22.33.44");
 			AssertKeyValuePairInMap(result, "extension", "extensionString");
@@ -434,14 +541,17 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			Identifier ii = new Identifier("11.22.33.44", "extensionString");
 			II iiHl7 = new IIImpl();
 			iiHl7.DataType = StandardDataType.II_BUS;
-			FormatContextImpl context = new FormatContextImpl(new ModelToXmlResult(), null, "name", "II.BUS_AND_VER", null, true, SpecificationVersion
-				.R02_04_02, null, null, null);
-			IDictionary<string, string> result = new IiPropertyFormatter().GetAttributeNameValuePairs(context, ii, iiHl7);
-			Assert.AreEqual(4, result.Count, "map size");
+			Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl context = new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl
+				(new ModelToXmlResult(), null, "name", "II.BUS_AND_VER", null, null, true, SpecificationVersion.R02_04_02, null, null, null
+				, false);
+			IDictionary<string, string> result = new IiPropertyFormatterTest.TestableIiPropertyFormatter().GetAttributeNameValuePairsForTest
+				(context, ii, iiHl7);
+			Assert.AreEqual(5, result.Count, "map size");
 			AssertKeyValuePairInMap(result, "root", "11.22.33.44");
 			AssertKeyValuePairInMap(result, "extension", "extensionString");
 			AssertKeyValuePairInMap(result, "specializationType", "II.BUS");
 			AssertKeyValuePairInMap(result, "use", "BUS");
+			AssertKeyValuePairInMap(result, "xsi:type", "II");
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -451,9 +561,11 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			Identifier ii = new Identifier("11.22.33.44", "extensionString");
 			II iiHl7 = new IIImpl();
 			iiHl7.DataType = StandardDataType.II_PUBLIC;
-			FormatContextImpl context = new FormatContextImpl(new ModelToXmlResult(), null, "name", "II.PUBLIC", null, true, SpecificationVersion
-				.V02R02, null, null, null);
-			IDictionary<string, string> result = new IiPropertyFormatter().GetAttributeNameValuePairs(context, ii, iiHl7);
+			Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl context = new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl
+				(new ModelToXmlResult(), null, "name", "II.PUBLIC", null, null, true, SpecificationVersion.V02R02, null, null, null, false
+				);
+			IDictionary<string, string> result = new IiPropertyFormatterTest.TestableIiPropertyFormatter().GetAttributeNameValuePairsForTest
+				(context, ii, iiHl7);
 			Assert.AreEqual(3, result.Count, "map size");
 			AssertKeyValuePairInMap(result, "root", "11.22.33.44");
 			AssertKeyValuePairInMap(result, "extension", "extensionString");
@@ -467,9 +579,11 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			Identifier ii = new Identifier("11.22.33.44", "extensionString");
 			II iiHl7 = new IIImpl();
 			iiHl7.DataType = StandardDataType.II_PUBLIC;
-			FormatContextImpl context = new FormatContextImpl(new ModelToXmlResult(), null, "name", "II.PUBLIC", null, true, SpecificationVersion
-				.R02_04_03, null, null, null);
-			IDictionary<string, string> result = new IiPropertyFormatter().GetAttributeNameValuePairs(context, ii, iiHl7);
+			Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl context = new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl
+				(new ModelToXmlResult(), null, "name", "II.PUBLIC", null, null, true, SpecificationVersion.R02_04_03, null, null, null, 
+				false);
+			IDictionary<string, string> result = new IiPropertyFormatterTest.TestableIiPropertyFormatter().GetAttributeNameValuePairsForTest
+				(context, ii, iiHl7);
 			Assert.AreEqual(4, result.Count, "map size");
 			AssertKeyValuePairInMap(result, "root", "11.22.33.44");
 			AssertKeyValuePairInMap(result, "extension", "extensionString");
@@ -484,9 +598,10 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			Identifier ii = new Identifier("11.22.33.44", "extensionString");
 			II iiHl7 = new IIImpl();
 			iiHl7.DataType = StandardDataType.II;
-			FormatContextImpl context = new FormatContextImpl(new ModelToXmlResult(), null, "name", "II", null, true, SpecificationVersion
-				.V01R04_3, null, null, null);
-			IDictionary<string, string> result = new IiPropertyFormatter().GetAttributeNameValuePairs(context, ii, iiHl7);
+			Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl context = new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl
+				(new ModelToXmlResult(), null, "name", "II", null, null, true, SpecificationVersion.V01R04_3, null, null, null, false);
+			IDictionary<string, string> result = new IiPropertyFormatterTest.TestableIiPropertyFormatter().GetAttributeNameValuePairsForTest
+				(context, ii, iiHl7);
 			Assert.AreEqual(2, result.Count, "map size");
 			AssertKeyValuePairInMap(result, "root", "11.22.33.44");
 			AssertKeyValuePairInMap(result, "extension", "extensionString");
@@ -499,9 +614,10 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			Identifier ii = new Identifier("11.22.33.44", "extensionString");
 			II iiHl7 = new IIImpl();
 			iiHl7.DataType = StandardDataType.II;
-			FormatContextImpl context = new FormatContextImpl(new ModelToXmlResult(), null, "name", "II", null, true, SpecificationVersion
-				.V02R02_AB, null, null, null);
-			IDictionary<string, string> result = new IiPropertyFormatter().GetAttributeNameValuePairs(context, ii, iiHl7);
+			Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl context = new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl
+				(new ModelToXmlResult(), null, "name", "II", null, null, true, SpecificationVersion.V02R02_AB, null, null, null, false);
+			IDictionary<string, string> result = new IiPropertyFormatterTest.TestableIiPropertyFormatter().GetAttributeNameValuePairsForTest
+				(context, ii, iiHl7);
 			Assert.AreEqual(2, result.Count, "map size");
 			AssertKeyValuePairInMap(result, "root", "11.22.33.44");
 			AssertKeyValuePairInMap(result, "extension", "extensionString");
@@ -512,8 +628,9 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		public virtual void TestGetAttributeNameValuePairsAllFilledInWithTypeId()
 		{
 			Identifier ii = new Identifier("11.22.33.44", "extensionString");
-			IDictionary<string, string> result = new IiPropertyFormatter().GetAttributeNameValuePairs(new FormatContextImpl(new ModelToXmlResult
-				(), null, "name", null, null), ii, new IIImpl(ii));
+			IDictionary<string, string> result = new IiPropertyFormatterTest.TestableIiPropertyFormatter().GetAttributeNameValuePairsForTest
+				(new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl(new ModelToXmlResult(), null, "name", null, null
+				, null, false), ii, new IIImpl(ii));
 			Assert.AreEqual(2, result.Count, "map size");
 			AssertKeyValuePairInMap(result, "root", "11.22.33.44");
 			AssertKeyValuePairInMap(result, "extension", "extensionString");
@@ -527,7 +644,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			ModelToXmlResult xmlResult = new ModelToXmlResult();
 			IIImpl dataType = new IIImpl(ii);
 			dataType.DataType = StandardDataType.II_BUS;
-			new IiPropertyFormatter().Format(new FormatContextImpl(xmlResult, null, "name", "II.BUS", null), dataType);
+			new IiPropertyFormatterTest.TestableIiPropertyFormatter().Format(new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl
+				(xmlResult, null, "name", "II.BUS", null, null, false), dataType);
 			Assert.IsFalse(xmlResult.IsValid());
 			Assert.AreEqual(1, xmlResult.GetHl7Errors().Count);
 			Assert.AreEqual("Attribute \"root\" must be specified for II.BUS", xmlResult.GetHl7Errors()[0].GetMessage());
@@ -538,8 +656,9 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		public virtual void TestGetAttributeNameValuePairsExtensionNotFilled()
 		{
 			Identifier ii = new Identifier("11.22.33.44", null);
-			IDictionary<string, string> result = new IiPropertyFormatter().GetAttributeNameValuePairs(new FormatContextImpl(new ModelToXmlResult
-				(), null, "name", null, null), ii, new IIImpl(ii));
+			IDictionary<string, string> result = new IiPropertyFormatterTest.TestableIiPropertyFormatter().GetAttributeNameValuePairsForTest
+				(new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl(new ModelToXmlResult(), null, "name", null, null
+				, null, false), ii, new IIImpl(ii));
 			Assert.AreEqual(1, result.Count, "map size");
 			AssertKeyValuePairInMap(result, "root", "11.22.33.44");
 			AssertKeyNotInMap(result, "extension");

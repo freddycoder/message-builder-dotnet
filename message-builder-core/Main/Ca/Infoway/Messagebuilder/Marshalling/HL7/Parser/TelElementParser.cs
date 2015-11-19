@@ -14,17 +14,19 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System;
 using System.Xml;
+using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Datatype.Impl;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
+using Ca.Infoway.Messagebuilder.Error;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser;
-using Ca.Infoway.Messagebuilder.Terminology;
+using Ca.Infoway.Messagebuilder.Resolver;
 using Ca.Infoway.Messagebuilder.Util.Xml;
 using ILOG.J2CsMapping.Util;
 
@@ -46,11 +48,25 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 	{
 		private static readonly TelValidationUtils TEL_VALIDATION_UTILS = new TelValidationUtils();
 
+		private readonly bool allowReference;
+
+		public TelElementParser() : this(false)
+		{
+		}
+
+		public TelElementParser(bool allowReference)
+		{
+			this.allowReference = allowReference;
+		}
+
 		/// <exception cref="Ca.Infoway.Messagebuilder.Marshalling.HL7.XmlToModelTransformationException"></exception>
 		protected override TelecommunicationAddress ParseNonNullNode(ParseContext context, XmlNode node, BareANY parseResult, Type
 			 expectedReturnType, XmlToModelResult xmlToModelResult)
 		{
-			ValidateNoChildren(context, node);
+			if (!this.allowReference)
+			{
+				ValidateNoChildren(context, node);
+			}
 			string specializationType = GetSpecializationType(node);
 			TelecommunicationAddress telecomAddress = ParseTelecommunicationAddress(node, xmlToModelResult);
 			string type = context.Type;
@@ -62,6 +78,10 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		private TelecommunicationAddress ParseTelecommunicationAddress(XmlNode node, XmlToModelResult xmlToModelResult)
 		{
 			string value = GetAttributeValue(node, "value");
+			if (StringUtils.IsBlank(value) && this.allowReference)
+			{
+				value = GetAttributeValue(node, "reference");
+			}
 			// remove the // that appear after the colon if necessary
 			// e.g. file://monkey
 			value = value == null ? null : System.Text.RegularExpressions.Regex.Replace(value, "://", ":");

@@ -37,6 +37,10 @@ namespace Ca.Infoway.Messagebuilder
             return null == a ? null == b : a.Equals(b);
         }
 
+        public static bool EqualsIgnoreCase(String a, String b) {
+            return null == a ? null == b : a.EqualsIgnoreCase(b);
+        }
+
         public static int Length(String str)
         {
             return str==null ? 0 : str.Length;

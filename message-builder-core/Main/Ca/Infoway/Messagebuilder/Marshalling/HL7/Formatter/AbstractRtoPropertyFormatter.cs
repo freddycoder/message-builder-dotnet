@@ -14,23 +14,22 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System.Text;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
-using Ca.Infoway.Messagebuilder.Marshalling.HL7;
+using Ca.Infoway.Messagebuilder.Error;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter;
-using Ca.Infoway.Messagebuilder.Util.Xml;
 
 namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 {
 	public abstract class AbstractRtoPropertyFormatter<T, U> : AbstractNullFlavorPropertyFormatter<BareRatio>
 	{
-		internal override string FormatNonNullValue(FormatContext context, BareRatio value, int indentLevel)
+		protected override string FormatNonNullValue(FormatContext context, BareRatio value, int indentLevel)
 		{
 			StringBuilder buffer = new StringBuilder();
-			buffer.Append(CreateElement(context.GetElementName(), null, indentLevel, false, true));
+			buffer.Append(CreateElement(context, null, indentLevel, false, true));
 			T bareNumerator = (T)value.BareNumerator;
 			U bareDenominator = (U)value.BareDenominator;
 			if (bareNumerator == null || bareDenominator == null)
@@ -40,7 +39,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			}
 			buffer.Append(FormatNumerator(context, bareNumerator, indentLevel + 1));
 			buffer.Append(FormatDenominator(context, bareDenominator, indentLevel + 1));
-			buffer.Append(XmlRenderingUtils.CreateEndElement(context.GetElementName(), indentLevel, true));
+			buffer.Append(CreateElementClosure(context.GetElementName(), indentLevel, true));
 			return buffer.ToString();
 		}
 

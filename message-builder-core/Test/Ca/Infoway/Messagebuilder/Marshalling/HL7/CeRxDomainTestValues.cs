@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
@@ -47,6 +47,15 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7
 					return string.Empty;
 				}
 			}
+
+			/// <summary><inheritDoc></inheritDoc></summary>
+			public virtual string CodeSystemName
+			{
+				get
+				{
+					return null;
+				}
+			}
 		}
 
 		public class TelecommunicationUsageTypeImpl : Ca.Infoway.Messagebuilder.Domainvalue.TelecommunicationAddressUse
@@ -73,6 +82,15 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7
 					return string.Empty;
 				}
 			}
+
+			/// <summary><inheritDoc></inheritDoc></summary>
+			public virtual string CodeSystemName
+			{
+				get
+				{
+					return null;
+				}
+			}
 		}
 
 		public class UnitImpl : Ca.Infoway.Messagebuilder.Domainvalue.UnitsOfMeasureCaseSensitive
@@ -97,6 +115,15 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7
 				get
 				{
 					return "1.2.3.4";
+				}
+			}
+
+			/// <summary><inheritDoc></inheritDoc></summary>
+			public virtual string CodeSystemName
+			{
+				get
+				{
+					return null;
 				}
 			}
 		}
@@ -174,7 +201,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7
 			("cm");
 
 		public static Ca.Infoway.Messagebuilder.Domainvalue.UnitsOfMeasureCaseSensitive ENZYME_UNIT_MICROMOLES_MINUTE_PER_LITRE = 
-			new CeRxDomainTestValues.UnitImpl("U/l");
+			new CeRxDomainTestValues.UnitImpl("U/L");
 
 		public static Ca.Infoway.Messagebuilder.Domainvalue.UnitsOfMeasureCaseSensitive FLUID_OUNCE = new CeRxDomainTestValues.UnitImpl
 			("[foz_br]");

@@ -27,6 +27,7 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 	
 	using Ca.Infoway.Messagebuilder.Domainvalue;
 	using Ca.Infoway.Messagebuilder.Platform;
+    using Ca.Infoway.Messagebuilder.Datatype.Lang.Util;
 	using System;
 	using System.Collections;
 	using System.Collections.Generic;
@@ -46,27 +47,30 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 	/// http://www.hl7.org/v3ballot/html/infrastructure/itsxml/datatypes-its-xml.htm#dtimpl-TEL
 	/// </summary>
 	///
-	public class TelecommunicationAddress {
+    public class TelecommunicationAddress : IEquatable<TelecommunicationAddress>
+    {
 	
-		public sealed class Anonymous_C0 : 
-				IComparer<Domainvalue.TelecommunicationAddressUse> {
-			public int Compare(Domainvalue.TelecommunicationAddressUse o1,
-					Domainvalue.TelecommunicationAddressUse o2) {
+		public sealed class AddressUsesComparator : IComparer<TelecommunicationAddressUse> {
+			public int Compare(TelecommunicationAddressUse o1,
+					TelecommunicationAddressUse o2) {
 				return String.CompareOrdinal(o1.CodeValue, o2.CodeValue);
 			}
-	
-			public Anonymous_C0() {
+
+            public AddressUsesComparator() {
 			}
 		}
+
+        private static readonly AddressUsesComparator ADDRESS_USE_COMPARATOR = new AddressUsesComparator();
 	
 		private static readonly String SEPARATOR = ":";
 		private static readonly String SLASHES = "//";
 	
 		private static readonly IList<String> URL_SCHEMES_REQUIRING_SLASHES = new List<String>();
 		// add an ordering to the usage list for predictable ordering
-		private ICollection<Domainvalue.TelecommunicationAddressUse> addressUses;
+        private List<TelecommunicationAddressUse> addressUses = new List<TelecommunicationAddressUse>();
+        private IDictionary<PlatformDate, SetOperator> useablePeriods = new Dictionary<PlatformDate, SetOperator>();
 	
-		private Domainvalue.URLScheme urlScheme;
+		private URLScheme urlScheme;
 		private String address;
 	
 		/// <summary>
@@ -74,8 +78,7 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		/// </summary>
 		///
 		public TelecommunicationAddress() {
-			this.addressUses = new LinkedSet<Domainvalue.TelecommunicationAddressUse>();
-		}
+        }
 	
 		/// <summary>
 		/// Constructs a telecom address with a given scheme, address, and uses.
@@ -84,13 +87,14 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		/// <param name="scheme">the url scheme for the telecom address (ftp, fax, etc.)</param>
 		/// <param name="address_0">the actual "address" (phone number, etc) of the telecom address</param>
 		/// <param name="uses">which uses are applicable to the given telecom address</param>
-		public TelecommunicationAddress(Domainvalue.URLScheme scheme, String address_0,
-				params Domainvalue.TelecommunicationAddressUse[] uses) {
-			this.addressUses = new LinkedSet<Domainvalue.TelecommunicationAddressUse>();
+		public TelecommunicationAddress(URLScheme scheme, String address_0,
+				params TelecommunicationAddressUse[] uses) {
+            this.addressUses = new List<TelecommunicationAddressUse>();
 			this.urlScheme = scheme;
 			this.address = address_0;
-			foreach (Domainvalue.TelecommunicationAddressUse use in uses) {
+			foreach (TelecommunicationAddressUse use in uses) {
 				this.addressUses.Add(use);
+                this.addressUses.Sort(ADDRESS_USE_COMPARATOR);
 			}
 		}
 	
@@ -99,9 +103,10 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		/// </summary>
 		///
 		/// <param name="addressUse">an address usage</param>
-		public void AddAddressUse(Domainvalue.TelecommunicationAddressUse addressUse) {
+		public void AddAddressUse(TelecommunicationAddressUse addressUse) {
 			if (addressUse != null) {
 				this.addressUses.Add(addressUse);
+                this.addressUses.Sort(ADDRESS_USE_COMPARATOR);
 			}
 		}
 	
@@ -110,7 +115,7 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		/// </summary>
 		///
 		/// <returns>all address uses</returns>
-		public ICollection<Domainvalue.TelecommunicationAddressUse> AddressUses {
+		public ICollection<TelecommunicationAddressUse> AddressUses {
 		/// <summary>
 		/// Returns all address uses for this telecom address.
 		/// </summary>
@@ -127,7 +132,7 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		/// </summary>
 		///
 		/// <param name="urlScheme_0">a url scheme</param>
-		public Domainvalue.URLScheme UrlScheme {
+		public URLScheme UrlScheme {
 		/// <summary>
 		/// Returns the telecom address usrl scheme.
 		/// </summary>
@@ -170,7 +175,30 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 				this.address = value;
 			}
 		}
-		
+
+        // Added for R2 usage only
+
+        /// <summary>
+        /// Useable periods or the given telecom address. The periods will be sorted internally.
+        /// </summary>
+        public IDictionary<PlatformDate, SetOperator> UseablePeriods {
+            get {
+                return this.useablePeriods;
+            }
+        }
+
+        /// <summary>
+        /// Convenience method for adding a period and inclusive operator.
+        /// </summary>
+        /// <param name="periodInTime"></param>
+        /// <param name="setOperator"></param>
+        /// <returns>whether the added period replaced an existing period</returns>
+        public bool AddUseablePeriod(PlatformDate periodInTime, SetOperator setOperator) {
+            // leave it up to the user to worry about a given time replacing an existing one
+            SetOperator previousValue = UseablePeriods.ContainsKey(periodInTime) ? UseablePeriods[periodInTime] : null;
+            UseablePeriods.Add(periodInTime, setOperator == null ? SetOperator.INCLUDE : setOperator);
+            return previousValue != null;
+        }
 	
 		/// <summary>
 		/// Formats the telecom address into a string.
@@ -200,5 +228,40 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 			//URL_SCHEMES_REQUIRING_SLASHES.Add("mailto");
 			URL_SCHEMES_REQUIRING_SLASHES.Add("nfs");
 		}
+
+        public override int GetHashCode()
+        {
+            return new HashCodeBuilder()
+		            .Append(this.address)
+		            .Append((IList<TelecommunicationAddressUse>)this.addressUses)
+		            .Append(this.urlScheme)
+                    .Append(UseablePeriods)
+                    .ToHashCode();
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+            else if (obj.GetType() != GetType())
+            {
+                return false;
+            } else {
+                return Equals((TelecommunicationAddress) obj);
+            }
+        }
+
+        public bool Equals(TelecommunicationAddress that)
+        {
+            return new EqualsBuilder()
+                    .Append(this.address, that.address)
+                    .Append((IList<TelecommunicationAddressUse>)this.addressUses, (IList<TelecommunicationAddressUse>)that.addressUses)
+                    .Append(this.urlScheme, that.urlScheme)
+                    .Append(this.UseablePeriods, that.UseablePeriods)
+                    .IsEquals();
+        }
+	
 	}
 }

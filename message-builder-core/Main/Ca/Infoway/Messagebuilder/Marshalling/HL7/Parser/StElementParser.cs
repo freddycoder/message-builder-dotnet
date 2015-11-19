@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System;
@@ -22,9 +22,11 @@ using System.Xml;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Datatype.Impl;
+using Ca.Infoway.Messagebuilder.Error;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser;
 using Ca.Infoway.Messagebuilder.Util.Xml;
+using Ca.Infoway.Messagebuilder.Xml.Util;
 using ILOG.J2CsMapping.Text;
 
 namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
@@ -53,7 +55,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			XmlElement element = (XmlElement)node;
 			if (StandardDataType.ST.Type.Equals(context.Type) && HasLanguageAttribute(element))
 			{
-				xmlToModelResult.AddHl7Error(new Hl7Error(Hl7ErrorCode.DATA_TYPE_ERROR, System.String.Format("The language attribute is not allow for ST element types ({0})"
+				xmlToModelResult.AddHl7Error(new Hl7Error(Hl7ErrorCode.DATA_TYPE_ERROR, System.String.Format("The language attribute is not allowed for ST element types ({0})"
 					, XmlDescriber.DescribeSingleElement(element)), element));
 			}
 			else
@@ -76,7 +78,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			int childNodeCount = node.ChildNodes.Count;
 			if (childNodeCount == 0)
 			{
-				if (context.GetConformance() == Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY)
+				if (ConformanceLevelUtil.IsMandatory(context.GetConformance(), context.GetCardinality()))
 				{
 					xmlToModelResult.AddHl7Error(new Hl7Error(Hl7ErrorCode.DATA_TYPE_ERROR, System.String.Format("The string value should not be empty ({0})"
 						, XmlDescriber.DescribeSingleElement(element)), element));
@@ -89,9 +91,14 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 				if (childNodeCount == 1)
 				{
 					XmlNode childNode = node.FirstChild;
-					if (childNode.NodeType != System.Xml.XmlNodeType.Text)
+					if (childNode.NodeType != System.Xml.XmlNodeType.Text && childNode.NodeType != System.Xml.XmlNodeType.CDATA)
 					{
+						// RM18422 - decided to allow for CDATA section within ST datatypes (other datatypes - AD, ON, PN, SC, TN - still restrict to TEXT only)
 						throw new XmlToModelTransformationException("Expected ST node to have a text node");
+					}
+					if (childNode.NodeType == System.Xml.XmlNodeType.CDATA)
+					{
+						((ST)dataType).IsCdata = true;
 					}
 					result = childNode.Value;
 				}
@@ -109,6 +116,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			if (StandardDataType.ST_LANG.Type.Equals(context.Type))
 			{
 				string language = ((XmlElement)node).GetAttribute("language");
+				// this cast is safe - it will always be an STImpl due to the doCreateDataTypeInstance() method
 				((STImpl)dataType).Language = StringUtils.TrimToNull(language);
 			}
 			return result;

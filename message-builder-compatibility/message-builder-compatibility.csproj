@@ -34,7 +34,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <ReleaseVersion>1.2.9</ReleaseVersion>
+    <ReleaseVersion>1.5.8.2</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -111,6 +111,7 @@
   <ItemGroup>
     <Compile Include="Main\ArrayUtils.cs" />
     <Compile Include="Main\BigDecimal.cs" />
+    <Compile Include="Main\BooleanUtils.cs" />
     <Compile Include="Main\ClassUtils.cs" />
     <Compile Include="Main\CollUtils.cs" />
     <Compile Include="Main\CompareToBuilder.cs" />

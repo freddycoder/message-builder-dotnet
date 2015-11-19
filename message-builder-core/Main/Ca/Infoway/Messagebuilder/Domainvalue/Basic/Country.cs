@@ -137,7 +137,10 @@ namespace Ca.Infoway.Messagebuilder.Domainvalue.Basic
 				return "";
 			}
 		}
-		
+
+		public virtual String CodeSystemName {
+            get { return null; }
+        }
 	
 		/// <summary>
 		/// Returns the country applicable for the country c.

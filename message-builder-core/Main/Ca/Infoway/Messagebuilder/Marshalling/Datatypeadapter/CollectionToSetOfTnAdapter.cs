@@ -14,17 +14,19 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Datatype.Impl;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
 using Ca.Infoway.Messagebuilder.Domainvalue;
 using Ca.Infoway.Messagebuilder.Marshalling.Datatypeadapter;
 using Ca.Infoway.Messagebuilder.Platform;
+using Ca.Infoway.Messagebuilder.Xml;
 
 namespace Ca.Infoway.Messagebuilder.Marshalling.Datatypeadapter
 {
@@ -32,13 +34,22 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.Datatypeadapter
 	{
 		public virtual bool CanAdapt(Type fromDataType, string toDataTypeName)
 		{
-			if (typeof(COLLECTION<object>).IsAssignableFrom(fromDataType) && StandardDataType.SET.Equals(StandardDataType.GetByTypeName
+            if (IsCOLLECTIONType(fromDataType) && StandardDataType.SET.Equals(StandardDataType.GetByTypeName
 				(toDataTypeName)) && ContainerOfTn(toDataTypeName))
 			{
 				return true;
 			}
 			return false;
 		}
+
+        private bool IsCOLLECTIONType(Type type) {
+            foreach (Type interfaceType in type.GetInterfaces()) {
+                if (interfaceType.IsGenericType && interfaceType.GetGenericTypeDefinition() == typeof(COLLECTION<>)) {
+                    return true;
+                }
+            }
+            return false;
+        }
 
 		private bool ContainerOfTn(string fromDataTypeName)
 		{
@@ -57,15 +68,21 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.Datatypeadapter
 			return containerOfTn;
 		}
 
-		public virtual bool CanAdapt(string fromDataTypeName, Type toDateType)
+		public virtual bool CanAdapt(string fromDataTypeName, Type toDataType)
 		{
 			return false;
 		}
 
-		public virtual BareANY Adapt(BareANY any)
+		public virtual BareANY Adapt(Type toDataType, BareANY any)
 		{
-			ICollection<object> collection = ((COLLECTION<object>)any).RawCollection();
-			SETImpl<ANY<object>, object> adaptedSet = new SETImpl<ANY<object>, object>(typeof(TNImpl));
+			return any;
+		}
+
+		public virtual BareANY Adapt(string toDataTypeName, BareANY any)
+		{
+            MethodInfo rawCollectionMethod = any.GetType().GetMethod("RawCollection");
+            ICollection<object> collection = (ICollection<object>)rawCollectionMethod.Invoke(any, new object[] { });
+            SETImpl<TNImpl, TrivialName> adaptedSet = new SETImpl<TNImpl, TrivialName>(typeof(TNImpl));
 			if (any.HasNullFlavor())
 			{
 				NullFlavor nullFlavor = any.NullFlavor;
@@ -75,12 +92,12 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.Datatypeadapter
 			{
 				adaptedSet.RawSet().AddAll(ToSetOfTrivialName(collection));
 			}
-			return (ANY<object>)adaptedSet;
+			return adaptedSet;
 		}
 
-		private ICollection<object> ToSetOfTrivialName(ICollection<object> collection)
+		private ICollection<TrivialName> ToSetOfTrivialName(ICollection<object> collection)
 		{
-			ICollection<object> set = new LinkedSet<object>();
+            ICollection<TrivialName> set = new LinkedSet<TrivialName>();
 			foreach (object element in collection)
 			{
 				set.Add(new TrivialName(element.ToString()));

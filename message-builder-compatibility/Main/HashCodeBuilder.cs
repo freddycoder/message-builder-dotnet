@@ -60,6 +60,45 @@ namespace Ca.Infoway.Messagebuilder
             return this;
         }
 
+        public HashCodeBuilder Append<T>(ISet<T> set) {
+            return Append((ICollection<T>)set);
+        }
+
+        public HashCodeBuilder Append<T>(IList<T> list) {
+            return Append((ICollection<T>)list);
+        }
+
+        public HashCodeBuilder Append<K,V>(IDictionary<K,V> dictionary) {
+            if (dictionary != null) {
+                foreach(K key in dictionary.Keys) {
+                    hash += mult * key.GetHashCode();
+                    V value = dictionary[key];
+                    if (value != null) {
+                        hash += mult * value.GetHashCode();
+                    }
+                }
+            }
+            return this;
+        }
+
+        public HashCodeBuilder Append<T>(ICollection<T> collection) {
+            if (null != collection) {
+                foreach (T e in collection) {
+                    if (null != e) {
+                        hash += mult * e.GetHashCode();
+                    }
+                }
+            }
+            return this;
+        }
+
+        public HashCodeBuilder AppendSuper(int superValue)
+        {
+            hash += mult * superValue;
+
+            return this;
+        }
+
         public int ToHashCode()
         {
             return hash;

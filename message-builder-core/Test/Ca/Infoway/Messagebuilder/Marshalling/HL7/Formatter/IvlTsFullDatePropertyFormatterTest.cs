@@ -14,14 +14,13 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Datatype.Impl;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
-using Ca.Infoway.Messagebuilder.Datatype.Lang.Util;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter;
 using NUnit.Framework;
 
@@ -46,8 +45,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 
 		protected override FormatContext GetContext(string name, string type, VersionNumber version)
 		{
-			return new FormatContextImpl(this.result, null, name, type, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.POPULATED, false
-				, version, null, null, null);
+			return new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl(this.result, null, name, type, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
+				.POPULATED, null, false, version, null, null, null, false);
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -293,10 +292,11 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			IVLImpl<QTY<PlatformDate>, Interval<PlatformDate>> hl7DataType = new IVLImpl<QTY<PlatformDate>, Interval<PlatformDate>>(interval
 				);
 			hl7DataType.DataType = StandardDataType.IVL_FULL_DATE;
-			string result = this.formatter.Format(new FormatContextImpl(this.result, null, "name", "IVL<TS.FULLDATEWITHTIME>", Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
-				.POPULATED, false, SpecificationVersion.R02_04_03, null, null, null), hl7DataType);
+			string result = this.formatter.Format(new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl(this.result
+				, null, "name", "IVL<TS.FULLDATEWITHTIME>", Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.POPULATED, null, false, SpecificationVersion
+				.R02_04_03, null, null, null, false), hl7DataType);
 			Assert.IsTrue(this.result.IsValid());
-			AssertXml("result", "<name specializationType=\"IVL_TS.FULLDATE\" xsi:type=\"IVL_TS\"><low specializationType=\"TS.FULLDATE\" value=\"20061225\" xsi:type=\"TS\"/><high specializationType=\"TS.FULLDATE\" value=\"20070102\" xsi:type=\"TS\"/></name>"
+			AssertXml("result", "<name specializationType=\"IVL_TS.FULLDATE\" xsi:type=\"IVL_TS\"><low value=\"20061225\"/><high value=\"20070102\"/></name>"
 				, result);
 		}
 	}

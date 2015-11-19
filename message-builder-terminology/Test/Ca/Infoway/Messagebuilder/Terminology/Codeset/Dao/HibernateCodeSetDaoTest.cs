@@ -24,13 +24,14 @@
 /// ---------------------------------------------------------------------------------------------------
 #if inctest 
 namespace Ca.Infoway.Messagebuilder.Terminology.Codeset.Dao {
-	
-	using Ca.Infoway.Messagebuilder;
+
+    using ILOG.J2CsMapping.Collections;
+    using Ca.Infoway.Messagebuilder;
 	using Ca.Infoway.Messagebuilder.Domainvalue;
 	using Ca.Infoway.Messagebuilder.Terminology;
 	using Ca.Infoway.Messagebuilder.Terminology.Codeset.Domain;
 	using System.Collections.Generic;
-	using NUnit;
+    using NUnit;
     using System;
     using NHibernate;
     
@@ -58,6 +59,8 @@ namespace Ca.Infoway.Messagebuilder.Terminology.Codeset.Dao {
 		private static String OID;
 		private static readonly String OTHER_OID_BASE = "9.7.6.5.4";
 		private static String OTHER_OID;
+        private static String VERSION = "version1";
+        private static String OTHER_VERSION = "version2";
 	
 		private MutableCodeSetDao dao;
 	
@@ -78,7 +81,7 @@ namespace Ca.Infoway.Messagebuilder.Terminology.Codeset.Dao {
 			this.dao = new HibernateCodeSetDao(this.support.SessionFactory);
 			this.factory = new CodeTestFactory(this.support);
 			OID = OID_BASE + "." + (++oidDistinguisher);
-			OTHER_OID = OTHER_OID_BASE + "." + oidDistinguisher;
+			OTHER_OID = OTHER_OID_BASE + "." + (++oidDistinguisher);
 		}
 	
 		[NUnit.Framework.TearDown]
@@ -101,11 +104,11 @@ namespace Ca.Infoway.Messagebuilder.Terminology.Codeset.Dao {
 	
 		[NUnit.Framework.Test]
 		public void TestSelectCodedValuesByVocabularyDomain_ShouldFindTwoMatchingCodes() {
-			CreateCodedValue(CODE, VOCABULARY_DOMAIN);
-			CreateCodedValue(OTHER_CODE, VOCABULARY_DOMAIN);
+			CreateCodedValue(CODE, VERSION, VOCABULARY_DOMAIN);
+            CreateCodedValue(OTHER_CODE, VERSION, VOCABULARY_DOMAIN);
 	
 			IList<CodedValue> codedValues = this.dao
-					.SelectCodedValuesByVocabularyDomain(VOCABULARY_DOMAIN);
+                    .SelectCodedValuesByVocabularyDomain(VOCABULARY_DOMAIN, VERSION);
 	
 			NUnit.Framework.Assert.AreEqual(2, codedValues.Count);
 			NUnit.Framework.Assert.IsTrue(CodedValueFound(codedValues, CODE));
@@ -115,18 +118,18 @@ namespace Ca.Infoway.Messagebuilder.Terminology.Codeset.Dao {
 		[NUnit.Framework.Test]
 		public void TestSelectCodedValuesByVocabularyDomain_ShouldReturnEmptyListWhenThereIsNoData() {
 			ICollection<CodedValue> codedValues = this.dao
-					.SelectCodedValuesByVocabularyDomain(VOCABULARY_DOMAIN);
+                    .SelectCodedValuesByVocabularyDomain(VOCABULARY_DOMAIN, VERSION);
 	
 			NUnit.Framework.Assert.IsTrue((codedValues.Count==0));
 		}
 	
 		[NUnit.Framework.Test]
 		public void TestSelectCodedValuesByVocabularyDomain_ShouldNotSelectCodesInOtherVocabularyDomains() {
-			CreateCodedValue(CODE, VOCABULARY_DOMAIN);
-			CreateCodedValue(CODE, OTHER_VOCABULARY_DOMAIN);
+            CreateCodedValue(CODE, VERSION, VOCABULARY_DOMAIN);
+            CreateCodedValue(CODE, VERSION, OTHER_VOCABULARY_DOMAIN);
 	
 			IList<CodedValue> codedValues = this.dao
-					.SelectCodedValuesByVocabularyDomain(VOCABULARY_DOMAIN);
+                    .SelectCodedValuesByVocabularyDomain(VOCABULARY_DOMAIN, VERSION);
 	
 			NUnit.Framework.Assert.AreEqual(1, codedValues.Count);
 			NUnit.Framework.Assert.IsTrue(CodedValueFound(codedValues, CODE));
@@ -148,11 +151,11 @@ namespace Ca.Infoway.Messagebuilder.Terminology.Codeset.Dao {
 		public void TestFindCodedValueByCodeSystem_ShouldFindMatchingCodedValue() {
 			VocabularyDomain vocabularyDomain = this.factory
 					.CreateVocabularyDomain(typeof(Confidentiality));
-	
-			CreateCodedValue(vocabularyDomain, OID, "N");
+
+            CreateCodedValue(vocabularyDomain, OID, "N", VERSION);
 	
 			ValueSetEntry value_ren = this.dao.FindValueByCodeSystem(
-					typeof(Confidentiality), "N", OID);
+                    typeof(Confidentiality), "N", OID, VERSION);
 	
 			NUnit.Framework.Assert.IsNotNull(value_ren,"coded value");
 			NUnit.Framework.Assert.AreEqual("N",value_ren.CodedValue.Code);
@@ -163,27 +166,27 @@ namespace Ca.Infoway.Messagebuilder.Terminology.Codeset.Dao {
 		public void TestFindCodedValueByCodeSystem_ShouldNotFindValuesInOtherCodeSystems() {
 			VocabularyDomain vocabularyDomain = this.factory
 					.CreateVocabularyDomain(VOCABULARY_DOMAIN);
-	
-			CreateCodedValue(vocabularyDomain, OTHER_OID, CODE);
+
+            CreateCodedValue(vocabularyDomain, OTHER_OID, CODE, VERSION);
 	
 			ValueSetEntry value_ren = this.dao.FindValueByCodeSystem(VOCABULARY_DOMAIN,
-					CODE, OID);
+                    CODE, OID, VERSION);
 			NUnit.Framework.Assert.IsNull(value_ren);
 		}
 	
 		[NUnit.Framework.Test]
 		public void TestFindCodedValueByCodeSystem_ShouldNotFindValueWhenThereIsNoData() {
 			ValueSetEntry value_ren = this.dao.FindValueByCodeSystem(VOCABULARY_DOMAIN,
-					CODE, OID);
+                    CODE, OID, VERSION);
 			NUnit.Framework.Assert.IsNull(value_ren);
 		}
 	
 		[NUnit.Framework.Test]
 		public void TestSelectCodedValuesByCode_ShouldFindMatchingCodedValue() {
-			CreateCodedValue(CODE, VOCABULARY_DOMAIN);
+            CreateCodedValue(CODE, VERSION, VOCABULARY_DOMAIN);
 	
 			ICollection<ValueSetEntry> codedValues = this.dao.SelectValueSetsByCode(
-					VOCABULARY_DOMAIN, CODE);
+                    VOCABULARY_DOMAIN, CODE, VERSION);
 	
 			NUnit.Framework.Assert.AreEqual(1, codedValues.Count);
 	
@@ -193,10 +196,10 @@ namespace Ca.Infoway.Messagebuilder.Terminology.Codeset.Dao {
 	
 		[NUnit.Framework.Test]
 		public void TestSelectCodedValuesByCode_ShouldFindMatchingCodedValueInSubVocabularyDomains() {
-			CreateCodedValue(CODE, SUB_VOCABULARY_DOMAIN, PARENT_VOCABULARY_DOMAIN);
+            CreateCodedValue(CODE, VERSION, SUB_VOCABULARY_DOMAIN, PARENT_VOCABULARY_DOMAIN);
 	
 			ICollection<ValueSetEntry> codedValues = this.dao.SelectValueSetsByCode(
-					PARENT_VOCABULARY_DOMAIN, CODE);
+                    PARENT_VOCABULARY_DOMAIN, CODE, VERSION);
 	
 			NUnit.Framework.Assert.AreEqual(1, codedValues.Count);
 	
@@ -206,10 +209,10 @@ namespace Ca.Infoway.Messagebuilder.Terminology.Codeset.Dao {
 	
 		[NUnit.Framework.Test]
 		public void TestSelectCodedValuesByCode_ShouldNotFindValuesInOtherVocabularyDomains() {
-			CreateCodedValue(CODE, OTHER_VOCABULARY_DOMAIN);
+            CreateCodedValue(CODE, VERSION, OTHER_VOCABULARY_DOMAIN);
 	
 			ICollection<ValueSetEntry> values = this.dao.SelectValueSetsByCode(
-					VOCABULARY_DOMAIN, CODE);
+                    VOCABULARY_DOMAIN, CODE, VERSION);
 	
 			NUnit.Framework.Assert.IsTrue((values.Count==0));
 		}
@@ -217,7 +220,7 @@ namespace Ca.Infoway.Messagebuilder.Terminology.Codeset.Dao {
 		[NUnit.Framework.Test]
 		public void TestSelectCodedValuesByCode_ShouldNotSelectValuesWhenThereIsNoData() {
 			ICollection<ValueSetEntry> values = this.dao.SelectValueSetsByCode(
-					VOCABULARY_DOMAIN, CODE);
+                    VOCABULARY_DOMAIN, CODE, VERSION);
 	
 			NUnit.Framework.Assert.IsTrue((values.Count==0));
 		}
@@ -298,21 +301,21 @@ namespace Ca.Infoway.Messagebuilder.Terminology.Codeset.Dao {
 		}
 	
 		private void CreateCodedValue(VocabularyDomain vocabularyDomain,
-				String oid, String code, String parentCode, IList<String> childCodes) {
+				String oid, String code, String parentCode, IList<String> childCodes, String version) {
 			CodeSystem codeSystem_0 = this.factory.CreateCodeSystem(oid);
 			CodedValue codeCodedValue = CreateCodedValue(vocabularyDomain,
-					codeSystem_0, code);
+					codeSystem_0, code, version);
 			CodedValue parentCodeCodedValue = null;
 			if (parentCode != null) {
 				parentCodeCodedValue = CreateCodedValue(vocabularyDomain,
-						codeSystem_0, parentCode);
+						codeSystem_0, parentCode, version);
 			}
 			IList<CodedValue> childCodesCodedValues = new List<CodedValue>();
 			if (childCodes != null) {
 				/* foreach */
 				foreach (String childCode  in  childCodes) {
 					CodedValue childCodedValue = CreateCodedValue(vocabularyDomain,
-							codeSystem_0, childCode);
+							codeSystem_0, childCode, version);
 					ILOG.J2CsMapping.Collections.Generics.Collections.Add(childCodesCodedValues,childCodedValue);
 				}
 			}
@@ -321,21 +324,21 @@ namespace Ca.Infoway.Messagebuilder.Terminology.Codeset.Dao {
 		}
 	
 		private CodedValue CreateCodedValue(VocabularyDomain vocabularyDomain,
-				CodeSystem codeSystem_0, String code) {
+				CodeSystem codeSystem_0, String code, String version) {
 			CodedValue codedValue = this.factory.CreateCodedValue(codeSystem_0, code);
-			this.factory.CreateValueSet(codedValue, vocabularyDomain);
+			this.factory.CreateValueSet(codedValue, version, vocabularyDomain);
 			return codedValue;
 		}
 	
 		private CodedValue CreateCodedValue(VocabularyDomain vocabularyDomain,
-				String oid, String code) {
+				String oid, String code, String version) {
 			CodeSystem codeSystem_0 = this.factory.CreateCodeSystem(oid);
 			CodedValue codedValue = this.factory.CreateCodedValue(codeSystem_0, code);
-			this.factory.CreateValueSet(codedValue, vocabularyDomain);
+			this.factory.CreateValueSet(codedValue, version, vocabularyDomain);
 			return codedValue;
 		}
 	
-		private void CreateCodedValue(String code, params Type[] vocabularyDomainType) {
+		private void CreateCodedValue(String code, String version, params Type[] vocabularyDomainType) {
 			if (this.codeSystem == null) {
 				this.codeSystem = this.factory.CreateCodeSystem(OID);
 			}
@@ -352,12 +355,12 @@ namespace Ca.Infoway.Messagebuilder.Terminology.Codeset.Dao {
 				}
 				ILOG.J2CsMapping.Collections.Generics.Collections.Add(domains_0,vocabularyDomain);
 			}
-			this.factory.CreateValueSet(codedValue, ILOG.J2CsMapping.Collections.Generics.Collections.ToArray(domains_0,new VocabularyDomain[domains_0.Count]));
+			this.factory.CreateValueSet(codedValue, version, ILOG.J2CsMapping.Collections.Generics.Collections.ToArray(domains_0,new VocabularyDomain[domains_0.Count]));
 		}
 	
 		private bool CodedValueFound(IList<CodedValue> codedValues, String code) {
-			for (IIterator<CodedValue> i = new ILOG.J2CsMapping.Collections.Generics.IteratorAdapter<Ca.Infoway.Messagebuilder.Terminology.Codeset.Domain.CodedValue>(codedValues.GetEnumerator()); i.HasNext();) {
-				CodedValue value_ren = i.Next();
+			for (IIterator i = new ILOG.J2CsMapping.Collections.Generics.IteratorAdapter<Ca.Infoway.Messagebuilder.Terminology.Codeset.Domain.CodedValue>(codedValues.GetEnumerator()); i.HasNext();) {
+                CodedValue value_ren = (CodedValue)i.Next();
 				if (value_ren.Code.Equals(code)) {
 					return true;
 				}
@@ -367,10 +370,10 @@ namespace Ca.Infoway.Messagebuilder.Terminology.Codeset.Dao {
 	
 		[NUnit.Framework.Test]
 		public void TestFindCodedValueWithNoChildrenNoParent() {
-			CreateCodedValue(CODE, SUB_VOCABULARY_DOMAIN, PARENT_VOCABULARY_DOMAIN);
+            CreateCodedValue(CODE, VERSION, SUB_VOCABULARY_DOMAIN, PARENT_VOCABULARY_DOMAIN);
 	
 			x_DrugUnitsOfMeasure code = (x_DrugUnitsOfMeasure) Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry
-					.Lookup(SUB_VOCABULARY_DOMAIN, CODE, OID);
+					.Lookup<Code>(SUB_VOCABULARY_DOMAIN, CODE, OID);
 	
 			CodedValue codedValue = this.dao.FindCodedValue(code);
 	
@@ -384,8 +387,8 @@ namespace Ca.Infoway.Messagebuilder.Terminology.Codeset.Dao {
 		public void TestFindCodedValueWithChildrenAndParent() {
 			VocabularyDomain vocabularyDomain = this.factory
 					.CreateVocabularyDomain(typeof(Confidentiality));
-	
-			CreateCodedValue(vocabularyDomain, OID, CODE, "parent", ILOG.J2CsMapping.Collections.Generics.Arrays.AsList("child1","child2","child3"));
+
+            CreateCodedValue(vocabularyDomain, OID, CODE, "parent", ILOG.J2CsMapping.Collections.Generics.Arrays.AsList("child1", "child2", "child3"), VERSION);
 	
 			Confidentiality code = (Confidentiality) Ca.Infoway.Messagebuilder.Terminology.CodeResolverRegistry.Lookup<Confidentiality>(
 					typeof(Confidentiality), CODE, OID);

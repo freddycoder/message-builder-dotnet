@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2013-03-01 17:48:17 -0500 (Fri, 01 Mar 2013) $
- * Revision:      $LastChangedRevision: 6663 $
+ * Author:        $LastChangedBy: jmis $
+ * Last modified: $LastChangedDate: 2015-05-27 08:43:37 -0400 (Wed, 27 May 2015) $
+ * Revision:      $LastChangedRevision: 9535 $
  */
 
 /// ---------------------------------------------------------------------------------------------------
@@ -44,58 +44,74 @@ namespace Ca.Infoway.Messagebuilder.Terminology.Codeset.Dao {
 		/// </summary>
 		///
 		/// <param name="vocabularyDomainType">the vocabulary domain type</param>
-		/// <param name="code">the c</param>
+		/// <param name="code">the code</param>
 		/// <param name="codeSystemOid">the c system oid</param>
-		/// <returns>the value set entry</returns>
+        /// <param name="version">the version</param>
+        /// <returns>the value set entry</returns>
 		ValueSetEntry FindValueByCodeSystem(Type vocabularyDomainType,
-				String code, String codeSystemOid);
+                String code, String codeSystemOid, String version, bool ignoreCase);
 	
 		/// <summary>
 		/// Select value sets by c.
 		/// </summary>
 		///
 		/// <param name="vocabularyDomainType">the vocabulary domain type</param>
-		/// <param name="code">the c</param>
-		/// <returns>the list</returns>
+		/// <param name="code">the code</param>
+        /// <param name="version">the version</param>
+        /// <returns>the list</returns>
 		IList<ValueSetEntry> SelectValueSetsByCode(
-				Type vocabularyDomainType, String code);
+                Type vocabularyDomainType, String code, String version, bool ignoreCase);
 	
 		/// <summary>
 		/// Select value sets by vocabulary domain.
 		/// </summary>
 		///
 		/// <param name="vocabularyDomainType">the vocabulary domain type</param>
-		/// <returns>the list</returns>
+        /// <param name="version">the version</param>
+        /// <returns>the list</returns>
+        [Obsolete]
 		IList<ValueSetEntry> SelectValueSetsByVocabularyDomain(
-				Type vocabularyDomainType);
+				Type vocabularyDomainType, String version);
 	
 		/// <summary>
 		/// Select value sets by vocabulary domain.
 		/// </summary>
 		///
 		/// <param name="vocabularyDomainType">the vocabulary domain type</param>
-		/// <returns>the list</returns>
+        /// <param name="version">the version</param>
+        /// <returns>the list</returns>
 		IList<ValueSetEntry> SelectValueSetsByVocabularyDomain(
-				String vocabularyDomainType);
-	
-		/// <summary>
+				String vocabularyDomainType, String version);
+
+        /// <summary>
+        /// Select value sets by version.
+        /// </summary>
+        ///
+        /// <param name="version">the version</param>
+        /// <returns>the list of value sets for the specified version</returns>
+        IList<ValueSet> SelectValueSetsByVersion(String version);
+
+        /// <summary>
 		/// Select value sets by vocabulary domain.
 		/// </summary>
 		///
 		/// <param name="jurisdictionCode">the jurisdiction c</param>
 		/// <param name="vocabularyDomainType">the vocabulary domain type</param>
-		/// <returns>the list</returns>
+        /// <param name="version">the version</param>
+        /// <returns>the list</returns>
 		IList<ValueSetEntry> SelectValueSetsByVocabularyDomain(
-				String jurisdictionCode, VocabularyDomain vocabularyDomainType);
+				String jurisdictionCode, VocabularyDomain vocabularyDomainType, String version);
 	
 		/// <summary>
 		/// Select cd values by vocabulary domain.
 		/// </summary>
 		///
 		/// <param name="vocabularyDomainType">the vocabulary domain type</param>
-		/// <returns>the list</returns>
+        /// <param name="version">the version</param>
+        /// <returns>the list</returns>
+        [Obsolete]
 		IList<CodedValue> SelectCodedValuesByVocabularyDomain(
-				Type vocabularyDomainType);
+				Type vocabularyDomainType, String version);
 	
 		/// <summary>
 		/// Select all vocabulary domains.

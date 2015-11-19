@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System.Collections.Generic;
@@ -24,6 +24,7 @@ using Ca.Infoway.Messagebuilder.Datatype.Impl;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter;
+using Ca.Infoway.Messagebuilder.Xml;
 using NUnit.Framework;
 
 namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
@@ -31,12 +32,15 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 	[TestFixture]
 	public class ListOnPropertyFormatterTest : FormatterTestCase
 	{
+		private FormatterRegistry formatterRegistry = FormatterRegistry.GetInstance();
+
 		/// <exception cref="System.Exception"></exception>
 		[Test]
 		public virtual void TestFormatValueNull()
 		{
-			string result = new ListPropertyFormatter().Format(new FormatContextImpl(new ModelToXmlResult(), null, "name", "LIST<ON>"
-				, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL), new LISTImpl<ON, OrganizationName>(typeof(ONImpl)));
+			string result = new ListPropertyFormatter(this.formatterRegistry).Format(new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl
+				(new ModelToXmlResult(), null, "name", "LIST<ON>", Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL, null, false)
+				, new LISTImpl<ON, OrganizationName>(typeof(ONImpl)));
 			AssertXml("null", string.Empty, result);
 		}
 
@@ -44,9 +48,10 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		[Test]
 		public virtual void TestFormatValueNullMandatory()
 		{
-			string result = new ListPropertyFormatter().Format(new FormatContextImpl(new ModelToXmlResult(), null, "blah", "LIST<ON>"
-				, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY), (BareANY)new LISTImpl<ON, OrganizationName>(typeof(ONImpl), 
-				Ca.Infoway.Messagebuilder.Domainvalue.Nullflavor.NullFlavor.NO_INFORMATION));
+			string result = new ListPropertyFormatter(this.formatterRegistry).Format(new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl
+				(new ModelToXmlResult(), null, "blah", "LIST<ON>", Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY, null, false
+				), (BareANY)new LISTImpl<ON, OrganizationName>(typeof(ONImpl), Ca.Infoway.Messagebuilder.Domainvalue.Nullflavor.NullFlavor
+				.NO_INFORMATION));
 			AssertXml("null", "<blah nullFlavor=\"NI\"/>", result);
 		}
 
@@ -54,9 +59,10 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		[Test]
 		public virtual void TestFormatValueNonNull()
 		{
-			string result = new ListPropertyFormatter().Format(new FormatContextImpl(new ModelToXmlResult(), null, "name", "LIST<ON>"
-				, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY), LISTImpl<ANY<object>, object>.Create<ON, OrganizationName>(
-				typeof(ONImpl), CreateOrganizationNameList()));
+			string result = new ListPropertyFormatter(this.formatterRegistry).Format(new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl
+				(new ModelToXmlResult(), null, "name", "LIST<ON>", Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY, Cardinality
+				.Create("1-4"), false), LISTImpl<ANY<object>, object>.Create<ON, OrganizationName>(typeof(ONImpl), CreateOrganizationNameList
+				()));
 			Assert.AreEqual("<name>Organization 1</name>" + SystemUtils.LINE_SEPARATOR + "<name>Organization 2</name>" + SystemUtils.
 				LINE_SEPARATOR, result, "non null");
 		}

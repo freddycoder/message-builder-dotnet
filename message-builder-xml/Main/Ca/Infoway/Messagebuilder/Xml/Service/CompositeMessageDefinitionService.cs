@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2013-03-01 17:48:17 -0500 (Fri, 01 Mar 2013) $
- * Revision:      $LastChangedRevision: 6663 $
+ * Author:        $LastChangedBy: jmis $
+ * Last modified: $LastChangedDate: 2015-05-27 08:43:37 -0400 (Wed, 27 May 2015) $
+ * Revision:      $LastChangedRevision: 9535 $
  */
 
 /// ---------------------------------------------------------------------------------------------------
@@ -52,6 +52,21 @@ namespace Ca.Infoway.Messagebuilder.Xml.Service {
 				IList<MessageDefinitionService> services_0) {
 			this.services = services_0;
 		}
+
+        /// <summary>
+        /// Initialize the service. Pre-initializing the service during system 
+        /// start-up can improve the performance of the first user call to do real work.
+        /// </summary>
+        public virtual void Initialize()
+        {
+            if (services != null)
+            {
+                foreach (MessageDefinitionService service in services)
+                {
+                    service.Initialize();
+                }
+            }
+        }
 	
 		/// <summary>
 		/// Get an interaction by name and version.
@@ -198,5 +213,87 @@ namespace Ca.Infoway.Messagebuilder.Xml.Service {
 			}
 			return new Dictionary<String, MessagePart>();
 		}
+
+		/// <summary>
+		/// Get all the message parts for a particular version.
+		/// </summary>
+		///
+		/// <param name="version">- the version</param>
+		/// <returns>- the message parts</returns>
+		public virtual ICollection<MessagePart> GetAllMessageParts(VersionNumber version)
+		{
+			foreach (MessageDefinitionService service in this.services)
+			{
+				ICollection<MessagePart> allMessageParts = service.GetAllMessageParts(version);
+				if (allMessageParts != null && !allMessageParts.IsEmpty())
+				{
+					return allMessageParts;
+				}
+			}
+            return CollUtils.EmptyList<MessagePart>();
+		}
+
+        public virtual bool IsR2(VersionNumber version)
+        {
+            foreach (MessageDefinitionService service in services) {
+                if (service.IsR2(version))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public virtual bool IsCda(VersionNumber version)
+        {
+            foreach (MessageDefinitionService service in services)
+            {
+                if (service.IsCda(version))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public virtual ConstrainedDatatype GetConstraints(VersionNumber version, string constrainedType)
+        {
+            foreach (MessageDefinitionService service in services)
+            {
+                ConstrainedDatatype constraints = service.GetConstraints(version, constrainedType);
+                if (constraints != null)
+                {
+                    return constraints;
+                }
+            }
+            return null;
+        }
+
+        public virtual IList<SchematronContext> GetAllSchematronContexts(VersionNumber version)
+        {
+            foreach (MessageDefinitionService service in services)
+            {
+                IList<SchematronContext> contexts = service.GetAllSchematronContexts(version);
+                if (contexts != null)
+                {
+                    return contexts;
+                }
+            }
+            return null;
+        }
+
+        public virtual IList<PackageLocation> GetAllPackageLocations(VersionNumber version)
+        {
+            foreach (MessageDefinitionService service in services)
+            {
+                IList<PackageLocation> locations = service.GetAllPackageLocations(version);
+                if (locations != null)
+                {
+                    return locations;
+                }
+            }
+            return null;
+        }
+
 	}
 }

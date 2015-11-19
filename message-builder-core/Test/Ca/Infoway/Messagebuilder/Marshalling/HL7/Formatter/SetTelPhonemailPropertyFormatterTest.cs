@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using Ca.Infoway.Messagebuilder;
@@ -23,6 +23,7 @@ using Ca.Infoway.Messagebuilder.Datatype.Impl;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter;
+using Ca.Infoway.Messagebuilder.Xml;
 using NUnit.Framework;
 
 namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
@@ -30,14 +31,16 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 	[TestFixture]
 	public class SetTelPhonemailPropertyFormatterTest : FormatterTestCase
 	{
+		private FormatterRegistry formatterRegistry = FormatterRegistry.GetInstance();
+
 		/// <exception cref="System.Exception"></exception>
 		[Test]
 		public virtual void TestFormatValueNull()
 		{
-			string result = new SetPropertyFormatter().Format(new FormatContextImpl(new ModelToXmlResult(), null, "blah", "SET<TEL.PHONEMAIL>"
-				, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY, false, SpecificationVersion.R02_04_03, null, null, null), new 
-				SETImpl<TEL, TelecommunicationAddress>(typeof(TELImpl), Ca.Infoway.Messagebuilder.Domainvalue.Nullflavor.NullFlavor.NO_INFORMATION
-				));
+			string result = new SetPropertyFormatter(this.formatterRegistry).Format(new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl
+				(new ModelToXmlResult(), null, "blah", "SET<TEL.PHONEMAIL>", Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY, null
+				, false, SpecificationVersion.R02_04_03, null, null, null, false), new SETImpl<TEL, TelecommunicationAddress>(typeof(TELImpl
+				), Ca.Infoway.Messagebuilder.Domainvalue.Nullflavor.NullFlavor.NO_INFORMATION));
 			AssertXml("null", "<blah nullFlavor=\"NI\"/>", result);
 		}
 
@@ -45,10 +48,11 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		[Test]
 		public virtual void TestFormatValueNonNull()
 		{
-			string result = new SetPropertyFormatter().Format(new FormatContextImpl(new ModelToXmlResult(), null, "blah", "SET<TEL.PHONEMAIL>"
-				, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY, false, SpecificationVersion.R02_04_03, null, null, null), SETImpl
-				<ANY<object>, object>.Create<TEL, TelecommunicationAddress>(typeof(TELImpl), MakeTelecommunicationAddressSet("Fred")));
-			AssertXml("non null", "<blah value=\"mailto:Fred\"/>", result);
+			string result = new SetPropertyFormatter(this.formatterRegistry).Format(new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl
+				(new ModelToXmlResult(), null, "blah", "SET<TEL.PHONEMAIL>", Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY, Cardinality
+				.Create("1-4"), false, SpecificationVersion.R02_04_03, null, null, null, false), SETImpl<ANY<object>, object>.Create<TEL
+				, TelecommunicationAddress>(typeof(TELImpl), MakeTelecommunicationAddressSet("Fred")));
+			AssertXml("non null", "<blah specializationType=\"TEL.PHONE\" value=\"mailto:Fred\" xsi:type=\"TEL\"/>", result);
 		}
 	}
 }

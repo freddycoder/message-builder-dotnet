@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System;
@@ -49,8 +49,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		/// <exception cref="Ca.Infoway.Messagebuilder.Marshalling.HL7.XmlToModelTransformationException"></exception>
 		private Interval<Int32?> Parse(XmlNode node)
 		{
-			BareANY ivl = this.parser.Parse(ParserContextImpl.Create("IVL<INT>", typeof(Interval<object>), SpecificationVersion.V02R02
-				, null, null, null), Arrays.AsList(node), this.result);
+			BareANY ivl = this.parser.Parse(ParseContextImpl.Create("IVL<INT>", typeof(Interval<object>), SpecificationVersion.V02R02
+				, null, null, null, null, null, false), Arrays.AsList(node), this.result);
 			return (Interval<Int32?>)(ivl.BareValue);
 		}
 

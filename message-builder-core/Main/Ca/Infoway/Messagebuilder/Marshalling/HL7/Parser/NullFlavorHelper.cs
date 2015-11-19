@@ -14,23 +14,29 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
+using System;
 using System.Xml;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Domainvalue;
+using Ca.Infoway.Messagebuilder.Error;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
+using Ca.Infoway.Messagebuilder.Resolver;
 using Ca.Infoway.Messagebuilder.Util.Xml;
+using Ca.Infoway.Messagebuilder.Xml.Util;
 using ILOG.J2CsMapping.Text;
 
 namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 {
 	public class NullFlavorHelper
 	{
-		internal static readonly string NULL_FLAVOR_ATTRIBUTE_NAME = "nullFlavor";
+		public static readonly string MB_SUPPRESS_XSI_NIL_ON_NULLFLAVOR = "messagebuilder.suppress.xsi.nil.on.nullflavor";
 
-		internal static readonly string NULL_FLAVOR_XSI_NIL_ATTRIBUTE_NAME = "xsi:nil";
+		public static readonly string NULL_FLAVOR_ATTRIBUTE_NAME = "nullFlavor";
+
+		private static readonly string NULL_FLAVOR_XSI_NIL_ATTRIBUTE_NAME = "xsi:nil";
 
 		private readonly XmlNode node;
 
@@ -52,22 +58,25 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		public virtual NullFlavor ParseNullNode()
 		{
 			string attributeValue = GetAttributeValue(node, NULL_FLAVOR_ATTRIBUTE_NAME);
-			NullFlavor nullFlavor = Ca.Infoway.Messagebuilder.Domainvalue.Nullflavor.NullFlavor.Lookup(attributeValue);
-			if (this.conformanceLevel != null && this.conformanceLevel == Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY)
+			NullFlavor nullFlavor = CodeResolverRegistry.Lookup<NullFlavor>(attributeValue);
+			if (ConformanceLevelUtil.IsMandatory(this.conformanceLevel, null))
 			{
 				xmlToModelResult.AddHl7Error(Hl7Error.CreateMandatoryAttributeIsNullError(NodeUtil.GetLocalOrTagName((XmlElement)node), GetAttributeValue
 					(node, NULL_FLAVOR_ATTRIBUTE_NAME), (XmlElement)node));
 			}
 			else
 			{
-				if (this.conformanceLevel != null && this.conformanceLevel == Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.REQUIRED)
+				//      RM #15431 - strictly speaking, nullFlavors are not allowed for REQUIRED fields. However, jurisdictions often ignore this restriction.
+				//      FIXME:  TM (see RM18424) - once MB has error levels implemented, this can be reinstated as a warning
+				//		} else if (this.conformanceLevel != null && this.conformanceLevel == ConformanceLevel.REQUIRED) {
+				//			xmlToModelResult.addHl7Error(Hl7Error.createRequiredAttributeIsNullError(
+				//					NodeUtil.getLocalOrTagName((Element) node), 
+				//					getAttributeValue(node, NULL_FLAVOR_ATTRIBUTE_NAME),
+				//					(Element) node));
+				if (this.isAssociation && !StringUtils.Equals(GetAttributeValue(node, NULL_FLAVOR_XSI_NIL_ATTRIBUTE_NAME), "true"))
 				{
-					xmlToModelResult.AddHl7Error(Hl7Error.CreateRequiredAttributeIsNullError(NodeUtil.GetLocalOrTagName((XmlElement)node), GetAttributeValue
-						(node, NULL_FLAVOR_ATTRIBUTE_NAME), (XmlElement)node));
-				}
-				else
-				{
-					if (this.isAssociation && !StringUtils.Equals(GetAttributeValue(node, NULL_FLAVOR_XSI_NIL_ATTRIBUTE_NAME), "true"))
+					if (!Ca.Infoway.Messagebuilder.BooleanUtils.ValueOf(Runtime.GetProperty(Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.NullFlavorHelper
+						.MB_SUPPRESS_XSI_NIL_ON_NULLFLAVOR)))
 					{
 						xmlToModelResult.AddHl7Error(Hl7Error.CreateNullFlavorMissingXsiNilError(NodeUtil.GetLocalOrTagName((XmlElement)node), (XmlElement
 							)node));
@@ -86,8 +95,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			}
 			else
 			{
-				if (StringUtils.IsEmpty(attributeValue) || Ca.Infoway.Messagebuilder.Domainvalue.Nullflavor.NullFlavor.Lookup(attributeValue
-					) == null)
+				if (StringUtils.IsEmpty(attributeValue) || CodeResolverRegistry.Lookup<NullFlavor>(attributeValue) == null)
 				{
 					xmlToModelResult.AddHl7Error(new Hl7Error(Hl7ErrorCode.VALUE_NOT_IN_CODE_SYSTEM, System.String.Format("The nullFavor attribute value \"{0}\" is not valid ({1})"
 						, attributeValue, XmlDescriber.DescribeSingleElement((XmlElement)node)), (XmlElement)node));

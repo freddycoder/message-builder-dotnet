@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System.Xml;
@@ -23,8 +23,11 @@ using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Datatype.Impl;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
 using Ca.Infoway.Messagebuilder.Datatype.Lang.Util;
+using Ca.Infoway.Messagebuilder.Domainvalue;
+using Ca.Infoway.Messagebuilder.Error;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser;
+using Ca.Infoway.Messagebuilder.Resolver;
 using Ca.Infoway.Messagebuilder.Util.Xml;
 
 namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
@@ -62,8 +65,18 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 
 		protected override void ValidateName(EntityName result, ParseContext context, XmlElement element, Hl7Errors errors)
 		{
-			PN_VALIDATION_UTILS.ValidatePersonName((PersonName)result, context.Type, context.GetVersion().GetBaseVersion(), element, 
-				null, errors);
+			string personNameType = context.Type;
+			// some jurisdictions make use of PN, even though it is not strictly defined (allowed?) in the datatype specifications
+			if ("PN".Equals(personNameType))
+			{
+				string specializationType = GetSpecializationType(element);
+				if (StringUtils.IsNotBlank(specializationType))
+				{
+					personNameType = specializationType;
+				}
+			}
+			PN_VALIDATION_UTILS.ValidatePersonName((PersonName)result, personNameType, context.GetVersion().GetBaseVersion(), element
+				, null, errors);
 		}
 
 		/// <exception cref="Ca.Infoway.Messagebuilder.Marshalling.HL7.XmlToModelTransformationException"></exception>
@@ -77,15 +90,15 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		/// <exception cref="Ca.Infoway.Messagebuilder.Marshalling.HL7.XmlToModelTransformationException"></exception>
 		private void HandlePersonName(XmlToModelResult xmlToModelResult, PersonName result, XmlNodeList childNodes)
 		{
-			for (int i = 0; i < childNodes.Count; i++)
+			foreach (XmlNode childNode in new XmlNodeListIterable(childNodes))
 			{
-				XmlNode childNode = childNodes.Item(i);
 				if (childNode is XmlElement)
 				{
 					XmlElement element = (XmlElement)childNode;
 					string name = NodeUtil.GetLocalOrTagName(element);
 					string value = GetTextValue(element, xmlToModelResult);
-					string qualifier = GetAttributeValue(element, NAME_PART_TYPE_QUALIFIER);
+					string qualifierString = GetAttributeValue(element, NAME_PART_TYPE_QUALIFIER);
+					EntityNamePartQualifier qualifier = CodeResolverRegistry.Lookup<EntityNamePartQualifier>(qualifierString);
 					if (StringUtils.IsNotBlank(value))
 					{
 						result.AddNamePart(new EntityNamePart(value, GetPersonalNamePartType(name), qualifier));

@@ -13,10 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2013-03-08 11:06:36 -0500 (Fri, 08 Mar 2013) $
- * Revision:      $LastChangedRevision: 6699 $
+ * Author:        $LastChangedBy: jmis $
+ * Last modified: $LastChangedDate: 2015-05-27 08:43:37 -0400 (Wed, 27 May 2015) $
+ * Revision:      $LastChangedRevision: 9535 $
  */
+using System.Collections.Generic;
+using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Lang;
 
 namespace Ca.Infoway.Messagebuilder.Xml
@@ -33,10 +35,6 @@ namespace Ca.Infoway.Messagebuilder.Xml
 	[System.Serializable]
 	public class AnnotationType : EnumPattern
 	{
-		static AnnotationType()
-		{
-		}
-
 		private const long serialVersionUID = 3066114109382422542L;
 
 		public static readonly Ca.Infoway.Messagebuilder.Xml.AnnotationType CONSTRAINT = new Ca.Infoway.Messagebuilder.Xml.AnnotationType
@@ -93,26 +91,54 @@ namespace Ca.Infoway.Messagebuilder.Xml
 		public static readonly Ca.Infoway.Messagebuilder.Xml.AnnotationType DEPRECATION_INFO = new Ca.Infoway.Messagebuilder.Xml.AnnotationType
 			("DEPRECATION_INFO", "DEPRECATION INFO", "deprecationInfo");
 
+		private static readonly IList<Ca.Infoway.Messagebuilder.Xml.AnnotationType> _typesAllowingMultipleCardinality = new List<
+			Ca.Infoway.Messagebuilder.Xml.AnnotationType>();
+
+		static AnnotationType()
+		{
+			//	public static final AnnotationType DESCRIPTION = new AnnotationType("DESCRIPTION", "DESCRIPTION / DEFINITION", "description", "definition");
+			//TODO: GN: need to figure out if these have corresponding mappings on mif1s
+			//For C# Translation, there should only be 1 static block in this class
+			_typesAllowingMultipleCardinality.Add(Ca.Infoway.Messagebuilder.Xml.AnnotationType.USAGE_NOTES);
+			_typesAllowingMultipleCardinality.Add(Ca.Infoway.Messagebuilder.Xml.AnnotationType.DESIGN_COMMENTS);
+			_typesAllowingMultipleCardinality.Add(Ca.Infoway.Messagebuilder.Xml.AnnotationType.OTHER_NOTES);
+			_typesAllowingMultipleCardinality.Add(Ca.Infoway.Messagebuilder.Xml.AnnotationType.MAPPING);
+			_typesAllowingMultipleCardinality.Add(Ca.Infoway.Messagebuilder.Xml.AnnotationType.CONSTRAINT);
+			_typesAllowingMultipleCardinality.Add(Ca.Infoway.Messagebuilder.Xml.AnnotationType.OPEN_ISSUE);
+			_typesAllowingMultipleCardinality.Add(Ca.Infoway.Messagebuilder.Xml.AnnotationType.USAGE_CONSTRAINT);
+			_typesAllowingMultipleCardinality.Add(Ca.Infoway.Messagebuilder.Xml.AnnotationType.APPENDIX);
+			_typesAllowingMultipleCardinality.Add(Ca.Infoway.Messagebuilder.Xml.AnnotationType.STATIC_EXAMPLE);
+			_typesAllowingMultipleCardinality.Add(Ca.Infoway.Messagebuilder.Xml.AnnotationType.BALLOT_COMMENT);
+			_typesAllowingMultipleCardinality.Add(Ca.Infoway.Messagebuilder.Xml.AnnotationType.CHANGE_REQUEST);
+		}
+
+		public static readonly IList<Ca.Infoway.Messagebuilder.Xml.AnnotationType> typesAllowingMultipleCardinality = Ca.Infoway.Messagebuilder.CollUtils.CreateUnmodifiableList
+			(_typesAllowingMultipleCardinality);
+
 		private readonly string[] mifElementNames;
 
 		private string displayName;
 
 		private AnnotationType(string name, string displayName, params string[] mif) : base(name)
 		{
-			//	public static final AnnotationType DESCRIPTION = new AnnotationType("DESCRIPTION", "DESCRIPTION / DEFINITION", "description", "definition");
-			//TODO: GN: need to figure out if these have corresponding mappings on mif1s
 			this.displayName = displayName;
 			this.mifElementNames = mif;
 		}
 
-		public virtual string[] GetMifElementNames()
+		public virtual string[] MifElementNames
 		{
-			return mifElementNames;
+			get
+			{
+				return mifElementNames;
+			}
 		}
 
-		public virtual string GetDisplayName()
+		public virtual string Description
 		{
-			return displayName;
+			get
+			{
+				return displayName;
+			}
 		}
 
 		public virtual void SetDisplayName(string displayName)

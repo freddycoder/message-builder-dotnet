@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using Ca.Infoway.Messagebuilder;
@@ -213,6 +213,9 @@ namespace Ca.Infoway.Messagebuilder.Codesystem
 		public static readonly Ca.Infoway.Messagebuilder.Codesystem.CodeSystem VOCABULARY_ENTITY_CODE = new Ca.Infoway.Messagebuilder.Codesystem.CodeSystem
 			("VOCABULARY_ENTITY_CODE", "2.16.840.1.113883.5.1060");
 
+		public static readonly Ca.Infoway.Messagebuilder.Codesystem.CodeSystem VOCABULARY_ENTITY_NAME_QUALIFIER = new Ca.Infoway.Messagebuilder.Codesystem.CodeSystem
+			("VOCABULARY_ENTITY_NAME_QUALIFIER", "2.16.840.1.113883.5.43");
+
 		public static readonly Ca.Infoway.Messagebuilder.Codesystem.CodeSystem VOCABULARY_ENTITY_NAME_USE = new Ca.Infoway.Messagebuilder.Codesystem.CodeSystem
 			("VOCABULARY_ENTITY_NAME_USE", "2.16.840.1.113883.5.45");
 
@@ -278,6 +281,9 @@ namespace Ca.Infoway.Messagebuilder.Codesystem
 
 		public static readonly Ca.Infoway.Messagebuilder.Codesystem.CodeSystem VOCABULARY_TELECOMMUNICATION_ADDRESS_USE = new Ca.Infoway.Messagebuilder.Codesystem.CodeSystem
 			("VOCABULARY_TELECOMMUNICATION_ADDRESS_USE", "2.16.840.1.113883.5.1011");
+
+		public static readonly Ca.Infoway.Messagebuilder.Codesystem.CodeSystem VOCABULARY_TIMING_EVENT = new Ca.Infoway.Messagebuilder.Codesystem.CodeSystem
+			("VOCABULARY_TIMING_EVENT", "2.16.840.1.113883.5.139");
 
 		public static readonly Ca.Infoway.Messagebuilder.Codesystem.CodeSystem VOCABULARY_TRIGGER_EVENT_ID = new Ca.Infoway.Messagebuilder.Codesystem.CodeSystem
 			("VOCABULARY_TRIGGER_EVENT_ID", "2.16.840.1.113883.1.18");

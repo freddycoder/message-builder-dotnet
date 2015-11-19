@@ -100,7 +100,10 @@ namespace Ca.Infoway.Messagebuilder.Domainvalue.Basic
 				return Name;
 			}
 		}
-		
+
+        public virtual String CodeSystemName {
+            get { return null; }
+        }
 	
 		/// <summary>
 		/// A description of the URL.

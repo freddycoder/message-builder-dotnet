@@ -14,8 +14,8 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2013-03-08 11:06:36 -0500 (Fri, 08 Mar 2013) $
- * Revision:      $LastChangedRevision: 6699 $
+ * Last modified: $LastChangedDate: 2014-02-28 12:09:29 -0500 (Fri, 28 Feb 2014) $
+ * Revision:      $LastChangedRevision: 8420 $
  */
 using System.Collections.Generic;
 using System.Xml;
@@ -32,5 +32,7 @@ namespace Ca.Infoway.Messagebuilder.Xml.Visitor
 		void VisitNonStructuralAttribute(XmlElement @base, IList<XmlElement> elements, Relationship relationship);
 
 		void VisitRoot(XmlElement documentElement, Interaction interaction);
+
+		void AddError(string message, XmlElement element);
 	}
 }

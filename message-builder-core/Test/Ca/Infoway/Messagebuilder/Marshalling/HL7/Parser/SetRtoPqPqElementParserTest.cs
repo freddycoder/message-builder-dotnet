@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System.Collections.Generic;
@@ -23,6 +23,7 @@ using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser;
+using Ca.Infoway.Messagebuilder.Xml;
 using NUnit.Framework;
 
 namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
@@ -37,8 +38,9 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			XmlNode node = CreateNode("<top>" + "<something>" + "<numerator unit=\"mg\" value=\"1000\" />" + "<denominator unit=\"d\" value=\"1\" />"
 				 + "</something>" + "<something>" + "<numerator unit=\"mg\" value=\"1001\"	/>" + "<denominator unit=\"d\" value=\"2\" />"
 				 + "</something>" + "</top>");
-			BareANY result = new SetElementParser().Parse(ParserContextImpl.Create("SET<RTO<PQ.DRUG,PQ.TIME>>", null, SpecificationVersion
-				.V01R04_2_SK, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY), AsList(node.ChildNodes), null);
+			BareANY result = new SetElementParser(ParserRegistry.GetInstance()).Parse(ParseContextImpl.Create("SET<RTO<PQ.DRUG,PQ.TIME>>"
+				, null, SpecificationVersion.V01R04_2_SK, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY, Cardinality
+				.Create("1-5"), null, false), AsList(node.ChildNodes), null);
 			ICollection<Ratio<PhysicalQuantity, PhysicalQuantity>> set = ((SET<RTO<PhysicalQuantity, PhysicalQuantity>, Ratio<PhysicalQuantity
 				, PhysicalQuantity>>)result).RawSet();
 			Assert.IsNotNull(set, "null");

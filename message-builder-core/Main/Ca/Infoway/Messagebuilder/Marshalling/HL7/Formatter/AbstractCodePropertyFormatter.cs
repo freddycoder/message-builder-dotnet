@@ -14,19 +14,27 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System;
 using System.Collections.Generic;
 using System.Text;
 using Ca.Infoway.Messagebuilder;
+using Ca.Infoway.Messagebuilder.CodeRegistry;
 using Ca.Infoway.Messagebuilder.Datatype;
+using Ca.Infoway.Messagebuilder.Datatype.Impl;
+using Ca.Infoway.Messagebuilder.Datatype.Lang;
+using Ca.Infoway.Messagebuilder.Domainvalue.Util;
+using Ca.Infoway.Messagebuilder.Error;
 using Ca.Infoway.Messagebuilder.Lang;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
+using Ca.Infoway.Messagebuilder.Marshalling.HL7.Constraints;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter;
-using Ca.Infoway.Messagebuilder.Terminology;
+using Ca.Infoway.Messagebuilder.Platform;
+using Ca.Infoway.Messagebuilder.Resolver;
 using Ca.Infoway.Messagebuilder.Xml;
+using Ca.Infoway.Messagebuilder.Xml.Util;
 
 namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 {
@@ -48,32 +56,53 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 	{
 		private static readonly CdValidationUtils CD_VALIDATION_UTILS = new CdValidationUtils();
 
+		private CodedTypesConstraintsHandler constraintsHandler = new CodedTypesConstraintsHandler();
+
 		public override string Format(FormatContext context, BareANY hl7Value, int indentLevel)
 		{
-			CD cd = (CD)hl7Value;
+			bool isAny = false;
+			CD cd = null;
+			if (hl7Value is CD)
+			{
+				cd = (CD)hl7Value;
+			}
+			else
+			{
+				isAny = true;
+				// bypass some validations
+				cd = ConvertAnyToCd(hl7Value);
+			}
 			StringBuilder result = new StringBuilder();
 			if (cd != null)
 			{
+				HandleConstraints(cd.Value, context.GetConstraints(), context.GetPropertyPath(), context.GetModelToXmlResult());
 				// don't bother validating if we don't have anything to validate
 				if (cd.HasNullFlavor() || HasValue(cd, context))
 				{
 					Hl7Errors errors = context.GetModelToXmlResult();
-					Hl7BaseVersion baseVersion = context.GetVersion().GetBaseVersion();
+					VersionNumber version = context.GetVersion();
 					string type = context.Type;
 					bool isCne = context.GetCodingStrength() == CodingStrength.CNE;
 					bool isCwe = context.GetCodingStrength() == CodingStrength.CWE;
-					if (cd.Value != null && cd.Value.CodeValue != null)
+					// we can't lookup a code supplied in an ANY datatype as we don't know the domain
+					// a "reverse" lookup of domain type by code/codesystem could be possible, but difficult to implement to be 100% correct (MB does not track code systems)
+					if (!isAny)
 					{
-						ValidateCodeExists(cd.Value, context.GetDomainType(), context.GetVersion(), context.GetPropertyPath(), errors);
+						if (cd.Value != null && cd.Value.CodeValue != null)
+						{
+							ValidateCodeExists(cd.Value, context.GetDomainType(), version, context.IsCda(), context.GetPropertyPath(), errors);
+						}
 					}
 					string codeAsString = (cd.Value != null ? cd.Value.CodeValue : null);
-					CD_VALIDATION_UTILS.ValidateCodedType(cd, codeAsString, isCwe, isCne, false, type, baseVersion, null, context.GetPropertyPath
-						(), errors);
+					CD_VALIDATION_UTILS.ValidateCodedType(cd, codeAsString, isCwe, isCne, false, context.IsFixed(), type, version, null, context
+						.GetPropertyPath(), errors);
 				}
 				IDictionary<string, string> attributes = new Dictionary<string, string>();
+				Ca.Infoway.Messagebuilder.Xml.ConformanceLevel conformanceLevel = context.GetConformanceLevel();
+				Cardinality cardinality = context.GetCardinality();
 				if (cd.HasNullFlavor())
 				{
-					if (context.GetConformanceLevel() == Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY)
+					if (ConformanceLevelUtil.IsMandatory(conformanceLevel, cardinality))
 					{
 						LogMandatoryError(context);
 					}
@@ -86,9 +115,9 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 				{
 					if (!HasValue(cd, context))
 					{
-						if (context.GetConformanceLevel() == null || IsMandatoryOrPopulated(context))
+						if (conformanceLevel == null || IsMandatoryOrPopulated(context))
 						{
-							if (context.GetConformanceLevel() == Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY)
+							if (ConformanceLevelUtil.IsMandatory(conformanceLevel, cardinality))
 							{
 								LogMandatoryError(context);
 							}
@@ -102,8 +131,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 				// Codes can have other attributes in map even if has NullFlavor
 				attributes.PutAll(GetAttributeNameValuePairs(context, cd.Value, hl7Value));
 				bool hasChildContent = HasChildContent(cd, context);
-				if (hasChildContent || (!attributes.IsEmpty() || context.GetConformanceLevel() == Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
-					.MANDATORY))
+				if (hasChildContent || (!attributes.IsEmpty() || ConformanceLevelUtil.IsMandatory(conformanceLevel, cardinality)))
 				{
 					result.Append(CreateElement(context, attributes, indentLevel, !hasChildContent, !hasChildContent));
 					if (hasChildContent)
@@ -117,14 +145,70 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			return result.ToString();
 		}
 
-		private void ValidateCodeExists(Code value, string domainType, VersionNumber version, string propertyPath, Hl7Errors errors
-			)
+		private void HandleConstraints(Code code, ConstrainedDatatype constraints, string propertyPath, Hl7Errors errors)
 		{
-			Type returnType = (Type)DomainTypeHelper.GetReturnType(domainType, version);
+			CodedTypeR2<Code> codedType = new CodedTypeR2<Code>(code);
+			ErrorLogger logger = new _ErrorLogger_155(errors, propertyPath);
+			this.constraintsHandler.HandleConstraints(constraints, codedType, logger);
+		}
+
+		private sealed class _ErrorLogger_155 : ErrorLogger
+		{
+			public _ErrorLogger_155(Hl7Errors errors, string propertyPath)
+			{
+				this.errors = errors;
+				this.propertyPath = propertyPath;
+			}
+
+			public void LogError(Hl7ErrorCode errorCode, ErrorLevel errorLevel, string errorMessage)
+			{
+				errors.AddHl7Error(new Hl7Error(errorCode, errorLevel, errorMessage, propertyPath));
+			}
+
+			private readonly Hl7Errors errors;
+
+			private readonly string propertyPath;
+		}
+
+		private CD ConvertAnyToCd(BareANY hl7Value)
+		{
+			ANYMetaData anyCd = (ANYMetaData)hl7Value;
+			CD cd = new CDImpl();
+			if (anyCd != null)
+			{
+				if (GenericClassUtil.IsInstanceOfANY(hl7Value))
+				{
+					object value = GenericClassUtil.GetValueFromANY(hl7Value);
+					if (value is Code)
+					{
+						cd.Value = (Code)value;
+					}
+				}
+				cd.DataType = hl7Value.DataType;
+				cd.NullFlavor = hl7Value.NullFlavor;
+				cd.DisplayName = anyCd.DisplayName;
+				cd.OriginalText = anyCd.OriginalText;
+				cd.Translations.AddAll(anyCd.Translations);
+			}
+			return cd;
+		}
+
+		private void ValidateCodeExists(Code value, string domainType, VersionNumber version, bool isCda, string propertyPath, Hl7Errors
+			 errors)
+		{
+			Type returnType = null;
+			if (StringUtils.IsNotBlank(domainType))
+			{
+				returnType = (Type)DomainTypeHelper.GetReturnType(domainType, version, CodeTypeRegistry.GetInstance());
+			}
 			if (returnType == null)
 			{
-				errors.AddHl7Error(new Hl7Error(Hl7ErrorCode.DATA_TYPE_ERROR, "Could not locate a registered domain type to match \"" + domainType
-					 + "\"", propertyPath));
+				// for CDA usage, domainType not always supplied 
+				if (!isCda)
+				{
+					errors.AddHl7Error(new Hl7Error(Hl7ErrorCode.DATA_TYPE_ERROR, "Could not locate a registered domain type to match \"" + domainType
+						 + "\"", propertyPath));
+				}
 			}
 			else
 			{
@@ -145,8 +229,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		private Code GetCode(Type returnType, string codeValue, string codeSystem)
 		{
 			CodeResolver resolver = CodeResolverRegistry.GetResolver(returnType);
-			return codeSystem == null ? resolver.Lookup<Code>(returnType, codeValue) : resolver.Lookup<Code>(returnType, codeValue, codeSystem
-				);
+			return StringUtils.IsBlank(codeSystem) ? resolver.Lookup<Code>(returnType, codeValue) : resolver.Lookup<Code>(returnType, 
+				codeValue, codeSystem);
 		}
 
 		private void LogMandatoryError(FormatContext context)
@@ -181,7 +265,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			return !StringUtils.IsEmpty(cd.OriginalText);
 		}
 
-		internal override IDictionary<string, string> GetAttributeNameValuePairs(FormatContext context, Code code, BareANY bareAny
+		protected override IDictionary<string, string> GetAttributeNameValuePairs(FormatContext context, Code code, BareANY bareAny
 			)
 		{
 			IDictionary<string, string> result = new Dictionary<string, string>();

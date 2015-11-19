@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System;
@@ -32,7 +32,12 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.Datatypeadapter
 			{
 			}
 
-			public BareANY Adapt(BareANY any)
+			public BareANY Adapt(Type toDataType, BareANY any)
+			{
+				return any;
+			}
+
+			public BareANY Adapt(string toDataTypeName, BareANY any)
 			{
 				return any;
 			}
@@ -42,7 +47,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.Datatypeadapter
 				return true;
 			}
 
-			public bool CanAdapt(string fromDataTypeName, Type toDateType)
+			public bool CanAdapt(string fromDataTypeName, Type toDataType)
 			{
 				return true;
 			}
@@ -79,12 +84,12 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.Datatypeadapter
 			return matchingAdapter;
 		}
 
-		public virtual DataTypeAdapter GetAdapter(string fromDataTypeName, Type toDateType)
+		public virtual DataTypeAdapter GetAdapter(string fromDataTypeName, Type toDataType)
 		{
 			DataTypeAdapter matchingAdapter = NULL_DATA_TYPE_ADAPTER;
 			foreach (DataTypeAdapter adapter in adapters)
 			{
-				if (adapter.CanAdapt(fromDataTypeName, toDateType))
+				if (adapter.CanAdapt(fromDataTypeName, toDataType))
 				{
 					matchingAdapter = adapter;
 					break;

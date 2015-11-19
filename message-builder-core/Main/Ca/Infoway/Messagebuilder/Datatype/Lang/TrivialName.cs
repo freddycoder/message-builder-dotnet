@@ -37,8 +37,12 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 	/// </summary>
 	///
 	public class TrivialName : EntityName {
-	
-		private readonly String name;
+
+        /// <summary>
+        /// Construct an empty trivial name
+        /// </summary>
+        public TrivialName() {
+        }
 	
 		/// <summary>
 		/// Constructs a trivial name based on a string.
@@ -46,29 +50,10 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		///
 		/// <param name="name_0">the trivial name</param>
 		public TrivialName(String name_0) {
-			this.name = name_0;
+			if (StringUtils.IsNotBlank(name_0)) {
+                AddNamePart(new EntityNamePart(name_0));
+            }
 		}
-	
-		/// <summary>
-		/// Returns this trivial name as a list containing a single EntityNamPart.
-		/// </summary>
-		///
-		/// <returns>this trivial name as a list of parts.</returns>
-		public override IList<EntityNamePart> Parts {
-		/// <summary>
-		/// Returns this trivial name as a list containing a single EntityNamPart.
-		/// </summary>
-		///
-		/// <returns>this trivial name as a list of parts.</returns>
-		  get {
-				if (this.name == null) {
-					return new List<EntityNamePart>();
-				} else {
-					return ILOG.J2CsMapping.Collections.Generics.Arrays.AsList(new EntityNamePart(this.name));
-				}
-			}
-		}
-		
 	
 		/// <summary>
 		/// Returns this trivial name formatted as a string.
@@ -91,9 +76,8 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		///
 		/// <returns>the underlying string representing this trivial name.</returns>
 		  get {
-				return this.name;
+              return Parts.Count > 0 ? Parts[0].Value : null;
 			}
 		}
-		
 	}
 }

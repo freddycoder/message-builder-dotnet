@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-09-20 16:51:13 -0400 (Tue, 20 Sep 2011) $
- * Revision:      $LastChangedRevision: 2998 $
+ * Author:        $LastChangedBy: jroberts $
+ * Last modified: $LastChangedDate: 2014-11-06 15:40:43 -0500 (Thu, 06 Nov 2014) $
+ * Revision:      $LastChangedRevision: 9058 $
  */
 
 /// ---------------------------------------------------------------------------------------------------
@@ -54,7 +54,8 @@ namespace Ca.Infoway.Messagebuilder.Datatype {
 	/// any other representation than a calendar expression literal.
 	/// </summary>
 	///
-	public interface TS : QTY<PlatformDate> {
+    public interface TS : QTY<PlatformDate>, SetOperatorType
+    {
 	
 	}
 }

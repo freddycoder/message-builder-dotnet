@@ -27,6 +27,7 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 
     using Ca.Infoway.Messagebuilder.Datatype.Lang.Util;
     using Ca.Infoway.Messagebuilder.Domainvalue;
+    using Ca.Infoway.Messagebuilder.Platform;
     using System;
 	using System.Collections;
 	using System.Collections.Generic;
@@ -38,9 +39,8 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 	///   datatype representing the HL7 Datatype ED. (a specialized class)
 	/// </summary>
 	///
+    [Obsolete]
 	public class CompressedData : EncapsulatedData {
-	
-		private Compression compression;
 	
 		/// <summary>
 		/// Constructs an empty CompressedData.
@@ -58,28 +58,14 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		/// <param name="content">the data content</param>
 		/// <param name="compression_0">a compression type</param>
 		/// <param name="language_1">a language</param>
-		public CompressedData(
-				x_DocumentMediaType mediaType,
-				String reference, byte[] content, Compression compression_0,
-				String language_1) : base(mediaType, reference, language_1, content) {
-			this.compression = compression_0;
-		}
-	
-		/// <summary>
-		/// Returns the compression type.
-		/// </summary>
-		///
-		/// <returns>the compression type</returns>
-		public Compression Compression {
-		/// <summary>
-		/// Returns the compression type.
-		/// </summary>
-		///
-		/// <returns>the compression type</returns>
-		  get {
-				return this.compression;
-			}
-		}
+        public CompressedData(
+                x_DocumentMediaType mediaType,
+                String reference, byte[] content, Compression compression_0,
+                String language_1)
+            : base(mediaType, reference, language_1, content)
+        {
+            base.Compression = compression_0;
+        }
 	
 		/// <summary>
 		/// Returns the uncompressed content as a byte array.
@@ -93,15 +79,19 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		///
 		/// <returns>the uncompressed content as a byte array</returns>
 		  get {
-				if (Gzip) {
+              byte[] content = Content == null ? null : System.Text.ASCIIEncoding.ASCII.GetBytes(Content);
+				if (content != null && Gzip) {
 					try {
-						return Compression.Gunzip(Content);
+                        if (B64) {
+                            content = Base64.DecodeBase64(content);
+                        }
+						return Compression.Gunzip(content);
 					} catch (IOException) {
 						return null;
 					}
 				} else {
-					return Content;
-				}
+                    return content;
+                }
 			}
 		}
 		
@@ -118,25 +108,29 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		///
 		/// <returns>the compressed content as a byte array.</returns>
 		  get {
+                byte[] content = System.Text.ASCIIEncoding.ASCII.GetBytes(Content);
 				if (Gzip) {
 					try {
-						return Compression.Gzip(Content);
+						return Compression.Gzip(content);
 					} catch (IOException) {
 						return null;
 					}
 				} else {
-					return Content;
+					return content;
 				}
 			}
 		}
 		
-	
-		
 		private bool Gzip {
 		  get {
-				return compression != null && Compression.GZIP.Equals(compression);
+				return Compression.GZIP.Equals(base.Compression);
 			}
 		}
-		
-	}
+
+        private bool B64 {
+            get {
+                return EdRepresentation.B64.Equals(Representation);
+            }
+        }
+    }
 }

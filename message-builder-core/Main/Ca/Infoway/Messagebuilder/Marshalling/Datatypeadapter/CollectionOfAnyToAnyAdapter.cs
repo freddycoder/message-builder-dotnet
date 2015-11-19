@@ -14,11 +14,12 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Datatype.Impl;
 using Ca.Infoway.Messagebuilder.Marshalling.Datatypeadapter;
@@ -29,30 +30,50 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.Datatypeadapter
 	{
 		public virtual bool CanAdapt(Type fromDataType, string toDataTypeName)
 		{
-			if (typeof(COLLECTION<object>).IsAssignableFrom(fromDataType) && !StandardDataType.IsSetOrList(toDataTypeName))
+			if (IsCOLLECTIONType(fromDataType) && !StandardDataType.IsSetOrList(toDataTypeName))
 			{
 				return true;
 			}
 			return false;
 		}
 
+        private bool IsCOLLECTIONType(Type type) {
+            foreach (Type interfaceType in type.GetInterfaces()) {
+                if (interfaceType.IsGenericType && interfaceType.GetGenericTypeDefinition() == typeof(COLLECTION<>)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
 		public virtual bool CanAdapt(string fromDataTypeName, Type toDateType)
 		{
 			return false;
 		}
 
-		public virtual BareANY Adapt(BareANY any)
+		public virtual BareANY Adapt(Type toDateType, BareANY any)
 		{
-			ICollection<object> collection = ((COLLECTION<object>)any).Value;
-			BareANY element = null;
-			if (collection != null && !collection.IsEmpty())
-			{
-				element = (BareANY)collection.GetEnumerator().Current;
-			}
-			else
-			{
-				element = new ANYImpl<object>();
-			}
+			return any;
+		}
+
+		public virtual BareANY Adapt(string toDataTypeName, BareANY any)
+		{
+            BareANY element = null;
+            if (any != null) {
+                PropertyInfo property = any.GetType().GetProperty("Value");
+                object collectionValue = property.GetValue(any, null);
+                if (collectionValue != null) {
+                    IEnumerable<BareANY> enumerable = (IEnumerable<BareANY>)collectionValue;
+                    IEnumerator<BareANY> enumerator = enumerable.GetEnumerator();
+                    if (enumerator.MoveNext()) {
+                        element = enumerator.Current;
+                    }
+                }
+            }
+            if (element == null) {
+                element = new ANYImpl<object>();
+            }
+
 			return (BareANY)element;
 		}
 	}

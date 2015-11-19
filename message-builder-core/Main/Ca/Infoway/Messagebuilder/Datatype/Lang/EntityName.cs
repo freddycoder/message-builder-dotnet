@@ -36,12 +36,14 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 	/// Abstract super class for names.
 	/// </summary>
 	///
-	public abstract class EntityName {
+	public class EntityName {
 
-		private ICollection<EntityNameUse> uses;		
+        private ISet<EntityNameUse> uses;
+        private IList<EntityNamePart> parts;
 		
 		public EntityName() {
-			this.uses = new HashSet<EntityNameUse>();
+			this.uses = new SortedSet<EntityNameUse>();
+            this.parts = new List<EntityNamePart>();
 		}
 	
 		/// <summary>
@@ -49,14 +51,20 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		/// </summary>
 		///
 		/// <returns>the list of name parts</returns>
-		public abstract IList<EntityNamePart> Parts {
+		public IList<EntityNamePart> Parts {
 		/// <summary>
 		/// Obtains the list of name parts.
 		/// </summary>
 		///
 		/// <returns>the list of name parts</returns>
-		  get;
+		  get {
+              return this.parts;
+          }
 		}
+
+        public virtual void AddNamePart(EntityNamePart part) {
+            this.parts.Add(part);
+        }
 		
 	
 		/// <summary>
@@ -73,14 +81,6 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		  get {
 				return this.uses;
 			}
-		/// <summary>
-		/// Replaces the set of name uses for this name.
-		/// </summary>
-		///
-		/// <param name="uses_0">the set of name uses</param>
-		  set {
-				this.uses = value;
-			}
 		}
 		
 	
@@ -92,5 +92,46 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		public void AddUse(EntityNameUse use) {
 			ILOG.J2CsMapping.Collections.Generics.Collections.Add(this.uses,use);
 		}
+
+        /// <summary>
+        /// The time interval for which this name is valid
+        /// </summary>
+        public Interval<PlatformDate> ValidTime {
+            get;
+            set;
+        }
+
+        public override int GetHashCode()
+        {
+            return new HashCodeBuilder()
+                    .Append(this.parts)
+                    .Append(this.uses)
+                    .Append(ValidTime)
+                    .ToHashCode();
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+            else if (obj.GetType() != GetType())
+            {
+                return false;
+            } else {
+                return Equals((EntityName) obj);
+            }
+        }
+
+        private bool Equals(EntityName that)
+        {
+            return new EqualsBuilder()
+                .Append(this.parts, that.parts)
+                .Append(this.uses, that.uses)
+                .Append(ValidTime, that.ValidTime)
+                .IsEquals();
+        }
+    
 	}
 }

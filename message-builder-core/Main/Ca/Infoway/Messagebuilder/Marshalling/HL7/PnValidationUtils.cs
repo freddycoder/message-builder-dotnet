@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System.Collections.Generic;
@@ -23,7 +23,8 @@ using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
 using Ca.Infoway.Messagebuilder.Datatype.Lang.Util;
-using Ca.Infoway.Messagebuilder.Marshalling.HL7;
+using Ca.Infoway.Messagebuilder.Domainvalue;
+using Ca.Infoway.Messagebuilder.Error;
 using Ca.Infoway.Messagebuilder.Util.Xml;
 
 namespace Ca.Infoway.Messagebuilder.Marshalling.HL7
@@ -61,7 +62,6 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7
 			cerxUses.Add("L");
 			cerxUses.Add("P");
 			ALLOWABLE_NAME_USES_BY_VERSION[Hl7BaseVersion.MR2007] = mr2007Uses;
-			ALLOWABLE_NAME_USES_BY_VERSION[Hl7BaseVersion.MR2007_V02R01] = mr2007Uses;
 			ALLOWABLE_NAME_USES_BY_VERSION[Hl7BaseVersion.CERX] = cerxUses;
 			ALLOWABLE_NAME_PARTS.Add("family");
 			ALLOWABLE_NAME_PARTS.Add("given");
@@ -120,21 +120,21 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7
 						CreateError("Part type " + partType.Value + " is not allowed for " + type, element, propertyPath, errors);
 					}
 				}
-				string qualifier = personNamePart.Qualifier;
-				if (StringUtils.IsNotBlank(qualifier))
+				EntityNamePartQualifier qualifier = personNamePart.Qualifier;
+				if (qualifier != null)
 				{
 					if (isCeRx || (!IsMr2007(baseVersion) && isBasic))
 					{
-						if (!"IN".Equals(qualifier))
+						if (!"IN".Equals(qualifier.CodeValue))
 						{
-							CreateError("Qualifier '" + qualifier + "' not valid. Only 'IN' is allowed.", element, propertyPath, errors);
+							CreateError("Qualifier '" + qualifier.CodeValue + "' not valid. Only 'IN' is allowed.", element, propertyPath, errors);
 						}
 					}
 					else
 					{
-						if (!ALLOWABLE_NAME_PART_QUALIFIERS.Contains(qualifier))
+						if (!ALLOWABLE_NAME_PART_QUALIFIERS.Contains(qualifier.CodeValue))
 						{
-							CreateError("Qualifier '" + qualifier + "' not valid.", element, propertyPath, errors);
+							CreateError("Qualifier '" + qualifier.CodeValue + "' not valid.", element, propertyPath, errors);
 						}
 					}
 				}
@@ -194,7 +194,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7
 
 		private bool IsMr2007(Hl7BaseVersion baseVersion)
 		{
-			return baseVersion == Hl7BaseVersion.MR2007 || baseVersion == Hl7BaseVersion.MR2007_V02R01;
+			return baseVersion == Hl7BaseVersion.MR2007;
 		}
 
 		private void CreateError(string errorMessage, XmlElement element, string propertyPath, Hl7Errors errors)

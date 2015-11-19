@@ -52,6 +52,17 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang.Util {
 				"PERIODIC_HULL", "P");
 	
 		private readonly String codeValue;
+
+        public static SetOperator FindMatchingOperator(String operatorString) {
+            SetOperator result = null;
+            foreach (SetOperator setOperator in EnumPattern.Values<SetOperator>(typeof(SetOperator))) {
+                if (setOperator.CodeValue.Equals(operatorString)) {
+                    result = setOperator;
+                    break;
+                }
+            }
+            return result;
+        }
 	
 		private SetOperator(String name, String codeValue_0) : base(name) {
 			this.codeValue = codeValue_0;
@@ -91,6 +102,10 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang.Util {
 				return this.codeValue;
 			}
 		}
+
+        public virtual String CodeSystemName {
+            get { return null; }
+        }
 		
 	}
 }

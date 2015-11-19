@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2013-03-08 11:06:36 -0500 (Fri, 08 Mar 2013) $
- * Revision:      $LastChangedRevision: 6699 $
+ * Author:        $LastChangedBy: jmis $
+ * Last modified: $LastChangedDate: 2015-05-27 08:43:37 -0400 (Wed, 27 May 2015) $
+ * Revision:      $LastChangedRevision: 9535 $
  */
 using System;
 using System.Collections.Generic;
@@ -39,13 +39,25 @@ namespace Ca.Infoway.Messagebuilder.Xml
 	/// </remarks>
 	/// <author>Intelliware Development</author>
 	[RootAttribute]
-	public class Relationship : ChoiceSupport, Documentable, HasDifferences, NamedAndTyped
+	public class Relationship : ChoiceSupport, Documentable, HasDifferences, NamedAndTyped, RelationshipComparable, IComparable
+		<Ca.Infoway.Messagebuilder.Xml.Relationship>
 	{
+		private static RelationshipComparator relationshipComparator = new RelationshipComparator();
+
 		[XmlAttributeAttribute]
 		private string name;
 
 		[XmlAttributeAttribute(Required = false)]
+		private bool attribute;
+
+		[XmlAttributeAttribute(Name = "namespace", Required = false)]
+		private string namespaze;
+
+		[XmlAttributeAttribute(Required = false)]
 		private string type;
+
+		[XmlAttributeAttribute(Required = false)]
+		private string constrainedType;
 
 		[XmlAttributeAttribute(Required = false)]
 		private Boolean? structural;
@@ -80,6 +92,36 @@ namespace Ca.Infoway.Messagebuilder.Xml
 		[XmlAttributeAttribute(Required = false)]
 		private string defaultValue;
 
+		[XmlAttributeAttribute(Required = false)]
+		private string associationSortKey;
+
+		[XmlAttributeAttribute(Required = false)]
+		private string traversableAssociationName;
+
+		[XmlAttributeAttribute(Required = false)]
+		private string nontraversableAssociationName;
+
+		[XmlAttributeAttribute(Required = false)]
+		private string cmetBindingName;
+
+		[XmlAttributeAttribute(Required = false)]
+		private string traversableDerivationClassName;
+
+		[XmlAttributeAttribute(Required = false)]
+		private string nontraversableDerivationClassName;
+
+		[XmlAttributeAttribute(Required = false)]
+		private string cmetDerivationClassName;
+
+		[XmlAttributeAttribute(Required = false)]
+		private string nonFixedVocabularyBinding;
+
+		[XmlAttributeAttribute(Required = false)]
+		private Boolean? printDatatype;
+
+		[XmlAttributeAttribute(Required = false)]
+		private Boolean? defaultChoice;
+
 		[ElementListAttribute(Inline = true, Required = false)]
 		[NamespaceAttribute(Prefix = "regen", Reference = "regen_ns")]
 		private IList<Difference> differences = new List<Difference>();
@@ -109,6 +151,7 @@ namespace Ca.Infoway.Messagebuilder.Xml
 		/// <param name="cardinality">- the cardinality.</param>
 		public Relationship(string name, string type, Ca.Infoway.Messagebuilder.Xml.Cardinality cardinality)
 		{
+			//Reserved word in C#
 			// not guaranteed to be populated
 			this.name = name;
 			this.type = type;
@@ -131,6 +174,34 @@ namespace Ca.Infoway.Messagebuilder.Xml
 			{
 				string name = value;
 				this.name = name;
+			}
+		}
+
+		public virtual string Namespaze
+		{
+			get
+			{
+				return namespaze;
+			}
+			set
+			{
+				string namespaze = value;
+				this.namespaze = namespaze;
+			}
+		}
+
+		public virtual string QualifiedName
+		{
+			get
+			{
+				if (this.namespaze == null)
+				{
+					return this.name;
+				}
+				else
+				{
+					return this.namespaze + ":" + this.name;
+				}
 			}
 		}
 
@@ -157,6 +228,19 @@ namespace Ca.Infoway.Messagebuilder.Xml
 			{
 				string type = value;
 				this.type = type;
+			}
+		}
+
+		public virtual string ConstrainedType
+		{
+			get
+			{
+				return constrainedType;
+			}
+			set
+			{
+				string constrainedType = value;
+				this.constrainedType = constrainedType;
 			}
 		}
 
@@ -202,6 +286,14 @@ namespace Ca.Infoway.Messagebuilder.Xml
 			}
 		}
 
+		/// <summary>Checks if has a domain types.</summary>
+		/// <remarks>Checks if has a domain types.  Only attributes can have domain types.</remarks>
+		/// <returns>- whether this relationship has a domain type</returns>
+		public virtual bool HasDomainType()
+		{
+			return StringUtils.IsNotBlank(this.domainType);
+		}
+
 		/// <summary>Get the conformance level.</summary>
 		/// <remarks>Get the conformance level.</remarks>
 		/// <returns>the conformance level.</returns>
@@ -220,6 +312,7 @@ namespace Ca.Infoway.Messagebuilder.Xml
 				{
 					if (HasFixedValue())
 					{
+						// TM - should this also return MANDATORY if min cardinality > 0?
 						return Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY;
 					}
 					else
@@ -252,6 +345,7 @@ namespace Ca.Infoway.Messagebuilder.Xml
 				}
 				else
 				{
+					// specifically using direct check of conformance value instead of using isMandatory or isPopulated to avoid logic errors
 					if (Conformance == Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY || Conformance == Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
 						.POPULATED)
 					{
@@ -270,9 +364,12 @@ namespace Ca.Infoway.Messagebuilder.Xml
 			}
 		}
 
-		public virtual string GetRawCardinality()
+		public virtual string RawCardinality
 		{
-			return this.cardinality;
+			get
+			{
+				return this.cardinality;
+			}
 		}
 
 		/// <summary>Get the sort order.</summary>
@@ -332,6 +429,22 @@ namespace Ca.Infoway.Messagebuilder.Xml
 			return StringUtils.IsNotBlank(this.fixedValue);
 		}
 
+		/// <summary>Get the vocabulary binding</summary>
+		public virtual string VocabularyBinding
+		{
+			get
+			{
+				if (this.HasFixedValue())
+				{
+					return this.FixedValue;
+				}
+				else
+				{
+					return this.NonFixedVocabularyBinding;
+				}
+			}
+		}
+
 		/// <summary>Get the documentation.</summary>
 		/// <remarks>Get the documentation.</remarks>
 		/// <returns>the documentation.</returns>
@@ -351,6 +464,7 @@ namespace Ca.Infoway.Messagebuilder.Xml
 			}
 		}
 
+		/// <summary>Set the flag indicating whether the relationship represents an attribute;</summary>
 		/// <summary>Get a flag indicating whether or not the relationship is an attribute.</summary>
 		/// <remarks>Get a flag indicating whether or not the relationship is an attribute.</remarks>
 		/// <returns>true if the relationship is an attribute; false otherwise.</returns>
@@ -358,58 +472,50 @@ namespace Ca.Infoway.Messagebuilder.Xml
 		{
 			get
 			{
-				// BCH/TM: TODO: This might not be the best algorithm...
-				if (HasFixedValue())
+				// BCH/TM: This might not be the best algorithm...
+				if (this.attribute)
 				{
 					return true;
 				}
 				else
 				{
-					if (CodedType)
+					// everything below this point should be considered deprecated, but must be maintained for now to support legacy message sets
+					if (HasFixedValue())
 					{
 						return true;
 					}
 					else
 					{
-						if (Structural)
+						if (HasDomainType())
 						{
 							return true;
 						}
 						else
 						{
-							if (StringUtils.IsNotBlank(this.type) && (this.type.Length < 5 || this.type[4] != '_'))
+							if (Structural)
 							{
 								return true;
 							}
 							else
 							{
-								return false;
+								if (StringUtils.IsNotBlank(this.type) && (this.type.Length < 5 || this.type[4] != '_') && this.type.ToUpper().Equals(this
+									.type))
+								{
+									return true;
+								}
+								else
+								{
+									return false;
+								}
 							}
 						}
 					}
 				}
 			}
-		}
-
-		/// <summary>Get a flag indicating whether or not the relationship is a choice association.</summary>
-		/// <remarks>Get a flag indicating whether or not the relationship is a choice association.</remarks>
-		/// <returns>true if the relationship is a choice association; false otherwise</returns>
-		public virtual bool Choice
-		{
-			get
+			set
 			{
-				return !CollUtils.IsEmpty(this.choices);
-			}
-		}
-
-		/// <summary>Get a flag indicating whether or not the relationship is a fixed value and is mandatory.</summary>
-		/// <remarks>Get a flag indicating whether or not the relationship is a fixed value and is mandatory.</remarks>
-		/// <returns>true if the relationship has a fixed value and is mandatory; false otherwise</returns>
-		public virtual bool Fixed
-		{
-			get
-			{
-				return HasFixedValue() && Mandatory;
+				bool attribute = value;
+				this.attribute = attribute;
 			}
 		}
 
@@ -424,28 +530,6 @@ namespace Ca.Infoway.Messagebuilder.Xml
 			}
 		}
 
-		/// <summary>Get a flag indicating whether or not the relationship is mandatory.</summary>
-		/// <remarks>Get a flag indicating whether or not the relationship is mandatory.</remarks>
-		/// <returns>true if the relationship is mandatory; false otherwise.</returns>
-		public virtual bool Mandatory
-		{
-			get
-			{
-				return Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY.Equals(Conformance);
-			}
-		}
-
-		/// <summary>Get a flag indicating whether or not the relationship is populated.</summary>
-		/// <remarks>Get a flag indicating whether or not the relationship is populated.</remarks>
-		/// <returns>true if the relationship is populated; false otherwise.</returns>
-		public virtual bool Populated
-		{
-			get
-			{
-				return Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.POPULATED.Equals(Conformance);
-			}
-		}
-
 		/// <summary>Get a flag indicating whether or not the relationship is a coded type.</summary>
 		/// <remarks>Get a flag indicating whether or not the relationship is a coded type.</remarks>
 		/// <returns>true if the relationship is a coded type; false otherwise.</returns>
@@ -453,17 +537,18 @@ namespace Ca.Infoway.Messagebuilder.Xml
 		{
 			get
 			{
-				return StringUtils.IsNotBlank(this.domainType);
+				// this check was originally based solely on whether the Relationship had a domainType
+				return CodedTypeEvaluator.IsCodedType(this.type);
 			}
 		}
 
 		/// <summary>Get a flag indicating whether or not the relationship is a template relationship.</summary>
 		/// <remarks>
 		/// Get a flag indicating whether or not the relationship is a template relationship.
-		/// The implementation of this method is based on knowledge that sometimes message
-		/// sets have been complete.  In a perfect world, a relationship would be a template
-		/// relationship if there is a template parameter name.  In fact, some XSD-generated
-		/// message set files are missing the type of the choice.
+		/// The implementation of this method used to contain special handling for some
+		/// cases where the message set was incomplete. However, message set generation is
+		/// much more reliable these days, and the special handling was causing more problems
+		/// than it solved, so we took it out. JR - 20130325
 		/// </remarks>
 		/// <returns>true if the relationship is a template relationship; false otherwise.</returns>
 		public virtual bool TemplateRelationship
@@ -476,14 +561,7 @@ namespace Ca.Infoway.Messagebuilder.Xml
 				}
 				else
 				{
-					if (Choice && Association && StringUtils.IsBlank(Type))
-					{
-						return false;
-					}
-					else
-					{
-						return Association && StringUtils.IsBlank(Type);
-					}
+					return false;
 				}
 			}
 		}
@@ -559,6 +637,18 @@ namespace Ca.Infoway.Messagebuilder.Xml
 			}
 		}
 
+		/// <summary>Checks if has default value.</summary>
+		/// <remarks>
+		/// Checks if has default value.  Only attributes can have default values.  Typically,
+		/// default values are for code values (e.g. classCode="SBJ") or booleans ("true" or
+		/// "false").
+		/// </remarks>
+		/// <returns>- whether this relationship has a default value</returns>
+		public virtual bool HasDefaultValue()
+		{
+			return StringUtils.IsNotBlank(this.defaultValue);
+		}
+
 		/// <summary>Get the default value.</summary>
 		/// <remarks>Get the default value.  Typically, only boolean fields have default values.</remarks>
 		/// <returns>- the default value.</returns>
@@ -575,6 +665,19 @@ namespace Ca.Infoway.Messagebuilder.Xml
 			{
 				string defaultValue = value;
 				this.defaultValue = defaultValue;
+			}
+		}
+
+		public virtual string AssociationSortKey
+		{
+			get
+			{
+				return associationSortKey;
+			}
+			set
+			{
+				string associationSortKey = value;
+				this.associationSortKey = associationSortKey;
 			}
 		}
 
@@ -660,6 +763,129 @@ namespace Ca.Infoway.Messagebuilder.Xml
 				string parentType = value;
 				this.parentType = parentType;
 			}
+		}
+
+		public virtual string TraversableAssociationName
+		{
+			get
+			{
+				return traversableAssociationName;
+			}
+			set
+			{
+				string traversableAssociationName = value;
+				this.traversableAssociationName = traversableAssociationName;
+			}
+		}
+
+		public virtual string NontraversableAssociationName
+		{
+			get
+			{
+				return nontraversableAssociationName;
+			}
+			set
+			{
+				string nontraversableAssociationName = value;
+				this.nontraversableAssociationName = nontraversableAssociationName;
+			}
+		}
+
+		public virtual string CmetBindingName
+		{
+			get
+			{
+				return cmetBindingName;
+			}
+			set
+			{
+				string cmetBindingName = value;
+				this.cmetBindingName = cmetBindingName;
+			}
+		}
+
+		public virtual string TraversableDerivationClassName
+		{
+			get
+			{
+				return traversableDerivationClassName;
+			}
+			set
+			{
+				string traversableDerivationClassName = value;
+				this.traversableDerivationClassName = traversableDerivationClassName;
+			}
+		}
+
+		public virtual string NontraversableDerivationClassName
+		{
+			get
+			{
+				return nontraversableDerivationClassName;
+			}
+			set
+			{
+				string nontraversableDerivationClassName = value;
+				this.nontraversableDerivationClassName = nontraversableDerivationClassName;
+			}
+		}
+
+		public virtual string CmetDerivationClassName
+		{
+			get
+			{
+				return cmetDerivationClassName;
+			}
+			set
+			{
+				string cmetDerivationClassName = value;
+				this.cmetDerivationClassName = cmetDerivationClassName;
+			}
+		}
+
+		public virtual string NonFixedVocabularyBinding
+		{
+			get
+			{
+				return nonFixedVocabularyBinding;
+			}
+			set
+			{
+				string nonFixedVocabularyBinding = value;
+				this.nonFixedVocabularyBinding = nonFixedVocabularyBinding;
+			}
+		}
+
+		public virtual bool PrintDatatype
+		{
+			get
+			{
+				return this.printDatatype == null ? false : this.printDatatype.Value;
+			}
+			set
+			{
+				bool printDatatype = value;
+				this.printDatatype = printDatatype;
+			}
+		}
+
+		public virtual bool DefaultChoice
+		{
+			get
+			{
+				return defaultChoice == null ? false : (bool)defaultChoice;
+			}
+			set
+			{
+				bool defaultChoice = value;
+				//Cast for .NET
+				this.defaultChoice = defaultChoice;
+			}
+		}
+
+		public virtual int CompareTo(Ca.Infoway.Messagebuilder.Xml.Relationship rel)
+		{
+			return relationshipComparator.Compare(this, rel);
 		}
 	}
 }

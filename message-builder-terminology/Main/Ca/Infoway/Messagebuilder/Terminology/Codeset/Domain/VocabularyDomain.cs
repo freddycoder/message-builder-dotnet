@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2013-03-01 17:48:17 -0500 (Fri, 01 Mar 2013) $
- * Revision:      $LastChangedRevision: 6663 $
+ * Author:        $LastChangedBy: jmis $
+ * Last modified: $LastChangedDate: 2015-05-27 08:43:37 -0400 (Wed, 27 May 2015) $
+ * Revision:      $LastChangedRevision: 9535 $
  */
 
 /// ---------------------------------------------------------------------------------------------------
@@ -26,10 +26,14 @@
 namespace Ca.Infoway.Messagebuilder.Terminology.Codeset.Domain {
 	
 	using Ca.Infoway.Messagebuilder;
+    using Ca.Infoway.Messagebuilder.Domainvalue.Util;
+    using Ca.Infoway.Messagebuilder.CodeRegistry;
 	using System;
 	using System.Collections;
 	using System.Collections.Generic;
 	using System.Runtime.CompilerServices;
+    using System.Reflection;
+    using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 	
 	/// <summary>
 	/// An identifier for a business concept that is used in a
@@ -37,8 +41,8 @@ namespace Ca.Infoway.Messagebuilder.Terminology.Codeset.Domain {
 	/// </summary>
 	///
 	public class VocabularyDomain : Describable {
-	
-		private Int64? id;
+        
+        private Int64? id;
 		private String type;
 		private String businessName;
 		private String description;
@@ -112,25 +116,8 @@ namespace Ca.Infoway.Messagebuilder.Terminology.Codeset.Domain {
 		}
 		
 	
-		/// <summary>
-		/// Gets the type as class.
-		/// </summary>
-		///
-		/// <returns>the type as class</returns>
-		public Type TypeAsClass {
-		/// <summary>
-		/// Gets the type as class.
-		/// </summary>
-		///
-		/// <returns>the type as class</returns>
-		  get {
-				try {
-					return ILOG.J2CsMapping.Reflect.Helper.GetNativeType("ca.infoway.messagebuilder.domainvalue."
-										+ Type);
-				} catch (TypeLoadException e) {
-					return null;
-				}
-			}
+        public Type GetTypeAsClass(String version) {
+            return DomainTypeHelper.GetReturnType(this.type, version, CodeTypeRegistry.GetInstance());
 		}
 		
 	

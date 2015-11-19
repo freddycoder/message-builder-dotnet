@@ -125,7 +125,10 @@ namespace Ca.Infoway.Messagebuilder.Domainvalue.Basic {
 				return this.code;
 			}
 		}
-		
+
+		public virtual String CodeSystemName {
+            get { return null; }
+        }
 	
 		/// <summary>
 		/// Returns the collection of values.

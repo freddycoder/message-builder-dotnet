@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-17 11:48:36 -0400 (Tue, 17 May 2011) $
- * Revision:      $LastChangedRevision: 2666 $
+ * Author:        $LastChangedBy: jroberts $
+ * Last modified: $LastChangedDate: 2014-08-11 11:35:13 -0400 (Mon, 11 Aug 2014) $
+ * Revision:      $LastChangedRevision: 8844 $
  */
 
 /// ---------------------------------------------------------------------------------------------------
@@ -38,7 +38,8 @@ namespace Ca.Infoway.Messagebuilder.Datatype {
 	/// INT.NONNEG: This is used to convey an integer number that is greater than or equal to "0".
 	/// </summary>
 	///
-	public interface INT : QTY<Int32?> {
+    public interface INT : QTY<Int32?>, SetOperatorType
+    {
 	
 	}
 }

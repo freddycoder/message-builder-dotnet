@@ -52,8 +52,6 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Impl {
 	
 		public static IList<String> ALLOWED_LANGUAGES = ILOG.J2CsMapping.Collections.Generics.Arrays.AsList("en-CA","fr-CA");
 	
-		private String language;
-	
 		/// <summary>
 		/// Constructs an empty ST.
 		/// </summary>
@@ -87,29 +85,5 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Impl {
 		public STImpl(NullFlavor nullFlavor) : base(typeof(String), null, nullFlavor, Ca.Infoway.Messagebuilder.Datatype.StandardDataType.ST) {
 		}
 	
-		/// <summary>
-		/// Sets the language of the ST.
-		/// </summary>
-		///
-		/// <param name="language_0">a language</param>
-		public virtual String Language {
-		/// <summary>
-		/// Returns the ST's language.
-		/// </summary>
-		///
-		/// <returns>the language of the ST</returns>
-		  get {
-				return this.language;
-			}
-		/// <summary>
-		/// Sets the language of the ST.
-		/// </summary>
-		///
-		/// <param name="language_0">a language</param>
-		  set {
-				this.language = value;
-			}
-		}
-		
 	}
 }

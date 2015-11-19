@@ -14,10 +14,9 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
-using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser;
 
@@ -36,7 +35,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		{
 			Register(new AdElementParser());
 			Register(new AnyElementParser());
-			Register(new BagElementParser());
+			Register(new BagElementParser(this));
 			Register(new BlElementParser());
 			Register(new CvElementParser());
 			Register(new EdElementParser());
@@ -50,8 +49,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			Register(new IvlIntElementParser());
 			Register(new IvlPqElementParser());
 			Register(new IvlTsElementParser());
-			Register(new ListElementParser());
-			Register(new SetElementParser());
+			Register(new ListElementParser(this));
+			Register(new SetElementParser(this));
 			Register(new MoElementParser());
 			Register(new OnElementParser());
 			Register(new PnElementParser());
@@ -59,13 +58,16 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			Register(new RealElementParser());
 			Register(new RtoPqPqElementParser());
 			Register(new RtoMoPqElementParser());
-			Register(new ScElementParser<Code>());
+			Register(new ScElementParser());
 			Register(new StElementParser());
 			Register(new TelElementParser());
 			Register(new TnElementParser());
 			Register(new TsElementParser());
 			Register(new UrgPqElementParser());
 			Register(new UrgTsElementParser());
+			Register(new TsCdaElementParser());
+			Register(new PivlTsCdaElementParser());
+			Register(new IvlTsCdaElementParser());
 		}
 
 		public static Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.ParserRegistry GetInstance()

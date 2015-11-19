@@ -27,6 +27,7 @@ namespace Ca.Infoway.Messagebuilder.Datatype {
 	
 	using Ca.Infoway.Messagebuilder;
 	using Ca.Infoway.Messagebuilder.Lang;
+    using Ca.Infoway.Messagebuilder.Xml;
 	using ILOG.J2CsMapping.Collections.Generics;
 	using System;
 	using System.Collections;
@@ -39,7 +40,7 @@ namespace Ca.Infoway.Messagebuilder.Datatype {
 	/// Each enum maps to the appropriate HL7 datatype name, actual HL7 datatype, and underlying datatype. An enum
 	/// will also map to a Simple XMl datatype where appropriate.
 	/// This enum class contains numerous helper methods for determining properties about types, and for converting
-	/// between type variations, eg. determining the HL7 datatype from the Simple Xm ldatatype.
+	/// between type variations, eg. determining the HL7 datatype from the Simple Xml ldatatype.
 	/// An attempt has been made to try to consistently use the following naming standards:
 	/// <b>enum datatype (or enum):</b>          a datatype represented by the StandardDataType enum 
 	/// <b>HL7 datatype:</b>                     the HL7-defined datatype, eg. URG or URG&lt;TS.DATE&gt; or TS.DATE
@@ -60,6 +61,8 @@ namespace Ca.Infoway.Messagebuilder.Datatype {
 				"ANY_CA_IZ", "ANY.CA.IZ");
 		public static readonly StandardDataType ANY_PATH = new StandardDataType(
 				"ANY_PATH", "ANY.PATH");
+	    public static readonly StandardDataType ANY_X1 = new StandardDataType("ANY_X1", "ANY.x1");
+        public static readonly StandardDataType ANY_X2 = new StandardDataType("ANY_X2", "ANY.x2");
 	
 		public static readonly StandardDataType AD = new StandardDataType("AD", "AD");
 		public static readonly StandardDataType AD_BASIC = new StandardDataType(
@@ -70,6 +73,7 @@ namespace Ca.Infoway.Messagebuilder.Datatype {
 				"AD_SEARCH", "AD.SEARCH");
 	
 		public static readonly StandardDataType BL = new StandardDataType("BL", "BL");
+        public static readonly StandardDataType BN = new StandardDataType("BN", "BN");
 	
 		public static readonly StandardDataType ON = new StandardDataType("ON", "ON");
 	
@@ -108,6 +112,7 @@ namespace Ca.Infoway.Messagebuilder.Datatype {
 	
 		public static readonly StandardDataType CV = new StandardDataType("CV", "CV",
 				"CodedValue");
+        public static readonly StandardDataType CO = new StandardDataType("CO", "CO");  // R2 only
 		public static readonly StandardDataType CD = new StandardDataType("CD", "CD",
 				"CodedType");
 		public static readonly StandardDataType CD_LAB = new StandardDataType(
@@ -115,6 +120,10 @@ namespace Ca.Infoway.Messagebuilder.Datatype {
 		public static readonly StandardDataType CE = new StandardDataType("CE", "CE");
 		public static readonly StandardDataType CS = new StandardDataType("CS", "CS",
 				"SimpleCodedType");
+        public static readonly StandardDataType PQR = new StandardDataType("PQR", "PQR");   // R2 only
+        public static readonly StandardDataType CR = new StandardDataType("CR", "CR");   // R2 only
+        public static readonly StandardDataType HXIT = new StandardDataType("HXIT", "HXIT");   // R2 only
+        public static readonly StandardDataType HXIT_CE = new StandardDataType("HXIT_CE", "HXIT<CE>");   // R2 only
 	
 		public static readonly StandardDataType ST = new StandardDataType("ST", "ST");
 		public static readonly StandardDataType ST_LANG = new StandardDataType(
@@ -150,10 +159,11 @@ namespace Ca.Infoway.Messagebuilder.Datatype {
 				"IVL_DATETIME", "IVL<TS.DATETIME>");
 		public static readonly StandardDataType IVL_FULL_DATE = new StandardDataType(
 				"IVL_FULL_DATE", "IVL<TS.FULLDATE>");
-		public static readonly StandardDataType IVL_FULL_DATE_TIME = new StandardDataType(
-				"IVL_FULL_DATE_TIME", "IVL<TS.FULLDATETIME>");
 		public static readonly StandardDataType IVL_FULL_DATE_WITH_TIME = new StandardDataType(
 				"IVL_FULL_DATE_WITH_TIME", "IVL<TS.FULLDATEWITHTIME>");
+        public static readonly StandardDataType IVL_FULL_DATE_TIME = new StandardDataType(
+                "IVL_FULL_DATE_TIME", "IVL<TS.FULLDATETIME>");
+        public static readonly StandardDataType IVL_FULL_DATE_PART_TIME = new StandardDataType("IVL_FULL_DATE_PART_TIME", "IVL<TS.FULLDATEPARTTIME>");
 		public static readonly StandardDataType IVL_TS = new StandardDataType(
 				"IVL_TS", "IVL<TS>", "DateInterval");
 		public static readonly StandardDataType IVL_HIGH_TS_FULLDATE = new StandardDataType(
@@ -164,6 +174,8 @@ namespace Ca.Infoway.Messagebuilder.Datatype {
 				"IVL_LOW_TS_DATE", "IVL.LOW<TS.DATE>", "DateInterval");
 		public static readonly StandardDataType IVL_LOW_TS_FULLDATE = new StandardDataType(
 				"IVL_LOW_TS_FULLDATE", "IVL.LOW<TS.FULLDATE>", "DateInterval");
+        public static readonly StandardDataType IVL_LOW_TS_FULLDATETIME = new StandardDataType(
+                "IVL_LOW_TS_FULLDATETIME", "IVL.LOW<TS.FULLDATETIME>", "DateInterval");
         public static readonly StandardDataType IVL_PQ = new StandardDataType(
                 "IVL_PQ", "IVL<PQ>", "PhysicalQuantityInterval");
         public static readonly StandardDataType IVL_PQ_BASIC = new StandardDataType("IVL_PQ_BASIC", "IVL<PQ.BASIC>", "PhysicalQuantityInterval"); 
@@ -172,6 +184,11 @@ namespace Ca.Infoway.Messagebuilder.Datatype {
         public static readonly StandardDataType IVL_PQ_LAB = new StandardDataType("IVL_PQ_LAB", "IVL<PQ.LAB>", "PhysicalQuantityInterval"); 
         public static readonly StandardDataType IVL_PQ_HEIGHTWEIGHT = new StandardDataType("IVL_PQ_HEIGHTWEIGHT", "IVL<PQ.HEIGHTWEIGHT>", "PhysicalQuantityInterval");
         public static readonly StandardDataType IVL_PQ_DISTANCE = new StandardDataType("IVL_PQ_DISTANCE", "IVL<PQ.DISTANCE>", "PhysicalQuantityInterval");
+        public static readonly StandardDataType IVL_INT = new StandardDataType("IVL_INT", "IVL<INT>");
+        public static readonly StandardDataType IVL_REAL = new StandardDataType("IVL_REAL", "IVL<REAL>");
+        public static readonly StandardDataType IVL_MO = new StandardDataType("IVL_MO", "IVL<MO>");
+        public static readonly StandardDataType EIVL = new StandardDataType("EIVL", "EIVL");
+        public static readonly StandardDataType EIVL_TS = new StandardDataType("EIVL_TS", "EIVL<TS>");
 	
 		public static readonly StandardDataType IVL_WIDTH = new StandardDataType(
 				"IVL_WIDTH", "IVL.WIDTH", "Interval");
@@ -186,8 +203,11 @@ namespace Ca.Infoway.Messagebuilder.Datatype {
 	
 		public static readonly StandardDataType PIVL = new StandardDataType("PIVL",
 				"PIVL");
+        public static readonly StandardDataType PIVL_TS = new StandardDataType("PIVL_TS", "PIVL<TS>");  // R2 only
 		public static readonly StandardDataType PIVL_TS_DATETIME = new StandardDataType(
 				"PIVL_TS_DATETIME", "PIVL<TS.DATETIME>", "PeriodicIntervalOfTime");
+        public static readonly StandardDataType PIVL_TS_FULLDATETIME = new StandardDataType(
+                "PIVL_TS_FULLDATETIME", "PIVL<TS.FULLDATETIME>", "PeriodicIntervalOfTime");
 	
 		public static readonly StandardDataType INT = new StandardDataType("INT",
 				"INT", "integer");
@@ -220,12 +240,14 @@ namespace Ca.Infoway.Messagebuilder.Datatype {
 	
 		public static readonly StandardDataType RTO = new StandardDataType("RTO",
 				"RTO");
+        public static readonly StandardDataType RTO_PQ_PQ = new StandardDataType("RTO_PQ_PQ", "RTO<PQ,PQ>"); // R2 only
+        public static readonly StandardDataType RTO_MO_PQ = new StandardDataType("RTO_MO_PQ", "RTO<MO,PQ>"); // R2 only
 		public static readonly StandardDataType RTO_PQ_DRUG_PQ_TIME = new StandardDataType(
-				"RTO_PQ_DRUG_PQ_TIME", "RTO<PQ.DRUG, PQ.TIME>");
+				"RTO_PQ_DRUG_PQ_TIME", "RTO<PQ.DRUG,PQ.TIME>");
 		public static readonly StandardDataType RTO_PQ_DRUG_PQ_DRUG = new StandardDataType(
-				"RTO_PQ_DRUG_PQ_DRUG", "RTO<PQ.DRUG, PQ.DRUG>");
+				"RTO_PQ_DRUG_PQ_DRUG", "RTO<PQ.DRUG,PQ.DRUG>");
 		public static readonly StandardDataType RTO_MO_CAD_PQ_BASIC = new StandardDataType(
-				"RTO_MO_CAD_PQ_BASIC", "RTO<MO.CAD, PQ.BASIC>");
+				"RTO_MO_CAD_PQ_BASIC", "RTO<MO.CAD,PQ.BASIC>");
 	
 		public static readonly StandardDataType TS = new StandardDataType("TS", "TS");
 		public static readonly StandardDataType TS_DATE = new StandardDataType(
@@ -238,6 +260,7 @@ namespace Ca.Infoway.Messagebuilder.Datatype {
 				"TS_FULLDATE", "TS.FULLDATE", "FullDate");
 		public static readonly StandardDataType TS_FULLDATETIME = new StandardDataType(
 				"TS_FULLDATETIME", "TS.FULLDATETIME", "FullDateTime");
+	    public static readonly StandardDataType TS_FULLDATEPARTTIME = new StandardDataType("TS_FULLDATEPARTTIME", "TS.FULLDATEPARTTIME", "FullDatePartTime");
 	
 		public static readonly StandardDataType TEL = new StandardDataType("TEL",
 				"TEL", "BaseTelecommunicationAddress");
@@ -272,19 +295,23 @@ namespace Ca.Infoway.Messagebuilder.Datatype {
 	
 		public static readonly StandardDataType SXPR = new StandardDataType("SXPR",
 				"SXPR");
+
 		public static readonly StandardDataType SXCM = new StandardDataType("SXCM",
 				"SXCM");
+        public static readonly StandardDataType SXCM_CD = new StandardDataType("SXCM_CD", "SXCM<CD>");
+        public static readonly StandardDataType SXCM_INT = new StandardDataType("SXCM_INT", "SXCM<INT>");
+        public static readonly StandardDataType SXCM_MO = new StandardDataType("SXCM_MO", "SXCM<MO>");
+        public static readonly StandardDataType SXCM_PQ = new StandardDataType("SXCM_PQ", "SXCM<PQ>");
+        public static readonly StandardDataType SXCM_REAL = new StandardDataType("SXCM_REAL", "SXCM<REAL>");
+        public static readonly StandardDataType SXCM_TS = new StandardDataType("SXCM_TS", "SXCM<TS>");
+
+        public static readonly StandardDataType BXIT = new StandardDataType("BXIT", "BXIT");
+        public static readonly StandardDataType BXIT_CD = new StandardDataType("BXIT_CD", "BXIT<CD>");
 	
 		public static readonly StandardDataType SET = new StandardDataType("SET",
 				"SET");
-		public static readonly StandardDataType SET_II = new StandardDataType(
-				"SET_II", "SET<II>");
-	
 		public static readonly StandardDataType LIST = new StandardDataType("LIST",
 				"LIST");
-		public static readonly StandardDataType LIST_TEL_PHONEMAIL = new StandardDataType(
-				"LIST_TEL_PHONEMAIL", "LIST<TEL.PHONEMAIL>");
-		
 		public static readonly StandardDataType COLLECTION = new StandardDataType("COLLECTION",
 				"COLLECTION");
 	
@@ -293,7 +320,14 @@ namespace Ca.Infoway.Messagebuilder.Datatype {
 		public static readonly StandardDataType BAG = new StandardDataType("BAG",
 				"BAG");
 
+        // special types only used for CDA/R1; not for general use
+        public static readonly StandardDataType TSCDAR1 = new StandardDataType("TSCDAR1", "TSCDAR1"); // replaces TS
+        public static readonly StandardDataType SXCMTSCDAR1 = new StandardDataType("SXCMTSCDAR1", "SXCMTSCDAR1"); // replaces SXCM<TS>
+        public static readonly StandardDataType IVLTSCDAR1 = new StandardDataType("IVLTSCDAR1", "IVLTSCDAR1");  // replaces IVL_TS
+        public static readonly StandardDataType PIVLTSCDAR1 = new StandardDataType("PIVLTSCDAR1", "PIVLTSCDAR1");  // replaces PIVL_TS
+
         private static readonly ILOG.J2CsMapping.Collections.Generics.ISet<StandardDataType> ignorable;
+        private static readonly IDictionary<String, StandardDataType> enumMap;
 	
 		private static IDictionary<String, StandardDataType> simpleXmlMap;
 	
@@ -320,7 +354,7 @@ namespace Ca.Infoway.Messagebuilder.Datatype {
 		///
 		/// <returns>this enum's HL7TypeName, an objecting defining the type's name and parameter types.</returns>
 		  get {
-				return Ca.Infoway.Messagebuilder.Datatype.Hl7TypeName.Parse(Type);
+				return Hl7TypeName.Parse(Type);
 			}
 		}
 		
@@ -377,17 +411,14 @@ namespace Ca.Infoway.Messagebuilder.Datatype {
 		
 	
 		/// <summary>
-		/// Determines if the enum represents a cd type.
+        /// Determines if the enum represents a coded type. Collection types will have their parameter checked to see if it is a coded type.
 		/// </summary>
 		///
 		/// <returns>whether or not the enum is a cd type.</returns>
 		public bool Coded {
-		/// <summary>
-		/// Determines if the enum represents a cd type.
-		/// </summary>
-		///
-		/// <returns>whether or not the enum is a cd type.</returns>
-            get { return new List<String>(){"CD", "CV", "CE", "CS"}.Contains(RootType); }
+            get {
+                return CodedTypeEvaluator.IsCodedType(Type);
+            }
 		}
 		
 	
@@ -433,6 +464,21 @@ namespace Ca.Infoway.Messagebuilder.Datatype {
 			return dataTypeName != null
 					&& dataTypeName.StartsWith(LIST.RootType);
 		}
+
+        /// <summary>
+        /// extracts the argument from a templated type
+        /// </summary>
+        /// <param name="dataTypeName"></param>
+        /// <returns></returns>
+        public static StandardDataType getTemplateArgument(String dataTypeName) {
+            int startIndex = dataTypeName.IndexOf('<');
+            if (startIndex > -1) {
+                int endIndex = dataTypeName.LastIndexOf('>');
+                String innerType = dataTypeName.Substring(startIndex + 1, endIndex);
+                return GetByTypeName(innerType);
+            }
+            return null;
+        }
 	
 		/// <summary>
 		/// Determines if a given HL7 datatype name is a COLLECTION.
@@ -462,9 +508,17 @@ namespace Ca.Infoway.Messagebuilder.Datatype {
 		/// <param name="name_0">the HL7 name of a datatype</param>
 		/// <returns>the type enum corresponding to the input parameter name</returns>
 		public static StandardDataType GetByTypeName(String name_0) {
-			StandardDataType result = null;
-			
-			name_0 = StringUtils.DeleteWhitespace(name_0);
+            if (String.IsNullOrWhiteSpace(name_0))
+            {
+                return null;
+            }
+
+            StandardDataType result = null;
+
+            name_0 = StringUtils.DeleteWhitespace(name_0);
+            if (name_0 != null && name_0.EndsWith("_R2")) {
+                name_0 = name_0.Substring(0, name_0.Length - 3);
+            }
 	
 			if (IsList(name_0)) {
 				result = StandardDataType.LIST;
@@ -472,19 +526,24 @@ namespace Ca.Infoway.Messagebuilder.Datatype {
 				result = StandardDataType.SET;
 			} else if (isCollection(name_0)) {
 				result = StandardDataType.COLLECTION;
-			} else {
-				/* foreach */
-				foreach (StandardDataType type  in  Ca.Infoway.Messagebuilder.Lang.EnumPattern
-						.GetEnumConstants(typeof(StandardDataType))) {
-					if (String.Equals(name_0, type.Type)) {
-						result = type;
-						break;
-					}
-				}
+			} else if (enumMap.ContainsKey(name_0)) {
+                return enumMap[name_0];
 			}
 	
 			return result;
 		}
+
+        public static StandardDataType GetByTypeNameIgnoreCase(String name) {
+            return GetByTypeName(name.ToUpper());
+        }
+
+        public bool ValidForR2 {
+            get { return true; }
+        }
+
+        public bool ValidForPCS {
+            get { return true; }
+        }
 	
 		/// <summary>
 		/// Checks if this enum datatype is part of the Canadian datatype specs.
@@ -564,6 +623,15 @@ namespace Ca.Infoway.Messagebuilder.Datatype {
 		}
 	
 		static StandardDataType() {
+            if (enumMap == null)
+            {
+                enumMap = new Dictionary<String, StandardDataType>();
+                foreach (StandardDataType type in Ca.Infoway.Messagebuilder.Lang.EnumPattern.GetEnumConstants(typeof(StandardDataType)))
+                {
+                    ILOG.J2CsMapping.Collections.Generics.Collections.Put(enumMap, type.Type, type);
+                }
+            }
+
             ILOG.J2CsMapping.Collections.Generics.ISet<StandardDataType> set = new HashedSet<StandardDataType>();
 			ILOG.J2CsMapping.Collections.Generics.Collections.Add(set,ED);
 			ILOG.J2CsMapping.Collections.Generics.Collections.Add(set,EN);

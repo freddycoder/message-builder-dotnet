@@ -55,6 +55,7 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang.Util {
 		public static readonly Compression DEFLATE = new Compression("DEFLATE", "DF");
 		public static readonly Compression GZIP = new Compression("GZIP", "GZ");
 		public static readonly Compression ZLIB = new Compression("ZLIB", "ZL");
+        public static readonly Compression Z = new Compression("Z", "Z");
 	
 		private readonly String compressionType;
 	

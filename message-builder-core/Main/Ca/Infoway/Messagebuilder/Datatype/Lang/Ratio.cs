@@ -125,6 +125,35 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 			}
 		}
 		
-		
+        public override int GetHashCode()
+        {
+            return new HashCodeBuilder()
+		            .Append(this.numerator)
+		            .Append(this.denominator)
+                    .ToHashCode();
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+            else if (obj.GetType() != GetType())
+            {
+                return false;
+            } else {
+                return Equals((Ratio<T,U>) obj);
+            }
+        }
+    
+        private bool Equals(Ratio<T,U> that)
+        {
+            return new EqualsBuilder()
+                    .Append(this.numerator, that.numerator)
+                    .Append(this.denominator, that.denominator)
+                    .IsEquals();
+        }
+    
 	}
 }

@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
@@ -41,7 +41,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			Register(new AdBasicPropertyFormatter());
 			Register(new AdPropertyFormatter());
 			Register(new AnyPropertyFormatter());
-			Register(new BagPropertyFormatter());
+			Register(new BagPropertyFormatter(this));
 			Register(new BlPropertyFormatter());
 			Register(new GtsBoundedPivlFormatter());
 			Register(new CdPropertyFormatter());
@@ -62,13 +62,14 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			Register(new OnPropertyFormatter());
 			Register(new PnPropertyFormatter());
 			Register(new PqPropertyFormatter());
+			Register(new RealPropertyFormatter());
 			Register(new RealConfPropertyFormatter());
 			Register(new RealCoordPropertyFormatter());
 			Register(new RtoMoPqPropertyFormatter());
 			Register(new RtoPqPqPropertyFormatter());
 			Register(new ScPropertyFormatter());
-			Register(new SetPropertyFormatter());
-			Register(new ListPropertyFormatter());
+			Register(new SetPropertyFormatter(this));
+			Register(new ListPropertyFormatter(this));
 			Register(new StPropertyFormatter());
 			Register(new TelPhonemailPropertyFormatter());
 			Register(new TelUriPropertyFormatter());
@@ -78,6 +79,9 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			Register(new TsFullDateTimePropertyFormatter());
 			Register(new UrgPqPropertyFormatter());
 			Register(new UrgTsPropertyFormatter());
+			Register(new TsCdaPropertyFormatter());
+			Register(new PivlTsCdaPropertyFormatter());
+			Register(new IvlTsCdaPropertyFormatter());
 		}
 	}
 }

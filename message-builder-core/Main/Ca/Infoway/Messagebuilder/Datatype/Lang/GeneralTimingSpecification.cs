@@ -89,5 +89,34 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 			}
 		}
 		
+        public override int GetHashCode()
+        {
+            return new HashCodeBuilder()
+			        .Append(this.duration)
+			        .Append(this.frequency)
+                    .ToHashCode();
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+            else if (obj.GetType() != GetType())
+            {
+                return false;
+            } else {
+                return Equals((GeneralTimingSpecification) obj);
+            }
+        }
+
+        private bool Equals(GeneralTimingSpecification that)
+        {
+            return new EqualsBuilder()
+                    .Append(this.duration, that.duration)
+                    .Append(this.frequency, that.frequency)
+                    .IsEquals();
+        }
 	}
 }

@@ -85,7 +85,10 @@ namespace Ca.Infoway.Messagebuilder.Domainvalue.Basic
 				return Ca.Infoway.Messagebuilder.Codesystem.CodeSystem.VOCABULARY_UNIFORM_UNIT_OF_MEASURE.Root;
 			}
 		}
-		
+
+		public virtual String CodeSystemName {
+            get { return null; }
+        }
 	
 		/// <summary>
 		/// Returns the c value.
@@ -134,7 +137,8 @@ namespace Ca.Infoway.Messagebuilder.Domainvalue.Basic
 			DefaultTimeUnit result = null;
 			/* foreach */
 			foreach (DefaultTimeUnit unit  in  Ca.Infoway.Messagebuilder.Lang.EnumPattern.Values<DefaultTimeUnit>(typeof(DefaultTimeUnit))) {
-				if (String.Equals(unitCodeValue, unit.CodeValue)) {
+                // TM - relaxing check here to ignore case (normal lookups should go through CodeResolverRegistry, but in this case we want a value from this specific enum)
+                if (String.Equals(unitCodeValue, unit.CodeValue, StringComparison.InvariantCultureIgnoreCase)) {
 					result = unit;
 					break;
 				}

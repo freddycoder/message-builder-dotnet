@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System.Collections.Generic;
@@ -59,6 +59,12 @@ namespace Ca.Infoway.Messagebuilder.Util.Xml
 					}
 				}
 			}
+		}
+
+		public static int GetDepth(XmlNode node)
+		{
+			string path = DescribePath(node);
+			return path.Split("/").Length - 1;
 		}
 
 		/// <summary>
@@ -116,9 +122,8 @@ namespace Ca.Infoway.Messagebuilder.Util.Xml
 			if (node.ParentNode is XmlElement)
 			{
 				XmlNodeList childs = node.ParentNode.ChildNodes;
-				for (int i = 0; i < childs.Count; i++)
+				foreach (XmlNode child in new XmlNodeListIterable(childs))
 				{
-					XmlNode child = childs.Item(i);
 					if (HasSameName(node, child))
 					{
 						count++;
@@ -156,10 +161,13 @@ namespace Ca.Infoway.Messagebuilder.Util.Xml
 			builder.Append("<").Append(NodeUtil.GetLocalOrTagName(element));
 			XmlAttributeCollection attributes = element.Attributes;
 			List<string> set = new List<string>();
-			for (int i = 0,  length = attributes == null ? 0 : attributes.Count; i < length; i++)
+			if (attributes != null)
 			{
-				XmlAttribute item = (XmlAttribute)attributes.Item(i);
-				set.Add(item.Name);
+				foreach (XmlNode node in new XmlNamedNodeMapIterable(attributes))
+				{
+					XmlAttribute item = (XmlAttribute)node;
+					set.Add(item.Name);
+				}
 			}
 			set.Sort();
 			foreach (string name in set)

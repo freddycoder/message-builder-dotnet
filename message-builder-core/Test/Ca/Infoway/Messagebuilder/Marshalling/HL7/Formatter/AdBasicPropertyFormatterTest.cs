@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System;
@@ -24,7 +24,6 @@ using Ca.Infoway.Messagebuilder.Datatype.Impl;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
 using Ca.Infoway.Messagebuilder.Datatype.Lang.Util;
 using Ca.Infoway.Messagebuilder.Domainvalue;
-using Ca.Infoway.Messagebuilder.Marshalling;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter;
 using Ca.Infoway.Messagebuilder.Util.Xml;
 using NUnit.Framework;
@@ -118,7 +117,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 
 		private void AssertXmlEquals(string @string, string expected, string actual)
 		{
-			Assert.AreEqual(WhitespaceUtil.NormalizeWhitespace(expected), WhitespaceUtil.NormalizeWhitespace(actual), @string);
+			AssertXml(@string, expected, actual);
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -155,7 +154,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			Assert.IsFalse(this.result.IsValid());
 			Assert.AreEqual(2, this.result.GetHl7Errors().Count);
 			// both part types used are invalid for AD.BASIC
-			string expectedResult = "<address>" + "200<delimiter/>1709 Bloor St. W." + "</address>";
+			string expectedResult = "<address>" + "200<delimiter>-</delimiter>1709 Bloor St. W." + "</address>";
 			AssertXmlEquals("postal code", expectedResult, result);
 		}
 
@@ -169,7 +168,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			Assert.IsFalse(this.result.IsValid());
 			Assert.AreEqual(1, this.result.GetHl7Errors().Count);
 			// max of 4 parts without a type
-			string expectedResult = "<address>" + "200<delimiter/>1709 Bloor St. W. Toronto<delimiter/>ON" + "</address>";
+			string expectedResult = "<address>" + "200<delimiter>-</delimiter>1709 Bloor St. W. Toronto<delimiter>-</delimiter>ON" + 
+				"</address>";
 			AssertXmlEquals("postal code", expectedResult, result);
 		}
 

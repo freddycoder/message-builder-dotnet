@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2013-03-08 11:06:36 -0500 (Fri, 08 Mar 2013) $
- * Revision:      $LastChangedRevision: 6699 $
+ * Author:        $LastChangedBy: jmis $
+ * Last modified: $LastChangedDate: 2015-05-27 08:43:37 -0400 (Wed, 27 May 2015) $
+ * Revision:      $LastChangedRevision: 9535 $
  */
 using System;
 using Ca.Infoway.Messagebuilder;
@@ -48,13 +48,23 @@ namespace Ca.Infoway.Messagebuilder.Xml.Util
 			{
 				outputWarningsPropertyValue = MESSAGEBUILDER_OUTPUT_WARNINGS_IN_GENERATED_XML_DEFAULT;
 			}
-			this.outputWarnings = ILOG.J2CsMapping.Util.BooleanUtil.ValueOf(outputWarningsPropertyValue);
+			this.outputWarnings = Ca.Infoway.Messagebuilder.BooleanUtils.ValueOf(outputWarningsPropertyValue);
 		}
 
 		public virtual string CreateWarning(int indentLevel, string text)
 		{
-			return this.outputWarnings ? Indenter.Indent("<!-- WARNING: " + XmlStringEscape.Escape(text) + " -->" + SystemUtils.LINE_SEPARATOR
-				, indentLevel) : StringUtils.EMPTY;
+			return CreateWarning(indentLevel, text, "WARNING");
+		}
+
+		public virtual string CreateWarning(int indentLevel, string text, string errorLevel)
+		{
+			return CreateLog(errorLevel, indentLevel, text);
+		}
+
+		public virtual string CreateLog(string logLevel, int indentLevel, string text)
+		{
+			return this.outputWarnings ? Indenter.Indent("<!-- " + logLevel + (StringUtils.IsBlank(logLevel) ? string.Empty : ": ") +
+				 XmlStringEscape.Escape(text) + " -->" + SystemUtils.LINE_SEPARATOR, indentLevel) : StringUtils.EMPTY;
 		}
 	}
 }

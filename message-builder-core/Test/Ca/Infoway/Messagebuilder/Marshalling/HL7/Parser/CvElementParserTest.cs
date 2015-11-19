@@ -14,16 +14,17 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System;
 using System.Xml;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype;
+using Ca.Infoway.Messagebuilder.Error;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser;
-using Ca.Infoway.Messagebuilder.Terminology;
+using Ca.Infoway.Messagebuilder.Resolver;
 using Ca.Infoway.Messagebuilder.Xml;
 using NUnit.Framework;
 
@@ -48,8 +49,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		public virtual void TestParseNullNode()
 		{
 			XmlNode node = CreateNode("<something nullFlavor=\"NI\"/>");
-			CV cv = (CV)this.parser.Parse(ParserContextImpl.Create("CV", typeof(MockCharacters), SpecificationVersion.V02R02, null, null
-				, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL), node, this.xmlResult);
+			CV cv = (CV)this.parser.Parse(ParseContextImpl.Create("CV", typeof(MockCharacters), SpecificationVersion.V02R02, null, null
+				, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL, null, null, false), node, this.xmlResult);
 			Assert.IsTrue(this.xmlResult.IsValid());
 			Assert.IsNull(cv.Value, "value");
 			Assert.AreEqual(Ca.Infoway.Messagebuilder.Domainvalue.Nullflavor.NullFlavor.NO_INFORMATION, cv.NullFlavor, "null flavor");
@@ -60,8 +61,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		public virtual void TestParseOtherNullNode()
 		{
 			XmlNode node = CreateNode("<something nullFlavor=\"OTH\"/>");
-			CV cv = (CV)this.parser.Parse(ParserContextImpl.Create("CV", typeof(MockCharacters), SpecificationVersion.V02R02, null, null
-				, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL), node, this.xmlResult);
+			CV cv = (CV)this.parser.Parse(ParseContextImpl.Create("CV", typeof(MockCharacters), SpecificationVersion.V02R02, null, null
+				, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL, null, null, false), node, this.xmlResult);
 			Assert.IsTrue(this.xmlResult.IsValid());
 			Assert.IsNull(cv.Value, "value");
 			Assert.AreEqual(Ca.Infoway.Messagebuilder.Domainvalue.Nullflavor.NullFlavor.OTHER, cv.NullFlavor, "null flavor");
@@ -72,12 +73,12 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		public virtual void TestParseCodeWithNullNode()
 		{
 			XmlNode node = CreateNode("<something code=\"BARNEY\" codeSystem=\"1.2.3.4.5\" nullFlavor=\"OTH\"/>");
-			CV cv = (CV)this.parser.Parse(ParserContextImpl.Create("CD", typeof(MockCharacters), SpecificationVersion.V02R02, null, null
-				, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL), node, this.xmlResult);
+			CD cd = (CD)this.parser.Parse(ParseContextImpl.Create("CD", typeof(MockCharacters), SpecificationVersion.V02R02, null, null
+				, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL, null, null, false), node, this.xmlResult);
 			Assert.IsFalse(this.xmlResult.IsValid());
 			Assert.AreEqual(1, this.xmlResult.GetHl7Errors().Count);
-			Assert.AreEqual("BARNEY", cv.Value.CodeValue, "value");
-			Assert.AreEqual(Ca.Infoway.Messagebuilder.Domainvalue.Nullflavor.NullFlavor.OTHER, cv.NullFlavor, "null flavor");
+			Assert.AreEqual("BARNEY", cd.Value.CodeValue, "value");
+			Assert.AreEqual(Ca.Infoway.Messagebuilder.Domainvalue.Nullflavor.NullFlavor.OTHER, cd.NullFlavor, "null flavor");
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -85,8 +86,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		public virtual void TestParseOtherNullNodeWithWrongCodeSystem()
 		{
 			XmlNode node = CreateNode("<something nullFlavor=\"OTH\" codeSystem=\"1.2.3.4.wrong.code.system\" />");
-			CV cv = (CV)this.parser.Parse(ParserContextImpl.Create("CV", typeof(MockCharacters), SpecificationVersion.V02R02, null, null
-				, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL), node, this.xmlResult);
+			CV cv = (CV)this.parser.Parse(ParseContextImpl.Create("CV", typeof(MockCharacters), SpecificationVersion.V02R02, null, null
+				, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL, null, null, false), node, this.xmlResult);
 			Assert.IsTrue(this.xmlResult.IsValid());
 			Assert.AreEqual("1.2.3.4.wrong.code.system", cv.Value.CodeSystem, "code system");
 			Assert.AreEqual(Ca.Infoway.Messagebuilder.Domainvalue.Nullflavor.NullFlavor.OTHER, cv.NullFlavor, "null flavor");
@@ -98,8 +99,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		{
 			XmlNode node = CreateNode("<something nullFlavor=\"OTH\" codeSystem=\"1.2.3.4.5\"><originalText>ahhh</originalText></something>"
 				);
-			CV cv = (CV)this.parser.Parse(ParserContextImpl.Create("CV", typeof(MockCharacters), SpecificationVersion.V02R02, null, null
-				, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL), node, this.xmlResult);
+			CV cv = (CV)this.parser.Parse(ParseContextImpl.Create("CV", typeof(MockCharacters), SpecificationVersion.V02R02, null, null
+				, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL, null, null, false), node, this.xmlResult);
 			Assert.IsTrue(this.xmlResult.IsValid());
 			Assert.AreEqual("1.2.3.4.5", cv.Value.CodeSystem, "code system");
 			Assert.AreEqual("ahhh", cv.OriginalText, "original text");
@@ -111,8 +112,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		public virtual void TestParseEmptyNode()
 		{
 			XmlNode node = CreateNode("<something/>");
-			CV cv = (CV)this.parser.Parse(ParserContextImpl.Create("CV", typeof(MockCharacters), SpecificationVersion.V02R02, null, null
-				, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL), node, this.xmlResult);
+			CV cv = (CV)this.parser.Parse(ParseContextImpl.Create("CV", typeof(MockCharacters), SpecificationVersion.V02R02, null, null
+				, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL, null, null, false), node, this.xmlResult);
 			Assert.IsFalse(this.xmlResult.IsValid());
 			Assert.AreEqual(1, this.xmlResult.GetHl7Errors().Count);
 			Assert.IsNull(cv.Value, "empty node returns null");
@@ -261,7 +262,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		private ParseContext CreateContext(string typeName, Type c, VersionNumber version, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
 			 conformance, CodingStrength strength)
 		{
-			return ParserContextImpl.Create(typeName, c, version, null, null, conformance, strength, null);
+			return ParseContextImpl.Create(typeName, c, version, null, null, conformance, null, strength, null, null, false);
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -269,8 +270,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		public virtual void TestParseNoCodeAttributeNode()
 		{
 			XmlNode node = CreateNode("<something notvalue=\"\" />");
-			CV cv = (CV)this.parser.Parse(ParserContextImpl.Create("CV", typeof(MockCharacters), SpecificationVersion.V02R02, null, null
-				, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL), node, this.xmlResult);
+			CV cv = (CV)this.parser.Parse(ParseContextImpl.Create("CV", typeof(MockCharacters), SpecificationVersion.V02R02, null, null
+				, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL, null, null, false), node, this.xmlResult);
 			Assert.IsFalse(this.xmlResult.IsValid());
 			Assert.AreEqual(1, this.xmlResult.GetHl7Errors().Count);
 			Assert.IsNull(cv.Value, "node with no code attribute returns null");
@@ -281,8 +282,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		public virtual void TestParseInvalid()
 		{
 			XmlNode node = CreateNode("<something code=\"ER\" />");
-			CV cv = (CV)this.parser.Parse(ParserContextImpl.Create("CV", typeof(MockCharacters), SpecificationVersion.V02R02, null, null
-				, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL), node, this.xmlResult);
+			CV cv = (CV)this.parser.Parse(ParseContextImpl.Create("CV", typeof(MockCharacters), SpecificationVersion.V02R02, null, null
+				, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL, null, null, false), node, this.xmlResult);
 			Assert.IsFalse(this.xmlResult.IsValid());
 			Assert.AreEqual(3, this.xmlResult.GetHl7Errors().Count);
 			Assert.IsNull(cv.Value, "node with no code attribute returns null");
@@ -293,12 +294,13 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		public virtual void TestParseInvalidCWE()
 		{
 			XmlNode node = CreateNode("<something code=\"BARNEY\" />");
-			CV cv = (CV)this.parser.Parse(ParserContextImpl.Create("CD", typeof(MockCharacters), SpecificationVersion.V02R02, null, null
-				, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL, CodingStrength.CWE, null), node, this.xmlResult);
+			CD cd = (CD)this.parser.Parse(ParseContextImpl.Create("CD", typeof(MockCharacters), SpecificationVersion.V02R02, null, null
+				, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL, null, CodingStrength.CWE, null, null, false), node, this.xmlResult
+				);
 			Assert.IsFalse(this.xmlResult.IsValid());
 			Assert.AreEqual(1, this.xmlResult.GetHl7Errors().Count);
 			// code system is mandatory when providing code and is CWE
-			Assert.AreEqual("BARNEY", cv.Value.CodeValue);
+			Assert.AreEqual("BARNEY", cd.Value.CodeValue);
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -306,8 +308,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		public virtual void TestParseValidWithEmptyNullFavorAttributeValue()
 		{
 			XmlNode node = CreateNode("<something code=\"BARNEY\" nullFlavor=\"\"/>");
-			CV cv = (CV)this.parser.Parse(ParserContextImpl.Create("CV", typeof(MockCharacters), SpecificationVersion.V02R02, null, null
-				, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL), node, this.xmlResult);
+			CV cv = (CV)this.parser.Parse(ParseContextImpl.Create("CV", typeof(MockCharacters), SpecificationVersion.V02R02, null, null
+				, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL, null, null, false), node, this.xmlResult);
 			Assert.IsFalse(this.xmlResult.IsValid());
 			Assert.AreEqual(2, this.xmlResult.GetHl7Errors().Count);
 			Assert.AreEqual("BARNEY", cv.Value.CodeValue, "node with no code attribute returns null");
@@ -318,8 +320,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		public virtual void TestParseInvalidNullFavorAttributeValue()
 		{
 			XmlNode node = CreateNode("<something nullFlavor=\"NOT A VALID NULL FAVOR VALUE\"/>");
-			this.parser.Parse(ParserContextImpl.Create("CV", typeof(MockCharacters), SpecificationVersion.V02R02, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
-				.OPTIONAL), node, this.xmlResult);
+			this.parser.Parse(ParseContextImpl.Create("CV", typeof(MockCharacters), SpecificationVersion.V02R02, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
+				.OPTIONAL, null, null, false), node, this.xmlResult);
 			Assert.IsFalse(this.xmlResult.IsValid());
 			Assert.AreEqual(2, this.xmlResult.GetHl7Errors().Count, "warning message count");
 		}
@@ -330,8 +332,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		public virtual void TestParseValidWithInvalidNullFavorAttributeValue()
 		{
 			XmlNode node = CreateNode("<something code=\"BARNEY\" nullFlavor=\"NOT A VALID NULL FAVOR VALUE\"/>");
-			CV cv = (CV)this.parser.Parse(ParserContextImpl.Create("CV", typeof(MockCharacters), SpecificationVersion.V02R02, null, null
-				, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL), node, this.xmlResult);
+			CV cv = (CV)this.parser.Parse(ParseContextImpl.Create("CV", typeof(MockCharacters), SpecificationVersion.V02R02, null, null
+				, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL, null, null, false), node, this.xmlResult);
 			Assert.IsFalse(this.xmlResult.IsValid());
 			Assert.AreEqual(2, this.xmlResult.GetHl7Errors().Count);
 			Assert.AreEqual("BARNEY", cv.Value.CodeValue, "node with no code attribute returns null");
@@ -342,8 +344,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		public virtual void TestParseContainsOriginalTextAndNullFlavor()
 		{
 			XmlNode node = CreateNode("<something nullFlavor=\"NI\"><originalText>My original text</originalText></something>");
-			CV cs = (CV)this.parser.Parse(ParserContextImpl.Create("CV", typeof(MockCharacters), SpecificationVersion.V02R02, null, null
-				, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL), node, this.xmlResult);
+			CV cs = (CV)this.parser.Parse(ParseContextImpl.Create("CV", typeof(MockCharacters), SpecificationVersion.V02R02, null, null
+				, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL, null, null, false), node, this.xmlResult);
 			Assert.IsTrue(this.xmlResult.IsValid(), "valid");
 			Assert.AreEqual(Ca.Infoway.Messagebuilder.Domainvalue.Nullflavor.NullFlavor.NO_INFORMATION, cs.NullFlavor, "null flavor");
 			Assert.AreEqual("My original text", cs.OriginalText, "original text");
@@ -355,8 +357,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		{
 			XmlNode node = CreateNode("<something code=\"BARNEY\" codeSystem=\"1.2.3.4.5\"><originalText>Errr....</originalText></something>"
 				);
-			CV cv = (CV)this.parser.Parse(ParserContextImpl.Create("CV", typeof(MockCharacters), SpecificationVersion.V02R02, null, null
-				, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL), node, this.xmlResult);
+			CV cv = (CV)this.parser.Parse(ParseContextImpl.Create("CV", typeof(MockCharacters), SpecificationVersion.V02R02, null, null
+				, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL, null, null, false), node, this.xmlResult);
 			Assert.IsTrue(this.xmlResult.IsValid());
 			Assert.AreEqual("BARNEY", cv.Value.CodeValue);
 			Assert.AreEqual("1.2.3.4.5", cv.Value.CodeSystem);
@@ -369,8 +371,9 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		{
 			XmlNode node = CreateNode("<something><originalText>Errr....</originalText></something>");
 			// Adding to set used to fail on hashCode() call in OriginalTextWrapper
-			CV cv = (CV)this.parser.Parse(ParserContextImpl.Create("CV", typeof(MockCharacters), SpecificationVersion.V02R02, null, null
-				, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL, CodingStrength.CWE, null), node, this.xmlResult);
+			CV cv = (CV)this.parser.Parse(ParseContextImpl.Create("CV", typeof(MockCharacters), SpecificationVersion.V02R02, null, null
+				, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL, null, CodingStrength.CWE, null, null, false), node, this.xmlResult
+				);
 			Assert.IsTrue(this.xmlResult.IsValid());
 			Assert.AreEqual("Errr....", cv.OriginalText, "original text");
 		}
@@ -380,8 +383,9 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		public virtual void TestParseValidWithEmptyOriginalText()
 		{
 			XmlNode node = CreateNode("<something><originalText /></something>");
-			CV cv = (CV)this.parser.Parse(ParserContextImpl.Create("CV", typeof(MockCharacters), SpecificationVersion.V02R02, null, null
-				, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL, CodingStrength.CWE, null), node, this.xmlResult);
+			CV cv = (CV)this.parser.Parse(ParseContextImpl.Create("CV", typeof(MockCharacters), SpecificationVersion.V02R02, null, null
+				, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL, null, CodingStrength.CWE, null, null, false), node, this.xmlResult
+				);
 			Assert.IsFalse(this.xmlResult.IsValid());
 			Assert.AreEqual(1, this.xmlResult.GetHl7Errors().Count);
 			// need one of code or OT
@@ -393,8 +397,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		public virtual void TestParseTooManyChildNodes()
 		{
 			XmlNode node = CreateNode("<something>" + "<monkey/>" + "</something>");
-			CV cv = (CV)this.parser.Parse(ParserContextImpl.Create("CV", typeof(MockCharacters), SpecificationVersion.V02R02, null, null
-				, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL), node, this.xmlResult);
+			CV cv = (CV)this.parser.Parse(ParseContextImpl.Create("CV", typeof(MockCharacters), SpecificationVersion.V02R02, null, null
+				, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL, null, null, false), node, this.xmlResult);
 			Assert.IsFalse(this.xmlResult.IsValid());
 			Assert.AreEqual(1, this.xmlResult.GetHl7Errors().Count);
 			// must provide code/codeSystem (monkey element effectively ignored; this is what it seems to have always been doing)
@@ -406,8 +410,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		public virtual void TestParseValidEnumCodeButNoCodeSystem()
 		{
 			XmlNode node = CreateNode("<something code=\"FRED\" />");
-			CV cv = (CV)this.parser.Parse(ParserContextImpl.Create("CV", typeof(MockCharacters), SpecificationVersion.V02R02, null, null
-				, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL), node, this.xmlResult);
+			CV cv = (CV)this.parser.Parse(ParseContextImpl.Create("CV", typeof(MockCharacters), SpecificationVersion.V02R02, null, null
+				, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL, null, null, false), node, this.xmlResult);
 			Assert.IsFalse(this.xmlResult.IsValid(), "valid");
 			Assert.AreEqual(MockEnum.FRED, cv.Value, "enum found properly");
 		}
@@ -417,8 +421,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		public virtual void TestParseValidEnumCodeWithCodeSystem()
 		{
 			XmlNode node = CreateNode("<something code=\"FRED\" codeSystem=\"1.2.3.4.5\"/>");
-			CV cv = (CV)this.parser.Parse(ParserContextImpl.Create("CV", typeof(MockCharacters), SpecificationVersion.V02R02, null, null
-				, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL), node, this.xmlResult);
+			CV cv = (CV)this.parser.Parse(ParseContextImpl.Create("CV", typeof(MockCharacters), SpecificationVersion.V02R02, null, null
+				, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL, null, null, false), node, this.xmlResult);
 			Assert.IsTrue(this.xmlResult.IsValid(), "valid");
 			Assert.AreEqual(MockEnum.FRED, cv.Value, "enum found properly");
 		}
@@ -428,8 +432,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		public virtual void TestParseValidCodeWithMaxCodeValueCeRx()
 		{
 			XmlNode node = CreateNode("<something code=\"12345678901234567890\" codeSystem=\"1.2.3.4.5\"/>");
-			CV cv = (CV)this.parser.Parse(ParserContextImpl.Create("CV", typeof(MockCharacters), SpecificationVersion.V01R04_3, null, 
-				null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL), node, this.xmlResult);
+			CV cv = (CV)this.parser.Parse(ParseContextImpl.Create("CV", typeof(MockCharacters), SpecificationVersion.V01R04_3, null, 
+				null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL, null, null, false), node, this.xmlResult);
 			Assert.IsTrue(this.xmlResult.IsValid(), "valid");
 			Assert.AreEqual(MockEnum.CERX_MAX, cv.Value, "enum found properly");
 		}
@@ -439,8 +443,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		public virtual void TestParseValidCodeWithMaxPlus1CodeValueCeRx()
 		{
 			XmlNode node = CreateNode("<something code=\"123456789012345678901\" codeSystem=\"1.2.3.4.5\"/>");
-			CV cv = (CV)this.parser.Parse(ParserContextImpl.Create("CV", typeof(MockCharacters), SpecificationVersion.V01R04_3, null, 
-				null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL), node, this.xmlResult);
+			CV cv = (CV)this.parser.Parse(ParseContextImpl.Create("CV", typeof(MockCharacters), SpecificationVersion.V01R04_3, null, 
+				null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL, null, null, false), node, this.xmlResult);
 			Assert.IsFalse(this.xmlResult.IsValid(), "valid");
 			Assert.AreEqual(1, this.xmlResult.GetHl7Errors().Count);
 			Assert.AreEqual(MockEnum.CERX_MAX_PLUS_1, cv.Value, "enum found properly");
@@ -452,8 +456,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		{
 			XmlNode node = CreateNode("<something code=\"12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890\" codeSystem=\"1.2.3.4.5\"/>"
 				);
-			CV cv = (CV)this.parser.Parse(ParserContextImpl.Create("CV", typeof(MockCharacters), SpecificationVersion.R02_04_02, null
-				, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL), node, this.xmlResult);
+			CV cv = (CV)this.parser.Parse(ParseContextImpl.Create("CV", typeof(MockCharacters), SpecificationVersion.R02_04_02, null, 
+				null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL, null, null, false), node, this.xmlResult);
 			Assert.IsTrue(this.xmlResult.IsValid(), "valid");
 			Assert.AreEqual(MockEnum.MR2009_MAX, cv.Value, "enum found properly");
 		}
@@ -464,8 +468,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		{
 			XmlNode node = CreateNode("<something code=\"123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901\" codeSystem=\"1.2.3.4.5\"/>"
 				);
-			CV cv = (CV)this.parser.Parse(ParserContextImpl.Create("CV", typeof(MockCharacters), SpecificationVersion.R02_04_02, null
-				, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL), node, this.xmlResult);
+			CV cv = (CV)this.parser.Parse(ParseContextImpl.Create("CV", typeof(MockCharacters), SpecificationVersion.R02_04_02, null, 
+				null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL, null, null, false), node, this.xmlResult);
 			Assert.IsFalse(this.xmlResult.IsValid(), "valid");
 			Assert.AreEqual(1, this.xmlResult.GetHl7Errors().Count);
 			Assert.AreEqual(MockEnum.MR2009_MAX_PLUS_1, cv.Value, "enum found properly");
@@ -476,8 +480,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		public virtual void TestParseValidEnumCodeWithCodeSystemButUnallowedAttribute()
 		{
 			XmlNode node = CreateNode("<something code=\"FRED\" codeSystem=\"1.2.3.4.5\" displayName=\"unallowed\"/>");
-			CV cv = (CV)this.parser.Parse(ParserContextImpl.Create("CV", typeof(MockCharacters), SpecificationVersion.V02R02, null, null
-				, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL), node, this.xmlResult);
+			CV cv = (CV)this.parser.Parse(ParseContextImpl.Create("CV", typeof(MockCharacters), SpecificationVersion.V02R02, null, null
+				, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL, null, null, false), node, this.xmlResult);
 			Assert.IsFalse(this.xmlResult.IsValid(), "valid");
 			Assert.AreEqual(1, this.xmlResult.GetHl7Errors().Count);
 			Assert.AreEqual(MockEnum.FRED, cv.Value, "enum found properly");
@@ -489,8 +493,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		public virtual void TestParseInvalidEnumCode()
 		{
 			XmlNode node = CreateNode("<something code=\"ER\" codeSystem=\"1.2.3\"/>");
-			CV cv = (CV)this.parser.Parse(ParserContextImpl.Create("CV", typeof(MockCharacters), SpecificationVersion.V02R02, null, null
-				, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL), node, this.xmlResult);
+			CV cv = (CV)this.parser.Parse(ParseContextImpl.Create("CV", typeof(MockCharacters), SpecificationVersion.V02R02, null, null
+				, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL, null, null, false), node, this.xmlResult);
 			Assert.IsFalse(this.xmlResult.IsValid());
 			Assert.AreEqual(1, this.xmlResult.GetHl7Errors().Count, "error message count");
 			// invalid code
@@ -506,8 +510,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		{
 			XmlNode node = CreateNode("<something code=\"BARNEY\" codeSystem=\"1.2.3.4.5\"><translation code=\"FRED\" codeSystem=\"1.2.3.4.5\" /></something>"
 				);
-			CD cd = (CD)this.parser.Parse(ParserContextImpl.Create("CD", typeof(MockCharacters), SpecificationVersion.V02R02, null, null
-				, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL), node, this.xmlResult);
+			CD cd = (CD)this.parser.Parse(ParseContextImpl.Create("CD", typeof(MockCharacters), SpecificationVersion.V02R02, null, null
+				, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL, null, null, false), node, this.xmlResult);
 			Assert.IsTrue(this.xmlResult.IsValid());
 			Assert.IsNotNull(cd.Value, "main enum found");
 			Assert.IsFalse(cd.Translations.IsEmpty(), "translation enum found");
@@ -525,8 +529,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			XmlNode node = CreateNode("<something code=\"BARNEY\" codeSystem=\"1.2.3.4.5\">" + "<translation nullFlavor=\"OTH\" codeSystemName=\"aName\" codeSystemVersion=\"123\" displayName=\"aName\" >"
 				 + "  <originalText>should not be here</originalText>" + "  <translation code=\"FRED\" codeSystem=\"1.2.3.4.5\" />" + "  <qualifier />"
 				 + "</translation>" + "</something>");
-			CD cd = (CD)this.parser.Parse(ParserContextImpl.Create("CD", typeof(MockCharacters), SpecificationVersion.V02R02, null, null
-				, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL), node, this.xmlResult);
+			CD cd = (CD)this.parser.Parse(ParseContextImpl.Create("CD", typeof(MockCharacters), SpecificationVersion.V02R02, null, null
+				, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL, null, null, false), node, this.xmlResult);
 			Assert.IsFalse(this.xmlResult.IsValid());
 			Assert.AreEqual(8, this.xmlResult.GetHl7Errors().Count, "error message count");
 			Assert.IsNotNull(cd.Value, "main enum found");
@@ -560,8 +564,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 				 + "<translation code=\"WILMA\" codeSystem=\"1.2.3.4.5\" />" + "<translation code=\"BETTY\" codeSystem=\"1.2.3.4.5\" />"
 				 + "<translation code=\"BAM_BAM\" codeSystem=\"1.2.3.4.5\" />" + "<translation code=\"FRED\" codeSystem=\"1.2.3.4.5\" />"
 				 + "<translation code=\"WILMA\" codeSystem=\"1.2.3.4.5\" /></something>");
-			CD cd = (CD)this.parser.Parse(ParserContextImpl.Create("CD", typeof(MockCharacters), SpecificationVersion.V02R02, null, null
-				, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL), node, this.xmlResult);
+			CD cd = (CD)this.parser.Parse(ParseContextImpl.Create("CD", typeof(MockCharacters), SpecificationVersion.V02R02, null, null
+				, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL, null, null, false), node, this.xmlResult);
 			Assert.IsTrue(this.xmlResult.IsValid());
 			Assert.IsNotNull(cd.Value, "main enum found");
 			Assert.IsFalse(cd.Translations.IsEmpty(), "translation enums found");
@@ -583,8 +587,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 				 + "<translation code=\"BAM_BAM\" codeSystem=\"1.2.3.4.5\" />" + "<translation code=\"FRED\" codeSystem=\"1.2.3.4.5\" />"
 				 + "<translation code=\"WILMA\" codeSystem=\"1.2.3.4.5\" />" + "<translation code=\"BETTY\" codeSystem=\"1.2.3.4.5\" /></something>"
 				);
-			CD cd = (CD)this.parser.Parse(ParserContextImpl.Create("CD", typeof(MockCharacters), SpecificationVersion.V02R02, null, null
-				, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL), node, this.xmlResult);
+			CD cd = (CD)this.parser.Parse(ParseContextImpl.Create("CD", typeof(MockCharacters), SpecificationVersion.V02R02, null, null
+				, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL, null, null, false), node, this.xmlResult);
 			Assert.IsFalse(this.xmlResult.IsValid());
 			Assert.AreEqual(1, this.xmlResult.GetHl7Errors().Count);
 			Assert.IsNotNull(cd.Value, "main enum found");

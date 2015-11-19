@@ -42,8 +42,8 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang.Util {
 	
 		private const long serialVersionUID = -8005396643000939327L;
 	
-		public static readonly OrganizationNamePartType DELIMETER = new OrganizationNamePartType(
-				"DELIMETER", "delimiter");
+		public static readonly OrganizationNamePartType DELIMITER = new OrganizationNamePartType(
+				"DELIMITER", "delimiter");
 		public static readonly OrganizationNamePartType PREFIX = new OrganizationNamePartType(
 				"PREFIX", "prefix");
 		public static readonly OrganizationNamePartType SUFFIX = new OrganizationNamePartType(

@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System.Xml;
@@ -43,8 +43,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 
 		private ParseContext CreateContext()
 		{
-			return ParserContextImpl.Create("EN", typeof(EntityName), SpecificationVersion.V02R02, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
-				.POPULATED);
+			return ParseContextImpl.Create("EN", typeof(EntityName), SpecificationVersion.V02R02, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
+				.POPULATED, null, null, false);
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -61,10 +61,54 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 
 		/// <exception cref="System.Exception"></exception>
 		[Test]
-		public virtual void TestParseTrivialName()
+		public virtual void TestParseTrivialNameNoSpecializationType()
 		{
 			XmlNode node = CreateNode("<something>trivial name</something>");
 			EntityName entityName = (EntityName)new EnElementParser().Parse(CreateContext(), node, this.xmlResult).BareValue;
+			Assert.IsNotNull(entityName, "entity name");
+			Assert.AreEqual(1, entityName.Parts.Count, "number of name parts");
+			AssertNamePartAsExpected("name", entityName.Parts[0], null, "trivial name");
+			Assert.IsTrue(entityName is TrivialName, "returned class");
+			Assert.IsFalse(this.xmlResult.IsValid());
+			Assert.AreEqual(1, this.xmlResult.GetHl7Errors().Count);
+			Assert.AreEqual("EN field has been handled as type TN", this.xmlResult.GetHl7Errors()[0].GetMessage());
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void TestParseTrivialNameWithSpecializationTypeAndXsiType()
+		{
+			XmlNode node = CreateNode("<something specializationType=\"TN\" xsi:type=\"TN\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">trivial name</something>"
+				);
+			EntityName entityName = (EntityName)new EnElementParser().Parse(CreateContext(), node, this.xmlResult).BareValue;
+			Assert.IsTrue(this.xmlResult.IsValid());
+			Assert.IsNotNull(entityName, "entity name");
+			Assert.AreEqual(1, entityName.Parts.Count, "number of name parts");
+			AssertNamePartAsExpected("name", entityName.Parts[0], null, "trivial name");
+			Assert.IsTrue(entityName is TrivialName, "returned class");
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void TestParseTrivialNameWithSpecializationType()
+		{
+			XmlNode node = CreateNode("<something specializationType=\"TN\">trivial name</something>");
+			EntityName entityName = (EntityName)new EnElementParser().Parse(CreateContext(), node, this.xmlResult).BareValue;
+			Assert.IsTrue(this.xmlResult.IsValid());
+			Assert.IsNotNull(entityName, "entity name");
+			Assert.AreEqual(1, entityName.Parts.Count, "number of name parts");
+			AssertNamePartAsExpected("name", entityName.Parts[0], null, "trivial name");
+			Assert.IsTrue(entityName is TrivialName, "returned class");
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void TestParseTrivialNameWithXsiType()
+		{
+			XmlNode node = CreateNode("<something xsi:type=\"TN\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">trivial name</something>"
+				);
+			EntityName entityName = (EntityName)new EnElementParser().Parse(CreateContext(), node, this.xmlResult).BareValue;
+			Assert.IsTrue(this.xmlResult.IsValid());
 			Assert.IsNotNull(entityName, "entity name");
 			Assert.AreEqual(1, entityName.Parts.Count, "number of name parts");
 			AssertNamePartAsExpected("name", entityName.Parts[0], null, "trivial name");
@@ -75,8 +119,9 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		[Test]
 		public virtual void TestParseOrganizationName()
 		{
-			XmlNode node = CreateNode("<something>trivial name<suffix>Inc</suffix></something>");
+			XmlNode node = CreateNode("<something specializationType=\"ON\">trivial name<suffix>Inc</suffix></something>");
 			EntityName entityName = (EntityName)new EnElementParser().Parse(CreateContext(), node, this.xmlResult).BareValue;
+			Assert.IsTrue(this.xmlResult.IsValid());
 			Assert.IsNotNull(entityName, "entity name");
 			Assert.AreEqual(2, entityName.Parts.Count, "number of name parts");
 			AssertNamePartAsExpected("name", entityName.Parts[0], null, "trivial name");
@@ -86,7 +131,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 
 		/// <exception cref="System.Exception"></exception>
 		[Test]
-		public virtual void TestParsePersonName()
+		public virtual void TestParsePersonNameWithoutSpecializationType()
 		{
 			XmlNode node = CreateNode("<something><given>Steve</given><family>Shaw</family><suffix>Inc</suffix></something>");
 			EntityName entityName = (EntityName)new EnElementParser().Parse(CreateContext(), node, this.xmlResult).BareValue;
@@ -96,8 +141,10 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			AssertNamePartAsExpected("family", entityName.Parts[1], PersonNamePartType.FAMILY, "Shaw");
 			AssertNamePartAsExpected("suffix", entityName.Parts[2], PersonNamePartType.SUFFIX, "Inc");
 			Assert.IsTrue(entityName is PersonName, "returned class");
+			Assert.AreEqual(2, this.xmlResult.GetHl7Errors().Count);
 		}
 
+		// 1 warning stating EN treated as PN, 1 for missing "use"
 		private void AssertNamePartAsExpected(string message, EntityNamePart namePart, NamePartType expectedType, string expectedValue
 			)
 		{

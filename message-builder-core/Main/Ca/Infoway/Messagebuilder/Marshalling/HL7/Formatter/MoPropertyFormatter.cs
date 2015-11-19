@@ -14,14 +14,14 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System.Collections.Generic;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
-using Ca.Infoway.Messagebuilder.Datatype.Lang.Util;
+using Ca.Infoway.Messagebuilder.Error;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter;
 
@@ -40,7 +40,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 
 		private const int MAX_DIGITS_AFTER_DECIMAL = 2;
 
-		internal override IDictionary<string, string> GetAttributeNameValuePairs(FormatContext context, Money money, BareANY bareAny
+		protected override IDictionary<string, string> GetAttributeNameValuePairs(FormatContext context, Money money, BareANY bareAny
 			)
 		{
 			Validate(money, context);
@@ -50,7 +50,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			{
 				result["value"] = value.ToString();
 			}
-			Currency currency = money.Currency;
+			Ca.Infoway.Messagebuilder.Domainvalue.Basic.Currency currency = money.Currency;
 			if (currency != null)
 			{
 				result["currency"] = currency.CodeValue;
@@ -85,14 +85,14 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 					RecordMustContainDigitsOnlyError(value, propertyPath, modelToXmlResult);
 				}
 			}
-			Currency currency = money.Currency;
+			Ca.Infoway.Messagebuilder.Domainvalue.Basic.Currency currency = money.Currency;
 			if (currency == null)
 			{
 				RecordMissingCurrencyError(propertyPath, modelToXmlResult);
 			}
 			else
 			{
-				if (!Currency.CANADIAN_DOLLAR.CodeValue.Equals(currency.CodeValue))
+				if (!Ca.Infoway.Messagebuilder.Domainvalue.Basic.Currency.CANADIAN_DOLLAR.CodeValue.Equals(currency.CodeValue))
 				{
 					RecordCurrencyMustBeCadError(propertyPath, modelToXmlResult);
 				}

@@ -14,14 +14,14 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Datatype.Impl;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
-using Ca.Infoway.Messagebuilder.Datatype.Lang.Util;
+using Ca.Infoway.Messagebuilder.Error;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter;
 
@@ -32,12 +32,13 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 	{
 		internal IvlTsPropertyFormatter formatter = new IvlTsPropertyFormatter();
 
-		internal override string FormatNonNullValue(FormatContext context, UncertainRange<PlatformDate> value, int indentLevel)
+		protected override string FormatNonNullValue(FormatContext context, UncertainRange<PlatformDate> value, int indentLevel)
 		{
 			// convert URG to an IVL and use IVL formatter
 			Interval<PlatformDate> convertedInterval = IntervalFactory.CreateFromUncertainRange(value);
 			IVLImpl<TS, Interval<PlatformDate>> convertedHl7Interval = new IVLImpl<TS, Interval<PlatformDate>>(convertedInterval);
-			FormatContext ivlContext = new FormatContextImpl(context.Type.Replace("URG", "IVL"), context);
+			FormatContext ivlContext = new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl(context.Type.Replace
+				("URG", "IVL"), context.IsSpecializationType(), context);
 			string xml = this.formatter.Format(ivlContext, convertedHl7Interval, indentLevel);
 			xml = ChangeAnyIvlRemnants(xml);
 			// inclusive attributes not allowed for URG<TS>

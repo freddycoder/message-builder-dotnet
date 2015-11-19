@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System;
@@ -28,10 +28,10 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.Datatypeadapter
 {
 	public class IvlToTsAdapter : DataTypeAdapter
 	{
-		public virtual bool CanAdapt(string fromDataTypeName, Type toDateType)
+		public virtual bool CanAdapt(string fromDataTypeName, Type toDataType)
 		{
 			if ((StandardDataType.IVL_FULL_DATE.Type.Equals(fromDataTypeName) || StandardDataType.IVL_FULL_DATE_WITH_TIME.Type.Equals
-				(fromDataTypeName)) && typeof(TS).IsAssignableFrom(toDateType))
+				(fromDataTypeName)) && typeof(TS).IsAssignableFrom(toDataType))
 			{
 				return true;
 			}
@@ -43,11 +43,16 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.Datatypeadapter
 			return false;
 		}
 
-		public virtual BareANY Adapt(BareANY any)
+		public virtual BareANY Adapt(Type toDataType, BareANY any)
 		{
 			IVL<TS, Interval<PlatformDate>> ivl = (IVL<TS, Interval<PlatformDate>>)any;
 			return (BareANY)new DataTypeAdapterHelper().CopyAndReturnAdapted(any, (BareANY)new TSImpl(), ((Interval<PlatformDate>)ivl
 				.Value).Low);
+		}
+
+		public virtual BareANY Adapt(string toDataTypeName, BareANY any)
+		{
+			return any;
 		}
 	}
 }

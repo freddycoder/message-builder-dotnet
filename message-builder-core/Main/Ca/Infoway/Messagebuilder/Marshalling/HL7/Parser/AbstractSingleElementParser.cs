@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System;
@@ -25,6 +25,7 @@ using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Datatype.Impl;
 using Ca.Infoway.Messagebuilder.Datatype.Lang.Util;
 using Ca.Infoway.Messagebuilder.Domainvalue;
+using Ca.Infoway.Messagebuilder.Error;
 using Ca.Infoway.Messagebuilder.Lang;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser;
@@ -50,14 +51,13 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			}
 			else
 			{
-				if (nodes.Count == 1)
+				// if more than 1, arbitrarily choose the first one provided
+				if (nodes.Count > 1)
 				{
-					return Parse(context, nodes[0], xmlToModelResult);
+					xmlToModelResult.AddHl7Error(new Hl7Error(Hl7ErrorCode.NUMBER_OF_ATTRIBUTES_EXCEEDS_LIMIT, "Expected a single element and found "
+						 + nodes.Count + ". Only the first element will be processed.", (XmlElement)nodes[0]));
 				}
-				else
-				{
-					throw new XmlToModelTransformationException("Expected a single element and found " + nodes.Count);
-				}
+				return Parse(context, nodes[0], xmlToModelResult);
 			}
 		}
 
@@ -82,7 +82,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		protected abstract V ParseNonNullNode(ParseContext context, XmlNode node, BareANY result, Type returnType, XmlToModelResult
 			 xmlToModelResult);
 
-		private BareANY CreateDataTypeInstance(string typeName)
+		protected virtual BareANY CreateDataTypeInstance(string typeName)
 		{
 			BareANY dataTypeInstance = DoCreateDataTypeInstance(typeName);
 			SetDataType(typeName, dataTypeInstance);
@@ -122,9 +122,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		{
 			XmlNode result = null;
 			XmlNodeList childNodes = node.ChildNodes;
-			for (int i = 0; i < childNodes.Count && result == null; i++)
+			foreach (XmlNode childNode in new XmlNodeListIterable(childNodes))
 			{
-				XmlNode childNode = childNodes.Item(i);
 				if (childNodeName.Equals(NodeUtil.GetLocalOrTagName(childNode)))
 				{
 					result = childNode;
@@ -160,12 +159,12 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			throw new XmlToModelTransformationException("Unexpected part of type: " + value);
 		}
 
-		protected virtual void ValidateUnallowedAttributes(string type, XmlElement node, XmlToModelResult result, string attribute
-			)
+		protected virtual void ValidateUnallowedAttributes(StandardDataType type, XmlElement node, XmlToModelResult result, string
+			 attribute)
 		{
 			if (StringUtils.IsNotBlank(GetAttributeValue(node, attribute)))
 			{
-				result.AddHl7Error(new Hl7Error(Hl7ErrorCode.DATA_TYPE_ERROR, type + " should not include the '" + attribute + "' property. ("
+				result.AddHl7Error(new Hl7Error(Hl7ErrorCode.DATA_TYPE_ERROR, type.Type + " should not include the '" + attribute + "' property. ("
 					 + XmlDescriber.DescribeSingleElement(node) + ")", node));
 			}
 		}
@@ -185,9 +184,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		protected virtual void ValidateNoChildren(ParseContext context, XmlNode node)
 		{
 			XmlNodeList childNodes = node.ChildNodes;
-			for (int i = 0; i < childNodes.Count; ++i)
+			foreach (XmlNode item in new XmlNodeListIterable(childNodes))
 			{
-				XmlNode item = childNodes.Item(i);
 				if (IsNonTrivialChildNode(item))
 				{
 					throw new XmlToModelTransformationException("Expected " + GetType(context) + " node to have no children");
@@ -200,9 +198,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		{
 			XmlNodeList childNodes = node.ChildNodes;
 			int numNontrivialChildNodes = 0;
-			for (int i = 0; i < childNodes.Count; ++i)
+			foreach (XmlNode item in new XmlNodeListIterable(childNodes))
 			{
-				XmlNode item = childNodes.Item(i);
 				if (IsNonTrivialChildNode(item))
 				{
 					numNontrivialChildNodes++;
@@ -220,9 +217,37 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			return (child is XmlText && StringUtils.IsNotBlank(((XmlText)child).Data)) || (child is XmlElement);
 		}
 
-		private string GetType(ParseContext context)
+		protected virtual string GetType(ParseContext context)
 		{
 			return context == null ? string.Empty : context.Type;
+		}
+
+		protected virtual string GetOriginalText(XmlElement element)
+		{
+			XmlNodeList children = element.ChildNodes;
+			string result = null;
+			if (children != null)
+			{
+				foreach (XmlNode node in new XmlNodeListIterable(children))
+				{
+					if (node.NodeType != System.Xml.XmlNodeType.Element)
+					{
+					}
+					else
+					{
+						if ("originalText".Equals(NodeUtil.GetLocalOrTagName(node)))
+						{
+							result = NodeUtil.GetTextValue(node);
+						}
+					}
+				}
+			}
+			return result;
+		}
+
+		protected bool HasOriginalText(XmlElement element)
+		{
+			return StringUtils.IsNotBlank(GetOriginalText(element));
 		}
 
 		public AbstractSingleElementParser()

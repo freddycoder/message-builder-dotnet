@@ -31,6 +31,7 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 	using System.Collections.Generic;
 	using System.ComponentModel;
 	using System.Runtime.CompilerServices;
+    using Ca.Infoway.Messagebuilder.Datatype.Lang.Util;
 	
 	/// <summary>
 	///   datatype for AD Hl7 datatype. 
@@ -39,20 +40,22 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 	///
 	public class PostalAddress {
 	
-		public PostalAddress() {
-			this.uses = new HashSet<x_BasicPostalAddressUse>();
-			this.parts = Ca.Infoway.Messagebuilder.CollUtils.SynchronizedList(new List<PostalAddressPart>());
-		}
-
-        private ICollection<x_BasicPostalAddressUse> uses;
+        private ISet<PostalAddressUse> uses;
 		private readonly IList<PostalAddressPart> parts;
-	
-		/// <summary>
+
+        public PostalAddress()
+        {
+            this.uses = new HashSet<PostalAddressUse>();
+            this.parts = Ca.Infoway.Messagebuilder.CollUtils.SynchronizedList(new List<PostalAddressPart>());
+            UseablePeriods = new Dictionary<PlatformDate, SetOperator>();
+        }
+
+        /// <summary>
 		/// Replaces the postal address' set of uses.
 		/// </summary>
 		///
 		/// <param name="uses_0">set of postal address uses</param>
-        public ICollection<x_BasicPostalAddressUse> Uses
+        public ICollection<PostalAddressUse> Uses
         {
 		/// <summary>
 		/// Obtains the postal address' set of uses.
@@ -68,7 +71,8 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		///
 		/// <param name="uses_0">set of postal address uses</param>
 		  set {
-				this.uses = value;
+				this.uses = new HashSet<PostalAddressUse>();
+                this.uses.AddAll(value);
 			}
 		}
 		
@@ -78,7 +82,7 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		/// </summary>
 		///
 		/// <param name="use">a postal address use</param>
-        public void AddUse(x_BasicPostalAddressUse use) {
+        public void AddUse(PostalAddressUse use) {
 			ILOG.J2CsMapping.Collections.Generics.Collections.Add(this.uses,use);
 		}
 	
@@ -107,5 +111,68 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		public void AddPostalAddressPart(PostalAddressPart postalAddressPart) {
 			ILOG.J2CsMapping.Collections.Generics.Collections.Add(this.parts,postalAddressPart);
 		}
+
+        // Added for R2 usage only
+
+        /// <summary>
+        /// Useable periods or the given telecom address. The periods will be sorted internally.
+        /// </summary>
+        public IDictionary<PlatformDate, SetOperator> UseablePeriods {
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// Convenience method for adding a period and inclusive operator.
+        /// </summary>
+        /// <param name="periodInTime"></param>
+        /// <param name="setOperator"></param>
+        /// <returns>whether the added period replaced an existing period</returns>
+        public bool AddUseablePeriod(PlatformDate periodInTime, SetOperator setOperator) {
+            // leave it up to the user to worry about a given time replacing an existing one
+            SetOperator previousValue = UseablePeriods.ContainsKey(periodInTime) ? UseablePeriods[periodInTime] : null;
+            UseablePeriods.Add(periodInTime, setOperator == null ? SetOperator.INCLUDE : setOperator);
+            return previousValue != null;
+        }
+
+        public Boolean? IsNotOrdered {
+            get;
+            set;
+        }
+    
+        public override int GetHashCode()
+        {
+            return new HashCodeBuilder()
+		            .Append(this.uses)
+		            .Append(this.parts)
+                    .Append(UseablePeriods)
+                    .Append(IsNotOrdered)
+                    .ToHashCode();
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+            else if (obj.GetType() != GetType())
+            {
+                return false;
+            } else {
+                return Equals((PostalAddress) obj);
+            }
+        }
+
+        private bool Equals(PostalAddress that)
+        {
+            return new EqualsBuilder()
+                .Append(this.uses, that.uses)
+                .Append(this.parts, that.parts)
+                .Append(this.UseablePeriods, that.UseablePeriods)
+                .Append(this.IsNotOrdered, that.IsNotOrdered)
+                .IsEquals();
+        }
+    
 	}
 }

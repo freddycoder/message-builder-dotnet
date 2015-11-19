@@ -14,15 +14,15 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using Ca.Infoway.Messagebuilder.J5goodies;
 using Ca.Infoway.Messagebuilder.Marshalling;
 using Ca.Infoway.Messagebuilder.Model.Cr;
 using Ca.Infoway.Messagebuilder.Model.Mock;
-using Ca.Infoway.Messagebuilder.Terminology;
-using Ca.Infoway.Messagebuilder.Terminology.Configurator;
+using Ca.Infoway.Messagebuilder.Resolver;
+using Ca.Infoway.Messagebuilder.Resolver.Configurator;
 using Ca.Infoway.Messagebuilder.Xml.Service;
 using NUnit.Framework;
 

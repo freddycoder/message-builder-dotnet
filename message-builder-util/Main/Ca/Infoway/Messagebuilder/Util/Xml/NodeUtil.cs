@@ -13,13 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2013-03-08 11:06:36 -0500 (Fri, 08 Mar 2013) $
- * Revision:      $LastChangedRevision: 6699 $
+ * Author:        $LastChangedBy: jmis $
+ * Last modified: $LastChangedDate: 2015-05-27 08:43:37 -0400 (Wed, 27 May 2015) $
+ * Revision:      $LastChangedRevision: 9535 $
  */
 using System.Collections.Generic;
 using System.Xml;
 using Ca.Infoway.Messagebuilder;
+using Ca.Infoway.Messagebuilder.Util.Xml;
 
 namespace Ca.Infoway.Messagebuilder.Util.Xml
 {
@@ -74,9 +75,8 @@ namespace Ca.Infoway.Messagebuilder.Util.Xml
 			{
 				text = string.Empty;
 				XmlNodeList textList = node.ChildNodes;
-				for (int i = 0; i < textList.Count; i++)
+				foreach (XmlNode child in new XmlNodeListIterable(textList))
 				{
-					XmlNode child = textList.Item(i);
 					if (child.NodeType == System.Xml.XmlNodeType.Text || child.NodeType == System.Xml.XmlNodeType.CDATA)
 					{
 						text += ((XmlText)child).Data;
@@ -100,10 +100,12 @@ namespace Ca.Infoway.Messagebuilder.Util.Xml
 		public static IList<XmlNode> AsList(XmlNodeList children)
 		{
 			IList<XmlNode> nodes = new List<XmlNode>();
-			int length = children == null ? 0 : children.Count;
-			for (int i = 0; i < length; i++)
+			if (children != null)
 			{
-				nodes.Add(children.Item(i));
+				foreach (XmlNode node in new XmlNodeListIterable(children))
+				{
+					nodes.Add(node);
+				}
 			}
 			return nodes;
 		}
@@ -133,13 +135,14 @@ namespace Ca.Infoway.Messagebuilder.Util.Xml
 		{
 			IList<XmlElement> elements = new List<XmlElement>();
 			XmlNodeList childNodes = node.ChildNodes;
-			int length = childNodes == null ? 0 : childNodes.Count;
-			for (int i = 0; i < length; i++)
+			if (childNodes != null)
 			{
-				XmlNode childNode = childNodes.Item(i);
-				if (childNode is XmlElement)
+				foreach (XmlNode childNode in new XmlNodeListIterable(childNodes))
 				{
-					elements.Add((XmlElement)childNode);
+					if (childNode is XmlElement)
+					{
+						elements.Add((XmlElement)childNode);
+					}
 				}
 			}
 			return elements;

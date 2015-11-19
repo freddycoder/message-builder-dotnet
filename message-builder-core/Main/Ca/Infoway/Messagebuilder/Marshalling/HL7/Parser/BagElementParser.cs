@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System.Collections.Generic;
@@ -22,7 +22,8 @@ using System.Xml;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Datatype.Impl;
-using Ca.Infoway.Messagebuilder.Marshalling;
+using Ca.Infoway.Messagebuilder.Datatype.Lang;
+using Ca.Infoway.Messagebuilder.Error;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser;
 
@@ -31,6 +32,10 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 	[DataTypeHandler(new string[] { "BAG" })]
 	internal class BagElementParser : SetOrListElementParser
 	{
+		public BagElementParser(ParserRegistry parserRegistry) : base(parserRegistry, false)
+		{
+		}
+
 		/// <exception cref="Ca.Infoway.Messagebuilder.Marshalling.HL7.XmlToModelTransformationException"></exception>
 		public override BareANY Parse(ParseContext context, IList<XmlNode> nodes, XmlToModelResult xmlToModelResult)
 		{
@@ -39,20 +44,63 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			return base.Parse(context, nodes, xmlToModelResult);
 		}
 
-		protected override BareANY WrapWithHl7DataType(string type, string subType, ICollection<BareANY> collection)
+		protected override BareANY WrapWithHl7DataType(string type, string subType, ICollection<BareANY> collection, ParseContext
+			 context)
 		{
-			try
+			CollectionHelper result = CreateCollectionHelper(type);
+			foreach (BareANY bareANY in collection)
 			{
-				CollectionHelper result = (CollectionHelper)GenericDataTypeFactory.Create(type);
-				foreach (BareANY bareANY in collection)
-				{
-					result.Add(bareANY);
-				}
-				return (BareANY)result;
+				result.Add(bareANY);
 			}
-			catch (MarshallingException)
+			return (BareANY)result;
+		}
+
+		private CollectionHelper CreateCollectionHelper(string dataType)
+		{
+			Hl7DataTypeName type = Hl7DataTypeName.Create(dataType);
+			string typeName = StringUtils.DeleteWhitespace(type.GetUnqualifiedVersion().ToString());
+			if ("BAG<AD>".Equals(typeName))
 			{
-				return null;
+				return new LISTImpl<AD, PostalAddress>(typeof(ADImpl));
+			}
+			else
+			{
+				if ("BAG<GTS>".Equals(typeName))
+				{
+					return new LISTImpl<GTS, GeneralTimingSpecification>(typeof(GTSImpl));
+				}
+				else
+				{
+					if ("BAG<II>".Equals(typeName))
+					{
+						return new LISTImpl<II, Identifier>(typeof(IIImpl));
+					}
+					else
+					{
+						if ("BAG<PN>".Equals(typeName))
+						{
+							return new LISTImpl<PN, PersonName>(typeof(PNImpl));
+						}
+						else
+						{
+							if ("BAG<ST>".Equals(typeName))
+							{
+								return new LISTImpl<ST, string>(typeof(STImpl));
+							}
+							else
+							{
+								if ("BAG<TEL>".Equals(typeName))
+								{
+									return new LISTImpl<TEL, TelecommunicationAddress>(typeof(TELImpl));
+								}
+								else
+								{
+									throw new MarshallingException("Cannot create a data type construct for data type " + dataType);
+								}
+							}
+						}
+					}
+				}
 			}
 		}
 

@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2013-03-08 11:06:36 -0500 (Fri, 08 Mar 2013) $
- * Revision:      $LastChangedRevision: 6699 $
+ * Author:        $LastChangedBy: jmis $
+ * Last modified: $LastChangedDate: 2015-05-27 08:43:37 -0400 (Wed, 27 May 2015) $
+ * Revision:      $LastChangedRevision: 9535 $
  */
 using System.Collections.Generic;
 using Ca.Infoway.Messagebuilder;
@@ -28,7 +28,7 @@ namespace Ca.Infoway.Messagebuilder.Xml
 	/// <remarks>The package location.  Each package location corresponds with one MIF file.</remarks>
 	/// <author>Intelliware Development</author>
 	[RootAttribute]
-	public class PackageLocation : Categorizable, HasDifferences, Named
+	public class PackageLocation : Categorizable, HasDifferences, Named, Documentable
 	{
 		[XmlAttributeAttribute]
 		private string name;
@@ -39,6 +39,24 @@ namespace Ca.Infoway.Messagebuilder.Xml
 		[XmlAttributeAttribute(Required = false)]
 		private string rootType;
 
+		[ElementAttribute(Required = false)]
+		private ImportedPackage derivedFromStaticModel;
+
+		[ElementAttribute(Required = false)]
+		private ImportedPackage datatypeModel;
+
+		[ElementAttribute(Required = false)]
+		private ImportedPackage vocabularyModel;
+
+		[ElementAttribute(Required = false)]
+		private ImportedPackage commonModelElement;
+
+		[ElementListAttribute(Inline = true, Entry = "cmetBinding", Required = false)]
+		private IList<CmetBinding> cmetBindings = new List<CmetBinding>();
+
+		[ElementAttribute(Required = false)]
+		private Ca.Infoway.Messagebuilder.Xml.Documentation documentation;
+
 		[ElementListAttribute(Inline = true, Required = false)]
 		[NamespaceAttribute(Prefix = "regen", Reference = "regen_ns")]
 		private IList<Difference> differences = new List<Difference>();
@@ -48,6 +66,15 @@ namespace Ca.Infoway.Messagebuilder.Xml
 
 		[XmlAttributeAttribute(Required = false)]
 		private string category;
+
+		[XmlAttributeAttribute(Required = false)]
+		private string templateOid;
+
+		[XmlAttributeAttribute(Required = false)]
+		private string impliedTemplateOid;
+
+		[ElementListAttribute(Inline = true, Required = false, Entry = "containedTemplate")]
+		private IList<ContainedTemplate> containedTemplateConstraints = new List<ContainedTemplate>();
 
 		/// <summary>The default constructor.</summary>
 		/// <remarks>The default constructor.</remarks>
@@ -158,6 +185,40 @@ namespace Ca.Infoway.Messagebuilder.Xml
 			}
 		}
 
+		public virtual string TemplateOid
+		{
+			get
+			{
+				return templateOid;
+			}
+			set
+			{
+				string templateOid = value;
+				this.templateOid = templateOid;
+			}
+		}
+
+		public virtual string ImpliedTemplateOid
+		{
+			get
+			{
+				return impliedTemplateOid;
+			}
+			set
+			{
+				string impliedTemplateOid = value;
+				this.impliedTemplateOid = impliedTemplateOid;
+			}
+		}
+
+		public virtual IList<ContainedTemplate> ContainedTemplateConstraints
+		{
+			get
+			{
+				return containedTemplateConstraints;
+			}
+		}
+
 		/// <summary>Tracks package location differences for regen</summary>
 		/// <returns>the differences</returns>
 		public virtual IList<Difference> Differences
@@ -166,16 +227,115 @@ namespace Ca.Infoway.Messagebuilder.Xml
 			{
 				return this.differences;
 			}
-		}
-
-		public virtual void SetDifferences(IList<Difference> differences)
-		{
-			this.differences = differences;
+			set
+			{
+				IList<Difference> differences = value;
+				this.differences = differences;
+			}
 		}
 
 		public virtual void AddDifference(Difference difference)
 		{
 			this.differences.Add(difference);
+		}
+
+		public virtual Ca.Infoway.Messagebuilder.Xml.Documentation Documentation
+		{
+			get
+			{
+				return documentation;
+			}
+			set
+			{
+				Ca.Infoway.Messagebuilder.Xml.Documentation documentation = value;
+				this.documentation = documentation;
+			}
+		}
+
+		public virtual ImportedPackage DerivedFromStaticModel
+		{
+			get
+			{
+				return derivedFromStaticModel;
+			}
+			set
+			{
+				ImportedPackage derivedFromStaticModel = value;
+				this.derivedFromStaticModel = derivedFromStaticModel;
+			}
+		}
+
+		public virtual ImportedPackage DatatypeModel
+		{
+			get
+			{
+				return datatypeModel;
+			}
+			set
+			{
+				ImportedPackage datatypeModel = value;
+				this.datatypeModel = datatypeModel;
+			}
+		}
+
+		public virtual ImportedPackage VocabularyModel
+		{
+			get
+			{
+				return vocabularyModel;
+			}
+			set
+			{
+				ImportedPackage vocabularyModel = value;
+				this.vocabularyModel = vocabularyModel;
+			}
+		}
+
+		public virtual ImportedPackage CommonModelElement
+		{
+			get
+			{
+				return commonModelElement;
+			}
+			set
+			{
+				ImportedPackage commonModelElement = value;
+				this.commonModelElement = commonModelElement;
+			}
+		}
+
+		public virtual IList<CmetBinding> CmetBindings
+		{
+			get
+			{
+				return this.cmetBindings;
+			}
+		}
+
+		public virtual CmetBinding GetCmetBinding(string name)
+		{
+			CmetBinding result = null;
+			foreach (CmetBinding cmetBinding in this.cmetBindings)
+			{
+				if (cmetBinding.CmetName.Equals(name))
+				{
+					result = cmetBinding;
+				}
+			}
+			return result;
+		}
+
+		public virtual void AddCmetBinding(CmetBinding cmetbinding)
+		{
+			this.cmetBindings.Add(cmetbinding);
+		}
+
+		public virtual bool Cmet
+		{
+			get
+			{
+				return !this.cmetBindings.IsEmpty();
+			}
 		}
 	}
 }

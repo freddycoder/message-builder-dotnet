@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System;
@@ -51,53 +51,68 @@ namespace Ca.Infoway.Messagebuilder.Model.Mock
 		private readonly IList<AcknowledgementDetailBean> acknowledgementDetails = new List<AcknowledgementDetailBean>();
 
 		[Hl7XmlMappingAttribute("messageWaitingNumber")]
-		public virtual Int32? GetMessageWaitingNumber()
+		public virtual Int32? MessageWaitingNumber
 		{
-			return this.messageWaitingNumber.Value;
-		}
-
-		public virtual void SetMessageWaitingNumber(Int32? messageWaitingNumber)
-		{
-			this.messageWaitingNumber.Value = messageWaitingNumber;
+			get
+			{
+				return this.messageWaitingNumber.Value;
+			}
+			set
+			{
+				Int32? messageWaitingNumber = value;
+				this.messageWaitingNumber.Value = messageWaitingNumber;
+			}
 		}
 
 		[Hl7XmlMappingAttribute("messageWaitingPriorityCode")]
-		public virtual MessageWaitingPriority GetMessageWaitingPriorityCode()
+		public virtual MessageWaitingPriority MessageWaitingPriorityCode
 		{
-			return (MessageWaitingPriority)this.messageWaitingPriorityCode.Value;
-		}
-
-		public virtual void SetMessageWaitingPriorityCode(MessageWaitingPriority messageWaitingPriorityCode)
-		{
-			this.messageWaitingPriorityCode.Value = messageWaitingPriorityCode;
+			get
+			{
+				return (MessageWaitingPriority)this.messageWaitingPriorityCode.Value;
+			}
+			set
+			{
+				MessageWaitingPriority messageWaitingPriorityCode = value;
+				this.messageWaitingPriorityCode.Value = messageWaitingPriorityCode;
+			}
 		}
 
 		[Hl7XmlMappingAttribute("acknowledgementDetail")]
-		public virtual IList<AcknowledgementDetailBean> GetAcknowledgementDetails()
+		public virtual IList<AcknowledgementDetailBean> AcknowledgementDetails
 		{
-			return this.acknowledgementDetails;
+			get
+			{
+				return this.acknowledgementDetails;
+			}
 		}
 
 		[Hl7XmlMappingAttribute("targetMessage/id")]
-		public virtual Identifier GetTargetMessage()
+		public virtual Identifier TargetMessage
 		{
-			return this.targetMessage.Value;
-		}
-
-		public virtual void SetTargetMessage(Identifier targetMessage)
-		{
-			this.targetMessage.Value = targetMessage;
+			get
+			{
+				return this.targetMessage.Value;
+			}
+			set
+			{
+				Identifier targetMessage = value;
+				this.targetMessage.Value = targetMessage;
+			}
 		}
 
 		[Hl7XmlMappingAttribute("typeCode")]
-		public virtual AcknowledgementType GetAcknowledgementType()
+		public virtual Ca.Infoway.Messagebuilder.Domainvalue.AcknowledgementType AcknowledgementType
 		{
-			return (AcknowledgementType)this.acknowledgementType.Value;
-		}
-
-		public virtual void SetAcknowledgementType(AcknowledgementType acknowledgementType)
-		{
-			this.acknowledgementType.Value = acknowledgementType;
+			get
+			{
+				return (Ca.Infoway.Messagebuilder.Domainvalue.AcknowledgementType)this.acknowledgementType.Value;
+			}
+			set
+			{
+				Ca.Infoway.Messagebuilder.Domainvalue.AcknowledgementType acknowledgementType = value;
+				this.acknowledgementType.Value = acknowledgementType;
+			}
 		}
 	}
 }

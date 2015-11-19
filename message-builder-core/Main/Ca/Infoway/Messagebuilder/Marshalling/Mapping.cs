@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System;
@@ -28,7 +28,7 @@ using ILOG.J2CsMapping.Collections.Generics;
 
 namespace Ca.Infoway.Messagebuilder.Marshalling
 {
-	internal class Mapping
+	public class Mapping
 	{
 		internal class PartTypeMapping
 		{
@@ -160,22 +160,40 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 
 		public virtual IList<NamedAndTyped> GetAllTypes()
 		{
+			return GetAllTypes(this.mapping);
+		}
+
+		private IList<NamedAndTyped> GetAllTypes(string suppliedMapping)
+		{
 			IList<NamedAndTyped> types = new List<NamedAndTyped>();
 			if (HasPartTypeMappings())
 			{
 				foreach (Mapping.PartTypeMapping map in this.mappings)
 				{
-					if (StringUtils.Equals(this.mapping, map.GetName()))
+					if (StringUtils.Equals(suppliedMapping, map.GetName()))
 					{
-						types.Add(new RelationshipMap.Key(this.mapping, map.Type));
+						types.Add(new RelationshipMap.Key(suppliedMapping, map.Type));
 					}
 				}
 			}
 			else
 			{
-				types.Add(new RelationshipMap.Key(this.mapping));
+				types.Add(new RelationshipMap.Key(suppliedMapping));
 			}
 			return types;
+		}
+
+		public virtual IList<NamedAndTyped> GetAllTypesIncludingAttribute()
+		{
+			IList<NamedAndTyped> results = GetAllTypes();
+			if (results.IsEmpty() && IsCompound())
+			{
+				// this mapping is likely for an attribute; back the mapping up one step to find type matches
+				int lastSlash = this.mapping.LastIndexOf('/');
+				string newMapping = Ca.Infoway.Messagebuilder.StringUtils.Substring(this.mapping, 0, lastSlash);
+				results = GetAllTypes(newMapping);
+			}
+			return results;
 		}
 
 		public virtual bool HasPartTypeMappings()

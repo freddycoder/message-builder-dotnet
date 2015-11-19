@@ -26,7 +26,8 @@
 namespace Ca.Infoway.Messagebuilder.Datatype.Impl {
 	
 	using Ca.Infoway.Messagebuilder.Datatype;
-	using Ca.Infoway.Messagebuilder.Domainvalue;
+    using Ca.Infoway.Messagebuilder.Datatype.Lang.Util;
+    using Ca.Infoway.Messagebuilder.Domainvalue;
 	using System;
 	using System.Collections;
 	using System.Collections.Generic;
@@ -76,6 +77,5 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Impl {
 		public QTYImpl(Type rawType, V value_ren, NullFlavor nullFlavor,
 				StandardDataType dataType) : base(rawType, value_ren, nullFlavor, dataType) {
 		}
-	
 	}
 }

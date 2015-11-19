@@ -14,15 +14,16 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System.Text;
 using Ca.Infoway.Messagebuilder;
+using Ca.Infoway.Messagebuilder.Error;
 using Ca.Infoway.Messagebuilder.Lang;
 using Ca.Infoway.Messagebuilder.Marshalling;
-using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Xml;
+using Ca.Infoway.Messagebuilder.Xml.Util;
 
 namespace Ca.Infoway.Messagebuilder.Marshalling
 {
@@ -37,24 +38,33 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 
 		public virtual void Render(StringBuilder builder, string propertyPath, Hl7Errors errors)
 		{
-			if (this.relationship.Fixed)
+			Relationship r = this.relationship;
+			if (r.HasFixedValue())
 			{
-				FormatFixedValue(builder, relationship);
+				FormatFixedValue(builder, r);
 			}
 			else
 			{
 				object value = GetValue();
-				if (value != null)
+				// structural attributes should never have a conformance of populated, and should never have a nullFlavor (no need to check these cases)
+				if (value == null && ConformanceLevelUtil.IsMandatory(r) && r.HasDefaultValue())
 				{
-					FormatValue(builder, relationship, value);
+					FormatDefaultValue(builder, r);
 				}
 				else
 				{
-					if (this.relationship.Conformance == Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY)
+					if (value != null)
 					{
-						string errorMessage = "Relationship " + this.relationship.Name + " is mandatory (and not a fixed value), but no value is specified";
-						Hl7Error error = new Hl7Error(Hl7ErrorCode.DATA_TYPE_ERROR, errorMessage, propertyPath);
-						errors.AddHl7Error(error);
+						FormatValue(builder, r, value);
+					}
+					else
+					{
+						if (ConformanceLevelUtil.IsMandatory(this.relationship))
+						{
+							string errorMessage = "Relationship " + r.Name + " is mandatory (and not a fixed or default value), but no value is specified";
+							Hl7Error error = new Hl7Error(Hl7ErrorCode.DATA_TYPE_ERROR, errorMessage, propertyPath);
+							errors.AddHl7Error(error);
+						}
 					}
 				}
 			}
@@ -79,7 +89,22 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 			{
 				if ("CS".Equals(type))
 				{
-					return ((Code)value).CodeValue;
+					if (CodedTypeR2Helper.IsCodedTypeR2(value))
+					{
+						return CodedTypeR2Helper.GetCodeValue(value);
+					}
+					else
+					{
+						if (value is Code)
+						{
+							return ((Code)value).CodeValue;
+						}
+						else
+						{
+							throw new MarshallingException("Encountered value \"" + value + "\" of type " + value.GetType().FullName + " when Code was expected ("
+								 + relationship.Name + ")");
+						}
+					}
 				}
 				else
 				{
@@ -89,8 +114,15 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 					}
 					else
 					{
-						throw new MarshallingException("Cannot handle structural attribute string of type " + type + " (" + relationship.Name + ")"
-							);
+						if ("ST".Equals(type))
+						{
+							return (string)value;
+						}
+						else
+						{
+							throw new MarshallingException("Cannot handle structural attribute string of type " + type + " (" + relationship.Name + ")"
+								);
+						}
 					}
 				}
 			}
@@ -98,8 +130,22 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 
 		private void FormatFixedValue(StringBuilder builder, Relationship relationship)
 		{
-			builder.Append(" ").Append(relationship.Name).Append("=\"").Append(XmlStringEscape.Escape(relationship.FixedValue)).Append
-				("\"");
+			// suppress rendering of required or optional fixed values
+			if (ConformanceLevelUtil.IsMandatory(relationship) || ConformanceLevelUtil.IsPopulated(relationship))
+			{
+				builder.Append(" ").Append(relationship.Name).Append("=\"").Append(XmlStringEscape.Escape(relationship.FixedValue)).Append
+					("\"");
+			}
+		}
+
+		private void FormatDefaultValue(StringBuilder builder, Relationship relationship)
+		{
+			// suppress rendering of required or optional fixed values
+			if (ConformanceLevelUtil.IsMandatory(relationship) || ConformanceLevelUtil.IsPopulated(relationship))
+			{
+				builder.Append(" ").Append(relationship.Name).Append("=\"").Append(XmlStringEscape.Escape(relationship.DefaultValue)).Append
+					("\"");
+			}
 		}
 	}
 }

@@ -50,9 +50,6 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 	/// <param name="T"> the underlying urg's   datatype (eg. Date)</param>
 	public class UncertainRange<T> : Interval<T> {
 
-        private Boolean? lowInclusive;
-        private Boolean? highInclusive;
-
         /// <summary>
         /// Constructs an uncertain range.
         /// Recommended to use the UncertainRangeFactory class for object creation.
@@ -145,32 +142,8 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
         public UncertainRange(T low, T high, T centre, Diff<T> width, Representation representation, NullFlavor lowNullFlavor, NullFlavor highNullFlavor, NullFlavor centreNullFlavor, Boolean? lowInclusive, Boolean? highInclusive)
             : base(low, high, centre, width, representation, lowNullFlavor, highNullFlavor, centreNullFlavor)
         {
-            this.lowInclusive = lowInclusive;
-            this.highInclusive = highInclusive;
-        }
-
-        public Boolean? LowInclusive
-        {
-            get
-            {
-                return lowInclusive;
-            }
-            set
-            {
-                this.lowInclusive = value;
-            }
-        }
-
-        public Boolean? HighInclusive
-        {
-            get
-            {
-                return highInclusive;
-            }
-            set
-            {
-                this.highInclusive = value;
-            }
+            base.LowInclusive = lowInclusive;
+            base.HighInclusive = highInclusive;
         }
     }
 }

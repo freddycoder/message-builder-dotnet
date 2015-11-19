@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System.Xml;
@@ -41,8 +41,13 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 
 		private ParseContext CreateStContext(string type)
 		{
-			return ParserContextImpl.Create(type, typeof(string), SpecificationVersion.V02R02, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
-				.OPTIONAL, null, 25);
+			return CreateStContext(type, 25);
+		}
+
+		private ParseContext CreateStContext(string type, int length)
+		{
+			return ParseContextImpl.Create(type, typeof(string), SpecificationVersion.V02R02, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
+				.OPTIONAL, null, null, length, null, false);
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -75,6 +80,43 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			XmlNode node = CreateNode("<something>text value</something>");
 			Assert.AreEqual("text value", new StElementParser().Parse(CreateStContext("ST"), node, this.xmlResult).BareValue, "proper text returned"
 				);
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void ShouldParseTextNodeAsCdata()
+		{
+			XmlNode node = CreateNode("<something><![CDATA[<cats think they're > humans & dogs 99% of the time/>]]></something>");
+			BareANY parseResult = new StElementParser().Parse(CreateStContext("ST", 100), node, this.xmlResult);
+			Assert.IsTrue(this.xmlResult.IsValid());
+			Assert.IsTrue(parseResult is ST);
+			Assert.IsTrue(((ST)parseResult).IsCdata, "noted as cdata");
+			Assert.AreEqual("<cats think they're > humans & dogs 99% of the time/>", parseResult.BareValue, "proper text returned");
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void ShouldParseTextNodeWithEmptyCdata()
+		{
+			XmlNode node = CreateNode("<something><![CDATA[]]></something>");
+			BareANY parseResult = new StElementParser().Parse(CreateStContext("ST"), node, this.xmlResult);
+			Assert.IsTrue(this.xmlResult.IsValid());
+			Assert.IsTrue(parseResult is ST);
+			Assert.IsTrue(((ST)parseResult).IsCdata, "noted as cdata");
+			Assert.AreEqual(string.Empty, parseResult.BareValue, "proper text returned");
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void ShouldParseTextNodeWithSpecialCharactersNotCdata()
+		{
+			XmlNode node = CreateNode("<something>&lt;cats think they&apos;re &gt; humans &amp; dogs 99% of the time/&gt;</something>"
+				);
+			BareANY parseResult = new StElementParser().Parse(CreateStContext("ST", 100), node, this.xmlResult);
+			Assert.IsTrue(this.xmlResult.IsValid());
+			Assert.IsTrue(parseResult is ST);
+			Assert.IsFalse(((ST)parseResult).IsCdata, "not cdata");
+			Assert.AreEqual("<cats think they're > humans & dogs 99% of the time/>", parseResult.BareValue, "proper text returned");
 		}
 
 		/// <exception cref="System.Exception"></exception>

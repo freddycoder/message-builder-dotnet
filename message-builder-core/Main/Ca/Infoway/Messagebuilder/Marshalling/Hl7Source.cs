@@ -14,10 +14,11 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System;
+using System.Collections.Generic;
 using System.Xml;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Marshalling;
@@ -37,9 +38,9 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 
 		VersionNumber GetVersion();
 
-		TimeZone GetDateTimeZone();
+		TimeZoneInfo GetDateTimeZone();
 
-		TimeZone GetDateTimeTimeZone();
+		TimeZoneInfo GetDateTimeTimeZone();
 
 		string Type
 		{
@@ -50,8 +51,16 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 
 		Hl7PartSource CreatePartSource(Relationship relationship, XmlElement currentElement);
 
+		Hl7PartSource CreatePartSourceForSpecificType(Relationship relationship, XmlElement currentElement, string type);
+
 		Relationship GetRelationship(string name);
 
+		IList<Relationship> GetAllRelationships();
+
 		Interaction GetInteraction();
+
+		bool IsR2();
+
+		bool IsCda();
 	}
 }

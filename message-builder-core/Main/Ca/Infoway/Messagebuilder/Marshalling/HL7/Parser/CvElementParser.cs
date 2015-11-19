@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System;
@@ -24,8 +24,6 @@ using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Datatype.Impl;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser;
-using Ca.Infoway.Messagebuilder.Terminology;
-using Ca.Infoway.Messagebuilder.Util.Xml;
 
 namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 {
@@ -49,14 +47,32 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 	/// CNE (coded no extensibility): code attribute is mandatory.
 	/// CWE (coded with extensibility): code attribute is required (that is, must be supported
 	/// but not mandatory. originalText may be specified if code is not entered.
-	/// Currently this class does nothing with codeSystem or originalText. Therefore it is
-	/// identical to the CS class.
 	/// </remarks>
 	[DataTypeHandler(new string[] { "CV", "CD", "CE", "CS" })]
 	public class CvElementParser : AbstractCodeTypeElementParser
 	{
+		private CodeLookupUtils codeLookupUtils = new CodeLookupUtils();
+
 		protected override BareANY DoCreateDataTypeInstance(string typeName)
 		{
+			if ("CD".Equals(typeName))
+			{
+				return new CDImpl();
+			}
+			else
+			{
+				if ("CE".Equals(typeName))
+				{
+					return new CEImpl();
+				}
+				else
+				{
+					if ("CS".Equals(typeName))
+					{
+						return new CSImpl();
+					}
+				}
+			}
 			return new CVImpl();
 		}
 
@@ -71,72 +87,28 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		{
 			XmlElement element = (XmlElement)node;
 			PerformStandardValidations(context, element, xmlToModelResult);
-			Type codeType = GetReturnTypeAsCodeType(expectedReturnType);
-			Code code = GetCorrespondingCode(context, element, codeType, xmlToModelResult, codeAttributeName);
-			PopulateOriginalText(result, context, (XmlElement)node, GetReturnType(context), xmlToModelResult);
-			AddTranslations(context, element, (CD)result, expectedReturnType, xmlToModelResult);
+			string code = GetAttributeValue(element, codeAttributeName);
+			string codeSystem = GetAttributeValue(element, AbstractCodeTypeElementParser.CODE_SYSTEM_ATTRIBUTE_NAME);
+			Code actualCode = this.codeLookupUtils.GetCorrespondingCode(code, codeSystem, expectedReturnType, element, context.Type, 
+				xmlToModelResult);
+			PopulateOriginalText(result, context, (XmlElement)node, xmlToModelResult);
+			AddTranslations(context, element, (CD)result, xmlToModelResult);
 			AddDisplayName(element, (CD)result);
 			// this is not the usual way of doing things; this is to make validation easier
-			((BareANYImpl)result).BareValue = code;
-			return code;
+			((BareANYImpl)result).BareValue = actualCode;
+			return actualCode;
 		}
 
 		private void PerformStandardValidations(ParseContext context, XmlElement element, XmlToModelResult result)
 		{
-			if (StandardDataType.CS.Type.Equals(context.Type))
+			StandardDataType type = StandardDataType.GetByTypeName(context);
+			if (type == StandardDataType.CS)
 			{
-				ValidateUnallowedAttributes(context.Type, element, result, AbstractCodeTypeElementParser.CODE_SYSTEM_ATTRIBUTE_NAME);
+				ValidateUnallowedAttributes(type, element, result, AbstractCodeTypeElementParser.CODE_SYSTEM_ATTRIBUTE_NAME);
 			}
-			ValidateUnallowedAttributes(context.Type, element, result, "codeSystemName");
-			ValidateUnallowedAttributes(context.Type, element, result, "codeSystemVersion");
+			ValidateUnallowedAttributes(type, element, result, "codeSystemName");
+			ValidateUnallowedAttributes(type, element, result, "codeSystemVersion");
 			ValidateUnallowedChildNode(context.Type, element, result, "qualifier");
-		}
-
-		private bool IsInterface(Type codeType)
-		{
-			return codeType.IsInterface;
-		}
-
-		private Code GetCorrespondingCode(ParseContext context, XmlElement element, Type codeType, XmlToModelResult xmlToModelResult
-			, string codeAttributeName)
-		{
-			string code = GetAttributeValue(element, codeAttributeName);
-			string codeSystem = GetAttributeValue(element, AbstractCodeTypeElementParser.CODE_SYSTEM_ATTRIBUTE_NAME);
-			if (StandardDataType.CS.Type.Equals(context.Type))
-			{
-				if (codeSystem != null)
-				{
-					xmlToModelResult.AddHl7Error(new Hl7Error(Hl7ErrorCode.DATA_TYPE_ERROR, "CS should not include the 'codeSystem' property. ("
-						 + XmlDescriber.DescribeSingleElement(element) + ")", element));
-				}
-			}
-			else
-			{
-				if (StringUtils.IsNotBlank(code) && StringUtils.IsBlank(codeSystem))
-				{
-					xmlToModelResult.AddHl7Error(CreateMissingCodeSystemError(element, codeType, code));
-				}
-			}
-			Code result = GetCode(codeType, code, codeSystem);
-			// if a code is specified and there is no matching enum value for it,
-			// something is seriously wrong
-			if (StringUtils.IsNotBlank(code) && result == null)
-			{
-				xmlToModelResult.AddHl7Error(CreateInvalidCodeError(element, codeType, code));
-			}
-			// the following code will preserve the codeSystem even if the actual code can not be found
-			if (result == null && !StringUtils.IsEmpty(codeSystem) && IsInterface(codeType))
-			{
-				result = FullCodeWrapper.Wrap(codeType, null, codeSystem);
-			}
-			return result;
-		}
-
-		private Code GetCode(Type expectedReturnType, string codeValue, string codeSystem)
-		{
-			Type returnType = GetReturnTypeAsCodeType(expectedReturnType);
-			CodeResolver resolver = CodeResolverRegistry.GetResolver(returnType);
-			return resolver.Lookup<Code>(returnType, codeValue, codeSystem);
 		}
 
 		private void AddDisplayName(XmlElement element, CD result)
@@ -145,8 +117,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			result.DisplayName = displayName;
 		}
 
-		private void AddTranslations(ParseContext context, XmlElement element, CD result, Type expectedReturnType, XmlToModelResult
-			 xmlToModelResult)
+		private void AddTranslations(ParseContext context, XmlElement element, CD result, XmlToModelResult xmlToModelResult)
 		{
 			XmlNodeList translations = element.GetElementsByTagName("translation");
 			for (int i = 0,  length = translations.Count; i < length; i++)

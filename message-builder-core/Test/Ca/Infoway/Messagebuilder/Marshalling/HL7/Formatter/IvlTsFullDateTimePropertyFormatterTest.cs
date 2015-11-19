@@ -14,14 +14,16 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
+using System;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Datatype.Impl;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
 using Ca.Infoway.Messagebuilder.Datatype.Lang.Util;
+using Ca.Infoway.Messagebuilder.J5goodies;
 using Ca.Infoway.Messagebuilder.Lang;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter;
@@ -62,6 +64,14 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 				}
 			}
 
+			public virtual string CodeSystemName
+			{
+				get
+				{
+					return null;
+				}
+			}
+
 			public virtual string CodeValue
 			{
 				get
@@ -93,10 +103,67 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			AssertXml("result", "<name><width nullFlavor=\"OTH\"/></name>", result);
 		}
 
-		// incorrect ST (IVL<TS.FULLDATETIME> will be used)
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void TestBasicAbstract()
+		{
+			TimeZoneInfo timeZone = TimeZoneUtil.GetTimeZone("America/Toronto");
+			Interval<PlatformDate> interval = IntervalFactory.CreateLowHigh<PlatformDate>(DateUtil.GetDate(2006, 11, 25, 11, 12, 13, 
+				0, timeZone), DateUtil.GetDate(2007, 0, 2, 10, 11, 12, 0, timeZone));
+			IVLImpl<QTY<PlatformDate>, Interval<PlatformDate>> hl7DataType = new IVLImpl<QTY<PlatformDate>, Interval<PlatformDate>>(interval
+				);
+			hl7DataType.DataType = StandardDataType.IVL_FULL_DATE_TIME;
+			string result = new IvlTsPropertyFormatter().Format(new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl
+				(this.result, null, "name", "IVL<TS.FULLDATEWITHTIME>", Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.POPULATED, null, 
+				false, SpecificationVersion.V02R02, timeZone, timeZone, null, false), hl7DataType);
+			Assert.IsTrue(this.result.IsValid());
+			AssertXml("result", "<name specializationType=\"IVL_TS.FULLDATETIME\" xsi:type=\"IVL_TS\"><low value=\"20061225111213.0000-0500\"/><high value=\"20070102101112.0000-0500\"/></name>"
+				, result);
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void TestBasicAbstractPartTime()
+		{
+			TimeZoneInfo timeZone = TimeZoneUtil.GetTimeZone("America/Toronto");
+			PlatformDate lowDate = new DateWithPattern(DateUtil.GetDate(2006, 11, 25, 11, 12, 13, 0, timeZone), "yyyyMMddHHZZZZZ");
+			PlatformDate highDate = new DateWithPattern(DateUtil.GetDate(2007, 0, 2, 10, 11, 12, 0, timeZone), "yyyyMMddHHZZZZZ");
+			Interval<PlatformDate> interval = IntervalFactory.CreateLowHigh<PlatformDate>(lowDate, highDate);
+			IVLImpl<QTY<PlatformDate>, Interval<PlatformDate>> hl7DataType = new IVLImpl<QTY<PlatformDate>, Interval<PlatformDate>>(interval
+				);
+			hl7DataType.DataType = StandardDataType.IVL_FULL_DATE_PART_TIME;
+			string result = new IvlTsPropertyFormatter().Format(new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl
+				(this.result, null, "name", "IVL<TS.FULLDATEWITHTIME>", Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.POPULATED, null, 
+				false, SpecificationVersion.V02R02, timeZone, timeZone, null, false), hl7DataType);
+			Assert.IsTrue(this.result.IsValid());
+			AssertXml("result", "<name specializationType=\"IVL_TS.FULLDATEPARTTIME\" xsi:type=\"IVL_TS\"><low value=\"2006122511-0500\"/><high value=\"2007010210-0500\"/></name>"
+				, result);
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void TestBasicAbstractInvalidSpecializationType()
+		{
+			TimeZoneInfo timeZone = TimeZoneUtil.GetTimeZone("America/Toronto");
+			Interval<PlatformDate> interval = IntervalFactory.CreateLowHigh<PlatformDate>(DateUtil.GetDate(2006, 11, 25, 11, 12, 13, 
+				0, timeZone), DateUtil.GetDate(2007, 0, 2, 10, 11, 12, 0, timeZone));
+			IVLImpl<QTY<PlatformDate>, Interval<PlatformDate>> hl7DataType = new IVLImpl<QTY<PlatformDate>, Interval<PlatformDate>>(interval
+				);
+			hl7DataType.DataType = StandardDataType.TS_FULLDATETIME;
+			string result = new IvlTsPropertyFormatter().Format(new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl
+				(this.result, null, "name", "IVL<TS.FULLDATEWITHTIME>", Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.POPULATED, null, 
+				false, SpecificationVersion.V02R02, timeZone, timeZone, null, false), hl7DataType);
+			Assert.IsFalse(this.result.IsValid());
+			Assert.AreEqual(1, this.result.GetHl7Errors().Count);
+			// incorrect ST (IVL<TS.FULLDATETIME> will be used)
+			AssertXml("result", "<name specializationType=\"IVL_TS.FULLDATETIME\" xsi:type=\"IVL_TS\"><low value=\"20061225111213.0000-0500\"/><high value=\"20070102101112.0000-0500\"/></name>"
+				, result);
+		}
+
 		protected override FormatContext GetContext(string name)
 		{
-			return new FormatContextImpl(new ModelToXmlResult(), null, name, "IVL<TS.FULLDATETIME>", null);
+			return new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl(new ModelToXmlResult(), null, name, "IVL<TS.FULLDATETIME>"
+				, null, null, false);
 		}
 	}
 }

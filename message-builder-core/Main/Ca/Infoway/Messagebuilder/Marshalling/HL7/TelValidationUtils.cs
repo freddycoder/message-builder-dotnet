@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System.Collections.Generic;
@@ -22,7 +22,7 @@ using System.Xml;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
-using Ca.Infoway.Messagebuilder.Marshalling.HL7;
+using Ca.Infoway.Messagebuilder.Error;
 using Ca.Infoway.Messagebuilder.Util.Xml;
 using ILOG.J2CsMapping.Text;
 
@@ -202,16 +202,34 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7
 			, XmlElement element, string propertyPath, Hl7Errors errors)
 		{
 			Ca.Infoway.Messagebuilder.Domainvalue.URLScheme urlScheme = telecomAddress.UrlScheme;
+			string urlSchemeValue = (urlScheme == null ? null : urlScheme.CodeValue.ToLower());
 			if (urlScheme == null)
 			{
 				CreateError("TelecomAddress must have a valid URL scheme (e.g. 'http://')", element, propertyPath, errors);
 			}
 			else
 			{
-				ICollection<string> allowableSchemes = ALLOWABLE_SCHEMES_BY_TYPE.SafeGet(type);
-				if (allowableSchemes == null || !allowableSchemes.Contains(urlScheme.CodeValue))
+				if (StandardDataType.TEL.Type.Equals(type))
 				{
+					// any known scheme should be ok here
+					ICollection<ICollection<string>> values = ALLOWABLE_SCHEMES_BY_TYPE.Values;
+					foreach (ICollection<string> set in values)
+					{
+						if (set.Contains(urlSchemeValue))
+						{
+							return;
+						}
+					}
+					// we're good here
 					CreateError("TelecomAddressScheme " + urlScheme.CodeValue + " is not valid for " + type, element, propertyPath, errors);
+				}
+				else
+				{
+					ICollection<string> allowableSchemes = ALLOWABLE_SCHEMES_BY_TYPE.SafeGet(type);
+					if (allowableSchemes == null || !allowableSchemes.Contains(urlSchemeValue))
+					{
+						CreateError("TelecomAddressScheme " + urlScheme.CodeValue + " is not valid for " + type, element, propertyPath, errors);
+					}
 				}
 			}
 		}
@@ -253,14 +271,14 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7
 		{
 			Hl7BaseVersion baseVersion = version.GetBaseVersion();
 			return !StandardDataType.TEL_URI.Type.Equals(dataType) && telecomAddressUse != null && telecomAddressUse.CodeValue != null
-				 && ALLOWABLE_TELECOM_USES.Contains(telecomAddressUse.CodeValue) && !(StandardDataType.TEL_EMAIL.Type.Equals(dataType) &&
-				 IsPgConfDir(telecomAddressUse)) && !(IsMr2007(baseVersion) && IsConf(telecomAddressUse)) && !(IsCeRxOrNewfoundland(version
-				) && IsConfOrDir(telecomAddressUse));
+				 && ALLOWABLE_TELECOM_USES.Contains(telecomAddressUse.CodeValue != null ? telecomAddressUse.CodeValue.ToUpper() : null) 
+				&& !(StandardDataType.TEL_EMAIL.Type.Equals(dataType) && IsPgConfDir(telecomAddressUse)) && !(IsMr2007(baseVersion) && IsConf
+				(telecomAddressUse)) && !(IsCeRxOrNewfoundland(version) && IsConfOrDir(telecomAddressUse));
 		}
 
 		private bool IsMr2007(Hl7BaseVersion baseVersion)
 		{
-			return baseVersion == Hl7BaseVersion.MR2007 || baseVersion == Hl7BaseVersion.MR2007_V02R01;
+			return baseVersion == Hl7BaseVersion.MR2007;
 		}
 
 		private bool IsCeRxOrNewfoundland(VersionNumber version)

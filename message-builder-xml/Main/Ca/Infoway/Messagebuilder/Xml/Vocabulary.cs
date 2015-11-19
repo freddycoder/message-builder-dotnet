@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System.Collections.Generic;
@@ -31,6 +31,9 @@ namespace Ca.Infoway.Messagebuilder.Xml
 
 		[ElementListAttribute(Inline = true, Required = false, Entry = "conceptDomain")]
 		private IList<ConceptDomain> conceptDomains = new List<ConceptDomain>();
+
+		[ElementListAttribute(Inline = true, Required = false, Entry = "codeSystem")]
+		private IList<CodeSystem> codeSystems = new List<CodeSystem>();
 
 		public virtual IList<ValueSet> ValueSets
 		{
@@ -55,6 +58,19 @@ namespace Ca.Infoway.Messagebuilder.Xml
 			{
 				IList<ConceptDomain> conceptDomains = value;
 				this.conceptDomains = conceptDomains;
+			}
+		}
+
+		public virtual IList<CodeSystem> CodeSystems
+		{
+			get
+			{
+				return codeSystems;
+			}
+			set
+			{
+				IList<CodeSystem> codeSystems = value;
+				this.codeSystems = codeSystems;
 			}
 		}
 	}

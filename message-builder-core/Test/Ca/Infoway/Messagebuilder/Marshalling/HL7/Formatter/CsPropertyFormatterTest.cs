@@ -14,12 +14,13 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System.Collections.Generic;
 using System.Xml;
 using Ca.Infoway.Messagebuilder;
+using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Datatype.Impl;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter;
@@ -31,6 +32,15 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 	[TestFixture]
 	public class CsPropertyFormatterTest : FormatterTestCase
 	{
+		private class TestableCsPropertyFormatter : CsPropertyFormatter, TestableAbstractValueNullFlavorPropertyFormatter<Code>
+		{
+			public virtual IDictionary<string, string> GetAttributeNameValuePairsForTest(FormatContext context, Code t, BareANY bareAny
+				)
+			{
+				return base.GetAttributeNameValuePairs(context, t, bareAny);
+			}
+		}
+
 		internal class FakeCode : Code
 		{
 			public FakeCode(CsPropertyFormatterTest _enclosing)
@@ -43,6 +53,15 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 				get
 				{
 					return "1.1";
+				}
+			}
+
+			/// <summary><inheritDoc></inheritDoc></summary>
+			public virtual string CodeSystemName
+			{
+				get
+				{
+					return null;
 				}
 			}
 
@@ -61,8 +80,9 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		[Test]
 		public virtual void TestGetAttributeNameValuePairsNullValue()
 		{
-			IDictionary<string, string> result = new CsPropertyFormatter().GetAttributeNameValuePairs(new FormatContextImpl(new ModelToXmlResult
-				(), null, "name", null, null), null, null);
+			IDictionary<string, string> result = new CsPropertyFormatterTest.TestableCsPropertyFormatter().GetAttributeNameValuePairsForTest
+				(new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl(new ModelToXmlResult(), null, "name", null, null
+				, null, false), null, null);
 			Assert.AreEqual(0, result.Count, "map size");
 		}
 
@@ -71,8 +91,9 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		public virtual void TestGetAttributeNameValuePairsEnum()
 		{
 			// used as expected: an enumerated object is passed in
-			IDictionary<string, string> result = new CsPropertyFormatter().GetAttributeNameValuePairs(new FormatContextImpl(new ModelToXmlResult
-				(), null, "name", null, null), CeRxDomainTestValues.CENTIMETRE, null);
+			IDictionary<string, string> result = new CsPropertyFormatterTest.TestableCsPropertyFormatter().GetAttributeNameValuePairsForTest
+				(new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl(new ModelToXmlResult(), null, "name", null, null
+				, null, false), CeRxDomainTestValues.CENTIMETRE, null);
 			Assert.AreEqual(1, result.Count, "map size");
 			Assert.IsTrue(result.ContainsKey("code"), "key as expected");
 			Assert.AreEqual("cm", result.SafeGet("code"), "value as expected");
@@ -82,8 +103,9 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		[Test]
 		public virtual void TestGetAttributeNameValuePairsWithoutCodeSystem()
 		{
-			IDictionary<string, string> result = new CsPropertyFormatter().GetAttributeNameValuePairs(new FormatContextImpl(new ModelToXmlResult
-				(), null, "name", null, null), new MockCodeImpl("fred", "The Flintstones"), null);
+			IDictionary<string, string> result = new CsPropertyFormatterTest.TestableCsPropertyFormatter().GetAttributeNameValuePairsForTest
+				(new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl(new ModelToXmlResult(), null, "name", null, null
+				, null, false), new MockCodeImpl("fred", "The Flintstones"), null);
 			Assert.AreEqual(1, result.Count, "map size");
 			Assert.IsFalse(result.ContainsKey("codeSystem"), "key as expected");
 		}
@@ -94,7 +116,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		{
 			CSImpl cs = new CSImpl(new CsPropertyFormatterTest.FakeCode(this));
 			cs.OriginalText = "The Flintstones";
-			string result = new CsPropertyFormatter().Format(GetContext("character"), cs);
+			string result = new CsPropertyFormatterTest.TestableCsPropertyFormatter().Format(GetContext("character"), cs);
 			Assert.AreEqual(1, this.result.GetHl7Errors().Count);
 			Assert.IsTrue(this.result.GetHl7Errors()[0].GetMessage().StartsWith("Could not locate a registered domain type to match "
 				));
@@ -107,7 +129,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		[Test]
 		public virtual void TestFormatNull()
 		{
-			string result = new CsPropertyFormatter().Format(GetContext("option"), new CSImpl(Ca.Infoway.Messagebuilder.Domainvalue.Nullflavor.NullFlavor
+			string result = new CsPropertyFormatterTest.TestableCsPropertyFormatter().Format(GetContext("option"), new CSImpl(Ca.Infoway.Messagebuilder.Domainvalue.Nullflavor.NullFlavor
 				.OTHER));
 			Assert.IsTrue(this.result.IsValid());
 			XmlDocument document = new DocumentFactory().CreateFromString(result);
@@ -122,7 +144,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		[Test]
 		public virtual void TestFormatNullWithCodeSystem()
 		{
-			string xml = new CsPropertyFormatter().Format(GetContext("option"), new CSImpl(Ca.Infoway.Messagebuilder.Domainvalue.Nullflavor.NullFlavor
+			string xml = new CsPropertyFormatterTest.TestableCsPropertyFormatter().Format(GetContext("option"), new CSImpl(Ca.Infoway.Messagebuilder.Domainvalue.Nullflavor.NullFlavor
 				.OTHER));
 			Assert.IsTrue(this.result.IsValid());
 			XmlDocument document = new DocumentFactory().CreateFromString(xml);

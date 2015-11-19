@@ -14,8 +14,8 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2013-03-01 17:48:17 -0500 (Fri, 01 Mar 2013) $
- * Revision:      $LastChangedRevision: 6663 $
+ * Last modified: $LastChangedDate: 2013-10-04 19:09:29 -0400 (Fri, 04 Oct 2013) $
+ * Revision:      $LastChangedRevision: 7938 $
  */
 
 /// ---------------------------------------------------------------------------------------------------
@@ -114,16 +114,18 @@ namespace Ca.Infoway.Messagebuilder.Terminology.Codeset.Dao {
 		///
 		/// <param name="valueSetName">the value set name</param>
 		/// <param name="code">the c</param>
-		/// <returns>the value set entry</returns>
-		ValueSetEntry FindValueSetEntry(String valueSetName, Code code);
+        /// <param name="version">the version</param>
+        /// <returns>the value set entry</returns>
+		ValueSetEntry FindValueSetEntry(String valueSetName, Code code, String version);
 	
 		/// <summary>
 		/// Find value set.
 		/// </summary>
 		///
 		/// <param name="name">the name</param>
-		/// <returns>the value set</returns>
-		ValueSet FindValueSet(String name);
+        /// <param name="version">the version</param>
+        /// <returns>the value set</returns>
+		ValueSet FindValueSet(String name, String version);
 	
 		/// <summary>
 		/// Save.

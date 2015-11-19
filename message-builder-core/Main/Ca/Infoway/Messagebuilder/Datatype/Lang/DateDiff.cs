@@ -40,7 +40,7 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 	/// A specialist Diff class for Dates.
 	/// </summary>
 	///
-    public class DateDiff : Diff<Ca.Infoway.Messagebuilder.PlatformDate>, NullFlavorSupport
+    public class DateDiff : Diff<Ca.Infoway.Messagebuilder.PlatformDate>, NullFlavorSupport, DiffWithQuantityAndUnit
     {
 
         // SS-20090407: Bug 10882 has been opened to allow this class to handle fractional units.
@@ -115,7 +115,7 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
             }
             else if (unit != null)
             {
-                DefaultTimeUnit timeUnit = DefaultTimeUnit.Lookup(unit.CodeValue);
+                DefaultTimeUnit timeUnit = DefaultTimeUnit.Lookup(unit.CodeValue); // lookup will ignore case
                 return (timeUnit == null) ? null : new Ca.Infoway.Messagebuilder.PlatformDate(timeUnit
                                     .ToMilliseconds(value_ren));
             }
@@ -206,6 +206,37 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
         public static DateDiff ConvertDiff<T>(Diff<T> inValue)
         {
             return inValue as DateDiff;
+        }
+    
+        public override int GetHashCode()
+        {
+            return new HashCodeBuilder()
+                    .AppendSuper(base.GetHashCode())
+                    .Append(this.value_ren)
+                    .Append(this.quantity)
+                    .ToHashCode();
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+            else if (obj.GetType() != GetType())
+            {
+                return false;
+            } else {
+                return Equals((DateDiff) obj);
+            }
+        }
+    
+        private bool Equals(DateDiff that)
+        {
+            return new EqualsBuilder().AppendSuper(base.Equals(that))
+                    .Append(this.value_ren, that.value_ren)
+                    .Append(this.quantity, that.quantity)
+                    .IsEquals();
         }
     }
 }

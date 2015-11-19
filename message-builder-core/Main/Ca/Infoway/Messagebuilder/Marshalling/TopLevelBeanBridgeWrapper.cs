@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System.Collections.Generic;
@@ -25,6 +25,7 @@ using Ca.Infoway.Messagebuilder.Datatype.Lang;
 using Ca.Infoway.Messagebuilder.Domainvalue;
 using Ca.Infoway.Messagebuilder.Marshalling;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
+using Ca.Infoway.Messagebuilder.Xml;
 
 namespace Ca.Infoway.Messagebuilder.Marshalling
 {
@@ -77,7 +78,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 			IList<BaseRelationshipBridge> result = new List<BaseRelationshipBridge>();
 			foreach (BaseRelationshipBridge relationshipBridge in this.bridge.GetRelationshipBridges())
 			{
-				if ("versionCode".Equals(relationshipBridge.GetRelationship().Name) && !relationshipBridge.GetRelationship().Fixed)
+				Relationship r = relationshipBridge.GetRelationship();
+				if ("versionCode".Equals(relationshipBridge.GetRelationship().Name) && !r.HasFixedValue())
 				{
 					result.Add(new TopLevelBeanBridgeWrapper.FixedValueIfNotProvidedAttributeBeanBridge(this, (AttributeBridge)relationshipBridge
 						, new CSImpl(Ca.Infoway.Messagebuilder.Domainvalue.Transport.HL7StandardVersionCode.V3_2007_05)));
@@ -87,7 +89,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 					if ("interactionId".Equals(relationshipBridge.GetRelationship().Name))
 					{
 						IIImpl iiImpl = new IIImpl(new Identifier("2.16.840.1.113883.1.6", this.interactionId));
-						if (iiValidationUtils.IsSpecializationTypeRequired(version, relationshipBridge.GetRelationship().Type))
+						if (iiValidationUtils.IsSpecializationTypeRequired(version, relationshipBridge.GetRelationship().Type, false))
 						{
 							// we must set a concrete specialization type when defined as abstract
 							iiImpl.DataType = StandardDataType.II_PUBLIC;

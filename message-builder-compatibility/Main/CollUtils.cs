@@ -131,6 +131,76 @@ namespace Ca.Infoway.Messagebuilder
             public void Set(T x) { throw new InvalidOperationException("Set"); }
         }
 
+        public static IList<T> CreateUnmodifiableList<T>(IList<T> list)
+        {
+            return new UnmodifiableList<T>(list);
+        }
+
+        private class UnmodifiableList<T> : IList<T>
+        {
+            IList<T> wrappedList;
+            public UnmodifiableList(IList<T> list)
+            {
+                wrappedList = list;
+            }
+            public T this[int index] 
+            {
+                get { return wrappedList[index]; }
+                set
+                {
+                    throw new InvalidOperationException("Item");
+                }
+            }
+            public int IndexOf(T item)
+            {
+                return wrappedList.IndexOf(item);
+            }
+            public void Insert(int index, T item)
+            {
+                throw new InvalidOperationException("Insert");
+            }
+            public void RemoveAt(int index)
+            {
+                throw new InvalidOperationException("RemoveAt");
+            }
+            public int Count
+            {
+                get { return wrappedList.Count; }
+            }
+            public bool IsReadOnly
+            {
+                get { return true; }
+            }
+            public void Add(T e)
+            {
+                throw new InvalidOperationException("Add");
+            }
+            public void Clear()
+            {
+                throw new InvalidOperationException("Clear");
+            }
+            public bool Contains(T item)
+            {
+                return wrappedList.Contains(item);
+            }
+            public void CopyTo(T[] array, int arrayIndex)
+            {
+                wrappedList.CopyTo(array, arrayIndex);
+            }
+            public bool Remove(T item)
+            {
+                throw new InvalidOperationException("Remove");
+            }
+            public IEnumerator<T> GetEnumerator()
+            {
+                return wrappedList.GetEnumerator();
+            }
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return wrappedList.GetEnumerator();
+            }
+        }
+
         public static ILOG.J2CsMapping.Collections.Generics.ISet<T> CreateUnmodifiableSet<T>(ILOG.J2CsMapping.Collections.Generics.ISet<T> s)
         {
             return new UnmodifiabeSet<T>(s);

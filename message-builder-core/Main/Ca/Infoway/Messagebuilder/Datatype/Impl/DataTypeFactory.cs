@@ -46,22 +46,23 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Impl {
 		/// <param name="typeName">the type</param>
 		/// <returns>the created datatype</returns>
 		/* @SuppressWarnings("unchecked")*/
-		public static object /*ANY*/ CreateDataType(String typeName) {
-			Type implementation = Ca.Infoway.Messagebuilder.Datatype.Impl.DataTypeImplementationFactory
-					.GetImplementation(typeName);
+		public static object /*ANY*/ CreateDataType(String typeName, bool isCDAR2) {
+			Type implementation = DataTypeImplementationFactory.GetImplementation(typeName, isCDAR2);
 			try {
 				if (implementation != null) {
+                    if (isCDAR2) {
+                        if (implementation.IsGenericType) {
+                            implementation = implementation.MakeGenericType(typeof(Code));
+                        }
+                    }
 					return Activator.CreateInstance(implementation);
 				} else {
-					throw new Exception("Unable to create data type: "
-							+ typeName);
+					throw new Exception("Unable to create data type: " + typeName);
 				}
 			} catch (TargetException e) {
-				throw new Exception("Unable to create data type: "
-						+ typeName, e);
+				throw new Exception("Unable to create data type: " + typeName, e);
 			} catch (MemberAccessException e_0) {
-				throw new Exception("Unable to create data type: "
-						+ typeName, e_0);
+				throw new Exception("Unable to create data type: " + typeName, e_0);
 			}
 		}
 	}

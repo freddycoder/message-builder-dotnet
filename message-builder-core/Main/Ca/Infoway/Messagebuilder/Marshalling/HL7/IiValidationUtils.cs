@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System;
@@ -68,33 +68,50 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7
 
 		public virtual bool IsOid(string root)
 		{
+			return IsOid(root, false);
+		}
+
+		public virtual bool IsOid(string root, bool isR2)
+		{
 			if (StringUtils.IsBlank(root) || !root.Contains("."))
 			{
 				return false;
 			}
 			else
 			{
-				bool oid = true;
-				while (root.Contains("."))
+				if (isR2 && !(root[0] == '0' || root[0] == '1' || root[0] == '2'))
 				{
-					string prefix = StringUtils.SubstringBefore(root, ".");
-					oid &= (StringUtils.IsNotBlank(prefix) && StringUtils.IsNumeric(prefix));
-					root = StringUtils.SubstringAfter(root, ".");
-				}
-				if (StringUtils.IsBlank(root))
-				{
-					oid = false;
+					return false;
 				}
 				else
 				{
-					oid &= StringUtils.IsNumeric(root);
+					bool oid = true;
+					while (root.Contains("."))
+					{
+						string prefix = StringUtils.SubstringBefore(root, ".");
+						oid &= (StringUtils.IsNotBlank(prefix) && StringUtils.IsNumeric(prefix));
+						root = StringUtils.SubstringAfter(root, ".");
+					}
+					if (StringUtils.IsBlank(root))
+					{
+						oid = false;
+					}
+					else
+					{
+						oid &= StringUtils.IsNumeric(root);
+					}
+					return oid;
 				}
-				return oid;
 			}
 		}
 
 		public virtual bool IsUuid(string root)
 		{
+			// avoid trying to create a UUID - if not a uuid, the call is expensive (especially for .NET)
+			if (root == null || !(root.Length == 36 || root.Length == 32))
+			{
+				return false;
+			}
 			try
 			{
 				UUID.FromString(root);
@@ -106,14 +123,25 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7
 			}
 		}
 
-		public virtual int GetMaxRootLength(VersionNumber version)
+		public virtual bool IsRuid(string root)
 		{
-			return SpecificationVersion.IsVersion(version, Hl7BaseVersion.CERX) ? ROOT_MAX_LENGTH_CERX : ROOT_MAX_LENGTH;
+			bool result = StringUtils.IsBlank(root) ? false : char.IsLetter(root[0]);
+			for (int i = 0; result && i < root.Length; i++)
+			{
+				char ch = root[i];
+				result &= (char.IsLetterOrDigit(ch) || ch == '-');
+			}
+			return result;
 		}
 
-		public virtual bool IsRootLengthInvalid(string root, VersionNumber version)
+		public virtual int GetMaxRootLength(StandardDataType type, VersionNumber version)
 		{
-			return StringUtils.Length(root) > GetMaxRootLength(version);
+			return SpecificationVersion.IsVersion(type, version, Hl7BaseVersion.CERX) ? ROOT_MAX_LENGTH_CERX : ROOT_MAX_LENGTH;
+		}
+
+		public virtual bool IsRootLengthInvalid(string root, StandardDataType type, VersionNumber version)
+		{
+			return StringUtils.Length(root) > GetMaxRootLength(type, version);
 		}
 
 		public virtual int GetMaxExtensionLength()
@@ -126,18 +154,19 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7
 			return StringUtils.Length(extension) > GetMaxExtensionLength();
 		}
 
-		public virtual bool IsCerxOrMr2007(VersionNumber version)
+		public virtual bool IsCerxOrMr2007(VersionNumber version, StandardDataType type)
 		{
-			return SpecificationVersion.IsVersion(version, Hl7BaseVersion.MR2007) || SpecificationVersion.IsVersion(version, Hl7BaseVersion
-				.MR2007_V02R01) || SpecificationVersion.IsVersion(version, Hl7BaseVersion.CERX);
+			return SpecificationVersion.IsVersion(type, version, Hl7BaseVersion.MR2007) || SpecificationVersion.IsVersion(type, version
+				, Hl7BaseVersion.CERX);
 		}
 
-		public virtual bool IsSpecializationTypeRequired(VersionNumber version, string type)
+		public virtual bool IsSpecializationTypeRequired(VersionNumber version, string type, bool isCda)
 		{
+			StandardDataType standardDataType = StandardDataType.GetByTypeName(type);
 			// AB does not treat II as abstract; for CeRx, II is concrete; Newfoundland is excepted to allow our legacy tests to pass
-			return IsIiBusAndVer(type) || (IsII(type) && !(SpecificationVersion.IsVersion(version, Hl7BaseVersion.CERX) || "NEWFOUNDLAND"
-				.Equals(version == null ? null : version.VersionLiteral) || SpecificationVersion.IsExactVersion(SpecificationVersion.V02R02_AB
-				, version)));
+			return IsIiBusAndVer(type) || (IsII(type) && !(isCda || SpecificationVersion.IsVersion(standardDataType, version, Hl7BaseVersion
+				.CERX) || "NEWFOUNDLAND".Equals(version == null ? null : version.VersionLiteral) || SpecificationVersion.IsExactVersion(
+				SpecificationVersion.V02R02_AB, version)));
 		}
 
 		public virtual bool IsIiBusAndVer(string type)
@@ -183,9 +212,14 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7
 			return "root '" + root + "' should be a UUID.";
 		}
 
-		public virtual string GetInvalidRootLengthErrorMessage(string root, VersionNumber version)
+		public virtual string GetRootMustBeUuidRuidOidErrorMessage(string root)
 		{
-			return "root '" + root + "' exceeds maximum allowed length of " + GetMaxRootLength(version) + ".";
+			return "root '" + root + "' must conform to be either a UUID, RUID, or OID.";
+		}
+
+		public virtual string GetInvalidRootLengthErrorMessage(string root, StandardDataType type, VersionNumber version)
+		{
+			return "root '" + root + "' exceeds maximum allowed length of " + GetMaxRootLength(type, version) + ".";
 		}
 
 		public virtual string GetInvalidExtensionLengthErrorMessage(string extension)

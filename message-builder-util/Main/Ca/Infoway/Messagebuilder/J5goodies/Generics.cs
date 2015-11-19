@@ -14,8 +14,8 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2013-03-01 17:48:17 -0500 (Fri, 01 Mar 2013) $
- * Revision:      $LastChangedRevision: 6663 $
+ * Last modified: $LastChangedDate: 2015-01-26 14:22:37 -0500 (Mon, 26 Jan 2015) $
+ * Revision:      $LastChangedRevision: 9146 $
  */
 
 /// ---------------------------------------------------------------------------------------------------
@@ -60,6 +60,9 @@ namespace Ca.Infoway.Messagebuilder.J5goodies {
 		/// <param name="returnType"></param>
 		/// <returns></returns>
 		public static Type GetParameterType(Type returnType) {
+            if (returnType == null) {
+                return returnType;
+            }
 			if (IsCollectionParameterizedType(returnType)) {
 //~				Type[] parameters = ((ParameterizedType) returnType).GetActualTypeArguments();
                 Type[] parameters = returnType.GetGenericArguments();
@@ -92,6 +95,11 @@ namespace Ca.Infoway.Messagebuilder.J5goodies {
 		/// <returns></returns>
 		/* @SuppressWarnings("unchecked")*/
 		public static bool IsCollectionParameterizedType(Type type) {
+
+            if (type == null) {
+                return false;
+            }
+
             try {
                 return type.IsGenericType && typeof(ICollection<>).MakeGenericType(type.GetGenericArguments()).IsAssignableFrom(type);
             }

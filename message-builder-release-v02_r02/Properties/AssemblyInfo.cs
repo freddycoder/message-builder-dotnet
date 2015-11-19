@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2013-03-08 11:06:36 -0500 (Fri, 08 Mar 2013) $
- * Revision:      $LastChangedRevision: 6699 $
+ * Author:        $LastChangedBy: jmis $
+ * Last modified: $LastChangedDate: 2015-09-15 10:11:50 -0400 (Tue, 15 Sep 2015) $
+ * Revision:      $LastChangedRevision: 9766 $
  */
 
 using System.Reflection;
@@ -47,8 +47,8 @@ using Ca.Infoway.Messagebuilder.Annotation;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion("1.4.6.0")]
-[assembly: AssemblyFileVersion("1.4.6.0")]
+[assembly: AssemblyVersion("2.1.1")]
+[assembly: AssemblyFileVersion("2.1.1")]
 
 [assembly: MbtModelVersionNumber("V02R02")]
-[assembly: MbtMessageSet("/messageSet_v02_r02_hotfix5.xml")]
+[assembly: MbtMessageSet("/messageSet_pcs_mr2007_v02_r02.xml")]

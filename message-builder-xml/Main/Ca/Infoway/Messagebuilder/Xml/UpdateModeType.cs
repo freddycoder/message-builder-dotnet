@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2013-03-08 11:06:36 -0500 (Fri, 08 Mar 2013) $
- * Revision:      $LastChangedRevision: 6699 $
+ * Author:        $LastChangedBy: jmis $
+ * Last modified: $LastChangedDate: 2015-05-27 08:43:37 -0400 (Wed, 27 May 2015) $
+ * Revision:      $LastChangedRevision: 9535 $
  */
 using Ca.Infoway.Messagebuilder.Lang;
 
@@ -76,9 +76,12 @@ namespace Ca.Infoway.Messagebuilder.Xml
 		/// <summary>Gets the code for the update mode.</summary>
 		/// <remarks>Gets the code for the update mode.</remarks>
 		/// <returns>the codeValue</returns>
-		public virtual string GetCodeValue()
+		public virtual string CodeValue
 		{
-			return this.codeValue;
+			get
+			{
+				return this.codeValue;
+			}
 		}
 	}
 }

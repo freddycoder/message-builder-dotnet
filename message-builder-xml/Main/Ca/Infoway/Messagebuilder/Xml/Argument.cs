@@ -14,8 +14,8 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2013-03-08 11:06:36 -0500 (Fri, 08 Mar 2013) $
- * Revision:      $LastChangedRevision: 6699 $
+ * Last modified: $LastChangedDate: 2014-05-01 12:01:41 -0400 (Thu, 01 May 2014) $
+ * Revision:      $LastChangedRevision: 8549 $
  */
 using System.Collections.Generic;
 using Ca.Infoway.Messagebuilder;
@@ -177,23 +177,6 @@ namespace Ca.Infoway.Messagebuilder.Xml
 			get
 			{
 				return this.choices;
-			}
-		}
-
-		/// <summary>
-		/// Indicates that an argument is defined as an abstract type and has specific
-		/// choices.
-		/// </summary>
-		/// <remarks>
-		/// Indicates that an argument is defined as an abstract type and has specific
-		/// choices.
-		/// </remarks>
-		/// <returns>true if the argument is abstract and has choices; false otherwise.</returns>
-		public virtual bool Choice
-		{
-			get
-			{
-				return !this.choices.IsEmpty();
 			}
 		}
 

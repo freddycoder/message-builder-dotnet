@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using Ca.Infoway.Messagebuilder;
@@ -37,6 +37,9 @@ namespace Ca.Infoway.Messagebuilder.Domainvalue.Payload
 		public static readonly Ca.Infoway.Messagebuilder.Domainvalue.Payload.RoleClass ROLE = new Ca.Infoway.Messagebuilder.Domainvalue.Payload.RoleClass
 			("ROLE", "ROL");
 
+		public static readonly Ca.Infoway.Messagebuilder.Domainvalue.Payload.RoleClass PAT = new Ca.Infoway.Messagebuilder.Domainvalue.Payload.RoleClass
+			("PAT", "PAT");
+
 		private readonly string codeValue;
 
 		private RoleClass(string name, string codeValue) : base(name)
@@ -50,6 +53,15 @@ namespace Ca.Infoway.Messagebuilder.Domainvalue.Payload
 			get
 			{
 				return Ca.Infoway.Messagebuilder.Codesystem.CodeSystem.VOCABULARY_ROLE_CLASS.Root;
+			}
+		}
+
+		/// <summary><inheritDoc></inheritDoc></summary>
+		public virtual string CodeSystemName
+		{
+			get
+			{
+				return null;
 			}
 		}
 

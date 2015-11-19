@@ -106,6 +106,12 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 			return new PeriodicIntervalTime(null, null, repetitions_0, quantity_1,
 					Representation.FREQUENCY);
 		}
+
+        public static PeriodicIntervalTime CreateFromPivlR2(PeriodicIntervalTimeR2 pivlR2) {
+            DateDiff dateDiff = (pivlR2.Period == null ? null : new DateDiff(pivlR2.Period));
+            Representation representation = pivlR2.Period != null || pivlR2.Phase != null ? Representation.PERIOD_PHASE : Representation.FREQUENCY;
+            return new PeriodicIntervalTime(dateDiff, pivlR2.Phase, pivlR2.FrequencyRepetitions, pivlR2.FrequencyQuantity, representation);
+        }
 	
 		/// <summary>
 		/// Gets the period.
@@ -191,5 +197,42 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 			}
 		}
 		
+        public override int GetHashCode()
+        {
+            return new HashCodeBuilder()
+                    .AppendSuper(base.GetHashCode())
+                    .Append(this.period)
+                    .Append(this.phase)
+                    .Append(this.representation)
+                    .Append(this.repetitions)
+                    .Append(this.quantity)
+                    .ToHashCode();
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+            else if (obj.GetType() != GetType())
+            {
+                return false;
+            } else {
+                return Equals((PeriodicIntervalTime) obj);
+            }
+        }
+    
+        private bool Equals(PeriodicIntervalTime that)
+        {
+            return new EqualsBuilder().AppendSuper(base.Equals(that))
+                    .Append(this.period, that.period)
+                    .Append(this.phase, that.phase)
+                    .Append(this.representation, that.representation)
+                    .Append(this.repetitions, that.repetitions)
+                    .Append(this.quantity, that.quantity)
+                    .IsEquals();
+        }
+	
 	}
 }

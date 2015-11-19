@@ -14,23 +14,25 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System;
 using System.Collections.Generic;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Annotation;
+using Ca.Infoway.Messagebuilder.CodeRegistry;
 using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Datatype.Impl;
+using Ca.Infoway.Messagebuilder.Datatype.Lang;
 using Ca.Infoway.Messagebuilder.Datatype.Nullflavor;
 using Ca.Infoway.Messagebuilder.Domainvalue;
+using Ca.Infoway.Messagebuilder.Domainvalue.Util;
 using Ca.Infoway.Messagebuilder.J5goodies;
 using Ca.Infoway.Messagebuilder.Marshalling;
 using Ca.Infoway.Messagebuilder.Marshalling.Datatypeadapter;
-using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Platform;
-using Ca.Infoway.Messagebuilder.Terminology;
+using Ca.Infoway.Messagebuilder.Resolver;
 using Ca.Infoway.Messagebuilder.Xml;
 using ILOG.J2CsMapping.Collections.Generics;
 using ILOG.J2CsMapping.Text;
@@ -92,7 +94,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 
 		internal virtual void Write(Relationship relationship, object o)
 		{
-			if (!relationship.Fixed)
+			if (!relationship.HasFixedValue())
 			{
 				BeanProperty property = FindBeanProperty(relationship);
 				if (property != null)
@@ -136,14 +138,18 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 			}
 			else
 			{
-				value = this.adapterProvider.GetAdapter(dataTypeName, field.GetType()).Adapt(value);
+				value = this.adapterProvider.GetAdapter(dataTypeName, field.GetType()).Adapt(field.GetType(), value);
 				if (value.HasNullFlavor())
 				{
 					new DataTypeFieldHelper(property.Bean, property.Name).SetNullFlavor(value.NullFlavor);
 				}
-				if (value is CD)
+				if (field is ANYMetaData && value is ANYMetaData)
 				{
-					((CD)field).OriginalText = ((CD)value).OriginalText;
+					// preserve any meta data (yes, this is not ideal)
+					((ANYMetaData)field).Language = ((ANYMetaData)value).Language;
+					((ANYMetaData)field).DisplayName = ((ANYMetaData)value).DisplayName;
+					((ANYMetaData)field).OriginalText = ((ANYMetaData)value).OriginalText;
+					((ANYMetaData)field).Translations.AddAll(((ANYMetaData)value).Translations);
 				}
 				((BareANYImpl)field).BareValue = value.BareValue;
 				field.DataType = value.DataType;
@@ -180,8 +186,10 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 			}
 		}
 
-		public virtual void WriteNodeAttribute(Relationship relationship, string attributeValue, VersionNumber version)
+		public virtual void WriteNodeAttribute(Relationship relationship, string attributeValue, VersionNumber version, bool isR2
+			)
 		{
+			// TODO - TM - this code bypasses parsers; this skips some validation (most significantly, also misses some CDA constraint checking)
 			BeanProperty property = FindBeanProperty(relationship);
 			if (property != null)
 			{
@@ -191,29 +199,37 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 					{
 						if ("BL".Equals(relationship.Type))
 						{
-							property.Set(ILOG.J2CsMapping.Util.BooleanUtil.ValueOf(attributeValue));
+							property.Set(Ca.Infoway.Messagebuilder.BooleanUtils.ValueOf(attributeValue));
 						}
 						else
 						{
-							if ("CS".Equals(relationship.Type))
+							if ("ST".Equals(relationship.Type))
 							{
-								property.Set(ResolveCodeValue(relationship, attributeValue, version));
+								// TM - there are a handful of CDA node attributes that are of type ST
+								property.Set(attributeValue);
 							}
 							else
 							{
-								this.log.Info("UNSUPPORTED RimType: IGNORING relationhsipName=" + relationship.Name + ", property=" + property.Name);
+								if ("CS".Equals(relationship.Type))
+								{
+									property.Set(ResolveCodeValue(relationship, attributeValue, version, isR2));
+								}
+								else
+								{
+									this.log.Info("UNSUPPORTED RimType: IGNORING relationshipName=" + relationship.Name + ", property=" + property.Name);
+								}
 							}
 						}
 					}
 					else
 					{
-						this.log.Info("PROPERTY NOT WRITABLE: IGNORING relationhsipName=" + relationship.Name + ", property=" + property.Name);
+						this.log.Info("PROPERTY NOT WRITABLE: IGNORING relationshipName=" + relationship.Name + ", property=" + property.Name);
 					}
 				}
 			}
 			else
 			{
-				if (relationship.Fixed)
+				if (relationship.HasFixedValue())
 				{
 				}
 				else
@@ -225,9 +241,16 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 			}
 		}
 
-		private Code ResolveCodeValue(Relationship relationship, string attributeValue, VersionNumber version)
+		private object ResolveCodeValue(Relationship relationship, string attributeValue, VersionNumber version, bool isR2)
 		{
-			return CodeResolverRegistry.Lookup((Type)DomainTypeHelper.GetReturnType(relationship, version), attributeValue);
+			Type returnType = (Type)DomainTypeHelper.GetReturnType(relationship, version, CodeTypeRegistry.GetInstance());
+			Code codeLookup = CodeResolverRegistry.Lookup(returnType, attributeValue);
+			object result = codeLookup;
+			if (isR2)
+			{
+				result = CodedTypeR2Helper.ConvertCodedTypeR2(new CodedTypeR2<Code>(codeLookup), returnType);
+			}
+			return result;
 		}
 
 		public virtual void WriteNullFlavor(Hl7Source source, Relationship relationship, NullFlavor nullFlavor)

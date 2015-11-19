@@ -14,13 +14,14 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System.Collections.Generic;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
+using Ca.Infoway.Messagebuilder.Lang;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter;
 
@@ -40,25 +41,34 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 
 		private readonly PqValidationUtils pqValidationUtils = new PqValidationUtils();
 
-		internal override IDictionary<string, string> GetAttributeNameValuePairs(FormatContext context, PhysicalQuantity physicalQuantity
+		protected override IDictionary<string, string> GetAttributeNameValuePairs(FormatContext context, PhysicalQuantity physicalQuantity
 			, BareANY bareANY)
 		{
-			ValidatePhysicalQuantity(context, physicalQuantity);
-			return CreatePhysicalQuantityAttributes(physicalQuantity);
+			ValidatePhysicalQuantity(context, physicalQuantity, bareANY);
+			return CreatePhysicalQuantityAttributes(physicalQuantity, bareANY);
 		}
 
-		private void ValidatePhysicalQuantity(FormatContext context, PhysicalQuantity physicalQuantity)
+		//.NET conversion. Create a public method for PivlTsPropertyFormatter and unit tests 
+		public virtual IDictionary<string, string> GetAttributeNameValuePairs(FormatContext context, PhysicalQuantity physicalQuantity
+			)
 		{
+			return GetAttributeNameValuePairs(context, physicalQuantity, null);
+		}
+
+		private void ValidatePhysicalQuantity(FormatContext context, PhysicalQuantity physicalQuantity, BareANY bareANY)
+		{
+			// does not validate originalText here as this section is bypassed when value is a NullFlavor
 			string type = context.Type;
 			ModelToXmlResult errors = context.GetModelToXmlResult();
+			bool hasNullFlavor = (bareANY == null || bareANY.NullFlavor != null);
 			string quantityAsString = physicalQuantity.Quantity == null ? null : physicalQuantity.Quantity.ToPlainString();
-			this.pqValidationUtils.ValidateValue(quantityAsString, context.GetVersion(), type, null, context.GetPropertyPath(), errors
-				);
+			this.pqValidationUtils.ValidateValue(quantityAsString, context.GetVersion(), type, hasNullFlavor, null, context.GetPropertyPath
+				(), errors);
 			string unitsAsString = (physicalQuantity.Unit == null ? null : physicalQuantity.Unit.CodeValue);
-			this.pqValidationUtils.ValidateUnits(type, unitsAsString, null, context.GetPropertyPath(), errors);
+			this.pqValidationUtils.ValidateUnits(type, unitsAsString, null, context.GetPropertyPath(), errors, false);
 		}
 
-		private IDictionary<string, string> CreatePhysicalQuantityAttributes(PhysicalQuantity physicalQuantity)
+		private IDictionary<string, string> CreatePhysicalQuantityAttributes(PhysicalQuantity physicalQuantity, BareANY bareANY)
 		{
 			IDictionary<string, string> result = new Dictionary<string, string>();
 			if (physicalQuantity.Quantity == null)
@@ -73,6 +83,52 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			if (physicalQuantity.Unit != null)
 			{
 				result[ATTRIBUTE_UNIT] = physicalQuantity.Unit.CodeValue;
+			}
+			return result;
+		}
+
+		public override string Format(FormatContext context, BareANY hl7Value, int indentLevel)
+		{
+			string result = base.Format(context, hl7Value, indentLevel);
+			if (hl7Value != null)
+			{
+				string originalText = ((ANYMetaData)hl7Value).OriginalText;
+				bool hasNullFlavor = hl7Value.HasNullFlavor();
+				bool hasAnyValues = HasAnyValues(hl7Value);
+				this.pqValidationUtils.ValidateOriginalText(context.Type, originalText, hasAnyValues, hasNullFlavor, context.GetVersion()
+					, null, context.GetPropertyPath(), context.GetModelToXmlResult());
+				// complete hack for BC
+				if (SpecificationVersion.IsExactVersion(context.GetVersion(), SpecificationVersion.V02R04_BC))
+				{
+					if (hasNullFlavor && HasAnyValues(hl7Value))
+					{
+						// dump the result and rebuild, adding in NF
+						IDictionary<string, string> attributeNameValuePairs = GetAttributeNameValuePairs(context, (PhysicalQuantity)hl7Value.BareValue
+							, hl7Value);
+						attributeNameValuePairs.PutAll(CreateNullFlavorAttributes(hl7Value.NullFlavor));
+						result = CreateElement(context, attributeNameValuePairs, indentLevel, true, true);
+					}
+				}
+				if (StringUtils.IsNotBlank(originalText))
+				{
+					string otElement = CreateElement("originalText", null, indentLevel + 1, false, false);
+					otElement += XmlStringEscape.Escape(originalText);
+					otElement += CreateElementClosure("originalText", 0, true);
+					// pulling off the end "/>" is not the most elegant solution, but superclass would need significant refactoring otherwise
+					result = Ca.Infoway.Messagebuilder.StringUtils.Substring(result, 0, result.IndexOf("/>")) + ">" + SystemUtils.LINE_SEPARATOR
+						 + otElement + CreateElementClosure(context.GetElementName(), indentLevel, true);
+				}
+			}
+			return result;
+		}
+
+		private bool HasAnyValues(BareANY hl7Value)
+		{
+			bool result = false;
+			if (hl7Value != null && hl7Value.BareValue != null && hl7Value.BareValue is PhysicalQuantity)
+			{
+				PhysicalQuantity pq = (PhysicalQuantity)hl7Value.BareValue;
+				result = (pq.Quantity != null || pq.Unit != null);
 			}
 			return result;
 		}

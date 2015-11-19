@@ -40,7 +40,7 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 	public class Money {
 	
 		private readonly BigDecimal amount;
-		private readonly Currency currency;
+        private readonly Ca.Infoway.Messagebuilder.Domainvalue.Basic.Currency currency;
 	
 		/// <summary>
 		/// Constructs a Money object with the supplied amount and currency. 
@@ -48,7 +48,7 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		///
 		/// <param name="amount_0">an amount</param>
 		/// <param name="currency_1">a currency</param>
-		public Money(BigDecimal amount_0, Currency currency_1) {
+        public Money(BigDecimal amount_0, Ca.Infoway.Messagebuilder.Domainvalue.Basic.Currency currency_1) {
 			this.amount = amount_0;
 			this.currency = currency_1;
 		}
@@ -68,23 +68,40 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 				return this.amount;
 			}
 		}
+
+        public Ca.Infoway.Messagebuilder.Domainvalue.Basic.Currency Currency {
+            get { return this.currency; }
+        }
 		
-	
-		/// <summary>
-		/// Returns the currency.
-		/// </summary>
-		///
-		/// <returns>the currency</returns>
-		public Currency Currency {
-		/// <summary>
-		/// Returns the currency.
-		/// </summary>
-		///
-		/// <returns>the currency</returns>
-		  get {
-				return this.currency;
-			}
-		}
-		
+        public override int GetHashCode()
+        {
+            return new HashCodeBuilder()
+			        .Append(this.amount)
+			        .Append(this.currency)
+                    .ToHashCode();
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+            else if (obj.GetType() != GetType())
+            {
+                return false;
+            } else {
+                return Equals((Money) obj);
+            }
+        }
+
+        private bool Equals(Money that)
+        {
+            return new EqualsBuilder()
+                    .Append(this.amount, that.amount)
+                    .Append(this.currency, that.currency)
+                    .IsEquals();
+        }
+    
 	}
 }

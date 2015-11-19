@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System.Xml;
@@ -23,7 +23,7 @@ using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
 using Ca.Infoway.Messagebuilder.Datatype.Lang.Util;
 using Ca.Infoway.Messagebuilder.Domainvalue;
-using Ca.Infoway.Messagebuilder.Marshalling.HL7;
+using Ca.Infoway.Messagebuilder.Error;
 using Ca.Infoway.Messagebuilder.Util.Xml;
 
 namespace Ca.Infoway.Messagebuilder.Marshalling.HL7
@@ -53,19 +53,21 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7
 		public static readonly string CERX_FRENCH = "fre";
 
 		// for newer format of "reference" usage
-		public virtual void DoValidate(EncapsulatedData encapsulatedData, string specializationType, Hl7BaseVersion baseVersion, 
-			string type, string propertyPath, Hl7Errors errors)
+		public virtual void DoValidate(EncapsulatedData ed, string specializationType, Hl7BaseVersion baseVersion, string type, string
+			 propertyPath, Hl7Errors errors)
 		{
-			Compression compression = (encapsulatedData is CompressedData ? ((CompressedData)encapsulatedData).Compression : null);
+			Compression compression = ed.Compression;
 			bool hasCompression = (compression != null);
-			string representation = this.IsBase64(encapsulatedData, encapsulatedData.Content) ? REPRESENTATION_B64 : REPRESENTATION_TXT;
-			DoValidate(specializationType, compression, hasCompression, encapsulatedData.MediaType, encapsulatedData.Language, representation
-				, encapsulatedData.Reference, encapsulatedData.Content, baseVersion, type, null, propertyPath, errors);
+			int contentSize = (ed.HasContent() ? 1 : 0);
+			string representation = (ed.Representation == null ? null : ed.Representation.Name);
+			bool hasReference = (ed.ReferenceObj != null);
+			DoValidate(specializationType, compression, hasCompression, ed.MediaType, ed.Language, representation, hasReference, ed.HasContent
+				(), contentSize, baseVersion, type, null, propertyPath, errors);
 		}
 
 		public virtual void DoValidate(string specializationType, Compression compression, bool hasCompression, x_DocumentMediaType
-			 mediaType, string language, string representation, string reference, byte[] content, Hl7BaseVersion baseVersion, string
-			 type, XmlElement element, string propertyPath, Hl7Errors errors)
+			 mediaType, string language, string representation, bool hasReference, bool hasContent, int contentSize, Hl7BaseVersion 
+			baseVersion, string type, XmlElement element, string propertyPath, Hl7Errors errors)
 		{
 			// specializationType - must be provided for ED.DOCORREF *except* for CeRx; must be ED.DOC or ED.DOCREF
 			if (StandardDataType.ED_DOC_OR_REF.Type.Equals(type) && !Hl7BaseVersion.CERX.Equals(baseVersion))
@@ -73,7 +75,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7
 				if (StringUtils.IsBlank(specializationType) || StandardDataType.ED.Type.Equals(specializationType))
 				{
 					// must specify
-					type = (content == null || content.Length == 0 ? StandardDataType.ED_DOC_REF.Type : StandardDataType.ED_DOC.Type);
+					type = (!hasContent ? StandardDataType.ED_DOC_REF.Type : StandardDataType.ED_DOC.Type);
 					CreateError("Must specify specializationType for ED.DOC_OR_REF types. Value will be treated as " + type + ".", element, propertyPath
 						, errors);
 				}
@@ -83,7 +85,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7
 						)))
 					{
 						// must be doc or docref; default to something suitable 
-						type = (content == null || content.Length == 0 ? StandardDataType.ED_DOC_REF.Type : StandardDataType.ED_DOC.Type);
+						type = (!hasContent ? StandardDataType.ED_DOC_REF.Type : StandardDataType.ED_DOC.Type);
 						CreateError("Invalid specializationType: " + specializationType + ". The specializationType must be ED.DOC or ED.DOCREF for ED.DOC_OR_REF types. Value will be treated as "
 							 + type + ".", element, propertyPath, errors);
 					}
@@ -162,7 +164,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7
 			}
 			// reference - required; must be TEL.URI (mandatory for ED.DOCREF)
 			//           - CeRx: only allowed (and mandatory?) if content not present; must be FTP, HTTP, HTTPS  (ED.REF, ED.DOCORREF) 
-			if (StringUtils.IsBlank(reference))
+			if (!hasReference)
 			{
 				if (StandardDataType.ED_DOC_REF.Type.Equals(type) || StandardDataType.ED_REF.Type.Equals(type))
 				{
@@ -178,14 +180,14 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7
 			// content - max 1 MB after compression and base64 encoding; compressed or pdf must be b64-encoded; any checks done on this??
 			//         - mandatory for ED.DOC, ED.DOCORREF/CeRx (if no ref provided)
 			//         - not permitted for ED.DOCREF/ED.REF
-			if (content != null && content.Length > 0)
+			if (hasContent && contentSize > 0)
 			{
 				if (StandardDataType.ED_DOC_REF.Type.Equals(type) || StandardDataType.ED_REF.Type.Equals(type))
 				{
 					// not permitted
 					CreateError("Content is not permitted for " + type + ".", element, propertyPath, errors);
 				}
-				if (content.Length > ONE_MEGABYTE_SIZE)
+				if (contentSize > ONE_MEGABYTE_SIZE)
 				{
 					// too large
 					CreateError("Content must be less than 1 MB.", element, propertyPath, errors);
@@ -201,14 +203,14 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7
 			}
 			if (Hl7BaseVersion.CERX.Equals(baseVersion) && StandardDataType.ED_DOC_OR_REF.Type.Equals(type))
 			{
-				if (StringUtils.IsNotBlank(reference) && (content != null && content.Length > 0))
+				if (hasReference && hasContent)
 				{
 					// can't provide both
 					CreateError("Cannot provide both content and reference.", element, propertyPath, errors);
 				}
 				else
 				{
-					if (StringUtils.IsBlank(reference) && (content == null || content.Length == 0))
+					if (!hasReference && !hasContent)
 					{
 						// must provide one
 						CreateError("Must provide one and only one of content or reference.", element, propertyPath, errors);
@@ -231,25 +233,6 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7
 				error = new Hl7Error(Hl7ErrorCode.DATA_TYPE_ERROR, errorMessage, propertyPath);
 			}
 			errors.AddHl7Error(error);
-		}
-
-		public virtual bool IsBase64(EncapsulatedData data, byte[] content)
-		{
-			if (data != null)
-			{
-				if (data is CompressedData)
-				{
-					return true;
-				}
-				else
-				{
-					if (content != null && data.MediaType != Ca.Infoway.Messagebuilder.Domainvalue.Basic.X_DocumentMediaType.PLAIN_TEXT)
-					{
-						return true;
-					}
-				}
-			}
-			return false;
 		}
 	}
 }

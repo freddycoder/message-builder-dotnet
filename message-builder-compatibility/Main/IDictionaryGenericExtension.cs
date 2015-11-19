@@ -30,7 +30,7 @@ namespace Ca.Infoway.Messagebuilder
         public static V SafeGet<K, V>(this IDictionary<K, V> dictionary, K key)
         {
             V result = default(V);
-			if (dictionary.ContainsKey(key)) {
+			if (key != null && dictionary.ContainsKey(key)) {
 				result = dictionary[key];
 			}
 			return result;	

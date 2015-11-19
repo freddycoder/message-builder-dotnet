@@ -81,7 +81,7 @@ namespace Ca.Infoway.Messagebuilder.Datatype {
 		/// </summary>
 		///
 		/// <param name="nullFlavor">the null flavor to set</param>
-		new NullFlavor NullFlavor {
+		NullFlavor NullFlavor {
 		/// <summary>
 		/// If a value is an exceptional value (NULL-value), this specifies in what way and why proper information is missing.
 		/// The null flavors are a general domain extension of all normal data types. Note the distinction between 

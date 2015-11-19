@@ -14,13 +14,14 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System.Collections.Generic;
 using Ca.Infoway.Messagebuilder.Datatype.Nullflavor;
 using Ca.Infoway.Messagebuilder.Domainvalue;
 using Ca.Infoway.Messagebuilder.Marshalling;
+using Ca.Infoway.Messagebuilder.Xml;
 
 namespace Ca.Infoway.Messagebuilder.Marshalling
 {
@@ -77,7 +78,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 			bool empty = true;
 			foreach (BaseRelationshipBridge relationship in this.relationshipBridges)
 			{
-				if (!relationship.GetRelationship().Attribute || !relationship.GetRelationship().Fixed)
+				Relationship r = relationship.GetRelationship();
+				if (!relationship.GetRelationship().Attribute || !r.HasFixedValue())
 				{
 					empty &= relationship.IsEmpty();
 				}

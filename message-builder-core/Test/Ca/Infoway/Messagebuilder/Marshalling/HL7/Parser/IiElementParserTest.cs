@@ -14,13 +14,14 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System.Xml;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
+using Ca.Infoway.Messagebuilder.Error;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser;
 using Ca.Infoway.Messagebuilder.Platform;
@@ -63,7 +64,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 
 		private ParseContext CreateContext(string type, SpecificationVersion version)
 		{
-			return ParserContextImpl.Create(type, null, version, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL);
+			return ParseContextImpl.Create(type, null, version, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL, 
+				null, null, false);
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -335,21 +337,6 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 
 		/// <exception cref="System.Exception"></exception>
 		[Test]
-		public virtual void TestParseSpecializationTypeProvidedWhenNotNecessary()
-		{
-			XmlNode node = CreateNode("<something root=\"1.3.1.2\" extension=\"extensionValue\" use=\"BUS\" specializationType=\"II.BUS\" />"
-				);
-			II ii = (II)new IiElementParser().Parse(CreateContext("II.BUS"), node, this.result);
-			AssertResultAsExpected(ii.Value, "1.3.1.2", "extensionValue");
-			Assert.IsFalse(this.result.IsValid());
-			Assert.AreEqual(1, this.result.GetHl7Errors().Count);
-			Assert.AreEqual(Hl7ErrorCode.DATA_TYPE_ERROR, this.result.GetHl7Errors()[0].GetHl7ErrorCode());
-			Assert.IsTrue(this.result.GetHl7Errors()[0].GetMessage().Contains("A specializationType should not be specified for non-abstract type: II.BUS"
-				));
-		}
-
-		/// <exception cref="System.Exception"></exception>
-		[Test]
 		public virtual void TestParseValidMissingSpecializationTypeForCeRx()
 		{
 			XmlNode node = CreateNode("<something root=\"1.2.3.4\" extension=\"extensionValue\" />");
@@ -498,7 +485,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		[Test]
 		public virtual void TestParseValidIiBusWithMaxRootLengthForCeRx()
 		{
-			string maxLengthRoot = "123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.1234567890";
+			string maxLengthRoot = "123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.1234567890";
 			XmlNode node = CreateNode("<something root=\"" + maxLengthRoot + "\" extension=\"extensionValue\" use=\"BUS\" />");
 			II ii = (II)new IiElementParser().Parse(CreateContext("II.BUS", SpecificationVersion.V01R04_3), node, this.result);
 			AssertResultAsExpected(ii.Value, maxLengthRoot, "extensionValue");
@@ -509,7 +496,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		[Test]
 		public virtual void TestParseInvalidIiBusWithMaxRootLengthPlusOneForCeRx()
 		{
-			string maxLengthRootPlusOne = "0" + "123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.1234567890";
+			string maxLengthRootPlusOne = "0" + "123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.1234567890.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.1234567890";
 			XmlNode node = CreateNode("<something root=\"" + maxLengthRootPlusOne + "\" extension=\"extensionValue\" use=\"BUS\" />");
 			II ii = (II)new IiElementParser().Parse(CreateContext("II.BUS", SpecificationVersion.V01R04_3), node, this.result);
 			AssertResultAsExpected(ii.Value, maxLengthRootPlusOne, "extensionValue");
@@ -517,6 +504,31 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			Assert.AreEqual(1, this.result.GetHl7Errors().Count);
 			Assert.AreEqual(Hl7ErrorCode.DATA_TYPE_ERROR, this.result.GetHl7Errors()[0].GetHl7ErrorCode());
 			Assert.IsTrue(this.result.GetHl7Errors()[0].GetMessage().Contains("exceeds maximum allowed length"));
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void TestParseValidIiBusWithSuperfluousSpecializationType()
+		{
+			XmlNode node = CreateNode("<something root=\"11.22.33\" specializationType=\"II.BUS\" extension=\"extensionValue\" use=\"BUS\" />"
+				);
+			II ii = (II)new IiElementParser().Parse(CreateContext("II.BUS", SpecificationVersion.R02_04_02), node, this.result);
+			AssertResultAsExpected(ii.Value, "11.22.33", "extensionValue");
+			Assert.IsTrue(this.result.IsValid());
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void TestParseValidIiBusWithIncorrectSuperfluousSpecializationType()
+		{
+			XmlNode node = CreateNode("<something root=\"11.22.33\" specializationType=\"II.VER\" extension=\"extensionValue\" use=\"BUS\" />"
+				);
+			II ii = (II)new IiElementParser().Parse(CreateContext("II.BUS", SpecificationVersion.R02_04_02), node, this.result);
+			AssertResultAsExpected(ii.Value, "11.22.33", "extensionValue");
+			Assert.IsFalse(this.result.IsValid());
+			Assert.AreEqual(1, this.result.GetHl7Errors().Count);
+			Assert.IsTrue(this.result.GetHl7Errors()[0].GetMessage().StartsWith("A specializationType should not be specified for non-abstract type: II.BUS"
+				));
 		}
 
 		private void AssertResultAsExpected(Identifier result, string rootValue, string extensionValue)

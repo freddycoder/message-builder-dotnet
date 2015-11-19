@@ -14,15 +14,18 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System.Collections.Generic;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
+using Ca.Infoway.Messagebuilder.Error;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
+using Ca.Infoway.Messagebuilder.Marshalling.HL7.Constraints;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter;
+using Ca.Infoway.Messagebuilder.Xml;
 
 namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 {
@@ -48,7 +51,9 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 	{
 		private static readonly IiValidationUtils iiValidationUtils = new IiValidationUtils();
 
-		internal override IDictionary<string, string> GetAttributeNameValuePairs(FormatContext context, Identifier ii, BareANY bareAny
+		private readonly IiConstraintsHandler constraintsHandler = new IiConstraintsHandler();
+
+		protected override IDictionary<string, string> GetAttributeNameValuePairs(FormatContext context, Identifier ii, BareANY bareAny
 			)
 		{
 			VersionNumber version = context.GetVersion();
@@ -65,7 +70,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		{
 			string typeFromContext = context.Type;
 			string typeFromField = bareAny.DataType == null ? null : bareAny.DataType.Type;
-			if (iiValidationUtils.IsSpecializationTypeRequired(context.GetVersion(), typeFromContext))
+			if (iiValidationUtils.IsSpecializationTypeRequired(context.GetVersion(), typeFromContext, context.IsCda()))
 			{
 				bool validSpecializationType = IsSpecializationTypeProvided(typeFromContext, typeFromField);
 				if (iiValidationUtils.IsII(typeFromContext))
@@ -83,13 +88,13 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 				if (validSpecializationType)
 				{
 					typeFromContext = typeFromField;
-					result[AbstractPropertyFormatter.SPECIALIZATION_TYPE] = typeFromContext;
+					AddSpecializationType(result, typeFromContext);
 				}
 				else
 				{
 					if (iiValidationUtils.IsIiBusAndVer(typeFromContext))
 					{
-						result[AbstractPropertyFormatter.SPECIALIZATION_TYPE] = IiValidationUtils.II_BUS;
+						AddSpecializationType(result, IiValidationUtils.II_BUS);
 						typeFromContext = IiValidationUtils.II_BUS;
 						RecordError(iiValidationUtils.GetInvalidSpecializationTypeForBusAndVerErrorMessage(typeFromField, typeFromContext), context
 							);
@@ -122,14 +127,14 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			ValidateMandatoryAttribute("root", ii.Root, type, context);
 			if (StandardDataType.II.Type.Equals(type))
 			{
-				ValidateRootAndExtensionAsOidOrUuid(ii.Root, ii.Extension, type, version, context);
+				ValidateRootAndExtensionAsOidOrUuid(ii.Root, ii.Extension, StandardDataType.II, version, context);
 				ValidateUnallowedAttribute("version", ii.Version, type, context);
 			}
 			else
 			{
 				if (StandardDataType.II_PUBLIC.Type.Equals(type))
 				{
-					ValidateRootAsOid(ii.Root, version, context);
+					ValidateRootAsOid(ii.Root, version, StandardDataType.II_PUBLIC, context);
 					ValidateExtensionForOid(ii.Extension, type, context);
 					ValidateUnallowedAttribute("version", ii.Version, type, context);
 				}
@@ -137,14 +142,14 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 				{
 					if (StandardDataType.II_BUS.Type.Equals(type))
 					{
-						ValidateRootAndExtensionAsOidOrUuid(ii.Root, ii.Extension, type, version, context);
+						ValidateRootAndExtensionAsOidOrUuid(ii.Root, ii.Extension, StandardDataType.II_BUS, version, context);
 						ValidateUnallowedAttribute("version", ii.Version, type, context);
 					}
 					else
 					{
 						if (StandardDataType.II_VER.Type.Equals(type))
 						{
-							ValidateRootAsUuid(ii.Root, version, context);
+							ValidateRootAsUuid(ii.Root, version, StandardDataType.II_VER, context);
 							ValidateUnallowedAttribute("extension", ii.Extension, type, context);
 							ValidateUnallowedAttribute("version", ii.Version, type, context);
 						}
@@ -152,14 +157,14 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 						{
 							if (StandardDataType.II_BUSVER.Type.Equals(type))
 							{
-								ValidateRootAndExtensionAsOidOrUuid(ii.Root, ii.Extension, type, version, context);
+								ValidateRootAndExtensionAsOidOrUuid(ii.Root, ii.Extension, StandardDataType.II_BUSVER, version, context);
 								ValidateMandatoryAttribute("version", ii.Version, type, context);
 							}
 							else
 							{
 								if (StandardDataType.II_PUBLICVER.Type.Equals(type))
 								{
-									ValidateRootAsOid(ii.Root, version, context);
+									ValidateRootAsOid(ii.Root, version, StandardDataType.II_PUBLICVER, context);
 									ValidateExtensionForOid(ii.Extension, type, context);
 									ValidateMandatoryAttribute("version", ii.Version, type, context);
 								}
@@ -167,7 +172,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 								{
 									if (StandardDataType.II_OID.Type.Equals(type))
 									{
-										ValidateRootAsOid(ii.Root, version, context);
+										ValidateRootAsOid(ii.Root, version, StandardDataType.II_OID, context);
 										ValidateUnallowedAttribute("extension", ii.Extension, type, context);
 										ValidateUnallowedAttribute("version", ii.Version, type, context);
 									}
@@ -175,7 +180,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 									{
 										if (StandardDataType.II_TOKEN.Type.Equals(type))
 										{
-											ValidateRootAsUuid(ii.Root, version, context);
+											ValidateRootAsUuid(ii.Root, version, StandardDataType.II_TOKEN, context);
 											ValidateUnallowedAttribute("extension", ii.Extension, type, context);
 											ValidateUnallowedAttribute("version", ii.Version, type, context);
 										}
@@ -186,6 +191,36 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 					}
 				}
 			}
+			HandleConstraints(ii, context);
+		}
+
+		private void HandleConstraints(Identifier identifier, FormatContext context)
+		{
+			ErrorLogger logger = new _ErrorLogger_164(context);
+			this.constraintsHandler.HandleConstraints(context.GetConstraints(), identifier, logger, IsSingleCardinality(context.GetCardinality
+				()));
+		}
+
+		private sealed class _ErrorLogger_164 : ErrorLogger
+		{
+			public _ErrorLogger_164(FormatContext context)
+			{
+				this.context = context;
+			}
+
+			public void LogError(Hl7ErrorCode errorCode, ErrorLevel errorLevel, string errorMessage)
+			{
+				Hl7Errors errors = context.GetModelToXmlResult();
+				string propertyPath = context.GetPropertyPath();
+				errors.AddHl7Error(new Hl7Error(errorCode, errorLevel, errorMessage, propertyPath));
+			}
+
+			private readonly FormatContext context;
+		}
+
+		private bool IsSingleCardinality(Cardinality cardinality)
+		{
+			return cardinality == null ? true : cardinality.Single;
 		}
 
 		private void ValidateMandatoryAttribute(string attributeName, string attributeValue, string type, FormatContext context)
@@ -204,7 +239,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			}
 		}
 
-		private void ValidateRootAsUuid(string root, VersionNumber version, FormatContext context)
+		private void ValidateRootAsUuid(string root, VersionNumber version, StandardDataType type, FormatContext context)
 		{
 			if (StringUtils.IsNotBlank(root))
 			{
@@ -212,19 +247,19 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 				{
 					RecordError(iiValidationUtils.GetRootMustBeUuidErrorMessage(root), context);
 				}
-				ValidateRootLength(root, version, context);
+				ValidateRootLength(root, version, type, context);
 			}
 		}
 
-		private void ValidateRootLength(string root, VersionNumber version, FormatContext context)
+		private void ValidateRootLength(string root, VersionNumber version, StandardDataType type, FormatContext context)
 		{
-			if (iiValidationUtils.IsRootLengthInvalid(root, version))
+			if (iiValidationUtils.IsRootLengthInvalid(root, type, version))
 			{
-				RecordError(iiValidationUtils.GetInvalidRootLengthErrorMessage(root, version), context);
+				RecordError(iiValidationUtils.GetInvalidRootLengthErrorMessage(root, type, version), context);
 			}
 		}
 
-		private void ValidateRootAsOid(string root, VersionNumber version, FormatContext context)
+		private void ValidateRootAsOid(string root, VersionNumber version, StandardDataType type, FormatContext context)
 		{
 			if (StringUtils.IsNotBlank(root))
 			{
@@ -232,7 +267,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 				{
 					RecordError(iiValidationUtils.GetRootMustBeAnOidErrorMessage(root), context);
 				}
-				ValidateRootLength(root, version, context);
+				ValidateRootLength(root, version, type, context);
 			}
 		}
 
@@ -251,21 +286,24 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			}
 		}
 
-		private void ValidateRootAndExtensionAsOidOrUuid(string root, string extension, string type, VersionNumber version, FormatContext
-			 context)
+		private void ValidateRootAndExtensionAsOidOrUuid(string root, string extension, StandardDataType type, VersionNumber version
+			, FormatContext context)
 		{
 			// if root has not been provided don't bother further validating root or extension
 			if (StringUtils.IsNotBlank(root))
 			{
 				if (!iiValidationUtils.IsUuid(root))
 				{
-					ValidateRootAsOid(root, version, context);
-					ValidateExtensionForOid(extension, type, context);
+					ValidateRootAsOid(root, version, type, context);
+					if (!context.IsCda())
+					{
+						ValidateExtensionForOid(extension, type.Name, context);
+					}
 				}
 				else
 				{
-					ValidateRootAsUuid(root, version, context);
-					ValidateUnallowedAttribute("extension", extension, type, context);
+					ValidateRootAsUuid(root, version, type, context);
+					ValidateUnallowedAttribute("extension", extension, type.Name, context);
 				}
 			}
 		}
@@ -287,7 +325,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		{
 			if (StandardDataType.II_PUBLIC.Type.Equals(type))
 			{
-				if (!iiValidationUtils.IsCerxOrMr2007(version))
+				if (!iiValidationUtils.IsCerxOrMr2007(version, StandardDataType.II_PUBLIC))
 				{
 					result["use"] = "BUS";
 				}
@@ -321,7 +359,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 							{
 								if (StandardDataType.II_OID.Type.Equals(type))
 								{
-									if (!iiValidationUtils.IsCerxOrMr2007(version))
+									if (!iiValidationUtils.IsCerxOrMr2007(version, StandardDataType.II_OID))
 									{
 										result["use"] = "BUS";
 									}

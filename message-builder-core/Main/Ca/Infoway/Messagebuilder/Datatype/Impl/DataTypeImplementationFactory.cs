@@ -26,11 +26,13 @@
 namespace Ca.Infoway.Messagebuilder.Datatype.Impl {
 	
 	using Ca.Infoway.Messagebuilder.Datatype;
+    using Ca.Infoway.Messagebuilder.Xml;
 	using log4net;
 	using System;
 	using System.Collections;
 	using System.Collections.Generic;
 	using System.ComponentModel;
+    using System.Reflection;
 	using System.Runtime.CompilerServices;
 	
 	/// <summary>
@@ -50,15 +52,32 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Impl {
 		/// <param name="typeName">the type name</param>
 		/// <returns>the impl class corresponding to the type name</returns>
 		/* @SuppressWarnings("unchecked")*/
-		public static Type GetImplementation(
-				String typeName) {
+		public static Type GetImplementation(String typeName, bool isCDAR2) {
 			Type implementation = null;
 	
 			StandardDataType dataType = Ca.Infoway.Messagebuilder.Datatype.StandardDataType.GetByTypeName(typeName);
 			if (dataType != null) {
 				try {
-					string fullClassName = String.Format("{0}.{1}Impl", implNamespace, dataType.RootType);
-                    implementation = (Type) ILOG.J2CsMapping.Reflect.Helper.GetNativeType(fullClassName);
+                    string implTypeName = dataType.RootType;
+                    if (isCDAR2) {
+                        implTypeName = CodedTypeEvaluator.GetR2CodedType(typeName);
+                    }
+					string fullClassName = String.Format("{0}.{1}Impl", implNamespace, implTypeName);
+                    Assembly assembly = Assembly.GetExecutingAssembly();
+                    implementation = assembly.GetType(fullClassName);
+                    if (implementation == null) {
+                        foreach (Type t in assembly.GetTypes()) {
+                            string assemblyTypeName = t.FullName;
+                            int arityCharacterIndex = assemblyTypeName.IndexOf("`");
+                            if (arityCharacterIndex >= 0) { //Generic type
+                                assemblyTypeName = assemblyTypeName.Substring(0, arityCharacterIndex);
+                            }
+                            if (fullClassName.Equals(assemblyTypeName)) {
+                                implementation = t;
+                                break;
+                            }
+                        }
+                    }
 				} catch (TypeLoadException e) {
 					LOG.Error("Unable to find implementation for type: " + typeName, e);
 				}

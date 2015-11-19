@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System.Collections.Generic;
@@ -25,6 +25,7 @@ using Ca.Infoway.Messagebuilder.Datatype.Lang;
 using Ca.Infoway.Messagebuilder.Datatype.Lang.Util;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter;
+using Ca.Infoway.Messagebuilder.Xml;
 using NUnit.Framework;
 
 namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
@@ -32,13 +33,15 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 	[TestFixture]
 	public class ListEnPropertyFormatterTest : FormatterTestCase
 	{
+		private FormatterRegistry formatterRegistry = FormatterRegistry.GetInstance();
+
 		/// <exception cref="System.Exception"></exception>
 		[Test]
 		public virtual void TestFormatValueNull()
 		{
-			string result = new ListPropertyFormatter().Format(new FormatContextImpl(new ModelToXmlResult(), null, "name", "LIST<EN>"
-				, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL), new LISTImpl<EN<EntityName>, EntityName>(typeof(ENImpl<EntityName
-				>)));
+			string result = new ListPropertyFormatter(this.formatterRegistry).Format(new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl
+				(new ModelToXmlResult(), null, "name", "LIST<EN>", Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL, null, false)
+				, new LISTImpl<EN<EntityName>, EntityName>(typeof(ENImpl<EntityName>)));
 			AssertXml("null", string.Empty, result);
 		}
 
@@ -46,11 +49,13 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		[Test]
 		public virtual void TestFormatValueNonNull()
 		{
-			string result = new ListPropertyFormatter().Format(new FormatContextImpl(new ModelToXmlResult(), null, "name", "LIST<EN>"
-				, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL, false, SpecificationVersion.R02_04_02, null, null, null), (BareANY
-				)LISTImpl<ANY<object>, object>.Create<EN<EntityName>, EntityName>(typeof(ENImpl<EntityName>), CreateEntityNameList()));
-			Assert.AreEqual("<name><family>Flinstone</family><given>Fred</given></name>" + SystemUtils.LINE_SEPARATOR + "<name><family>Flinstone</family><given>Wilma</given></name>"
-				 + SystemUtils.LINE_SEPARATOR, result, "non null");
+			string result = new ListPropertyFormatter(this.formatterRegistry).Format(new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl
+				(new ModelToXmlResult(), null, "name", "LIST<EN>", Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL, Cardinality.
+				Create("0-4"), false, SpecificationVersion.R02_04_02, null, null, null, false), (BareANY)LISTImpl<ANY<object>, object>.Create
+				<EN<EntityName>, EntityName>(typeof(ENImpl<EntityName>), CreateEntityNameList()));
+			Assert.AreEqual("<name xsi:type=\"PN\"><family>Flinstone</family><given>Fred</given></name>" + SystemUtils.LINE_SEPARATOR
+				 + "<name xsi:type=\"PN\"><family>Flinstone</family><given>Wilma</given></name>" + SystemUtils.LINE_SEPARATOR, result, "non null"
+				);
 		}
 
 		private IList<EntityName> CreateEntityNameList()

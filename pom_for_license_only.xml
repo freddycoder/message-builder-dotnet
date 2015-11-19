@@ -25,7 +25,7 @@
 	<groupId>ca.infoway.messagebuilder</groupId>
 	<artifactId>message-builder</artifactId>
 	<packaging>pom</packaging>
-	<version>1.4.7-SNAPSHOT</version>
+	<version>2.1.2-SNAPSHOT</version>
 	<name>Message Builder Parent</name>
         <scm>
 		<connection>scm:svn:https://svnemri.infoway-inforoute.ca/internal/Projects/MessageBuilderTool/sourceCode/trunk
@@ -50,9 +50,9 @@
 			    <artifactId>maven-license-plugin</artifactId>
 			    <version>1.10.b1</version>
 			    <configuration>
-				<header>../../../../etc/LICENSE_main.txt</header>
+				<header>/workspace-CHI/mbt/etc/LICENSE_main.txt</header>
 				<validHeaders>
-				    <validHeader>../../../../etc/LICENSE_main.txt</validHeader>
+				    <validHeader>/workspace-CHI/mbt/etc/LICENSE_main.txt</validHeader>
 				</validHeaders>
 				<aggregate>true</aggregate>
 				<mapping>
@@ -60,7 +60,7 @@
 				    <mappingml>XML_STYLE</mappingml>
 				</mapping>
 				<properties>
-				    <year>2013</year>
+				    <year>2015</year>
 				</properties>
 			        <excludes>
 			            <exclude>**/LICENSE_main.txt</exclude>

@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-09-21 11:11:24 -0400 (Wed, 21 Sep 2011) $
- * Revision:      $LastChangedRevision: 3001 $
+ * Author:        $LastChangedBy: jroberts $
+ * Last modified: $LastChangedDate: 2014-11-06 15:40:43 -0500 (Thu, 06 Nov 2014) $
+ * Revision:      $LastChangedRevision: 9058 $
  */
 
 
@@ -45,9 +45,11 @@ namespace Ca.Infoway.Messagebuilder.Datatype {
 	///
 	/// <param name="V"> the underlying   datatype</param>
 	public interface BareANY : NullFlavorSupport {
-		Object BareValue {
-			get;
-		}
+        Object BareValue
+        {
+            get;
+            set;
+        }
 	
 		/// <summary>
 		/// Sets this ANY's datatype.

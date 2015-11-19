@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2013-03-08 11:06:36 -0500 (Fri, 08 Mar 2013) $
- * Revision:      $LastChangedRevision: 6699 $
+ * Author:        $LastChangedBy: jmis $
+ * Last modified: $LastChangedDate: 2015-05-27 08:43:37 -0400 (Wed, 27 May 2015) $
+ * Revision:      $LastChangedRevision: 9535 $
  */
 using System.Collections.Generic;
 using Ca.Infoway.Messagebuilder;
@@ -35,6 +35,28 @@ namespace Ca.Infoway.Messagebuilder.Xml
 		public virtual Relationship FindChoiceOption(Ca.Infoway.Messagebuilder.Xml.Predicate<Relationship> predicate)
 		{
 			return FindChoiceOption(predicate, Choices);
+		}
+
+		public virtual IList<string> GetAllBottomMostOptionNames()
+		{
+			return GetAllBottomMostOptionNames(Choices, new List<string>());
+		}
+
+		private IList<string> GetAllBottomMostOptionNames(IList<Relationship> optionRelationships, IList<string> optionsResult)
+		{
+			foreach (Relationship option in optionRelationships)
+			{
+				if (option.Choice)
+				{
+					// ignore this option since it is itself a choice, but add in its options
+					GetAllBottomMostOptionNames(option.Choices, optionsResult);
+				}
+				else
+				{
+					optionsResult.Add(option.Name);
+				}
+			}
+			return optionsResult;
 		}
 
 		private static Relationship FindChoiceOption(Ca.Infoway.Messagebuilder.Xml.Predicate<Relationship> predicate, IList<Relationship
@@ -68,6 +90,17 @@ namespace Ca.Infoway.Messagebuilder.Xml
 		public abstract IList<Relationship> Choices
 		{
 			get;
+		}
+
+		/// <summary>Get a flag indicating whether or not the relationship or argument is a choice association.</summary>
+		/// <remarks>Get a flag indicating whether or not the relationship or argument is a choice association.</remarks>
+		/// <returns>true if the relationship or argument is a choice association; false otherwise</returns>
+		public virtual bool Choice
+		{
+			get
+			{
+				return !CollUtils.IsEmpty(Choices);
+			}
 		}
 
 		/// <summary>

@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System;
@@ -22,13 +22,15 @@ using System.Collections.Generic;
 using System.Xml;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype;
+using Ca.Infoway.Messagebuilder.Datatype.Impl;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
-using Ca.Infoway.Messagebuilder.Datatype.Lang.Util;
 using Ca.Infoway.Messagebuilder.Domainvalue;
+using Ca.Infoway.Messagebuilder.Error;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser;
-using Ca.Infoway.Messagebuilder.Terminology;
+using Ca.Infoway.Messagebuilder.Resolver;
 using Ca.Infoway.Messagebuilder.Util.Xml;
+using Ca.Infoway.Messagebuilder.Xml;
 using ILOG.J2CsMapping.Collections.Generics;
 using ILOG.J2CsMapping.Text;
 
@@ -187,7 +189,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			if (!StringUtils.Equals(type, newType))
 			{
 				// replace the context with one using the specialization type
-				context = ParserContextImpl.Create(newType, context);
+				context = ParseContextImpl.CreateWithConstraints(newType, context);
 			}
 			return context;
 		}
@@ -233,7 +235,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 
 		protected override BareANY DoCreateDataTypeInstance(string typeName)
 		{
-			return GenericDataTypeFactory.Create(typeName);
+			return new IVLImpl<QTY<T>, Interval<T>>();
 		}
 
 		private BareANY CreateType(ParseContext context, XmlElement element, XmlToModelResult parseResult)
@@ -242,8 +244,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			ElementParser parser = ParserRegistry.GetInstance().Get(type);
 			if (parser != null)
 			{
-				return parser.Parse(ParserContextImpl.Create(type, null, context.GetVersion(), context.GetDateTimeZone(), context.GetDateTimeTimeZone
-					(), Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.POPULATED), Arrays.AsList((XmlNode)element), parseResult);
+				return parser.Parse(ParseContextImpl.CreateWithConstraints(type, context), Arrays.AsList((XmlNode)element), parseResult);
 			}
 			else
 			{
@@ -293,8 +294,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 					ElementParser parser = ParserRegistry.GetInstance().Get(diffType);
 					if (parser != null)
 					{
-						ParseContext subContext = ParserContextImpl.Create(diffType.Type, typeof(PhysicalQuantity), context.GetVersion(), context
-							.GetDateTimeZone(), context.GetDateTimeTimeZone(), Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.POPULATED);
+						ParseContext subContext = ParseContextImpl.Create(diffType.Type, typeof(PhysicalQuantity), Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
+							.POPULATED, Cardinality.Create("1"), context);
 						PhysicalQuantity quantity = (PhysicalQuantity)parser.Parse(subContext, Arrays.AsList((XmlNode)width), xmlToModelResult).BareValue;
 						// though in some PQ cases units can be null, this situation does not seem to make sense for PQ.TIME
 						if (quantity != null && quantity.Quantity != null && quantity.Unit != null)

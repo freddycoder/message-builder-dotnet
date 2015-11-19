@@ -14,16 +14,17 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System.Xml;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
 using Ca.Infoway.Messagebuilder.Domainvalue;
+using Ca.Infoway.Messagebuilder.Error;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser;
-using Ca.Infoway.Messagebuilder.Terminology;
+using Ca.Infoway.Messagebuilder.Resolver;
 using ILOG.J2CsMapping.Collections.Generics;
 using NUnit.Framework;
 
@@ -50,8 +51,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		/// <exception cref="Ca.Infoway.Messagebuilder.Marshalling.HL7.XmlToModelTransformationException"></exception>
 		private Interval<PlatformDate> Parse(XmlNode node, string type)
 		{
-			return (Interval<PlatformDate>)this.parser.Parse(ParserContextImpl.Create(type, typeof(Interval<object>), SpecificationVersion
-				.V02R02, null, null, null), Arrays.AsList(node), this.result).BareValue;
+			return (Interval<PlatformDate>)this.parser.Parse(ParseContextImpl.Create(type, typeof(Interval<object>), SpecificationVersion
+				.V02R02, null, null, null, null, null, false), Arrays.AsList(node), this.result).BareValue;
 		}
 
 		/// <exception cref="System.Exception"></exception>

@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System.Collections.Generic;
@@ -22,19 +22,53 @@ using System.Text;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Datatype.Impl;
+using Ca.Infoway.Messagebuilder.Datatype.Lang;
+using Ca.Infoway.Messagebuilder.Error;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
+using Ca.Infoway.Messagebuilder.Marshalling.HL7.Constraints;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter;
+using Ca.Infoway.Messagebuilder.Marshalling.Polymorphism;
+using Ca.Infoway.Messagebuilder.Platform;
 using Ca.Infoway.Messagebuilder.Util.Iterator;
+using Ca.Infoway.Messagebuilder.Xml;
 
 namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 {
 	public abstract class BaseCollectionPropertyFormatter : AbstractNullFlavorPropertyFormatter<ICollection<BareANY>>
 	{
+		private readonly Registry<PropertyFormatter> formatterRegistry;
+
+		private readonly bool isR2;
+
+		public BaseCollectionPropertyFormatter(Registry<PropertyFormatter> formatterRegistry, bool isR2)
+		{
+			this.formatterRegistry = formatterRegistry;
+			this.isR2 = isR2;
+		}
+
+		private IiCollectionConstraintHandler constraintHandler = new IiCollectionConstraintHandler();
+
+		private PolymorphismHandler polymorphismHandler = new PolymorphismHandler();
+
+		// only checking II constraints for now
 		protected virtual FormatContext CreateSubContext(FormatContext context)
 		{
-			return new FormatContextImpl(context.GetModelToXmlResult(), context.GetPropertyPath(), context.GetElementName(), GetSubType
-				(context), context.GetDomainType(), context.GetConformanceLevel(), context.IsSpecializationType(), context.GetVersion(), 
-				context.GetDateTimeZone(), context.GetDateTimeTimeZone(), true, null);
+			return new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl(context.GetModelToXmlResult(), context.GetPropertyPath
+				(), context.GetElementName(), GetSubType(context), context.GetDomainType(), context.GetConformanceLevel(), context.GetCardinality
+				(), context.IsSpecializationType(), context.GetVersion(), context.GetDateTimeZone(), context.GetDateTimeTimeZone(), null
+				, null, context.IsCda());
+		}
+
+		// constraints are not passed down from collection attributes
+		public override string Format(FormatContext context, BareANY hl7Value, int indentLevel)
+		{
+			if (hl7Value == null)
+			{
+				return string.Empty;
+			}
+			ICollection<BareANY> bareAnyCollection = GenericClassUtil.ConvertToBareANYCollection(hl7Value);
+			HandleConstraints(GetSubType(context), context.GetConstraints(), hl7Value, bareAnyCollection, context);
+			return base.Format(context, hl7Value, indentLevel);
 		}
 
 		protected override ICollection<BareANY> ExtractBareValue(BareANY hl7Value)
@@ -43,23 +77,95 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			return collection.GetBareCollectionValue();
 		}
 
-		protected virtual string FormatAllElements(FormatContext subContext, ICollection<BareANY> collection, int indentLevel)
+		protected virtual string FormatAllElements(FormatContext originalContext, FormatContext subContext, ICollection<BareANY> 
+			collection, int indentLevel)
 		{
 			StringBuilder builder = new StringBuilder();
-			PropertyFormatter formatter = FormatterRegistry.GetInstance().Get(subContext.Type);
+			ValidateCardinality(originalContext, collection);
+			PropertyFormatter formatter = this.formatterRegistry.Get(subContext.Type);
 			if (collection.IsEmpty())
 			{
 				builder.Append(formatter.Format(subContext, null, indentLevel));
 			}
 			else
 			{
-				foreach (BareANY element in EmptyIterable<object>.NullSafeIterable<BareANY>(collection))
+				foreach (BareANY hl7Value in EmptyIterable<object>.NullSafeIterable<BareANY>(collection))
 				{
-					// FIXME - SPECIALIZATION_TYPE - compare "element" type with subcontext datatype - if different, need to re-build a subcontext
-					builder.Append(formatter.Format(subContext, (BareANY)element, indentLevel));
+					string type = DetermineActualType(subContext.Type, hl7Value, originalContext.GetModelToXmlResult(), originalContext.GetPropertyPath
+						(), originalContext.IsCda());
+					if (!StringUtils.Equals(type, subContext.Type))
+					{
+						subContext = new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl(type, true, subContext);
+						formatter = this.formatterRegistry.Get(type);
+					}
+					builder.Append(formatter.Format(subContext, hl7Value, indentLevel));
 				}
 			}
 			return builder.ToString();
+		}
+
+		private string DetermineActualType(string type, BareANY hl7Value, Hl7Errors errors, string propertyPath, bool isCda)
+		{
+			StandardDataType newTypeEnum = (hl7Value == null ? null : hl7Value.DataType);
+			return this.polymorphismHandler.DetermineActualDataType(type, newTypeEnum, isCda, !this.isR2, CreateErrorLogger(propertyPath
+				, errors));
+		}
+
+		private ErrorLogger CreateErrorLogger(string propertyPath, Hl7Errors errors)
+		{
+			return new _ErrorLogger_128(errors, propertyPath);
+		}
+
+		private sealed class _ErrorLogger_128 : ErrorLogger
+		{
+			public _ErrorLogger_128(Hl7Errors errors, string propertyPath)
+			{
+				this.errors = errors;
+				this.propertyPath = propertyPath;
+			}
+
+			public void LogError(Hl7ErrorCode errorCode, ErrorLevel errorLevel, string errorMessage)
+			{
+				errors.AddHl7Error(new Hl7Error(errorCode, errorLevel, errorMessage, propertyPath));
+			}
+
+			private readonly Hl7Errors errors;
+
+			private readonly string propertyPath;
+		}
+
+		private void HandleConstraints(string type, ConstrainedDatatype constraints, BareANY hl7Value, ICollection<BareANY> bareAnyCollection
+			, FormatContext context)
+		{
+			IiCollectionConstraintHandler.ConstraintResult constraintResult = this.constraintHandler.CheckConstraints(type, constraints
+				, bareAnyCollection);
+			if (constraintResult != null && !constraintResult.IsFoundMatch())
+			{
+				// there should be a match, but if not we need to create an II with the appropriate values and add to collection
+				Identifier identifier = constraintResult.GetIdentifer();
+				//In Java these are really the same collection due to type erasure. In .NET we need two different collections.
+				ICollection<II> iiCollection = (ICollection<II>)hl7Value.BareValue;
+				iiCollection.Add(new IIImpl(identifier));
+				context.GetModelToXmlResult().AddHl7Error(new Hl7Error(Hl7ErrorCode.CDA_FIXED_CONSTRAINT_PROVIDED, ErrorLevel.INFO, "A fixed constraint was added for compliance: "
+					 + identifier, context.GetPropertyPath()));
+			}
+		}
+
+		private void ValidateCardinality(FormatContext context, ICollection<BareANY> collection)
+		{
+			int size = collection.Count;
+			int min = (int)context.GetCardinality().Min;
+			int max = (int)context.GetCardinality().Max;
+			if (size < min)
+			{
+				context.GetModelToXmlResult().AddHl7Error(new Hl7Error(Hl7ErrorCode.DATA_TYPE_ERROR, "Number of elements (" + size + ") is less than the specified minimum ("
+					 + min + ")", context.GetPropertyPath()));
+			}
+			if (size > max)
+			{
+				context.GetModelToXmlResult().AddHl7Error(new Hl7Error(Hl7ErrorCode.DATA_TYPE_ERROR, "Number of elements (" + size + ") is more than the specified maximum ("
+					 + max + ")", context.GetPropertyPath()));
+			}
 		}
 
 		/// <summary>

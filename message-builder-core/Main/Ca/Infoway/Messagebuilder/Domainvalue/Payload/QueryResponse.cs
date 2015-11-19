@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using Ca.Infoway.Messagebuilder.Lang;
@@ -61,6 +61,15 @@ namespace Ca.Infoway.Messagebuilder.Domainvalue.Payload
 			get
 			{
 				return Ca.Infoway.Messagebuilder.Codesystem.CodeSystem.VOCABULARY_QUERY_RESPONSE.Root;
+			}
+		}
+
+		/// <summary><inheritDoc></inheritDoc></summary>
+		public virtual string CodeSystemName
+		{
+			get
+			{
+				return null;
 			}
 		}
 

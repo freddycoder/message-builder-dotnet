@@ -14,15 +14,16 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System.Xml;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
+using Ca.Infoway.Messagebuilder.Error;
 using Ca.Infoway.Messagebuilder.Marshalling;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Model.Mock;
-using Ca.Infoway.Messagebuilder.Terminology;
+using Ca.Infoway.Messagebuilder.Resolver;
 using Ca.Infoway.Messagebuilder.Util.Xml;
 using Ca.Infoway.Messagebuilder.Xml;
 using Ca.Infoway.Messagebuilder.Xml.Service;
@@ -117,9 +118,10 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 			Assert.IsNotNull(teal.PatientMeasuredValue, "code2");
 			XmlToModelResult result = partSource2.GetResult();
 			Assert.IsNotNull(result, "result");
-			Assert.AreEqual(2, result.GetHl7Errors().Count);
+			Assert.AreEqual(3, result.GetHl7Errors().Count);
 			Assert.AreEqual(Hl7ErrorCode.UNSUPPORTED_INTERACTION, result.GetHl7Errors()[0].GetHl7ErrorCode());
 			Assert.AreEqual(Hl7ErrorCode.MANDATORY_FIELD_NOT_PROVIDED, result.GetHl7Errors()[1].GetHl7ErrorCode());
+			Assert.AreEqual(Hl7ErrorCode.MANDATORY_FIELD_NOT_PROVIDED, result.GetHl7Errors()[2].GetHl7ErrorCode());
 		}
 
 		/// <exception cref="System.Exception"></exception>

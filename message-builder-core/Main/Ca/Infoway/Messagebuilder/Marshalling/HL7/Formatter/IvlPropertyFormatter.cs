@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System;
@@ -27,8 +27,10 @@ using Ca.Infoway.Messagebuilder.Datatype.Lang;
 using Ca.Infoway.Messagebuilder.Datatype.Lang.Util;
 using Ca.Infoway.Messagebuilder.Datatype.Nullflavor;
 using Ca.Infoway.Messagebuilder.Domainvalue;
+using Ca.Infoway.Messagebuilder.Error;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter;
+using Ca.Infoway.Messagebuilder.Xml;
 
 namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 {
@@ -79,13 +81,13 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 
 		protected static readonly string VALUE = "value";
 
-		internal override string FormatNonNullValue(FormatContext context, Interval<T> value, int indentLevel)
+		protected override string FormatNonNullValue(FormatContext context, Interval<T> value, int indentLevel)
 		{
 			// need to use the alternate format method that has the BareANY object as a parameter
 			throw new NotSupportedException();
 		}
 
-		internal override string FormatNonNullDataType(FormatContext context, BareANY bareAny, int indentLevel)
+		protected override string FormatNonNullDataType(FormatContext context, BareANY bareAny, int indentLevel)
 		{
 			Interval<T> value = ExtractBareValue(bareAny);
 			context = ValidateInterval(value, bareAny, context);
@@ -113,20 +115,15 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			if (!StringUtils.Equals(type, newType))
 			{
 				// replace the context with one using the specialization type
-				context = new FormatContextImpl(newType, true, context);
+				context = new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl(newType, true, context);
 			}
-			bool lowProvided = (value.Representation == Representation.LOW || value.Representation == Representation.LOW_CENTER || value
-				.Representation == Representation.LOW_HIGH || value.Representation == Representation.LOW_WIDTH) && (value.Low != null ||
-				 value.LowNullFlavor != null);
-			bool highProvided = (value.Representation == Representation.HIGH || value.Representation == Representation.CENTRE_HIGH ||
-				 value.Representation == Representation.LOW_HIGH || value.Representation == Representation.WIDTH_HIGH) && (value.High !=
-				 null || value.HighNullFlavor != null);
-			bool centerProvided = (value.Representation == Representation.CENTRE || value.Representation == Representation.CENTRE_HIGH
-				 || value.Representation == Representation.CENTRE_WIDTH || value.Representation == Representation.LOW_CENTER) && (value.
-				Centre != null || value.CentreNullFlavor != null);
-			bool widthProvided = (value.Representation == Representation.WIDTH || value.Representation == Representation.CENTRE_WIDTH
-				 || value.Representation == Representation.LOW_WIDTH || value.Representation == Representation.WIDTH_HIGH) && (value.Width
-				 != null && (value.Width.Value != null || value.Width.NullFlavor != null));
+			bool lowProvided = RepresentationUtil.HasLow(value.Representation) && (value.Low != null || value.LowNullFlavor != null);
+			bool highProvided = RepresentationUtil.HasHigh(value.Representation) && (value.High != null || value.HighNullFlavor != null
+				);
+			bool centerProvided = RepresentationUtil.HasCentre(value.Representation) && (value.Centre != null || value.CentreNullFlavor
+				 != null);
+			bool widthProvided = RepresentationUtil.HasWidth(value.Representation) && (value.Width != null && (value.Width.Value != null
+				 || value.Width.NullFlavor != null));
 			errors = this.ivlValidationUtils.ValidateCorrectElementsProvided(type, context.GetVersion(), lowProvided, highProvided, centerProvided
 				, widthProvided);
 			RecordAnyErrors(errors, context);
@@ -147,13 +144,16 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 
 		private void AppendIntervalBounds(FormatContext context, Interval<T> value, StringBuilder buffer, int indentLevel)
 		{
-			string low = CreateElement(context, IvlPropertyFormatter<T>.LOW, CreateQTY(value.Low, value.LowNullFlavor), indentLevel);
-			string high = CreateElement(context, IvlPropertyFormatter<T>.HIGH, CreateQTY(value.High, value.HighNullFlavor), indentLevel
-				);
-			string centre = CreateElement(context, IvlPropertyFormatter<T>.CENTRE, CreateQTY(value.Centre, value.CentreNullFlavor), indentLevel
-				);
-			string width = CreateWidthElement(context, IvlPropertyFormatter<T>.WIDTH, value.Width, indentLevel);
-			switch (value.Representation)
+			Representation rep = value.Representation;
+			string low = RepresentationUtil.HasLow(rep) ? CreateElement(context, IvlPropertyFormatter<T>.LOW, CreateQTY(value.Low, value
+				.LowNullFlavor), indentLevel) : null;
+			string high = RepresentationUtil.HasHigh(rep) ? CreateElement(context, IvlPropertyFormatter<T>.HIGH, CreateQTY(value.High
+				, value.HighNullFlavor), indentLevel) : null;
+			string centre = RepresentationUtil.HasCentre(rep) ? CreateElement(context, IvlPropertyFormatter<T>.CENTRE, CreateQTY(value
+				.Centre, value.CentreNullFlavor), indentLevel) : null;
+			string width = RepresentationUtil.HasWidth(rep) ? CreateWidthElement(context, IvlPropertyFormatter<T>.WIDTH, value.Width, 
+				indentLevel) : null;
+			switch (rep)
 			{
 				case Representation.LOW_HIGH:
 				{
@@ -193,6 +193,13 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 					break;
 				}
 
+				case Representation.LOW_CENTER:
+				{
+					buffer.Append(low);
+					buffer.Append(centre);
+					break;
+				}
+
 				case Representation.WIDTH_HIGH:
 				{
 					buffer.Append(width);
@@ -207,6 +214,13 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 					break;
 				}
 
+				case Representation.CENTRE_HIGH:
+				{
+					buffer.Append(centre);
+					buffer.Append(high);
+					break;
+				}
+
 				default:
 				{
 					break;
@@ -216,7 +230,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 
 		private QTY<T> CreateQTY(T value, NullFlavor nullFlavor)
 		{
-			return value != null ? new QTYImpl<T>(value) : new QTYImpl<T>(nullFlavor);
+			return new QTYImpl<T>(null, value, nullFlavor, StandardDataType.QTY);
 		}
 
 		protected virtual string GetDateDiffUnits(BareDiff diff)
@@ -278,10 +292,10 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 				PropertyFormatter formatter = FormatterRegistry.GetInstance().Get(type);
 				if (formatter != null)
 				{
-					bool isSpecializationType = context.IsSpecializationType() && context.IsPassOnSpecializationType();
-					return formatter.Format(new FormatContextImpl(context.GetModelToXmlResult(), context.GetPropertyPath(), name, type, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
-						.MANDATORY, isSpecializationType, context.GetVersion(), context.GetDateTimeZone(), context.GetDateTimeTimeZone(), null), 
-						WrapWithHl7DataType(type, diff), indentLevel);
+					bool isSpecializationType = false;
+					return formatter.Format(new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl(type, isSpecializationType
+						, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY, Cardinality.Create("1"), name, context), WrapWithHl7DataType
+						(type, diff), indentLevel);
 				}
 				else
 				{
@@ -294,7 +308,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		{
 			try
 			{
-				BareANY hl7Value = (BareANY)System.Activator.CreateInstance(DataTypeImplementationFactory.GetImplementation(hl7DataType));
+				BareANY hl7Value = (BareANY)DataTypeFactory.CreateDataType(hl7DataType, false);
 				if (diff != null)
 				{
 					if (diff.BareValue != null)
@@ -325,10 +339,9 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			PropertyFormatter formatter = FormatterRegistry.GetInstance().Get(type);
 			if (formatter != null)
 			{
-				bool isSpecializationType = context.IsSpecializationType() && context.IsPassOnSpecializationType();
-				return formatter.Format(new FormatContextImpl(context.GetModelToXmlResult(), context.GetPropertyPath(), name, type, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
-					.POPULATED, isSpecializationType, context.GetVersion(), context.GetDateTimeZone(), context.GetDateTimeTimeZone(), null), 
-					value, indentLevel);
+				bool isSpecializationType = false;
+				return formatter.Format(new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl(type, isSpecializationType
+					, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.POPULATED, Cardinality.Create("1"), name, context), value, indentLevel);
 			}
 			else
 			{

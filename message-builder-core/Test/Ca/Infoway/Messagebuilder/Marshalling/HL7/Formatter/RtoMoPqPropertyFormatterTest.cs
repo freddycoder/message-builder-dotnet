@@ -14,15 +14,14 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype.Impl;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
-using Ca.Infoway.Messagebuilder.Datatype.Lang.Util;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter;
-using Ca.Infoway.Messagebuilder.Terminology.Configurator;
+using Ca.Infoway.Messagebuilder.Resolver.Configurator;
 using NUnit.Framework;
 
 namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
@@ -31,7 +30,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 	public class RtoMoPqPropertyFormatterTest : FormatterTestCase
 	{
 		[SetUp]
-		public override void Setup()
+		public virtual void Setup()
 		{
 			DefaultCodeResolutionConfigurator.ConfigureCodeResolversWithTrivialDefault();
 		}
@@ -41,12 +40,12 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		public virtual void TestBasic()
 		{
 			Ratio<Money, PhysicalQuantity> ratio = new Ratio<Money, PhysicalQuantity>();
-			ratio.Numerator = new Money(new BigDecimal("1.00"), Currency.CANADIAN_DOLLAR);
+			ratio.Numerator = new Money(new BigDecimal("1.00"), Ca.Infoway.Messagebuilder.Domainvalue.Basic.Currency.CANADIAN_DOLLAR);
 			ratio.Denominator = new PhysicalQuantity(new BigDecimal("10.00"), Ca.Infoway.Messagebuilder.Domainvalue.Basic.UnitsOfMeasureCaseSensitive
 				.MILLILITRE);
 			string result = new RtoMoPqPropertyFormatter().Format(GetContext("name", "RTO<MO.CAD,PQ.BASIC>"), new RTOImpl<Money, PhysicalQuantity
 				>(ratio));
-			AssertXml("result", "<name><numerator currency=\"CAD\" value=\"1.00\"/><denominator unit=\"ml\" value=\"10.00\"/></name>"
+			AssertXml("result", "<name><numerator currency=\"CAD\" value=\"1.00\"/><denominator unit=\"mL\" value=\"10.00\"/></name>"
 				, result);
 		}
 

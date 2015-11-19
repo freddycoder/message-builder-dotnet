@@ -14,12 +14,12 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System;
 using Ca.Infoway.Messagebuilder;
-using Ca.Infoway.Messagebuilder.Marshalling.HL7;
+using Ca.Infoway.Messagebuilder.Domainvalue.Util;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser;
 using Ca.Infoway.Messagebuilder.Xml;
 
@@ -31,28 +31,31 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 
 		private readonly VersionNumber version;
 
-		private readonly TimeZone dateTimeZone;
+		private readonly TimeZoneInfo dateTimeZone;
 
-		private readonly TimeZone dateTimeTimeZone;
+		private readonly TimeZoneInfo dateTimeTimeZone;
 
-		private ParseContextImpl(Relationship relationship, VersionNumber version, TimeZone dateTimeZone, TimeZone dateTimeTimeZone
-			)
+		private readonly ConstrainedDatatype constraints;
+
+		private readonly CodeTypeHandler codeTypeHandler;
+
+		private readonly bool isCda;
+
+		public ParseContextImpl(Relationship relationship, ConstrainedDatatype constraints, VersionNumber version, TimeZoneInfo dateTimeZone
+			, TimeZoneInfo dateTimeTimeZone, CodeTypeHandler codeTypeHandler, bool isCda)
 		{
 			this.relationship = relationship;
+			this.constraints = constraints;
 			this.version = version;
 			this.dateTimeZone = dateTimeZone;
 			this.dateTimeTimeZone = dateTimeTimeZone;
-		}
-
-		public static ParseContext Create(Relationship relationship, VersionNumber version, TimeZone dateTimeZone, TimeZone dateTimeTimeZone
-			)
-		{
-			return new Ca.Infoway.Messagebuilder.Marshalling.ParseContextImpl(relationship, version, dateTimeZone, dateTimeTimeZone);
+			this.codeTypeHandler = codeTypeHandler;
+			this.isCda = isCda;
 		}
 
 		public virtual System.Type GetExpectedReturnType()
 		{
-			return DomainTypeHelper.GetReturnType(this.relationship, this.version);
+			return DomainTypeHelper.GetReturnType(this.relationship, this.version, this.codeTypeHandler);
 		}
 
 		public virtual string Type
@@ -68,12 +71,12 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 			return this.version;
 		}
 
-		public virtual TimeZone GetDateTimeZone()
+		public virtual TimeZoneInfo GetDateTimeZone()
 		{
 			return this.dateTimeZone;
 		}
 
-		public virtual TimeZone GetDateTimeTimeZone()
+		public virtual TimeZoneInfo GetDateTimeTimeZone()
 		{
 			return this.dateTimeTimeZone;
 		}
@@ -91,6 +94,26 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 		public virtual Ca.Infoway.Messagebuilder.Xml.ConformanceLevel GetConformance()
 		{
 			return this.relationship.Conformance;
+		}
+
+		public virtual Cardinality GetCardinality()
+		{
+			return this.relationship.Cardinality;
+		}
+
+		public virtual ConstrainedDatatype GetConstraints()
+		{
+			return this.constraints;
+		}
+
+		public virtual bool IsCda()
+		{
+			return isCda;
+		}
+
+		public virtual bool IsFixedValue()
+		{
+			return relationship.HasFixedValue();
 		}
 	}
 }

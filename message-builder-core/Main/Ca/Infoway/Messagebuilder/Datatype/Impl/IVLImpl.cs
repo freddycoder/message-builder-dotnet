@@ -45,14 +45,11 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Impl {
 	
 		private const long serialVersionUID = -5984093680112937602L;
 	
-		private readonly bool highClosed;
-		private readonly bool lowClosed;
-	
 		/// <summary>
 		/// Constructs an empty IVL.
 		/// </summary>
 		///
-		public IVLImpl() : this(false, false,  default(V)) {
+		public IVLImpl() : this(default(V)) {
 		}
 	
 		/// <summary>
@@ -60,26 +57,8 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Impl {
 		/// </summary>
 		///
 		/// <param name="defaultValue">an initial value</param>
-		public IVLImpl(V defaultValue) : this(false, false, defaultValue) {
-		}
-	
-		/// <summary>
-		/// Constructs an IVL using the supplied parameters.
-		/// </summary>
-		///
-		/// <param name="lowClosed_0">whether low bound is closed</param>
-		/// <param name="highClosed_1">whether high bound is closed</param>
-		public IVLImpl(bool lowClosed_0, bool highClosed_1) : this(lowClosed_0, highClosed_1,  default(V)) {
-		}
-	
-		/// <summary>
-		/// Constructs an IVL using the supplied parameters.
-		/// </summary>
-		///
-		/// <param name="lowClosed_0">whether low bound is closed</param>
-		/// <param name="highClosed_1">whether high bound is closed</param>
-		/// <param name="defaultValue">an initial value</param>
-		public IVLImpl(bool lowClosed_0, bool highClosed_1, V defaultValue) : this(typeof(V), defaultValue, null, Ca.Infoway.Messagebuilder.Datatype.StandardDataType.IVL) {
+        public IVLImpl(V defaultValue) : this(typeof(V), defaultValue, null, StandardDataType.IVL)
+        {
 		}
 	
 		/// <summary>
@@ -90,57 +69,9 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Impl {
 		/// <param name="value">an initial value</param>
 		/// <param name="nullFlavor">a null flavor</param>
 		/// <param name="dataType">the HL7 datatype</param>
-		public IVLImpl(Type rawType, V value_ren, NullFlavor nullFlavor,
-				StandardDataType dataType) : this(rawType, value_ren, nullFlavor, dataType, false, false) {
+		public IVLImpl(Type rawType, V value_ren, NullFlavor nullFlavor, StandardDataType dataType)
+            : base(rawType, value_ren, nullFlavor, dataType) {
 		}
 	
-		/// <summary>
-		/// Constructs an IVL using the supplied parameters.
-		/// </summary>
-		///
-		/// <param name="rawType">the underlying   type</param>
-		/// <param name="value">an initial value</param>
-		/// <param name="nullFlavor">a null flavor</param>
-		/// <param name="dataType">the HL7 datatype</param>
-		/// <param name="lowClosed_0">whether low bound is closed</param>
-		/// <param name="highClosed_1">whether high bound is closed</param>
-		public IVLImpl(Type rawType, V value_ren, NullFlavor nullFlavor,
-				StandardDataType dataType, bool lowClosed_0, bool highClosed_1) : base(rawType, value_ren, nullFlavor, dataType) {
-			this.lowClosed = lowClosed_0;
-			this.highClosed = highClosed_1;
-		}
-	
-		/// <summary>
-		/// Determines whether the high bound is closed.
-		/// </summary>
-		///
-		/// <returns>whether the high bound is closed</returns>
-		public virtual bool HighClosed {
-		/// <summary>
-		/// Determines whether the high bound is closed.
-		/// </summary>
-		///
-		/// <returns>whether the high bound is closed</returns>
-		  get {
-				return this.highClosed;
-			}
-		}
-		
-	
-		/// <summary>
-		/// Determines whether the low bound is closed.
-		/// </summary>
-		///
-		/// <returns>whether the low bound is closed</returns>
-		public virtual bool LowClosed {
-		/// <summary>
-		/// Determines whether the low bound is closed.
-		/// </summary>
-		///
-		/// <returns>whether the low bound is closed</returns>
-		  get {
-				return this.lowClosed;
-			}
-		}
 	}
 }

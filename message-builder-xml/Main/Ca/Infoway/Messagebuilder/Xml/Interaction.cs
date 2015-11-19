@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2013-03-08 11:06:36 -0500 (Fri, 08 Mar 2013) $
- * Revision:      $LastChangedRevision: 6699 $
+ * Author:        $LastChangedBy: jmis $
+ * Last modified: $LastChangedDate: 2015-05-27 08:43:37 -0400 (Wed, 27 May 2015) $
+ * Revision:      $LastChangedRevision: 9535 $
  */
 using System;
 using System.Collections.Generic;
@@ -33,6 +33,9 @@ namespace Ca.Infoway.Messagebuilder.Xml
 	{
 		[XmlAttributeAttribute]
 		private string name;
+
+		[XmlAttributeAttribute(Required = false)]
+		private string triggerEvent;
 
 		[ElementListAttribute(Inline = true, Required = false)]
 		[NamespaceAttribute(Prefix = "regen", Reference = "regen_ns")]
@@ -53,6 +56,15 @@ namespace Ca.Infoway.Messagebuilder.Xml
 
 		[XmlAttributeAttribute(Required = false)]
 		private string category;
+
+		[XmlAttributeAttribute(Required = false)]
+		private string templateId;
+
+		[XmlAttributeAttribute(Required = false)]
+		private string parentTemplateId;
+
+		[ElementListAttribute(Inline = true, Required = false)]
+		private IList<ReceiverResponsibility> receiverResponsibilities = new List<ReceiverResponsibility>();
 
 		/// <summary>Get the type name of the interaction.</summary>
 		/// <remarks>
@@ -75,6 +87,19 @@ namespace Ca.Infoway.Messagebuilder.Xml
 			{
 				string name = value;
 				this.name = name;
+			}
+		}
+
+		public virtual string TriggerEvent
+		{
+			get
+			{
+				return triggerEvent;
+			}
+			set
+			{
+				string triggerEvent = value;
+				this.triggerEvent = triggerEvent;
 			}
 		}
 
@@ -225,6 +250,32 @@ namespace Ca.Infoway.Messagebuilder.Xml
 			}
 		}
 
+		public virtual string TemplateId
+		{
+			get
+			{
+				return templateId;
+			}
+			set
+			{
+				string templateId = value;
+				this.templateId = templateId;
+			}
+		}
+
+		public virtual string ParentTemplateId
+		{
+			get
+			{
+				return parentTemplateId;
+			}
+			set
+			{
+				string parentTemplateId = value;
+				this.parentTemplateId = parentTemplateId;
+			}
+		}
+
 		/// <summary>Tracks an interaction difference for regen</summary>
 		/// <returns>the difference</returns>
 		public virtual IList<Difference> Differences
@@ -243,6 +294,24 @@ namespace Ca.Infoway.Messagebuilder.Xml
 		public virtual void AddDifference(Difference difference)
 		{
 			this.differences.Add(difference);
+		}
+
+		public virtual IList<ReceiverResponsibility> ReceiverResponsibilities
+		{
+			get
+			{
+				return receiverResponsibilities;
+			}
+			set
+			{
+				IList<ReceiverResponsibility> receiverResponsibilities = value;
+				this.receiverResponsibilities = receiverResponsibilities;
+			}
+		}
+
+		public virtual void AddResponsibility(ReceiverResponsibility responsibility)
+		{
+			this.receiverResponsibilities.Add(responsibility);
 		}
 	}
 }

@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System.Collections.Generic;
@@ -43,7 +43,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 	[DataTypeHandler(new string[] { "CD", "CE" })]
 	internal class CdPropertyFormatter : AbstractCodePropertyFormatter
 	{
-		internal override IDictionary<string, string> GetAttributeNameValuePairs(FormatContext context, Code code, BareANY bareAny
+		protected override IDictionary<string, string> GetAttributeNameValuePairs(FormatContext context, Code code, BareANY bareAny
 			)
 		{
 			IDictionary<string, string> result = base.GetAttributeNameValuePairs(context, code, bareAny);
@@ -53,9 +53,10 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 				{
 					result["codeSystem"] = code.CodeSystem;
 				}
-				if (StringUtils.IsNotBlank(((CD)bareAny).DisplayName))
+				ANYMetaData anyCd = (ANYMetaData)bareAny;
+				if (StringUtils.IsNotBlank(anyCd.DisplayName))
 				{
-					result["displayName"] = ((CD)bareAny).DisplayName;
+					result["displayName"] = anyCd.DisplayName;
 				}
 			}
 			return result;

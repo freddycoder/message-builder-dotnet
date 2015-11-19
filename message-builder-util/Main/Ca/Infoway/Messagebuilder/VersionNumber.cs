@@ -14,8 +14,8 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2013-03-08 11:06:36 -0500 (Fri, 08 Mar 2013) $
- * Revision:      $LastChangedRevision: 6699 $
+ * Last modified: $LastChangedDate: 2014-01-30 15:25:26 -0500 (Thu, 30 Jan 2014) $
+ * Revision:      $LastChangedRevision: 8372 $
  */
 using Ca.Infoway.Messagebuilder;
 
@@ -37,5 +37,12 @@ namespace Ca.Infoway.Messagebuilder
 		/// <remarks>The HL7v3 release that this version is based on. If at all possible, null should not be returned.</remarks>
 		/// <returns>the base version</returns>
 		Hl7BaseVersion GetBaseVersion();
+
+		/// <summary>This method should only return getBaseVersion() in the great majority of cases.</summary>
+		/// <remarks>This method should only return getBaseVersion() in the great majority of cases.</remarks>
+		/// <param name="datatype">An object representing a datatype. Usually, but not restricted to, an instance of StandardDataType.
+		/// 	</param>
+		/// <returns>the HL7 release that the given datatype conforms to</returns>
+		Hl7BaseVersion GetBaseVersion(Typed datatype);
 	}
 }

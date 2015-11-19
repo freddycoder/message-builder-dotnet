@@ -14,8 +14,8 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2013-03-01 17:48:17 -0500 (Fri, 01 Mar 2013) $
- * Revision:      $LastChangedRevision: 6663 $
+ * Last modified: $LastChangedDate: 2013-05-24 15:30:17 -0400 (Fri, 24 May 2013) $
+ * Revision:      $LastChangedRevision: 6893 $
  */
 
 /// ---------------------------------------------------------------------------------------------------
@@ -93,9 +93,6 @@ namespace Ca.Infoway.Messagebuilder.Xml {
 			analyzer
 					.Add(new FileInfo(
 							"../message-builder-messageset-v02_r02/src/main/resources/messageSet_v02_r02.xml"));
-			analyzer
-					.Add(new FileInfo(
-							"../message-builder-messageset-v02_r01/src/main/resources/messageSet_v02_r01.xml"));
 			analyzer
 					.Add(new FileInfo(
 							"../message-builder-messageset-r02_04_02/src/main/resources/messageSet_r02_04_02.xml"));

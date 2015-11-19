@@ -14,8 +14,8 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2013-03-01 17:48:17 -0500 (Fri, 01 Mar 2013) $
- * Revision:      $LastChangedRevision: 6663 $
+ * Last modified: $LastChangedDate: 2014-01-23 14:24:29 -0500 (Thu, 23 Jan 2014) $
+ * Revision:      $LastChangedRevision: 8362 $
  */
 
 
@@ -26,7 +26,7 @@ using System.Collections.Generic;
 namespace Ca.Infoway.Messagebuilder.Platform
 {
 
-	public class LinkedSet<T> : ICollection<T>
+	public class LinkedSet<T> : ICollection<T>, IEquatable<LinkedSet<T>>
 	{
 		private LinkedList<T> list;
 		
@@ -73,5 +73,31 @@ namespace Ca.Infoway.Messagebuilder.Platform
 		IEnumerator<T> IEnumerable<T>.GetEnumerator() {
 			return this.list.GetEnumerator();
 		}
+        public override bool Equals(object obj)
+        {
+            if (obj == null || !(obj is LinkedSet<T>))
+            {
+                return false;
+            }
+            return this.Equals((LinkedSet<T>)obj);
+        }
+        public bool Equals(LinkedSet<T> that)
+        {
+            if (this.list.Count != that.list.Count) {
+                return false;
+            }
+            int count = 0;
+            T[] otherList = that.list.ToArray();
+            foreach (T item in this.list)
+            {
+                if (!item.Equals(otherList[count])) {
+                    return false;
+                }
+                count++;
+            }
+
+            return true;
+        }
+
 	}
 }

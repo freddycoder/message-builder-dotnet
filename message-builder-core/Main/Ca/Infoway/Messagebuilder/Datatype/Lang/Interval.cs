@@ -25,6 +25,7 @@
  
 namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 
+    using Ca.Infoway.Messagebuilder.Datatype.Lang;
     using Ca.Infoway.Messagebuilder.Datatype.Lang.Util;
     using Ca.Infoway.Messagebuilder.Domainvalue;
     using Ca.Infoway.Messagebuilder;
@@ -54,22 +55,25 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
         private readonly Representation representation;
 
         public Interval(T low_0, T high_1, T centre_2, Diff<T> width_3, Representation representation_4)
-            : this(low_0, high_1, centre_2, width_3, representation_4, null, null, null, default(T))
+            : this(low_0, high_1, centre_2, width_3, representation_4, null, null, null, default(T), null, null, null)
         {
         }
 
         public Interval(T low_0, T high_1, T centre_2, Diff<T> width_3, Representation representation_4,
             NullFlavor lowNullFlavor_5, NullFlavor highNullFlavor_6, NullFlavor centreNullFlavor_7)
-            : this(low_0, high_1, centre_2, width_3, representation_4, lowNullFlavor_5, highNullFlavor_6, centreNullFlavor_7, default(T))
+            : this(low_0, high_1, centre_2, width_3, representation_4, lowNullFlavor_5, highNullFlavor_6, centreNullFlavor_7, default(T), null, null, null)
         {
         }
 
-        public Interval(T value_ren) : this(default(T), default(T), default(T), null, Representation.SIMPLE, null, null, null, value_ren)
+        public Interval(T value_ren, SetOperator setOperator) : 
+            this(default(T), default(T), default(T), null, Representation.SIMPLE, null, null, null, value_ren, setOperator, null, null)
         {
         }
 
         internal Interval(T low_0, T high_1, T centre_2, Diff<T> width_3, Representation representation_4, 
-            NullFlavor lowNullFlavor_5, NullFlavor highNullFlavor_6, NullFlavor centreNullFlavor_7, T value_ren_8) : base(value_ren_8) {
+            NullFlavor lowNullFlavor_5, NullFlavor highNullFlavor_6, NullFlavor centreNullFlavor_7, T value_ren_8,
+            SetOperator setOperator_9, Boolean? lowInclusive_10, Boolean? highInclusive_11) : 
+            base(value_ren_8, setOperator_9) {
 			this.low = low_0;
 			this.high = high_1;
 			this.centre = centre_2;
@@ -78,7 +82,9 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
             this.lowNullFlavor = lowNullFlavor_5;
             this.highNullFlavor = highNullFlavor_6;
             this.centreNullFlavor = centreNullFlavor_7;
-		}
+            LowInclusive = lowInclusive_10;
+            HighInclusive = highInclusive_11;
+        }
 	
 		/// <summary>
 		/// Constructs an Interval using the supplied parameters.
@@ -91,8 +97,8 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		public static Interval<TS> CreateLowHigh<TS>(TS low_0, TS high_1) {
 			Ca.Infoway.Messagebuilder.Validate.NotNull(low_0);
 			Ca.Infoway.Messagebuilder.Validate.NotNull(high_1);
-			return new Interval<TS>(low_0, high_1, Ca.Infoway.Messagebuilder.Datatype.Lang.Util.GenericMath.Average(low_0, high_1),
-                    Ca.Infoway.Messagebuilder.Datatype.Lang.Util.GenericMath.Diff<TS>(low_0, high_1), Representation.LOW_HIGH);
+			return new Interval<TS>(low_0, high_1, GenericMath.Average(low_0, high_1),
+                    GenericMath.Diff<TS>(low_0, high_1), Representation.LOW_HIGH);
 		}
 	
 		/// <summary>
@@ -106,8 +112,8 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		public static Interval<TS> CreateLowWidth<TS>(TS low_0, Diff<TS> width_1) {
 			Ca.Infoway.Messagebuilder.Validate.NotNull(low_0);
 			Ca.Infoway.Messagebuilder.Validate.NotNull(width_1);
-            TS high_2 = Ca.Infoway.Messagebuilder.Datatype.Lang.Util.GenericMath.Add(low_0, width_1);
-            return new Interval<TS>(low_0, high_2, Ca.Infoway.Messagebuilder.Datatype.Lang.Util.GenericMath.Average(low_0, high_2),
+            TS high_2 = GenericMath.Add(low_0, width_1);
+            return new Interval<TS>(low_0, high_2, GenericMath.Average(low_0, high_2),
 					width_1, Representation.LOW_WIDTH);
 		}
 	
@@ -122,8 +128,8 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		public static Interval<TS> CreateWidthHigh<TS>(Diff<TS> width_0, TS high_1) {
 			Ca.Infoway.Messagebuilder.Validate.NotNull(width_0);
 			Ca.Infoway.Messagebuilder.Validate.NotNull(high_1);
-			TS low_2 = Ca.Infoway.Messagebuilder.Datatype.Lang.Util.GenericMath.Diff<TS>(width_0.Value, high_1).Value;
-            return new Interval<TS>(low_2, high_1, Ca.Infoway.Messagebuilder.Datatype.Lang.Util.GenericMath.Average(low_2, high_1),
+			TS low_2 = GenericMath.Diff<TS>(width_0.Value, high_1).Value;
+            return new Interval<TS>(low_2, high_1, GenericMath.Average(low_2, high_1),
 					width_0, Representation.WIDTH_HIGH);
 		}
 	
@@ -138,9 +144,9 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		public static Interval<TS> CreateCentreWidth<TS>(TS centre_0, Diff<TS> width_1) {
 			Ca.Infoway.Messagebuilder.Validate.NotNull(centre_0);
 			Ca.Infoway.Messagebuilder.Validate.NotNull(width_1);
-            TS half = Ca.Infoway.Messagebuilder.Datatype.Lang.Util.GenericMath.Half(width_1.Value);
-            TS low_2 = Ca.Infoway.Messagebuilder.Datatype.Lang.Util.GenericMath.Diff<TS>(half, centre_0).Value;
-            TS high_3 = Ca.Infoway.Messagebuilder.Datatype.Lang.Util.GenericMath.Add(low_2, width_1);
+            TS half = GenericMath.Half(width_1.Value);
+            TS low_2 = GenericMath.Diff<TS>(half, centre_0).Value;
+            TS high_3 = GenericMath.Add(low_2, width_1);
 			return new Interval<TS>(low_2, high_3, centre_0, width_1,
 					Representation.CENTRE_WIDTH);
 		}
@@ -203,7 +209,7 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
         public static Interval<TS> CreateSimple<TS>(TS value_ren)
         {
             Ca.Infoway.Messagebuilder.Validate.NotNull(value_ren);
-            return new Interval<TS>(value_ren);
+            return new Interval<TS>(value_ren, null);
         }
         
         /// <summary>
@@ -343,6 +349,63 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
                 return this.centreNullFlavor;
             }
         }
+
+        public Boolean? LowInclusive {
+            get;
+            set;
+        }
+
+        public Boolean? HighInclusive {
+            get;
+            set;
+        }
 	
+        public override int GetHashCode()
+        {
+            return new HashCodeBuilder()
+                    .AppendSuper(base.GetHashCode())
+                    .Append(this.low)
+                    .Append(this.high)
+                    .Append(this.centre)
+                    .Append(this.width)
+                    .Append(this.lowNullFlavor)
+                    .Append(this.highNullFlavor)
+                    .Append(this.centreNullFlavor)
+                    .Append(this.representation)
+                    .Append(this.LowInclusive)
+                    .Append(this.HighInclusive)
+                    .ToHashCode();
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+            else if (obj.GetType() != GetType())
+            {
+                return false;
+            } else {
+                return Equals((Interval<T>) obj);
+            }
+        }
+    
+        private bool Equals(Interval<T> that)
+        {
+            return new EqualsBuilder().AppendSuper(base.Equals(that))
+                    .Append(this.low, that.low)
+                    .Append(this.high, that.high)
+                    .Append(this.centre, that.centre)
+                    .Append(this.width, that.width)
+                    .Append(this.lowNullFlavor, that.lowNullFlavor)
+                    .Append(this.highNullFlavor, that.highNullFlavor)
+                    .Append(this.centreNullFlavor, that.centreNullFlavor)
+                    .Append(this.representation, that.representation)
+                    .Append(this.LowInclusive, that.LowInclusive)
+                    .Append(this.HighInclusive, that.HighInclusive)
+                    .IsEquals();
+        }
+    
 	}
 }

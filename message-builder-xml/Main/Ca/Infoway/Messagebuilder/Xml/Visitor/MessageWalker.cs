@@ -13,11 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2013-03-08 11:06:36 -0500 (Fri, 08 Mar 2013) $
- * Revision:      $LastChangedRevision: 6699 $
+ * Author:        $LastChangedBy: jmis $
+ * Last modified: $LastChangedDate: 2015-05-27 08:43:37 -0400 (Wed, 27 May 2015) $
+ * Revision:      $LastChangedRevision: 9535 $
  */
+using System;
 using System.Collections.Generic;
+using System.Text;
 using System.Xml;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Util.Xml;
@@ -62,18 +64,22 @@ namespace Ca.Infoway.Messagebuilder.Xml.Visitor
 			XmlElement documentElement = this.message.DocumentElement;
 			visitor.VisitRoot(documentElement, interaction);
 			MessagePart messagePart = GetMessagePart(interaction.SuperTypeName);
-			ProcessAllRelationships(documentElement, interaction, messagePart, visitor);
+			ProcessAllRelationships(documentElement, interaction, Arrays.AsList(messagePart), visitor);
 		}
 
-		private void ProcessAllRelationships(XmlElement element, Interaction interaction, MessagePart messagePart, MessageVisitor
-			 visitor)
+		private void ProcessAllRelationships(XmlElement element, Interaction interaction, IList<MessagePart> messagePartAndChoiceExtensionParts
+			, MessageVisitor visitor)
 		{
 			ICollection<string> knownItems = new HashSet<string>();
-			ElementBridge helper = new ElementBridge(element, messagePart, GetInteraction(element.OwnerDocument));
-			foreach (RelationshipBridge relationship in helper.GetRelationships())
+			ValidateElementOrder(messagePartAndChoiceExtensionParts, element, visitor);
+			foreach (MessagePart messagePart in messagePartAndChoiceExtensionParts)
 			{
-				knownItems.AddAll(relationship.GetNames());
-				ProcessRelationship(interaction, messagePart, relationship, visitor);
+				ElementBridge helper = new ElementBridge(element, messagePart, GetInteraction(element.OwnerDocument));
+				foreach (RelationshipBridge relationship in helper.GetRelationships())
+				{
+					knownItems.AddAll(relationship.GetNames());
+					ProcessRelationship(interaction, messagePart, relationship, visitor);
+				}
 			}
 			ProcessUnknownStructuralAttributes(new HashSet<string>(knownItems), element, visitor);
 			ProcessUnknownChildElements(new HashSet<string>(knownItems), element, visitor);
@@ -94,6 +100,7 @@ namespace Ca.Infoway.Messagebuilder.Xml.Visitor
 					if (!knownItems.Contains(localOrTagName))
 					{
 						knownItems.Add(localOrTagName);
+						// this call will intentionally fail fast with an error (since relationship is null)
 						visitor.VisitNonStructuralAttribute(element, Arrays.AsList(child), null);
 					}
 				}
@@ -104,26 +111,29 @@ namespace Ca.Infoway.Messagebuilder.Xml.Visitor
 			)
 		{
 			XmlAttributeCollection attrs = element.Attributes;
-			int length = attrs == null ? 0 : attrs.Count;
-			for (int i = 0; i < length; i++)
+			if (attrs != null)
 			{
-				XmlAttribute item = (XmlAttribute)attrs.Item(i);
-				if (IsIgnorable(item))
+				foreach (XmlNode node in new XmlNamedNodeMapIterable(attrs))
 				{
-				}
-				else
-				{
-					// skip it
-					if (!NamespaceUtil.IsHl7Node(item))
+					XmlAttribute item = (XmlAttribute)node;
+					if (IsIgnorable(item))
 					{
 					}
 					else
 					{
 						// skip it
-						if (!knownItems.Contains(item.Name))
+						if (!NamespaceUtil.IsHl7Node(item))
 						{
-							knownItems.Add(item.Name);
-							visitor.VisitStructuralAttribute(element, item, null);
+						}
+						else
+						{
+							// skip it
+							if (!knownItems.Contains(item.Name))
+							{
+								knownItems.Add(item.Name);
+								// this call will intentionally fail fast with an error (since relationship is null)
+								visitor.VisitStructuralAttribute(element, item, null);
+							}
 						}
 					}
 				}
@@ -169,14 +179,10 @@ namespace Ca.Infoway.Messagebuilder.Xml.Visitor
 			foreach (XmlElement child in relationshipBridge.GetElements())
 			{
 				Relationship relationship = relationshipBridge.GetRelationship();
-				if (relationship.Choice)
+				IList<MessagePart> messageParts = GetMessageParts(relationship, interaction, NodeUtil.GetLocalOrTagName(child));
+				if (!messageParts.IsEmpty() && !IsNull(child))
 				{
-					relationship = FindSpecificChoice(child, relationship);
-				}
-				MessagePart subPart = GetMessagePart(relationship, interaction, NodeUtil.GetLocalOrTagName(child));
-				if (subPart != null && !IsNull(child))
-				{
-					ProcessAllRelationships(child, interaction, subPart, visitor);
+					ProcessAllRelationships(child, interaction, messageParts, visitor);
 				}
 			}
 		}
@@ -186,39 +192,65 @@ namespace Ca.Infoway.Messagebuilder.Xml.Visitor
 			return child.HasAttribute("nullFlavor");
 		}
 
-		private Relationship FindSpecificChoice(XmlElement child, Relationship relationship)
+		private IList<MessagePart> GetMessageParts(Relationship relationship, Interaction interaction, string elementName)
 		{
-			return relationship.FindChoiceOption(ChoiceSupport.ChoiceOptionNamePredicate(NodeUtil.GetLocalOrTagName(child)));
-		}
-
-		private MessagePart GetMessagePart(Relationship relationship, Interaction interaction, string elementName)
-		{
+			// error if template and choice
+			if (relationship.TemplateRelationship && relationship.Choice)
+			{
+				throw new Exception("Do not know how to handle relationship " + relationship.Name + ": it is both a choice and a template"
+					);
+			}
+			IList<MessagePart> parts = new List<MessagePart>();
 			if (relationship.TemplateRelationship)
 			{
 				Argument argument = interaction.GetArgumentByTemplateParameterName(relationship.TemplateParameterName);
-				if (argument == null)
+				// HACK: IW/RC: bug 11067: the data in the messageSets is
+				// incomplete. Don't NPE, just carry on.
+				if (argument != null)
 				{
-					// HACK: IW/RC: bug 11067: the data in the messageSets is
-					// incomplete. Don't NPE, just carry on.
-					return null;
-				}
-				else
-				{
-					if (argument.Choice)
+					AddChoiceParts(parts, argument.Choices, elementName);
+					MessagePart messagePart = GetMessagePart(argument.Name);
+					if (messagePart != null)
 					{
-						Relationship choice = argument.FindChoiceOption(ChoiceSupport.ChoiceOptionNamePredicate(elementName));
-						return choice == null ? null : GetMessagePart(choice.Type);
-					}
-					else
-					{
-						return GetMessagePart(argument.Name);
+						parts.Add(messagePart);
 					}
 				}
 			}
 			else
 			{
-				return GetMessagePart(relationship.Type);
+				AddChoiceParts(parts, relationship.Choices, elementName);
+				MessagePart messagePart = GetMessagePart(relationship.Type);
+				if (messagePart != null)
+				{
+					parts.Add(messagePart);
+				}
 			}
+			return parts;
+		}
+
+		// TM: RM #16042 - need to also check supertype of choices, as these can also have relationships (and so on, up the chain)
+		private bool AddChoiceParts(IList<MessagePart> results, IList<Relationship> choices, string elementName)
+		{
+			foreach (Relationship relationship in choices)
+			{
+				if (relationship.Choice)
+				{
+					if (AddChoiceParts(results, relationship.Choices, elementName))
+					{
+						results.Add(GetMessagePart(relationship.Type));
+						return true;
+					}
+				}
+				else
+				{
+					if (relationship.Name.Equals(elementName))
+					{
+						results.Add(GetMessagePart(relationship.Type));
+						return true;
+					}
+				}
+			}
+			return false;
 		}
 
 		private Interaction GetInteraction(XmlDocument message)
@@ -234,6 +266,121 @@ namespace Ca.Infoway.Messagebuilder.Xml.Visitor
 		private MessagePart GetMessagePart(string type)
 		{
 			return this.service.GetMessagePart(this.version, type);
+		}
+
+		private void ValidateElementOrder(IList<MessagePart> messagePartAndChoiceExtensionParts, XmlElement element, MessageVisitor
+			 visitor)
+		{
+			// create list of properly ordered names (skipping those not provided, and skipping those without a relationship match)
+			IList<string> properlyOrderedProvidedRelationshipNames = CreateListOfProperlyOrderedNames(element, messagePartAndChoiceExtensionParts
+				, visitor);
+			// create list of xml names in the order provided (collapsing duplicates)
+			// remove/ignore any not in properly ordered names
+			IList<string> xmlElementNamesInOrderProvided = CreateListOfXmlNamesInOrderProvided(element, properlyOrderedProvidedRelationshipNames
+				);
+			// iterate proper list, look for exact match
+			int expectedSize = properlyOrderedProvidedRelationshipNames.Count;
+			int actualSize = xmlElementNamesInOrderProvided.Count;
+			bool errorDetected = false;
+			for (int i = 0; i < expectedSize; i++)
+			{
+				string expectedName = properlyOrderedProvidedRelationshipNames[i];
+				string actualName = actualSize > i ? xmlElementNamesInOrderProvided[i] : null;
+				if (!StringUtils.Equals(expectedName, actualName))
+				{
+					// if not found, break out and log error "beginning with...", then show expected element order
+					errorDetected = true;
+					string errorMessage = CreateElementOutOfOrderErrorMessage(properlyOrderedProvidedRelationshipNames, actualName);
+					visitor.AddError(errorMessage, element);
+					break;
+				}
+			}
+			// the two sets of names should be the same length, but just in case...
+			if (!errorDetected && actualSize > expectedSize)
+			{
+				string errorMessage = CreateElementOutOfOrderErrorMessage(properlyOrderedProvidedRelationshipNames, xmlElementNamesInOrderProvided
+					[expectedSize]);
+				visitor.AddError(errorMessage, element);
+			}
+		}
+
+		private string CreateElementOutOfOrderErrorMessage(IList<string> orderedNames, string nameInError)
+		{
+			string errorLocation = StringUtils.IsBlank(nameInError) ? string.Empty : " starting around '" + nameInError + "'";
+			return "Elements appear to be out of expected order" + errorLocation + ". Expected order to be: " + ListNames(orderedNames
+				);
+		}
+
+		private string ListNames(ICollection<string> orderedNames)
+		{
+			IEnumerator<string> i = orderedNames.GetEnumerator();
+			if (!i.MoveNext())
+			{
+				return "[]";
+			}
+			StringBuilder sb = new StringBuilder();
+			sb.Append('[');
+			for (; ; )
+			{
+				sb.Append(i.Current);
+				if (!i.MoveNext())
+				{
+					return sb.Append(']').ToString();
+				}
+				sb.Append(", ");
+			}
+		}
+
+		private IList<string> CreateListOfXmlNamesInOrderProvided(XmlElement element, IList<string> properlyOrderedProvidedRelationshipNames
+			)
+		{
+			IList<string> xmlElementNamesInOrderProvided = new List<string>();
+			foreach (XmlElement currentXmlElement in NodeUtil.ToElementList(element))
+			{
+				string elementName = NodeUtil.GetLocalOrTagName(currentXmlElement);
+				if (properlyOrderedProvidedRelationshipNames.Contains(elementName))
+				{
+					// remove consecutive dups (ignore garbage/extra in between; they will be caught later)
+					if (xmlElementNamesInOrderProvided.IsEmpty() || !xmlElementNamesInOrderProvided[xmlElementNamesInOrderProvided.Count - 1]
+						.Equals(elementName))
+					{
+						xmlElementNamesInOrderProvided.Add(elementName);
+					}
+				}
+			}
+			return xmlElementNamesInOrderProvided;
+		}
+
+		private IList<string> CreateListOfProperlyOrderedNames(XmlElement element, IList<MessagePart> messagePartAndChoiceExtensionParts
+			, MessageVisitor visitor)
+		{
+			IList<string> properlyOrderedProvidedRelationshipNames = new List<string>();
+			foreach (MessagePart messagePart in messagePartAndChoiceExtensionParts)
+			{
+				ElementBridge helper = new ElementBridge(element, messagePart, GetInteraction(element.OwnerDocument));
+				foreach (RelationshipBridge relationshipBridge in helper.GetRelationships())
+				{
+					if (!relationshipBridge.IsStructuralAttribute())
+					{
+						ICollection<string> names = relationshipBridge.GetNames();
+						if (!names.IsEmpty())
+						{
+							IEnumerator<string> iterator = names.GetEnumerator();
+							if (iterator.MoveNext())
+							{
+								//For .NET translation
+								properlyOrderedProvidedRelationshipNames.Add(iterator.Current);
+							}
+							if (names.Count > 1)
+							{
+								// not expecting this to ever happen, but need to know if it does so we can adjust the code
+								visitor.AddError("Internal error: found more than one name " + ListNames(names), element);
+							}
+						}
+					}
+				}
+			}
+			return properlyOrderedProvidedRelationshipNames;
 		}
 	}
 }

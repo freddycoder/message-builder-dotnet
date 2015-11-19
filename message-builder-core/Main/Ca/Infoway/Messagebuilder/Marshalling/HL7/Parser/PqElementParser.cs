@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System;
@@ -23,6 +23,7 @@ using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Datatype.Impl;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
+using Ca.Infoway.Messagebuilder.Domainvalue;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser;
 
@@ -53,12 +54,49 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			, XmlToModelResult xmlToModelResult)
 		{
 			XmlElement element = (XmlElement)node;
+			bool hasNullFlavor = HasValidNullFlavorAttribute(context, node, xmlToModelResult);
 			BigDecimal value = this.pqValidationUtils.ValidateValue(element.GetAttribute("value"), context.GetVersion(), context.Type
-				, element, null, xmlToModelResult);
+				, hasNullFlavor, element, null, xmlToModelResult);
 			Ca.Infoway.Messagebuilder.Domainvalue.UnitsOfMeasureCaseSensitive unit = this.pqValidationUtils.ValidateUnits(context.Type
-				, element.GetAttribute("unit"), element, null, xmlToModelResult);
-			// TODO: TM - PQ.LAB in MR2009 allows for an originalText attribute. Since no current pan-Canadian standard uses PQ.LAB, this requirement has not been implemented.
-			return (value != null) ? new PhysicalQuantity(value, unit) : null;
+				, element.GetAttribute("unit"), element, null, xmlToModelResult, false);
+			PhysicalQuantity physicalQuantity = (value != null || unit != null) ? new PhysicalQuantity(value, unit) : null;
+			// this is not the usual way of doing things; this is to make validation easier
+			((BareANYImpl)result).BareValue = physicalQuantity;
+			return physicalQuantity;
+		}
+
+		/// <exception cref="Ca.Infoway.Messagebuilder.Marshalling.HL7.XmlToModelTransformationException"></exception>
+		public override BareANY Parse(ParseContext context, XmlNode node, XmlToModelResult xmlToModelResult)
+		{
+			BareANY result = CreateDataTypeInstance(context != null ? GetType(context) : null);
+			// RM20416 - some PQ specifications allow for NF to coexist with other properties
+			if (HasValidNullFlavorAttribute(context, node, xmlToModelResult))
+			{
+				NullFlavor nullFlavor = ParseNullNode(context, node, xmlToModelResult);
+				result.NullFlavor = nullFlavor;
+			}
+			PhysicalQuantity value = ParseNonNullNode(context, node, result, GetReturnType(context), xmlToModelResult);
+			if (value != null && (value.Quantity != null || value.Unit != null))
+			{
+				((BareANYImpl)result).BareValue = value;
+			}
+			XmlElement element = (XmlElement)node;
+			// validation of OT done a bit later below
+			string originalText = GetOriginalText(element);
+			if (HasOriginalText(element))
+			{
+				((PQ)result).OriginalText = originalText;
+			}
+			bool hasValues = HasAnyValues(element);
+			bool hasNullFlavor = HasValidNullFlavorAttribute(context, node, xmlToModelResult);
+			this.pqValidationUtils.ValidateOriginalText(context.Type, originalText, hasValues, hasNullFlavor, context.GetVersion(), element
+				, null, xmlToModelResult);
+			return result;
+		}
+
+		private bool HasAnyValues(XmlElement element)
+		{
+			return (element.HasAttribute("value") || element.HasAttribute("unit"));
 		}
 
 		protected override BareANY DoCreateDataTypeInstance(string typeName)

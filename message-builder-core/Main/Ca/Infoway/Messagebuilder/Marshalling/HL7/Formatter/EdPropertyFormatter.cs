@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System;
@@ -22,16 +22,20 @@ using System.Collections.Generic;
 using System.Text;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype;
+using Ca.Infoway.Messagebuilder.Datatype.Impl;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
-using Ca.Infoway.Messagebuilder.Lang;
+using Ca.Infoway.Messagebuilder.Error;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
+using Ca.Infoway.Messagebuilder.Marshalling.HL7.Constraints;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter;
-using Ca.Infoway.Messagebuilder.Platform;
+using Ca.Infoway.Messagebuilder.Xml;
 
 namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 {
 	/// <summary>
+	/// ED - Encapsulated Data
 	/// ED.DOCORREF - Encapsulated Data (Document or Reference)
+	/// (etc.)
 	/// Represents a String as an element:
 	/// &lt;element-name mediaType="text/plain"&gt;This is some
 	/// text.&lt;/element-name&gt;
@@ -40,30 +44,164 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 	[DataTypeHandler("ED")]
 	public class EdPropertyFormatter : AbstractNullFlavorPropertyFormatter<EncapsulatedData>
 	{
+		private AbstractNullFlavorPropertyFormatter<TelecommunicationAddress> telFormatter;
+
+		private readonly EdConstraintsHandler constraintsHandler = new EdConstraintsHandler();
+
+		private EdContentRenderer edContentRenderer = new EdContentRenderer();
+
 		private EdValidationUtils edValidationUtils = new EdValidationUtils();
 
-		// FIXME - for reference and content (ED.DOC only)
-		internal override string FormatNonNullValue(FormatContext context, EncapsulatedData data, int indentLevel)
+		private readonly bool isR2;
+
+		public EdPropertyFormatter() : this(new TelUriPropertyFormatter(), false)
+		{
+		}
+
+		public EdPropertyFormatter(AbstractNullFlavorPropertyFormatter<TelecommunicationAddress> telFormatter, bool isR2)
+		{
+			// R1
+			this.isR2 = isR2;
+			this.telFormatter = telFormatter;
+		}
+
+		protected override string FormatNonNullValue(FormatContext context, EncapsulatedData data, int indentLevel)
 		{
 			throw new NotSupportedException("ED uses formatNonNullDataType() method instead.");
 		}
 
-		internal override string FormatNonNullDataType(FormatContext context, BareANY dataType, int indentLevel)
+		protected override string FormatNonNullDataType(FormatContext context, BareANY dataType, int indentLevel)
 		{
 			EncapsulatedData encapsulatedData = ExtractBareValue(dataType);
-			Validate(context, dataType, encapsulatedData);
+			HandleConstraints(encapsulatedData, context.GetConstraints(), context.GetPropertyPath(), context.GetModelToXmlResult());
+			IDictionary<string, string> attributes = CreateAttributes(encapsulatedData, context);
+			bool hasContent = HasContent(encapsulatedData);
+			bool hasReferenceOrThumbnailOrDocument = HasReferenceOrThumbnailOrDocument(encapsulatedData);
+			if (!this.isR2)
+			{
+				AddSpecializationType(encapsulatedData, attributes, context.Type, dataType.DataType, context.GetVersion());
+				Validate(context, dataType, encapsulatedData);
+			}
 			StringBuilder buffer = new StringBuilder();
-			IDictionary<string, string> attributes = new Dictionary<string, string>();
-			AddCompressedDataAttributes(encapsulatedData, attributes);
-			byte[] content = GetContent(encapsulatedData);
-			bool base64 = this.edValidationUtils.IsBase64(encapsulatedData, content);
-			AddEncapsulatedDataAttributes(encapsulatedData, attributes, base64, context.Type, dataType.DataType, context.GetVersion()
-				);
-			buffer.Append(CreateElement(context, attributes, indentLevel, false, false));
-			WriteReference(encapsulatedData, buffer, indentLevel + 1);
-			WriteContent(encapsulatedData, buffer, content, base64);
-			buffer.Append(CreateElementClosure(context, 0, true));
+			buffer.Append(CreateElement(context, attributes, indentLevel, !hasContent, hasReferenceOrThumbnailOrDocument));
+			if (hasContent)
+			{
+				WriteReference(encapsulatedData, buffer, indentLevel + 1, context);
+				WriteThumbnail(encapsulatedData, buffer, indentLevel + 1, context);
+				this.edContentRenderer.RenderContent(encapsulatedData, buffer, indentLevel + 1, context, hasReferenceOrThumbnailOrDocument
+					);
+				buffer.Append(CreateElementClosure(context, hasReferenceOrThumbnailOrDocument ? indentLevel : 0, true));
+			}
 			return buffer.ToString();
+		}
+
+		private void HandleConstraints(EncapsulatedData ed, ConstrainedDatatype constraints, string propertyPath, Hl7Errors errors
+			)
+		{
+			ErrorLogger logger = new _ErrorLogger_117(errors, propertyPath);
+			this.constraintsHandler.HandleConstraints(constraints, ed, logger);
+		}
+
+		private sealed class _ErrorLogger_117 : ErrorLogger
+		{
+			public _ErrorLogger_117(Hl7Errors errors, string propertyPath)
+			{
+				this.errors = errors;
+				this.propertyPath = propertyPath;
+			}
+
+			public void LogError(Hl7ErrorCode errorCode, ErrorLevel errorLevel, string errorMessage)
+			{
+				errors.AddHl7Error(new Hl7Error(errorCode, errorLevel, errorMessage, propertyPath));
+			}
+
+			private readonly Hl7Errors errors;
+
+			private readonly string propertyPath;
+		}
+
+		private bool HasContent(EncapsulatedData encapsulatedData)
+		{
+			return HasReferenceOrThumbnailOrDocument(encapsulatedData) || encapsulatedData.HasContent();
+		}
+
+		private bool HasReferenceOrThumbnailOrDocument(EncapsulatedData encapsulatedData)
+		{
+			return encapsulatedData.ReferenceObj != null || encapsulatedData.Thumbnail != null || encapsulatedData.HasContent();
+		}
+
+		private void WriteReference(EncapsulatedData encapsulatedData, StringBuilder buffer, int indentLevel, FormatContext context
+			)
+		{
+			if (encapsulatedData.ReferenceObj != null)
+			{
+				TEL tel = new TELImpl(encapsulatedData.ReferenceObj);
+				FormatContext newContext = new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl(isR2 ? "TEL" : "TEL.URI"
+					, "reference", context);
+				string formattedReference = this.telFormatter.Format(newContext, tel, indentLevel);
+				if (StringUtils.IsNotBlank(formattedReference))
+				{
+					buffer.Append(formattedReference);
+				}
+			}
+		}
+
+		private void WriteThumbnail(EncapsulatedData encapsulatedData, StringBuilder buffer, int indentLevel, FormatContext context
+			)
+		{
+			EncapsulatedData thumbnail = encapsulatedData.Thumbnail;
+			if (thumbnail != null)
+			{
+				if (thumbnail.Thumbnail != null)
+				{
+					RecordError("For ED types, the thumbnail property itself cannot also have a thumbnail", context);
+				}
+				ED<EncapsulatedData> thumbnailWrapper = new EDImpl<EncapsulatedData>(thumbnail);
+				FormatContext newContext = new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl("ED", "thumbnail", context
+					);
+				string formattedThumbnail = this.Format(newContext, thumbnailWrapper, indentLevel);
+				if (StringUtils.IsNotBlank(formattedThumbnail))
+				{
+					buffer.Append(formattedThumbnail);
+				}
+			}
+		}
+
+		private IDictionary<string, string> CreateAttributes(EncapsulatedData encapsulatedData, FormatContext context)
+		{
+			IDictionary<string, string> attributes = new Dictionary<string, string>();
+			if (encapsulatedData.Representation != null)
+			{
+				attributes["representation"] = encapsulatedData.Representation.ToString();
+			}
+			if (encapsulatedData.MediaType != null)
+			{
+				attributes["mediaType"] = encapsulatedData.MediaType.CodeValue;
+			}
+			if (encapsulatedData.Language != null)
+			{
+				attributes["language"] = encapsulatedData.Language;
+			}
+			if (encapsulatedData.Compression != null)
+			{
+				attributes["compression"] = encapsulatedData.Compression.CompressionType;
+			}
+			if (encapsulatedData.IntegrityCheck != null)
+			{
+				this.edContentRenderer.ValidateBase64Encoded("integrityCheck", encapsulatedData.IntegrityCheck, context);
+				attributes["integrityCheck"] = encapsulatedData.IntegrityCheck;
+			}
+			if (encapsulatedData.IntegrityCheckAlgorithm != null)
+			{
+				attributes["integrityCheckAlgorithm"] = System.Text.RegularExpressions.Regex.Replace(encapsulatedData.IntegrityCheckAlgorithm
+					.ToString(), "_", "-");
+			}
+			return attributes;
+		}
+
+		private void RecordError(string message, FormatContext context)
+		{
+			context.GetModelToXmlResult().AddHl7Error(new Hl7Error(Hl7ErrorCode.DATA_TYPE_ERROR, message, context.GetPropertyPath()));
 		}
 
 		private void Validate(FormatContext context, BareANY dataType, EncapsulatedData encapsulatedData)
@@ -76,53 +214,9 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 				);
 		}
 
-		private void WriteReference(EncapsulatedData data, StringBuilder buffer, int indentLevel)
+		private void AddSpecializationType(EncapsulatedData ed, IDictionary<string, string> attributes, string type, StandardDataType
+			 specializationType, VersionNumber version)
 		{
-			if (StringUtils.IsNotBlank(data.Reference))
-			{
-				IDictionary<string, string> attributes = new Dictionary<string, string>();
-				attributes[EdValidationUtils.ATTRIBUTE_VALUE] = data.Reference;
-				buffer.Append("\n").Append(CreateElement(EdValidationUtils.ELEMENT_REFERENCE, attributes, indentLevel, true, true));
-			}
-		}
-
-		private void WriteContent(EncapsulatedData data, StringBuilder buffer, byte[] content, bool base64)
-		{
-			if (content != null)
-			{
-				if (base64)
-				{
-					buffer.Append(Base64.EncodeBase64String(content));
-				}
-				else
-				{
-					if (data is EncapsulatedString)
-					{
-						buffer.Append(XmlStringEscape.Escape(((EncapsulatedString)data).ContentAsString));
-					}
-					else
-					{
-						buffer.Append(XmlStringEscape.Escape(System.Text.ASCIIEncoding.ASCII.GetString(content)));
-					}
-				}
-			}
-		}
-
-		private void AddEncapsulatedDataAttributes(EncapsulatedData data, IDictionary<string, string> attributes, bool base64, string
-			 type, StandardDataType specializationType, VersionNumber version)
-		{
-			if (data.MediaType != null)
-			{
-				attributes[EdValidationUtils.ATTRIBUTE_MEDIA_TYPE] = data.MediaType.CodeValue;
-			}
-			if (StringUtils.IsNotBlank(data.Language))
-			{
-				attributes[EdValidationUtils.ATTRIBUTE_LANGUAGE] = data.Language;
-			}
-			if (base64 == true)
-			{
-				attributes[EdValidationUtils.ATTRIBUTE_REPRESENTATION] = EdValidationUtils.REPRESENTATION_B64;
-			}
 			if (StandardDataType.ED_DOC_OR_REF.Type.Equals(type) && !Hl7BaseVersion.CERX.Equals(version.GetBaseVersion()))
 			{
 				if (specializationType == StandardDataType.ED_DOC || specializationType == StandardDataType.ED_DOC_REF)
@@ -131,37 +225,10 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 				}
 				else
 				{
-					// best guess: check content to decide on DOC or DOC_REF
-					AddSpecializationType(attributes, data.Content != null && data.Content.Length > 0 ? StandardDataType.ED_DOC.Type : StandardDataType
-						.ED_DOC_REF.Type);
+					// best guess: check content to decide on DOC or DOC_REF (CDA/R1 will get ST, though clients may not want it)
+					AddSpecializationType(attributes, ed.HasContent() ? StandardDataType.ED_DOC.Type : StandardDataType.ED_DOC_REF.Type);
 				}
 			}
-		}
-
-		private void AddCompressedDataAttributes(EncapsulatedData data, IDictionary<string, string> attributes)
-		{
-			if (data is CompressedData)
-			{
-				CompressedData compressedData = (CompressedData)data;
-				if (compressedData.Compression != null)
-				{
-					attributes[EdValidationUtils.ATTRIBUTE_COMPRESSION] = compressedData.Compression.CompressionType;
-				}
-			}
-		}
-
-		private byte[] GetContent(EncapsulatedData data)
-		{
-			byte[] content = null;
-			if (data is CompressedData)
-			{
-				content = ((CompressedData)data).CompressedContent;
-			}
-			else
-			{
-				content = data.Content;
-			}
-			return content;
 		}
 	}
 }

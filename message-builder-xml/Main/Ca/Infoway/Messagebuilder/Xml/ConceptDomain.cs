@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System.Collections.Generic;
@@ -27,6 +27,15 @@ namespace Ca.Infoway.Messagebuilder.Xml
 		[XmlAttributeAttribute]
 		private string name;
 
+		[XmlAttributeAttribute(Required = false)]
+		private string owningSCWG;
+
+		[XmlAttributeAttribute(Required = false)]
+		private string riskOfChange;
+
+		[ElementAttribute(Required = false)]
+		private Ca.Infoway.Messagebuilder.Xml.Documentation documentation = new Ca.Infoway.Messagebuilder.Xml.Documentation();
+
 		[ElementListAttribute(Required = false, Inline = true, Entry = "specializes")]
 		private IList<string> parentConceptDomains = new List<string>();
 
@@ -34,9 +43,13 @@ namespace Ca.Infoway.Messagebuilder.Xml
 		{
 		}
 
-		public ConceptDomain(string name, IList<string> parentConceptDomains)
+		public ConceptDomain(string name)
 		{
-			this.Name = name;
+			this.name = name;
+		}
+
+		public ConceptDomain(string name, IList<string> parentConceptDomains) : this(name)
+		{
 			if (parentConceptDomains != null)
 			{
 				this.ParentConceptDomains.AddAll(parentConceptDomains);
@@ -66,6 +79,50 @@ namespace Ca.Infoway.Messagebuilder.Xml
 			{
 				IList<string> parentConceptDomains = value;
 				this.parentConceptDomains = parentConceptDomains;
+			}
+		}
+
+		public virtual void AddParent(string parentConceptDomain)
+		{
+			this.parentConceptDomains.Add(parentConceptDomain);
+		}
+
+		public virtual string OwningSCWG
+		{
+			get
+			{
+				return owningSCWG;
+			}
+			set
+			{
+				string owningSCWG = value;
+				this.owningSCWG = owningSCWG;
+			}
+		}
+
+		public virtual string RiskOfChange
+		{
+			get
+			{
+				return riskOfChange;
+			}
+			set
+			{
+				string riskOfChange = value;
+				this.riskOfChange = riskOfChange;
+			}
+		}
+
+		public virtual Ca.Infoway.Messagebuilder.Xml.Documentation Documentation
+		{
+			get
+			{
+				return documentation;
+			}
+			set
+			{
+				Ca.Infoway.Messagebuilder.Xml.Documentation documentation = value;
+				this.documentation = documentation;
 			}
 		}
 	}

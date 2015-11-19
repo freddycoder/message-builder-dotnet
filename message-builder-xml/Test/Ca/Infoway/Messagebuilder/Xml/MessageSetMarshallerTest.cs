@@ -14,8 +14,8 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2013-03-08 11:06:36 -0500 (Fri, 08 Mar 2013) $
- * Revision:      $LastChangedRevision: 6699 $
+ * Last modified: $LastChangedDate: 2014-01-30 15:25:26 -0500 (Thu, 30 Jan 2014) $
+ * Revision:      $LastChangedRevision: 8372 $
  */
 using System.Collections.Generic;
 using System.IO;
@@ -39,6 +39,7 @@ namespace Ca.Infoway.Messagebuilder.Xml
 
 		/// <exception cref="System.Exception"></exception>
 		[Test]
+		[Ignore]
 		public virtual void TestShouldReadSampleXmlWithBreadcrumbHistory()
 		{
 			MessageSet testset = GetMessageSet("sample_with_breadcrumbs.xml");

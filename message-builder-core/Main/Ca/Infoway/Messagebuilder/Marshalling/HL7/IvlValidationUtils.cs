@@ -14,9 +14,10 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
+using System;
 using System.Collections.Generic;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype;
@@ -45,15 +46,24 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7
 			{
 				// assume type to default to FULLDATETIME
 				resultType = StandardDataType.IVL_FULL_DATE_TIME.Type;
-				if (StringUtils.IsBlank(specializationType))
+				if (StringUtils.IsBlank(specializationType) || "IVL".Equals(specializationType))
 				{
-					errors.Add("IVL<TS.FULLDATEWITHTIME> is an abstract type. A specialization type must be provided. IVL<TS.FULLDATETIME> will be assumed."
-						);
+					if (Ca.Infoway.Messagebuilder.BooleanUtils.ValueOf(Runtime.GetProperty(TsDateFormats.ABSTRACT_TS_IGNORE_SPECIALIZATION_TYPE_ERROR_PROPERTY_NAME
+						)))
+					{
+					}
+					else
+					{
+						// do nothing - error message is to be suppressed
+						errors.Add("IVL<TS.FULLDATEWITHTIME> is an abstract type. A specialization type must be provided. IVL<TS.FULLDATETIME> will be assumed."
+							);
+					}
 				}
 				else
 				{
 					StandardDataType concreteType = StandardDataType.GetByTypeName(specializationType);
-					if (concreteType == StandardDataType.IVL_FULL_DATE || concreteType == StandardDataType.IVL_FULL_DATE_TIME)
+					if (concreteType == StandardDataType.IVL_FULL_DATE || concreteType == StandardDataType.IVL_FULL_DATE_TIME || concreteType
+						 == StandardDataType.IVL_FULL_DATE_PART_TIME)
 					{
 						resultType = specializationType;
 					}
@@ -71,7 +81,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7
 			, bool centerProvided, bool widthProvided)
 		{
 			IList<string> errors = new List<string>();
-			bool isCeRx = SpecificationVersion.IsVersion(version, Hl7BaseVersion.CERX);
+			StandardDataType standardDataType = StandardDataType.GetByTypeName(type);
+			bool isCeRx = SpecificationVersion.IsVersion(standardDataType, version, Hl7BaseVersion.CERX);
 			string typeWithoutParameters = Hl7DataTypeName.GetTypeWithoutParameters(type);
 			string parameterizedType = Hl7DataTypeName.GetParameterizedType(type);
 			string unqualifiedParameterizedType = Hl7DataTypeName.Unqualify(parameterizedType);
@@ -103,6 +114,23 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7
 			if (this.IncorrectNumberOfElementsProvided(numberOfCorrectlyProvidedElements, ivlType))
 			{
 				errors.Add(this.CreateWrongNumberOfElementsProvidedErrorMessage(isCeRx, type, ivlType, innerType, baseInnerType));
+			}
+			return errors;
+		}
+
+		public virtual IList<string> ValidateCorrectElementsProvidedForR2(bool lowProvided, bool highProvided, bool centerProvided
+			, bool widthProvided)
+		{
+			IList<string> errors = new List<string>();
+			int numProvidedElements = this.CountProvidedElements(lowProvided, highProvided, centerProvided, widthProvided);
+			if (numProvidedElements > 2)
+			{
+				errors.Add("Too many interval properties specified. Intervals allow for at most two of low/high/center/width.");
+			}
+			// not allowed according to schemas: low/center high/center
+			if (centerProvided && (lowProvided || highProvided))
+			{
+				errors.Add("For intervals, center is only allowed on its own or with width.");
 			}
 			return errors;
 		}

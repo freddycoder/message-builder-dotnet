@@ -19,19 +19,22 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Security;
 using System.Text.RegularExpressions;
 using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Datatype.Nullflavor;
 using Ca.Infoway.Messagebuilder.Domainvalue;
 using Ca.Infoway.Messagebuilder.J5goodies;
+using ILOG.J2CsMapping.Text;
 using log4net;
 
 namespace Ca.Infoway.Messagebuilder.Model
 {
     [Serializable]
-    public class MessagePartBean : NullFlavorSupport
+    public class MessagePartBean : ExtendedNullFlavorSupport, SpecializationTypeSupport
     {
 
         private static readonly ILog log = LogManager.GetLogger(typeof(MessagePartBean));
@@ -187,9 +190,62 @@ namespace Ca.Infoway.Messagebuilder.Model
 		public bool HasNullFlavor(String propertyName) {
 			return GetNullFlavor(propertyName) != null;
 		}
-		
-		
-		public StandardDataType GetSpecializationType(String propertyName) {
+
+        public virtual void SetNullFlavor(string propertyName, Ca.Infoway.Messagebuilder.Domainvalue.NullFlavor nullFlavor)
+        {
+            object field = GetField(propertyName);
+            if (field is BareANY)
+            {
+                ((BareANY)field).NullFlavor = nullFlavor;
+            }
+            else
+            {
+                if (field is MessagePartBean)
+                {
+                    ((MessagePartBean)field).NullFlavor = nullFlavor;
+                }
+                else
+                {
+                    throw new InvalidOperationException("Could not find property " + propertyName + " in order to set nullFlavor");
+                }
+            }
+        }
+
+        public virtual bool HasNullFlavorInList(string propertyName, int indexInList)
+        {
+            return GetNullFlavorInList(propertyName, indexInList) != null;
+        }
+
+        public virtual Ca.Infoway.Messagebuilder.Domainvalue.NullFlavor GetNullFlavorInList(string propertyName, int indexInList)
+        {
+            return (Ca.Infoway.Messagebuilder.Domainvalue.NullFlavor)GetMetadataInCollection(propertyName, indexInList, null, false);
+        }
+
+        public virtual bool SetNullFlavorInList(string propertyName, int indexInList, Ca.Infoway.Messagebuilder.Domainvalue.NullFlavor
+             nullFlavor)
+        {
+            return SetMetadataInCollection(propertyName, indexInList, null, nullFlavor, false);
+        }
+
+        public virtual bool HasNullFlavorInSet(string propertyName, object valueInSet)
+        {
+            return GetNullFlavorInSet(propertyName, valueInSet) != null;
+        }
+
+        public virtual Ca.Infoway.Messagebuilder.Domainvalue.NullFlavor GetNullFlavorInSet(string propertyName, object valueInSet
+            )
+        {
+            return (Ca.Infoway.Messagebuilder.Domainvalue.NullFlavor)GetMetadataInCollection(propertyName, -1, valueInSet, false);
+        }
+
+        public virtual bool SetNullFlavorInSet(string propertyName, object valueInSet, Ca.Infoway.Messagebuilder.Domainvalue.NullFlavor
+             nullFlavor)
+        {
+            return SetMetadataInCollection(propertyName, -1, valueInSet, nullFlavor, false);
+        }
+        
+        public StandardDataType GetSpecializationType(String propertyName)
+        {
 			Object field = GetField(propertyName);
 			if (field is BareANY) {
 				return ((BareANY) field).DataType;
@@ -207,6 +263,135 @@ namespace Ca.Infoway.Messagebuilder.Model
                 log.Error("Could not find property " + propertyName + " in order to set specialization type");
 			}
 		}
+
+        public virtual StandardDataType GetSpecializationTypeInList(string propertyName, int indexInList)
+        {
+            return (StandardDataType)GetMetadataInCollection(propertyName, indexInList, null, true);
+        }
+
+        public virtual bool SetSpecializationTypeInList(string propertyName, int indexInList, StandardDataType specializationType
+            )
+        {
+            return SetMetadataInCollection(propertyName, indexInList, null, specializationType, true);
+        }
+
+        public virtual StandardDataType GetSpecializationTypeInSet(string propertyName, object valueInSet)
+        {
+            return (StandardDataType)GetMetadataInCollection(propertyName, -1, valueInSet, true);
+        }
+
+        public virtual bool SetSpecializationTypeInSet(string propertyName, object valueInSet, StandardDataType specializationType
+            )
+        {
+            return SetMetadataInCollection(propertyName, -1, valueInSet, specializationType, true);
+        }
+
+        // TODO - TM - modify get/set to accommodate NFs on collections of associations? (users can set NF directly on MessagePart beans, not really necessary to do this here)
+        private object GetMetadataInCollection(string propertyName, int indexInList, object valueInSet, bool isSpecializationType)
+        {
+	    ICollection<ANY<object>> value = ObtainFieldInCollection(propertyName, indexInList);
+	    if (value == null)
+	    {
+		return null;
+	    }
+
+            object result = null;
+            int pos = 0;
+            for (IEnumerator<ANY<object>> iterator = value.GetEnumerator(); iterator.MoveNext(); pos++)
+            {
+                ANY<object> item = iterator.Current;
+                object actualValue = item.Value;
+                if ((indexInList == -1 && valueInSet.Equals(actualValue)) || pos == indexInList)
+                {
+                    result = isSpecializationType ? (object)item.DataType : (object)item.NullFlavor;
+                    break;
+                }
+            }
+            return result;
+        }
+
+        private bool SetMetadataInCollection(string propertyName, int indexInList, object valueInSet, object valueToApply, bool isSpecializationType)
+        {
+    		// the field specified by propertyName MUST be a LIST/SET/COLLECTION datatype or a Collection, otherwise this method will fail
+            ICollection<ANY<object>> value = ObtainFieldInCollection(propertyName, indexInList);
+		    if (value == null) {
+			    return false;
+		    }
+
+            bool result = false;
+            int pos = 0;
+            for (IEnumerator<ANY<object>> iterator = value.GetEnumerator(); iterator.MoveNext(); pos++)
+            {
+                ANY<object> item = iterator.Current;
+                object actualValue = item.Value;
+                if ((indexInList == -1 && valueInSet.Equals(actualValue)) || pos == indexInList)
+                {
+                    if (isSpecializationType)
+                    {
+                        item.DataType = (StandardDataType)valueToApply;
+                    }
+                    else
+                    {
+                        item.NullFlavor = (Ca.Infoway.Messagebuilder.Domainvalue.NullFlavor)valueToApply;
+                    }
+                    result = true;
+                    break;
+                }
+            }
+
+            if (!result) {
+			    log.Error(string.Format("Could not find the specified entry in the field/collection %s.%s. Value not set.", this.GetType().Name, propertyName));
+            }
+        
+            return result;
+        }
+
+		private ICollection<ANY<object>> ObtainFieldInCollection(string propertyName, int indexInList)
+		{
+			ICollection<ANY<object>> value = null;
+			object rawField = GetField(propertyName);
+			if (rawField == null)
+			{
+				log.Error(string.Format("The field %s.%s was not found", this.GetType().Name, propertyName));
+				return null;
+			}
+			// the rawField will either be an ANY type or a List
+			if (rawField is ANY<object>)
+			{
+				ANY<object> field = (ANY<object>)rawField;
+				if (field.Value is ICollection<object>)
+				{
+					value = (ICollection<ANY<object>>)field.Value;
+				}
+				else
+				{
+					log.Error(string.Format("The field %s.%s was expected to be of type LIST/SET/COLLECTION. Cannot process.", this.GetType
+						().Name, propertyName));
+					return null;
+				}
+			}
+			else
+			{
+				if (rawField is ICollection<object>)
+				{
+					value = (ICollection<ANY<object>>)rawField;
+				}
+				else
+				{
+					log.Error(string.Format("The field %s.%s was expected to be a Collection type (typically List). Cannot process.", this
+						.GetType().Name, propertyName));
+					return null;
+				}
+			}
+			if (indexInList >= value.Count)
+			{
+				log.Error("Property " + propertyName + " has " + value.Count + " elements, but trying to access element " + indexInList
+					 + ". Cannot process.");
+				return null;
+			}
+			return value;
+		}
+
     }
 }
 

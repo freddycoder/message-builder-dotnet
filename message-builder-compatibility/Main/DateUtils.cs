@@ -32,7 +32,19 @@ namespace Ca.Infoway.Messagebuilder
 
         public static PlatformDate ParseDate(String value, String[] formats)
         {
-            return new PlatformDate(DateTime.ParseExact(value, formats, CultureInfo.InvariantCulture, DateTimeStyles.None));
+            return ParseDate(value, formats, null);
+        }
+
+        public static PlatformDate ParseDate(String value, String[] formats, TimeZoneInfo timeZone) {
+            DateTime result = DateTime.ParseExact(value, formats, CultureInfo.InvariantCulture, DateTimeStyles.None);
+            if (timeZone != null) {
+                if (result.Kind == DateTimeKind.Unspecified) {
+                    result = TimeZoneInfo.ConvertTime(result, timeZone, TimeZoneInfo.Local);
+                } else if (result.Kind == DateTimeKind.Utc) {
+                    result = TimeZoneInfo.ConvertTime(result, TimeZoneInfo.Local);
+                }
+            }
+            return new PlatformDate(result);
         }
     }
 }

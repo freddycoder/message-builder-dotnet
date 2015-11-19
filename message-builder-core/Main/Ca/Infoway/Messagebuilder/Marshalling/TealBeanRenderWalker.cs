@@ -14,16 +14,18 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System;
 using System.Collections.Generic;
 using Ca.Infoway.Messagebuilder;
+using Ca.Infoway.Messagebuilder.Error;
 using Ca.Infoway.Messagebuilder.Marshalling;
 using Ca.Infoway.Messagebuilder.Model;
 using Ca.Infoway.Messagebuilder.Xml;
 using Ca.Infoway.Messagebuilder.Xml.Service;
+using Ca.Infoway.Messagebuilder.Xml.Util;
 
 namespace Ca.Infoway.Messagebuilder.Marshalling
 {
@@ -35,22 +37,22 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 
 		private readonly VersionNumber version;
 
-		private readonly TimeZone dateTimeZone;
+		private readonly TimeZoneInfo dateTimeZone;
 
-		private readonly TimeZone dateTimeTimeZone;
+		private readonly TimeZoneInfo dateTimeTimeZone;
 
 		public TealBeanRenderWalker(IInteraction tealBean, VersionNumber version) : this(tealBean, version, null, null, new MessageDefinitionServiceFactory
 			().Create())
 		{
 		}
 
-		internal TealBeanRenderWalker(IInteraction tealBean, VersionNumber version, TimeZone dateTimeZone, TimeZone dateTimeTimeZone
+		internal TealBeanRenderWalker(IInteraction tealBean, VersionNumber version, TimeZoneInfo dateTimeZone, TimeZoneInfo dateTimeTimeZone
 			, MessageDefinitionService service) : this(tealBean, version, dateTimeZone, dateTimeTimeZone, new BridgeFactoryImpl(service
 			, version))
 		{
 		}
 
-		internal TealBeanRenderWalker(IInteraction tealBean, VersionNumber version, TimeZone dateTimeZone, TimeZone dateTimeTimeZone
+		internal TealBeanRenderWalker(IInteraction tealBean, VersionNumber version, TimeZoneInfo dateTimeZone, TimeZoneInfo dateTimeTimeZone
 			, BridgeFactory factory)
 		{
 			this.tealBean = tealBean;
@@ -108,8 +110,9 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 			}
 			else
 			{
-				visitor.VisitAttribute((AttributeBridge)relationship, relationship.GetRelationship(), this.version, this.dateTimeZone, this
-					.dateTimeTimeZone);
+				ConstrainedDatatype constraints = this.factory.GetConstraints(relationship.GetRelationship());
+				visitor.VisitAttribute((AttributeBridge)relationship, relationship.GetRelationship(), constraints, this.version, this.dateTimeZone
+					, this.dateTimeTimeZone);
 			}
 		}
 
@@ -117,16 +120,49 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 			 visitor)
 		{
 			ICollection<PartBridge> associationValues = relationshipBridge.GetAssociationValues();
-			//		if (associationValues.isEmpty() && relationshipBridge.getRelationship().isPopulated()) {
-			//			processAssociation(interaction, relationshipBridge, visitor, null);
-			//		} else {
+			ValidateAssociationCardinality(relationshipBridge, associationValues, visitor);
 			foreach (PartBridge child in associationValues)
 			{
 				ProcessAssociation(interaction, relationshipBridge, visitor, child);
 			}
 		}
 
-		//		}
+		// RM16130 - the MB marshaller was not validating association cardinality
+		// TODO TM - this should really be in the visitor, but would pollute the interface a bit
+		private void ValidateAssociationCardinality(AssociationBridge relationshipBridge, ICollection<PartBridge> associationValues
+			, Visitor visitor)
+		{
+			// can't just check the size of associationValues: need to iterate and only count each "not empty" or each with NF
+			int size = 0;
+			foreach (PartBridge partBridge in associationValues)
+			{
+				if (!partBridge.IsEmpty() || partBridge.HasNullFlavor())
+				{
+					size++;
+				}
+			}
+			Relationship relationship = relationshipBridge.GetRelationship();
+			Cardinality cardinality = relationship.Cardinality;
+			if (size > cardinality.Max)
+			{
+				string errorMessage = "Expected no more than " + cardinality.Max + " entries for association " + relationship.ParentType 
+					+ "." + relationship.Name + " but found " + size;
+				visitor.LogError(new Hl7Error(Hl7ErrorCode.NUMBER_OF_ASSOCIATIONS_EXCEEDS_LIMIT, errorMessage, visitor.GetCurrentPropertyPath
+					() + "." + relationship.Name));
+			}
+			else
+			{
+				if (size != 0 && size < cardinality.Min)
+				{
+					// cases where at least 1 association is required are handled elsewhere (under mandatory checks)
+					string errorMessage = "Expected at least " + cardinality.Min + " entries for association " + relationship.ParentType + "."
+						 + relationship.Name + " but only found " + size;
+					visitor.LogError(new Hl7Error(Hl7ErrorCode.MANDATORY_ASSOCIATION_NOT_PROVIDED, errorMessage, visitor.GetCurrentPropertyPath
+						() + "." + relationship.Name));
+				}
+			}
+		}
+
 		private void ProcessAssociation(Interaction interaction, AssociationBridge relationshipBridge, Visitor visitor, PartBridge
 			 child)
 		{
@@ -138,7 +174,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 		private void ProcessPartValue(PartBridge child, Interaction interaction, AssociationBridge relationshipBridge, Visitor visitor
 			)
 		{
-			if (child.IsEmpty() && !relationshipBridge.GetRelationship().Mandatory)
+			if (child.IsEmpty() && !ConformanceLevelUtil.IsMandatory(relationshipBridge.GetRelationship()))
 			{
 			}
 			else

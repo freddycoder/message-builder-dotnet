@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System.Collections.Generic;
@@ -36,16 +36,17 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		[NUnit.Framework.SetUp]
 		public virtual void SetUp()
 		{
-			this.formatter = new SetPropertyFormatter();
+			this.formatter = new SetPropertyFormatter(FormatterRegistry.GetInstance());
 		}
 
 		/// <exception cref="System.Exception"></exception>
 		[Test]
 		public virtual void TestFormatValueNull()
 		{
-			string result = this.formatter.Format(new FormatContextImpl(this.result, null, "blah", "SET<CD>", Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
-				.MANDATORY, false, SpecificationVersion.R02_04_02, null, null, CodingStrength.CNE), new SETImpl<CD, Code>(typeof(CDImpl)
-				, Ca.Infoway.Messagebuilder.Domainvalue.Nullflavor.NullFlavor.NO_INFORMATION));
+			string result = this.formatter.Format(new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl(this.result
+				, null, "blah", "SET<CD>", Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY, null, false, SpecificationVersion.R02_04_02
+				, null, null, CodingStrength.CNE, false), new SETImpl<CD, Code>(typeof(CDImpl), Ca.Infoway.Messagebuilder.Domainvalue.Nullflavor.NullFlavor
+				.NO_INFORMATION));
 			Assert.IsFalse(this.result.IsValid());
 			// blah is mandatory
 			Assert.AreEqual(1, this.result.GetHl7Errors().Count);
@@ -56,8 +57,9 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		[Test]
 		public virtual void TestFormatValueNullNotMandatory()
 		{
-			string result = this.formatter.Format(new FormatContextImpl(this.result, null, "blah", "SET<CD>", Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
-				.OPTIONAL, false, SpecificationVersion.R02_04_02, null, null, CodingStrength.CNE), null);
+			string result = this.formatter.Format(new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl(this.result
+				, null, "blah", "SET<CD>", Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL, null, false, SpecificationVersion.R02_04_02
+				, null, null, CodingStrength.CNE, false), null);
 			Assert.IsTrue(this.result.IsValid());
 			AssertXml("null", string.Empty, result);
 		}
@@ -66,9 +68,10 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		[Test]
 		public virtual void TestFormatValueNonNull()
 		{
-			string result = this.formatter.Format(new FormatContextImpl(this.result, null, "blah", "SET<CD>", "x_BasicUnitsOfMeasure"
-				, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY, false, SpecificationVersion.R02_04_02, null, null, true, CodingStrength
-				.CNE), SETImpl<ANY<object>, object>.Create<CD, Code>(typeof(CDImpl), MakeSet(Ca.Infoway.Messagebuilder.Domainvalue.Basic.UnitsOfMeasureCaseSensitive
+			string result = this.formatter.Format(new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl(this.result
+				, null, "blah", "SET<CD>", "x_BasicUnitsOfMeasure", Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY, Cardinality
+				.Create("1-4"), false, SpecificationVersion.R02_04_02, null, null, CodingStrength.CNE, null, false), SETImpl<ANY<object>
+				, object>.Create<CD, Code>(typeof(CDImpl), MakeSet(Ca.Infoway.Messagebuilder.Domainvalue.Basic.UnitsOfMeasureCaseSensitive
 				.CENTIMETRE, Ca.Infoway.Messagebuilder.Domainvalue.Basic.UnitsOfMeasureCaseSensitive.KILOGRAM)));
 			Assert.IsTrue(this.result.IsValid());
 			AssertXml("non null", "<blah code=\"cm\" codeSystem=\"2.16.840.1.113883.5.141\"/><blah code=\"kg\" codeSystem=\"2.16.840.1.113883.5.141\"/>"
@@ -79,9 +82,10 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		[Test]
 		public virtual void TestFormatValueEmptySet()
 		{
-			string result = this.formatter.Format(new FormatContextImpl(this.result, null, "blah", "SET<CD>", Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
-				.POPULATED, false, SpecificationVersion.R02_04_02, null, null, CodingStrength.CNE), SETImpl<ANY<object>, object>.Create<
-				CD, Code>(typeof(CDImpl), new HashSet<Code>()));
+			string result = this.formatter.Format(new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl(this.result
+				, null, "blah", "SET<CD>", Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.POPULATED, null, false, SpecificationVersion.R02_04_02
+				, null, null, CodingStrength.CNE, false), SETImpl<ANY<object>, object>.Create<CD, Code>(typeof(CDImpl), new HashSet<Code
+				>()));
 			Assert.IsTrue(this.result.IsValid());
 			AssertXml("non null", "<blah nullFlavor=\"NI\"/>", result);
 		}

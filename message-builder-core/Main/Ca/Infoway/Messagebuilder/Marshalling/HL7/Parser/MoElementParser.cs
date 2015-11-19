@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System;
@@ -23,11 +23,11 @@ using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Datatype.Impl;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
-using Ca.Infoway.Messagebuilder.Datatype.Lang.Util;
+using Ca.Infoway.Messagebuilder.Error;
 using Ca.Infoway.Messagebuilder.Lang;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser;
-using Ca.Infoway.Messagebuilder.Terminology;
+using Ca.Infoway.Messagebuilder.Resolver;
 using Ca.Infoway.Messagebuilder.Util.Xml;
 
 namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
@@ -62,7 +62,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			string value = GetMandatoryAttributeValue(node, "value", xmlToModelResult);
 			BigDecimal amount = ValidateValue(value, context.Type, xmlToModelResult, (XmlElement)node);
 			string currencyCode = GetMandatoryAttributeValue(node, "currency", xmlToModelResult);
-			Currency currency = ValidateCurrency(currencyCode, node, xmlToModelResult);
+			Ca.Infoway.Messagebuilder.Domainvalue.Basic.Currency currency = ValidateCurrency(currencyCode, node, xmlToModelResult);
 			return amount == null && currency == null ? null : new Money(amount, currency);
 		}
 
@@ -101,20 +101,22 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			return result;
 		}
 
-		private Currency ValidateCurrency(string currencyCode, XmlNode node, XmlToModelResult xmlToModelResult)
+		private Ca.Infoway.Messagebuilder.Domainvalue.Basic.Currency ValidateCurrency(string currencyCode, XmlNode node, XmlToModelResult
+			 xmlToModelResult)
 		{
 			if (StringUtils.IsBlank(currencyCode))
 			{
 				return null;
 			}
-			Currency currency = CodeResolverRegistry.Lookup<Currency>(currencyCode);
+			Ca.Infoway.Messagebuilder.Domainvalue.Basic.Currency currency = CodeResolverRegistry.Lookup<Ca.Infoway.Messagebuilder.Domainvalue.Basic.Currency
+				>(currencyCode);
 			if (currency == null)
 			{
 				RecordUnknownCurrencyError(currencyCode, node, xmlToModelResult);
 			}
 			else
 			{
-				if (!Currency.CANADIAN_DOLLAR.CodeValue.Equals(currencyCode))
+				if (!Ca.Infoway.Messagebuilder.Domainvalue.Basic.Currency.CANADIAN_DOLLAR.CodeValue.Equals(currencyCode))
 				{
 					RecordCurrencyMustBeCanadianError(currencyCode, node, xmlToModelResult);
 				}

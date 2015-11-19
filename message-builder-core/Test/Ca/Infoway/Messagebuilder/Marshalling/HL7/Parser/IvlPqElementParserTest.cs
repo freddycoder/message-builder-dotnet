@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System.Xml;
@@ -48,15 +48,15 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		/// <exception cref="Ca.Infoway.Messagebuilder.Marshalling.HL7.XmlToModelTransformationException"></exception>
 		private Interval<PhysicalQuantity> Parse(XmlNode node)
 		{
-			return (Interval<PhysicalQuantity>)this.parser.Parse(ParserContextImpl.Create("IVL<PQ.BASIC>", typeof(Interval<object>), 
-				SpecificationVersion.V02R02, null, null, null), Arrays.AsList(node), this.result).BareValue;
+			return (Interval<PhysicalQuantity>)this.parser.Parse(ParseContextImpl.Create("IVL<PQ.BASIC>", typeof(Interval<object>), SpecificationVersion
+				.V02R02, null, null, null, null, null, false), Arrays.AsList(node), this.result).BareValue;
 		}
 
 		/// <exception cref="System.Exception"></exception>
 		[Test]
 		public virtual void TestParseLowHigh()
 		{
-			XmlNode node = CreateNode("<name><low unit=\"ml\" value=\"1000\"/><high unit=\"ml\" value=\"2000\"/></name>");
+			XmlNode node = CreateNode("<name><low unit=\"mL\" value=\"1000\"/><high unit=\"mL\" value=\"2000\"/></name>");
 			Interval<PhysicalQuantity> interval = Parse(node);
 			Assert.IsTrue(this.result.IsValid());
 			Assert.IsNotNull(interval, "null");
@@ -74,7 +74,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		[Test]
 		public virtual void TestParseLow()
 		{
-			XmlNode node = CreateNode("<name><low unit=\"ml\" value=\"1000\"/></name>");
+			XmlNode node = CreateNode("<name><low unit=\"mL\" value=\"1000\"/></name>");
 			Interval<PhysicalQuantity> interval = Parse(node);
 			Assert.IsFalse(this.result.IsValid());
 			Assert.AreEqual(1, this.result.GetHl7Errors().Count);

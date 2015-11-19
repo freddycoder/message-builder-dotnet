@@ -14,12 +14,13 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System;
 using System.Collections.Generic;
 using System.Xml;
+using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser;
@@ -29,7 +30,13 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 {
 	public abstract class AbstractElementParser : ElementParser
 	{
+		private static readonly string RTO_DATATYPE = "RTO";
+
 		protected static readonly string SPECIALIZATION_TYPE = "specializationType";
+
+		private static readonly string DATATYPE_CA_SUFFIX = ".CA";
+
+		private static readonly int DATATYPE_CA_SUFFIX_LENGTH = DATATYPE_CA_SUFFIX.Length;
 
 		/// <exception cref="Ca.Infoway.Messagebuilder.Marshalling.HL7.XmlToModelTransformationException"></exception>
 		public abstract BareANY Parse(ParseContext context, IList<XmlNode> node, XmlToModelResult xmlToModelResult);
@@ -43,11 +50,62 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		{
 			string specializationType = node != null && node is XmlElement ? GetAttributeValue((XmlElement)node, SPECIALIZATION_TYPE)
 				 : null;
+			return ConvertSpecializationType(specializationType);
+		}
+
+		public virtual string ConvertSpecializationType(string specializationType)
+		{
 			// specialization types defined as A<B.C> are not a problem.
 			// specialization types defined as A_B.C (the way MB formats specializationType!) are not handled properly, so convert the value here
-			if (specializationType != null && specializationType.Contains("_"))
+			if (specializationType != null)
 			{
-				specializationType = System.Text.RegularExpressions.Regex.Replace(specializationType, "_", "<") + ">";
+				specializationType = specializationType.ToUpper();
+				specializationType = RemoveCaFromSpecializationType(specializationType);
+				specializationType = HandleRtoInSpecializationType(specializationType);
+				specializationType = HandleUnderscoresInSpecializationType(specializationType);
+			}
+			return specializationType;
+		}
+
+		private string HandleUnderscoresInSpecializationType(string specializationType)
+		{
+			// now convert the type to a format that MB recognizes (i.e. A<B.C>)
+			int numUnderscores = StringUtils.Split(specializationType, "_").Length - 1;
+			specializationType = System.Text.RegularExpressions.Regex.Replace(specializationType, "_", "<") + StringUtils.Repeat(">", 
+				numUnderscores);
+			return specializationType;
+		}
+
+		private string HandleRtoInSpecializationType(string specializationType)
+		{
+			// assumes the only datatype with multiple args is RTO (which is handled as a special case)
+			bool isRto = specializationType.StartsWith(RTO_DATATYPE) || specializationType.Contains("_" + RTO_DATATYPE);
+			if (isRto)
+			{
+				// special handling for RTO's multiple arguments the first "_" after "RTO_" should be changed to a comma
+				int rtoIndex = specializationType.IndexOf(RTO_DATATYPE + "_");
+				int underscoreToReplace = specializationType.IndexOf("_", rtoIndex + 4);
+				if (rtoIndex > -1 && underscoreToReplace > -1)
+				{
+					specializationType = Ca.Infoway.Messagebuilder.StringUtils.Substring(specializationType, 0, underscoreToReplace) + "," + 
+						Ca.Infoway.Messagebuilder.StringUtils.Substring(specializationType, underscoreToReplace + 1);
+				}
+			}
+			return specializationType;
+		}
+
+		private string RemoveCaFromSpecializationType(string specializationType)
+		{
+			// 1) remove ending .CA and 2) replace .CA_ with _ (to handle any types named X.CAYYY, such as MO.CAD)
+			// the above also leaves ANY.CA.IZ alone, which is what we want!
+			if (specializationType.Contains(DATATYPE_CA_SUFFIX))
+			{
+				if (specializationType.EndsWith(DATATYPE_CA_SUFFIX))
+				{
+					specializationType = Ca.Infoway.Messagebuilder.StringUtils.Substring(specializationType, 0, specializationType.Length - DATATYPE_CA_SUFFIX_LENGTH
+						);
+				}
+				specializationType = System.Text.RegularExpressions.Regex.Replace(specializationType, DATATYPE_CA_SUFFIX + "_", "_");
 			}
 			return specializationType;
 		}
@@ -70,6 +128,21 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		protected virtual Type GetReturnType(ParseContext context)
 		{
 			return context == null ? null : context.GetExpectedReturnType();
+		}
+
+		protected virtual IList<XmlElement> GetNamedElements(string name, XmlElement parentElement)
+		{
+			IList<XmlElement> elements = new List<XmlElement>();
+			XmlNodeList nodes = parentElement.GetElementsByTagName(name);
+			for (int i = 0; i < nodes.Count; i++)
+			{
+				XmlElement foundElement = (XmlElement)nodes.Item(i);
+				if (foundElement.ParentNode.Equals(parentElement))
+				{
+					elements.Add(foundElement);
+				}
+			}
+			return elements;
 		}
 	}
 }

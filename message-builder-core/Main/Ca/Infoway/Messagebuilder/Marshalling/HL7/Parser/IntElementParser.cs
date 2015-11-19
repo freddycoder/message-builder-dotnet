@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System;
@@ -22,6 +22,7 @@ using System.Xml;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Datatype.Impl;
+using Ca.Infoway.Messagebuilder.Error;
 using Ca.Infoway.Messagebuilder.Lang;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser;
@@ -50,7 +51,6 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		protected override Int32? ParseNonNullNode(ParseContext context, XmlNode node, BareANY result, Type expectedReturnType, XmlToModelResult
 			 xmlToModelResult)
 		{
-			// TODO - TM - this validation throws an XmlToModelTransformationException if it fails; would be nice to log this as an error and then try to process the value anyway
 			ValidateNoChildren(context, node);
 			return ParseNonNullNode(context, (XmlElement)node, xmlToModelResult);
 		}
@@ -71,6 +71,11 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 					result = NumberUtil.ParseAsInteger(unparsedInteger);
 					// using the isNumeric check to catch silly things such as passing in a hexadecimal number (0x1a, for example)
 					bool mustBePositive = StandardDataType.INT_POS.Type.Equals(context.Type);
+					if (StandardDataType.INT.Type.Equals(context.Type) && unparsedInteger.StartsWith("-"))
+					{
+						// remove negative sign to not confuse isNumeric() check
+						unparsedInteger = Ca.Infoway.Messagebuilder.StringUtils.Substring(unparsedInteger, 1);
+					}
 					if (!NumberUtil.IsInteger(unparsedInteger) || !StringUtils.IsNumeric(unparsedInteger))
 					{
 						RecordInvalidIntegerError(result, element, mustBePositive, xmlToModelResult);

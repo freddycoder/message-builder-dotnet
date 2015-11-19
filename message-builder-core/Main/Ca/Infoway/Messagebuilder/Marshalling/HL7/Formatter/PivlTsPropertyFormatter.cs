@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System;
@@ -25,9 +25,10 @@ using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Datatype.Impl;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
 using Ca.Infoway.Messagebuilder.Datatype.Lang.Util;
+using Ca.Infoway.Messagebuilder.Error;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter;
-using Ca.Infoway.Messagebuilder.Util.Xml;
+using Ca.Infoway.Messagebuilder.Xml;
 
 namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 {
@@ -48,7 +49,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 
 		private PropertyFormatter ivlPqPropertyFormatter = new IvlPqPropertyFormatter();
 
-		internal override string FormatNonNullValue(FormatContext context, PeriodicIntervalTime value, int indentLevel)
+		protected override string FormatNonNullValue(FormatContext context, PeriodicIntervalTime value, int indentLevel)
 		{
 			StringBuilder buffer = new StringBuilder();
 			buffer.Append(CreateElement(context, GetAttributesMap(), indentLevel, false, true));
@@ -67,8 +68,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			)
 		{
 			string period = CreatePeriodElement(value.Period, indentLevel, context);
-			string phase = CreatePhaseElement(value.Phase, context.GetVersion(), context.GetPropertyPath(), indentLevel, context.GetModelToXmlResult
-				());
+			string phase = CreatePhaseElement(value.Phase, indentLevel, context);
 			switch (value.Representation)
 			{
 				case Representation.PERIOD:
@@ -124,7 +124,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 				StringBuilder buffer = new StringBuilder();
 				buffer.Append(CreateElement(name, null, indentLevel, false, true));
 				AppendSk(buffer, repetitions, quantity, indentLevel + 1, context);
-				buffer.Append(XmlRenderingUtils.CreateEndElement(name, indentLevel, true));
+				buffer.Append(CreateElementClosure(name, indentLevel, true));
 				result = buffer.ToString();
 			}
 			else
@@ -138,14 +138,13 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			 context)
 		{
 			INTImpl intImpl = new INTImpl(repetitions);
-			FormatContextImpl formatContext = new FormatContextImpl(context.GetModelToXmlResult(), context.GetPropertyPath(), "numerator"
-				, "INT.NONNEG", Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY, context.IsSpecializationType(), context.GetVersion
-				(), null, null, null);
+			FormatContext formatContext = new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl("INT.NONNEG", context
+				.IsSpecializationType(), Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY, Cardinality.Create("1"), "numerator", 
+				context);
 			buffer.Append(this.intNonNegPropertyFormatter.Format(formatContext, intImpl, indentLevel));
 			IVLImpl<PQ, Interval<PhysicalQuantity>> ivlImpl = new IVLImpl<PQ, Interval<PhysicalQuantity>>(quantity);
-			formatContext = new FormatContextImpl(context.GetModelToXmlResult(), context.GetPropertyPath(), "denominator", "IVL<PQ.BASIC>"
-				, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY, context.IsSpecializationType(), context.GetVersion(), null, 
-				null, null);
+			formatContext = new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl("IVL<PQ.BASIC>", context.IsSpecializationType
+				(), Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY, Cardinality.Create("1"), "denominator", context);
 			buffer.Append(this.ivlPqPropertyFormatter.Format(formatContext, ivlImpl, indentLevel));
 		}
 
@@ -165,7 +164,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 				StringBuilder buffer = new StringBuilder();
 				buffer.Append(CreateElement(FREQUENCY, null, indentLevel, false, true));
 				FormatFrequency(buffer, repetitions, quantity, indentLevel + 1, context);
-				buffer.Append(XmlRenderingUtils.CreateEndElement(FREQUENCY, indentLevel, true));
+				buffer.Append(CreateElementClosure(FREQUENCY, indentLevel, true));
 				result = buffer.ToString();
 			}
 			else
@@ -184,16 +183,16 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		private void FormatFrequency(StringBuilder buffer, Int32? repetitions, PhysicalQuantity quantity, int indentLevel, FormatContext
 			 context)
 		{
-			FormatContext formatContext = new FormatContextImpl(context.GetModelToXmlResult(), context.GetPropertyPath(), "numerator"
-				, "INT.NONNEG", Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY, context.IsSpecializationType(), context.GetVersion
-				(), null, null, null);
+			FormatContext formatContext = new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl("INT.NONNEG", context
+				.IsSpecializationType(), Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY, Cardinality.Create("1"), "numerator", 
+				context);
 			buffer.Append(this.intNonNegPropertyFormatter.Format(formatContext, new INTImpl(repetitions), indentLevel));
 			IDictionary<string, string> tempAttributes = GetAttributes(new DateDiff(quantity), context);
 			string value = tempAttributes.SafeGet(PqPropertyFormatter.ATTRIBUTE_VALUE);
 			string units = tempAttributes.SafeGet(PqPropertyFormatter.ATTRIBUTE_UNIT);
 			IDictionary<string, string> attributes = ToStringMap(VALUE, value, UNIT, units);
-			context = new FormatContextImpl(context.GetModelToXmlResult(), context.GetPropertyPath(), "denominator", "PQ.TIME", Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
-				.MANDATORY, context.IsSpecializationType(), context.GetVersion(), null, null, null);
+			context = new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl("PQ.TIME", context.IsSpecializationType
+				(), Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY, Cardinality.Create("1"), "denominator", context);
 			buffer.Append(CreateElement(context, attributes, indentLevel, true, true));
 		}
 
@@ -210,13 +209,12 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			return string.Empty;
 		}
 
-		private string CreatePhaseElement(Interval<PlatformDate> phase, VersionNumber version, string propertyPath, int indentLevel
-			, ModelToXmlResult result)
+		private string CreatePhaseElement(Interval<PlatformDate> phase, int indentLevel, FormatContext context)
 		{
 			if (phase != null)
 			{
-				return new IvlTsPropertyFormatter().Format(new FormatContextImpl(result, propertyPath, PHASE, "IVL<TS.FULLDATE>", null, false
-					, version, null, null, null), new IVLImpl<TS, Interval<PlatformDate>>(phase), indentLevel);
+				return new IvlTsPropertyFormatter().Format(new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl("IVL<TS.FULLDATE>"
+					, PHASE, context), new IVLImpl<TS, Interval<PlatformDate>>(phase), indentLevel);
 			}
 			return string.Empty;
 		}
@@ -224,10 +222,10 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		private IDictionary<string, string> GetAttributes(DateDiff period, FormatContext context)
 		{
 			PhysicalQuantity quantity = period.ValueAsPhysicalQuantity;
-			FormatContext newContext = new FormatContextImpl("PQ.TIME", context);
+			FormatContext newContext = new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl("PQ.TIME", context);
 			// getAttributeNameValuePairs is never called with a null value; directly calling it from here is a bit of a cheat, so ensure no null passed in
 			return quantity == null ? new Dictionary<string, string>() : new PqPropertyFormatter().GetAttributeNameValuePairs(newContext
-				, quantity, null);
+				, quantity);
 		}
 	}
 }

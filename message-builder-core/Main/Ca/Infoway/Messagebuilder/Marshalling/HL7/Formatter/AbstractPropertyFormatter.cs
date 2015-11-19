@@ -14,10 +14,11 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System.Collections.Generic;
+using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter;
 using Ca.Infoway.Messagebuilder.Util.Xml;
@@ -35,21 +36,21 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 
 		internal static readonly IDictionary<string, string> EMPTY_ATTRIBUTE_MAP = new Dictionary<string, string>();
 
-		internal static readonly string NULL_FLAVOR_ATTRIBUTE_NAME = "nullFlavor";
+		public static readonly string NULL_FLAVOR_ATTRIBUTE_NAME = "nullFlavor";
 
-		internal static readonly string NULL_FLAVOR_NO_INFORMATION = Ca.Infoway.Messagebuilder.Domainvalue.Nullflavor.NullFlavor.
-			NO_INFORMATION.CodeValue;
+		public static readonly string NULL_FLAVOR_NO_INFORMATION = Ca.Infoway.Messagebuilder.Domainvalue.Nullflavor.NullFlavor.NO_INFORMATION
+			.CodeValue;
 
-		internal static readonly IDictionary<string, string> NULL_FLAVOR_ATTRIBUTES = new Dictionary<string, string>();
+		protected static readonly IDictionary<string, string> NULL_FLAVOR_ATTRIBUTES = new Dictionary<string, string>();
 
 		static AbstractPropertyFormatter()
 		{
 			NULL_FLAVOR_ATTRIBUTES[NULL_FLAVOR_ATTRIBUTE_NAME] = NULL_FLAVOR_NO_INFORMATION;
 		}
 
-		protected virtual string CreateWarning(int indentLevel, string text)
+		protected virtual string CreateWarning(int indentLevel, string text, string logLevel)
 		{
-			return warningRenderer.CreateWarning(indentLevel, text);
+			return warningRenderer.CreateWarning(indentLevel, text, logLevel);
 		}
 
 		public virtual string Format(FormatContext formatContext, BareANY dataType)
@@ -62,7 +63,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		protected virtual string CreateElement(FormatContext context, IDictionary<string, string> attributes, int indentLevel, bool
 			 close, bool lineBreak)
 		{
-			if (!IsNullFlavor(attributes))
+			// RM18070 - include (if required) ST/XT attributes for PQ.LAB as well (which can contain meta data even with a NF)
+			if (!IsNullFlavor(attributes) || IsCodedType(context) || IsPqLab(context))
 			{
 				if (attributes == null)
 				{
@@ -72,11 +74,37 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 				// bug 13884 - csharp throws exception if put duplicate key in map; this was occurring when using putAll() instead of below code
 				foreach (string key in extraAttributes.Keys)
 				{
-					attributes.Remove(key);
-					attributes[key] = extraAttributes.SafeGet(key);
+					// TM - decided to not overwrite already existing attributes (as these would have been explicitly set)
+					if (!attributes.ContainsKey(key) || StringUtils.IsBlank(attributes.SafeGet(key)))
+					{
+						//attributes.remove(key);
+						attributes[key] = extraAttributes.SafeGet(key);
+					}
 				}
 			}
 			return CreateElement(context.GetElementName(), attributes, indentLevel, close, lineBreak);
+		}
+
+		private bool IsPqLab(FormatContext context)
+		{
+			if (context != null && context.Type != null)
+			{
+				return StandardDataType.PQ_LAB.Type.Equals(context.Type);
+			}
+			return false;
+		}
+
+		private bool IsCodedType(FormatContext context)
+		{
+			if (context != null && context.Type != null)
+			{
+				StandardDataType dataType = StandardDataType.GetByTypeName(context);
+				if (dataType != null)
+				{
+					return dataType.Coded;
+				}
+			}
+			return false;
 		}
 
 		protected virtual string CreateElement(string name, IDictionary<string, string> attributes, int indentLevel, bool close, 
@@ -87,7 +115,12 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 
 		protected virtual string CreateElementClosure(FormatContext context, int indentLevel, bool lineBreak)
 		{
-			return XmlRenderingUtils.CreateEndElement(context.GetElementName(), indentLevel, lineBreak);
+			return CreateElementClosure(context.GetElementName(), indentLevel, lineBreak);
+		}
+
+		protected virtual string CreateElementClosure(string name, int indentLevel, bool lineBreak)
+		{
+			return XmlRenderingUtils.CreateEndElement(name, indentLevel, lineBreak);
 		}
 
 		protected virtual IDictionary<string, string> CreateSpecializationTypeAttibutesIfNecessary(FormatContext context)
@@ -104,8 +137,13 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		protected virtual void AddSpecializationType(IDictionary<string, string> attributes, string typeAsString)
 		{
 			StandardDataType type = StandardDataType.GetByTypeName(typeAsString);
-			attributes[XSI_TYPE] = Xmlify(type.TypeName.UnspecializedName);
-			attributes[SPECIALIZATION_TYPE] = Xmlify(type.Type);
+			string xsiType = Xmlify(type.TypeName.UnspecializedName);
+			string specializationType = Xmlify(type.Type);
+			attributes[XSI_TYPE] = xsiType;
+			if (!StringUtils.Equals(xsiType, specializationType))
+			{
+				attributes[SPECIALIZATION_TYPE] = specializationType;
+			}
 		}
 
 		protected virtual bool IsNullFlavor(IDictionary<string, string> attributes)
@@ -117,6 +155,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		{
 			string typeForXml = System.Text.RegularExpressions.Regex.Replace(type, "\\>", string.Empty);
 			typeForXml = System.Text.RegularExpressions.Regex.Replace(typeForXml, "\\<", "_");
+			typeForXml = System.Text.RegularExpressions.Regex.Replace(typeForXml, "\\,", "_");
 			return typeForXml;
 		}
 	}

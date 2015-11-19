@@ -14,14 +14,14 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System.Collections.Generic;
 using System.Xml;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype;
-using Ca.Infoway.Messagebuilder.Marshalling.HL7;
+using Ca.Infoway.Messagebuilder.Error;
 using Ca.Infoway.Messagebuilder.Util.Xml;
 
 namespace Ca.Infoway.Messagebuilder.Marshalling.HL7
@@ -32,15 +32,16 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7
 
 		private const int MAX_CODE_LENGTH = 200;
 
-		private const int MAX_CODE_LENGTH_CERX_MR2007 = 20;
+		public const int MAX_CODE_LENGTH_CERX_MR2007 = 20;
 
 		private const int MAX_CODE_SYSTEM_LENGTH = 100;
 
 		private const int MAX_ORIGINAL_TEXT_LENGTH = 150;
 
-		public virtual void ValidateCodedType(CD codeWrapper, string codeAsString, bool isCwe, bool isCne, bool isTranslation, string
-			 type, Hl7BaseVersion baseVersion, XmlElement element, string propertyPath, Hl7Errors errors)
+		public virtual void ValidateCodedType(CD codeWrapper, string codeAsString, bool isCwe, bool isCne, bool isTranslation, bool
+			 isFixed, string type, VersionNumber version, XmlElement element, string propertyPath, Hl7Errors errors)
 		{
+			Hl7BaseVersion baseVersion = version == null ? Hl7BaseVersion.MR2009 : version.GetBaseVersion();
 			// validations use codeAsString instead of codeWrapper.getValue().getCodeValue() in case the code specified wasn't found by a lookup
 			//    - this ensures we validate exactly what was passed in, and redundant errors aren't recorded (in most cases, at least)
 			Code code = codeWrapper.Value;
@@ -65,72 +66,112 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7
 				{
 					CreateError("Code cannot be provided along with a nullFlavor.", element, propertyPath, errors, isTranslation);
 				}
-				if (!isTranslation && (!StandardDataType.CD_LAB.Type.Equals(type) || hasNullFlavor))
+				if (!isTranslation)
 				{
-					ValidateUnallowedValue("displayName", codeWrapper.DisplayName, element, propertyPath, errors, isTranslation);
+					// displayName is only allowed for CD.LAB, and for CV (but only if BC); in both of these cases, this is disallowed if nullFlavor
+					if (IsCdLab(type) || (IsBC(version) && IsCv(type)))
+					{
+						if (hasNullFlavor)
+						{
+							ValidateUnallowedValue(StandardDataType.GetByTypeName(type), "displayName", codeWrapper.DisplayName, element, propertyPath
+								, errors, isTranslation, "when a nullFlavor");
+						}
+					}
+					else
+					{
+						ValidateUnallowedValue(StandardDataType.GetByTypeName(type), "displayName", codeWrapper.DisplayName, element, propertyPath
+							, errors, isTranslation, null);
+					}
 				}
 				if (!isTranslation)
 				{
-					ValidateTranslations(translations, type, isCwe, isCne, hasNullFlavor, baseVersion, element, propertyPath, errors);
+					ValidateTranslations(translations, type, isCwe, isCne, hasNullFlavor, version, element, propertyPath, errors);
 				}
 				// codes can be one of CWE or CNE (unsure if they can be *neither*)
-				if (isCwe && !hasNullFlavor)
+				// RM19852 - special validation exception for codes that are fixed
+				if (isFixed)
 				{
-					// cwe = 1 of code/originalText must be non-null; code present = codeSystem mandatory
-					if (!hasNonBlankCode && StringUtils.IsBlank(codeWrapper.OriginalText))
+					// only validate that a code has been provided
+					if (!hasNonBlankCode)
 					{
-						CreateError("For codes with codingStrength of CWE, one of code or originalText must be provided.", element, propertyPath, 
-							errors, isTranslation);
-					}
-					if (hasCode && StringUtils.IsBlank(codeSystem))
-					{
-						CreateError("For codes with codingStrength of CWE, the codeSystem property must be provided when the code property is included."
-							, element, propertyPath, errors, isTranslation);
+						CreateError("Code property must be provided.", element, propertyPath, errors, isTranslation);
 					}
 				}
 				else
 				{
-					if (isCne)
+					if (isCwe && !hasNullFlavor)
 					{
-						// cne = code and codeSystem mandatory if non-null; if NF=OTH then originalText mandatory and no other properties allowed
-						if (hasNullFlavor)
+						// cwe = 1 of code/originalText must be non-null; code present = codeSystem mandatory
+						if (!hasNonBlankCode && StringUtils.IsBlank(codeWrapper.OriginalText))
 						{
-							if (Ca.Infoway.Messagebuilder.Domainvalue.Nullflavor.NullFlavor.OTHER.CodeValue.Equals(codeWrapper.NullFlavor.CodeValue))
+							CreateError("For codes with codingStrength of CWE, one of code or originalText must be provided.", element, propertyPath, 
+								errors, isTranslation);
+						}
+						if (hasCode && StringUtils.IsBlank(codeSystem))
+						{
+							CreateError("For codes with codingStrength of CWE, the codeSystem property must be provided when the code property is included."
+								, element, propertyPath, errors, isTranslation);
+						}
+					}
+					else
+					{
+						if (isCne)
+						{
+							// cne = code and codeSystem mandatory if non-null; if NF=OTH then originalText mandatory and no other properties allowed
+							if (hasNullFlavor)
 							{
-								if (StringUtils.IsBlank(codeWrapper.OriginalText))
+								if (Ca.Infoway.Messagebuilder.Domainvalue.Nullflavor.NullFlavor.OTHER.CodeValue.Equals(codeWrapper.NullFlavor.CodeValue))
 								{
-									CreateError("For codes with codingStrength of CNE, originalText is mandatory when NullFlavor is 'OTH'.", element, propertyPath
-										, errors, isTranslation);
+									if (StringUtils.IsBlank(codeWrapper.OriginalText))
+									{
+										CreateError("For codes with codingStrength of CNE, originalText is mandatory when NullFlavor is 'OTH'.", element, propertyPath
+											, errors, isTranslation);
+									}
+									if (HasAnyPropertiesProvided(codeWrapper, codeAsString))
+									{
+										CreateError("For codes with codingStrength of CNE, originalText is the only property allowed when NullFlavor is 'OTH'.", 
+											element, propertyPath, errors, isTranslation);
+									}
 								}
-								if (HasAnyPropertiesProvided(codeWrapper, codeAsString))
+							}
+							else
+							{
+								if (!hasNonBlankCode || StringUtils.IsBlank(codeSystem))
 								{
-									CreateError("For codes with codingStrength of CNE, originalText is the only property allowed when NullFlavor is 'OTH'.", 
-										element, propertyPath, errors, isTranslation);
+									CreateError("For codes with codingStrength of CNE, code and codeSystem properties must be provided.", element, propertyPath
+										, errors, isTranslation);
 								}
 							}
 						}
 						else
 						{
-							if (!hasNonBlankCode || StringUtils.IsBlank(codeSystem))
+							// not entirely clear on what should be validated here; code is mandatory, but is code system as well?
+							if (!hasNullFlavor || isTranslation)
 							{
-								CreateError("For codes with codingStrength of CNE, code and codeSystem properties must be provided.", element, propertyPath
-									, errors, isTranslation);
-							}
-						}
-					}
-					else
-					{
-						// not entirely clear on what should be validated here; code is mandatory, but is code system as well?
-						if (!hasNullFlavor || isTranslation)
-						{
-							if (!hasNonBlankCode || StringUtils.IsBlank(codeSystem))
-							{
-								CreateError("Code and codeSystem properties must be provided.", element, propertyPath, errors, isTranslation);
+								if (!hasNonBlankCode || StringUtils.IsBlank(codeSystem))
+								{
+									CreateError("Code and codeSystem properties must be provided.", element, propertyPath, errors, isTranslation);
+								}
 							}
 						}
 					}
 				}
 			}
+		}
+
+		private bool IsCdLab(string type)
+		{
+			return StandardDataType.CD_LAB.Type.Equals(type);
+		}
+
+		private bool IsCv(string type)
+		{
+			return StandardDataType.CV.Type.Equals(type);
+		}
+
+		private bool IsBC(VersionNumber version)
+		{
+			return SpecificationVersion.IsExactVersion(version, SpecificationVersion.V02R04_BC);
 		}
 
 		private bool HasAnyPropertiesProvided(CD codeWrapper, string codeAsString)
@@ -164,9 +205,12 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7
 			ValidateCodeLength(codeAsString, baseVersion, element, propertyPath, errors, false);
 			// skip validating codeSystem (codes can be created with a codeSystem even if one wasn't provided, unfortunately)
 			// validateUnallowedValue("codeSystem", code == null ? null : code.getCodeSystem(), element, errors);
-			ValidateUnallowedValue("originalText", codeWrapper.OriginalText, element, propertyPath, errors, false);
-			ValidateUnallowedValue("displayName", codeWrapper.DisplayName, element, propertyPath, errors, false);
-			ValidateUnallowedValue("translation", translations.IsEmpty() ? null : string.Empty, element, propertyPath, errors, false);
+			ValidateUnallowedValue(StandardDataType.CS, "originalText", codeWrapper.OriginalText, element, propertyPath, errors, false
+				, null);
+			ValidateUnallowedValue(StandardDataType.CS, "displayName", codeWrapper.DisplayName, element, propertyPath, errors, false, 
+				null);
+			ValidateUnallowedValue(StandardDataType.CS, "translation", translations.IsEmpty() ? null : string.Empty, element, propertyPath
+				, errors, false, null);
 		}
 
 		private void ValidateCodeLength(string codeAsString, Hl7BaseVersion baseVersion, XmlElement element, string propertyPath, 
@@ -176,8 +220,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7
 				, element, propertyPath, errors, isTranslation);
 		}
 
-		private void ValidateTranslations(IList<CD> translations, string type, bool isCwe, bool isCne, bool hasNullFlavor, Hl7BaseVersion
-			 baseVersion, XmlElement element, string propertyPath, Hl7Errors errors)
+		private void ValidateTranslations(IList<CD> translations, string type, bool isCwe, bool isCne, bool hasNullFlavor, VersionNumber
+			 version, XmlElement element, string propertyPath, Hl7Errors errors)
 		{
 			if (hasNullFlavor && !translations.IsEmpty() && !StandardDataType.CV.Type.Equals(type))
 			{
@@ -185,7 +229,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7
 			}
 			if (StandardDataType.CV.Type.Equals(type))
 			{
-				ValidateUnallowedValue("translation", translations.IsEmpty() ? null : string.Empty, element, propertyPath, errors, false);
+				ValidateUnallowedValue(StandardDataType.CV, "translation", translations.IsEmpty() ? null : string.Empty, element, propertyPath
+					, errors, false, null);
 			}
 			else
 			{
@@ -216,18 +261,23 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7
 					bool isTranslation = true;
 					// this could still result in seeing some redundant error messages if the translation code was invalid; decided this is ok for a little-used feature
 					string codeAsString = translationCodeWrapper.Value == null ? null : translationCodeWrapper.Value.CodeValue;
-					ValidateCodedType(translationCodeWrapper, codeAsString, false, false, isTranslation, type, baseVersion, element, propertyPath
+					ValidateCodedType(translationCodeWrapper, codeAsString, false, false, isTranslation, false, type, version, element, propertyPath
 						, errors);
 				}
 			}
 		}
 
-		private void ValidateUnallowedValue(string propertyName, string value, XmlElement element, string propertyPath, Hl7Errors
-			 errors, bool isTranslation)
+		private void ValidateUnallowedValue(StandardDataType type, string propertyName, string value, XmlElement element, string 
+			propertyPath, Hl7Errors errors, bool isTranslation, string detailMessage)
 		{
 			if (value != null)
 			{
-				CreateError("CD should not include the '" + propertyName + "' property.", element, propertyPath, errors, isTranslation);
+				string errorMessage = (type == null ? "Type" : type.Name) + " should not include the '" + propertyName + "' property";
+				if (StringUtils.IsNotBlank(detailMessage))
+				{
+					errorMessage += " (" + detailMessage + ")";
+				}
+				CreateError(errorMessage, element, propertyPath, errors, isTranslation);
 			}
 		}
 
@@ -248,7 +298,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7
 
 		private bool IsMr2007(Hl7BaseVersion baseVersion)
 		{
-			return baseVersion == Hl7BaseVersion.MR2007 || baseVersion == Hl7BaseVersion.MR2007_V02R01;
+			return baseVersion == Hl7BaseVersion.MR2007;
 		}
 
 		private void CreateError(string errorMessage, XmlElement element, string propertyPath, Hl7Errors errors, bool isTranslation

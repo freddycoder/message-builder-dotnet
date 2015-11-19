@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System.Collections.Generic;
@@ -22,6 +22,7 @@ using System.Xml;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
+using Ca.Infoway.Messagebuilder.Error;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser;
 using NUnit.Framework;
@@ -46,8 +47,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 
 		private ParseContext CreateContext(string type, VersionNumber version)
 		{
-			return ParserContextImpl.Create(type, typeof(TelecommunicationAddress), version, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
-				.POPULATED);
+			return ParseContextImpl.Create(type, typeof(TelecommunicationAddress), version, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
+				.POPULATED, null, null, false);
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -98,6 +99,15 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			Hl7Error hl7Error = this.xmlResult.GetHl7Errors()[0];
 			Assert.AreEqual(Hl7ErrorCode.DATA_TYPE_ERROR, hl7Error.GetHl7ErrorCode(), "error message code");
 			Assert.AreEqual("Unrecognized URL scheme 'mailfrom' in element /something", hl7Error.GetMessage(), "error message");
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void TestParseMixedcaseUrlScheme()
+		{
+			XmlNode node = CreateNode("<something value=\"mailTO://monkey\" />");
+			new TelElementParser().Parse(CreateContext("TEL.URI", SpecificationVersion.V02R02), node, this.xmlResult);
+			Assert.IsTrue(this.xmlResult.IsValid());
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -175,7 +185,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		public virtual void TestParseAddressUse()
 		{
 			AbstractSingleElementParser<TelecommunicationAddress> parser = new TelElementParser();
-			XmlNode node = CreateNode("<something use=\"H\" value=\"mailto://monkey@monkey\" />");
+			XmlNode node = CreateNode("<something use=\"H\" value=\"Mailto://monkey@monkey\" />");
 			ICollection<Ca.Infoway.Messagebuilder.Domainvalue.TelecommunicationAddressUse> addressUses = ((TelecommunicationAddress)parser
 				.Parse(CreateContext("TEL.EMAIL", SpecificationVersion.V02R02), node, this.xmlResult).BareValue).AddressUses;
 			Assert.IsTrue(this.xmlResult.IsValid());

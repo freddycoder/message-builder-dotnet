@@ -41,7 +41,6 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 	/// re-implemented BigDecimal for all intents and purposes.
 	/// </summary>
 	///
-	/// <seealso cref="<a href="http://www.hl7.org/v3ballot/html/infrastructure/itsxml/datatypes-its-xml.htm#dtimpl-PQ">The HL7 Definition</a>"/>
 	[Serializable]
 	public class PhysicalQuantity {
 	
@@ -54,7 +53,8 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		/// Constructs an empty physical quantity. 
 		/// </summary>
 		///
-		public PhysicalQuantity() {
+		public PhysicalQuantity() :
+            this (null, null) {
 		}
 	
 		/// <summary>
@@ -66,6 +66,7 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		public PhysicalQuantity(BigDecimal quantity_0, Domainvalue.UnitsOfMeasureCaseSensitive unit_1) {
 			this.quantity = quantity_0;
 			this.unit = unit_1;
+            Translation = new List<CodedTypeR2<Code>>();
 		}
 	
 		/// <summary>
@@ -116,7 +117,14 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 				this.unit = value;
 			}
 		}
-		
+
+        /// <summary>
+        /// Translations for this PQ
+        /// </summary>
+        public IList<CodedTypeR2<Code>> Translation {
+            get;
+            set;
+        }
 	
 		/// <summary>
 		/// Generates a hash c for this object based on its quantity and units.
@@ -124,7 +132,11 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		///
 		/// <returns>the hashc</returns>
 		public override int GetHashCode() {
-			return new HashCodeBuilder().Append(this.quantity).Append(this.unit).ToHashCode();
+			return new HashCodeBuilder()
+                .Append(this.quantity)
+                .Append(this.unit)
+                .Append(Translation)
+                .ToHashCode();
 		}
 	
 		/// <summary>
@@ -144,8 +156,11 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		}
 	
 		private bool Equals(PhysicalQuantity that) {
-			return new EqualsBuilder().Append(this.quantity, that.quantity).Append(
-					this.unit, that.unit).IsEquals();
+			return new EqualsBuilder()
+                .Append(this.quantity, that.quantity)
+                .Append(this.unit, that.unit)
+                .Append(this.Translation, that.Translation)
+                .IsEquals();
 		}
 	
 		/// <summary>
@@ -154,7 +169,7 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		///
 		/// <returns>a string representation of this object</returns>
 		public override  System.String ToString() {
-			return "" + this.quantity + UnitAsString;
+			return "" + this.quantity + " " + UnitAsString;
 		}
 	
 		

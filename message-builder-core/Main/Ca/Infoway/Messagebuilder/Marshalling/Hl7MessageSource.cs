@@ -14,10 +14,11 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System;
+using System.Collections.Generic;
 using System.Xml;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Marshalling;
@@ -38,18 +39,22 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 
 		private MessagePart messagePart;
 
-		public Hl7MessageSource(VersionNumber version, XmlDocument document, TimeZone dateTimeZone, TimeZone dateTimeTimeZone, MessageDefinitionService
-			 service)
+		private readonly bool isR2;
+
+		private readonly bool isCda;
+
+		public Hl7MessageSource(VersionNumber version, XmlDocument document, TimeZoneInfo dateTimeZone, TimeZoneInfo dateTimeTimeZone
+			, MessageDefinitionService service)
 		{
 			this.document = document;
-			this.context = new ConversionContext(service, version, dateTimeZone, dateTimeTimeZone, GetMessageIdFromDocument());
+			this.isR2 = service.IsR2(version);
+			this.isCda = service.IsCda(version);
+			string messageIdFromDocument = GetMessageIdFromDocument();
+			ICollection<string> templateIdsFromDocument = GetTemplateIdsFromDocument();
 			this.result = new XmlToModelResult();
-			if (this.context.GetInteraction() == null)
-			{
-				result.AddHl7Error(new Hl7Error(Hl7ErrorCode.UNSUPPORTED_INTERACTION, "The interaction " + GetMessageTypeKey() + " is not supported"
-					, document == null ? null : document.DocumentElement));
-			}
-			else
+			this.context = new ConversionContext(service, version, dateTimeZone, dateTimeTimeZone, messageIdFromDocument, templateIdsFromDocument
+				, result);
+			if (this.context.GetInteraction() != null)
 			{
 				this.messagePart = InitMessagePart();
 			}
@@ -83,12 +88,12 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 			return this.context.GetVersion();
 		}
 
-		public virtual TimeZone GetDateTimeZone()
+		public virtual TimeZoneInfo GetDateTimeZone()
 		{
 			return this.context.GetDateTimeZone();
 		}
 
-		public virtual TimeZone GetDateTimeTimeZone()
+		public virtual TimeZoneInfo GetDateTimeTimeZone()
 		{
 			return this.context.GetDateTimeTimeZone();
 		}
@@ -108,8 +113,15 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 
 		public virtual Hl7PartSource CreatePartSource(Relationship relationship, XmlElement currentElement)
 		{
-			string type = this.context.ResolveType(relationship, NodeUtil.GetLocalOrTagName(currentElement));
-			return new Hl7PartSource(this, type, currentElement, relationship.Type);
+			return CreatePartSourceForSpecificType(relationship, currentElement, null);
+		}
+
+		public virtual Hl7PartSource CreatePartSourceForSpecificType(Relationship relationship, XmlElement currentElement, string
+			 type)
+		{
+			string resolvedType = (type == null ? this.context.ResolveType(relationship, NodeUtil.GetLocalOrTagName(currentElement)) : 
+				type);
+			return new Hl7PartSource(this, resolvedType, currentElement, relationship.Type);
 		}
 
 		public virtual ConversionContext GetConversionContext()
@@ -124,7 +136,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 
 		public virtual MessageTypeKey GetMessageTypeKey()
 		{
-			return new MessageTypeKey(GetVersion(), GetMessageIdFromDocument());
+			return new MessageTypeKey(GetVersion(), GetInteraction().Name);
 		}
 
 		private string GetMessageIdFromDocument()
@@ -132,14 +144,46 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 			return NodeUtil.GetLocalOrTagName(this.document.DocumentElement);
 		}
 
+		private ICollection<string> GetTemplateIdsFromDocument()
+		{
+			ICollection<string> result = new HashSet<string>();
+			IList<XmlElement> childNodes = NodeUtil.ToElementList(this.document.DocumentElement);
+			foreach (XmlElement element in childNodes)
+			{
+				if (StringUtils.Equals(element.Name, "templateId"))
+				{
+					if (element.HasAttribute("root"))
+					{
+						result.Add(element.GetAttribute("root"));
+					}
+				}
+			}
+			return result;
+		}
+
 		public virtual Relationship GetRelationship(string name)
 		{
-			return this.messagePart.GetRelationship(name, GetInteraction());
+			return this.messagePart.GetRelationship(name, null, GetInteraction());
+		}
+
+		public virtual IList<Relationship> GetAllRelationships()
+		{
+			return this.messagePart.Relationships;
 		}
 
 		public virtual string GetMessagePartName()
 		{
 			return this.messagePart.Name;
+		}
+
+		public virtual bool IsR2()
+		{
+			return this.isR2;
+		}
+
+		public virtual bool IsCda()
+		{
+			return this.isCda;
 		}
 	}
 }

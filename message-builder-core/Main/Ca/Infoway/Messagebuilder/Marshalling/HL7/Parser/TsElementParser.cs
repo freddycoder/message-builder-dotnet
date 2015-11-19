@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System;
@@ -23,6 +23,7 @@ using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Datatype.Impl;
 using Ca.Infoway.Messagebuilder.Datatype.Lang.Util;
+using Ca.Infoway.Messagebuilder.Error;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser;
 using Ca.Infoway.Messagebuilder.Platform;
@@ -41,10 +42,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 	/// http://www.hl7.org/v3ballot/html/infrastructure/itsxml/datatypes-its-xml.htm#dtimpl-TS
 	/// </remarks>
 	[DataTypeHandler("TS")]
-	internal class TsElementParser : AbstractSingleElementParser<PlatformDate>
+	public class TsElementParser : AbstractSingleElementParser<PlatformDate>
 	{
-		public static readonly string ABSTRACT_TS_IGNORE_SPECIALIZATION_TYPE_ERROR_PROPERTY_NAME = "messagebuilder.abstract.ts.ignore.specializationtype.error";
-
 		public TsElementParser()
 		{
 		}
@@ -60,6 +59,19 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			return ParseNonNullNode(context, (XmlElement)node, xmlToModelResult);
 		}
 
+		/// <exception cref="Ca.Infoway.Messagebuilder.Marshalling.HL7.XmlToModelTransformationException"></exception>
+		public override BareANY Parse(ParseContext context, XmlNode node, XmlToModelResult xmlToModelResult)
+		{
+			BareANY parseResult = base.Parse(context, node, xmlToModelResult);
+			if (context.IsCda())
+			{
+				string operatorAsString = GetAttributeValue(node, "operator");
+				SetOperator @operator = SetOperator.FindMatchingOperator(operatorAsString);
+				((ANYMetaData)parseResult).Operator = @operator;
+			}
+			return parseResult;
+		}
+
 		private ParseContext HandleSpecializationType(ParseContext context, XmlNode node, XmlToModelResult xmlToModelResult)
 		{
 			string specializationType = GetSpecializationType(node);
@@ -69,8 +81,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 				//    - I'm relaxing this validation for the time being (the formatter currently ignores specialization type completely)
 				//    - (update: perhaps the real issue is that this was an IVL<TS.FULLDATEWITHTIME> and MB has a bug where inner types can't have specializationType set??)
 				// TM - 16/10/2012 - should be able to set specialization type now (need to specify IVL_FULL_DATE_TIME as the specialization type for IVL<TS.FULLDATEWITHTIME>, for example)
-				//                 - in a cowardly move, I have allowed for a system property to bypass this error
-				if (ILOG.J2CsMapping.Util.BooleanUtil.ValueOf(Runtime.GetProperty(ABSTRACT_TS_IGNORE_SPECIALIZATION_TYPE_ERROR_PROPERTY_NAME
+				//                 - in a cowardly move, I have allowed for a system property to bypass this validation error
+				if (Ca.Infoway.Messagebuilder.BooleanUtils.ValueOf(Runtime.GetProperty(TsDateFormats.ABSTRACT_TS_IGNORE_SPECIALIZATION_TYPE_ERROR_PROPERTY_NAME
 					)))
 				{
 				}
@@ -85,8 +97,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			{
 				if (IsValidSpecializationType(specializationType))
 				{
-					context = ParserContextImpl.Create(specializationType, context.GetExpectedReturnType(), context.GetVersion(), context.GetDateTimeZone
-						(), context.GetDateTimeTimeZone(), context.GetConformance(), null, null);
+					context = ParseContextImpl.Create(specializationType, context);
 				}
 				else
 				{
@@ -101,7 +112,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		private bool IsValidSpecializationType(string specializationType)
 		{
 			StandardDataType type = StandardDataType.GetByTypeName(specializationType);
-			return StandardDataType.TS_FULLDATE.Equals(type) || StandardDataType.TS_FULLDATETIME.Equals(type);
+			return StandardDataType.TS_FULLDATE.Equals(type) || StandardDataType.TS_FULLDATETIME.Equals(type) || StandardDataType.TS_FULLDATEPARTTIME
+				.Equals(type);
 		}
 
 		private bool IsAbstractFullDateWithTime(ParseContext context)
@@ -109,9 +121,9 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			return StandardDataType.TS_FULLDATEWITHTIME.Equals(StandardDataType.GetByTypeName(context));
 		}
 
-		// FIXME - TM - for V02R01, "width" property is allowed (PQ.TIME) - need to add support?
 		private PlatformDate ParseNonNullNode(ParseContext context, XmlElement element, XmlToModelResult xmlToModelResult)
 		{
+			// TM - for V02R01, "width" property is allowed (PQ.TIME) - not including this here, as MB does not officially support that release
 			PlatformDate result = null;
 			string unparsedDate = GetAttributeValue(element, "value");
 			if (StringUtils.IsBlank(unparsedDate))
@@ -122,7 +134,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			{
 				try
 				{
-					result = ParseDate(unparsedDate, GetAllDateFormats(context), context);
+					result = ParseDate(unparsedDate, GetAllDateFormats(StandardDataType.GetByTypeName(GetType(context)), context.GetVersion()
+						), context);
 					CheckForMissingTimezone(context, xmlToModelResult, result, unparsedDate, element);
 				}
 				catch (ArgumentException)
@@ -142,8 +155,9 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			 unparsedDate, XmlElement element)
 		{
 			// issue a warning if a datetime (partial or otherwise) was passed in without a timezone (non-CeRx only)
-			if (context == null || context.GetVersion() == null || !SpecificationVersion.IsVersion(context.GetVersion(), Hl7BaseVersion
-				.CERX))
+			StandardDataType standardDataType = StandardDataType.GetByTypeName(context);
+			if (context == null || context.GetVersion() == null || !SpecificationVersion.IsVersion(standardDataType, context.GetVersion
+				(), Hl7BaseVersion.CERX))
 			{
 				if (result is DateWithPattern && TsDateFormats.datetimeFormatsRequiringWarning.Contains(((DateWithPattern)result).DatePattern
 					))
@@ -180,24 +194,12 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 
 		private string[] GetDateFormatsForOtherType(StandardDataType type, ParseContext context)
 		{
-			ParseContext newContext;
-			if (context == null)
-			{
-				newContext = ParserContextImpl.Create(type == null ? null : type.Type, null, null, null, null, null, null, null);
-			}
-			else
-			{
-				newContext = ParserContextImpl.Create(type == null ? null : type.Type, context.GetExpectedReturnType(), context.GetVersion
-					(), context.GetDateTimeZone(), context.GetDateTimeTimeZone(), context.GetConformance());
-			}
-			return GetAllDateFormats(newContext);
+			return GetAllDateFormats(type, context == null ? null : context.GetVersion());
 		}
 
-		private string[] GetAllDateFormats(ParseContext context)
+		private string[] GetAllDateFormats(StandardDataType type, VersionNumber version)
 		{
-			StandardDataType standardDataType = StandardDataType.GetByTypeName(context);
-			VersionNumber version = (context == null ? null : context.GetVersion());
-			return TsDateFormats.GetAllDateFormats(standardDataType, version);
+			return TsDateFormats.GetAllDateFormats(type, version);
 		}
 
 		/// <summary>Adapted from org.apache.commons.lang.time.DateUtils, but leniency is turned off.</summary>
@@ -224,12 +226,12 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			return TsDateFormats.expandedFormats.ContainsKey(pattern) ? TsDateFormats.expandedFormats.SafeGet(pattern) : pattern;
 		}
 
-		private TimeZone GetTimeZone(ParseContext context)
+		private TimeZoneInfo GetTimeZone(ParseContext context)
 		{
-			TimeZone timeZone = null;
+			TimeZoneInfo timeZone = null;
 			if (NoTimeZonesProvided(context))
 			{
-				timeZone = System.TimeZone.CurrentTimeZone;
+				timeZone = System.TimeZoneInfo.Local;
 			}
 			else
 			{
@@ -250,9 +252,9 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			return context == null || (context.GetDateTimeZone() == null && context.GetDateTimeTimeZone() == null);
 		}
 
-		private TimeZone GetNonNullTimeZone(TimeZone timeZone)
+		private TimeZoneInfo GetNonNullTimeZone(TimeZoneInfo timeZone)
 		{
-			return timeZone == null ? System.TimeZone.CurrentTimeZone : timeZone;
+			return timeZone == null ? System.TimeZoneInfo.Local : timeZone;
 		}
 
 		//	private boolean isDateTime(ParseContext context) {

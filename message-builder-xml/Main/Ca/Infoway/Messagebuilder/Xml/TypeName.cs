@@ -13,10 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2013-03-08 11:06:36 -0500 (Fri, 08 Mar 2013) $
- * Revision:      $LastChangedRevision: 6699 $
+ * Author:        $LastChangedBy: jmis $
+ * Last modified: $LastChangedDate: 2015-05-27 08:43:37 -0400 (Wed, 27 May 2015) $
+ * Revision:      $LastChangedRevision: 9535 $
  */
+using System;
 using Ca.Infoway.Messagebuilder;
 
 namespace Ca.Infoway.Messagebuilder.Xml
@@ -34,12 +35,27 @@ namespace Ca.Infoway.Messagebuilder.Xml
 
 		private readonly string name;
 
+		private readonly Boolean? isInteraction;
+
+		private readonly bool isCdaDocumentRoot;
+
 		/// <summary>Standard constructor.</summary>
 		/// <remarks>Standard constructor.</remarks>
 		/// <param name="name">- the name of the type</param>
-		public TypeName(string name)
+		public TypeName(string name) : this(name, null, false)
 		{
+		}
+
+		public TypeName(string name, Boolean? isInteraction) : this(name, isInteraction, false)
+		{
+		}
+
+		public TypeName(string name, Boolean? isInteraction, bool isCdaDocumentRoot)
+		{
+			// EXPERIMENT
 			this.name = name != null ? name.Replace('$', '.') : name;
+			this.isInteraction = isInteraction;
+			this.isCdaDocumentRoot = isCdaDocumentRoot;
 		}
 
 		/// <summary>The number of parts (separated by the period character) in the name.</summary>
@@ -195,13 +211,47 @@ namespace Ca.Infoway.Messagebuilder.Xml
 		/// "PRPA_IN101103CA" is an interaction name.
 		/// </remarks>
 		/// <returns>true if the type name is an interaction; false otherwise.</returns>
-		public virtual bool Interaction
+		[System.ObsoleteAttribute(@"this naming convention is not always followed. Do NOT depend on this method to definitively determine if a type name is an interaction."
+			)]
+		public virtual bool IsInteraction()
+		{
+			// TM - hack to allow CDA procssing to mark some names as interactions
+			if (this.isInteraction != null && (bool)this.isInteraction)
+			{
+				//Cast for .NET
+				return true;
+			}
+			return PartCount == 1 && this.name.Length >= 7 && "_IN".Equals(Ca.Infoway.Messagebuilder.StringUtils.Substring(this.name, 
+				4, 7));
+		}
+
+		/// <returns>true if the type name is a package location; false otherwise.</returns>
+		[Obsolete]
+		public virtual bool PackageLocation
 		{
 			get
 			{
-				return PartCount == 1 && this.name.Length >= 7 && "_IN".Equals(Ca.Infoway.Messagebuilder.StringUtils.Substring(this.name, 
+				return PartCount == 1 && this.name.Length >= 7 && "_MT".Equals(Ca.Infoway.Messagebuilder.StringUtils.Substring(this.name, 
 					4, 7));
 			}
+		}
+
+		/// <summary>Get the name of the top-level type.</summary>
+		/// <remarks>
+		/// Get the name of the top-level type.  For example the root name of
+		/// "PRPA_MT101103CA.ParameterList" is "PRPA_MT101103CA".  The root name
+		/// of "PRPA_MT101103CA" is "PRPA_MT101103CA".
+		/// </remarks>
+		/// <returns>the root name.</returns>
+		public static string DetermineRootName(string name)
+		{
+			Ca.Infoway.Messagebuilder.Xml.TypeName typeName = new Ca.Infoway.Messagebuilder.Xml.TypeName(name);
+			return typeName.RootName.Name;
+		}
+
+		public virtual bool IsCdaDocumentRoot()
+		{
+			return this.isCdaDocumentRoot;
 		}
 	}
 }

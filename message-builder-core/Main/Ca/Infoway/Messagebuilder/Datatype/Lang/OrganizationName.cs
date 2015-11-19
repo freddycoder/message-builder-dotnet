@@ -31,44 +31,12 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 	using System.Collections.Generic;
 	using System.ComponentModel;
 	using System.Runtime.CompilerServices;
+    using Ca.Infoway.Messagebuilder.Datatype.Lang.Util;
 	
 	/// <summary>
 	///   datatype that backs the HL7 datatype ON. 
 	/// </summary>
 	///
 	public class OrganizationName : EntityName {
-	
-		public OrganizationName() {
-			this.parts = Ca.Infoway.Messagebuilder.CollUtils
-					.SynchronizedList(new List<EntityNamePart>());
-		}
-	
-		private IList<EntityNamePart> parts;
-	
-		/// <summary>
-		/// Obtains the name parts.
-		/// </summary>
-		///
-		/// <returns>the list of name parts</returns>
-		public override IList<EntityNamePart> Parts {
-		/// <summary>
-		/// Obtains the name parts.
-		/// </summary>
-		///
-		/// <returns>the list of name parts</returns>
-		  get {
-				return this.parts;
-			}
-		}
-		
-	
-		/// <summary>
-		/// Adds a name part to the list of parts.
-		/// </summary>
-		///
-		/// <param name="namePart">the name part to add</param>
-		public void AddNamePart(EntityNamePart namePart) {
-			ILOG.J2CsMapping.Collections.Generics.Collections.Add(this.parts,namePart);
-		}
 	}
 }

@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System;
@@ -31,6 +31,10 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 
 		private IDictionary<string, Interaction> interactions = new Dictionary<string, Interaction>();
 
+		public virtual void Initialize()
+		{
+		}
+
 		public virtual IList<Interaction> GetAllInteractions(bool includeDuplicateInteractionsWithChangedBusinessNames)
 		{
 			return null;
@@ -42,6 +46,11 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 		}
 
 		public virtual IDictionary<string, MessagePart> GetAllMessageParts(Interaction interaction, VersionNumber version)
+		{
+			return null;
+		}
+
+		public virtual ICollection<MessagePart> GetAllMessageParts(VersionNumber version)
 		{
 			return null;
 		}
@@ -92,6 +101,31 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 		public virtual IList<MessagePart> GetAllRootMessageParts(VersionNumber version)
 		{
 			throw new NotSupportedException();
+		}
+
+		public virtual bool IsR2(VersionNumber version)
+		{
+			return false;
+		}
+
+		public virtual bool IsCda(VersionNumber version)
+		{
+			return false;
+		}
+
+		public virtual ConstrainedDatatype GetConstraints(VersionNumber version, string constrainedType)
+		{
+			return null;
+		}
+
+		public virtual IList<SchematronContext> GetAllSchematronContexts(VersionNumber version)
+		{
+			return null;
+		}
+
+		public virtual IList<PackageLocation> GetAllPackageLocations(VersionNumber version)
+		{
+			return null;
 		}
 	}
 }

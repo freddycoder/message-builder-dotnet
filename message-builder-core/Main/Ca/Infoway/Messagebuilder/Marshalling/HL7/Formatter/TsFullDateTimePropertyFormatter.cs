@@ -14,13 +14,15 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System;
+using System.Collections.Generic;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Datatype.Lang.Util;
+using Ca.Infoway.Messagebuilder.Error;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter;
 using Ca.Infoway.Messagebuilder.Platform;
@@ -29,21 +31,21 @@ using ILOG.J2CsMapping.Text;
 namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 {
 	/// <summary>
-	/// TS.FULLDATETIME - Timestamp (fully-specified date and time only) and TS.DATETIME (partial date/time)
-	/// Represents a TS.FULLDATETIME/TS.DATETIME object as an element:
+	/// TS.FULLDATETIME - Timestamp (fully-specified date and time only) and TS.DATETIME (partial date/time) and TS.FULLDATEPARTTIME
+	/// Represents a TS.FULLDATETIME/TS.FULLDATEPARTTIME/TS.DATETIME object as an element:
 	/// &lt;element-name value="yyyyMMddHHmmss"&gt;&lt;/element-name&gt;
 	/// If an object is null, value is replaced by a nullFlavor.
 	/// </summary>
 	/// <remarks>
-	/// TS.FULLDATETIME - Timestamp (fully-specified date and time only) and TS.DATETIME (partial date/time)
-	/// Represents a TS.FULLDATETIME/TS.DATETIME object as an element:
+	/// TS.FULLDATETIME - Timestamp (fully-specified date and time only) and TS.DATETIME (partial date/time) and TS.FULLDATEPARTTIME
+	/// Represents a TS.FULLDATETIME/TS.FULLDATEPARTTIME/TS.DATETIME object as an element:
 	/// &lt;element-name value="yyyyMMddHHmmss"&gt;&lt;/element-name&gt;
 	/// If an object is null, value is replaced by a nullFlavor. So the element would look
 	/// like this:
 	/// &lt;element-name nullFlavor="something" /&gt;
 	/// http://www.hl7.org/v3ballot/html/infrastructure/itsxml/datatypes-its-xml.htm#dtimpl-TS
 	/// </remarks>
-	[DataTypeHandler(new string[] { "TS.FULLDATETIME", "TS", "TS.DATETIME" })]
+	[DataTypeHandler(new string[] { "TS", "TS.FULLDATETIME", "TS.FULLDATEPARTTIME", "TS.DATETIME" })]
 	public class TsFullDateTimePropertyFormatter : AbstractValueNullFlavorPropertyFormatter<PlatformDate>
 	{
 		public static readonly string DATE_FORMAT_OVERRIDE_BASE_PROPERTY_NAME = "messagebuilder.date.format.override.";
@@ -56,9 +58,10 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		{
 			// write out the date using the applicable "full" pattern; clients can override this using a system property or a DateWithPattern date
 			VersionNumber version = GetVersion(context);
-			string datePattern = DetermineDateFormat(date, version);
+			StandardDataType standardDataType = StandardDataType.GetByTypeName(context);
+			string datePattern = DetermineDateFormat(standardDataType, date, version);
 			ValidateDatePattern(datePattern, context);
-			TimeZone timeZone = context != null && context.GetDateTimeTimeZone() != null ? context.GetDateTimeTimeZone() : System.TimeZone.CurrentTimeZone;
+			TimeZoneInfo timeZone = context != null && context.GetDateTimeTimeZone() != null ? context.GetDateTimeTimeZone() : System.TimeZoneInfo.Local;
 			return DateFormatUtil.Format(date, datePattern, timeZone);
 		}
 
@@ -70,7 +73,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			if (ArrayContains(allowedDateFormats, datePattern))
 			{
 				// check if this pattern is missing a timezone
-				if (!IsCerx(version) && TsDateFormats.datetimeFormatsRequiringWarning.Contains(datePattern))
+				if (!IsCerx(standardDataType, version) && TsDateFormats.datetimeFormatsRequiringWarning.Contains(datePattern))
 				{
 					context.GetModelToXmlResult().AddHl7Error(new Hl7Error(Hl7ErrorCode.DATA_TYPE_ERROR, System.String.Format("Date format {0} supplied for value of type {1} should also have a timezone (ZZZZZ)"
 						, datePattern, context == null ? "TS" : context.Type), context.GetPropertyPath()));
@@ -95,13 +98,13 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			return false;
 		}
 
-		private bool IsCerx(VersionNumber version)
+		private bool IsCerx(StandardDataType standardDataType, VersionNumber version)
 		{
-			return SpecificationVersion.IsVersion(version, Hl7BaseVersion.CERX);
+			return SpecificationVersion.IsVersion(standardDataType, version, Hl7BaseVersion.CERX);
 		}
 
 		// package level for testing purposes
-		internal virtual string DetermineDateFormat(PlatformDate date, VersionNumber version)
+		internal virtual string DetermineDateFormat(StandardDataType standardDataType, PlatformDate date, VersionNumber version)
 		{
 			// date format precedence:
 			//    provided Date is a dateWithPattern
@@ -113,7 +116,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 				datePattern = GetOverrideDatePattern(version);
 				if (datePattern == null)
 				{
-					datePattern = GetDefaultDatePattern(version);
+					datePattern = GetDefaultDatePattern(standardDataType, version);
 				}
 			}
 			return datePattern;
@@ -137,9 +140,9 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			return null;
 		}
 
-		private string GetDefaultDatePattern(VersionNumber version)
+		private string GetDefaultDatePattern(StandardDataType standardDataType, VersionNumber version)
 		{
-			if (SpecificationVersion.IsVersion(version, Hl7BaseVersion.CERX))
+			if (SpecificationVersion.IsVersion(standardDataType, version, Hl7BaseVersion.CERX))
 			{
 				return DATE_FORMAT_YYYYMMDDHHMMSS;
 			}
@@ -149,6 +152,20 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		private VersionNumber GetVersion(FormatContext context)
 		{
 			return context == null ? null : context.GetVersion();
+		}
+
+		protected override void AddOtherAttributesIfNecessary(PlatformDate v, IDictionary<string, string> attributes, FormatContext
+			 context, BareANY bareAny)
+		{
+			base.AddOtherAttributesIfNecessary(v, attributes, context, bareAny);
+			if (context.IsCda())
+			{
+				SetOperator @operator = ((ANYMetaData)bareAny).Operator;
+				if (@operator != null)
+				{
+					attributes["operator"] = @operator.CodeValue;
+				}
+			}
 		}
 	}
 }

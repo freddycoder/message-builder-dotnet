@@ -14,40 +14,73 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
+using System;
 using Ca.Infoway.Messagebuilder;
-using Ca.Infoway.Messagebuilder.Marshalling;
-using Ca.Infoway.Messagebuilder.Marshalling.HL7;
-using Ca.Infoway.Messagebuilder.Terminology;
+using Ca.Infoway.Messagebuilder.CodeRegistry;
+using Ca.Infoway.Messagebuilder.Datatype.Lang;
+using Ca.Infoway.Messagebuilder.Domainvalue.Util;
+using Ca.Infoway.Messagebuilder.Error;
+using Ca.Infoway.Messagebuilder.Resolver;
 using Ca.Infoway.Messagebuilder.Xml;
+using ILOG.J2CsMapping.Text;
 
 namespace Ca.Infoway.Messagebuilder.Marshalling
 {
 	internal class NonStructuralHl7AttributeRenderer
 	{
-		internal static object GetFixedValue(Relationship relationship, VersionNumber version)
+		internal static object GetFixedValue(Relationship relationship, VersionNumber version, bool isR2, Hl7Errors errors, string
+			 propertyPath)
 		{
+			string fixedValue = relationship.FixedValue;
 			if (StringUtils.Equals("BL", relationship.Type))
 			{
-				return true.ToString().EqualsIgnoreCase(relationship.FixedValue);
+				return true.ToString().EqualsIgnoreCase(fixedValue);
 			}
 			else
 			{
 				if (StringUtils.Equals("INT.POS", relationship.Type))
 				{
-					return System.Convert.ToInt32(relationship.FixedValue);
+					return System.Convert.ToInt32(fixedValue);
 				}
 				else
 				{
-					if (relationship.CodedType)
+					if (StringUtils.Equals("ST", relationship.Type))
 					{
-						return CodeResolverRegistry.Lookup(DomainTypeHelper.GetReturnType(relationship, version), relationship.FixedValue);
+						return fixedValue;
 					}
 					else
 					{
-						throw new MarshallingException("Cannot handle a fixed relationship of type: " + relationship.Type);
+						if (relationship.CodedType)
+						{
+							Type codeType = DomainTypeHelper.GetReturnType(relationship, version, CodeTypeRegistry.GetInstance());
+							if (codeType == null)
+							{
+								codeType = typeof(Code);
+							}
+							Code code = CodeResolverRegistry.Lookup(codeType, fixedValue);
+							if (code == null)
+							{
+								string message = System.String.Format("Fixed code lookup could not find match for {0}.{1}", relationship.DomainType, fixedValue
+									);
+								errors.AddHl7Error(new Hl7Error(Hl7ErrorCode.VALUE_NOT_IN_CODE_SYSTEM, ErrorLevel.WARNING, message, propertyPath));
+							}
+							//Fixup for .NET
+							if (isR2)
+							{
+								return code == null ? null : new CodedTypeR2<Code>(code);
+							}
+							else
+							{
+								return code;
+							}
+						}
+						else
+						{
+							throw new MarshallingException("Cannot handle a fixed relationship of type: " + relationship.Type);
+						}
 					}
 				}
 			}

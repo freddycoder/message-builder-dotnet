@@ -13,12 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2013-03-01 17:48:17 -0500 (Fri, 01 Mar 2013) $
- * Revision:      $LastChangedRevision: 6663 $
+ * Author:        $LastChangedBy: jmis $
+ * Last modified: $LastChangedDate: 2015-05-27 08:43:37 -0400 (Wed, 27 May 2015) $
+ * Revision:      $LastChangedRevision: 9535 $
  */
 
 using System;
+using System.Globalization;
 namespace Ca.Infoway.Messagebuilder.Lang
 {
 	public class NumberUtil
@@ -31,13 +32,33 @@ namespace Ca.Infoway.Messagebuilder.Lang
 				} 
 				else 
 				{
-					Decimal.Parse(numberAsString);
-					return true;
+                    //Handle hex to be consistent with Java
+                    if (IsHexNumber(numberAsString)) {
+                        int.Parse(numberAsString.Substring(2), NumberStyles.HexNumber);
+                        return true;
+                    } else {
+					    Decimal.Parse(FilterLastCharacter(numberAsString));
+					    return true;
+                    }
 				}
 			} catch (FormatException e) {
 				return false;
 			}
 		}
+
+        //For compatbility with commons math on the Java side
+        private static string FilterLastCharacter(string numberAsString) {
+            char lastCharacter = numberAsString[numberAsString.Length - 1];
+            if (lastCharacter == 'l' || lastCharacter == 'L' || lastCharacter == 'f' || lastCharacter == 'F' || lastCharacter == 'd' || lastCharacter == 'D') {
+                return numberAsString.Substring(0, numberAsString.Length - 1);
+            }
+            return numberAsString;
+        }
+
+        private static bool IsHexNumber(String numberAsString) {
+            return !StringUtils.IsBlank(numberAsString) && numberAsString.ToLower().StartsWith("0x");
+        }
+
 		public static Boolean IsInteger(String numberAsString) {
 			try {
 				int.Parse(numberAsString);
@@ -46,7 +67,11 @@ namespace Ca.Infoway.Messagebuilder.Lang
 				return false;
 			}
 		}
+
 		public static int? ParseAsInteger(String numberAsString) {
+            if (IsHexNumber(numberAsString)) {
+                return int.Parse(numberAsString.Substring(2), NumberStyles.HexNumber);
+            }
 			return (int) Decimal.Parse(numberAsString);
 		}
 	}

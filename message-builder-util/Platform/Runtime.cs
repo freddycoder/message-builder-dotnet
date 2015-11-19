@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2013-03-01 17:48:17 -0500 (Fri, 01 Mar 2013) $
- * Revision:      $LastChangedRevision: 6663 $
+ * Author:        $LastChangedBy: jmis $
+ * Last modified: $LastChangedDate: 2015-05-27 08:43:37 -0400 (Wed, 27 May 2015) $
+ * Revision:      $LastChangedRevision: 9535 $
  */
 
 using System;
@@ -44,6 +44,15 @@ namespace Ca.Infoway.Messagebuilder
         {
             if (property != null && isMessageBuilderProperty(property)) {
                 System.Environment.SetEnvironmentVariable(property, propertyValue);
+                return;
+            }
+            throw new NotImplementedException();
+        }
+
+        public static void ClearProperty(string property)
+        {
+            if (property != null && isMessageBuilderProperty(property)) {
+                System.Environment.SetEnvironmentVariable(property, null);
                 return;
             }
             throw new NotImplementedException();
@@ -81,6 +90,10 @@ namespace Ca.Infoway.Messagebuilder
                 return true;
             }
             else if (property.ToLower().Equals("messagebuilder.output.warnings.in.generated.xml"))
+            {
+                return true;
+            }
+            else if (property.ToLower().Equals("messagebuilder.suppress.xsi.nil.on.nullflavor"))
             {
                 return true;
             }

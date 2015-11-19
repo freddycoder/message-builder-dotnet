@@ -14,15 +14,16 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System.Xml;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.J5goodies;
+using Ca.Infoway.Messagebuilder.Marshalling;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
-using Ca.Infoway.Messagebuilder.Terminology;
-using Ca.Infoway.Messagebuilder.Terminology.Configurator;
+using Ca.Infoway.Messagebuilder.Resolver;
+using Ca.Infoway.Messagebuilder.Resolver.Configurator;
 using Ca.Infoway.Messagebuilder.Util.Xml;
 using ILOG.J2CsMapping.Text;
 using NUnit.Framework;
@@ -52,27 +53,27 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7
 			CodeResolverRegistry.UnregisterAll();
 		}
 
-		/// <exception cref="org.xml.sax.SAXException"></exception>
+		/// <exception cref="Platform.Xml.Sax.SAXException"></exception>
 		protected virtual XmlNode CreateNode(string @string)
 		{
 			return new DocumentFactory().CreateFromString(@string).DocumentElement;
 		}
 
-		protected static void AssertXml(string description, string expected, string actual)
+		protected virtual void AssertXml(string description, string expected, string actual)
 		{
-			if (actual.Contains("<!--"))
+			AssertXml(description, expected, actual, true);
+		}
+
+		protected virtual void AssertXml(string description, string expected, string actual, bool skipFirstComment)
+		{
+			if (skipFirstComment && actual.Contains("<!--"))
 			{
 				string first = StringUtils.SubstringBefore(actual, "<!--");
 				string rest = StringUtils.SubstringAfter(StringUtils.SubstringAfter(actual, "<!--"), "-->");
 				actual = first + rest;
 			}
-			Assert.AreEqual(FormatXml(expected), FormatXml(System.Text.RegularExpressions.Regex.Replace(actual, "\\s+<", "<")), description
+			Assert.AreEqual(WhitespaceUtil.NormalizeWhitespace(expected, true), WhitespaceUtil.NormalizeWhitespace(actual, true), description
 				);
-		}
-
-		private static string FormatXml(string value)
-		{
-			return System.Text.RegularExpressions.Regex.Replace(value, "><", ">" + SystemUtils.LINE_SEPARATOR + "<").Trim();
 		}
 
 		protected virtual void AssertDateEquals(string description, string pattern, PlatformDate expected, PlatformDate actual)

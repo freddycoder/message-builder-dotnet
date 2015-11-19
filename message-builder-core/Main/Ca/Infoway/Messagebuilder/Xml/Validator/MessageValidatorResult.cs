@@ -14,17 +14,26 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System.Collections.Generic;
-using Ca.Infoway.Messagebuilder.Marshalling.HL7;
+using Ca.Infoway.Messagebuilder.Error;
 
 namespace Ca.Infoway.Messagebuilder.Xml.Validator
 {
 	public class MessageValidatorResult
 	{
-		private readonly IList<Hl7Error> hl7Errors = new List<Hl7Error>();
+		private readonly IList<Hl7Error> hl7Errors;
+
+		public MessageValidatorResult() : this(new List<Hl7Error>())
+		{
+		}
+
+		public MessageValidatorResult(IList<Hl7Error> hl7Errors)
+		{
+			this.hl7Errors = hl7Errors;
+		}
 
 		public virtual IList<Hl7Error> GetHl7Errors()
 		{

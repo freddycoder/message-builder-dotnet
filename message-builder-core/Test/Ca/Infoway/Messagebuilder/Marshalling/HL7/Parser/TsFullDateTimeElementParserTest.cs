@@ -14,17 +14,18 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System;
 using System.Xml;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype;
+using Ca.Infoway.Messagebuilder.Error;
 using Ca.Infoway.Messagebuilder.J5goodies;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser;
-using ILOG.J2CsMapping.Text;
+using Ca.Infoway.Messagebuilder.Platform;
 using NUnit.Framework;
 
 namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
@@ -45,8 +46,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 
 		private ParseContext CreateContext()
 		{
-			return ParserContextImpl.Create("TS.FULLDATETIME", typeof(PlatformDate), SpecificationVersion.V02R02, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
-				.POPULATED);
+			return ParseContextImpl.Create("TS.FULLDATETIME", typeof(PlatformDate), SpecificationVersion.V02R02, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
+				.POPULATED, null, null, false);
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -82,7 +83,6 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			XmlNode node = CreateNode("<something value=\"19990303\" />");
 			Assert.IsNotNull(new TsElementParser().Parse(CreateContext(), node, this.xmlResult).BareValue, "correct value returned");
 			Assert.AreEqual(1, this.xmlResult.GetHl7Errors().Count, "error");
-			System.Console.Out.WriteLine(this.xmlResult.GetHl7Errors()[0].GetMessage());
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -95,7 +95,28 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 				().Parse(CreateContext(), node, this.xmlResult).BareValue);
 		}
 
-		//Date expectedCalendar = DateUtil.getDate(2008, 2, 31, 10, 58, 57, 862);
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void TestParseValidValueAttributeWithTimeZoneMinus()
+		{
+			PlatformDate calendar = DateUtil.GetDate(2008, 2, 31, 15, 58, 57, 862);
+			string value = "20080331155857.8620" + GetCurrentTimeZone(calendar);
+			XmlNode node = CreateNode("<something extra=\"extra\" value=\"" + value + "\" />");
+			AssertDateEquals("correct value returned", MarshallingTestCase.FULL_DATE_TIME, calendar, (PlatformDate)new TsElementParser
+				().Parse(CreateContext(), node, this.xmlResult).BareValue);
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void TestParseValidValueAttributeWithTimeZonePlus()
+		{
+			PlatformDate expectedCalendar = DateUtil.GetDate(2008, 2, 31, 10, 58, 57, 862, TimeZoneUtil.GetTimeZone("America/New_York"
+				));
+			XmlNode node = CreateNode("<something extra=\"extra\" value=\"20080331155857.8620+0100\" />");
+			AssertDateEquals("correct value returned", MarshallingTestCase.FULL_DATE_TIME, expectedCalendar, (PlatformDate)new TsElementParser
+				().Parse(CreateContext(), node, this.xmlResult).BareValue);
+		}
+
 		/// <exception cref="System.Exception"></exception>
 		[Test]
 		public virtual void TestParseInvalidValueAttribute()
@@ -110,17 +131,27 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			Assert.AreEqual(Hl7ErrorCode.DATA_TYPE_ERROR, hl7Error.GetHl7ErrorCode(), "error message type");
 		}
 
-		private ParseContext CreateContextWithTimeZone(TimeZone timeZone)
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void TimeInterpretedAsSaskShouldBeGreaterThanSameTimeInterpretedAsOntario()
 		{
-			return ParserContextImpl.Create("TS.FULLDATETIME", typeof(PlatformDate), SpecificationVersion.V02R02, null, timeZone, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
-				.POPULATED, null, null);
+			XmlNode node = CreateNode("<something value=\"19990303101112\" />");
+			PlatformDate saskDate = ((PlatformDate)new TsElementParser().Parse(CreateContextWithTimeZone(TimeZoneUtil.GetTimeZone("GMT-6"
+				)), node, this.xmlResult).BareValue);
+			PlatformDate ontarioDate = ((PlatformDate)new TsElementParser().Parse(CreateContextWithTimeZone(TimeZoneUtil.GetTimeZone(
+				"GMT-5")), node, this.xmlResult).BareValue);
+			Assert.IsTrue(saskDate.CompareTo(ontarioDate) > 0);
+		}
+
+		private ParseContext CreateContextWithTimeZone(TimeZoneInfo timeZone)
+		{
+			return ParseContextImpl.Create("TS.FULLDATETIME", typeof(PlatformDate), SpecificationVersion.V02R02, null, timeZone, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
+				.POPULATED, null, null, null, null, false);
 		}
 
 		private string GetCurrentTimeZone(PlatformDate calendar)
 		{
-			SimpleDateFormat tzformat = new SimpleDateFormat("Z");
-			string currentTimeZone = tzformat.Format(calendar);
-			return currentTimeZone;
+			return DateFormatUtil.Format(calendar, "Z");
 		}
 	}
 }

@@ -14,13 +14,14 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System;
 using System.Xml;
 using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Datatype.Impl;
+using Ca.Infoway.Messagebuilder.Error;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser;
 
@@ -55,11 +56,12 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		protected override string ParseNonNullNode(ParseContext context, XmlNode node, BareANY parseResult, Type expectedReturnType
 			, XmlToModelResult xmlToModelResult)
 		{
-			ValidateUnallowedAttributes(context.Type, (XmlElement)node, xmlToModelResult, "compression");
-			ValidateUnallowedAttributes(context.Type, (XmlElement)node, xmlToModelResult, "language");
-			ValidateUnallowedAttributes(context.Type, (XmlElement)node, xmlToModelResult, "reference");
-			ValidateUnallowedAttributes(context.Type, (XmlElement)node, xmlToModelResult, "integrityCheck");
-			ValidateUnallowedAttributes(context.Type, (XmlElement)node, xmlToModelResult, "thumbnail");
+			StandardDataType type = StandardDataType.GetByTypeName(context);
+			ValidateUnallowedAttributes(type, (XmlElement)node, xmlToModelResult, "compression");
+			ValidateUnallowedAttributes(type, (XmlElement)node, xmlToModelResult, "language");
+			ValidateUnallowedAttributes(type, (XmlElement)node, xmlToModelResult, "reference");
+			ValidateUnallowedAttributes(type, (XmlElement)node, xmlToModelResult, "integrityCheck");
+			ValidateUnallowedAttributes(type, (XmlElement)node, xmlToModelResult, "thumbnail");
 			ValidateMaxChildCount(context, node, 1);
 			if (!Ca.Infoway.Messagebuilder.Domainvalue.Basic.MediaType.XML_TEXT.CodeValue.Equals(GetAttributeValue(node, "mediaType")
 				))

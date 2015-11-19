@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System.Collections.Generic;
@@ -23,6 +23,7 @@ using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser;
+using Ca.Infoway.Messagebuilder.Xml;
 using NUnit.Framework;
 
 namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
@@ -30,14 +31,17 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 	[TestFixture]
 	public class BagEnElementParserTest : ParserTestCase
 	{
+		private ParserRegistry parserRegistry = ParserRegistry.GetInstance();
+
 		/// <exception cref="System.Exception"></exception>
 		[Test]
 		public virtual void ShouldParseSimpleBag()
 		{
 			XmlNode node = CreateNode("<top><name><family>Flinstone</family><given>Fred</given></name>" + "<name><family>Flinstone</family><given>Wilma</given></name></top>"
 				);
-			BareANY result = new BagElementParser().Parse(ParserContextImpl.Create("BAG<PN>", null, SpecificationVersion.V02R02, null
-				, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY), AsList(node.ChildNodes), this.xmlResult);
+			BareANY result = new BagElementParser(this.parserRegistry).Parse(ParseContextImpl.Create("BAG<PN>", null, SpecificationVersion
+				.V02R02, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY, Cardinality.Create("1-5"), null, false), 
+				AsList(node.ChildNodes), this.xmlResult);
 			IList<PersonName> list = ((LIST<PN, PersonName>)result).RawList();
 			Assert.IsNotNull(list, "null");
 			Assert.AreEqual(2, list.Count, "size");
@@ -54,8 +58,9 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		public virtual void ShouldParseEmptyBag()
 		{
 			XmlNode node = CreateNode("<top></top>");
-			BareANY result = new BagElementParser().Parse(ParserContextImpl.Create("BAG<PN>", null, SpecificationVersion.V02R02, null
-				, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY), AsList(node.ChildNodes), this.xmlResult);
+			BareANY result = new BagElementParser(this.parserRegistry).Parse(ParseContextImpl.Create("BAG<PN>", null, SpecificationVersion
+				.V02R02, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY, Cardinality.Create("1-5"), null, false), 
+				AsList(node.ChildNodes), this.xmlResult);
 			IList<PersonName> list = ((LIST<PN, PersonName>)result).RawList();
 			Assert.IsNotNull(list, "null");
 			Assert.AreEqual(0, list.Count, "size");
@@ -66,8 +71,9 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		public virtual void ShouldParseNullFlavor()
 		{
 			XmlNode node = CreateNode("<top><name nullFlavor=\"NI\"/></top>");
-			BareANY result = new BagElementParser().Parse(ParserContextImpl.Create("BAG<PN>", null, SpecificationVersion.V02R02, null
-				, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY), AsList(node.ChildNodes), this.xmlResult);
+			BareANY result = new BagElementParser(this.parserRegistry).Parse(ParseContextImpl.Create("BAG<PN>", null, SpecificationVersion
+				.V02R02, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY, Cardinality.Create("1-5"), null, false), 
+				AsList(node.ChildNodes), this.xmlResult);
 			LIST<PN, PersonName> hl7List = (LIST<PN, PersonName>)result;
 			IList<PersonName> list = hl7List.RawList();
 			Assert.IsNotNull(list, "null");

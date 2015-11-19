@@ -14,8 +14,8 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2013-03-08 11:06:36 -0500 (Fri, 08 Mar 2013) $
- * Revision:      $LastChangedRevision: 6699 $
+ * Last modified: $LastChangedDate: 2014-01-30 15:25:26 -0500 (Thu, 30 Jan 2014) $
+ * Revision:      $LastChangedRevision: 8372 $
  */
 using System.Collections.Generic;
 using Ca.Infoway.Messagebuilder.Xml;
@@ -63,11 +63,11 @@ namespace Ca.Infoway.Messagebuilder.Xml
 			{
 				return this.type;
 			}
-		}
-
-		public virtual void SetType(DifferenceType type)
-		{
-			this.type = type;
+			set
+			{
+				DifferenceType type = value;
+				this.type = type;
+			}
 		}
 
 		public virtual DifferenceMatch MatchConfidence

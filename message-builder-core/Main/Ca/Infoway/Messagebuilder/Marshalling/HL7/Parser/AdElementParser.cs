@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System;
@@ -26,10 +26,11 @@ using Ca.Infoway.Messagebuilder.Datatype.Impl;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
 using Ca.Infoway.Messagebuilder.Datatype.Lang.Util;
 using Ca.Infoway.Messagebuilder.Domainvalue;
+using Ca.Infoway.Messagebuilder.Error;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser;
 using Ca.Infoway.Messagebuilder.Platform;
-using Ca.Infoway.Messagebuilder.Terminology;
+using Ca.Infoway.Messagebuilder.Resolver;
 using Ca.Infoway.Messagebuilder.Util.Xml;
 using ILOG.J2CsMapping.Util;
 
@@ -70,16 +71,17 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		{
 			PostalAddress result = ParseNode(node, xmlToModelResult);
 			result.Uses = GetNameUses(GetAttributeValue(node, "use"), node, xmlToModelResult);
-			// FIXME - VALIDATION - TM - missing useablePeriod (only for MR2009 AD.FULL)
+			// TODO - TM - missing useablePeriod (only for MR2009 AD.FULL)
 			AD_VALIDATION_UTILS.ValidatePostalAddress(result, context.Type, context.GetVersion(), (XmlElement)node, null, xmlToModelResult
 				);
 			return result;
 		}
 
-		private ICollection<x_BasicPostalAddressUse> GetNameUses(string nameUseAttribute, XmlNode node, XmlToModelResult xmlToModelResult
-			)
+		private ICollection<Ca.Infoway.Messagebuilder.Domainvalue.PostalAddressUse> GetNameUses(string nameUseAttribute, XmlNode 
+			node, XmlToModelResult xmlToModelResult)
 		{
-			ICollection<x_BasicPostalAddressUse> uses = new HashSet<x_BasicPostalAddressUse>();
+			ICollection<Ca.Infoway.Messagebuilder.Domainvalue.PostalAddressUse> uses = new HashSet<Ca.Infoway.Messagebuilder.Domainvalue.PostalAddressUse
+				>();
 			if (nameUseAttribute != null)
 			{
 				StringTokenizer tokenizer = new StringTokenizer(nameUseAttribute);
@@ -105,9 +107,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		{
 			PostalAddress result = new PostalAddress();
 			XmlNodeList childNodes = node.ChildNodes;
-			for (int i = 0; i < childNodes.Count; i++)
+			foreach (XmlNode childNode in new XmlNodeListIterable(childNodes))
 			{
-				XmlNode childNode = childNodes.Item(i);
 				if (IsNonBlankTextNode(childNode))
 				{
 					string value = childNode.Value;

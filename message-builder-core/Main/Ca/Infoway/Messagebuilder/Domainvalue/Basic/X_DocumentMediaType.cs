@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using Ca.Infoway.Messagebuilder;
@@ -71,6 +71,9 @@ namespace Ca.Infoway.Messagebuilder.Domainvalue.Basic
 		public static readonly Ca.Infoway.Messagebuilder.Domainvalue.Basic.X_DocumentMediaType HL7_CDA = new Ca.Infoway.Messagebuilder.Domainvalue.Basic.X_DocumentMediaType
 			("HL7_CDA", "multipart/x-hl7-cda-level-one");
 
+		public static readonly Ca.Infoway.Messagebuilder.Domainvalue.Basic.X_DocumentMediaType DICOM = new Ca.Infoway.Messagebuilder.Domainvalue.Basic.X_DocumentMediaType
+			("DICOM", "application/dicom");
+
 		private readonly string mimeType;
 
 		private X_DocumentMediaType(string name, string mimeType) : base(name)
@@ -81,9 +84,12 @@ namespace Ca.Infoway.Messagebuilder.Domainvalue.Basic
 		/// <summary>Returns the mime type.</summary>
 		/// <remarks>Returns the mime type.</remarks>
 		/// <returns>the mime type</returns>
-		public virtual string GetMimeType()
+		public virtual string MimeType
 		{
-			return this.mimeType;
+			get
+			{
+				return this.mimeType;
+			}
 		}
 
 		/// <summary>Obtains the media type registered for the supplied mime type.</summary>
@@ -99,7 +105,7 @@ namespace Ca.Infoway.Messagebuilder.Domainvalue.Basic
 			foreach (Ca.Infoway.Messagebuilder.Domainvalue.Basic.X_DocumentMediaType X_DocumentMediaType in EnumPattern.Values<Ca.Infoway.Messagebuilder.Domainvalue.Basic.X_DocumentMediaType
 				>())
 			{
-				if (X_DocumentMediaType.GetMimeType().Equals(mimeType))
+				if (X_DocumentMediaType.MimeType.Equals(mimeType))
 				{
 					result = X_DocumentMediaType;
 					break;
@@ -116,6 +122,15 @@ namespace Ca.Infoway.Messagebuilder.Domainvalue.Basic
 			get
 			{
 				return Ca.Infoway.Messagebuilder.Codesystem.CodeSystem.VOCABULARY_DOCUMENT_MEDIA_TYPES.Root;
+			}
+		}
+
+		/// <summary><inheritDoc></inheritDoc></summary>
+		public virtual string CodeSystemName
+		{
+			get
+			{
+				return null;
 			}
 		}
 

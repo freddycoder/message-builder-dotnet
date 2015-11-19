@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System.Collections.Generic;
@@ -44,20 +44,26 @@ namespace Ca.Infoway.Messagebuilder.Model.Mock
 		private readonly PN name = new PNImpl();
 
 		[Hl7XmlMappingAttribute("id")]
-		public virtual ICollection<Identifier> GetIds()
+		public virtual ICollection<Identifier> Ids
 		{
-			return this.ids.RawSet();
+			get
+			{
+				return this.ids.RawSet();
+			}
 		}
 
-		public virtual Identifier GetId()
+		public virtual Identifier Id
 		{
-			return this.GetIds().IsEmpty() ? null : new List<Identifier>(this.GetIds())[0];
-		}
-
-		public virtual void SetId(Identifier id)
-		{
-			this.GetIds().Clear();
-			this.GetIds().Add(id);
+			get
+			{
+				return this.Ids.IsEmpty() ? null : new List<Identifier>(this.Ids)[0];
+			}
+			set
+			{
+				Identifier id = value;
+				this.Ids.Clear();
+				this.Ids.Add(id);
+			}
 		}
 
 		[Hl7XmlMappingAttribute("code")]

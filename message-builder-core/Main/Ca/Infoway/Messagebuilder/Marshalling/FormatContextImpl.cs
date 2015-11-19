@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System;
@@ -33,16 +33,23 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 
 		private readonly VersionNumber version;
 
-		private readonly TimeZone dateTimeZone;
+		private readonly TimeZoneInfo dateTimeZone;
 
-		private readonly TimeZone dateTimeTimeZone;
+		private readonly TimeZoneInfo dateTimeTimeZone;
 
 		private readonly string propertyPath;
 
-		private readonly CodingStrength codingStrength;
+		private readonly ConstrainedDatatype constraints;
+
+		private readonly bool isCda;
+
+		public virtual bool IsCda()
+		{
+			return isCda;
+		}
 
 		private FormatContextImpl(ModelToXmlResult result, string propertyPath, Relationship relationship, VersionNumber version, 
-			TimeZone dateTimeZone, TimeZone dateTimeTimeZone, CodingStrength codingStrength)
+			TimeZoneInfo dateTimeZone, TimeZoneInfo dateTimeTimeZone, ConstrainedDatatype constraints, bool isCda)
 		{
 			this.result = result;
 			this.propertyPath = propertyPath;
@@ -50,14 +57,15 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 			this.version = version;
 			this.dateTimeZone = dateTimeZone;
 			this.dateTimeTimeZone = dateTimeTimeZone;
-			this.codingStrength = codingStrength;
+			this.constraints = constraints;
+			this.isCda = isCda;
 		}
 
 		public static FormatContext Create(ModelToXmlResult result, string propertyPath, Relationship relationship, VersionNumber
-			 version, TimeZone dateTimeZone, TimeZone dateTimeTimeZone, CodingStrength codingStrength)
+			 version, TimeZoneInfo dateTimeZone, TimeZoneInfo dateTimeTimeZone, ConstrainedDatatype constraints, bool isCda)
 		{
 			return new Ca.Infoway.Messagebuilder.Marshalling.FormatContextImpl(result, propertyPath, relationship, version, dateTimeZone
-				, dateTimeTimeZone, codingStrength);
+				, dateTimeTimeZone, constraints, isCda);
 		}
 
 		public virtual ModelToXmlResult GetModelToXmlResult()
@@ -75,6 +83,11 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 			return this.relationship.Conformance;
 		}
 
+		public virtual Cardinality GetCardinality()
+		{
+			return this.relationship.Cardinality;
+		}
+
 		public virtual string GetElementName()
 		{
 			return this.relationship.Name;
@@ -90,12 +103,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 
 		public virtual bool IsSpecializationType()
 		{
-			return false;
-		}
-
-		public virtual bool IsPassOnSpecializationType()
-		{
-			return true;
+			return this.relationship.PrintDatatype;
 		}
 
 		public virtual VersionNumber GetVersion()
@@ -103,24 +111,34 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 			return this.version;
 		}
 
-		public virtual TimeZone GetDateTimeZone()
+		public virtual TimeZoneInfo GetDateTimeZone()
 		{
 			return dateTimeZone;
 		}
 
-		public virtual TimeZone GetDateTimeTimeZone()
+		public virtual TimeZoneInfo GetDateTimeTimeZone()
 		{
 			return dateTimeTimeZone;
 		}
 
 		public virtual CodingStrength GetCodingStrength()
 		{
-			return this.codingStrength;
+			return this.relationship.CodingStrength;
 		}
 
 		public virtual string GetDomainType()
 		{
 			return this.relationship.DomainType;
+		}
+
+		public virtual bool IsFixed()
+		{
+			return this.relationship.HasFixedValue();
+		}
+
+		public virtual ConstrainedDatatype GetConstraints()
+		{
+			return this.constraints;
 		}
 	}
 }

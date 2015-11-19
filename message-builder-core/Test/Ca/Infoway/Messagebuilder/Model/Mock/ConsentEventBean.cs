@@ -14,14 +14,13 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using Ca.Infoway.Messagebuilder.Annotation;
 using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Datatype.Impl;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
-using Ca.Infoway.Messagebuilder.Datatype.Lang.Util;
 using Ca.Infoway.Messagebuilder.Domainvalue;
 using Ca.Infoway.Messagebuilder.Model;
 using Ca.Infoway.Messagebuilder.Model.Mock;
@@ -47,15 +46,13 @@ namespace Ca.Infoway.Messagebuilder.Model.Mock
 		[Hl7XmlMappingAttribute("id")]
 		public virtual Identifier Id
 		{
-			get
+            get {
+                return this.id.Value;
+            }
+			set
 			{
-				return this.id.Value;
+                this.id.Value = value;
 			}
-		}
-
-		public virtual void SetId(Identifier id)
-		{
-			this.id.Value = id;
 		}
 
 		[Hl7XmlMappingAttribute("subject1/patient")]

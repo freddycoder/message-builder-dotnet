@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System.Collections.Generic;
@@ -46,48 +46,60 @@ namespace Ca.Infoway.Messagebuilder.Model.Mock
 
 		public AcknowledgementDetailBean(AcknowledgementDetailType typeCode, AcknowledgementDetailCode code, string text)
 		{
-			SetTypeCode(typeCode);
-			SetCode(code);
-			SetText(text);
+			TypeCode = typeCode;
+			Code = code;
+			Text = text;
 		}
 
 		[Hl7XmlMappingAttribute("code")]
-		public virtual AcknowledgementDetailCode GetCode()
+		public virtual AcknowledgementDetailCode Code
 		{
-			return (AcknowledgementDetailCode)this.code.Value;
-		}
-
-		public virtual void SetCode(AcknowledgementDetailCode code)
-		{
-			this.code.Value = code;
+			get
+			{
+				return (AcknowledgementDetailCode)this.code.Value;
+			}
+			set
+			{
+				AcknowledgementDetailCode code = value;
+				this.code.Value = code;
+			}
 		}
 
 		[Hl7XmlMappingAttribute("text")]
-		public virtual string GetText()
+		public virtual string Text
 		{
-			return this.text.Value;
-		}
-
-		public virtual void SetText(string text)
-		{
-			this.text.Value = text;
+			get
+			{
+				return this.text.Value;
+			}
+			set
+			{
+				string text = value;
+				this.text.Value = text;
+			}
 		}
 
 		[Hl7XmlMappingAttribute("location")]
-		public virtual IList<string> GetLocation()
+		public virtual IList<string> Location
 		{
-			return this.location.RawList();
+			get
+			{
+				return this.location.RawList();
+			}
 		}
 
 		[Hl7XmlMappingAttribute("typeCode")]
-		public virtual AcknowledgementDetailType GetTypeCode()
+		public virtual AcknowledgementDetailType TypeCode
 		{
-			return (AcknowledgementDetailType)this.typeCode.Value;
-		}
-
-		public virtual void SetTypeCode(AcknowledgementDetailType typeCode)
-		{
-			this.typeCode.Value = typeCode;
+			get
+			{
+				return (AcknowledgementDetailType)this.typeCode.Value;
+			}
+			set
+			{
+				AcknowledgementDetailType typeCode = value;
+				this.typeCode.Value = typeCode;
+			}
 		}
 	}
 }

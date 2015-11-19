@@ -14,13 +14,14 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System.Collections.Generic;
 using System.Text;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
+using Ca.Infoway.Messagebuilder.Domainvalue;
 using Ca.Infoway.Messagebuilder.Lang;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter;
 
@@ -30,7 +31,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 	/// <remarks>This is shared by all subclasses of EntityName.</remarks>
 	public abstract class AbstractEntityNamePropertyFormatter<V> : AbstractNullFlavorPropertyFormatter<V> where V : EntityName
 	{
-		internal override string FormatNonNullValue(FormatContext context, V value, int indentLevel)
+		protected override string FormatNonNullValue(FormatContext context, V value, int indentLevel)
 		{
 			ValidateName(value, context);
 			StringBuilder buffer = new StringBuilder();
@@ -67,7 +68,9 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 
 		private string AddQualifier(EntityNamePart namePart)
 		{
-			return StringUtils.IsNotBlank(namePart.Qualifier) ? " qualifier=\"" + namePart.Qualifier + "\"" : string.Empty;
+			EntityNamePartQualifier qualifier = namePart.Qualifier;
+			return qualifier == null || StringUtils.IsBlank(qualifier.CodeValue) ? string.Empty : " qualifier=\"" + qualifier.CodeValue
+				 + "\"";
 		}
 
 		protected virtual IDictionary<string, string> GetUseAttributeMap(V value)

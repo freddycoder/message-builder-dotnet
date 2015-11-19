@@ -57,6 +57,10 @@ namespace Ca.Infoway.Messagebuilder.Domainvalue.Basic
 			}
 		}
 
+        public virtual string CodeSystemName {
+            get { return null; }
+        }
+
 		/// <summary><inheritDoc></inheritDoc></summary>
 		public virtual string CodeValue
 		{

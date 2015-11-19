@@ -14,8 +14,8 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2013-03-08 11:06:36 -0500 (Fri, 08 Mar 2013) $
- * Revision:      $LastChangedRevision: 6699 $
+ * Last modified: $LastChangedDate: 2014-01-30 15:25:26 -0500 (Thu, 30 Jan 2014) $
+ * Revision:      $LastChangedRevision: 8372 $
  */
 using Ca.Infoway.Messagebuilder.Lang;
 
@@ -52,9 +52,9 @@ namespace Ca.Infoway.Messagebuilder.Xml
 		public static readonly Ca.Infoway.Messagebuilder.Xml.ConformanceLevel POPULATED = new Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
 			("POPULATED", "Pop", 1);
 
-		/// <summary>The requied conformance level.</summary>
+		/// <summary>The required conformance level.</summary>
 		/// <remarks>
-		/// The requied conformance level.  This term is prone to misunderstanding, becase
+		/// The required conformance level.  This term is prone to misunderstanding, becase
 		/// in terms of the data in the message, required elements are closest to optional
 		/// elements.  What distinguishes the required conformance level from the optional
 		/// conformance level is that a compliant system should save, persist or process any

@@ -25,8 +25,10 @@
  
 namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 
+    using Ca.Infoway.Messagebuilder;
+    using Ca.Infoway.Messagebuilder.Domainvalue;
     using Ca.Infoway.Messagebuilder.Datatype.Lang.Util;
-	using System;
+    using System;
 	using System.Collections;
 	using System.Collections.Generic;
 	using System.ComponentModel;
@@ -40,7 +42,8 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 	
 		private readonly NamePartType type;
 		private readonly String value_ren;
-		private readonly String qualifier;
+        private readonly EntityNamePartQualifier qualifier;
+        private readonly NullFlavor nullFlavor;
 	
 		/// <summary>
 		/// Constructs an EntityNamePart using the supplied parameters.
@@ -48,16 +51,36 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		///
 		/// <param name="value">the name part value</param>
 		/// <param name="type_0">the name part type</param>
-		public EntityNamePart(String value_ren, NamePartType type_0, String qualifier) {
-			this.value_ren = value_ren;
-			this.type = type_0;
-			this.qualifier = qualifier;
+		public EntityNamePart(String value_ren, NamePartType type_0, EntityNamePartQualifier qualifier) :
+            this(value_ren, type_0, qualifier, null) {
 		}
-	
-		public EntityNamePart(String value_ren, NamePartType type_0) {
-			this.value_ren = value_ren;
-			this.type = type_0;
-			this.qualifier = null;
+
+        public EntityNamePart(NamePartType type_0, NullFlavor nullFlavor) :
+            this(null, type_0, null, nullFlavor) {
+        }
+
+        /// <summary>
+        /// Constructs an EntityNamePart using the supplied parameters.
+        /// This constructor may not make sense to have as public. May become private in a later release.
+        /// </summary>
+        /// <param name="value_ren"></param>
+        /// <param name="type_0"></param>
+        /// <param name="qualifier"></param>
+        /// <param name="nullFlavor"></param>
+        public EntityNamePart(String value_ren, NamePartType type_0, EntityNamePartQualifier qualifier, NullFlavor nullFlavor) {
+            this.value_ren = value_ren;
+            this.type = type_0;
+            this.qualifier = qualifier;
+            this.nullFlavor = nullFlavor;
+        }
+
+	    /// <summary>
+        /// Constructs an EntityNamePart using the supplied parameters.
+	    /// </summary>
+        /// <param name="value_ren">the name part value</param>
+        /// <param name="type_0">the name part type</param>
+		public EntityNamePart(String value_ren, NamePartType type_0) : 
+            this(value_ren, type_0, null) {
 		}
 		
 		/// <summary>
@@ -103,11 +126,49 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 			}
 		}
 		
-		public String Qualifier {
+		public EntityNamePartQualifier Qualifier {
 			get {
 				return this.qualifier;
 			}
 		}
+
+        public NullFlavor NullFlavor {
+            get {
+                return this.nullFlavor;
+            }
+        }
 		
-	}
+        public override int GetHashCode()
+        {
+            return new HashCodeBuilder()
+			        .Append(this.type)
+			        .Append(this.value_ren)
+			        .Append(this.qualifier)
+                    .Append(this.nullFlavor)
+                    .ToHashCode();
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            } else if (obj.GetType() != GetType()) {
+                return false;
+            } else {
+                return Equals((EntityNamePart) obj);
+            }
+        }
+
+        private bool Equals(EntityNamePart that)
+        {
+            return new EqualsBuilder()
+                    .Append(this.type, that.type)
+                    .Append(this.value_ren, that.value_ren)
+                    .Append(this.qualifier, that.qualifier)
+                    .Append(this.nullFlavor, that.nullFlavor)
+                    .IsEquals();
+        }
+
+    }
 }

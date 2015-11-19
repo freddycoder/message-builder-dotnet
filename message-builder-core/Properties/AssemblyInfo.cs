@@ -49,7 +49,9 @@ using Ca.Infoway.Messagebuilder.Annotation;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion("1.4.6.0")]
-[assembly: AssemblyFileVersion("1.4.6.0")]
+[assembly: AssemblyVersion("2.1.1")]
+[assembly: AssemblyFileVersion("2.1.1")]
 
-[assembly: MbtModelVersionNumber("MOCK_NEWFOUNDLAND MOCK_MR2009")]
+// Uncomment For NUnit tests
+//[assembly: MbtModelVersionNumber("MOCK_MR2009")]
+//[assembly: MbtMessageSet("/messageSet_mock_r02_04_02.xml")]

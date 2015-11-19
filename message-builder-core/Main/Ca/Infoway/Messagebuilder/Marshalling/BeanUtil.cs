@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System;
@@ -80,7 +80,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 					else
 					{
 						// if can't find a mapping match then stop here
-						// TODO - just append letfover parts? i.e. a.b.c (.leftover1.leftover2)
+						// just append letfover parts? i.e. a.b.c (.leftover1.leftover2)
 						break;
 					}
 				}
@@ -116,7 +116,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 
 		private static IList<string> ObtainParts(string xpath)
 		{
-			// TODO - handle attribute ('@') in xpath - currently attributes are not included in any of our error xpaths,
+			// need to handle attribute ('@') in xpath - currently attributes are not included in any of our error xpaths,
 			//                                          so not handling this situation for now
 			if (xpath.StartsWith(XPATH_SEPARATOR))
 			{

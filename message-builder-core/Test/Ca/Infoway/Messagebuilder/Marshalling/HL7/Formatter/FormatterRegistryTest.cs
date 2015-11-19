@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System;
@@ -67,7 +67,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 
 		private bool IsFormatter(Type classObj)
 		{
-			return typeof(PropertyFormatter).IsAssignableFrom(classObj) && !ClassUtil.IsAbstract(classObj);
+			return typeof(PropertyFormatter).IsAssignableFrom(classObj) && !ClassUtil.IsAbstract(classObj) && ClassUtils.GetPackageName
+				(typeof(FormatterRegistry)).Equals(ClassUtils.GetPackageName(classObj));
 		}
 
 		private IList<FileInfo> GetAllClasses()

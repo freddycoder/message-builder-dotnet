@@ -43,7 +43,12 @@ namespace Ca.Infoway.Messagebuilder.Domainvalue.Basic
 			Describable {
 	
 		private const long serialVersionUID = -8960154320681947245L;
-	
+
+        // some implementations want to be able to specify unit="1"; this is a bit of a hack to allow this case
+        public static readonly UnitsOfMeasureCaseSensitive ONE = new UnitsOfMeasureCaseSensitive(
+                "ONE", "1");
+        public static readonly UnitsOfMeasureCaseSensitive THOUSAND_PARTS_PER_MICROLITRE_LOWER = new UnitsOfMeasureCaseSensitive(
+                "THOUSAND_PARTS_PER_MICROLITRE_LOWER", "10+3/ul");
 		public static readonly UnitsOfMeasureCaseSensitive PERCENT = new UnitsOfMeasureCaseSensitive(
 				"PERCENT", "%");
 		public static readonly UnitsOfMeasureCaseSensitive PER_DAY = new UnitsOfMeasureCaseSensitive(
@@ -55,7 +60,9 @@ namespace Ca.Infoway.Messagebuilder.Domainvalue.Basic
 		public static readonly UnitsOfMeasureCaseSensitive UNIT = new UnitsOfMeasureCaseSensitive(
 				"UNIT", "U");
 		public static readonly UnitsOfMeasureCaseSensitive ENZYME_UNIT_MICROMOLES_MINUTE_PER_LITRE = new UnitsOfMeasureCaseSensitive(
-				"ENZYME_UNIT_MICROMOLES_MINUTE_PER_LITRE", "U/l");
+				"ENZYME_UNIT_MICROMOLES_MINUTE_PER_LITRE", "U/L");
+        public static readonly UnitsOfMeasureCaseSensitive ENZYME_UNIT_MICROMOLES_MINUTE_PER_LITRE_LOWER = new UnitsOfMeasureCaseSensitive(
+                "ENZYME_UNIT_MICROMOLES_MINUTE_PER_LITRE_LOWER", "U/l");
 		public static readonly UnitsOfMeasureCaseSensitive CUP = new UnitsOfMeasureCaseSensitive(
 				"CUP", "[cup_us]");
 		public static readonly UnitsOfMeasureCaseSensitive DEGREE_FAHRENHEIT = new UnitsOfMeasureCaseSensitive(
@@ -101,13 +108,21 @@ namespace Ca.Infoway.Messagebuilder.Domainvalue.Basic
 		public static readonly UnitsOfMeasureCaseSensitive DECAGRAM = new UnitsOfMeasureCaseSensitive(
 				"DECAGRAM", "dg");
 		public static readonly UnitsOfMeasureCaseSensitive DECALITRE = new UnitsOfMeasureCaseSensitive(
-				"DECALITRE", "dl");
+				"DECALITRE", "dL");
+        public static readonly UnitsOfMeasureCaseSensitive DECALITRE_LOWER = new UnitsOfMeasureCaseSensitive(
+                "DECALITRE_LOWER", "dl");
 		public static readonly UnitsOfMeasureCaseSensitive GRAM = new UnitsOfMeasureCaseSensitive(
 				"GRAM", "g");
 		public static readonly UnitsOfMeasureCaseSensitive GRAM_PER_DAY = new UnitsOfMeasureCaseSensitive(
 				"GRAM_PER_DAY", "g/d");
 		public static readonly UnitsOfMeasureCaseSensitive GRAMS_PER_LITRE = new UnitsOfMeasureCaseSensitive(
-				"GRAMS_PER_LITRE", "g/l");
+				"GRAMS_PER_LITRE", "g/L");
+        public static readonly UnitsOfMeasureCaseSensitive GRAMS_PER_LITRE_LOWER = new UnitsOfMeasureCaseSensitive(
+                "GRAMS_PER_LITRE_LOWER", "g/l");
+        public static readonly UnitsOfMeasureCaseSensitive GRAMS_PER_DECILITRE = new UnitsOfMeasureCaseSensitive(
+                "GRAMS_PER_DECILITRE", "g/dL");
+        public static readonly UnitsOfMeasureCaseSensitive GRAMS_PER_DECILITRE_LOWER = new UnitsOfMeasureCaseSensitive(
+                "GRAMS_PER_DECILITRE_LOWER", "g/dl");
 		public static readonly UnitsOfMeasureCaseSensitive HOUR = new UnitsOfMeasureCaseSensitive(
 				"HOUR", "h");
 		public static readonly UnitsOfMeasureCaseSensitive INTERNATIONAL_UNIT = new UnitsOfMeasureCaseSensitive(
@@ -115,7 +130,9 @@ namespace Ca.Infoway.Messagebuilder.Domainvalue.Basic
 		public static readonly UnitsOfMeasureCaseSensitive KILOGRAM = new UnitsOfMeasureCaseSensitive(
 				"KILOGRAM", "kg");
 		public static readonly UnitsOfMeasureCaseSensitive LITRE = new UnitsOfMeasureCaseSensitive(
-				"LITRE", "l");
+				"LITRE", "L");
+        public static readonly UnitsOfMeasureCaseSensitive LITRE_LOWER = new UnitsOfMeasureCaseSensitive(
+                "LITRE_LOWER", "l");
 		public static readonly UnitsOfMeasureCaseSensitive METRE = new UnitsOfMeasureCaseSensitive(
 				"METRE", "m");
 		public static readonly UnitsOfMeasureCaseSensitive SQUARE_METRE = new UnitsOfMeasureCaseSensitive(
@@ -128,12 +145,22 @@ namespace Ca.Infoway.Messagebuilder.Domainvalue.Basic
 				"MILLIGRAM", "mg");
 		public static readonly UnitsOfMeasureCaseSensitive MILLIGRAM_PER_DAY = new UnitsOfMeasureCaseSensitive(
 				"MILLIGRAM_PER_DAY", "mg/d");
+        public static readonly UnitsOfMeasureCaseSensitive MILLIGRAM_PER_MILLILITRE = new UnitsOfMeasureCaseSensitive(
+                "MILLIGRAM_PER_MILLILITRE", "mg/mL");
 		public static readonly UnitsOfMeasureCaseSensitive MINUTE = new UnitsOfMeasureCaseSensitive(
 				"MINUTE", "min");
 		public static readonly UnitsOfMeasureCaseSensitive MILLILITRE = new UnitsOfMeasureCaseSensitive(
-				"MILLILITRE", "ml");
+				"MILLILITRE", "mL");
+        public static readonly UnitsOfMeasureCaseSensitive MILLILITRE_LOWER = new UnitsOfMeasureCaseSensitive(
+                "MILLILITRE_LOWER", "ml");
 		public static readonly UnitsOfMeasureCaseSensitive MILLILITRE_PER_SECOND = new UnitsOfMeasureCaseSensitive(
-				"MILLILITRE_PER_SECOND", "ml/s");
+				"MILLILITRE_PER_SECOND", "mL/s");
+        public static readonly UnitsOfMeasureCaseSensitive MILLILITRE_PER_SECOND_LOWER = new UnitsOfMeasureCaseSensitive(
+                "MILLILITRE_PER_SECOND_LOWER", "ml/s");
+        public static readonly UnitsOfMeasureCaseSensitive MILLILITRE_PER_MINUTE = new UnitsOfMeasureCaseSensitive(
+                "MILLILITRE_PER_MINUTE", "mL/min");
+        public static readonly UnitsOfMeasureCaseSensitive MILLILITRE_PER_MINUTE_LOWER = new UnitsOfMeasureCaseSensitive(
+                "MILLILITRE_PER_MINUTE_LOWER", "ml/min");
 		public static readonly UnitsOfMeasureCaseSensitive MILLIMETER = new UnitsOfMeasureCaseSensitive(
 				"MILLIMETER", "mm");
 		public static readonly UnitsOfMeasureCaseSensitive SQUARE_MILLIMETRE = new UnitsOfMeasureCaseSensitive(
@@ -145,7 +172,9 @@ namespace Ca.Infoway.Messagebuilder.Domainvalue.Basic
 		public static readonly UnitsOfMeasureCaseSensitive MILLIMOLE = new UnitsOfMeasureCaseSensitive(
 				"MILLIMOLE", "mmol");
 		public static readonly UnitsOfMeasureCaseSensitive MILLIMOLES_PER_LITRE = new UnitsOfMeasureCaseSensitive(
-				"MILLIMOLES_PER_LITRE", "mmol/l");
+				"MILLIMOLES_PER_LITRE", "mmol/L");
+        public static readonly UnitsOfMeasureCaseSensitive MILLIMOLES_PER_LITRE_LOWER = new UnitsOfMeasureCaseSensitive(
+                "MILLIMOLES_PER_LITRE_LOWER", "mmol/l");
 		public static readonly UnitsOfMeasureCaseSensitive MONTH = new UnitsOfMeasureCaseSensitive(
 				"MONTH", "mo");
 		public static readonly UnitsOfMeasureCaseSensitive MOLE = new UnitsOfMeasureCaseSensitive(
@@ -155,9 +184,13 @@ namespace Ca.Infoway.Messagebuilder.Domainvalue.Basic
 		public static readonly UnitsOfMeasureCaseSensitive NANOGRAM = new UnitsOfMeasureCaseSensitive(
 				"NANOGRAM", "ng");
 		public static readonly UnitsOfMeasureCaseSensitive NANOLITRE = new UnitsOfMeasureCaseSensitive(
-				"NANOLITRE", "nl");
+				"NANOLITRE", "nL");
+        public static readonly UnitsOfMeasureCaseSensitive NANOLITRE_LOWER = new UnitsOfMeasureCaseSensitive(
+                "NANOLITRE_LOWER", "nl");
 		public static readonly UnitsOfMeasureCaseSensitive PICOGRAMS_PER_MILLILITRE = new UnitsOfMeasureCaseSensitive(
-				"PICOGRAMS_PER_MILLILITRE", "pg/ml");
+				"PICOGRAMS_PER_MILLILITRE", "pg/mL");
+        public static readonly UnitsOfMeasureCaseSensitive PICOGRAMS_PER_MILLILITRE_LOWER = new UnitsOfMeasureCaseSensitive(
+                "PICOGRAMS_PER_MILLILITRE_LOWER", "pg/ml");
 		public static readonly UnitsOfMeasureCaseSensitive SECOND = new UnitsOfMeasureCaseSensitive(
 				"SECOND", "s");
 		public static readonly UnitsOfMeasureCaseSensitive MICROGRAM = new UnitsOfMeasureCaseSensitive(
@@ -165,13 +198,25 @@ namespace Ca.Infoway.Messagebuilder.Domainvalue.Basic
 		public static readonly UnitsOfMeasureCaseSensitive MICROGRAM_PER_MINUTE = new UnitsOfMeasureCaseSensitive(
 				"MICROGRAM_PER_MINUTE", "ug/min");
 		public static readonly UnitsOfMeasureCaseSensitive MICROLITRE = new UnitsOfMeasureCaseSensitive(
-				"MICROLITRE", "ul");
+				"MICROLITRE", "uL");
+        public static readonly UnitsOfMeasureCaseSensitive MICROLITRE_LOWER = new UnitsOfMeasureCaseSensitive(
+                "MICROLITRE_LOWER", "ul");
 		public static readonly UnitsOfMeasureCaseSensitive MICROMOLE = new UnitsOfMeasureCaseSensitive(
 				"MICROMOLE", "umol");
 		public static readonly UnitsOfMeasureCaseSensitive MICROMOLES_PER_LITRE = new UnitsOfMeasureCaseSensitive(
-				"MICROMOLES_PER_LITRE", "umol/l");
+				"MICROMOLES_PER_LITRE", "umol/L");
+        public static readonly UnitsOfMeasureCaseSensitive MICROMOLES_PER_LITRE_LOWER = new UnitsOfMeasureCaseSensitive(
+                "MICROMOLES_PER_LITRE_LOWER", "umol/l");
 		public static readonly UnitsOfMeasureCaseSensitive WEEK = new UnitsOfMeasureCaseSensitive(
 				"WEEK", "wk");
+
+        public static readonly UnitsOfMeasureCaseSensitive MILLIGRAMS_PER_ACTUATION = new UnitsOfMeasureCaseSensitive(
+                "MILLIGRAMS_PER_ACTUATION", "mg/actuat");
+
+        public static readonly UnitsOfMeasureCaseSensitive MILE = new UnitsOfMeasureCaseSensitive("MILE", "[mi_us]");
+        public static readonly UnitsOfMeasureCaseSensitive DEGREE = new UnitsOfMeasureCaseSensitive("DEGREE", "deg");
+        public static readonly UnitsOfMeasureCaseSensitive KILOMETER = new UnitsOfMeasureCaseSensitive("KILOMETER", "km");
+        public static readonly UnitsOfMeasureCaseSensitive METER = new UnitsOfMeasureCaseSensitive("METER", "m");
 	
 		private readonly String codeValue;
 	
@@ -196,7 +241,10 @@ namespace Ca.Infoway.Messagebuilder.Domainvalue.Basic
 				return Ca.Infoway.Messagebuilder.Codesystem.CodeSystem.VOCABULARY_UNIFORM_UNIT_OF_MEASURE.Root;
 			}
 		}
-		
+
+        public virtual String CodeSystemName {
+            get { return null; }
+        }
 	
 		/// <summary>
 		/// Returns the value of the unit of measurement.

@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using Ca.Infoway.Messagebuilder;
@@ -24,7 +24,7 @@ using Ca.Infoway.Messagebuilder.Datatype.Lang;
 using Ca.Infoway.Messagebuilder.Datatype.Lang.Util;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter;
-using Ca.Infoway.Messagebuilder.Terminology.Configurator;
+using Ca.Infoway.Messagebuilder.Resolver.Configurator;
 using NUnit.Framework;
 
 namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
@@ -33,7 +33,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 	public class UrgPqPropertyFormatterTest : FormatterTestCase
 	{
 		[SetUp]
-		public override void Setup()
+		public virtual void Setup()
 		{
 			DefaultCodeResolutionConfigurator.ConfigureCodeResolversWithTrivialDefault();
 		}
@@ -49,6 +49,23 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			string result = new UrgPqPropertyFormatter().Format(GetContext("name", "URG<PQ.BASIC>"), new URGImpl<PQ, PhysicalQuantity
 				>(urg));
 			AssertXml("result", "<name><low inclusive=\"false\" unit=\"mm\" value=\"55\"/><high inclusive=\"true\" unit=\"mm\" value=\"60\"/></name>"
+				, result);
+			Assert.IsTrue(this.result.IsValid());
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void TestBasicForBC()
+		{
+			UncertainRange<PhysicalQuantity> urg = new UncertainRange<PhysicalQuantity>(new PhysicalQuantity(new BigDecimal(1), null)
+				, new PhysicalQuantity(new BigDecimal(124), Ca.Infoway.Messagebuilder.Domainvalue.Basic.UnitsOfMeasureCaseSensitive.GRAMS_PER_LITRE
+				), null, null, Representation.LOW_HIGH, Ca.Infoway.Messagebuilder.Domainvalue.Nullflavor.NullFlavor.NO_INFORMATION, null
+				, null, true, false);
+			URGImpl<PQ, PhysicalQuantity> dataType = new URGImpl<PQ, PhysicalQuantity>(urg);
+			dataType.OriginalText = "<124";
+			string result = new UrgPqPropertyFormatter().Format(GetContext("name", "URG<PQ.LAB>", SpecificationVersion.V02R04_BC), dataType
+				);
+			AssertXml("result", "<name><originalText>&lt;124</originalText><low inclusive=\"true\" nullFlavor=\"NI\" value=\"1\"/><high inclusive=\"false\" unit=\"g/L\" value=\"124\"/></name>"
 				, result);
 			Assert.IsTrue(this.result.IsValid());
 		}

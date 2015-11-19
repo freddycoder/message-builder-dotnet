@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2013-03-01 17:48:17 -0500 (Fri, 01 Mar 2013) $
- * Revision:      $LastChangedRevision: 6663 $
+ * Author:        $LastChangedBy: jmis $
+ * Last modified: $LastChangedDate: 2015-05-27 08:43:37 -0400 (Wed, 27 May 2015) $
+ * Revision:      $LastChangedRevision: 9535 $
  */
 
 /// ---------------------------------------------------------------------------------------------------
@@ -38,6 +38,12 @@ namespace Ca.Infoway.Messagebuilder.Xml.Service {
 	/// </summary>
 	///
 	public interface MessageDefinitionService {
+
+        /// <summary>
+        /// Initialize the service. Pre-initializing the service during system
+        /// start-up can improve the performance of the first user call to do real work.
+        /// </summary>
+        void Initialize();
 	
 		/// <summary>
 		/// Get a message part by name and version.
@@ -107,4 +113,47 @@ namespace Ca.Infoway.Messagebuilder.Xml.Service {
 		IDictionary<String, MessagePart> GetAllMessageParts(Interaction interaction,
 				VersionNumber version);
 	
+		/// <summary>
+		/// Get all message parts for a specific version.
+		/// </summary>
+		///
+		/// <param name="version">- the version</param>
+		/// <returns>the message parts</returns>
+		ICollection<MessagePart> GetAllMessageParts(VersionNumber version);
+
+        /// <summary>
+        /// Determine if the message set for the given version has been generated for R2 data types.
+        /// </summary>
+        /// <param name="version"></param>
+        /// <returns></returns>
+        bool IsR2(VersionNumber version);
+
+        /// <summary>
+        /// Determine if the message set for the given version defines CDA documents
+        /// </summary>
+        /// <param name="version"></param>
+        /// <returns></returns>
+        bool IsCda(VersionNumber version);
+
+        /// <summary>
+        /// Returns constraints for a given relationship. Null is returned if no constraints are found.
+        /// </summary>
+        /// <param name="version"></param>
+        /// <param name="constrainedType"></param>
+        /// <returns>the constraints</returns>
+        ConstrainedDatatype GetConstraints(VersionNumber version, string constrainedType);
+
+        /// <summary>
+        /// Returns all the schematron test definitions for a specific message set
+        /// </summary>
+        /// <param name="version"></param>
+        /// <returns>the schematron context definitions</returns>
+        IList<SchematronContext> GetAllSchematronContexts(VersionNumber version);
+
+        /// <summary>
+        /// Returns all the package locations for a specific message set
+        /// </summary>
+        /// <param name="version"></param>
+        /// <returns>the package locations</returns>
+        IList<PackageLocation> GetAllPackageLocations(VersionNumber version);
 	}}

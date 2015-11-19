@@ -14,14 +14,13 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System.Xml;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
-using Ca.Infoway.Messagebuilder.Datatype.Lang.Util;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser;
 using NUnit.Framework;
@@ -45,8 +44,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 
 		private ParseContext CreateContext()
 		{
-			return ParserContextImpl.Create("RTO<PQ.DRUG,PQ.DRUG>", typeof(Ratio<object, object>), SpecificationVersion.V02R02, null, 
-				null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.POPULATED);
+			return ParseContextImpl.Create("RTO<PQ.DRUG,PQ.DRUG>", typeof(Ratio<object, object>), SpecificationVersion.V02R02, null, 
+				null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.POPULATED, null, null, false);
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -67,13 +66,14 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		[Test]
 		public virtual void TestParseValidAttributes()
 		{
-			XmlNode node = CreateNode("<something><numerator value=\"1234.45\" currency=\"CAD\"/><denominator value=\"2345.67\" unit=\"ml\" /></something>"
+			XmlNode node = CreateNode("<something><numerator value=\"1234.45\" currency=\"CAD\"/><denominator value=\"2345.67\" unit=\"mL\" /></something>"
 				);
 			Ratio<Money, PhysicalQuantity> ratio = (Ratio<Money, PhysicalQuantity>)new RtoMoPqElementParser().Parse(CreateContext(), 
 				node, this.xmlResult).BareValue;
 			Assert.IsNotNull(ratio, "ratio");
 			Assert.AreEqual(new BigDecimal("1234.45"), ratio.Numerator.Amount, "numerator");
-			Assert.AreEqual(Currency.CANADIAN_DOLLAR.CodeValue, ratio.Numerator.Currency.CodeValue, "numerator unit");
+			Assert.AreEqual(Ca.Infoway.Messagebuilder.Domainvalue.Basic.Currency.CANADIAN_DOLLAR.CodeValue, ratio.Numerator.Currency.
+				CodeValue, "numerator unit");
 			Assert.AreEqual(new BigDecimal("2345.67"), ratio.Denominator.Quantity, "denominator");
 			Assert.AreEqual(Ca.Infoway.Messagebuilder.Domainvalue.Basic.UnitsOfMeasureCaseSensitive.MILLILITRE.CodeValue, ratio.Denominator
 				.Unit.CodeValue, "denominator unit");

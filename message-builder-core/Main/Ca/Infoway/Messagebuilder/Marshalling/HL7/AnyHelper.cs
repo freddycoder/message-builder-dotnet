@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System.Collections.Generic;
@@ -25,13 +25,15 @@ using ILOG.J2CsMapping.Collections.Generics;
 namespace Ca.Infoway.Messagebuilder.Marshalling.HL7
 {
 	/// <summary>
-	/// ANY, ANY.LAB, ANY.CA.IZ, ANY.PATH
+	/// ANY, ANY.LAB, ANY.CA.IZ, ANY.PATH; added for BC: ANY.X1, ANY.X2
 	/// Each value sent over the wire must correspond to one of the
 	/// following non-abstract data type flavor specifications defined below:
 	/// ANY:       all types allowed
 	/// ANY.LAB:   CD.LAB, ST, PQ.LAB, IVL, INT.NONNEG, INT.POS, TS.FULLDATETIME, URG
 	/// ANY.CA.IZ: ST, PN.BASIC, INT.POS, BL
 	/// ANY.PATH:  ST, PQ, ED.DOCORREF or CD.LAB
+	/// ANY.X1:    ST, CV, PQ.LAB, IVL, URG
+	/// ANY.X2:    ST, CV, ED.DOCORREF
 	/// </summary>
 	/// <author>Intelliware Development</author>
 	public class AnyHelper
@@ -50,6 +52,14 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7
 		private static IList<string> ANY_CA_IZ_LIST = Arrays.AsList(new string[] { StandardDataType.ST.Type, StandardDataType.PN_BASIC
 			.Type, StandardDataType.INT_POS.Type, StandardDataType.BL.Type });
 
+		private static IList<string> ANY_X1_LIST = Arrays.AsList(new string[] { StandardDataType.CV.Type, StandardDataType.ST.Type
+			, StandardDataType.PQ_LAB.Type, StandardDataType.IVL_PQ_BASIC.Type, StandardDataType.IVL_PQ_DISTANCE.Type, StandardDataType
+			.IVL_PQ_DRUG.Type, StandardDataType.IVL_PQ_HEIGHTWEIGHT.Type, StandardDataType.IVL_PQ_LAB.Type, StandardDataType.IVL_PQ_TIME
+			.Type, StandardDataType.URG_PQ_LAB.Type });
+
+		private static IList<string> ANY_X2_LIST = Arrays.AsList(new string[] { StandardDataType.CV.Type, StandardDataType.ST.Type
+			, StandardDataType.ED_DOC_OR_REF.Type });
+
 		private static IDictionary<string, IList<string>> validTypesForAnyType = new Dictionary<string, IList<string>>();
 
 		static AnyHelper()
@@ -57,13 +67,18 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7
 			validTypesForAnyType["ANY.LAB"] = ANY_LAB_LIST;
 			validTypesForAnyType["ANY.CA.IZ"] = ANY_CA_IZ_LIST;
 			validTypesForAnyType["ANY.PATH"] = ANY_PATH_LIST;
+			validTypesForAnyType["ANY.x1"] = ANY_X1_LIST;
+			validTypesForAnyType["ANY.x2"] = ANY_X2_LIST;
 		}
 
 		public static bool IsValidTypeForAny(string type, string specializationType)
 		{
+			// this method expects collection type info (LIST, SET, COLLECTION) to be already removed from speciaizationType
 			if ("ANY".Equals(type))
 			{
-				return true;
+				// any valid type other than ANY (and its variants) are allowed
+				StandardDataType specializationTypeAsEnum = StandardDataType.GetByTypeName(specializationType);
+				return specializationType != null && !specializationType.StartsWith("ANY") && specializationTypeAsEnum != null;
 			}
 			else
 			{

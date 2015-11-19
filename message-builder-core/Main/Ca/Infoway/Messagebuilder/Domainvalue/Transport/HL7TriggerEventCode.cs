@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using Ca.Infoway.Messagebuilder;
@@ -436,6 +436,13 @@ namespace Ca.Infoway.Messagebuilder.Domainvalue.Transport
 
 		public static readonly Ca.Infoway.Messagebuilder.Domainvalue.Transport.HL7TriggerEventCode DRUG_PRODUCT_DETAIL_QUERY_RESPONSE
 			 = new Ca.Infoway.Messagebuilder.Domainvalue.Transport.HL7TriggerEventCode("DRUG_PRODUCT_DETAIL_QUERY_RESPONSE", "POME_TE010020UV"
+			);
+
+		public static readonly Ca.Infoway.Messagebuilder.Domainvalue.Transport.HL7TriggerEventCode DRUG_DOCUMENT_QUERY = new Ca.Infoway.Messagebuilder.Domainvalue.Transport.HL7TriggerEventCode
+			("DRUG_DOCUMENT_QUERY", "POME_TE010090UV");
+
+		public static readonly Ca.Infoway.Messagebuilder.Domainvalue.Transport.HL7TriggerEventCode DRUG_DOCUMENT_QUERY_RESPONSE = 
+			new Ca.Infoway.Messagebuilder.Domainvalue.Transport.HL7TriggerEventCode("DRUG_DOCUMENT_QUERY_RESPONSE", "POME_TE010040UV"
 			);
 
 		public static readonly Ca.Infoway.Messagebuilder.Domainvalue.Transport.HL7TriggerEventCode MEDICATION_DISPENSE_SUMMARY_QUERY
@@ -905,7 +912,7 @@ namespace Ca.Infoway.Messagebuilder.Domainvalue.Transport
 			 version) : base(name)
 		{
 			// BCH: These seem to vary from version to version
-			// TODO - TM - NEWFOUNDLAND TEST HACK
+			// TM - NEWFOUNDLAND TEST HACK
 			this.codeValue = codeValue;
 			this.codeSystem = codeSystem;
 			this.version = version;
@@ -918,6 +925,15 @@ namespace Ca.Infoway.Messagebuilder.Domainvalue.Transport
 			{
 				return this.codeSystem == null ? Ca.Infoway.Messagebuilder.Codesystem.CodeSystem.VOCABULARY_TRIGGER_EVENT_ID.Root : this.
 					codeSystem.Root;
+			}
+		}
+
+		/// <summary><inheritDoc></inheritDoc></summary>
+		public virtual string CodeSystemName
+		{
+			get
+			{
+				return null;
 			}
 		}
 

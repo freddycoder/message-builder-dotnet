@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System;
@@ -24,7 +24,7 @@ using Ca.Infoway.Messagebuilder.Xml;
 
 namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 {
-	internal class TrivialContext : ParseContext
+	public class TrivialContext : ParseContext
 	{
 		private readonly string type;
 
@@ -58,12 +58,12 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			return null;
 		}
 
-		public virtual TimeZone GetDateTimeZone()
+		public virtual TimeZoneInfo GetDateTimeZone()
 		{
 			return null;
 		}
 
-		public virtual TimeZone GetDateTimeTimeZone()
+		public virtual TimeZoneInfo GetDateTimeTimeZone()
 		{
 			return null;
 		}
@@ -74,6 +74,26 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			{
 				return this.type;
 			}
+		}
+
+		public virtual Cardinality GetCardinality()
+		{
+			return null;
+		}
+
+		public virtual ConstrainedDatatype GetConstraints()
+		{
+			return null;
+		}
+
+		public virtual bool IsCda()
+		{
+			return false;
+		}
+
+		public virtual bool IsFixedValue()
+		{
+			return false;
 		}
 	}
 }

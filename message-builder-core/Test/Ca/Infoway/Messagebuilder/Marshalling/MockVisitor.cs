@@ -14,11 +14,12 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System;
 using Ca.Infoway.Messagebuilder;
+using Ca.Infoway.Messagebuilder.Error;
 using Ca.Infoway.Messagebuilder.Marshalling;
 using Ca.Infoway.Messagebuilder.Xml;
 
@@ -50,8 +51,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 		{
 		}
 
-		public virtual void VisitAttribute(AttributeBridge tealBean, Relationship relationship, VersionNumber version, TimeZone dateTimeZone
-			, TimeZone dateTimeTimeZone)
+		public virtual void VisitAttribute(AttributeBridge tealBean, Relationship relationship, ConstrainedDatatype constraints, 
+			VersionNumber version, TimeZoneInfo dateTimeZone, TimeZoneInfo dateTimeTimeZone)
 		{
 			this.attributeVisited = true;
 		}
@@ -74,6 +75,16 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 		public virtual bool IsAttributeVisited()
 		{
 			return this.attributeVisited;
+		}
+
+		public virtual void LogError(Hl7Error error)
+		{
+		}
+
+		// do nothing
+		public virtual string GetCurrentPropertyPath()
+		{
+			return string.Empty;
 		}
 	}
 }

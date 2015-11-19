@@ -14,17 +14,16 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Datatype.Impl;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
-using Ca.Infoway.Messagebuilder.Datatype.Lang.Util;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter;
-using Ca.Infoway.Messagebuilder.Terminology.Configurator;
+using Ca.Infoway.Messagebuilder.Resolver.Configurator;
 using NUnit.Framework;
 
 namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
@@ -50,8 +49,9 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 
 		protected override FormatContext GetContext(string name)
 		{
-			return new FormatContextImpl(new ModelToXmlResult(), null, name, "IVL<PQ>", null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
-				.POPULATED, false, SpecificationVersion.R02_04_03, null, null, true, null);
+			return new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl(new ModelToXmlResult(), null, name, "IVL<PQ>"
+				, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.POPULATED, null, false, SpecificationVersion.R02_04_03, null, null
+				, null, null, false);
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -62,7 +62,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 				);
 			string result = this.formatter.Format(GetContext("name"), new IVLImpl<QTY<PhysicalQuantity>, Interval<PhysicalQuantity>>(
 				interval));
-			AssertXml("result", "<name><low unit=\"ml\" value=\"1000\"/><high unit=\"ml\" value=\"2000\"/></name>", result);
+			AssertXml("result", "<name><low unit=\"mL\" value=\"1000\"/><high unit=\"mL\" value=\"2000\"/></name>", result);
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -72,7 +72,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			Interval<PhysicalQuantity> low = IntervalFactory.CreateLow<PhysicalQuantity>(PHYSICAL_QUANTITY_LOW);
 			string result = this.formatter.Format(GetContext("name"), new IVLImpl<QTY<PhysicalQuantity>, Interval<PhysicalQuantity>>(
 				low));
-			AssertXml("result", "<name><low unit=\"ml\" value=\"1000\"/></name>", result);
+			AssertXml("result", "<name><low unit=\"mL\" value=\"1000\"/></name>", result);
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -92,7 +92,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 				));
 			string result = this.formatter.Format(GetContext("name"), new IVLImpl<QTY<PhysicalQuantity>, Interval<PhysicalQuantity>>(
 				interval));
-			AssertXml("result", "<name><width unit=\"ml\" value=\"1000\"/></name>", result);
+			AssertXml("result", "<name><width unit=\"mL\" value=\"1000\"/></name>", result);
 		}
 	}
 }

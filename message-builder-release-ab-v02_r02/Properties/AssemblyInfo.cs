@@ -47,8 +47,8 @@ using Ca.Infoway.Messagebuilder.Annotation;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion("1.4.6.0")]
-[assembly: AssemblyFileVersion("1.4.6.0")]
+[assembly: AssemblyVersion("2.1.1")]
+[assembly: AssemblyFileVersion("2.1.1")]
 
 [assembly: MbtModelVersionNumber("V02R02_AB")]
-[assembly: MbtMessageSet("/messageSet_ab_mr2007_v02_r02_hotfix5.xml")]
+[assembly: MbtMessageSet("/messageSet_ab_mr2007_v02_r02.xml")]

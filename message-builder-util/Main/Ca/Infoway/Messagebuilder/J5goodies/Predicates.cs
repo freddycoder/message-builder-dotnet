@@ -14,8 +14,8 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2013-03-01 17:48:17 -0500 (Fri, 01 Mar 2013) $
- * Revision:      $LastChangedRevision: 6663 $
+ * Last modified: $LastChangedDate: 2014-05-01 12:01:41 -0400 (Thu, 01 May 2014) $
+ * Revision:      $LastChangedRevision: 8549 $
  */
 
 /// ---------------------------------------------------------------------------------------------------
@@ -75,8 +75,9 @@ namespace Ca.Infoway.Messagebuilder.J5goodies {
 			private readonly bool f_interface1;
 	
 			public override bool IsSelected(Type c) {
+                // TM - bugfix: "isInterface = true" would only return interfaces (as expected), but "isInterface = false" would return everything 
 				return c != null && f_type != null && f_type.IsAssignableFrom(c)
-						&& (!f_interface1 || c.IsInterface);
+						&& (f_interface1 == c.IsInterface);
 			}
 	
 			public Anonymous_C0(Type type, bool isInterface) {

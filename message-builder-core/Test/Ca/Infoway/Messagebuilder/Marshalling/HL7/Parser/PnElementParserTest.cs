@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System.Collections.Generic;
@@ -45,8 +45,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 
 		private ParseContext CreateContext(string type, VersionNumber version)
 		{
-			return ParserContextImpl.Create(type, typeof(PersonName), version, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
-				.POPULATED);
+			return ParseContextImpl.Create(type, typeof(PersonName), version, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
+				.POPULATED, null, null, false);
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -179,7 +179,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		{
 			Assert.AreEqual(expectedType, namePart.Type, message + " type");
 			Assert.AreEqual(expectedValue, namePart.Value, message + " value");
-			Assert.AreEqual(expectedQualifier, namePart.Qualifier, message + " qualifier");
+			Assert.AreEqual(expectedQualifier, namePart.Qualifier == null ? null : namePart.Qualifier.CodeValue, message + " qualifier"
+				);
 		}
 	}
 }

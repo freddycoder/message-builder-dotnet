@@ -119,7 +119,10 @@ namespace Ca.Infoway.Messagebuilder.Domainvalue.Basic
 				return this.codeValue;
 			}
 		}
-		
+
+		public virtual String CodeSystemName {
+            get { return null; }
+        }
 	
 		/// <summary>
 		/// Returns the description.

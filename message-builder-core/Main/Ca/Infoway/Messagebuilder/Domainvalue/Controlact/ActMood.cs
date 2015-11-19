@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using Ca.Infoway.Messagebuilder;
@@ -26,7 +26,7 @@ namespace Ca.Infoway.Messagebuilder.Domainvalue.Controlact
 	/// <summary>The Enum ActMood.</summary>
 	/// <remarks>The Enum ActMood.</remarks>
 	[System.Serializable]
-	public class ActMood : EnumPattern, Ca.Infoway.Messagebuilder.Domainvalue.ActCode, Describable
+	public class ActMood : EnumPattern, Ca.Infoway.Messagebuilder.Domainvalue.ActMood, Describable
 	{
 		static ActMood()
 		{
@@ -65,6 +65,15 @@ namespace Ca.Infoway.Messagebuilder.Domainvalue.Controlact
 			get
 			{
 				return Ca.Infoway.Messagebuilder.Codesystem.CodeSystem.VOCABULARY_ACT_MOOD.Root;
+			}
+		}
+
+		/// <summary><inheritDoc></inheritDoc></summary>
+		public virtual string CodeSystemName
+		{
+			get
+			{
+				return null;
 			}
 		}
 

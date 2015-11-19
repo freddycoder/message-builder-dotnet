@@ -14,8 +14,8 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2013-03-01 17:48:17 -0500 (Fri, 01 Mar 2013) $
- * Revision:      $LastChangedRevision: 6663 $
+ * Last modified: $LastChangedDate: 2013-10-04 19:09:29 -0400 (Fri, 04 Oct 2013) $
+ * Revision:      $LastChangedRevision: 7938 $
  */
 
 /// ---------------------------------------------------------------------------------------------------
@@ -45,6 +45,7 @@ namespace Ca.Infoway.Messagebuilder.Terminology.Codeset.Domain {
 	
 		private Int64? id;
 		private String name;
+        private String version;
         private ILOG.J2CsMapping.Collections.Generics.ISet<VocabularyDomain> vocabularyDomains;
 	
 		/// <summary>
@@ -95,7 +96,33 @@ namespace Ca.Infoway.Messagebuilder.Terminology.Codeset.Domain {
 				this.name = value;
 			}
 		}
-		
+
+        /// <summary>
+        /// Sets the version.
+        /// </summary>
+        ///
+        /// <param name="name_0">the new version</param>
+        public String Version
+        {
+            /// <summary>
+            /// The version of the value set.
+            /// </summary>
+            ///
+            /// <returns>the version</returns>
+            get
+            {
+                return this.version;
+            }
+            /// <summary>
+            /// Sets the version.
+            /// </summary>
+            ///
+            /// <param name="name_0">the new version</param>
+            set
+            {
+                this.version = value;
+            }
+        }
 	
 		/// <summary>
 		/// Sets the vocabulary domains.

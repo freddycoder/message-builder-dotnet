@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System.Collections.Generic;
@@ -25,6 +25,7 @@ using Ca.Infoway.Messagebuilder.Datatype.Impl;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter;
+using Ca.Infoway.Messagebuilder.Xml;
 
 namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 {
@@ -33,7 +34,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 	{
 		public static readonly string GTS_BOUNDED_PIVL = "GTS.BOUNDEDPIVL";
 
-		internal override string FormatNonNullValue(FormatContext context, GeneralTimingSpecification value, int indentLevel)
+		protected override string FormatNonNullValue(FormatContext context, GeneralTimingSpecification value, int indentLevel)
 		{
 			StringBuilder buffer = new StringBuilder();
 			buffer.Append(CreateElement(context, CreateTypeAttributes(context), indentLevel, false, true));
@@ -45,10 +46,12 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		private IDictionary<string, string> CreateTypeAttributes(FormatContext context)
 		{
 			IDictionary<string, string> attributes = new Dictionary<string, string>();
+			// add specializationType manually; do not use AbstractPropertyFormatter.addSpecializationType() here, as the xsi:type is non-standard
 			if (RequiresSpecializationType(context))
 			{
 				attributes[AbstractPropertyFormatter.SPECIALIZATION_TYPE] = GTS_BOUNDED_PIVL;
 			}
+			// the datatype specifications show that xsi:type is always present, but specializationType is not included for CeRx (which may be incorrect, but we'll follow the specs until we hear otherwise)
 			attributes[AbstractPropertyFormatter.XSI_TYPE] = "SXPR_TS";
 			return attributes;
 		}
@@ -60,14 +63,13 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			IvlTsPropertyFormatter formatter = new GtsBoundedPivlFormatter.CustomIvlTsPropertyFormatter(RequiresOperatorOnFirstRepetition
 				(context), RequiresSpecializationType(context));
 			PeriodicIntervalTime frequency = value.Frequency;
-			buffer.Append(formatter.Format(new FormatContextImpl(context == null ? null : context.GetModelToXmlResult(), context == null
-				 ? null : context.GetPropertyPath(), "comp", "IVL<TS.FULLDATE>", context == null ? null : context.GetDomainType(), Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
-				.MANDATORY, RequiresSpecializationType(context), context == null ? null : context.GetVersion(), context == null ? null : 
-				context.GetDateTimeZone(), null, false, null), ivlDuration, indentLevel + 1));
-			buffer.Append(CreatePivlTsElement(new FormatContextImpl(context == null ? null : context.GetModelToXmlResult(), context ==
-				 null ? null : context.GetPropertyPath(), "comp", "PIVL<TS.DATETIME>", Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY
-				, RequiresSpecializationType(context), context == null ? null : context.GetVersion(), null, context == null ? null : context
-				.GetDateTimeTimeZone(), null), frequency, indentLevel + 1));
+			buffer.Append(formatter.Format(new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl("IVL<TS.FULLDATE>"
+				, RequiresSpecializationType(context), Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY, Cardinality.Create("1")
+				, "comp", context), ivlDuration, indentLevel + 1));
+			// constraints not passed down 
+			buffer.Append(CreatePivlTsElement(new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl("PIVL<TS.DATETIME>"
+				, RequiresSpecializationType(context), Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY, Cardinality.Create("1")
+				, "comp", context), frequency, indentLevel + 1));
 		}
 
 		protected virtual string CreatePivlTsElement(FormatContext context, PeriodicIntervalTime value, int indentLevel)
@@ -82,7 +84,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			bool result = true;
 			if (formatContext != null && formatContext.GetVersion() != null)
 			{
-				result = !SpecificationVersion.IsVersion(formatContext.GetVersion(), Hl7BaseVersion.CERX);
+				result = !SpecificationVersion.IsVersion(StandardDataType.GTS_BOUNDEDPIVL, formatContext.GetVersion(), Hl7BaseVersion.CERX
+					);
 			}
 			return result;
 		}
@@ -92,9 +95,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			bool result = false;
 			if (formatContext != null && formatContext.GetVersion() != null)
 			{
-				result = SpecificationVersion.IsVersion(formatContext.GetVersion(), Hl7BaseVersion.CERX) || SpecificationVersion.IsVersion
-					(formatContext.GetVersion(), Hl7BaseVersion.MR2007_V02R01) || SpecificationVersion.IsVersion(formatContext.GetVersion(), 
-					Hl7BaseVersion.MR2007);
+				result = SpecificationVersion.IsVersion(StandardDataType.GTS_BOUNDEDPIVL, formatContext.GetVersion(), Hl7BaseVersion.CERX
+					) || SpecificationVersion.IsVersion(StandardDataType.GTS_BOUNDEDPIVL, formatContext.GetVersion(), Hl7BaseVersion.MR2007);
 			}
 			return result;
 		}

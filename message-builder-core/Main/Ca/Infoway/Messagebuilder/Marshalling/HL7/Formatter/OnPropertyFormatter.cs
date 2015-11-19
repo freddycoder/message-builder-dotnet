@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
@@ -27,17 +27,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 	/// ON - OrganizationName
 	/// Represents an ON object as an element:
 	/// &lt;element-name&gt;&lt;prefix&gt;prefix&lt;/prefix&gt;Intelliware Development&lt;delimiter&gt;,&lt;/delimiter&gt;&lt;suffix&gt;Inc.&lt;/suffix&gt;&lt;/element-name&gt;
-	/// Seriously, who comes up with this stuff? It's like a brain-damaged monkey tried to have sex
-	/// with an international health standard.
-	/// </summary>
-	/// <remarks>
-	/// ON - OrganizationName
-	/// Represents an ON object as an element:
-	/// &lt;element-name&gt;&lt;prefix&gt;prefix&lt;/prefix&gt;Intelliware Development&lt;delimiter&gt;,&lt;/delimiter&gt;&lt;suffix&gt;Inc.&lt;/suffix&gt;&lt;/element-name&gt;
-	/// Seriously, who comes up with this stuff? It's like a brain-damaged monkey tried to have sex
-	/// with an international health standard.
 	/// http://www.hl7.org/v3ballot/html/infrastructure/itsxml/datatypes-its-xml.htm#dtimpl-ON
-	/// </remarks>
+	/// </summary>
 	[DataTypeHandler("ON")]
 	internal class OnPropertyFormatter : AbstractEntityNamePropertyFormatter<OrganizationName>
 	{

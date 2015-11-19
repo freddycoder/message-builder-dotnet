@@ -31,7 +31,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <ReleaseVersion>1.2.9</ReleaseVersion>
+    <ReleaseVersion>1.5.8.2</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -43,11 +43,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>none</DebugType>
+    <DebugType>pdbonly</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
@@ -60,11 +61,37 @@
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\Cda\Vocabulary\Code.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\Cda\Vocabulary\ValueSetDefinition.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\Cda\Vocabulary\ValueSetDefinitionSystem.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\CmetBinding.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\Code.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\CodedTypeEvaluator.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\CodeSystem.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\CodeSystemMaintenanceOrganization.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\Concept.cs" />
     <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\ConceptDomain.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\ConstrainedDatatype.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\ContainedTemplate.cs" />
     <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\ContextBinding.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\Hl7TypeName.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\Hl7TypeParser.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\ImportedPackage.cs" />
     <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\MessageSetHistory.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\ReceiverResponsibility.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\RelationshipComparable.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\RelationshipComparator.cs" />
     <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\RimClass.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\SchemaMetadata.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\SchematronContext.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\SchematronRule.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\SpecializationChild.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\Util\ConformanceLevelUtil.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\Util\MessageSetUtils.cs" />
     <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\ValueSet.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\ValueSetFilter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\ValueSetFilterCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\ValueSetFilterReference.cs" />
     <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\Vocabulary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\MessageSetMarshaller.cs" />

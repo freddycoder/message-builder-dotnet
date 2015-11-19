@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using Ca.Infoway.Messagebuilder.Datatype;
@@ -32,6 +32,13 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 		private bool isEmpty;
 
 		internal Relationship relationship;
+
+		private readonly string propertyName;
+
+		public MockAttributeBridge(string propertyName)
+		{
+			this.propertyName = propertyName;
+		}
 
 		public virtual void SetHl7Value(BareANY hl7Value)
 		{
@@ -60,7 +67,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 
 		public virtual string GetPropertyName()
 		{
-			return null;
+			return this.propertyName;
 		}
 
 		public virtual Relationship GetRelationship()

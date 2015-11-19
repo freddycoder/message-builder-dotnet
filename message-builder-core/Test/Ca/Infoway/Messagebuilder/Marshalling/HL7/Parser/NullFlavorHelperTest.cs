@@ -14,12 +14,14 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System.Xml;
+using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser;
+using Ca.Infoway.Messagebuilder.Resolver.Configurator;
 using Ca.Infoway.Messagebuilder.Util.Xml;
 using NUnit.Framework;
 
@@ -34,7 +36,13 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		public static readonly object[] MANDATORY = new object[] { Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY, false
 			 };
 
-		public static readonly object[] REQUIRED = new object[] { Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.REQUIRED, false };
+		public static readonly object[] REQUIRED = new object[] { Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.REQUIRED, true };
+
+		[SetUp]
+		public virtual void Setup()
+		{
+			DefaultCodeResolutionConfigurator.ConfigureCodeResolversWithTrivialDefault();
+		}
 
 		/// <exception cref="System.Exception"></exception>
 		[Test]
@@ -45,7 +53,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			AssertConformance(REQUIRED);
 		}
 
-		/// <exception cref="org.xml.sax.SAXException"></exception>
+		/// <exception cref="Platform.Xml.Sax.SAXException"></exception>
 		private void AssertConformance(object[] arguments)
 		{
 			XmlNode node = CreateNode("<effectiveTime><low nullFlavor=\"NI\"/></effectiveTime>");
@@ -55,7 +63,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			Assert.AreEqual(arguments[1], xmlResult.GetHl7Errors().IsEmpty());
 		}
 
-		/// <exception cref="org.xml.sax.SAXException"></exception>
+		/// <exception cref="Platform.Xml.Sax.SAXException"></exception>
 		[Test]
 		public virtual void ShouldHandleXsiNilAttributeForAssociation()
 		{
@@ -66,7 +74,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			Assert.IsTrue(xmlResult.GetHl7Errors().IsEmpty());
 		}
 
-		/// <exception cref="org.xml.sax.SAXException"></exception>
+		/// <exception cref="Platform.Xml.Sax.SAXException"></exception>
 		[Test]
 		public virtual void ShouldCatchXsiNilAttributeErrorForAssociation()
 		{
@@ -78,7 +86,19 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			Assert.IsTrue(xmlResult.GetHl7Errors()[0].GetMessage().Contains("does not specify xsi:nil=\"true\""));
 		}
 
-		/// <exception cref="org.xml.sax.SAXException"></exception>
+		/// <exception cref="Platform.Xml.Sax.SAXException"></exception>
+		[Test]
+		public virtual void ShouldAllowXsiNilAttributeErrorForAssociationWhenSystemPropertySet()
+		{
+			XmlNode node = CreateNode("<patient nullFlavor=\"NI\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"/>");
+			XmlToModelResult xmlResult = new XmlToModelResult();
+			Runtime.SetProperty(NullFlavorHelper.MB_SUPPRESS_XSI_NIL_ON_NULLFLAVOR, "true");
+			new NullFlavorHelper(Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.POPULATED, node, xmlResult, true).ParseNullNode();
+			Runtime.ClearProperty(NullFlavorHelper.MB_SUPPRESS_XSI_NIL_ON_NULLFLAVOR);
+			Assert.IsTrue(xmlResult.GetHl7Errors().IsEmpty());
+		}
+
+		/// <exception cref="Platform.Xml.Sax.SAXException"></exception>
 		private XmlNode CreateNode(string xml)
 		{
 			return new DocumentFactory().CreateFromString(xml).DocumentElement;

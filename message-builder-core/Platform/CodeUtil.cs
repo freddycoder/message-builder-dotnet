@@ -20,21 +20,26 @@
 
 using System;
 using Ca.Infoway.Messagebuilder;
+using Ca.Infoway.Messagebuilder.Resolver;
 using Ca.Infoway.Messagebuilder.Terminology;
 
 namespace Ca.Infoway.Messagebuilder.Platform
 {
 	public class CodeUtil
 	{
+        private static TrivialCodeResolver trivialCodeResolver = new TrivialCodeResolver();
+        private static Type codeType = typeof(Code);
+
 		public static Code ConvertToCode(string codeAsString, String codeSystem)
 		{
 			Code result = null;
 			if (StringUtils.IsNotBlank(codeAsString))
 			{
-				result = new TrivialCodeResolver().Lookup<Code>(typeof(Code), codeAsString, codeSystem);
+                result = trivialCodeResolver.Lookup<Code>(codeType, codeAsString, codeSystem);
 			}
 			return result;
 		}
+
 	}
 }
 

@@ -37,6 +37,7 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 	/// <summary>
 	///   datatype used to back the HL7 PN datatype.
 	/// Covers:
+    /// PN (R2): Used to express person names for general identification and communication purposes
 	/// PN.BASIC: Used to express person names for general identification and communication purposes.
 	/// PN.SIMPLE: Used to express person names without name parts.
 	/// PN.FULL: Used to express person names within a registry where full qualification is needed. 
@@ -44,39 +45,6 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 	/// </summary>
 	///
 	public class PersonName : EntityName {
-	
-		public PersonName() {
-			this.parts = Ca.Infoway.Messagebuilder.CollUtils
-					.SynchronizedList(new List<EntityNamePart>());
-		}
-	
-		private IList<EntityNamePart> parts;
-	
-		/// <summary>
-		/// Obtains the name parts.
-		/// </summary>
-		///
-		/// <returns>list of entity name parts</returns>
-		public override IList<EntityNamePart> Parts {
-		/// <summary>
-		/// Obtains the name parts.
-		/// </summary>
-		///
-		/// <returns>list of entity name parts</returns>
-		  get {
-				return this.parts;
-			}
-		}
-		
-	
-		/// <summary>
-		/// Adds a name part.
-		/// </summary>
-		///
-		/// <param name="namePart">the name part to add</param>
-		public void AddNamePart(EntityNamePart namePart) {
-			ILOG.J2CsMapping.Collections.Generics.Collections.Add(this.parts,namePart);
-		}
 	
 		/// <summary>
 		/// Pulls out the (first) given name from the list of parts.
@@ -117,7 +85,7 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		public IList<EntityNamePart> GetPartsOfType(PersonNamePartType type) {
 			IList<EntityNamePart> result = new List<EntityNamePart>();
 			/* foreach */
-			foreach (EntityNamePart part  in  this.parts) {
+			foreach (EntityNamePart part  in  Parts) {
 				if ((Object) type == (Object) part.Type) {
 					ILOG.J2CsMapping.Collections.Generics.Collections.Add(result,part);
 				}
@@ -146,5 +114,5 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 			}
 			return name;
 		}
-	}
+    }
 }

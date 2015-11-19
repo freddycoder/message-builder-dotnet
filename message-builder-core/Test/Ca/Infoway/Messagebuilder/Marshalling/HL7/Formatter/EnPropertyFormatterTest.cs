@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using Ca.Infoway.Messagebuilder.Datatype.Impl;
@@ -38,13 +38,21 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 
 		/// <exception cref="System.Exception"></exception>
 		[Test]
+		public virtual void TestEnPropertyFormatterWhenConformanceLevelIsSetToNullFlavor()
+		{
+			string result = new EnPropertyFormatter().Format(GetContext("name"), new ENImpl<EntityName>(Ca.Infoway.Messagebuilder.Domainvalue.Nullflavor.NullFlavor
+				.ASKED_BUT_UNKNOWN));
+			Assert.AreEqual("<name nullFlavor=\"ASKU\"/>", result.Trim());
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
 		public virtual void TestFormatValueTrivialName()
 		{
 			EnPropertyFormatter formatter = new EnPropertyFormatter();
-			TnPropertyFormatter tnFormatter = new TnPropertyFormatter();
 			EntityName name = new TrivialName("something");
-			Assert.AreEqual(tnFormatter.Format(GetContext("x"), new TNImpl((TrivialName)name)), formatter.Format(GetContext("x"), new 
-				ENImpl<EntityName>(name)), "TrivialName uses TN formatter");
+			Assert.AreEqual("<x xsi:type=\"TN\">something</x>", formatter.Format(GetContext("x"), new ENImpl<EntityName>(name)).Trim(
+				), "TrivialName uses TN formatter");
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -52,12 +60,11 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		public virtual void TestFormatValueOrganizationName()
 		{
 			EnPropertyFormatter formatter = new EnPropertyFormatter();
-			OnPropertyFormatter onFormatter = new OnPropertyFormatter();
 			OrganizationName name = new OrganizationName();
 			name.AddNamePart(new EntityNamePart("prefix", OrganizationNamePartType.PREFIX));
 			name.AddNamePart(new EntityNamePart("Organization"));
-			Assert.AreEqual(onFormatter.Format(GetContext("x"), new ONImpl(name)), formatter.Format(GetContext("x"), new ENImpl<EntityName
-				>(name)), "OrganizationName uses ON formatter");
+			Assert.AreEqual("<x xsi:type=\"ON\"><prefix>prefix</prefix>Organization</x>", formatter.Format(GetContext("x"), new ENImpl
+				<EntityName>(name)).Trim(), "OrganizationName uses ON formatter");
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -65,12 +72,24 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		public virtual void TestFormatValuePersonName()
 		{
 			EnPropertyFormatter formatter = new EnPropertyFormatter();
-			PnPropertyFormatter pnFormatter = new PnPropertyFormatter();
 			PersonName name = new PersonName();
 			name.AddNamePart(new EntityNamePart("prefix", PersonNamePartType.PREFIX));
 			name.AddNamePart(new EntityNamePart("given", PersonNamePartType.GIVEN));
-			Assert.AreEqual(pnFormatter.Format(GetContext("x"), new PNImpl(name)), formatter.Format(GetContext("x"), new ENImpl<EntityName
-				>(name)), "PersonName uses PN formatter");
+			Assert.AreEqual("<x xsi:type=\"PN\"><prefix>prefix</prefix><given>given</given></x>", formatter.Format(GetContext("x"), new 
+				ENImpl<EntityName>(name)).Trim(), "PersonName uses PN formatter");
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void TestFormatValueNoSpecializationType()
+		{
+			EnPropertyFormatter formatter = new EnPropertyFormatter();
+			EntityName name = new EntityName();
+			name.AddNamePart(new EntityNamePart("prefix", PersonNamePartType.PREFIX));
+			name.AddNamePart(new EntityNamePart("given", PersonNamePartType.GIVEN));
+			Assert.AreEqual("<x><prefix>prefix</prefix><given>given</given></x>", formatter.Format(GetContext("x"), new ENImpl<EntityName
+				>(name)).Trim(), "result");
+			System.Console.Out.WriteLine(string.Empty);
 		}
 	}
 }

@@ -14,14 +14,17 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System;
+using System.Collections.Generic;
 using System.Xml;
+using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Datatype.Impl;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
+using Ca.Infoway.Messagebuilder.Error;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser;
 
@@ -42,38 +45,70 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 	[DataTypeHandler("EN")]
 	internal class EnElementParser : AbstractSingleElementParser<EntityName>
 	{
-		private readonly AbstractEntityNameElementParser onElementParser = new OnElementParser();
+		private OnElementParser onElementParser = new OnElementParser();
 
-		private readonly PnElementParser pnElementParser = new PnElementParser();
+		private PnElementParser pnElementParser = new PnElementParser();
 
-		private readonly TnElementParser tnElementParser = new TnElementParser();
+		private TnElementParser tnElementParser = new TnElementParser();
+
+		private readonly IDictionary<string, NameParser> nameParsers = new Dictionary<string, NameParser>();
 
 		/// <exception cref="Ca.Infoway.Messagebuilder.Marshalling.HL7.XmlToModelTransformationException"></exception>
 		protected override EntityName ParseNonNullNode(ParseContext context, XmlNode node, BareANY parseResult, Type expectedReturnType
 			, XmlToModelResult xmlToModelResult)
 		{
-			EntityName result;
-			if (tnElementParser.IsParseable(node, context))
+			EntityName result = null;
+			// The incoming xml should specify a specializationType or xsi:type in order to determine how to process the field. (CDA/R1 does allow for EN)
+			// However, it should be possible to determine which concrete type to use by applying all known name parsers.
+			string specializationType = GetSpecializationType(node);
+			if (StringUtils.IsBlank(specializationType))
 			{
-				result = (EntityName)tnElementParser.Parse(context, node, xmlToModelResult).BareValue;
+				specializationType = GetXsiType(node);
+			}
+			string upperCaseST = StringUtils.IsBlank(specializationType) ? string.Empty : specializationType.ToUpper();
+			NameParser nameParser = nameParsers.SafeGet(upperCaseST);
+			if (nameParser == null && StringUtils.IsNotBlank(specializationType))
+			{
+				// log error based on bad ST/XT
+				xmlToModelResult.AddHl7Error(new Hl7Error(Hl7ErrorCode.DATA_TYPE_ERROR, "Could not determine appropriate parser to use for EN specializationType/xsi:type of: "
+					 + specializationType, (XmlElement)node));
+			}
+			if (nameParser != null && nameParser.IsParseable(node, context))
+			{
+				result = (EntityName)nameParser.Parse(context, node, xmlToModelResult).BareValue;
 			}
 			else
 			{
-				if (onElementParser.IsParseable(node, context))
+				string actualParserUsed = null;
+				// try all known name parsers
+				if (tnElementParser.IsParseable(node, context))
 				{
-					result = (EntityName)onElementParser.Parse(context, node, xmlToModelResult).BareValue;
+					actualParserUsed = "TN";
+					result = (EntityName)tnElementParser.Parse(context, node, xmlToModelResult).BareValue;
 				}
 				else
 				{
 					if (pnElementParser.IsParseable(node, context))
 					{
+						actualParserUsed = "PN";
 						result = (EntityName)pnElementParser.Parse(context, node, xmlToModelResult).BareValue;
 					}
 					else
 					{
-						throw new XmlToModelTransformationException("Cannot figure out how to parse node " + node.ToString());
+						if (onElementParser.IsParseable(node, context))
+						{
+							actualParserUsed = "ON";
+							result = (EntityName)onElementParser.Parse(context, node, xmlToModelResult).BareValue;
+						}
+						else
+						{
+							throw new XmlToModelTransformationException("Cannot figure out how to parse EN node " + node.ToString());
+						}
 					}
 				}
+				// need to log warning - not able to parse name as expected
+				xmlToModelResult.AddHl7Error(new Hl7Error(Hl7ErrorCode.DATA_TYPE_ERROR, ErrorLevel.WARNING, "EN field has been handled as type "
+					 + actualParserUsed, (XmlElement)node));
 			}
 			return result;
 		}
@@ -81,6 +116,15 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		protected override BareANY DoCreateDataTypeInstance(string typeName)
 		{
 			return new ENImpl<EntityName>();
+		}
+
+		public EnElementParser()
+		{
+			{
+				this.nameParsers["ON"] = this.onElementParser;
+				this.nameParsers["PN"] = this.pnElementParser;
+				this.nameParsers["TN"] = this.tnElementParser;
+			}
 		}
 	}
 }

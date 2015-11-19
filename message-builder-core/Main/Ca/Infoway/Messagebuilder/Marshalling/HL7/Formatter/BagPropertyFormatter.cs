@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System.Collections.Generic;
@@ -27,9 +27,13 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 	[DataTypeHandler(new string[] { "BAG" })]
 	internal class BagPropertyFormatter : BaseCollectionPropertyFormatter
 	{
-		internal override string FormatNonNullValue(FormatContext context, ICollection<BareANY> list, int indentLevel)
+		public BagPropertyFormatter(FormatterRegistry formatterRegistry) : base(formatterRegistry, false)
 		{
-			return FormatAllElements(CreateSubContext(context), list, indentLevel);
+		}
+
+		protected override string FormatNonNullValue(FormatContext context, ICollection<BareANY> list, int indentLevel)
+		{
+			return FormatAllElements(context, CreateSubContext(context), list, indentLevel);
 		}
 	}
 }

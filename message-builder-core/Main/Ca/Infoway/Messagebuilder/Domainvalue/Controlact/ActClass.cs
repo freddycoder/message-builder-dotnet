@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using Ca.Infoway.Messagebuilder;
@@ -40,8 +40,17 @@ namespace Ca.Infoway.Messagebuilder.Domainvalue.Controlact
 		public static readonly Ca.Infoway.Messagebuilder.Domainvalue.Controlact.ActClass ALRT = new Ca.Infoway.Messagebuilder.Domainvalue.Controlact.ActClass
 			("ALRT");
 
+		public static readonly Ca.Infoway.Messagebuilder.Domainvalue.Controlact.ActClass BATTERY = new Ca.Infoway.Messagebuilder.Domainvalue.Controlact.ActClass
+			("BATTERY");
+
 		public static readonly Ca.Infoway.Messagebuilder.Domainvalue.Controlact.ActClass CACT = new Ca.Infoway.Messagebuilder.Domainvalue.Controlact.ActClass
 			("CACT");
+
+		public static readonly Ca.Infoway.Messagebuilder.Domainvalue.Controlact.ActClass CLUSTER = new Ca.Infoway.Messagebuilder.Domainvalue.Controlact.ActClass
+			("CLUSTER");
+
+		public static readonly Ca.Infoway.Messagebuilder.Domainvalue.Controlact.ActClass CONC = new Ca.Infoway.Messagebuilder.Domainvalue.Controlact.ActClass
+			("CONC");
 
 		public static readonly Ca.Infoway.Messagebuilder.Domainvalue.Controlact.ActClass COND = new Ca.Infoway.Messagebuilder.Domainvalue.Controlact.ActClass
 			("COND");
@@ -57,6 +66,9 @@ namespace Ca.Infoway.Messagebuilder.Domainvalue.Controlact
 
 		public static readonly Ca.Infoway.Messagebuilder.Domainvalue.Controlact.ActClass DOCBODY = new Ca.Infoway.Messagebuilder.Domainvalue.Controlact.ActClass
 			("DOCBODY");
+
+		public static readonly Ca.Infoway.Messagebuilder.Domainvalue.Controlact.ActClass ENC = new Ca.Infoway.Messagebuilder.Domainvalue.Controlact.ActClass
+			("ENC");
 
 		public static readonly Ca.Infoway.Messagebuilder.Domainvalue.Controlact.ActClass INFRM = new Ca.Infoway.Messagebuilder.Domainvalue.Controlact.ActClass
 			("INFRM");
@@ -101,6 +113,15 @@ namespace Ca.Infoway.Messagebuilder.Domainvalue.Controlact
 			get
 			{
 				return Ca.Infoway.Messagebuilder.Codesystem.CodeSystem.VOCABULARY_ACT_CLASS.Root;
+			}
+		}
+
+		/// <summary><inheritDoc></inheritDoc></summary>
+		public virtual string CodeSystemName
+		{
+			get
+			{
+				return null;
 			}
 		}
 

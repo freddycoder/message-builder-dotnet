@@ -50,14 +50,27 @@ namespace Ca.Infoway.Messagebuilder.Datatype {
 		/// </summary>
 		///
 		/// <returns>the language</returns>
-		String Language {
-		/// <summary>
-		/// Returns the language.
-		/// </summary>
-		///
-		/// <returns>the language</returns>
-		  get;
-		}
+        String Language
+        {
+            /// <summary>
+            /// Returns the language.
+            /// </summary>
+            ///
+            /// <returns>the language</returns>
+            get;
+            set;
+        }
+
+        Boolean IsCdata
+        {
+            /// <summary>
+            /// Returns whether the text should be considered CDATA.
+            /// </summary>
+            ///
+            /// <returns>whether the text should be considered CDATA</returns>
+            get;
+            set;
+        }
 		
 	
 	}

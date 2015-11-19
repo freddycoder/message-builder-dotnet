@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System.Collections.Generic;
@@ -23,8 +23,7 @@ using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
 using Ca.Infoway.Messagebuilder.Datatype.Lang.Util;
-using Ca.Infoway.Messagebuilder.Domainvalue;
-using Ca.Infoway.Messagebuilder.Marshalling.HL7;
+using Ca.Infoway.Messagebuilder.Error;
 using Ca.Infoway.Messagebuilder.Util.Xml;
 
 namespace Ca.Infoway.Messagebuilder.Marshalling.HL7
@@ -64,6 +63,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7
 			bool isBasic = StandardDataType.AD_BASIC.Type.Equals(type);
 			bool isSearch = StandardDataType.AD_SEARCH.Type.Equals(type);
 			bool isFull = StandardDataType.AD_FULL.Type.Equals(type);
+			bool isAd = StandardDataType.AD.Type.Equals(type);
 			foreach (PostalAddressPart postalAddressPart in postalAddress.Parts)
 			{
 				int partLength = StringUtils.Length(postalAddressPart.Value);
@@ -88,18 +88,18 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7
 				{
 					if (partType == PostalAddressPartType.DELIMITER)
 					{
-						if (!isBasic)
+						if (isSearch)
 						{
-							CreateError("Part type " + partType.Value + " is only allowed for AD.BASIC", element, propertyPath, errors);
+							CreateError("Part type " + partType.Value + " is not allowed for AD.SEARCH", element, propertyPath, errors);
 						}
 					}
 					else
 					{
-						if (isFull)
+						if (isFull || isAd)
 						{
 							if (!PostalAddressPartType.IsFullAddressPartType(partType))
 							{
-								CreateError("Part type " + partType.Value + " is not allowed for AD.FULL", element, propertyPath, errors);
+								CreateError("Part type " + partType.Value + " is not allowed for AD or AD.FULL", element, propertyPath, errors);
 							}
 						}
 						else
@@ -131,8 +131,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7
 				CreateError("AD.SEARCH must specify at least one part type", element, propertyPath, errors);
 			}
 			// city/state/postalCode/country mandatory for AD.FULL
-			// new change for R02.05 onwards - these fields are now only *required*, not mandatory
-			if (isFull && !SpecificationVersion.IsExactVersion(SpecificationVersion.R02_05_00_PA_AB, version))
+			// new change for R02.05 (pre-adopted by R02.04.03 AB) onwards - these fields are now only *required*, not mandatory
+			if (isFull && !SpecificationVersion.IsExactVersion(SpecificationVersion.R02_04_03_AB, version))
 			{
 				ValidatePartTypeProvided(PostalAddressPartType.CITY, postalAddress.Parts, element, propertyPath, errors);
 				ValidatePartTypeProvided(PostalAddressPartType.STATE, postalAddress.Parts, element, propertyPath, errors);
@@ -180,7 +180,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7
 			}
 			if (!isSearch)
 			{
-				foreach (x_BasicPostalAddressUse postalAddressUse in postalAddress.Uses)
+				foreach (Ca.Infoway.Messagebuilder.Domainvalue.PostalAddressUse postalAddressUse in postalAddress.Uses)
 				{
 					if (!IsAllowableUse(type, postalAddressUse, version.GetBaseVersion()))
 					{
@@ -195,6 +195,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7
 		{
 			bool isBasic = StandardDataType.AD_BASIC.Type.Equals(type);
 			bool isFull = StandardDataType.AD_FULL.Type.Equals(type);
+			bool isSearch = StandardDataType.AD_SEARCH.Type.Equals(type);
 			bool result = true;
 			if (partType == null)
 			{
@@ -208,7 +209,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7
 			{
 				if (partType == PostalAddressPartType.DELIMITER)
 				{
-					if (!isBasic)
+					if (isSearch)
 					{
 						result = false;
 					}
@@ -234,7 +235,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7
 			return result;
 		}
 
-		public virtual bool IsAllowableUse(string dataType, x_BasicPostalAddressUse use, Hl7BaseVersion baseVersion)
+		public virtual bool IsAllowableUse(string dataType, Ca.Infoway.Messagebuilder.Domainvalue.PostalAddressUse use, Hl7BaseVersion
+			 baseVersion)
 		{
 			return !StandardDataType.AD_SEARCH.Type.Equals(dataType) && use != null && use.CodeValue != null && ALLOWABLE_ADDRESS_USES
 				.Contains(use.CodeValue) && !(IsCeRx(baseVersion) && IsConfOrDir(use));
@@ -246,7 +248,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7
 			return baseVersion == Hl7BaseVersion.CERX;
 		}
 
-		private bool IsConfOrDir(x_BasicPostalAddressUse use)
+		private bool IsConfOrDir(Ca.Infoway.Messagebuilder.Domainvalue.PostalAddressUse use)
 		{
 			return Ca.Infoway.Messagebuilder.Domainvalue.Basic.X_BasicPostalAddressUse.CONFIDENTIAL.CodeValue.Equals(use.CodeValue) ||
 				 Ca.Infoway.Messagebuilder.Domainvalue.Basic.X_BasicPostalAddressUse.DIRECT.CodeValue.Equals(use.CodeValue);

@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System.Xml;
@@ -35,8 +35,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		public virtual void ShouldParseNullFlavor()
 		{
 			XmlNode node = CreateNode("<effectiveTime nullFlavor=\"NI\"></effectiveTime>");
-			ParseContext context = ParserContextImpl.Create("GTS.BOUNDEDPIVL", typeof(GeneralTimingSpecification), SpecificationVersion
-				.V02R02, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY);
+			ParseContext context = ParseContextImpl.Create("GTS.BOUNDEDPIVL", typeof(GeneralTimingSpecification), SpecificationVersion
+				.V02R02, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY, null, null, false);
 			GTS gts = (GTS)new GtsBoundedPivlElementParser().Parse(context, node, this.xmlResult);
 			Assert.AreEqual(Ca.Infoway.Messagebuilder.Domainvalue.Nullflavor.NullFlavor.NO_INFORMATION, gts.NullFlavor, "null flavor"
 				);
@@ -50,8 +50,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 				 + "    <width specializationType=\"TS.FULLDATE\" value=\"3\" unit=\"wk\"/>" + "  </comp>" + "  <comp>" + "    <frequency>"
 				 + "      <numerator specializationType=\"INT.NONNEG\" value=\"3\"/>" + "      <denominator specializationType=\"PQ.TIME\" value=\"1\" unit=\"d\"/>"
 				 + "    </frequency>" + "  </comp>" + "</effectiveTime>");
-			ParseContext context = ParserContextImpl.Create("GTS.BOUNDEDPIVL", typeof(GeneralTimingSpecification), SpecificationVersion
-				.V02R02, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY);
+			ParseContext context = ParseContextImpl.Create("GTS.BOUNDEDPIVL", typeof(GeneralTimingSpecification), SpecificationVersion
+				.V02R02, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY, null, null, false);
 			GeneralTimingSpecification result = (GeneralTimingSpecification)new GtsBoundedPivlElementParser().Parse(context, node, this
 				.xmlResult).BareValue;
 			Assert.IsNotNull(result, "result");
@@ -72,8 +72,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 				 + "      <numerator specializationType=\"INT.NONNEG\" value=\"3\"/>" + "      <denominator>" + "        <low unit=\"d\" value=\"3\"/>"
 				 + "        <high unit=\"d\" value=\"10\"/>" + "      </denominator>" + "    </frequency>" + "  </comp>" + "</effectiveTime>"
 				);
-			ParseContext context = ParserContextImpl.Create("GTS.BOUNDEDPIVL", typeof(GeneralTimingSpecification), SpecificationVersion
-				.V01R04_2_SK, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY);
+			ParseContext context = ParseContextImpl.Create("GTS.BOUNDEDPIVL", typeof(GeneralTimingSpecification), SpecificationVersion
+				.V01R04_2_SK, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY, null, null, false);
 			GeneralTimingSpecification result = (GeneralTimingSpecification)new GtsBoundedPivlElementParser().Parse(context, node, this
 				.xmlResult).BareValue;
 			Assert.IsNotNull(result, "result");
@@ -99,8 +99,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			XmlNode node = CreateNode("<effectiveTime specializationType=\"GTS.BOUNDEDPIVL\">" + "  <comp operator=\"I\">" + "    <low value=\"20050803\"/>"
 				 + "    <width value=\"3\" unit=\"wk\"/>" + "  </comp>" + "  <comp>" + "    <frequency>" + "      <numerator value=\"3\"/>"
 				 + "      <denominator value=\"1\" unit=\"d\"/>" + "    </frequency>" + "  </comp>" + "</effectiveTime>");
-			ParseContext context = ParserContextImpl.Create("GTS.BOUNDEDPIVL", typeof(GeneralTimingSpecification), SpecificationVersion
-				.V02R02, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY);
+			ParseContext context = ParseContextImpl.Create("GTS.BOUNDEDPIVL", typeof(GeneralTimingSpecification), SpecificationVersion
+				.V02R02, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY, null, null, false);
 			GeneralTimingSpecification result = (GeneralTimingSpecification)new GtsBoundedPivlElementParser().Parse(context, node, this
 				.xmlResult).BareValue;
 			Assert.IsNotNull(result, "result");
@@ -120,8 +120,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 				 + "    <width specializationType=\"TS.FULLDATE\" value=\"3\" unit=\"wk\"/>" + "  </comp>" + "  <fred>" + "    <frequency>"
 				 + "      <numerator specializationType=\"INT.NONNEG\" value=\"3\"/>" + "      <denominator specializationType=\"PQ.TIME\" value=\"1\" unit=\"d\"/>"
 				 + "    </frequency>" + "  </fred>" + "</effectiveTime>");
-			ParseContext context = ParserContextImpl.Create("GTS.BOUNDEDPIVL", typeof(GeneralTimingSpecification), SpecificationVersion
-				.V02R02, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY);
+			ParseContext context = ParseContextImpl.Create("GTS.BOUNDEDPIVL", typeof(GeneralTimingSpecification), SpecificationVersion
+				.V02R02, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY, null, null, false);
 			new GtsBoundedPivlElementParser().Parse(context, node, this.xmlResult);
 			Assert.IsFalse(this.xmlResult.IsValid(), "valid");
 		}

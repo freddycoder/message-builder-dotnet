@@ -14,9 +14,10 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
+using System.Collections.Generic;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Lang;
 
@@ -27,10 +28,6 @@ namespace Ca.Infoway.Messagebuilder
 	[System.Serializable]
 	public class SpecificationVersion : EnumPattern, VersionNumber
 	{
-		static SpecificationVersion()
-		{
-		}
-
 		private const long serialVersionUID = 3269139690668726076L;
 
 		/// <summary>This designation is used for a stand-alone version of the IEHR messages.</summary>
@@ -41,8 +38,8 @@ namespace Ca.Infoway.Messagebuilder
 		public static readonly Ca.Infoway.Messagebuilder.SpecificationVersion V01R04_3 = new Ca.Infoway.Messagebuilder.SpecificationVersion
 			("V01R04_3", "V01R04.3", Hl7BaseVersion.CERX);
 
-		public static readonly Ca.Infoway.Messagebuilder.SpecificationVersion V02R01 = new Ca.Infoway.Messagebuilder.SpecificationVersion
-			("V02R01", "V02R01", Hl7BaseVersion.MR2007_V02R01);
+		public static readonly Ca.Infoway.Messagebuilder.SpecificationVersion V01R04_4 = new Ca.Infoway.Messagebuilder.SpecificationVersion
+			("V01R04_4", "V01R04.4", Hl7BaseVersion.CERX);
 
 		/// <summary>
 		/// This designation is used for the major release of CeRx, CR, PR and other
@@ -92,17 +89,55 @@ namespace Ca.Infoway.Messagebuilder
 		public static readonly Ca.Infoway.Messagebuilder.SpecificationVersion R02_04_03_AB = new Ca.Infoway.Messagebuilder.SpecificationVersion
 			("R02_04_03_AB", "Alberta (R02_04_03)", Hl7BaseVersion.MR2009);
 
-		public static readonly Ca.Infoway.Messagebuilder.SpecificationVersion R02_05_00_PA_AB = new Ca.Infoway.Messagebuilder.SpecificationVersion
-			("R02_05_00_PA_AB", "Alberta (R02_05_00 Pre-Adopted)", Hl7BaseVersion.MR2009);
+		public static readonly Ca.Infoway.Messagebuilder.SpecificationVersion R02_04_03_IMM_AB = new Ca.Infoway.Messagebuilder.SpecificationVersion
+			("R02_04_03_IMM_AB", "Alberta (Immunization)", Hl7BaseVersion.MR2009);
+
+		public static readonly Ca.Infoway.Messagebuilder.SpecificationVersion V01R04_3_ON = new Ca.Infoway.Messagebuilder.SpecificationVersion
+			("V01R04_3_ON", "ON Drug", Hl7BaseVersion.CERX);
+
+		public static readonly Ca.Infoway.Messagebuilder.SpecificationVersion V02R04_BC = new Ca.Infoway.Messagebuilder.SpecificationVersion
+			("V02R04_BC", "BC (V02R04)", Hl7BaseVersion.MR2007);
+
+		public static readonly Ca.Infoway.Messagebuilder.SpecificationVersion R02_04_03_NS = new Ca.Infoway.Messagebuilder.SpecificationVersion
+			("R02_04_03_NS", "NS MR2009", Hl7BaseVersion.MR2009);
+
+		public static readonly Ca.Infoway.Messagebuilder.SpecificationVersion V01R04_3_NS = new Ca.Infoway.Messagebuilder.SpecificationVersion
+			("V01R04_3_NS", "NS Drug (CeRx)", Hl7BaseVersion.CERX);
+
+		public static readonly Ca.Infoway.Messagebuilder.SpecificationVersion CCDA_R1_1 = new Ca.Infoway.Messagebuilder.SpecificationVersion
+			("CCDA_R1_1", "CDA (CCDA_R1_1)", Hl7BaseVersion.MR2009);
+
+		public static readonly Ca.Infoway.Messagebuilder.SpecificationVersion CCDA_PCS_R1_1 = new Ca.Infoway.Messagebuilder.SpecificationVersion
+			("CCDA_PCS_R1_1", "CDA (CCDA_PCS_R1_1)", Hl7BaseVersion.MR2009);
+
+		public static readonly Ca.Infoway.Messagebuilder.SpecificationVersion PCS_CDA_R1_2 = new Ca.Infoway.Messagebuilder.SpecificationVersion
+			("PCS_CDA_R1_2", "CDA (PCS_CDA_R1_2)", Hl7BaseVersion.MR2009);
+
+		static SpecificationVersion()
+		{
+			// ON Drug
+			// BC V02R04
+			// NS releases
+			// CDA releases
+			V01R04_3.RegisterHl7ReleaseByDatatype("II.BUS", Hl7BaseVersion.MR2009);
+			V01R04_3.RegisterHl7ReleaseByDatatype("II.VER", Hl7BaseVersion.MR2009);
+			V01R04_3.RegisterHl7ReleaseByDatatype("II.BUS_AND_VER", Hl7BaseVersion.MR2009);
+			V01R04_3_ON.RegisterHl7ReleaseByDatatype("II.BUS", Hl7BaseVersion.MR2009);
+			V01R04_3_ON.RegisterHl7ReleaseByDatatype("II.VER", Hl7BaseVersion.MR2009);
+			V01R04_3_ON.RegisterHl7ReleaseByDatatype("II.BUS_AND_VER", Hl7BaseVersion.MR2009);
+			V01R04_2_SK.RegisterHl7ReleaseByDatatype("II.BUS", Hl7BaseVersion.MR2009);
+			V01R04_2_SK.RegisterHl7ReleaseByDatatype("II.VER", Hl7BaseVersion.MR2009);
+			V01R04_2_SK.RegisterHl7ReleaseByDatatype("II.BUS_AND_VER", Hl7BaseVersion.MR2009);
+		}
 
 		private readonly string description;
 
 		private readonly Hl7BaseVersion baseVersion;
 
+		private readonly IDictionary<string, Hl7BaseVersion> hl7ReleaseByDatatypeMap = new Dictionary<string, Hl7BaseVersion>();
+
 		private SpecificationVersion(string name, string description, Hl7BaseVersion baseVersion) : base(name)
 		{
-			// currently unused
-			// TBD if this is still considered as based on MR2009
 			this.description = description;
 			this.baseVersion = baseVersion;
 		}
@@ -135,19 +170,67 @@ namespace Ca.Infoway.Messagebuilder
 			return this.baseVersion;
 		}
 
-		/// <summary>Checks if the supplied VersionNumber is based on a particular HL7v3 release</summary>
+		/// <summary>Check registry to see if the provided datatype should be treated as specified by a specific HL7v3 release.</summary>
+		/// <remarks>
+		/// Check registry to see if the provided datatype should be treated as specified by a specific HL7v3 release. If not,
+		/// use the defined base version.
+		/// The great majority of implementations should never need to register specific datatypes against HL7v3 releases.
+		/// </remarks>
+		/// <param name="datatype">An object representing a datatype. Usually, but not restricted to, an instance of StandardDataType.
+		/// 	</param>
+		/// <returns>the HL7 release that the given datatype conforms to</returns>
+		public virtual Hl7BaseVersion GetBaseVersion(Typed datatype)
+		{
+			if (datatype != null && this.hl7ReleaseByDatatypeMap.ContainsKey(datatype.Type))
+			{
+				return this.hl7ReleaseByDatatypeMap.SafeGet(datatype.Type);
+			}
+			return GetBaseVersion();
+		}
+
+		/// <summary>Clear the registry.</summary>
+		/// <remarks>Clear the registry.</remarks>
+		public virtual void ClearHl7ReleaseByDatatypeRegistry()
+		{
+			this.hl7ReleaseByDatatypeMap.Clear();
+		}
+
+		/// <summary>Register a specific datatype against a particular HL7v3 release (for validation and processing).</summary>
+		/// <remarks>Register a specific datatype against a particular HL7v3 release (for validation and processing).</remarks>
+		/// <param name="datatype"></param>
+		/// <param name="hl7BaseVersion"></param>
+		public virtual void RegisterHl7ReleaseByDatatype(string datatype, Hl7BaseVersion hl7BaseVersion)
+		{
+			this.hl7ReleaseByDatatypeMap[datatype] = hl7BaseVersion;
+		}
+
+		/// <summary>Checks if the supplied VersionNumber is based on a particular HL7v3 release.</summary>
+		/// <remarks>
+		/// Checks if the supplied VersionNumber is based on a particular HL7v3 release.
+		/// This now takes in the specific datatype for which this check is being performed. If the datatype
+		/// registry contains this datatype then its registered version is returned, otherwise the base version
+		/// is returned.
+		/// </remarks>
 		/// <param name="version"></param>
 		/// <param name="versionToCheck"></param>
-		/// <returns></returns>
-		public static bool IsVersion(VersionNumber version, Hl7BaseVersion versionToCheck)
+		/// <returns>whether the version supplied is a match for the given HL7v3 release</returns>
+		public static bool IsVersion(Typed datatype, VersionNumber version, Hl7BaseVersion versionToCheck)
 		{
 			if (versionToCheck == null || version == null)
 			{
 				return false;
 			}
-			return version.GetBaseVersion() == versionToCheck;
+			return version.GetBaseVersion(datatype) == versionToCheck;
 		}
 
+		/// <summary>Checks that a provided version is a match for a known version.</summary>
+		/// <remarks>
+		/// Checks that a provided version is a match for a known version. Usually done for jurisdiction-specific datatype processing.
+		/// This check does _not_ compare the contents of the datatype registry.
+		/// </remarks>
+		/// <param name="version1"></param>
+		/// <param name="version2"></param>
+		/// <returns>whether the versions match</returns>
 		public static bool IsExactVersion(VersionNumber version1, VersionNumber version2)
 		{
 			if (version1 == null || version1.VersionLiteral == null || version2 == null || version2.VersionLiteral == null)

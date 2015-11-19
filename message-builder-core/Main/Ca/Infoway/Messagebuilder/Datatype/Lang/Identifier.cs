@@ -183,7 +183,22 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 				this.root = value;
 			}
 		}
-		
+
+        /// <summary>
+        /// The assigning authority name (only applicable for R2 datatype version)
+        /// </summary>
+        public String AssigningAuthorityName {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// The displayable value (only applicable for R2 datatype version)
+        /// </summary>
+        public String Displayable {
+            get;
+            set;
+        }
 	
 		/// <summary>
 		/// Formats this object as a string.
@@ -191,7 +206,11 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		///
 		/// <returns>the string representation of this object</returns>
 		public override  System.String ToString() {
-            return "root={" + this.root + "},extension={" + this.extension + "}" + (this.version == null ? "" : ",version={" + this.version + "}");
+            return "root={" + this.root + "},extension={" + (this.extension == null ? "null" : this.extension) + "}" 
+        		+ (this.version == null ? "" : ",version={" + this.version + "}") 
+        		+ (this.AssigningAuthorityName == null ? "" : ",assigningAuthorityName={" + this.AssigningAuthorityName + "}")
+        		+ (this.Displayable == null ? "" : ",displayable={" + this.Displayable + "}") 
+        		;
 		}
 	
 		/// <summary>
@@ -200,7 +219,12 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		///
 		/// <returns>the hashc of this object</returns>
 		public override int GetHashCode() {
-			return new HashCodeBuilder().Append(this.root).Append(this.extension).Append(this.version)
+			return new HashCodeBuilder()
+                    .Append(this.root)
+                    .Append(this.extension)
+                    .Append(this.version)
+                    .Append(this.AssigningAuthorityName)
+                    .Append(this.Displayable)
 					.ToHashCode();
 		}
 	
@@ -225,7 +249,9 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
                 .Append(this.root, that.root)
                 .Append(this.extension, that.extension)
                 .Append(this.version, that.version)
+                .Append(this.AssigningAuthorityName, that.AssigningAuthorityName)
+                .Append(this.Displayable, that.Displayable)
                 .IsEquals();
-		}
+        }
 	}
 }

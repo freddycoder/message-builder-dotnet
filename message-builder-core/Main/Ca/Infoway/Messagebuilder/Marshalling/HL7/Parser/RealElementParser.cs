@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System;
@@ -22,6 +22,7 @@ using System.Xml;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Datatype.Impl;
+using Ca.Infoway.Messagebuilder.Error;
 using Ca.Infoway.Messagebuilder.Lang;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser;
@@ -42,7 +43,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 	/// http://www.hl7.org/v3ballot/html/infrastructure/itsxml/datatypes-its-xml.htm#dtimpl-REAL
 	/// CHI further breaks down the datatype into REAL.CONF and REAL.COORD subtypes.
 	/// </remarks>
-	[DataTypeHandler(new string[] { "REAL.CONF", "REAL.COORD" })]
+	[DataTypeHandler(new string[] { "REAL.CONF", "REAL.COORD", "REAL" })]
 	internal class RealElementParser : AbstractSingleElementParser<BigDecimal>
 	{
 		/// <exception cref="Ca.Infoway.Messagebuilder.Marshalling.HL7.XmlToModelTransformationException"></exception>
@@ -71,21 +72,24 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		{
 			if (NumberUtil.IsNumber(value))
 			{
-				string integerPart = value.Contains(".") ? StringUtils.SubstringBefore(value, ".") : value;
-				string decimalPart = value.Contains(".") ? StringUtils.SubstringAfter(value, ".") : string.Empty;
-				RealFormat format = GetFormat(type);
-				if (StandardDataType.REAL_CONF.Type.Equals(type) && !ValueIsBetweenZeroAndOneInclusive(integerPart, decimalPart))
+				if (!StandardDataType.REAL.Type.Equals(type))
 				{
-					RecordValueMustBeBetweenZeroAndOneError(value, type, result, element);
-				}
-				// TM - decided to remove check on overall length; we check before and after decimal lengths, which should be sufficient
-				if (StringUtils.Length(integerPart) > format.GetMaxIntegerPartLength())
-				{
-					RecordTooManyCharactersBeforeDecimalError(value, type, result, element, format);
-				}
-				if (StringUtils.Length(decimalPart) > format.GetMaxDecimalPartLength())
-				{
-					RecordTooManyDigitsAfterDecimalError(value, type, result, element, format);
+					string integerPart = value.Contains(".") ? StringUtils.SubstringBefore(value, ".") : value;
+					string decimalPart = value.Contains(".") ? StringUtils.SubstringAfter(value, ".") : string.Empty;
+					RealFormat format = GetFormat(type);
+					if (StandardDataType.REAL_CONF.Type.Equals(type) && !ValueIsBetweenZeroAndOneInclusive(integerPart, decimalPart))
+					{
+						RecordValueMustBeBetweenZeroAndOneError(value, type, result, element);
+					}
+					// TM - decided to remove check on overall length; we check before and after decimal lengths, which should be sufficient
+					if (StringUtils.Length(integerPart) > format.GetMaxIntegerPartLength())
+					{
+						RecordTooManyCharactersBeforeDecimalError(value, type, result, element, format);
+					}
+					if (StringUtils.Length(decimalPart) > format.GetMaxDecimalPartLength())
+					{
+						RecordTooManyDigitsAfterDecimalError(value, type, result, element, format);
+					}
 				}
 			}
 			else

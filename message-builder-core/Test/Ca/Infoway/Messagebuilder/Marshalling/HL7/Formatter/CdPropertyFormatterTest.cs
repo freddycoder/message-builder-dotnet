@@ -14,11 +14,12 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System.Collections.Generic;
 using Ca.Infoway.Messagebuilder;
+using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Datatype.Impl;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter;
@@ -38,12 +39,22 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 	[TestFixture]
 	public class CdPropertyFormatterTest : FormatterTestCase
 	{
+		private class TestableCdPropertyFormatter : CdPropertyFormatter, TestableAbstractValueNullFlavorPropertyFormatter<Code>
+		{
+			public virtual IDictionary<string, string> GetAttributeNameValuePairsForTest(FormatContext context, Code t, BareANY bareAny
+				)
+			{
+				return base.GetAttributeNameValuePairs(context, t, bareAny);
+			}
+		}
+
 		/// <exception cref="System.Exception"></exception>
 		[Test]
 		public virtual void TestGetAttributeNameValuePairsNullValue()
 		{
-			IDictionary<string, string> result = new CdPropertyFormatter().GetAttributeNameValuePairs(new FormatContextImpl(this.result
-				, null, "name", null, null), null, null);
+			IDictionary<string, string> result = new CdPropertyFormatterTest.TestableCdPropertyFormatter().GetAttributeNameValuePairsForTest
+				(new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl(this.result, null, "name", null, null, null, 
+				false), null, null);
 			Assert.AreEqual(0, result.Count, "map size");
 		}
 
@@ -52,8 +63,9 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		public virtual void TestGetAttributeNameValuePairs()
 		{
 			// used as expected: an enumerated object is passed in
-			IDictionary<string, string> result = new CdPropertyFormatter().GetAttributeNameValuePairs(new FormatContextImpl(this.result
-				, null, "name", null, null), CeRxDomainTestValues.CENTIMETRE, new CDImpl());
+			IDictionary<string, string> result = new CdPropertyFormatterTest.TestableCdPropertyFormatter().GetAttributeNameValuePairsForTest
+				(new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl(this.result, null, "name", null, null, null, 
+				false), CeRxDomainTestValues.CENTIMETRE, new CDImpl());
 			Assert.AreEqual(2, result.Count, "map size");
 			Assert.IsTrue(result.ContainsKey("code"), "key as expected");
 			Assert.AreEqual("cm", result.SafeGet("code"), "value as expected");
@@ -65,7 +77,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		[Test]
 		public virtual void TestHandlingOfTrivialCodes()
 		{
-			string result = new CdPropertyFormatter().Format(GetContext("name"), new CDImpl(Ca.Infoway.Messagebuilder.Domainvalue.Nullflavor.NullFlavor
+			string result = new CdPropertyFormatterTest.TestableCdPropertyFormatter().Format(GetContext("name"), new CDImpl(Ca.Infoway.Messagebuilder.Domainvalue.Nullflavor.NullFlavor
 				.NO_INFORMATION));
 			Assert.IsTrue(this.result.IsValid());
 			Assert.AreEqual("<name nullFlavor=\"NI\"/>", StringUtils.Trim(result), "result");
@@ -75,7 +87,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		[Test]
 		public virtual void TestHandlingOfSimpleCodes()
 		{
-			string result = new CdPropertyFormatter().Format(GetContext("name"), new CDImpl(CeRxDomainTestValues.CENTIMETRE));
+			string result = new CdPropertyFormatterTest.TestableCdPropertyFormatter().Format(GetContext("name"), new CDImpl(CeRxDomainTestValues
+				.CENTIMETRE));
 			Assert.AreEqual(1, this.result.GetHl7Errors().Count);
 			Assert.IsTrue(this.result.GetHl7Errors()[0].GetMessage().StartsWith("Could not locate a registered domain type to match "
 				));
@@ -88,7 +101,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		{
 			CDImpl cd = new CDImpl(Ca.Infoway.Messagebuilder.Domainvalue.Nullflavor.NullFlavor.NO_INFORMATION);
 			cd.OriginalText = "some original text";
-			string result = new CdPropertyFormatter().Format(GetContext("name"), cd);
+			string result = new CdPropertyFormatterTest.TestableCdPropertyFormatter().Format(GetContext("name"), cd);
 			Assert.IsTrue(this.result.IsValid());
 			Assert.AreEqual("<name nullFlavor=\"NI\"><originalText>some original text</originalText></name>", StringUtils.Trim(result
 				), "result");
@@ -100,7 +113,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		{
 			CDImpl cd = new CDImpl(null);
 			cd.OriginalText = "some original text";
-			string result = new CdPropertyFormatter().Format(GetContext("name"), cd);
+			string result = new CdPropertyFormatterTest.TestableCdPropertyFormatter().Format(GetContext("name"), cd);
 			Assert.IsFalse(this.result.IsValid());
 			Assert.AreEqual(1, this.result.GetHl7Errors().Count);
 			// code/codeSystem mandatory (need a CWE coding strength to allow this run to pass without errors)
@@ -112,8 +125,9 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		public virtual void TestNoValueAndOptional()
 		{
 			CDImpl cd = new CDImpl(null);
-			string result = new CdPropertyFormatter().Format(new FormatContextImpl(this.result, null, "name", null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
-				.OPTIONAL, false, SpecificationVersion.R02_04_03, null, null, CodingStrength.CNE), cd);
+			string result = new CdPropertyFormatterTest.TestableCdPropertyFormatter().Format(new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl
+				(this.result, null, "name", null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL, null, false, SpecificationVersion
+				.R02_04_03, null, null, CodingStrength.CNE, false), cd);
 			Assert.IsTrue(this.result.IsValid());
 			Assert.AreEqual(string.Empty, StringUtils.Trim(result), "result");
 		}
@@ -123,8 +137,9 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		public virtual void TestNoValueAndMandatory()
 		{
 			CDImpl cd = new CDImpl(null);
-			string result = new CdPropertyFormatter().Format(new FormatContextImpl(this.result, null, "name", null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
-				.MANDATORY, false, SpecificationVersion.R02_04_03, null, null, CodingStrength.CNE), cd);
+			string result = new CdPropertyFormatterTest.TestableCdPropertyFormatter().Format(new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl
+				(this.result, null, "name", null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY, null, false, SpecificationVersion
+				.R02_04_03, null, null, CodingStrength.CNE, false), cd);
 			Assert.IsFalse(this.result.IsValid());
 			Assert.AreEqual(1, this.result.GetHl7Errors().Count);
 			// "name" mandatory
@@ -137,9 +152,10 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		[Test]
 		public virtual void TestNoInternalValuesAndMandatory()
 		{
-			CDImpl cd = new CDImpl(new _Code_126());
-			string result = new CdPropertyFormatter().Format(new FormatContextImpl(this.result, null, "name", null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
-				.MANDATORY, false, SpecificationVersion.R02_04_03, null, null, CodingStrength.CNE), cd);
+			CDImpl cd = new CDImpl(new _Code_133());
+			string result = new CdPropertyFormatterTest.TestableCdPropertyFormatter().Format(new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl
+				(this.result, null, "name", null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY, null, false, SpecificationVersion
+				.R02_04_03, null, null, CodingStrength.CNE, false), cd);
 			Assert.IsFalse(this.result.IsValid());
 			Assert.AreEqual(1, this.result.GetHl7Errors().Count);
 			Assert.IsTrue(this.result.GetHl7Errors()[0].GetMessage().StartsWith("For codes with codingStrength of CNE, code and codeSystem properties must be provided."
@@ -147,9 +163,9 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			Assert.AreEqual("<name/>", StringUtils.Trim(result), "result");
 		}
 
-		private sealed class _Code_126 : Code
+		private sealed class _Code_133 : Code
 		{
-			public _Code_126()
+			public _Code_133()
 			{
 			}
 
@@ -168,6 +184,14 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 					return null;
 				}
 			}
+
+			public string CodeSystemName
+			{
+				get
+				{
+					return null;
+				}
+			}
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -176,7 +200,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		{
 			CDImpl cd = new CDImpl(null);
 			cd.Translations.Add(new CDImpl(MockEnum.FRED));
-			string result = new CdPropertyFormatter().Format(GetContext("name"), cd);
+			string result = new CdPropertyFormatterTest.TestableCdPropertyFormatter().Format(GetContext("name"), cd);
 			Assert.IsFalse(this.result.IsValid());
 			Assert.AreEqual(1, this.result.GetHl7Errors().Count);
 			// code/codeSystem mandatory
@@ -190,7 +214,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			CDImpl cd = new CDImpl(null);
 			cd.Translations.Add(new CDImpl(MockEnum.FRED));
 			cd.Translations.Add(new CDImpl(MockEnum.BARNEY));
-			string result = new CdPropertyFormatter().Format(GetContext("name"), cd);
+			string result = new CdPropertyFormatterTest.TestableCdPropertyFormatter().Format(GetContext("name"), cd);
 			Assert.IsFalse(this.result.IsValid());
 			Assert.AreEqual(1, this.result.GetHl7Errors().Count);
 			// code/codeSystem mandatory

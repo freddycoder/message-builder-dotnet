@@ -14,14 +14,13 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System.Collections.Generic;
 using System.Text;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter;
-using Ca.Infoway.Messagebuilder.Util.Xml;
 
 namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 {
@@ -59,7 +58,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			SIGNATURE_ATTRIBUTES["xmlns"] = "http://www.w3.org/2000/09/xmldsig#";
 		}
 
-		internal override string FormatNonNullValue(FormatContext context, string signature, int indentLevel)
+		protected override string FormatNonNullValue(FormatContext context, string signature, int indentLevel)
 		{
 			StringBuilder buffer = new StringBuilder();
 			buffer.Append(CreateElement(context, TOP_LEVEL_ATTRIBUTES, indentLevel, false, true));
@@ -68,7 +67,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			{
 				buffer.Append(signature);
 			}
-			buffer.Append(XmlRenderingUtils.CreateEndElement("signature", 0, true));
+			buffer.Append(CreateElementClosure("signature", 0, true));
 			buffer.Append(CreateElementClosure(context, indentLevel, true));
 			return buffer.ToString();
 		}

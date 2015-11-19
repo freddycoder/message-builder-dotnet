@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2013-03-08 11:06:36 -0500 (Fri, 08 Mar 2013) $
- * Revision:      $LastChangedRevision: 6699 $
+ * Author:        $LastChangedBy: jmis $
+ * Last modified: $LastChangedDate: 2015-05-27 08:43:37 -0400 (Wed, 27 May 2015) $
+ * Revision:      $LastChangedRevision: 9535 $
  */
 using System;
 using System.Collections.Generic;
@@ -35,13 +35,31 @@ namespace Ca.Infoway.Messagebuilder.Xml
 		private string version;
 
 		[XmlAttributeAttribute(Required = false)]
+		private bool cda;
+
+		[XmlAttributeAttribute(Required = false)]
+		private bool generatedAsR2;
+
+		[XmlAttributeAttribute(Required = false)]
+		private string descriptiveName;
+
+		[XmlAttributeAttribute(Required = false)]
+		private string realmCode;
+
+		[XmlAttributeAttribute(Required = false)]
 		private string component;
 
 		[XmlAttributeAttribute(Required = false)]
-		private string schemaVersion = "1.1";
+		private string schemaVersion = "2.0";
+
+		[XmlAttributeAttribute(Required = false)]
+		private string generatedBy;
 
 		[ElementAttribute(Required = false)]
 		private Ca.Infoway.Messagebuilder.Xml.Vocabulary vocabulary;
+
+		[ElementAttribute(Required = false)]
+		private Ca.Infoway.Messagebuilder.Xml.SchemaMetadata schemaMetadata;
 
 		[ElementListAttribute(Name = "remixHistory", Required = false, Inline = true, Entry = "remixHistoryEntry")]
 		private IList<MessageSetHistory> remixHistory = new List<MessageSetHistory>();
@@ -52,6 +70,13 @@ namespace Ca.Infoway.Messagebuilder.Xml
 
 		[ElementMapAttribute(Name = "interaction", Key = "name", Required = false, Inline = true, Attribute = true)]
 		private IDictionary<string, Interaction> interactions = new SortedList<string, Interaction>();
+
+		[ElementMapAttribute(Name = "constrainedDatatype", Key = "name", Required = false, Inline = true, Attribute = true, Entry
+			 = "constrainedDatatypeEntry")]
+		private IDictionary<string, ConstrainedDatatype> constrainedDatatypes = new SortedList<string, ConstrainedDatatype>();
+
+		[ElementListAttribute(Required = false, Inline = true, Entry = "schematronContext")]
+		private IList<SchematronContext> schematronContexts = new List<SchematronContext>();
 
 		/// <summary>Get the version code that this message set represents.</summary>
 		/// <remarks>Get the version code that this message set represents.</remarks>
@@ -69,6 +94,36 @@ namespace Ca.Infoway.Messagebuilder.Xml
 			{
 				string version = value;
 				this.version = version;
+			}
+		}
+
+		public virtual bool Cda
+		{
+			get
+			{
+				return cda;
+			}
+			set
+			{
+				bool cda = value;
+				this.cda = cda;
+			}
+		}
+
+		/// <summary>Denotes if this message set was generated for R2 data types</summary>
+		/// <returns>whether this message set was generated for R2 data types</returns>
+		/// <summary>Sets whether this message set was generated for R2 data types</summary>
+		/// <value>- whether this message set was generated for R2 data types</value>
+		public virtual bool GeneratedAsR2
+		{
+			get
+			{
+				return generatedAsR2;
+			}
+			set
+			{
+				bool generatedAsR2 = value;
+				this.generatedAsR2 = generatedAsR2;
 			}
 		}
 
@@ -97,6 +152,14 @@ namespace Ca.Infoway.Messagebuilder.Xml
 			}
 		}
 
+		public virtual void AddInteraction(Interaction interaction)
+		{
+			if (interaction != null && interaction.Name != null)
+			{
+				this.interactions[interaction.Name] = interaction;
+			}
+		}
+
 		/// <summary>Get a map of all package locations, keyed by package location id.</summary>
 		/// <remarks>Get a map of all package locations, keyed by package location id.</remarks>
 		/// <returns>- the map</returns>
@@ -114,6 +177,21 @@ namespace Ca.Infoway.Messagebuilder.Xml
 				IDictionary<string, PackageLocation> packageLocations = value;
 				this.packageLocations = packageLocations;
 			}
+		}
+
+		/// <summary>Get a single PackageLocation by name</summary>
+		/// <param name="name">the name of the package location</param>
+		/// <returns>the package location, or null if no such location is known</returns>
+		public virtual PackageLocation GetPackageLocation(string name)
+		{
+			return this.packageLocations.SafeGet(name);
+		}
+
+		/// <summary>Add a new package location to the MessageSet</summary>
+		/// <param name="packageLocation">the package location</param>
+		public virtual void AddPackageLocation(PackageLocation packageLocation)
+		{
+			this.packageLocations[packageLocation.Name] = packageLocation;
 		}
 
 		/// <summary>Get a part by part type name.</summary>
@@ -144,6 +222,27 @@ namespace Ca.Infoway.Messagebuilder.Xml
 							messagePart = location.MessageParts.SafeGet(location.RootType);
 						}
 					}
+				}
+			}
+			return messagePart;
+		}
+
+		/// <summary>Get a template parameter part by name, relative to a referring part.</summary>
+		/// <remarks>Get a template parameter part by name, relative to a referring part. It is assumed that the parameter part will be in the same package location
+		/// 	</remarks>
+		/// <param name="basePart">the message part referring to the template parameter</param>
+		/// <param name="templateParameterName">the unqualified name of the template parameter</param>
+		/// <returns>the message part defining the template parameter</returns>
+		public virtual MessagePart ResolveTemplateParameter(MessagePart basePart, string templateParameterName)
+		{
+			MessagePart messagePart = null;
+			if (basePart != null)
+			{
+				string packageLocationName = StringUtils.SubstringBefore(basePart.Name, ".");
+				PackageLocation location = PackageLocations.SafeGet(packageLocationName);
+				if (location != null && StringUtils.IsNotBlank(templateParameterName))
+				{
+					messagePart = location.MessageParts.SafeGet(packageLocationName + "." + templateParameterName);
 				}
 			}
 			return messagePart;
@@ -196,6 +295,53 @@ namespace Ca.Infoway.Messagebuilder.Xml
 			else
 			{
 				return null;
+			}
+		}
+
+		/// <summary>Add a constrained datatype.</summary>
+		/// <remarks>Add a constrained datatype.</remarks>
+		/// <param name="type">- the constrained type to add</param>
+		public virtual void AddConstrainedDatatype(ConstrainedDatatype type)
+		{
+			this.constrainedDatatypes[type.Name] = type;
+		}
+
+		/// <summary>Check whether the message set contains a constrained datatype with the specified name</summary>
+		/// <param name="typeName">the name to check</param>
+		/// <returns>true is a constrained datatype with that name is defined; false otherwise</returns>
+		public virtual bool HasConstrainedDatatype(string typeName)
+		{
+			return this.constrainedDatatypes.ContainsKey(typeName);
+		}
+
+		/// <summary>Get the list of all constrained datatypes</summary>
+		/// <returns>the list of all constrained datatypes</returns>
+		public virtual IList<ConstrainedDatatype> GetAllConstrainedDatatypes()
+		{
+			IList<ConstrainedDatatype> result = new List<ConstrainedDatatype>();
+			result.AddAll(this.constrainedDatatypes.Values);
+			return result;
+		}
+
+		/// <summary>Get a constrained datatype by name</summary>
+		/// <param name="typeName">the name</param>
+		/// <returns>the constrained datatype</returns>
+		public virtual ConstrainedDatatype GetConstrainedDatatype(string typeName)
+		{
+			return this.constrainedDatatypes.SafeGet(typeName);
+		}
+
+		public virtual IDictionary<string, ConstrainedDatatype> ConstrainedDatatypes
+		{
+			get
+			{
+				//For XML Serialization in .NET
+				return constrainedDatatypes;
+			}
+			set
+			{
+				IDictionary<string, ConstrainedDatatype> constrainedDatatypes = value;
+				this.constrainedDatatypes = constrainedDatatypes;
 			}
 		}
 
@@ -254,6 +400,11 @@ namespace Ca.Infoway.Messagebuilder.Xml
 			}
 		}
 
+		/// <summary>
+		/// Get the schema metadata
+		/// Only used in the context of CDA documents
+		/// </summary>
+		/// <returns>the schema metadata</returns>
 		public virtual string SchemaVersion
 		{
 			get
@@ -267,9 +418,77 @@ namespace Ca.Infoway.Messagebuilder.Xml
 			}
 		}
 
-		public virtual bool IsVocabularyDataPresent()
+		public virtual bool VocabularyDataPresent
 		{
-			return this.vocabulary != null && !(this.vocabulary.ConceptDomains.IsEmpty() && this.vocabulary.ValueSets.IsEmpty());
+			get
+			{
+				return this.vocabulary != null && !(this.vocabulary.ConceptDomains.IsEmpty() && this.vocabulary.ValueSets.IsEmpty());
+			}
+		}
+
+		public virtual Ca.Infoway.Messagebuilder.Xml.SchemaMetadata SchemaMetadata
+		{
+			get
+			{
+				return schemaMetadata;
+			}
+			set
+			{
+				Ca.Infoway.Messagebuilder.Xml.SchemaMetadata schemaMetadata = value;
+				this.schemaMetadata = schemaMetadata;
+			}
+		}
+
+		public virtual string GeneratedBy
+		{
+			get
+			{
+				return generatedBy;
+			}
+			set
+			{
+				string generatedBy = value;
+				this.generatedBy = generatedBy;
+			}
+		}
+
+		public virtual string DescriptiveName
+		{
+			get
+			{
+				return descriptiveName;
+			}
+			set
+			{
+				string descriptiveName = value;
+				this.descriptiveName = descriptiveName;
+			}
+		}
+
+		public virtual string RealmCode
+		{
+			get
+			{
+				return realmCode;
+			}
+			set
+			{
+				string realmCode = value;
+				this.realmCode = realmCode;
+			}
+		}
+
+		public virtual IList<SchematronContext> SchematronContexts
+		{
+			get
+			{
+				return schematronContexts;
+			}
+		}
+
+		public virtual void AddSchematronContext(SchematronContext context)
+		{
+			this.schematronContexts.Add(context);
 		}
 	}
 }

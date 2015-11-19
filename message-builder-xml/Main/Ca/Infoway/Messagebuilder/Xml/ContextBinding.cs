@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using Platform.SimpleXml;
@@ -40,7 +40,7 @@ namespace Ca.Infoway.Messagebuilder.Xml
 		{
 			this.conceptDomain = conceptDomain;
 			this.realm = realm;
-			CodingStrength = codingStrength;
+			SetCodingStrength(codingStrength);
 		}
 
 		public ContextBinding(string conceptDomain, string realm, string codingStrength)
@@ -71,18 +71,18 @@ namespace Ca.Infoway.Messagebuilder.Xml
 			}
 		}
 
-		private Ca.Infoway.Messagebuilder.Xml.CodingStrength CodingStrength
+		public virtual Ca.Infoway.Messagebuilder.Xml.CodingStrength CodingStrength
 		{
 			get
 			{
 				return Ca.Infoway.Messagebuilder.Xml.CodingStrength.ValueOf<Ca.Infoway.Messagebuilder.Xml.CodingStrength>(this.codingStrength
 					);
 			}
-			set
-			{
-				Ca.Infoway.Messagebuilder.Xml.CodingStrength codingStrength = value;
-				this.codingStrength = codingStrength == null ? null : codingStrength.Name;
-			}
+		}
+
+		private void SetCodingStrength(Ca.Infoway.Messagebuilder.Xml.CodingStrength codingStrength)
+		{
+			this.codingStrength = codingStrength == null ? null : codingStrength.Name;
 		}
 	}
 }

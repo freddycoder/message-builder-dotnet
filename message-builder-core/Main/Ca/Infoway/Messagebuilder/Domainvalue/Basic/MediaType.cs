@@ -252,7 +252,10 @@ namespace Ca.Infoway.Messagebuilder.Domainvalue.Basic
 				return Ca.Infoway.Messagebuilder.Codesystem.CodeSystem.VOCABULARY_DOCUMENT_MEDIA_TYPES.Root;
 			}
 		}
-		
+
+		public virtual String CodeSystemName {
+            get { return null; }
+        }
 	
 		/// <summary>
 		/// Returns the c value.

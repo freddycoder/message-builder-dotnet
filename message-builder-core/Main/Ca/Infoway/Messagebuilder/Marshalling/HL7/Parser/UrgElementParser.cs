@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System;
@@ -22,8 +22,10 @@ using System.Xml;
 using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Datatype.Impl;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
+using Ca.Infoway.Messagebuilder.Error;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser;
+using Ca.Infoway.Messagebuilder.Util.Xml;
 using ILOG.J2CsMapping.Collections.Generics;
 
 namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
@@ -47,9 +49,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		{
 			Boolean? result = null;
 			XmlNodeList childNodes = node.ChildNodes;
-			for (int i = 0; i < childNodes.Count; i++)
+			foreach (XmlNode child in new XmlNodeListIterable(childNodes))
 			{
-				XmlNode child = childNodes.Item(i);
 				if (elementName.EqualsIgnoreCase(child.Name))
 				{
 					string inclusive = GetAttributeValue(child, "inclusive");
@@ -79,7 +80,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		private ParseContext ConvertContext(ParseContext context)
 		{
 			string newType = "IVL<" + Hl7DataTypeName.GetParameterizedType(context.Type) + ">";
-			return ParserContextImpl.Create(newType, context);
+			return ParseContextImpl.CreateWithConstraints(newType, context);
 		}
 
 		private UncertainRange<V> ConvertIntervalToUncertainRange(Interval<V> parsedInterval, Boolean? lowInclusive, Boolean? highInclusive

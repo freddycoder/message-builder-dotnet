@@ -14,8 +14,8 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-09-21 11:11:24 -0400 (Wed, 21 Sep 2011) $
- * Revision:      $LastChangedRevision: 3001 $
+ * Last modified: $LastChangedDate: 2015-03-11 10:40:50 -0400 (Wed, 11 Mar 2015) $
+ * Revision:      $LastChangedRevision: 9319 $
  */
 
 /// ---------------------------------------------------------------------------------------------------
@@ -26,6 +26,7 @@
 namespace Ca.Infoway.Messagebuilder.Datatype.Impl {
 	
 	using Ca.Infoway.Messagebuilder.Datatype;
+    using Ca.Infoway.Messagebuilder.Datatype.Lang.Util;
 	using Ca.Infoway.Messagebuilder.Domainvalue;
 	using System;
 	using System.Collections;
@@ -42,7 +43,7 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Impl {
 	/// </summary>
 	///
 	/// <param name="V"> the underlying   datatype</param>
-	public class ANYImpl<V> : BareANYImpl, ANY<V>, ICloneable {
+	public class ANYImpl<V> : BareANYImpl, ANY<V>, ANYMetaData, ICloneable {
 	
 		private const long serialVersionUID = 5073666472702745793L;
 	
@@ -53,6 +54,15 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Impl {
 	
 		private StandardDataType dataType;
 	
+        private String language;
+
+        private String displayName;
+        private readonly IList<CD> translations = new List<CD>();
+        private String originalText;
+        private Boolean isCdata;
+        private bool isUnsorted = false;
+        private SetOperator setOperator;
+
 		/// <summary>
 		/// Constructs an empty ANY.
 		/// </summary>
@@ -231,7 +241,7 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Impl {
 		///
 		/// <returns>whether this ANY object has a null flavor of "Not applicable"</returns>
 		public virtual bool NotApplicable() {
-			return Ca.Infoway.Messagebuilder.Domainvalue.Nullflavor.NullFlavor.NOT_APPLICABLE.Equals(NullFlavor);
+            return Ca.Infoway.Messagebuilder.Domainvalue.Nullflavor.NullFlavor.NOT_APPLICABLE.CodeValue.Equals(NullFlavor == null ? null : NullFlavor.CodeValue);
 		}
 	
 		/// <summary>
@@ -240,8 +250,8 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Impl {
 		///
 		/// <returns>whether this ANY object has a null flavor of "other"</returns>
 		public virtual bool Other() {
-			return Ca.Infoway.Messagebuilder.Domainvalue.Nullflavor.NullFlavor.OTHER.Equals(NullFlavor);
-		}
+            return Ca.Infoway.Messagebuilder.Domainvalue.Nullflavor.NullFlavor.OTHER.CodeValue.Equals(NullFlavor == null ? null : NullFlavor.CodeValue);
+        }
 	
 		/// <summary>
 		/// Determines whether this ANY object has a null flavor of "unknown".
@@ -249,8 +259,8 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Impl {
 		///
 		/// <returns>whether this ANY object has a null flavor of "unknown"</returns>
 		public virtual bool Unknown() {
-			return Ca.Infoway.Messagebuilder.Domainvalue.Nullflavor.NullFlavor.UNKNOWN.Equals(NullFlavor);
-		}
+            return Ca.Infoway.Messagebuilder.Domainvalue.Nullflavor.NullFlavor.UNKNOWN.CodeValue.Equals(NullFlavor == null ? null : NullFlavor.CodeValue);
+        }
 	
 		/// <summary>
 		/// Compares two ANY objects to see if they are equal.
@@ -338,5 +348,141 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Impl {
 			get { return this.value_ren; }
 			set { this.value_ren = (V) value; }
 		}
+
+        /// <summary>
+        /// Sets the language of the ST.
+        /// </summary>
+        ///
+        /// <param name="language_0">a language</param>
+        public virtual String Language
+        {
+            /// <summary>
+            /// Returns the ST's language.
+            /// </summary>
+            ///
+            /// <returns>the language of the ST</returns>
+            get
+            {
+                return this.language;
+            }
+            /// <summary>
+            /// Sets the language of the ST.
+            /// </summary>
+            ///
+            /// <param name="language_0">a language</param>
+            set
+            {
+                this.language = value;
+            }
+        }
+
+
+        /// <summary>
+        /// Sets the display name.
+        /// </summary>
+        ///
+        /// <param name="displayName_0">the display name</param>
+        public virtual String DisplayName {
+        /// <summary>
+        /// Returns the display name.
+        /// </summary>
+        ///
+        /// <returns>the display name</returns>
+            get {
+                        return this.displayName;
+                }
+        /// <summary>
+        /// Sets the display name.
+        /// </summary>
+        ///
+        /// <param name="displayName_0">the display name</param>
+            set {
+                        this.displayName = value;
+                }
+        }
+
+
+        /// <summary>
+        /// Returns the translations for this CD.
+        /// </summary>
+        ///
+        /// <returns>the translations for this CD</returns>
+        public virtual IList<CD> Translations {
+        /// <summary>
+        /// Returns the translations for this CD.
+        /// </summary>
+        ///
+        /// <returns>the translations for this CD</returns>
+            get {
+                        return this.translations;
+                }
+        }
+
+
+        /// <summary>
+        /// Sets the original text.
+        /// </summary>
+        ///
+        /// <param name="originalText_0">the original text</param>
+        public virtual String OriginalText {
+        /// <summary>
+        /// Returns the original text.
+        /// </summary>
+        ///
+        /// <returns>the original text</returns>
+            get {
+                        return originalText;
+                }
+        /// <summary>
+        /// Sets the original text.
+        /// </summary>
+        ///
+        /// <param name="originalText_0">the original text</param>
+            set {
+                        this.originalText = value;
+                }
+        }
+
+        /// <summary>
+        /// Sets text as CDATA.
+        /// </summary>
+        ///
+        /// <param name="isCdata_0">is text CDATA</param>
+        public virtual Boolean IsCdata {
+        /// <summary>
+        /// Returns whether the text should be in a CDATA block
+        /// </summary>
+        ///
+        /// <returns>whether the text should be in a CDATA block</returns>
+            get {
+                        return isCdata;
+                }
+        /// <summary>
+        /// Sets whether the text should be in a CDATA block.
+        /// </summary>
+        ///
+        /// <param name="IsCdata_0">is text CDATA</param>
+            set {
+                        this.isCdata = value;
+                }
+        }
+
+        /// <summary>
+        /// Indicates whether an INT is unsorted (R2 INT only, not all cases)
+        /// </summary>
+        public virtual bool Unsorted
+        {   
+            get { return isUnsorted; }
+            set { this.isUnsorted = value; }
+        }
+
+        /// <summary>
+        /// The operator
+        /// </summary>
+        public virtual SetOperator Operator
+        {
+            get { return setOperator; }
+            set { this.setOperator = value; }
+        }
 	}
 }

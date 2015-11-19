@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System.Collections.Generic;
@@ -24,6 +24,7 @@ using Ca.Infoway.Messagebuilder.Datatype.Impl;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter;
+using Ca.Infoway.Messagebuilder.Xml;
 using NUnit.Framework;
 
 namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
@@ -31,13 +32,15 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 	[TestFixture]
 	public class ListTelPropertyFormatterTest : FormatterTestCase
 	{
+		private FormatterRegistry formatterRegistry = FormatterRegistry.GetInstance();
+
 		/// <exception cref="System.Exception"></exception>
 		[Test]
 		public virtual void TestFormatValueNull()
 		{
-			string result = new ListPropertyFormatter().Format(new FormatContextImpl(new ModelToXmlResult(), null, "telecom", "LIST<TEL>"
-				, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL), (BareANY)new LISTImpl<TEL, TelecommunicationAddress>(typeof(
-				TELImpl)));
+			string result = new ListPropertyFormatter(this.formatterRegistry).Format(new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl
+				(new ModelToXmlResult(), null, "telecom", "LIST<TEL>", Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL, null, false
+				), (BareANY)new LISTImpl<TEL, TelecommunicationAddress>(typeof(TELImpl)));
 			AssertXml("null", string.Empty, result);
 		}
 
@@ -45,10 +48,10 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 		[Test]
 		public virtual void TestFormatValueNonNull()
 		{
-			string result = new ListPropertyFormatter().Format(new FormatContextImpl(new ModelToXmlResult(), null, "telecom", "LIST<TEL>"
-				, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL, false, SpecificationVersion.R02_04_03, null, null, null), (BareANY
-				)LISTImpl<ANY<object>, object>.Create<TEL, TelecommunicationAddress>(typeof(TELImpl), CreateTelecommunicationAddressList
-				()));
+			string result = new ListPropertyFormatter(this.formatterRegistry).Format(new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl
+				(new ModelToXmlResult(), null, "telecom", "LIST<TEL>", Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.OPTIONAL, Cardinality
+				.Create("0-4"), false, SpecificationVersion.R02_04_03, null, null, null, false), (BareANY)LISTImpl<ANY<object>, object>.
+				Create<TEL, TelecommunicationAddress>(typeof(TELImpl), CreateTelecommunicationAddressList()));
 			AssertXml("non null", "<telecom value=\"+1-519-555-2345;ext=12345\"/>" + "<telecom value=\"+1-416-555-2345;ext=12345\"/>"
 				, result);
 		}

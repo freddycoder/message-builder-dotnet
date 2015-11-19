@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System.Text;
@@ -25,7 +25,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 {
 	public abstract class WhitespaceUtil
 	{
-		public static string NormalizeWhitespace(string xml)
+		public static string NormalizeWhitespace(string xml, bool trimTokens)
 		{
 			StringBuilder builder = new StringBuilder();
 			bool text = true;
@@ -48,7 +48,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 					{
 						if (!text || StringUtils.IsNotBlank(token))
 						{
-							builder.Append(token);
+							builder.Append(trimTokens ? token.Trim() : token);
 						}
 					}
 				}

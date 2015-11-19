@@ -42,6 +42,11 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		    return (Code) newProxyInstance;
         }
 
+        public static Code Wrap(Type t, Code code, String codeSystem, NullFlavor nullFlavor) {
+            var newProxyInstance = PROXY_GENERATOR.CreateInterfaceProxyWithoutTarget(t, new FullCodeHandler(codeSystem, nullFlavor));
+            return (Code)newProxyInstance;
+        }
+
     }
 
     public class FullCodeHandler : InvocationHandler, IInterceptor

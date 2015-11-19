@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System;
@@ -23,6 +23,7 @@ using System.Xml;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Datatype.Impl;
+using Ca.Infoway.Messagebuilder.Error;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser;
 
@@ -74,14 +75,14 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			{
 				if (VALID_BOOLEAN_STRINGS.Contains(unparsedBoolean))
 				{
-					booleanResult = ILOG.J2CsMapping.Util.BooleanUtil.ValueOf(unparsedBoolean);
+					booleanResult = Ca.Infoway.Messagebuilder.BooleanUtils.ValueOf(unparsedBoolean);
 				}
 				else
 				{
 					if (VALID_BOOLEAN_STRINGS.Contains(unparsedBoolean.ToLower()))
 					{
 						result.AddHl7Error(Hl7Error.CreateIncorrectCapitalizationBooleanValueError(unparsedBoolean, element, attr));
-						booleanResult = ILOG.J2CsMapping.Util.BooleanUtil.ValueOf(unparsedBoolean);
+						booleanResult = Ca.Infoway.Messagebuilder.BooleanUtils.ValueOf(unparsedBoolean);
 					}
 					else
 					{

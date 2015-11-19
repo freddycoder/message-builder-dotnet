@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System.Xml;
@@ -34,7 +34,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		public virtual void TestParseNullNode()
 		{
 			XmlNode node = CreateNode("<something nullFlavor=\"NI\"/>");
-			REAL real = (REAL)new RealElementParser().Parse(CreateContext("REAL.CONF"), node, this.xmlResult);
+			REAL real = (REAL)new RealElementParser().Parse(CreateContext("REAL"), node, this.xmlResult);
 			Assert.IsNull(real.Value, "null returned");
 			Assert.AreEqual(Ca.Infoway.Messagebuilder.Domainvalue.Nullflavor.NullFlavor.NO_INFORMATION, real.NullFlavor, "null flavor"
 				);
@@ -43,8 +43,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 
 		private ParseContext CreateContext(string type)
 		{
-			return ParserContextImpl.Create(type, typeof(BigDecimal), SpecificationVersion.V02R02, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
-				.POPULATED);
+			return ParseContextImpl.Create(type, typeof(BigDecimal), SpecificationVersion.V02R02, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
+				.POPULATED, null, null, false);
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -52,7 +52,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		public virtual void TestParseEmptyNode()
 		{
 			XmlNode node = CreateNode("<something/>");
-			REAL real = (REAL)new RealElementParser().Parse(CreateContext("REAL.CONF"), node, this.xmlResult);
+			REAL real = (REAL)new RealElementParser().Parse(CreateContext("REAL"), node, this.xmlResult);
 			Assert.IsNull(real.BareValue, "null returned");
 			Assert.IsNull(real.NullFlavor, "no null flavor");
 			Assert.AreEqual(1, this.xmlResult.GetHl7Errors().Count, "1 error");
@@ -63,7 +63,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		public virtual void TestParseNoValueAttributeNode()
 		{
 			XmlNode node = CreateNode("<something notvalue=\"\" />");
-			REAL real = (REAL)new RealElementParser().Parse(CreateContext("REAL.CONF"), node, this.xmlResult);
+			REAL real = (REAL)new RealElementParser().Parse(CreateContext("REAL"), node, this.xmlResult);
 			Assert.IsNull(real.BareValue, "null returned");
 			Assert.IsNull(real.NullFlavor, "no null flavor");
 			Assert.AreEqual(1, this.xmlResult.GetHl7Errors().Count, "1 error");
@@ -71,10 +71,10 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 
 		/// <exception cref="System.Exception"></exception>
 		[Test]
-		public virtual void TestParseValueAttributeValidRealConf()
+		public virtual void TestParseValueAttributeValidReal()
 		{
 			XmlNode node = CreateNode("<something value=\"0.2345\" />");
-			BareANY real = new RealElementParser().Parse(CreateContext("REAL.CONF"), node, this.xmlResult);
+			BareANY real = new RealElementParser().Parse(CreateContext("REAL"), node, this.xmlResult);
 			Assert.AreEqual(new BigDecimal("0.2345"), real.BareValue, "correct value returned");
 			Assert.IsNull(real.NullFlavor, "no null flavor");
 			Assert.IsTrue(this.xmlResult.IsValid(), "no errors");
@@ -82,135 +82,132 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 
 		/// <exception cref="System.Exception"></exception>
 		[Test]
-		public virtual void TestParseValueAttributeValidRealConfMax()
+		public virtual void TestParseValueAttributeValidReal2()
 		{
 			XmlNode node = CreateNode("<something value=\"1.0000\" />");
-			BareANY real = new RealElementParser().Parse(CreateContext("REAL.CONF"), node, this.xmlResult);
+			BareANY real = new RealElementParser().Parse(CreateContext("REAL"), node, this.xmlResult);
 			Assert.AreEqual(new BigDecimal("1.0000"), real.BareValue, "correct value returned");
 			Assert.IsTrue(this.xmlResult.IsValid(), "no errors");
 		}
 
 		/// <exception cref="System.Exception"></exception>
 		[Test]
-		public virtual void TestParseValueAttributeValidRealConfMaxNoZeros()
+		public virtual void TestParseValueAttributeValidRealNoZeros()
 		{
 			XmlNode node = CreateNode("<something value=\"1.\" />");
-			BareANY real = new RealElementParser().Parse(CreateContext("REAL.CONF"), node, this.xmlResult);
+			BareANY real = new RealElementParser().Parse(CreateContext("REAL"), node, this.xmlResult);
 			Assert.AreEqual(new BigDecimal("1"), real.BareValue, "correct value returned");
 			Assert.IsTrue(this.xmlResult.IsValid(), "no errors");
 		}
 
 		/// <exception cref="System.Exception"></exception>
 		[Test]
-		public virtual void TestParseValueAttributeValidRealConfMin()
+		public virtual void TestParseValueAttributeValidRealAsZero()
 		{
 			XmlNode node = CreateNode("<something value=\"0\" />");
-			Assert.AreEqual(new BigDecimal(0), new RealElementParser().Parse(CreateContext("REAL.CONF"), node, this.xmlResult).BareValue
+			Assert.AreEqual(new BigDecimal(0), new RealElementParser().Parse(CreateContext("REAL"), node, this.xmlResult).BareValue, 
+				"correct value returned");
+			Assert.IsTrue(this.xmlResult.IsValid(), "no errors");
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void TestParseValueAttributeRealLotsOfZeros()
+		{
+			XmlNode node = CreateNode("<something value=\"000.0000\" />");
+			Assert.AreEqual(new BigDecimal("000.0000"), new RealElementParser().Parse(CreateContext("REAL"), node, this.xmlResult).BareValue
 				, "correct value returned");
 			Assert.IsTrue(this.xmlResult.IsValid(), "no errors");
 		}
 
 		/// <exception cref="System.Exception"></exception>
 		[Test]
-		public virtual void TestParseValueAttributeInvalidRealConfMinLotsOfZeros()
-		{
-			XmlNode node = CreateNode("<something value=\"000.0000\" />");
-			Assert.AreEqual(new BigDecimal("000.0000"), new RealElementParser().Parse(CreateContext("REAL.CONF"), node, this.xmlResult
-				).BareValue, "correct value returned");
-			Assert.AreEqual(1, this.xmlResult.GetHl7Errors().Count, "1 errors");
-		}
-
-		// too many chars before decimal
-		/// <exception cref="System.Exception"></exception>
-		[Test]
-		public virtual void TestParseValueAttributeInvalidRealConfNegative()
+		public virtual void TestParseValueAttributeRealNegative()
 		{
 			XmlNode node = CreateNode("<something value=\"-1\" />");
-			Assert.AreEqual(new BigDecimal("-1"), new RealElementParser().Parse(CreateContext("REAL.CONF"), node, this.xmlResult).BareValue
+			Assert.AreEqual(new BigDecimal("-1"), new RealElementParser().Parse(CreateContext("REAL"), node, this.xmlResult).BareValue
 				, "correct value returned");
-			Assert.AreEqual(2, this.xmlResult.GetHl7Errors().Count, "2 errors");
+			Assert.IsTrue(this.xmlResult.IsValid(), "no errors");
 		}
 
-		// too many chars before decimal, value less than zero 
 		/// <exception cref="System.Exception"></exception>
 		[Test]
-		public virtual void TestParseValueAttributeInvalidRealConfTooLarge()
+		public virtual void TestParseValueAttributeReal()
 		{
 			XmlNode node = CreateNode("<something value=\"1.0001\" />");
-			Assert.AreEqual(new BigDecimal("1.0001"), new RealElementParser().Parse(CreateContext("REAL.CONF"), node, this.xmlResult)
-				.BareValue, "correct value returned");
-			Assert.AreEqual(1, this.xmlResult.GetHl7Errors().Count, "1 error");
+			Assert.AreEqual(new BigDecimal("1.0001"), new RealElementParser().Parse(CreateContext("REAL"), node, this.xmlResult).BareValue
+				, "correct value returned");
+			Assert.IsTrue(this.xmlResult.IsValid(), "no errors");
 		}
 
 		/// <exception cref="System.Exception"></exception>
 		[Test]
-		public virtual void TestParseValueAttributeValidRealCoordMax()
+		public virtual void TestParseValueAttributeValidReal3()
 		{
 			XmlNode node = CreateNode("<something value=\"9999.9999\" />");
-			BareANY real = new RealElementParser().Parse(CreateContext("REAL.COORD"), node, this.xmlResult);
+			BareANY real = new RealElementParser().Parse(CreateContext("REAL"), node, this.xmlResult);
 			Assert.AreEqual(new BigDecimal("9999.9999"), real.BareValue, "correct value returned");
 			Assert.IsTrue(this.xmlResult.IsValid(), "no errors");
 		}
 
 		/// <exception cref="System.Exception"></exception>
 		[Test]
-		public virtual void TestParseValueAttributeValidRealCoordMin()
+		public virtual void TestParseValueAttributeValidReal4()
 		{
 			XmlNode node = CreateNode("<something value=\"-999.9999\" />");
 			BigDecimal bigDecimal = new BigDecimal("-999.9999");
-			Assert.AreEqual(bigDecimal, new RealElementParser().Parse(CreateContext("REAL.COORD"), node, this.xmlResult).BareValue, "correct value returned"
+			Assert.AreEqual(bigDecimal, new RealElementParser().Parse(CreateContext("REAL"), node, this.xmlResult).BareValue, "correct value returned"
 				);
 			Assert.IsTrue(this.xmlResult.IsValid(), "no errors");
 		}
 
 		/// <exception cref="System.Exception"></exception>
 		[Test]
-		public virtual void TestParseValueAttributeInvalidRealCoordTooLarge()
+		public virtual void TestParseValueAttributeRealLarge()
 		{
 			XmlNode node = CreateNode("<something value=\"10000\" />");
-			BareANY real = new RealElementParser().Parse(CreateContext("REAL.COORD"), node, this.xmlResult);
+			BareANY real = new RealElementParser().Parse(CreateContext("REAL"), node, this.xmlResult);
 			Assert.AreEqual(new BigDecimal("10000"), real.BareValue, "correct value returned");
-			Assert.AreEqual(1, this.xmlResult.GetHl7Errors().Count, "1 error");
+			Assert.IsTrue(this.xmlResult.IsValid(), "no errors");
 		}
 
 		/// <exception cref="System.Exception"></exception>
 		[Test]
-		public virtual void TestParseValueAttributeInvalidRealCoordTooSmall()
+		public virtual void TestParseValueAttributeRealNegative2()
 		{
 			XmlNode node = CreateNode("<something value=\"-1000\" />");
-			Assert.AreEqual(new BigDecimal(-1000), new RealElementParser().Parse(CreateContext("REAL.COORD"), node, this.xmlResult).BareValue
+			Assert.AreEqual(new BigDecimal(-1000), new RealElementParser().Parse(CreateContext("REAL"), node, this.xmlResult).BareValue
 				, "correct value returned");
-			Assert.AreEqual(1, this.xmlResult.GetHl7Errors().Count, "1 error");
+			Assert.IsTrue(this.xmlResult.IsValid(), "no errors");
 		}
 
 		/// <exception cref="System.Exception"></exception>
 		[Test]
-		public virtual void TestParseValueAttributeInvalidRealCoordMultipleErrors()
+		public virtual void TestParseValueAttributeRealLarge2()
 		{
 			XmlNode node = CreateNode("<something value=\"10000.00000\" />");
-			Assert.AreEqual(new BigDecimal("10000.00000"), new RealElementParser().Parse(CreateContext("REAL.COORD"), node, this.xmlResult
-				).BareValue, "correct value returned");
-			Assert.AreEqual(2, this.xmlResult.GetHl7Errors().Count, "2 errors");
+			Assert.AreEqual(new BigDecimal("10000.00000"), new RealElementParser().Parse(CreateContext("REAL"), node, this.xmlResult)
+				.BareValue, "correct value returned");
+			Assert.IsTrue(this.xmlResult.IsValid(), "no errors");
 		}
 
-		// too many characters before and after decimal
 		/// <exception cref="System.Exception"></exception>
 		[Test]
-		public virtual void TestParseValueAttributeValidRealCoordTooManyDigitsAfterDecimal()
+		public virtual void TestParseValueAttributeValidReal6()
 		{
 			XmlNode node = CreateNode("<something value=\"9999.99999\" />");
-			Assert.AreEqual(new BigDecimal("9999.99999"), new RealElementParser().Parse(CreateContext("REAL.COORD"), node, this.xmlResult
-				).BareValue, "correct value returned");
-			Assert.AreEqual(1, this.xmlResult.GetHl7Errors().Count, "1 error");
+			Assert.AreEqual(new BigDecimal("9999.99999"), new RealElementParser().Parse(CreateContext("REAL"), node, this.xmlResult).
+				BareValue, "correct value returned");
+			Assert.IsTrue(this.xmlResult.IsValid(), "no errors");
 		}
 
 		/// <exception cref="System.Exception"></exception>
 		[Test]
-		public virtual void TestParseValueAttributeValidRealCoord()
+		public virtual void TestParseValueAttributeValidReal7()
 		{
 			XmlNode node = CreateNode("<something value=\"78.2345\" />");
-			Assert.AreEqual(new BigDecimal("78.2345"), new RealElementParser().Parse(CreateContext("REAL.COORD"), node, this.xmlResult
-				).BareValue, "correct value returned");
+			Assert.AreEqual(new BigDecimal("78.2345"), new RealElementParser().Parse(CreateContext("REAL"), node, this.xmlResult).BareValue
+				, "correct value returned");
 			Assert.IsTrue(this.xmlResult.IsValid(), "no errors");
 		}
 
@@ -219,8 +216,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		public virtual void TestParseValueAttributeValidPlusExtraAttribute()
 		{
 			XmlNode node = CreateNode("<something extra=\"value\" value=\"1345\" />");
-			Assert.AreEqual(new BigDecimal("1345"), new RealElementParser().Parse(CreateContext("REAL.COORD"), node, this.xmlResult).
-				BareValue, "correct value returned");
+			Assert.AreEqual(new BigDecimal("1345"), new RealElementParser().Parse(CreateContext("REAL"), node, this.xmlResult).BareValue
+				, "correct value returned");
 			Assert.IsTrue(this.xmlResult.IsValid(), "no errors");
 		}
 
@@ -231,13 +228,13 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			XmlNode node = CreateNode("<something>" + "<monkey/>" + "</something>");
 			try
 			{
-				new RealElementParser().Parse(CreateContext("REAL.CONF"), node, this.xmlResult);
+				new RealElementParser().Parse(CreateContext("REAL"), node, this.xmlResult);
 				Assert.Fail("expected exception");
 			}
 			catch (XmlToModelTransformationException e)
 			{
 				// expected
-				Assert.AreEqual("Expected REAL.CONF node to have no children", e.Message, "proper exception returned");
+				Assert.AreEqual("Expected REAL node to have no children", e.Message, "proper exception returned");
 			}
 		}
 
@@ -246,21 +243,19 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		public virtual void TestParseInvalidValueAttribute()
 		{
 			XmlNode node = CreateNode("<something value=\"monkey\" />");
-			new RealElementParser().Parse(CreateContext("REAL.CONF"), node, this.xmlResult);
+			new RealElementParser().Parse(CreateContext("REAL"), node, this.xmlResult);
 			Assert.AreEqual(1, this.xmlResult.GetHl7Errors().Count, "errors");
-			Assert.AreEqual("Value \"monkey\" of type REAL.CONF is not a valid number", this.xmlResult.GetHl7Errors()[0].GetMessage()
-				, "error message");
+			Assert.AreEqual("Value \"monkey\" of type REAL is not a valid number", this.xmlResult.GetHl7Errors()[0].GetMessage(), "error message"
+				);
 		}
 
 		/// <exception cref="System.Exception"></exception>
 		[Test]
-		public virtual void TestParseInvalidValueAttribute1()
+		public virtual void TestParseBasicValueAttribute()
 		{
 			XmlNode node = CreateNode("<something value=\"1.11\" />");
-			new RealElementParser().Parse(CreateContext("REAL.CONF"), node, this.xmlResult);
-			Assert.AreEqual(1, this.xmlResult.GetHl7Errors().Count, "errors");
-			Assert.AreEqual("Value 1.11 of type REAL.CONF must be between 0 and 1 (inclusive).", this.xmlResult.GetHl7Errors()[0].GetMessage
-				(), "error message");
+			new RealElementParser().Parse(CreateContext("REAL"), node, this.xmlResult);
+			Assert.IsTrue(this.xmlResult.IsValid(), "no errors");
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -268,7 +263,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		public virtual void TestParseValidValueAttributeNothingBeforeDecimal()
 		{
 			XmlNode node = CreateNode("<something value=\".11\" />");
-			Assert.AreEqual(new BigDecimal(".11"), new RealElementParser().Parse(CreateContext("REAL.CONF"), node, this.xmlResult).BareValue
+			Assert.AreEqual(new BigDecimal(".11"), new RealElementParser().Parse(CreateContext("REAL"), node, this.xmlResult).BareValue
 				, "correct value returned");
 			Assert.AreEqual(0, this.xmlResult.GetHl7Errors().Count, "errors");
 		}
@@ -279,7 +274,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		public virtual void TestParseValueAttributeInvalidAsHexValue()
 		{
 			XmlNode node = CreateNode("<something value=\"0x1a\" />");
-			Assert.IsNull(new RealElementParser().Parse(CreateContext("REAL.COORD"), node, this.xmlResult).BareValue);
+			Assert.IsNull(new RealElementParser().Parse(CreateContext("REAL"), node, this.xmlResult).BareValue);
 			Assert.AreEqual(1, this.xmlResult.GetHl7Errors().Count, "1 error");
 		}
 
@@ -288,7 +283,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		public virtual void TestParseValidValueAttributeNothingAfterDecimal()
 		{
 			XmlNode node = CreateNode("<something value=\"1.\" />");
-			Assert.AreEqual(new BigDecimal("1."), new RealElementParser().Parse(CreateContext("REAL.CONF"), node, this.xmlResult).BareValue
+			Assert.AreEqual(new BigDecimal("1."), new RealElementParser().Parse(CreateContext("REAL"), node, this.xmlResult).BareValue
 				, "correct value returned");
 			Assert.AreEqual(0, this.xmlResult.GetHl7Errors().Count, "errors");
 		}

@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2013-03-01 17:48:17 -0500 (Fri, 01 Mar 2013) $
- * Revision:      $LastChangedRevision: 6663 $
+ * Author:        $LastChangedBy: jmis $
+ * Last modified: $LastChangedDate: 2015-05-27 08:43:37 -0400 (Wed, 27 May 2015) $
+ * Revision:      $LastChangedRevision: 9535 $
  */
 
 /// ---------------------------------------------------------------------------------------------------
@@ -27,6 +27,7 @@ namespace Ca.Infoway.Messagebuilder.Terminology.Codeset {
 	
 	using Ca.Infoway.Messagebuilder;
 	using Ca.Infoway.Messagebuilder.Domainvalue;
+    using Ca.Infoway.Messagebuilder.Resolver;
 	using Ca.Infoway.Messagebuilder.Terminology;
 	using Ca.Infoway.Messagebuilder.Terminology.Codeset.Dao;
 	using Ca.Infoway.Messagebuilder.Terminology.Codeset.Domain;
@@ -46,6 +47,7 @@ namespace Ca.Infoway.Messagebuilder.Terminology.Codeset {
 	
 		private readonly CodeSetDao dao;
 		private readonly TypedCodeFactory codeFactory;
+        private readonly String version;
 	
 		/// <summary>
 		/// Instantiates a new database c resolver.
@@ -53,49 +55,65 @@ namespace Ca.Infoway.Messagebuilder.Terminology.Codeset {
 		///
 		/// <param name="dao_0">the dao</param>
 		/// <param name="codeFactory_1">the c factory</param>
-		public DatabaseCodeResolver(CodeSetDao dao_0, TypedCodeFactory codeFactory_1) {
+		public DatabaseCodeResolver(CodeSetDao dao_0, TypedCodeFactory codeFactory_1, String version_2) {
 			this.dao = dao_0;
 			this.codeFactory = codeFactory_1;
+            this.version = version_2;
 		}
+
+        /// <summary>
+        /// {@inheritDoc}
+        /// </summary>
+        ///
+        public virtual T Lookup<T>(Type type, String code) where T : Code {
+            return Lookup<T>(type, code, true);
+        }
 	
 		/// <summary>
 		/// {@inheritDoc}
 		/// </summary>
 		///
-		public virtual T Lookup<T>(Type type, String code)  where T : Code {
-			IList<ValueSetEntry> codedValues = dao.SelectValueSetsByCode(type, code);
+		public virtual T Lookup<T>(Type type, String code, bool ignoreCase)  where T : Code {
+			IList<ValueSetEntry> codedValues = dao.SelectValueSetsByCode(type, code, this.version, ignoreCase);
 			return ((codedValues.Count==0)) ?  default(T)/* was: null */ : this.CreateCode<T>(type, codedValues[0]);
 		}
-	
+
+        /// <summary>
+        /// {@inheritDoc}
+        /// </summary>
+        ///
+        public virtual T Lookup<T>(Type type, String code, String codeSystemOid) where T : Code {
+            return Lookup<T>(type, code, codeSystemOid, true);
+        }
+
 		/// <summary>
 		/// {@inheritDoc}
 		/// </summary>
 		///
-		public virtual T Lookup<T>(Type type, String code,
-				String codeSystemOid)  where T : Code {
-			ValueSetEntry valueSet = this.dao.FindValueByCodeSystem(type, code,
-					codeSystemOid);
-			return (valueSet == null) ?  default(T)/* was: null */ : this.CreateCode<T>(type, valueSet);
+		public virtual T Lookup<T>(Type type, String code, String codeSystemOid, bool ignoreCase)  where T : Code {
+            // RM 15390 (and others) - TM: The lookup won't work if no code system is provided.
+            // An argument could be made that if this method is called then we should expect the code system to be valid,
+            // but let's err on the side of caution and do our best to find a matching code.
+            if (StringUtils.IsBlank(codeSystemOid))
+            {
+                return this.Lookup<T>(type, code, ignoreCase);
+            }
+            else
+            {
+                ValueSetEntry valueSet = this.dao.FindValueByCodeSystem(type, code, codeSystemOid, this.version, ignoreCase);
+                return (valueSet == null) ? default(T)/* was: null */ : this.CreateCode<T>(type, valueSet);
+            }
 		}
 	
 		/// <summary>
 		/// {@inheritDoc}
 		/// </summary>
 		///
+        [Obsolete]
 		public virtual ICollection<T> Lookup<T>(Type type)  where T : Code {
 			IList<ValueSetEntry> values = dao
-					.SelectValueSetsByVocabularyDomain(type);
+					.SelectValueSetsByVocabularyDomain(type, this.version);
 			return this.ConvertValuesToCodes<T>(type, values);
-		}
-	
-		/// <summary>
-		/// {@inheritDoc}
-		/// </summary>
-		///
-		public virtual ICollection<Code> Lookup(Type type) {
-			IList<ValueSetEntry> values = dao
-					.SelectValueSetsByVocabularyDomain(type);
-			return this.ConvertValuesToCodes<Code>(type, values);
 		}
 	
 		private ICollection<T> ConvertValuesToCodes<T>(Type type,
@@ -119,7 +137,10 @@ namespace Ca.Infoway.Messagebuilder.Terminology.Codeset {
 			ICollection<VocabularyDomain> vocabularyDomains = value_ren.ValueSet.VocabularyDomains;
 			/* foreach */
 			foreach (VocabularyDomain vocabularyDomain  in  vocabularyDomains) {
-				ILOG.J2CsMapping.Collections.Generics.Collections.Add(typeList,vocabularyDomain.TypeAsClass);
+                Type typeAsClass = vocabularyDomain.GetTypeAsClass(this.version);
+                if (typeAsClass != null) {
+                    typeList.Add(typeAsClass);
+                }
 			}
 			return typeList;
 		}
@@ -127,39 +148,10 @@ namespace Ca.Infoway.Messagebuilder.Terminology.Codeset {
 		private T CreateCode<T>(Type type, CodedValue value_ren,
                 ILOG.J2CsMapping.Collections.Generics.ISet<Type> implementedTypes) where T : Code
         {
-			return default(T);
-//			return type.Cast<T>(this.codeFactory.Create(type, implementedTypes, value_ren.Code, value_ren.CodeSystem.Oid,
-//					new Dictionary<String, String>(value_ren.Descriptions),
-//					((int?)(1)), ILOG.J2CsMapping.Util.BooleanUtil.TRUE, ILOG.J2CsMapping.Util.BooleanUtil.TRUE));
+            IDictionary<String, String> displayTextMap = new Dictionary<String, String>();
+            displayTextMap.AddAll(value_ren.Descriptions);
+            return type.Cast<T>(this.codeFactory.Create(type, implementedTypes, value_ren.Code, value_ren.CodeSystem.Oid,
+                value_ren.CodeSystem.Name, displayTextMap, 1, true, true));
 		}
-	
-		/// <summary>
-		/// Lookup.
-		/// </summary>
-		///
-		/// <param name="T"> the generic type</param>
-		/// <param name="type">the type</param>
-		/// <param name="nullFlavor">the null flavor</param>
-		/// <returns>the t</returns>
-		public T Lookup<T>(Type type, NullFlavor nullFlavor)  where T : Code {
-			//TODO: accept nullflavours
-			return  default(T)/* was: null */;
-		}
-	
-		/// <summary>
-		/// Lookup.
-		/// </summary>
-		///
-		/// <param name="T"> the generic type</param>
-		/// <param name="arg0">the arg0</param>
-		/// <param name="code">the c</param>
-		/// <param name="codeSystemOid">the c system oid</param>
-		/// <param name="arg3">the arg3</param>
-		/// <returns>the t</returns>
-		public T Lookup<T>(Type arg0, String code,
-				String codeSystemOid, NullFlavor arg3)  where T : Code {
-			//TODO: accept nullflavours
-			return this.Lookup<T>(arg0, code, codeSystemOid);
-		}
-	}
+    }
 }

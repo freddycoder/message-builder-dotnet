@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System;
@@ -23,6 +23,7 @@ using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Datatype.Impl;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
+using Ca.Infoway.Messagebuilder.Error;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser;
 
@@ -41,13 +42,16 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 	/// Currently this class does nothing with codeSystem.
 	/// This class is a mix of StElementParser and CvElementParser.
 	/// http://www.hl7.org/v3ballot/html/infrastructure/itsxml/datatypes-its-xml.htm#dtimpl-SC
-	/// TODO: handle code properly
 	/// </remarks>
 	[DataTypeHandler("SC")]
-	internal class ScElementParser<V> : AbstractSingleElementParser<CodedString<V>> where V : Code
+	internal class ScElementParser : AbstractSingleElementParser<CodedString<Code>>
 	{
+		private CodeLookupUtils codeLookupUtils = new CodeLookupUtils();
+
+		private CodedStringValidationUtils codedStringValidationUtils = new CodedStringValidationUtils();
+
 		/// <exception cref="Ca.Infoway.Messagebuilder.Marshalling.HL7.XmlToModelTransformationException"></exception>
-		protected override CodedString<V> ParseNonNullNode(ParseContext context, XmlNode node, BareANY result, Type expectedReturnType
+		protected override CodedString<Code> ParseNonNullNode(ParseContext context, XmlNode node, BareANY result, Type expectedReturnType
 			, XmlToModelResult xmlToModelResult)
 		{
 			string value = null;
@@ -55,7 +59,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			if (childNodeCount == 0)
 			{
 				// this is an empty node, return empty string (null should have a null flavor attribute)
-				value = AbstractSingleElementParser<CodedString<V>>.EMPTY_STRING;
+				value = AbstractSingleElementParser<CodedString<Code>>.EMPTY_STRING;
 			}
 			else
 			{
@@ -64,21 +68,41 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 					XmlNode childNode = node.FirstChild;
 					if (childNode.NodeType != System.Xml.XmlNodeType.Text)
 					{
-						throw new XmlToModelTransformationException("Expected SC node to have a text node");
+						xmlToModelResult.AddHl7Error(new Hl7Error(Hl7ErrorCode.DATA_TYPE_ERROR, "Expected SC node to have a text node", (XmlElement
+							)node));
 					}
 					value = childNode.Value;
 				}
 				else
 				{
-					throw new XmlToModelTransformationException("Expected SC node to have at most one child");
+					xmlToModelResult.AddHl7Error(new Hl7Error(Hl7ErrorCode.DATA_TYPE_ERROR, "Expected SC node to have at most one child", (XmlElement
+						)node));
 				}
 			}
-			return new CodedString<V>(value, default(V));
+			string code = GetAttributeValue(node, "code");
+			string codeSystem = GetAttributeValue(node, "codeSystem");
+			Code lookedUpCode = null;
+			if (StringUtils.IsNotBlank(code) && StringUtils.IsNotBlank(codeSystem))
+			{
+				lookedUpCode = this.codeLookupUtils.GetCorrespondingCode(code, codeSystem, expectedReturnType, (XmlElement)node, context.
+					Type, xmlToModelResult);
+			}
+			string displayName = GetAttributeValue(node, "displayName");
+			string codeSystemName = GetAttributeValue(node, "codeSystemName");
+			string codeSystemVersion = GetAttributeValue(node, "codeSystemVersion");
+			// TM - this cast may not work properly within .NET
+			CodedString<Code> codedString = new CodedString<Code>(value, lookedUpCode, displayName, codeSystemName, codeSystemVersion
+				);
+			bool codeProvided = StringUtils.IsNotBlank(code);
+			bool codeSystemProvided = StringUtils.IsNotBlank(codeSystem);
+			this.codedStringValidationUtils.ValidateCodedString(codedString, codeProvided, codeSystemProvided, (XmlElement)node, null
+				, xmlToModelResult);
+			return codedString;
 		}
 
 		protected override BareANY DoCreateDataTypeInstance(string typeName)
 		{
-			return new SCImpl<V>();
+			return new SCImpl<Code>();
 		}
 	}
 }

@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using Ca.Infoway.Messagebuilder;
@@ -247,7 +247,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			PnPropertyFormatter formatter = new PnPropertyFormatter();
 			PersonName personName = new PersonName();
 			personName.AddUse(Ca.Infoway.Messagebuilder.Domainvalue.Basic.EntityNameUse.LEGAL);
-			personName.AddNamePart(new EntityNamePart("Shaw", PersonNamePartType.FAMILY, "BR"));
+			personName.AddNamePart(new EntityNamePart("Shaw", PersonNamePartType.FAMILY, Ca.Infoway.Messagebuilder.Domainvalue.Basic.EntityNamePartQualifier
+				.BIRTH));
 			string result = formatter.Format(GetContext("name", "PN.BASIC", SpecificationVersion.V02R02), new PNImpl(personName));
 			Assert.IsTrue(this.result.IsValid());
 			Assert.AreEqual("<name use=\"L\"><family qualifier=\"BR\">Shaw</family></name>", result.Trim(), "something in text node");
@@ -318,7 +319,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			PnPropertyFormatter formatter = new PnPropertyFormatter();
 			PersonName personName = new PersonName();
 			personName.AddUse(Ca.Infoway.Messagebuilder.Domainvalue.Basic.EntityNameUse.LEGAL);
-			personName.AddNamePart(new EntityNamePart("Shaw", PersonNamePartType.FAMILY, "IN"));
+			personName.AddNamePart(new EntityNamePart("Shaw", PersonNamePartType.FAMILY, Ca.Infoway.Messagebuilder.Domainvalue.Basic.EntityNamePartQualifier
+				.INITIAL));
 			string result = formatter.Format(GetContext("name", "PN.BASIC", SpecificationVersion.R02_04_03), new PNImpl(personName));
 			Assert.IsTrue(this.result.IsValid());
 			Assert.AreEqual("<name use=\"L\"><family qualifier=\"IN\">Shaw</family></name>", result.Trim(), "something in text node");
@@ -331,7 +333,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			PnPropertyFormatter formatter = new PnPropertyFormatter();
 			PersonName personName = new PersonName();
 			personName.AddUse(Ca.Infoway.Messagebuilder.Domainvalue.Basic.EntityNameUse.LEGAL);
-			personName.AddNamePart(new EntityNamePart("Shaw", PersonNamePartType.FAMILY, "BR"));
+			personName.AddNamePart(new EntityNamePart("Shaw", PersonNamePartType.FAMILY, Ca.Infoway.Messagebuilder.Domainvalue.Basic.EntityNamePartQualifier
+				.BIRTH));
 			string result = formatter.Format(GetContext("name", "PN.FULL", SpecificationVersion.R02_04_03), new PNImpl(personName));
 			Assert.IsTrue(this.result.IsValid());
 			Assert.AreEqual("<name use=\"L\"><family qualifier=\"BR\">Shaw</family></name>", result.Trim(), "something in text node");
@@ -344,7 +347,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			PnPropertyFormatter formatter = new PnPropertyFormatter();
 			PersonName personName = new PersonName();
 			personName.AddUse(Ca.Infoway.Messagebuilder.Domainvalue.Basic.EntityNameUse.LEGAL);
-			personName.AddNamePart(new EntityNamePart("Shaw", PersonNamePartType.FAMILY, "BR"));
+			personName.AddNamePart(new EntityNamePart("Shaw", PersonNamePartType.FAMILY, Ca.Infoway.Messagebuilder.Domainvalue.Basic.EntityNamePartQualifier
+				.BIRTH));
 			string result = formatter.Format(GetContext("name", "PN.BASIC", SpecificationVersion.R02_04_02), new PNImpl(personName));
 			Assert.IsFalse(this.result.IsValid());
 			Assert.AreEqual(1, this.result.GetHl7Errors().Count);
@@ -358,11 +362,12 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			PnPropertyFormatter formatter = new PnPropertyFormatter();
 			PersonName personName = new PersonName();
 			personName.AddUse(Ca.Infoway.Messagebuilder.Domainvalue.Basic.EntityNameUse.LEGAL);
-			personName.AddNamePart(new EntityNamePart("Shaw", PersonNamePartType.FAMILY, "XX"));
+			personName.AddNamePart(new EntityNamePart("Shaw", PersonNamePartType.FAMILY, Ca.Infoway.Messagebuilder.Domainvalue.Basic.EntityNamePartQualifier
+				.LEGALSTATUS));
 			string result = formatter.Format(GetContext("name", "PN.FULL", SpecificationVersion.R02_04_02), new PNImpl(personName));
 			Assert.IsFalse(this.result.IsValid());
 			Assert.AreEqual(1, this.result.GetHl7Errors().Count);
-			Assert.AreEqual("<name use=\"L\"><family qualifier=\"XX\">Shaw</family></name>", result.Trim(), "something in text node");
+			Assert.AreEqual("<name use=\"L\"><family qualifier=\"LS\">Shaw</family></name>", result.Trim(), "something in text node");
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -372,7 +377,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			PnPropertyFormatter formatter = new PnPropertyFormatter();
 			PersonName personName = new PersonName();
 			personName.AddUse(Ca.Infoway.Messagebuilder.Domainvalue.Basic.EntityNameUse.LEGAL);
-			personName.AddNamePart(new EntityNamePart("Shaw", PersonNamePartType.FAMILY, "BR"));
+			personName.AddNamePart(new EntityNamePart("Shaw", PersonNamePartType.FAMILY, Ca.Infoway.Messagebuilder.Domainvalue.Basic.EntityNamePartQualifier
+				.BIRTH));
 			string result = formatter.Format(GetContext("name", "PN.BASIC", SpecificationVersion.V01R04_3), new PNImpl(personName));
 			Assert.IsFalse(this.result.IsValid());
 			Assert.AreEqual(1, this.result.GetHl7Errors().Count);
@@ -513,13 +519,15 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			PnPropertyFormatter formatter = new PnPropertyFormatter();
 			PersonName personName = new PersonName();
 			personName.AddUse(Ca.Infoway.Messagebuilder.Domainvalue.Basic.EntityNameUse.LEGAL);
-			personName.AddNamePart(new EntityNamePart("prefix", PersonNamePartType.PREFIX, "IN"));
+			personName.AddNamePart(new EntityNamePart("prefix", PersonNamePartType.PREFIX, Ca.Infoway.Messagebuilder.Domainvalue.Basic.EntityNamePartQualifier
+				.INITIAL));
 			personName.AddNamePart(new EntityNamePart("given1", PersonNamePartType.GIVEN));
 			personName.AddNamePart(new EntityNamePart("given2", PersonNamePartType.GIVEN));
 			personName.AddNamePart(new EntityNamePart("given3", PersonNamePartType.GIVEN));
 			personName.AddNamePart(new EntityNamePart("given4", PersonNamePartType.GIVEN));
 			personName.AddNamePart(new EntityNamePart("family", PersonNamePartType.FAMILY));
-			personName.AddNamePart(new EntityNamePart("suffix", PersonNamePartType.SUFFIX, "IN"));
+			personName.AddNamePart(new EntityNamePart("suffix", PersonNamePartType.SUFFIX, Ca.Infoway.Messagebuilder.Domainvalue.Basic.EntityNamePartQualifier
+				.INITIAL));
 			string result = formatter.Format(GetContext("name", "PN.BASIC", SpecificationVersion.R02_04_02), new PNImpl(personName));
 			Assert.IsTrue(this.result.IsValid());
 			Assert.AreEqual("<name use=\"L\"><prefix qualifier=\"IN\">prefix</prefix><given>given1</given><given>given2</given><given>given3</given><given>given4</given><family>family</family><suffix qualifier=\"IN\">suffix</suffix></name>"
@@ -533,14 +541,16 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			PnPropertyFormatter formatter = new PnPropertyFormatter();
 			PersonName personName = new PersonName();
 			personName.AddUse(Ca.Infoway.Messagebuilder.Domainvalue.Basic.EntityNameUse.LEGAL);
-			personName.AddNamePart(new EntityNamePart("prefix", PersonNamePartType.PREFIX, "IN"));
+			personName.AddNamePart(new EntityNamePart("prefix", PersonNamePartType.PREFIX, Ca.Infoway.Messagebuilder.Domainvalue.Basic.EntityNamePartQualifier
+				.INITIAL));
 			personName.AddNamePart(new EntityNamePart("given1", PersonNamePartType.GIVEN));
 			personName.AddNamePart(new EntityNamePart("given2", PersonNamePartType.GIVEN));
 			personName.AddNamePart(new EntityNamePart("given3", PersonNamePartType.GIVEN));
 			personName.AddNamePart(new EntityNamePart("given4", PersonNamePartType.GIVEN));
 			personName.AddNamePart(new EntityNamePart("given5", PersonNamePartType.GIVEN));
 			personName.AddNamePart(new EntityNamePart("family", PersonNamePartType.FAMILY));
-			personName.AddNamePart(new EntityNamePart("suffix", PersonNamePartType.SUFFIX, "IN"));
+			personName.AddNamePart(new EntityNamePart("suffix", PersonNamePartType.SUFFIX, Ca.Infoway.Messagebuilder.Domainvalue.Basic.EntityNamePartQualifier
+				.INITIAL));
 			string result = formatter.Format(GetContext("name", "PN.BASIC", SpecificationVersion.R02_04_02), new PNImpl(personName));
 			Assert.IsFalse(this.result.IsValid());
 			Assert.AreEqual(1, this.result.GetHl7Errors().Count);

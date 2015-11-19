@@ -14,14 +14,14 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype.Impl;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter;
-using Ca.Infoway.Messagebuilder.Terminology.Configurator;
+using Ca.Infoway.Messagebuilder.Resolver.Configurator;
 using NUnit.Framework;
 
 namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
@@ -30,7 +30,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 	public class PivlTsPropertyFormatterTest : FormatterTestCase
 	{
 		[SetUp]
-		public override void Setup()
+		public virtual void Setup()
 		{
 			DefaultCodeResolutionConfigurator.ConfigureCodeResolversWithTrivialDefault();
 		}
@@ -67,8 +67,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 
 		protected virtual FormatContext GetContextSk(string name, string type)
 		{
-			return new FormatContextImpl(this.result, null, name, type, null, false, SpecificationVersion.V01R04_2_SK, null, null, null
-				);
+			return new Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter.FormatContextImpl(this.result, null, name, type, null, null
+				, false, SpecificationVersion.V01R04_2_SK, null, null, null, false);
 		}
 
 		/// <exception cref="System.Exception"></exception>

@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System.Xml;
@@ -49,8 +49,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 
 		private ParseContext CreateContext(string type, VersionNumber version)
 		{
-			return ParserContextImpl.Create(type, typeof(EncapsulatedData), version, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
-				.POPULATED);
+			return ParseContextImpl.Create(type, typeof(EncapsulatedData), version, null, null, Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
+				.POPULATED, null, null, false);
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -74,7 +74,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			EncapsulatedData data = (EncapsulatedData)new EdElementParser().Parse(CreateContext("ED.DOC", SpecificationVersion.V02R02
 				), node, this.xmlResult).BareValue;
 			Assert.IsTrue(this.xmlResult.IsValid());
-			Assert.AreEqual(TEXT_SIMPLE, System.Text.ASCIIEncoding.ASCII.GetString(data.Content), "content");
+			Assert.AreEqual(TEXT_SIMPLE, data.Content, "content");
 			Assert.AreEqual(Ca.Infoway.Messagebuilder.Domainvalue.Basic.X_DocumentMediaType.PLAIN_TEXT, data.MediaType, "media type");
 		}
 
@@ -86,36 +86,42 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			EncapsulatedData data = (EncapsulatedData)new EdElementParser().Parse(CreateContext("ED.DOC", SpecificationVersion.V02R02
 				), node, this.xmlResult).BareValue;
 			Assert.IsTrue(this.xmlResult.IsValid());
-			Assert.AreEqual("This is a test", System.Text.ASCIIEncoding.ASCII.GetString(data.Content), "content");
+			Assert.AreEqual("This is a test", Unencode(System.Text.ASCIIEncoding.ASCII.GetBytes(data.Content)), "content");
 			Assert.AreEqual(Ca.Infoway.Messagebuilder.Domainvalue.Basic.X_DocumentMediaType.PLAIN_TEXT, data.MediaType, "media type");
 		}
 
 		/// <exception cref="System.Exception"></exception>
 		[Test]
-		public virtual void TestParseTooManyChildNodes()
+		public virtual void TestCommentsShouldNotCauseValidationErrors()
 		{
-			XmlNode node = CreateNode("<something>" + "<monkey/>" + "<shines/>" + "<through/>" + "</something>");
-			try
-			{
-				new EdElementParser().Parse(CreateContext("ED.DOC", SpecificationVersion.V02R02), node, this.xmlResult);
-				Assert.Fail("expected exception");
-			}
-			catch (XmlToModelTransformationException)
-			{
-			}
-			// expected
-			node = CreateNode("<something>" + "<monkey/>" + "<shines/>" + "</something>");
-			try
-			{
-				new EdElementParser().Parse(CreateContext("ED.DOCREF", SpecificationVersion.V02R02), node, this.xmlResult);
-				Assert.Fail("expected exception");
-			}
-			catch (XmlToModelTransformationException)
-			{
-			}
+			XmlNode node = CreateNode("<something mediaType=\"text/plain\">" + "<!--reference to CR DICOM image (PA view) -->" + "<reference value=\"https://pipefq.ehealthsask.ca/monograph/WPDM00002197.html\"/>"
+				 + "This is a text node" + "</something>");
+			new EdElementParser().Parse(CreateContext("ED", SpecificationVersion.V02R02), node, this.xmlResult);
+			Assert.IsTrue(this.xmlResult.IsValid());
+			Assert.AreEqual(0, this.xmlResult.GetHl7Errors().Count);
 		}
 
-		// expected
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void TestParseManyChildNodesAllowed()
+		{
+			XmlNode node = CreateNode("<something>" + "Some Text" + "<!-- a comment -->" + "And some more text" + "</something>");
+			new EdElementParser().Parse(CreateContext("ED.DOC", SpecificationVersion.V02R02), node, this.xmlResult);
+			Assert.IsFalse(this.xmlResult.IsValid());
+			Assert.AreEqual(1, this.xmlResult.GetHl7Errors().Count);
+			Assert.AreEqual("MediaType must be provided and must be a value from x_DocumentMediaType. (<something>)", this.xmlResult.
+				GetHl7Errors()[0].GetMessage());
+			this.xmlResult.ClearErrors();
+			node = CreateNode("<something>" + "Some Text" + "<!-- a comment -->" + "And some more text" + "</something>");
+			new EdElementParser().Parse(CreateContext("ED.DOCREF", SpecificationVersion.V02R02), node, this.xmlResult);
+			Assert.IsFalse(this.xmlResult.IsValid());
+			Assert.AreEqual(3, this.xmlResult.GetHl7Errors().Count);
+			Assert.AreEqual("MediaType must be provided and must be a value from x_DocumentMediaType. (<something>)", this.xmlResult.
+				GetHl7Errors()[0].GetMessage());
+			Assert.AreEqual("Reference is mandatory. (<something>)", this.xmlResult.GetHl7Errors()[1].GetMessage());
+			Assert.AreEqual("Content is not permitted for ED.DOCREF. (<something>)", this.xmlResult.GetHl7Errors()[2].GetMessage());
+		}
+
 		/// <exception cref="System.Exception"></exception>
 		[Test]
 		public virtual void TestParseValueCompressedXmlData()
@@ -188,7 +194,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			Assert.IsFalse(this.xmlResult.IsValid());
 			Assert.AreEqual(2, this.xmlResult.GetHl7Errors().Count);
 			// must provide specializationType and mediaType
-			Assert.AreEqual("this is a text node", System.Text.ASCIIEncoding.ASCII.GetString(value.Content), "signature");
+			Assert.AreEqual("this is a text node", value.Content, "signature");
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -201,7 +207,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 				R02_04_03), node, this.xmlResult).BareValue;
 			Assert.IsFalse(this.xmlResult.IsValid());
 			Assert.AreEqual(1, this.xmlResult.GetHl7Errors().Count);
-			Assert.AreEqual("text value", BytesUtil.AsString(value.Content), "proper text returned");
+			Assert.AreEqual("text value", value.Content, "proper text returned");
 			Assert.AreEqual(Ca.Infoway.Messagebuilder.Domainvalue.Basic.X_DocumentMediaType.PLAIN_TEXT, value.MediaType, "proper media type returned"
 				);
 			Assert.AreEqual("https://pipefq.ehealthsask.ca/monograph/WPDM00002197.html", value.Reference, "proper reference returned"
@@ -233,7 +239,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			EncapsulatedData value = (EncapsulatedData)new EdElementParser().Parse(CreateContext("ED.DOC", SpecificationVersion.R02_04_03
 				), node, this.xmlResult).BareValue;
 			Assert.IsTrue(this.xmlResult.IsValid());
-			Assert.AreEqual("text value", System.Text.ASCIIEncoding.ASCII.GetString(value.Content), "text returned");
+			Assert.AreEqual("text value", value.Content, "text returned");
 			Assert.AreEqual(Ca.Infoway.Messagebuilder.Domainvalue.Basic.X_DocumentMediaType.HTML_TEXT, value.MediaType, "proper media type returned"
 				);
 			Assert.AreEqual("https://pipefq.ehealthsask.ca/monograph/WPDM00002197.html", value.Reference, "proper reference returned"
@@ -317,7 +323,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 				R02_04_03), node, this.xmlResult).BareValue;
 			Assert.IsFalse(this.xmlResult.IsValid());
 			Assert.AreEqual(1, this.xmlResult.GetHl7Errors().Count);
-			Assert.AreEqual("text value", BytesUtil.AsString(value.Content), "proper text returned");
+			Assert.AreEqual("text value", value.Content, "proper text returned");
 			Assert.AreEqual(Ca.Infoway.Messagebuilder.Domainvalue.Basic.X_DocumentMediaType.HTML_TEXT, value.MediaType, "proper media type returned"
 				);
 			Assert.IsNull(value.Reference, "no reference");
@@ -334,7 +340,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			Assert.IsFalse(this.xmlResult.IsValid());
 			Assert.AreEqual(2, this.xmlResult.GetHl7Errors().Count);
 			// reference should be as element; can't have both reference and content
-			Assert.AreEqual("text value", BytesUtil.AsString(value.Content), "proper text returned");
+			Assert.AreEqual("text value", value.Content, "proper text returned");
 			Assert.AreEqual(Ca.Infoway.Messagebuilder.Domainvalue.Basic.X_DocumentMediaType.PLAIN_TEXT, value.MediaType, "proper media type returned"
 				);
 			Assert.AreEqual("https://pipefq.ehealthsask.ca/monograph/WPDM00002197.html", value.Reference, "proper reference returned"
@@ -365,8 +371,9 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			EncapsulatedData value = (EncapsulatedData)new EdElementParser().Parse(CreateContext("ED.DOC", SpecificationVersion.R02_04_03
 				), node, this.xmlResult).BareValue;
 			Assert.IsFalse(this.xmlResult.IsValid());
-			Assert.AreEqual(1, this.xmlResult.GetHl7Errors().Count);
-			Assert.AreEqual("text value", BytesUtil.AsString(value.Content), "proper text returned");
+			Assert.AreEqual(2, this.xmlResult.GetHl7Errors().Count);
+			// unknown value for representation; representation must be B64 or TXT
+			Assert.AreEqual("text value", value.Content, "proper text returned");
 			Assert.AreEqual(Ca.Infoway.Messagebuilder.Domainvalue.Basic.X_DocumentMediaType.PLAIN_TEXT, value.MediaType, "proper media type returned"
 				);
 			Assert.IsNull(value.Reference, "no reference");
@@ -381,7 +388,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			EncapsulatedData value = (EncapsulatedData)new EdElementParser().Parse(CreateContext("ED.DOC", SpecificationVersion.R02_04_03
 				), node, this.xmlResult).BareValue;
 			Assert.IsTrue(this.xmlResult.IsValid());
-			Assert.AreEqual("text value", BytesUtil.AsString(value.Content), "proper text returned");
+			Assert.AreEqual("text value", value.Content, "proper text returned");
 			Assert.AreEqual(Ca.Infoway.Messagebuilder.Domainvalue.Basic.X_DocumentMediaType.PLAIN_TEXT, value.MediaType, "proper media type returned"
 				);
 			Assert.IsNull(value.Reference, "no reference");
@@ -397,7 +404,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			EncapsulatedData value = (EncapsulatedData)new EdElementParser().Parse(CreateContext("ED.DOC", SpecificationVersion.R02_04_03
 				), node, this.xmlResult).BareValue;
 			Assert.IsTrue(this.xmlResult.IsValid());
-			Assert.AreEqual("text value", BytesUtil.AsString(value.Content), "proper text returned");
+			Assert.AreEqual("text value", BytesUtil.AsString(Base64.DecodeBase64(System.Text.ASCIIEncoding.ASCII.GetBytes(value.Content
+				))), "proper text returned");
 			Assert.AreEqual(Ca.Infoway.Messagebuilder.Domainvalue.Basic.X_DocumentMediaType.PLAIN_TEXT, value.MediaType, "proper media type returned"
 				);
 			Assert.IsNull(value.Reference, "no reference");
@@ -414,7 +422,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			Assert.IsFalse(this.xmlResult.IsValid());
 			Assert.AreEqual(2, this.xmlResult.GetHl7Errors().Count);
 			// reference should be an element; can't have content
-			Assert.AreEqual("text value", BytesUtil.AsString(value.Content), "proper text returned");
+			Assert.AreEqual("text value", value.Content, "proper text returned");
 			Assert.AreEqual(Ca.Infoway.Messagebuilder.Domainvalue.Basic.X_DocumentMediaType.PLAIN_TEXT, value.MediaType, "proper media type returned"
 				);
 			Assert.AreEqual("https://pipefq.ehealthsask.ca/monograph/WPDM00002197.html", value.Reference, "proper reference returned"
@@ -505,6 +513,11 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 				);
 			Assert.AreEqual("eng", value.Language);
 		}
+
 		// charset not permitted pre-MR2009
+		private string Unencode(byte[] contentToBeUnencoded)
+		{
+			return System.Text.ASCIIEncoding.ASCII.GetString(Base64.DecodeBase64(contentToBeUnencoded));
+		}
 	}
 }

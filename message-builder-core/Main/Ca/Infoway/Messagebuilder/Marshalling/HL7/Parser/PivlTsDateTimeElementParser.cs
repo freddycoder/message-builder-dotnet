@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System;
@@ -23,8 +23,10 @@ using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Datatype.Impl;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
+using Ca.Infoway.Messagebuilder.Error;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser;
+using Ca.Infoway.Messagebuilder.Xml;
 using ILOG.J2CsMapping.Collections.Generics;
 
 namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
@@ -101,16 +103,16 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		private Int32? ParseNumerator(ParseContext context, XmlElement numerator, XmlToModelResult xmlToModelResult)
 		{
 			ElementParser parser = ParserRegistry.GetInstance().Get("INT.NONNEG");
-			ParseContext subContext = ParserContextImpl.Create("INT.NONNEG", typeof(Int32?), context.GetVersion(), context.GetDateTimeZone
-				(), context.GetDateTimeTimeZone(), Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY);
+			ParseContext subContext = ParseContextImpl.Create("INT.NONNEG", typeof(Int32?), Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
+				.MANDATORY, Cardinality.Create("1"), context);
 			return (Int32?)parser.Parse(subContext, Arrays.AsList((XmlNode)numerator), xmlToModelResult).BareValue;
 		}
 
 		private PhysicalQuantity ParseDenominator(ParseContext context, XmlElement numerator, XmlToModelResult xmlToModelResult)
 		{
 			ElementParser parser = ParserRegistry.GetInstance().Get("PQ.TIME");
-			ParseContext subContext = ParserContextImpl.Create("PQ.TIME", typeof(PhysicalQuantity), context.GetVersion(), context.GetDateTimeZone
-				(), context.GetDateTimeTimeZone(), Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY);
+			ParseContext subContext = ParseContextImpl.Create("PQ.TIME", typeof(PhysicalQuantity), Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
+				.MANDATORY, Cardinality.Create("1"), context);
 			return (PhysicalQuantity)parser.Parse(subContext, Arrays.AsList((XmlNode)numerator), xmlToModelResult).BareValue;
 		}
 
@@ -119,8 +121,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		{
 			// TM - Unsure if SK is allowed to send in any kind of PQ, or only specific ones. Picked PQ.BASIC to cover most scenarios. 
 			ElementParser parser = ParserRegistry.GetInstance().Get("IVL<PQ.BASIC>");
-			ParseContext subContext = ParserContextImpl.Create("IVL<PQ.BASIC>", typeof(PhysicalQuantity), context.GetVersion(), context
-				.GetDateTimeZone(), context.GetDateTimeTimeZone(), Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY);
+			ParseContext subContext = ParseContextImpl.Create("IVL<PQ.BASIC>", typeof(PhysicalQuantity), Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
+				.MANDATORY, Cardinality.Create("1"), context);
 			return (Interval<PhysicalQuantity>)parser.Parse(subContext, Arrays.AsList((XmlNode)numerator), xmlToModelResult).BareValue;
 		}
 

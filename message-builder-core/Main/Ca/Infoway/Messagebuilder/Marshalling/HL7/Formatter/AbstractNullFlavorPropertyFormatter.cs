@@ -14,15 +14,17 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using System.Collections.Generic;
 using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Domainvalue;
-using Ca.Infoway.Messagebuilder.Marshalling.HL7;
+using Ca.Infoway.Messagebuilder.Error;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter;
 using Ca.Infoway.Messagebuilder.Platform;
+using Ca.Infoway.Messagebuilder.Xml;
+using Ca.Infoway.Messagebuilder.Xml.Util;
 
 namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 {
@@ -45,10 +47,12 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			if (hl7Value != null)
 			{
 				V value = ExtractBareValue(hl7Value);
+				Ca.Infoway.Messagebuilder.Xml.ConformanceLevel conformanceLevel = context.GetConformanceLevel();
+				Cardinality cardinality = context.GetCardinality();
 				if (hl7Value.HasNullFlavor())
 				{
 					result = CreateElement(context, CreateNullFlavorAttributes(hl7Value.NullFlavor), indentLevel, true, true);
-					if (context.GetConformanceLevel() == Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY)
+					if (ConformanceLevelUtil.IsMandatory(conformanceLevel, cardinality))
 					{
 						CreateMissingMandatoryWarning(context);
 					}
@@ -57,9 +61,9 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 				{
 					if (value == null || IsEmptyCollection(value))
 					{
-						if (context.GetConformanceLevel() == null || IsMandatoryOrPopulated(context))
+						if (conformanceLevel == null || IsMandatoryOrPopulated(context))
 						{
-							if (context.GetConformanceLevel() == Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY)
+							if (ConformanceLevelUtil.IsMandatory(conformanceLevel, cardinality))
 							{
 								result = CreateElement(context, AbstractPropertyFormatter.EMPTY_ATTRIBUTE_MAP, indentLevel, true, true);
 								CreateMissingMandatoryWarning(context);
@@ -81,15 +85,16 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 
 		protected virtual V ExtractBareValue(BareANY hl7Value)
 		{
-			return (V)hl7Value.BareValue;
+			return hl7Value == null ? (V)(object)null : (V)hl7Value.BareValue;
 		}
 
-		internal virtual string FormatNonNullDataType(FormatContext context, BareANY dataType, int indentLevel)
+		//Cast as Object for .NET translation
+		protected virtual string FormatNonNullDataType(FormatContext context, BareANY dataType, int indentLevel)
 		{
 			return FormatNonNullValue(context, ExtractBareValue(dataType), indentLevel);
 		}
 
-		internal abstract string FormatNonNullValue(FormatContext context, V t, int indentLevel);
+		protected abstract string FormatNonNullValue(FormatContext context, V t, int indentLevel);
 
 		protected virtual bool IsEmptyCollection(V value)
 		{
@@ -115,9 +120,10 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 
 		protected virtual bool IsMandatoryOrPopulated(FormatContext context)
 		{
-			Ca.Infoway.Messagebuilder.Xml.ConformanceLevel level = context.GetConformanceLevel();
-			return level == Ca.Infoway.Messagebuilder.Xml.ConformanceLevel.MANDATORY || level == Ca.Infoway.Messagebuilder.Xml.ConformanceLevel
-				.POPULATED;
+			Ca.Infoway.Messagebuilder.Xml.ConformanceLevel conformance = context.GetConformanceLevel();
+			Cardinality cardinality = context.GetCardinality();
+			return ConformanceLevelUtil.IsMandatory(conformance, cardinality) || ConformanceLevelUtil.IsPopulated(conformance, cardinality
+				);
 		}
 
 		protected virtual IDictionary<string, string> ToStringMap(params string[] @string)

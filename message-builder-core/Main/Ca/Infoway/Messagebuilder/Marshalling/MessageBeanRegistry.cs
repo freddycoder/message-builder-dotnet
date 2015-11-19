@@ -25,6 +25,7 @@ using System.Reflection;
 using Ca.Infoway.Messagebuilder.Annotation;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Model;
+using Ca.Infoway.Messagebuilder.Util;
 using System.Runtime.CompilerServices;
 
 namespace Ca.Infoway.Messagebuilder.Marshalling
@@ -35,7 +36,6 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 
         private Dictionary<MessageTypeKey, Type> registry = new Dictionary<MessageTypeKey, Type>();
         private Dictionary<MessageTypeKey, Type> partTypeRegistry = new Dictionary<MessageTypeKey, Type>();
-        private Dictionary<MessageTypeKey, Type> codeTypeRegistry = new Dictionary<MessageTypeKey, Type>();
 
         public static MessageBeanRegistry GetInstance()
         {
@@ -47,15 +47,9 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
             return instance;
         }
 
-        public Type GetMessagePartType(MessageTypeKey key)
+        private Type GetMessagePartType(MessageTypeKey key)
         {
             return partTypeRegistry.ContainsKey(key) ? partTypeRegistry[key] : null;
-        }
-
-        public Type GetCodeType(string domainType, String version)
-        {
-            MessageTypeKey key = new MessageTypeKey(version, domainType);
-            return codeTypeRegistry.ContainsKey(key) ? codeTypeRegistry[key] : null;
         }
 
         public Dictionary<MessageTypeKey, Type>.ValueCollection GetAllMessageParts()
@@ -85,7 +79,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
                 return GetTypeFromPartTypeMapping(version, messageBean);
             }
 
-            throw new MarshallingException("Cannot find a type for " + messageBean.GetType());
+            throw new MarshallingException("Cannot find a type for " + (messageBean == null ? "" : messageBean.GetType().ToString()));
         }
 
         public Type GetMessagePartClass(VersionNumber version, String type)
@@ -148,34 +142,13 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 
         private void Initialize()
         {
-            var candidates = GetAssembliesWithVersionAttribute(typeof(MbtModelVersionNumberAttribute));
+            var candidates = new ManifestLocater().GetAssembliesWithVersionAttribute(typeof(MbtModelVersionNumberAttribute));
 
             foreach (var item in candidates)
             {
                 var classes = FindClasses(item.Key);
 
                 RegisterClasses(classes, item.Value);
-
-                var codes = FindCodes(item.Key);
-
-                RegisterCodeType(codes, item.Value);
-            }
-        }
-
-        private void RegisterCodeType(List<Type> codes, string[] versions)
-        {
-            foreach (var type in codes)
-            {
-                RegisterCodeType(type, versions);
-            }
-        }
-
-        private void RegisterCodeType(Type type, string[] versions)
-        {
-            string domainType = type.Name;
-            foreach (string version in versions)
-            {
-                codeTypeRegistry.Add(new MessageTypeKey(version, domainType), type);
             }
         }
 
@@ -187,7 +160,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
             }
         }
 
-		internal void RegisterClass(Type type, VersionNumber version) {
+		public void RegisterClass(Type type, VersionNumber version) {
 			RegisterClass(type, new String[] { version.VersionLiteral });
 		}
 		
@@ -235,45 +208,6 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
             return selectedTypes;
         }
 
-        private static List<Type> FindCodes(Assembly assembly)
-        {
-            var selectedTypes = new List<Type>();
-
-            var types = assembly.GetTypes();
-
-            foreach (var type in types)
-            {
-                if (type.IsAssignableFrom(typeof(Code)))
-                {
-                    selectedTypes.Add(type);
-                }
-            }
-
-            return selectedTypes;
-        }
-
-        private static Dictionary<Assembly, string[]> GetAssembliesWithVersionAttribute(Type attributeType)
-        {
-            var candidates = new Dictionary<Assembly, string[]>();
-
-            foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
-            {
-                string simpleAssemblyName = assembly.GetName().Name;
-
-                if (simpleAssemblyName.StartsWith("message-builder-"))
-                {
-                    var attr = GetAssemblyAttribute(assembly, attributeType);
-
-                    if (attr != null)
-                    {
-                        candidates.Add(assembly, attr.value.Split(' '));
-                    }
-                }
-            }
-
-            return candidates;
-        }
-
         private static Hl7PartTypeMappingAttribute GetClassAttributes(Type type, Type attributeType)
         {
             var classAttributes = type.GetCustomAttributes(attributeType, false);
@@ -283,20 +217,6 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
             if (classAttributes.Length > 0)
             {
                 attr = classAttributes[0] as Hl7PartTypeMappingAttribute;
-            }
-
-            return attr;
-        }
-
-        private static MbtModelVersionNumberAttribute GetAssemblyAttribute(Assembly assembly, Type attributeType)
-        {
-            var assemblyAttributes  = assembly.GetCustomAttributes(attributeType, true);
-
-            MbtModelVersionNumberAttribute attr = null;
-
-            if (assemblyAttributes.Length > 0)
-            {
-                attr = assemblyAttributes[0] as MbtModelVersionNumberAttribute;
             }
 
             return attr;

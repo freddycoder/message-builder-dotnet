@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 16:47:15 -0300 (Wed, 04 May 2011) $
+ * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
  * Revision:      $LastChangedRevision: 2623 $
  */
 using Ca.Infoway.Messagebuilder.Datatype.Impl;
@@ -81,9 +81,9 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			postalAddress.AddPostalAddressPart(new PostalAddressPart(PostalAddressPartType.STATE, "ON"));
 			string result = formatter.Format(GetContext("addr", "AD.FULL"), new ADImpl(postalAddress));
 			Assert.IsFalse(this.result.IsValid());
-			Assert.AreEqual(4, this.result.GetHl7Errors().Count);
-			// no parts without part type; delimiter not allowed; postal code and country mandatory
-			Assert.AreEqual("<addr><city>cityname</city><state>ON</state></addr>", result.Trim(), "something in text node with goofy sub nodes suppressed"
+			Assert.AreEqual(3, this.result.GetHl7Errors().Count);
+			// no parts without part type; postal code and country mandatory
+			Assert.AreEqual("<addr><city>cityname</city><delimiter>,</delimiter><state>ON</state></addr>", result.Trim(), "something in text node with goofy sub nodes suppressed"
 				);
 		}
 
