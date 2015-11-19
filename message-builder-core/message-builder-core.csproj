@@ -1049,6 +1049,7 @@
     <None Include="Main\Ca\Infoway\Messagebuilder\svn-commit.tmp">
       <Visible>False</Visible>
     </None>
+    <None Include="message-builder-core.licenseheader" />
     <None Include="message-builder-core.snk" />
     <None Include="Services\Ca.Infoway.Messagebuilder.Xml.Service.MessageDefinitionService" />
     <None Include="test-results\message-builder-core.csproj-Debug-2010-04-30.xml">
