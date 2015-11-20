@@ -56,4 +56,4 @@ using Ca.Infoway.Messagebuilder.Annotation;
 [assembly: AssemblyFileVersion("2.1.1.0")]
 
 [assembly: MbtModelVersionNumber("R02_04_03_SHR_AB")]
-[assembly: MbtMessageSet("/messageSet_ab_mr2009_r02_04_03_shr.xml")]
+[assembly: MbtMessageSet("/messageSet-ab_r02_04_03_shr.xml")]

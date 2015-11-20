@@ -7,10 +7,11 @@
     <ProjectGuid>{BD2C5B3D-9CCC-4CBC-89CD-FC56C7461B04}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>message_builder_release_cda_ab_shr</RootNamespace>
+    <RootNamespace>messagebuilderreleasecdaabshr</RootNamespace>
     <AssemblyName>message-builder-release-cda-ab-shr</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>

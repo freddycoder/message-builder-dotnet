@@ -44,6 +44,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "message-builder-release-ab_
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "message-builder-release-cda-ab-shr", "message-builder-release-cda-ab-shr\message-builder-release-cda-ab-shr.csproj", "{BD2C5B3D-9CCC-4CBC-89CD-FC56C7461B04}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hello_World", "HelloWorld_AB_SHR\Hello_World.csproj", "{C28A2D98-32E2-4248-96A4-679DCDF68A53}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -274,6 +276,18 @@ Global
 		{BD2C5B3D-9CCC-4CBC-89CD-FC56C7461B04}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{BD2C5B3D-9CCC-4CBC-89CD-FC56C7461B04}.Release|x86.ActiveCfg = Release|Any CPU
 		{BD2C5B3D-9CCC-4CBC-89CD-FC56C7461B04}.Release|x86.Build.0 = Release|Any CPU
+		{C28A2D98-32E2-4248-96A4-679DCDF68A53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C28A2D98-32E2-4248-96A4-679DCDF68A53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C28A2D98-32E2-4248-96A4-679DCDF68A53}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{C28A2D98-32E2-4248-96A4-679DCDF68A53}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{C28A2D98-32E2-4248-96A4-679DCDF68A53}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C28A2D98-32E2-4248-96A4-679DCDF68A53}.Debug|x86.Build.0 = Debug|Any CPU
+		{C28A2D98-32E2-4248-96A4-679DCDF68A53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C28A2D98-32E2-4248-96A4-679DCDF68A53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C28A2D98-32E2-4248-96A4-679DCDF68A53}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{C28A2D98-32E2-4248-96A4-679DCDF68A53}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{C28A2D98-32E2-4248-96A4-679DCDF68A53}.Release|x86.ActiveCfg = Release|Any CPU
+		{C28A2D98-32E2-4248-96A4-679DCDF68A53}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

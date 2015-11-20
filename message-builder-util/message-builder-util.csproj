@@ -116,6 +116,10 @@
     </Compile>
     <Compile Include="Main\Ca\Infoway\Messagebuilder\VersionNumber.cs" />
     <Compile Include="Main\Ca\Infoway\Messagebuilder\J5goodies\ClassFileUtil.cs" />
+    <Compile Include="Test\Base64Test.cs" />
+    <Compile Include="Test\Ca\Infoway\Messagebuilder\Lang\NumberUtilTest.cs" />
+    <Compile Include="Test\Ca\Infoway\Messagebuilder\Util\Iterator\ArrayIterableTest.cs" />
+    <Compile Include="Test\Ca\Infoway\Messagebuilder\Util\Iterator\EmptyIterableTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Castle.Core">
@@ -129,6 +133,30 @@
     </Reference>
     <Reference Include="log4net">
       <HintPath>..\SharedLibs\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\SharedLibs\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit-console-runner">
+      <HintPath>..\SharedLibs\nunit-console-runner.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.core">
+      <HintPath>..\SharedLibs\nunit.core.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.core.interfaces">
+      <HintPath>..\SharedLibs\nunit.core.interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\SharedLibs\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.util">
+      <HintPath>..\SharedLibs\nunit.util.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Data">
+      <HintPath>..\SharedLibs\Spring.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Data.NHibernate20">
+      <HintPath>..\SharedLibs\Spring.Data.NHibernate20.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System" />
@@ -158,5 +186,8 @@
       <Project>{6821E6B6-3A4D-4D4D-A9D0-147878B4FDEE}</Project>
       <Name>message-builder-compatibility</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
 </Project>

@@ -7,10 +7,11 @@
     <ProjectGuid>{C542229C-BBE5-4457-8D4A-0B57C2C2A142}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>message_builder_release_ab_r02_04_03_shr</RootNamespace>
+    <RootNamespace>messagebuilderreleaseab_r02_04_03_shr</RootNamespace>
     <AssemblyName>message-builder-release-ab_r02_04_03_shr</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -2048,9 +2049,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="MainResources\messageSet_ab_mr2009_r02_04_03_shr.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\message-builder-compatibility\message-builder-compatibility.csproj">
       <Project>{6821e6b6-3a4d-4d4d-a9d0-147878b4fdee}</Project>
       <Name>message-builder-compatibility</Name>
@@ -2066,6 +2064,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="message-builder-release-ab_r02_04_03_shr.licenseheader" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="MainResource\messageSet-ab_r02_04_03_shr.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

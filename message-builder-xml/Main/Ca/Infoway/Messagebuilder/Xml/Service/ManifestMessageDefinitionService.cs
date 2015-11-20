@@ -36,27 +36,31 @@ namespace Ca.Infoway.Messagebuilder.Xml.Service
         private List<ResourcePair> getResourceNamesFromManifests()
         {
             var manifests = new List<ResourcePair>();
-
-            foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+            foreach (var executingAssembly in AppDomain.CurrentDomain.GetAssemblies())
             {
-				string simpleAssemblyName = assembly.GetName().Name;
+                foreach (var assemblyName in executingAssembly.GetReferencedAssemblies())
+                {
 				
-				if (simpleAssemblyName.StartsWith("message-builder-"))
-				{
-                    var attr = GetAssemblyAttribute(assembly);
+				    if (assemblyName.Name.StartsWith("message-builder-"))
+				    {
+                        Assembly assembly = Assembly.Load(assemblyName);
+                        var attr = GetAssemblyAttribute(assembly);
 
-                    if (attr != null)
-                    {
-                        string[] collection = attr.value.Split(' ');
-
-                        foreach (var s in collection)
+                        if (attr != null)
                         {
-                            manifests.Add(new ResourcePair(s, assembly));
-                        }
+                            string[] collection = attr.value.Split(' ');
+
+                            foreach (var s in collection)
+                            {
+                                manifests.Add(new ResourcePair(s, assembly));
+                            }
                         
-                    }
-				}
+                        }
+				    }
+                }
+
             }
+
 
             return manifests;
         }

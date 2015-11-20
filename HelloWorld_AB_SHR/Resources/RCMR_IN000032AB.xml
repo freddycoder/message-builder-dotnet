@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RCMR_IN000032AB ITSVersion="XML_1.0" xmlns="urn:hl7-org:v3"
+  xmlns:ex="urn:hl7-org/v3-example" xmlns:test="urn:hl7-org/v3-testing" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:hl7-org:v3
+  ..\schemas\RCMR_IN000032AB.xsd">
+  <!--
+    - Note: This is an example instance.  In a real instance the following differences would apply
+    -     1. There would be no schema declaration.  (Receivers will validate against their own schemas)
+    -     2. Example OIDs would be replaced by real OIDs (though real OIDs are used where possible)
+    -     3. Processing mode would be Production, not Debug
+    -     4. Data would be real values (e.g. real identifiers used)
+    
+While efforts have been made to create a clinically-valid sample, the main purpose of his instance example is to illustrate message structure and not to be 100% clinically valid
+
+AB SHR-Get Report-07
+
+SHR_SC07.02 is the response to a query for full details about a single transcribed clinical report -->
+  <realmCode code="AB"/>
+  <id xsi:type="II" specializationType="II.TOKEN" root="3E608C99-CCCC-4897-8580-DA28194FCA93"/>
+  <creationTime xsi:type="TS" specializationType="TS.FULLDATETIME" value="20120326132800-0600"/>
+  <securityText>Security token information goes here</securityText>
+  <responseModeCode code="I"/>
+  <versionCode code="V3-2008N"/>
+  <interactionId xsi:type="II" specializationType="II.PUBLIC" displayable="true" extension="RCMR_IN000032AB" root="2.16.840.1.113883.1.6" use="BUS"/>
+  <profileId xsi:type="II" specializationType="II.BUS" root="2.16.840.1.113883.2.20.2" extension="R02.04.03" use="BUS"/>
+  <profileId xsi:type="II" specializationType="II.BUS" root="2.16.840.1.113883.3.163.10.2.2" extension="AB SHR v1.0" use="BUS"/>
+  <processingCode code="D"/>
+  <processingModeCode code="A"/>
+  <acceptAckCode code="AL"/>
+  <receiver typeCode="RCV">
+    <device classCode="DEV" determinerCode="INSTANCE">
+      <id xsi:type="II" specializationType="II.BUS" root="2.16.840.1.113883.3.163.10.1.1" use="BUS"/>      
+    </device>
+  </receiver>
+  <sender typeCode="SND">
+    <device classCode="DEV" determinerCode="INSTANCE">
+      <id xsi:type="II" specializationType="II.BUS" root="2.16.840.1.113883.3.163.10.1.5" use="BUS"/>     
+    </device>
+  </sender>
+  <acknowledgement typeCode="AA">
+    <targetMessage>
+      <id root="3E608C99-CCCC-4897-8580-DA28194FCA55"/>
+    </targetMessage>
+  </acknowledgement>
+  <controlActEvent classCode="CACT" moodCode="EVN">
+    <id xsi:type="II" specializationType="II.BUS" root="2.16.840.1.113883.3.163.10.1.3" extension="3" use="BUS"/>
+    <code code="RCMR_TE000904AB" codeSystem="2.16.840.1.113883.1.18"/>
+    <statusCode code="completed"/>
+    <recordTarget contextControlCode="AP" typeCode="RCT">
+      <patient1 classCode="PAT">
+        <id xsi:type="II" specializationType="II.PUBLIC" displayable="true" extension="123456" root="2.16.840.1.113883.4.20" use="BUS"/>
+        <patientPerson classCode="PSN" determinerCode="INSTANCE">
+          <name xsi:type="PN" specializationType="PN.BASIC" use="L">
+            <given>Hannah</given>            
+            <family>Lambert</family>
+          </name>
+          <administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.5.1"/>
+          <birthTime xsi:type="TS" specializationType="TS.FULLDATE" value="19940101"/>
+        </patientPerson>
+      </patient1>     
+    </recordTarget>
+    <subject contextConductionInd="false" contextControlCode="AN" typeCode="SUBJ">
+      <document classCode="DOCCLIN" moodCode="EVN">
+        <id xsi:type="II" specializationType="II.BUS" root="2.16.840.1.113883.3.163.10.2.3" extension="1234" use="BUS"/>
+        <code code="11488-4" codeSystem="2.16.840.1.113883.6.1"/>
+        <title>Consultation Note for Hannah Harper</title>
+        <text mediaType="text/xml" representation="B64">PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPENsaW5pY2FsRG9jdW1lbnQg
+          Y2xhc3NDb2RlPSJET0NDTElOIiBtb29kQ29kZT0iRVZOIiB4bWxucz0idXJuOmhsNy1vcmc6djMi
+          IHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiIHhz
+          aTpzY2hlbWFMb2NhdGlvbj0idXJuOmhsNy1vcmc6djMKICAgIC4uXGNkYVxpbmZyYXN0cnVjdHVy
+          ZVxjZGFcQ0RBLnhzZCI+CiAgICA8cmVhbG1Db2RlIGNvZGU9IkFCIi8+CiAgICA8dHlwZUlkIHJv
+          b3Q9IjIuMTYuODQwLjEuMTEzODgzLjEuMyIgZXh0ZW5zaW9uPSJQT0NEX0hEMDAwMDQwIi8+CiAg
+          ICA8IS0tIEFCIFRyYW5zY3JpYmVkIFJlcG9ydHMgY29tcGxpYW5jZSBhc3NlcnRpb24gLS0+CiAg
+          ICA8dGVtcGxhdGVJZCByb290PSIyLjE2Ljg0MC4xLjExMzg4My4zLjE2My4xMC4yLjIiLz4KICAg
+          IDxpZCBkaXNwbGF5YWJsZT0idHJ1ZSIgcm9vdD0iMi4xNi44NDAuMS4xMTM4ODMuMy4xNjMuMTAu
+          Mi4yMCIgZXh0ZW5zaW9uPSIxMjM0Ii8+CiAgICA8Y29kZSBjb2RlPSIxMTQ4OC00IiBjb2RlU3lz
+          dGVtPSIyLjE2Ljg0MC4xLjExMzg4My42LjEiLz4KICAgIDwhLS0gQ29uc3VsdGF0aW9uIE5vdGUg
+          LS0+CiAgICA8dGl0bGU+Q29uc3VsdGF0aW9uIE5vdGUgZm9yIEhhbm5haCBIYXJwZXI8L3RpdGxl
+          PgogICAgPGVmZmVjdGl2ZVRpbWUgdmFsdWU9IjIwMTIwMjI2MTQzMTI2LTA3MDAiLz4KICAgIDxj
+          b25maWRlbnRpYWxpdHlDb2RlIGNvZGU9Ik4iIGNvZGVTeXN0ZW09IjIuMTYuODQwLjEuMTEzODgz
+          LjUuMjUiIGNvZGVTeXN0ZW1OYW1lPSJDb25maWRlbnRpYWxpdHkiIGRpc3BsYXlOYW1lPSJub3Jt
+          YWwiLz4KICAgIDxsYW5ndWFnZUNvZGUgY29kZT0iZW4tQ0EiLz4KICAgIAogICAgPCEtLSBSZWNv
+          cmQgVGFyZ2V0IC0tPgogICAgPHJlY29yZFRhcmdldCBjb250ZXh0Q29udHJvbENvZGU9Ik9QIiB0
+          eXBlQ29kZT0iUkNUIj4KICAgICAgICA8cGF0aWVudFJvbGUgY2xhc3NDb2RlPSJQQVQiPgogICAg
+          ICAgICAgICA8aWQgZGlzcGxheWFibGU9InRydWUiIHJvb3Q9IjIuMTYuODQwLjEuMTEzODgzLjQu
+          MjAiIGV4dGVuc2lvbj0iMTIzNDU2Ii8+CiAgICAgICAgICAgIDxhZGRyIHVzZT0iSFAiPgogICAg
+          ICAgICAgICAgICAgPHN0cmVldEFkZHJlc3NMaW5lPjExMTIzPC9zdHJlZXRBZGRyZXNzTGluZT4K
+          ICAgICAgICAgICAgICAgIDxzdHJlZXRBZGRyZXNzTGluZT4xNTYgU3QgTlc8L3N0cmVldEFkZHJl
+          c3NMaW5lPgogICAgICAgICAgICAgICAgPGNpdHk+RWRtb250b248L2NpdHk+CiAgICAgICAgICAg
+          ICAgICA8c3RhdGU+QUI8L3N0YXRlPgogICAgICAgICAgICAgICAgPHBvc3RhbENvZGU+VDVDMk4z
+          PC9wb3N0YWxDb2RlPgogICAgICAgICAgICA8L2FkZHI+CiAgICAgICAgICAgIDx0ZWxlY29tIHVz
+          ZT0iSFAiIHZhbHVlPSJ0ZWw6KzEtNzgwLTQzMy0zMzMzIi8+CiAgICAgICAgICAgIDx0ZWxlY29t
+          IHZhbHVlPSJtYWlsdG86aGhhcnBlckBpbnRlcm5ldC5jb20iLz4KICAgICAgICAgICAgPHBhdGll
+          bnQgY2xhc3NDb2RlPSJQU04iIGRldGVybWluZXJDb2RlPSJJTlNUQU5DRSI+CiAgICAgICAgICAg
+          ICAgICA8bmFtZSB1c2U9IkwiPgogICAgICAgICAgICAgICAgICAgIDxnaXZlbj5IYW5uYWg8L2dp
+          dmVuPgogICAgICAgICAgICAgICAgICAgIDxmYW1pbHk+SGFycGVyPC9mYW1pbHk+CiAgICAgICAg
+          ICAgICAgICA8L25hbWU+CiAgICAgICAgICAgICAgICA8YWRtaW5pc3RyYXRpdmVHZW5kZXJDb2Rl
+          IGNvZGU9IkYiIGNvZGVTeXN0ZW09IjIuMTYuODQwLjEuMTEzODgzLjUuMSIgY29kZVN5c3RlbU5h
+          bWU9IkFkbWluaXN0cmF0aXZlR2VuZGVyIiBkaXNwbGF5TmFtZT0iRmVtYWxlIi8+CiAgICAgICAg
+          ICAgICAgICA8YmlydGhUaW1lIHZhbHVlPSIxOTk0MDEwMSIvPgogICAgICAgICAgICAgICAgPG1h
+          cml0YWxTdGF0dXNDb2RlIGNvZGU9IlMiIGNvZGVTeXN0ZW09IjIuMTYuODQwLjEuMTEzODgzLjUu
+          MiIgY29kZVN5c3RlbU5hbWU9Ik1hcml0YWxTdGF0dXMiIGRpc3BsYXlOYW1lPSJTaW5nbGUiLz4K
+          ICAgICAgICAgICAgICAgIDxyZWxpZ2lvdXNBZmZpbGlhdGlvbkNvZGUgY29kZT0iMTAwMSIgY29k
+          ZVN5c3RlbT0iMi4xNi44NDAuMS4xMTM4ODMuNS4xMDc2IiBjb2RlU3lzdGVtTmFtZT0iUmVsaWdp
+          b3VzQWZmaWxpYXRpb24iIGRpc3BsYXlOYW1lPSJBZHZlbnRpc3QiLz4KICAgICAgICAgICAgICAg
+          IDxyYWNlQ29kZSBjb2RlPSIyMTEwLTUiIGNvZGVTeXN0ZW09IjIuMTYuODQwLjEuMTEzODgzLjYu
+          MjM4IiBjb2RlU3lzdGVtTmFtZT0iUmFjZSAmYW1wOyBFdGhuaWNpdHkgLSBDREMiIGRpc3BsYXlO
+          YW1lPSJFbmdsaXNoIi8+CiAgICAgICAgICAgICAgICA8ZXRobmljR3JvdXBDb2RlIGNvZGU9IjIx
+          ODYtNSIgY29kZVN5c3RlbT0iMi4xNi44NDAuMS4xMTM4ODMuNi4yMzgiIGNvZGVTeXN0ZW1OYW1l
+          PSJSYWNlICZhbXA7IEV0aG5pY2l0eSAtIENEQyIgZGlzcGxheU5hbWU9Ik5vdCBIaXNwYW5pYyBv
+          ciBMYXRpbm8iLz4KICAgICAgICAgICAgICAgIDxiaXJ0aHBsYWNlIGNsYXNzQ29kZT0iQklSVEhQ
+          TCI+CiAgICAgICAgICAgICAgICAgICAgPHBsYWNlIGNsYXNzQ29kZT0iUExDIiBkZXRlcm1pbmVy
+          Q29kZT0iSU5TVEFOQ0UiPgogICAgICAgICAgICAgICAgICAgICAgICA8YWRkcj4KICAgICAgICAg
+          ICAgICAgICAgICAgICAgICAgIDxjaXR5PkVkbW9udG9uPC9jaXR5PgogICAgICAgICAgICAgICAg
+          ICAgICAgICAgICAgPHN0YXRlPkFCPC9zdGF0ZT4KICAgICAgICAgICAgICAgICAgICAgICAgPC9h
+          ZGRyPgogICAgICAgICAgICAgICAgICAgIDwvcGxhY2U+CiAgICAgICAgICAgICAgICA8L2JpcnRo
+          cGxhY2U+CiAgICAgICAgICAgICAgICA8bGFuZ3VhZ2VDb21tdW5pY2F0aW9uPgogICAgICAgICAg
+          ICAgICAgICAgIDx0ZW1wbGF0ZUlkIHJvb3Q9IjIuMTYuODQwLjEuMTEzODgzLjMuODguMTEuODMu
+          MiIvPgogICAgICAgICAgICAgICAgICAgIDx0ZW1wbGF0ZUlkIHJvb3Q9IjEuMy42LjEuNC4xLjE5
+          Mzc2LjEuNS4zLjEuMi4xIi8+CiAgICAgICAgICAgICAgICAgICAgPGxhbmd1YWdlQ29kZSBjb2Rl
+          PSJlbi1VUyIvPgogICAgICAgICAgICAgICAgICAgIDxwcmVmZXJlbmNlSW5kIHZhbHVlPSJ0cnVl
+          Ii8+CiAgICAgICAgICAgICAgICA8L2xhbmd1YWdlQ29tbXVuaWNhdGlvbj4KICAgICAgICAgICAg
+          PC9wYXRpZW50PgogICAgICAgIDwvcGF0aWVudFJvbGU+CiAgICA8L3JlY29yZFRhcmdldD4KICAg
+          IAogICAgPCEtLSBBdXRob3IgLS0+CiAgICA8YXV0aG9yIGNvbnRleHRDb250cm9sQ29kZT0iT1Ai
+          IHR5cGVDb2RlPSJBVVQiPgogICAgICAgIDx0aW1lIHZhbHVlPSIyMDEyMDMxOTEzMjQwMC0wNjAw
+          Ii8+CiAgICAgICAgPGFzc2lnbmVkQXV0aG9yIGNsYXNzQ29kZT0iQVNTSUdORUQiPgogICAgICAg
+          ICAgICA8aWQgZGlzcGxheWFibGU9InRydWUiIHJvb3Q9IjIuMTYuODQwLjEuMTEzODgzLjQuMzIy
+          IiBleHRlbnNpb249IjU1NTY2NiIvPgogICAgICAgICAgICA8YXNzaWduZWRQZXJzb24gY2xhc3ND
+          b2RlPSJQU04iIGRldGVybWluZXJDb2RlPSJJTlNUQU5DRSI+CiAgICAgICAgICAgICAgICA8bmFt
+          ZSB1c2U9IkwiPgogICAgICAgICAgICAgICAgICAgIDxwcmVmaXg+RHIuPC9wcmVmaXg+CiAgICAg
+          ICAgICAgICAgICAgICAgPGdpdmVuPkFkYW08L2dpdmVuPgogICAgICAgICAgICAgICAgICAgIDxm
+          YW1pbHk+QmxhY2s8L2ZhbWlseT4KICAgICAgICAgICAgICAgIDwvbmFtZT4KICAgICAgICAgICAg
+          PC9hc3NpZ25lZFBlcnNvbj4KICAgICAgICA8L2Fzc2lnbmVkQXV0aG9yPgogICAgPC9hdXRob3I+
+          CiAgICAKICAgIDwhLS0gRGF0YSBFbnRlcmVyIC0tPgogICAgPGRhdGFFbnRlcmVyIHR5cGVDb2Rl
+          PSJFTlQiPgogICAgICAgIDx0aW1lIHZhbHVlPSIyMDEyMDMxOTEzMjQwMC0wNjAwIi8+CiAgICAg
+          ICAgPGFzc2lnbmVkRW50aXR5PgogICAgICAgICAgICA8aWQgbnVsbEZsYXZvcj0iVU5LIi8+CiAg
+          ICAgICAgICAgIDxhc3NpZ25lZFBlcnNvbiBjbGFzc0NvZGU9J1BTTicgZGV0ZXJtaW5lckNvZGU9
+          IklOU1RBTkNFIj4KICAgICAgICAgICAgICAgIDxuYW1lIHVzZT0iTCI+CiAgICAgICAgICAgICAg
+          ICAgICAgPHByZWZpeD5Ncy48L3ByZWZpeD4KICAgICAgICAgICAgICAgICAgICA8Z2l2ZW4+SGVu
+          cmlldHRhPC9naXZlbj4KICAgICAgICAgICAgICAgICAgICA8ZmFtaWx5PkpvbmVzPC9mYW1pbHk+
+          CiAgICAgICAgICAgICAgICA8L25hbWU+CiAgICAgICAgICAgIDwvYXNzaWduZWRQZXJzb24+CiAg
+          ICAgICAgPC9hc3NpZ25lZEVudGl0eT4gICAgICAgIAogICAgPC9kYXRhRW50ZXJlcj4KICAgIAog
+          ICAgPCEtLSBDdXN0b2RpYW4gLS0+CiAgICA8Y3VzdG9kaWFuIHR5cGVDb2RlPSJDU1QiPgogICAg
+          ICAgIDxhc3NpZ25lZEN1c3RvZGlhbiBjbGFzc0NvZGU9IkFTU0lHTkVEIj4KICAgICAgICAgICAg
+          PHJlcHJlc2VudGVkQ3VzdG9kaWFuT3JnYW5pemF0aW9uIGNsYXNzQ29kZT0iT1JHIiBkZXRlcm1p
+          bmVyQ29kZT0iSU5TVEFOQ0UiPgogICAgICAgICAgICAgICAgPGlkIGRpc3BsYXlhYmxlPSJ0cnVl
+          IiByb290PSIyLjE2Ljg0MC4xLjExMzg4My4zLjE2My4xMC4xLjQiIGV4dGVuc2lvbj0iMTE1NSIv
+          PgogICAgICAgICAgICAgICAgPG5hbWUgdXNlPSJBQkMiPk5ldGNhcmUgRW5jb3VudGVyIFJlcG9z
+          aXRvcnk8L25hbWU+CiAgICAgICAgICAgIDwvcmVwcmVzZW50ZWRDdXN0b2RpYW5Pcmdhbml6YXRp
+          b24+CiAgICAgICAgPC9hc3NpZ25lZEN1c3RvZGlhbj4KICAgIDwvY3VzdG9kaWFuPgogICAgCiAg
+          ICA8IS0tSW5mb3JtYXRpb24gUmVjaXBpZW50LS0+CiAgICA8aW5mb3JtYXRpb25SZWNpcGllbnQg
+          dHlwZUNvZGU9IlBSQ1AiPgogICAgICAgIDxpbnRlbmRlZFJlY2lwaWVudCBjbGFzc0NvZGU9IkFT
+          U0lHTkVEIj4KICAgICAgICAgICAgPGluZm9ybWF0aW9uUmVjaXBpZW50IGNsYXNzQ29kZT0iUFNO
+          IiBkZXRlcm1pbmVyQ29kZT0iSU5TVEFOQ0UiPgogICAgICAgICAgICAgICAgPG5hbWU+RHIuIEph
+          bWVzIEtpbmc8L25hbWU+ICAgICAgICAgICAgICAgIAogICAgICAgICAgICA8L2luZm9ybWF0aW9u
+          UmVjaXBpZW50PgogICAgICAgIDwvaW50ZW5kZWRSZWNpcGllbnQ+CiAgICA8L2luZm9ybWF0aW9u
+          UmVjaXBpZW50PgogICAgCiAgICA8IS0tIEF1dGhlbnRpY2F0b3IgLS0+CiAgICA8YXV0aGVudGlj
+          YXRvciB0eXBlQ29kZT0iQVVUSEVOIj4KICAgICAgICA8dGltZSB2YWx1ZT0iMjAxMjAzMTkxMzI0
+          MDAtMDYwMCIvPgogICAgICAgIDxzaWduYXR1cmVDb2RlIG51bGxGbGF2b3I9Ik5BIi8+CiAgICAg
+          ICAgPGFzc2lnbmVkRW50aXR5PgogICAgICAgICAgICA8aWQgcm9vdD0iMi4xNi44NDAuMS4xMTM4
+          ODMuNC4zMjIiIGV4dGVuc2lvbj0iNTU1MTEyMjMiLz4KICAgICAgICAgICAgPGFzc2lnbmVkUGVy
+          c29uIGNsYXNzQ29kZT0nUFNOJyBkZXRlcm1pbmVyQ29kZT0iSU5TVEFOQ0UiPgogICAgICAgICAg
+          ICAgICAgPG5hbWUgdXNlPSJMIj4KICAgICAgICAgICAgICAgICAgICA8cHJlZml4PkRyLjwvcHJl
+          Zml4PgogICAgICAgICAgICAgICAgICAgIDxnaXZlbj5Kb2huPC9naXZlbj4KICAgICAgICAgICAg
+          ICAgICAgICA8ZmFtaWx5PkpvbmVzPC9mYW1pbHk+CiAgICAgICAgICAgICAgICA8L25hbWU+CiAg
+          ICAgICAgICAgIDwvYXNzaWduZWRQZXJzb24+CiAgICAgICAgPC9hc3NpZ25lZEVudGl0eT4KICAg
+          IDwvYXV0aGVudGljYXRvcj4KICAgIAogICAgPCEtLSBDb250YWN0IC0tPgogICAgPHBhcnRpY2lw
+          YW50IHR5cGVDb2RlPSJJTkQiPgogICAgICAgIDx0ZW1wbGF0ZUlkIHJvb3Q9IjIuMTYuODQwLjEu
+          MTEzODgzLjMuODguMTEuODMuMyIvPgogICAgICAgIDx0ZW1wbGF0ZUlkIHJvb3Q9IjEuMy42LjEu
+          NC4xLjE5Mzc2LjEuNS4zLjEuMi40Ii8+CiAgICAgICAgPHRpbWUgdmFsdWU9IjIwMDIwNzAxIi8+
+          CiAgICAgICAgPGFzc29jaWF0ZWRFbnRpdHkgY2xhc3NDb2RlPSJOT0siPgogICAgICAgICAgICA8
+          Y29kZSBjb2RlPSJGVEgiIGNvZGVTeXN0ZW09IjIuMTYuODQwLjEuMTEzODgzLjUuMTExIiBjb2Rl
+          U3lzdGVtTmFtZT0iUm9sZUNvZGUiIGRpc3BsYXlOYW1lPSJGYXRoZXIiLz4KICAgICAgICAgICAg
+          PGFkZHIgdXNlPSJIUCI+CiAgICAgICAgICAgICAgICA8c3RyZWV0QWRkcmVzc0xpbmU+MTExMjM8
+          L3N0cmVldEFkZHJlc3NMaW5lPgogICAgICAgICAgICAgICAgPHN0cmVldEFkZHJlc3NMaW5lPjE1
+          NiBTdCBOVzwvc3RyZWV0QWRkcmVzc0xpbmU+CiAgICAgICAgICAgICAgICA8Y2l0eT5FZG1vbnRv
+          bjwvY2l0eT4KICAgICAgICAgICAgICAgIDxzdGF0ZT5BQjwvc3RhdGU+CiAgICAgICAgICAgICAg
+          ICA8cG9zdGFsQ29kZT5UNUMyTjM8L3Bvc3RhbENvZGU+CiAgICAgICAgICAgIDwvYWRkcj4KICAg
+          ICAgICAgICAgPHRlbGVjb20gdXNlPSJIUCIgdmFsdWU9InRlbDorMS03ODAtNDMzLTMzMzMiLz4K
+          ICAgICAgICAgICAgPGFzc29jaWF0ZWRQZXJzb24gY2xhc3NDb2RlPSJQU04iIGRldGVybWluZXJD
+          b2RlPSJJTlNUQU5DRSI+CiAgICAgICAgICAgICAgICA8bmFtZSB1c2U9IkwiPgogICAgICAgICAg
+          ICAgICAgICAgIDxnaXZlbj5HZW9yZ2U8L2dpdmVuPgogICAgICAgICAgICAgICAgICAgIDxmYW1p
+          bHk+U21pdGg8L2ZhbWlseT4KICAgICAgICAgICAgICAgIDwvbmFtZT4KICAgICAgICAgICAgPC9h
+          c3NvY2lhdGVkUGVyc29uPgogICAgICAgIDwvYXNzb2NpYXRlZEVudGl0eT4KICAgIDwvcGFydGlj
+          aXBhbnQ+CiAgICAKICAgIAogICAgPGRvY3VtZW50YXRpb25PZiB0eXBlQ29kZT0iRE9DIj4KICAg
+          ICAgICA8c2VydmljZUV2ZW50IGNsYXNzQ29kZT0iUENQUiIgbW9vZENvZGU9IkVWTiI+CiAgICAg
+          ICAgICAgPGNvZGUgbnVsbEZsYXZvcj0iTkkiIGNvZGU9IlkiIGRpc3BsYXlOYW1lPSJQcm9wcmll
+          dGFyeSBwcm9jZWR1cmUgWSIvPiAgICAgICAgICAgIAogICAgICAgIDwvc2VydmljZUV2ZW50Pgog
+          ICAgPC9kb2N1bWVudGF0aW9uT2Y+CiAgICAKICAgIDxjb21wb25lbnQgdHlwZUNvZGU9IkNPTVAi
+          IGNvbnRleHRDb25kdWN0aW9uSW5kPSJ0cnVlIj4KICAgICAgICA8bm9uWE1MQm9keSBjbGFzc0Nv
+          ZGU9IkRPQ0JPRFkiIG1vb2RDb2RlPSJFVk4iPgogICAgICAgICAgICA8dGV4dD5UaGlzIGlzIHdo
+          ZXJlIHRoZSB0ZXh0IG9mIHRoZSBhY3R1YWwgcmVwb3J0IHdvdWxkIGdvLjwvdGV4dD4KICAgICAg
+          ICA8L25vblhNTEJvZHk+CiAgICA8L2NvbXBvbmVudD4KICAgIAogICAgCiAgICAgICAgICAgIAoK
+          PC9DbGluaWNhbERvY3VtZW50Pgo=
+        </text>
+        
+        <statusCode code="completed"/>
+        <effectiveTime xsi:type="TS" specializationType="TS.FULLDATE" value="20120326143126-0600"/>
+        <confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25" codeSystemName="Confidentiality" displayName="normal"/>
+        <recordTarget typeCode="RCT">
+          <patient classCode="PAT">
+            <id xsi:type="II" specializationType="II.PUBLIC" displayable="true" extension="123456" root="2.16.840.1.113883.4.20" use="BUS"/>
+            <patientPerson classCode="PSN" determinerCode="INSTANCE">
+              <name xsi:type="PN" specializationType="PN.BASIC" use="L">
+                <given>Hannah</given>            
+                <family>Lambert</family>
+              </name>
+              <administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.5.1"/>
+              <birthTime xsi:type="TS" specializationType="TS.FULLDATE" value="19940101"/>
+            </patientPerson>
+          </patient>     
+        </recordTarget>
+        <author contextControlCode="AP" typeCode="AUT">
+          <time/>
+          <assignedAuthor classCode="ASSIGNED">
+            <id xsi:type="II" specializationType="II.PUBLIC" displayable="true" extension="555666" root="2.16.840.1.113883.4.322" use="BUS"/>
+            <assignedPerson classCode="PSN" determinerCode="INSTANCE">
+              <name xsi:type="PN" specializationType="PN.BASIC" use="L">
+                <prefix>Dr.</prefix>
+                <given>Adam</given>
+                <family>Black</family>
+              </name>
+            </assignedPerson>                 
+          </assignedAuthor>
+        </author>      
+        <informant typeCode="INF">
+          <assignedDataSource classCode="ASSIGNED">
+            <representedDataSource classCode="ORG" determinerCode="INSTANCE">
+              <name>Information Source name goes here</name>
+            </representedDataSource>
+          </assignedDataSource>
+        </informant>
+        <custodian>
+          <assignedCustodian>
+            <representedRepository>
+              <id xsi:type="II" specializationType="II.BUS" root="2.16.840.1.113883.3.163.10.1.4" extension="1155" use="BUS"/>
+            </representedRepository>            
+          </assignedCustodian>
+        </custodian>
+        <documentationOf typeCode="DOC">
+          <serviceEvent classCode="ACT" moodCode="EVN">
+            <code nullFlavor="NI" code="Y" displayName="Proprietary procedure Y"/>            
+          </serviceEvent>
+        </documentationOf>
+        <!-- Placeholder for patient mismatch information.  To be completed when patient mismatch values confirmed
+          <pertinentInformation typeCode="PERT">
+          <documentObservation classCode="OBS" moodCode="EVN">
+            <code code="" codeSystem="?"/>
+            <value code="" codeSystem="?"/>
+          </documentObservation>
+        </pertinentInformation>-->
+      </document>
+    </subject>
+    <queryAck>
+      <queryId root="0D88ED2B-82BA-439C-8305-FE7222549A84"/>
+      <queryResponseCode code="OK"/>
+      <resultTotalQuantity value="1"/>
+      <resultCurrentQuantity value="1"/>
+      <resultRemainingQuantity value="0"/>
+    </queryAck>
+    <queryByParameter>
+      <queryId root="B41B68B5-889E-4327-B695-7D34368876E6"/>
+      <responseModalityCode code="R"/>
+      <parameterList>
+        <documentId>
+          <value xsi:type="II" specializationType="II.BUS" root="2.16.840.1.113883.3.163.10.2.3" extension="1234" use="BUS"/>
+        </documentId>
+        <repositoryID>
+          <value xsi:type="II" specializationType="II.BUS" root="2.16.840.1.113883.3.163.10.1.4" extension="1155" use="BUS"/>
+        </repositoryID>
+      </parameterList>
+    </queryByParameter>
+  </controlActEvent>
+</RCMR_IN000032AB>
