@@ -66,21 +66,6 @@
     <Reference Include="NHibernate">
       <HintPath>..\SharedLibs\NHibernate.dll</HintPath>
     </Reference>
-    <Reference Include="nunit-console-runner">
-      <HintPath>..\SharedLibs\nunit-console-runner.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.core">
-      <HintPath>..\SharedLibs\nunit.core.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.core.interfaces">
-      <HintPath>..\SharedLibs\nunit.core.interfaces.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.framework">
-      <HintPath>..\SharedLibs\nunit.framework.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.util">
-      <HintPath>..\SharedLibs\nunit.util.dll</HintPath>
-    </Reference>
     <Reference Include="Spring.Data">
       <HintPath>..\SharedLibs\Spring.Data.dll</HintPath>
     </Reference>
@@ -169,13 +154,6 @@
     <Compile Include="Main\Validate.cs" />
     <Compile Include="Main\WordUtils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Test\BigDecimalTest.cs" />
-    <Compile Include="Test\BooleanUtilsTest.cs" />
-    <Compile Include="Test\DictionaryExtensionTest.cs" />
-    <Compile Include="Test\EqualsBuilderTest.cs" />
-    <Compile Include="Test\HashCodeBuilderTest.cs" />
-    <Compile Include="Test\StringExtensionTest.cs" />
-    <Compile Include="Test\StringUtilsTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
