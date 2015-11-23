@@ -29,7 +29,14 @@ namespace Ca.Infoway.Messagebuilder.Util
 	[TestFixture]
 	public class ManifestLocaterTest
 	{
-		[Test]
+
+        [NUnit.Framework.SetUp]
+        public virtual void SetUp()
+        {
+           Assembly.LoadFrom("../../TestResource/message-builder-release-mock-mr2009.dll");
+        }
+
+        [Test]
 		public virtual void TestLoadVersions()
 		{
             Dictionary<Assembly, string[]> manifestsWithVersionAttribute = new ManifestLocater().GetAssembliesWithVersionAttribute(typeof(MbtModelVersionNumberAttribute));

@@ -38,24 +38,20 @@ namespace Ca.Infoway.Messagebuilder.Xml.Service
             var manifests = new List<ResourcePair>();
             foreach (var executingAssembly in AppDomain.CurrentDomain.GetAssemblies())
             {
+                string simpleAssemblyname = executingAssembly.GetName().Name;
+                if (simpleAssemblyname.StartsWith("message-builder-"))
+                {
+                    addAssemblyToManifests(manifests, executingAssembly);
+                }
+
+                //.NET loads assemblies dynamically as they are needed so we need to load all referenced assemblies manually
                 foreach (var assemblyName in executingAssembly.GetReferencedAssemblies())
                 {
 				
 				    if (assemblyName.Name.StartsWith("message-builder-"))
 				    {
                         Assembly assembly = Assembly.Load(assemblyName);
-                        var attr = GetAssemblyAttribute(assembly);
-
-                        if (attr != null)
-                        {
-                            string[] collection = attr.value.Split(' ');
-
-                            foreach (var s in collection)
-                            {
-                                manifests.Add(new ResourcePair(s, assembly));
-                            }
-                        
-                        }
+                        addAssemblyToManifests(manifests, assembly);
 				    }
                 }
 
@@ -65,6 +61,30 @@ namespace Ca.Infoway.Messagebuilder.Xml.Service
             return manifests;
         }
 
+        private static void addAssemblyToManifests(List<ResourcePair> manifests, Assembly assembly)
+        {
+            var attr = GetAssemblyAttribute(assembly);
+
+            List<string> resourceNames = new List<string>();
+            foreach(var item in manifests)
+            {
+                resourceNames.Add(item.Name);
+            }
+
+            if (attr != null)
+            {
+                string[] collection = attr.value.Split(' ');
+
+                foreach (var s in collection)
+                {
+                    if (!resourceNames.Contains(s))
+                    {
+                        manifests.Add(new ResourcePair(s, assembly));
+                    }
+                }
+
+            }
+        }
 
         private static MbtMessageSetAttribute GetAssemblyAttribute(Assembly assembly)
         {

@@ -1,4 +1,6 @@
+using System;
 using System.Xml;
+using System.Reflection;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
 using Ca.Infoway.Messagebuilder.Error;
@@ -24,8 +26,10 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 		[NUnit.Framework.SetUp]
 		public virtual void SetUp()
 		{
-			CodeResolverRegistry.Register(new TrivialCodeResolver());
-		}
+            MessageBeanRegistry.Reset();
+            Assembly.LoadFrom("../../TestResource/message-builder-release-mock-mr2009.dll");
+            CodeResolverRegistry.Register(new TrivialCodeResolver());
+        }
 
 		[NUnit.Framework.TearDown]
 		public virtual void TearDown()

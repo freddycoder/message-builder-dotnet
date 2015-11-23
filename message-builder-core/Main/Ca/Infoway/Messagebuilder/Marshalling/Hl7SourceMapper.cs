@@ -53,6 +53,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 			if (hl7MessageSource.GetInteraction() != null)
 			{
 				Type messageBeanType = MessageBeanRegistry.GetInstance().GetInteractionBeanType(hl7MessageSource.GetMessageTypeKey());
+                Console.WriteLine("Message Bean Type: " + messageBeanType);
 				object messageBean = BeanUtil.Instantiate<object>(messageBeanType);
 				BeanWrapper wrapper = new BeanWrapper(messageBean);
 				MapToTeal(hl7MessageSource, wrapper, null);

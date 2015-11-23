@@ -46,6 +46,11 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
             return instance;
         }
 
+        public static void Reset()
+        {
+            instance = null;
+        }
+
         private Type GetMessagePartType(MessageTypeKey key)
         {
             return partTypeRegistry.ContainsKey(key) ? partTypeRegistry[key] : null;

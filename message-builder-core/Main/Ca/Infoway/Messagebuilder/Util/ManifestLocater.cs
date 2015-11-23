@@ -26,21 +26,40 @@ namespace Ca.Infoway.Messagebuilder.Util {
     public class ManifestLocater {
         public Dictionary<Assembly, string[]> GetAssembliesWithVersionAttribute(Type attributeType) {
             var candidates = new Dictionary<Assembly, string[]>();
+            var candidateSet = new HashSet<string>();
 
             foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies()) {
                 string simpleAssemblyName = assembly.GetName().Name;
 
                 if (simpleAssemblyName.StartsWith("message-builder-")) {
                     var attr = GetAssemblyAttribute(assembly, attributeType);
-
-                    if (attr != null) {
+                    if (attr != null && !candidateSet.Contains(simpleAssemblyName))
+                    {
                         candidates.Add(assembly, attr.value.Split(' '));
+                        candidateSet.Add(simpleAssemblyName);
+                    }
+                }
+
+                foreach(var referenceAssemblyName in assembly.GetReferencedAssemblies())
+                {
+                    if (referenceAssemblyName.Name.StartsWith("message-builder-"))
+                    {
+                        var referencedAssembly = Assembly.Load(referenceAssemblyName);
+                        var attr = GetAssemblyAttribute(referencedAssembly, attributeType);
+                        if (attr != null && !candidateSet.Contains(referenceAssemblyName.Name))
+                        {
+                            candidates.Add(referencedAssembly, attr.value.Split(' '));
+                            candidateSet.Add(referenceAssemblyName.Name);
+                        }
                     }
                 }
             }
 
             return candidates;
         }
+
+
+
         private MbtModelVersionNumberAttribute GetAssemblyAttribute(Assembly assembly, Type attributeType) {
             var assemblyAttributes = assembly.GetCustomAttributes(attributeType, true);
 

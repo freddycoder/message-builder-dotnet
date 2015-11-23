@@ -64,7 +64,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 				MessageBeanRegistry.GetInstance().RegisterClass(typeof(SimpleInteraction), MockVersionNumber.MOCK_NEWFOUNDLAND);
 				
 				MessageBeanRegistry.GetInstance().RegisterClass(typeof(QuantityObservationEventBean), MockVersionNumber.MOCK_NEWFOUNDLAND);
-				MessageBeanRegistry.GetInstance().RegisterClass(typeof(InFulfillmentOfBean), MockVersionNumber.MOCK_NEWFOUNDLAND);
+				MessageBeanRegistry.GetInstance().RegisterClass(typeof(InFulfillmentOfBean), MockVersionNumber.MOCK_MR2009);
 				
 				initialized = true;
 			}
