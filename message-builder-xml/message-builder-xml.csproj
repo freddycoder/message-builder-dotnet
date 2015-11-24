@@ -152,17 +152,6 @@
     <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\Service\ServiceFactory.cs" />
     <Compile Include="Main\Ca\Infoway\Messagebuilder\Annotation\MbtMessageSetAttribute.cs" />
     <Compile Include="Main\Ca\Infoway\Messagebuilder\Annotation\MbtModelVersionNumberAttribute.cs" />
-    <Compile Include="Test\Ca\Infoway\Messagebuilder\Xml\CardinalityTest.cs" />
-    <Compile Include="Test\Ca\Infoway\Messagebuilder\Xml\Cleaner.cs" />
-    <Compile Include="Test\Ca\Infoway\Messagebuilder\Xml\CodedTypeEvaluatorTest.cs" />
-    <Compile Include="Test\Ca\Infoway\Messagebuilder\Xml\DataTypeAnalyzer.cs" />
-    <Compile Include="Test\Ca\Infoway\Messagebuilder\Xml\Hl7TypeNameTest.cs" />
-    <Compile Include="Test\Ca\Infoway\Messagebuilder\Xml\Hl7TypeParserTest.cs" />
-    <Compile Include="Test\Ca\Infoway\Messagebuilder\Xml\MessageSetMarshallerTest.cs" />
-    <Compile Include="Test\Ca\Infoway\Messagebuilder\Xml\RelationshipTest.cs" />
-    <Compile Include="Test\Ca\Infoway\Messagebuilder\Xml\Service\MessageDefinitionServiceFactoryTest.cs" />
-    <Compile Include="Test\Ca\Infoway\Messagebuilder\Xml\Service\MockTestCaseMessageDefinitionService.cs" />
-    <Compile Include="Test\Ca\Infoway\Messagebuilder\Xml\Util\XmlWarningRendererTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\message-builder-compatibility\message-builder-compatibility.csproj">
@@ -186,18 +175,6 @@
     </Reference>
     <Reference Include="log4net">
       <HintPath>..\SharedLibs\log4net.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.core">
-      <HintPath>..\SharedLibs\nunit.core.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.core.interfaces">
-      <HintPath>..\SharedLibs\nunit.core.interfaces.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.framework">
-      <HintPath>..\SharedLibs\nunit.framework.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.util">
-      <HintPath>..\SharedLibs\nunit.util.dll</HintPath>
     </Reference>
     <Reference Include="Spring.Data">
       <HintPath>..\SharedLibs\Spring.Data.dll</HintPath>
@@ -230,13 +207,5 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="TestResource\Ca\Infoway\Messagebuilder\Xml\sample.xml" />
-    <EmbeddedResource Include="TestResource\Ca\Infoway\Messagebuilder\Xml\sample_with_argument_choices.xml" />
-    <EmbeddedResource Include="TestResource\Ca\Infoway\Messagebuilder\Xml\sample_with_breadcrumbs.xml" />
-    <EmbeddedResource Include="TestResource\Ca\Infoway\Messagebuilder\Xml\sample_with_rim_class.xml" />
-    <EmbeddedResource Include="TestResource\messageSet_mock_NEWFOUNDLAND.xml" />
-    <EmbeddedResource Include="TestResource\messageSet_mock_r02_04_02.xml" />
   </ItemGroup>
 </Project>
