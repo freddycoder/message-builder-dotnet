@@ -33,7 +33,10 @@ namespace Ca.Infoway.Messagebuilder.Resolver
 	/// <author>Intelliware Development</author>
 	public class CdaCodeResolver : CodeResolver
 	{
-		private class ValueSet
+        public static readonly string MODE_STRICT = "STRICT";
+        public static readonly string MODE_LENIENT = "LENIENT";
+
+        private class ValueSet
 		{
 			private readonly IDictionary<string, IList<CdaCodeResolver.CodedValue>> codes = new Dictionary<string, IList<CdaCodeResolver.CodedValue
 				>>();
@@ -148,52 +151,75 @@ namespace Ca.Infoway.Messagebuilder.Resolver
 		private readonly IDictionary<string, CdaCodeResolver.ValueSet> valueSetsByTypeName = new Dictionary<string, CdaCodeResolver.ValueSet
 			>();
 
-		/// <summary>Create and initialize the code resolver.</summary>
-		/// <remarks>Create and initialize the code resolver.</remarks>
-		/// <param name="codeFactory">the code factory.</param>
-		/// <param name="vocabularyDefinitionsFile">an input stream containing a list of known value sets and the codes that each contains.
-		/// 	</param>
-		/// <param name="valueSetNameMappingFile">an input stream containing the mapping from value set OIDs to interface names.</param>
-		public CdaCodeResolver(TypedCodeFactory codeFactory, Stream vocabularyDefinitionsFile, Stream valueSetNameMappingFile)
+        private TrivialCodeResolver fallbackResolver;
+
+        /// <summary>Create and initialize the code resolver.</summary>
+        /// <remarks>Create and initialize the code resolver.</remarks>
+        /// <param name="codeFactory">the code factory.</param>
+        /// <param name="vocabularyDefinitionsFile">an input stream containing a list of known value sets and the codes that each contains.</param>
+        /// <param name="valueSetNameMappingFile">an input stream containing the mapping from value set OIDs to interface names.</param>
+        public CdaCodeResolver(TypedCodeFactory codeFactory, Stream vocabularyDefinitionsFile, Stream valueSetNameMappingFile)
+        {
+            this.codeFactory = codeFactory;
+            this.Initialize(vocabularyDefinitionsFile, valueSetNameMappingFile, MODE_STRICT);
+        }
+
+        /// <summary>Create and initialize the code resolver.</summary>
+        /// <remarks>Create and initialize the code resolver.</remarks>
+        /// <param name="codeFactory">the code factory.</param>
+        /// <param name="vocabularyDefinitionsFile">an input stream containing a list of known value sets and the codes that each contains.</param>
+        /// <param name="valueSetNameMappingFile">an input stream containing the mapping from value set OIDs to interface names.</param>
+        /// <param name="mode">indicates whether the resolver should return null for unexpected vocabulary domains (MODE_STRICT) or return a proxy code object (MODE_LENIENT)</param>
+        public CdaCodeResolver(TypedCodeFactory codeFactory, Stream vocabularyDefinitionsFile, Stream valueSetNameMappingFile, String mode)
 		{
-			this.codeFactory = codeFactory;
-			try
-			{
-				ValueSetDefinition valueSetDefinition = (ValueSetDefinition)serializer.Read(typeof(ValueSetDefinition), vocabularyDefinitionsFile
-					);
-				ValueSetDefinition valueSetMapping = (ValueSetDefinition)serializer.Read(typeof(ValueSetDefinition), valueSetNameMappingFile
-					);
-				IDictionary<string, string> valueSetMap = new Dictionary<string, string>();
-				foreach (ValueSetDefinitionSystem mapping in valueSetMapping.Systems)
-				{
-					if (StringUtils.IsNotBlank(mapping.ValueSetOid))
-					{
-						valueSetMap[mapping.ValueSetOid] = mapping.ValueSetName;
-					}
-				}
-				foreach (ValueSetDefinitionSystem system in valueSetDefinition.Systems)
-				{
-					if (StringUtils.IsNotBlank(system.ValueSetOid))
-					{
-						CdaCodeResolver.ValueSet valueSet = new CdaCodeResolver.ValueSet();
-						string valueSetName = valueSetMap.SafeGet(system.ValueSetOid);
-						if (valueSetName == null)
-						{
-							valueSetName = system.ValueSetName;
-						}
-						valueSetsByTypeName[valueSetName] = valueSet;
+            this.codeFactory = codeFactory;
+            this.Initialize(vocabularyDefinitionsFile, valueSetNameMappingFile, mode);
+        }
+
+        private void Initialize(Stream vocabularyDefinitionsFile, Stream valueSetNameMappingFile, String mode)
+        {
+            try
+            {
+                ValueSetDefinition valueSetDefinition = (ValueSetDefinition)serializer.Read(typeof(ValueSetDefinition), vocabularyDefinitionsFile
+                    );
+                ValueSetDefinition valueSetMapping = (ValueSetDefinition)serializer.Read(typeof(ValueSetDefinition), valueSetNameMappingFile
+                    );
+                IDictionary<string, string> valueSetMap = new Dictionary<string, string>();
+                foreach (ValueSetDefinitionSystem mapping in valueSetMapping.Systems)
+                {
+                    if (StringUtils.IsNotBlank(mapping.ValueSetOid))
+                    {
+                        valueSetMap[mapping.ValueSetOid] = mapping.ValueSetName;
+                    }
+                }
+                foreach (ValueSetDefinitionSystem system in valueSetDefinition.Systems)
+                {
+                    if (StringUtils.IsNotBlank(system.ValueSetOid))
+                    {
+                        CdaCodeResolver.ValueSet valueSet = new CdaCodeResolver.ValueSet();
+                        string valueSetName = valueSetMap.SafeGet(system.ValueSetOid);
+                        if (valueSetName == null)
+                        {
+                            valueSetName = system.ValueSetName;
+                        }
+                        valueSetsByTypeName[valueSetName] = valueSet;
                         foreach (Ca.Infoway.Messagebuilder.Xml.Cda.Vocabulary.Code code in system.Codes)
-						{
-							valueSet.AddCode(new CdaCodeResolver.CodedValue(code.Value, code.CodeSystem, code.CodeSystemName, code.DisplayName));
-						}
-					}
-				}
-			}
-			catch (Exception e)
-			{
-				log.Error("Unable to initialize resolver", e);
-			}
-		}
+                        {
+                            valueSet.AddCode(new CdaCodeResolver.CodedValue(code.Value, code.CodeSystem, code.CodeSystemName, code.DisplayName));
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                log.Error("Unable to initialize resolver", e);
+            }
+
+            if (MODE_LENIENT.Equals(mode))
+            {
+                fallbackResolver = new TrivialCodeResolver();
+            }
+        }
 
 		/// <summary><inheritDoc></inheritDoc></summary>
 		public virtual ICollection<T> Lookup<T>(Type type) where T : Code
@@ -239,14 +265,19 @@ namespace Ca.Infoway.Messagebuilder.Resolver
 		public virtual T Lookup<T>(Type type, string code, string codeSystemOid, bool ignoreCase) where T : Code
 		{
 			CdaCodeResolver.ValueSet valueSet = valueSetsByTypeName.SafeGet(type.Name);
-			if (valueSet != null)
-			{
-				CdaCodeResolver.CodedValue codedValue = valueSet.GetCode(code, codeSystemOid, ignoreCase);
-				if (codedValue != null)
-				{
-					return CreateCode<T>(type, codedValue);
-				}
-			}
+            if (valueSet != null)
+            {
+                CdaCodeResolver.CodedValue codedValue = valueSet.GetCode(code, codeSystemOid, ignoreCase);
+                if (codedValue != null)
+                {
+                    return CreateCode<T>(type, codedValue);
+                }
+            }
+            else if (fallbackResolver != null)
+            {
+                return fallbackResolver.Lookup<T>(type, code, codeSystemOid, ignoreCase);
+            }
+
             return default(T);
 		}
 

@@ -5,6 +5,7 @@ using Ca.Infoway.Messagebuilder.Terminology.Domainvalue;
 using Ca.Infoway.Messagebuilder.Terminology.Proxy;
 using ILOG.J2CsMapping.Collections.Generics;
 using NUnit.Framework;
+using Ca.Infoway.Messagebuilder.Domainvalue;
 
 namespace Ca.Infoway.Messagebuilder.Resolver
 {
@@ -86,5 +87,34 @@ namespace Ca.Infoway.Messagebuilder.Resolver
 			code = fixture.Lookup<BasicConfidentialityKind>(TYPE, "n", "2.16.840.1.113883.5.25", false);
 			Assert.IsNull(code);
 		}
-	}
+
+        [Test]
+        public void ShouldReturnNullForUnsupportedVocabInStrictMode()
+        {
+            ActClass actClassCode = fixture.Lookup<ActClass>(typeof(ActClass), "OBS", "2.16.840.1.113883.5.6");
+            Assert.IsNull(actClassCode);
+
+            BasicConfidentialityKind confidentialityCode = fixture.Lookup<BasicConfidentialityKind>(TYPE, "XXX", "2.16.840.1.113883.5.25");
+            Assert.IsNull(confidentialityCode);
+        }
+
+        [Test]
+        public void ShouldReturnProxyForUnsupportedVocabInLenientMode()
+        {
+            CdaCodeResolver lenientFixture = new CdaCodeResolver(
+                new TypedCodeFactory(), 
+                Ca.Infoway.Messagebuilder.Platform.ResourceLoader.GetResource(typeof(CdaCodeResolverTest), "/voc.xml"), 
+                Ca.Infoway.Messagebuilder.Platform.ResourceLoader.GetResource(typeof(CdaCodeResolverTest), "/vocabNameMap.xml"),
+                CdaCodeResolver.MODE_LENIENT
+            );
+
+            BasicConfidentialityKind confidentialityCode = fixture.Lookup<BasicConfidentialityKind>(TYPE, "XXX", "2.16.840.1.113883.5.25");
+            Assert.IsNull(confidentialityCode);
+
+            ActClass actClassCode = lenientFixture.Lookup<ActClass>(typeof(ActClass), "OBS", "2.16.840.1.113883.5.6");
+            Assert.IsNotNull(actClassCode);
+            Assert.AreEqual("OBS", actClassCode.CodeValue);
+            Assert.AreEqual("2.16.840.1.113883.5.6", actClassCode.CodeSystem);
+        }
+    }
 }
