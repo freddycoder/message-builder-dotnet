@@ -1364,7 +1364,7 @@ StaticMifToXsd.xsl version 2.0</documentation>
                <relationship name="realmCode" attribute="true" type="LIST&lt;CS&gt;" conformance="OPTIONAL" cardinality="0-*" sortOrder="2"/>
                <relationship name="typeId" attribute="true" type="II" constrainedType="BaseModel.InfrastructureRoot.typeId" conformance="OPTIONAL" cardinality="0-1" sortOrder="3"/>
                <relationship name="templateId" attribute="true" type="LIST&lt;II&gt;" conformance="OPTIONAL" cardinality="0-*" sortOrder="4"/>
-               <relationship name="id" attribute="true" type="II" conformance="MANDATORY" cardinality="1" sortOrder="5" fixedValue="UNK"/>
+               <relationship name="id" attribute="true" type="II" conformance="POPULATED" cardinality="1" sortOrder="5"/>
                <relationship name="assignedPerson" attribute="false" type="CAABTranscribedReports.AuthenticatorPerson" conformance="POPULATED" cardinality="1" sortOrder="9"/>
             </messagePart>
          </entry>
@@ -1487,7 +1487,7 @@ StaticMifToXsd.xsl version 2.0</documentation>
                <relationship name="realmCode" attribute="true" type="LIST&lt;CS&gt;" conformance="OPTIONAL" cardinality="0-*" sortOrder="3"/>
                <relationship name="typeId" attribute="true" type="II" constrainedType="BaseModel.InfrastructureRoot.typeId" conformance="OPTIONAL" cardinality="0-1" sortOrder="4"/>
                <relationship name="templateId" attribute="true" type="LIST&lt;II&gt;" conformance="OPTIONAL" cardinality="0-*" sortOrder="5"/>
-               <relationship name="id" attribute="true" type="II" conformance="POPULATED" cardinality="1" sortOrder="6"/>
+               <relationship name="id" attribute="true" type="II" conformance="MANDATORY" cardinality="1" sortOrder="6"/>
             </messagePart>
          </entry>
          <entry name="CAABTranscribedReports.DataEnterer">
@@ -1646,7 +1646,7 @@ StaticMifToXsd.xsl version 2.0</documentation>
                <relationship name="typeId" attribute="true" type="II" constrainedType="BaseModel.InfrastructureRoot.typeId" conformance="OPTIONAL" cardinality="0-1" sortOrder="4"/>
                <relationship name="templateId" attribute="true" type="LIST&lt;II&gt;" conformance="OPTIONAL" cardinality="0-*" sortOrder="5"/>
                <relationship name="id" attribute="true" type="II" conformance="OPTIONAL" cardinality="0-1" sortOrder="6"/>
-               <relationship name="name" attribute="true" type="PN" conformance="POPULATED" cardinality="1" sortOrder="7"/>
+               <relationship name="name" attribute="true" type="PN" conformance="MANDATORY" cardinality="1" sortOrder="7"/>
                <relationship name="administrativeGenderCode" attribute="true" type="CV" domainType="AdministrativeGender" domainSource="VALUE_SET" conformance="POPULATED" cardinality="1" sortOrder="8"/>
                <relationship name="birthTime" attribute="true" type="TS" conformance="POPULATED" cardinality="1" sortOrder="9"/>
                <relationship name="ethnicGroupCode" attribute="true" type="CE" conformance="OPTIONAL" cardinality="0-1" sortOrder="13"/>

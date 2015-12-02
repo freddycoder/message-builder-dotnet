@@ -13,6 +13,8 @@ using Ca.Infoway.Messagebuilder.Datatype.Lang;
 using Ca.Infoway.Messagebuilder.Model.Ab_r02_04_03_shr.Common.Quqi_mt020000ab;
 using Ca.Infoway.Messagebuilder.Model.Ab_r02_04_03_shr.Common.Rcmr_mt000004ab;
 using Ca.Infoway.Messagebuilder.Resolver.Configurator;
+using Ca.Infoway.Messagebuilder.Resolver;
+using Ca.Infoway.Messagebuilder.Terminology.Proxy;
 using Platform.Xml.Sax;
 
 namespace Hello_World
@@ -21,7 +23,7 @@ namespace Hello_World
     {
         public void Run()
         {
-            DefaultCodeResolutionConfigurator.ConfigureCodeResolversWithTrivialDefault();
+            this.Setup();
             Console.WriteLine("Start:");
 
             //Build test request message
@@ -37,6 +39,22 @@ namespace Hello_World
             this.processResponse(response);
 
             Console.WriteLine("Done!");
+        }
+
+        private void Setup()
+        {
+            //Standard configuration with HL7v3 code resolution
+            DefaultCodeResolutionConfigurator.ConfigureCodeResolversWithTrivialDefault();
+
+            //Separate configuration for CDA code resolution
+            GenericCodeResolverRegistry cdaCodeResolverRegistry = new GenericCodeResolverRegistryImpl();
+
+            cdaCodeResolverRegistry.Register(new CdaCodeResolver(
+                new TypedCodeFactory(),
+                ResourceUtil.GetEmbeddedFile("Hello_World", "Resources.voc.xml"),
+                ResourceUtil.GetEmbeddedFile("Hello_World", "Resources.vocabNameMap.xml"),
+                CdaCodeResolver.MODE_LENIENT
+            ));
         }
 
         public void processResponse(IInteraction queryResponse)

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<systems xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.lantanagroup.com/voc">
+  <system valueSetOid="2.16.840.1.113883.1.11.1" valueSetName="Administrative Gender (HL7 V3)">
+    <code value="F" displayName="Female" codeSystemName="AdministrativeGender" codeSystem="2.16.840.1.113883.5.1" />
+    <code value="M" displayName="Male" codeSystemName="AdministrativeGender" codeSystem="2.16.840.1.113883.5.1" />
+    <code value="UN" displayName="Undifferentiated" codeSystemName="AdministrativeGender" codeSystem="2.16.840.1.113883.5.1" />
+  </system>
+  <system valueSetOid="2.16.840.1.113883.2.20.3.392" valueSetName="AlbertaTranscribedReportType">
+    <code value="11488-4" displayName="Consultation Note" codeSystemName="LOINC" codeSystem="2.16.840.1.113883.6.1" />
+    <code value="18842-5" displayName="Discharge Summarization Note" codeSystemName="LOINC" codeSystem="2.16.840.1.113883.6.1" />
+    <code value="11524-6" displayName="Study Report (EKG)" codeSystemName="LOINC" codeSystem="2.16.840.1.113883.6.1" />
+    <code value="11523-8" displayName="Study Report (EEG)" codeSystemName="LOINC" codeSystem="2.16.840.1.113883.6.1" />
+    <code value="34878-9" displayName="Note (Emergency Medicine)" codeSystemName="LOINC" codeSystem="2.16.840.1.113883.6.1" />
+    <code value="18749-2" displayName="Electromyogram Study" codeSystemName="LOINC" codeSystem="2.16.840.1.113883.6.1" />
+    <code value="28626-0" displayName="History &amp; Physical Note" codeSystemName="LOINC" codeSystem="2.16.840.1.113883.6.1" />
+    <code value="34109-9" displayName="Note" codeSystemName="LOINC" codeSystem="2.16.840.1.113883.6.1" />
+    <code value="OTH" displayName="other" codeSystemName="HL7NullFlavor" codeSystem="2.16.840.1.113883.5.1008" />
+    <code value="11504-8" displayName="Surgical Operation Note" codeSystemName="LOINC" codeSystem="2.16.840.1.113883.6.1" />
+    <code value="11506-3" displayName="Subsequent Evaluation Note" codeSystemName="LOINC" codeSystem="2.16.840.1.113883.6.1" />
+    <code value="18748-4" displayName="Study Report (Diagnostic Imaging)" codeSystemName="LOINC" codeSystem="2.16.840.1.113883.6.1" />
+    <code value="34133-9" displayName="Summarization of Episode Note" codeSystemName="LOINC" codeSystem="2.16.840.1.113883.6.1" />
+    <code value="11529-5" displayName="Surgical Pathology Study" codeSystemName="LogicalObservationIdentifierNamesAndCodes" codeSystem="2.16.840.1.113883.11.16492" />
+  </system>
+  <system valueSetOid="2.16.840.1.113883.2.20.3.51   " valueSetName="HumanLanguage">
+    <code value="ENG" displayName="English" codeSystemName="ISO 639-3" codeSystem="1.0.639.3" />
+    <code value="FR" displayName="French" codeSystemName="ISO 639-3" codeSystem="1.0.639.3" />
+  </system>
+  <system valueSetOid="2.16.840.1.113883.2.20.3.324" valueSetName="LanguageAbilityMode" />
+  <system valueSetOid="2.16.840.1.113883.2.20.3.325" valueSetName="LanguageAbilityProficiency" />
+  <system valueSetOid="2.16.840.1.113883.1.11.12212" valueSetName="Marital Status">
+    <code value="A" displayName="Annulled" codeSystemName="MaritalStatus" codeSystem="2.16.840.1.113883.5.2" />
+    <code value="D" displayName="Divorced" codeSystemName="MaritalStatus" codeSystem="2.16.840.1.113883.5.2" />
+    <code value="T" displayName="Domestic partner" codeSystemName="MaritalStatus" codeSystem="2.16.840.1.113883.5.2" />
+    <code value="I" displayName="Interlocutory" codeSystemName="MaritalStatus" codeSystem="2.16.840.1.113883.5.2" />
+    <code value="L" displayName="Legally Separated" codeSystemName="MaritalStatus" codeSystem="2.16.840.1.113883.5.2" />
+    <code value="M" displayName="Married" codeSystemName="MaritalStatus" codeSystem="2.16.840.1.113883.5.2" />
+    <code value="S" displayName="Never Married" codeSystemName="MaritalStatus" codeSystem="2.16.840.1.113883.5.2" />
+    <code value="P" displayName="Polygamous" codeSystemName="MaritalStatus" codeSystem="2.16.840.1.113883.5.2" />
+    <code value="W" displayName="Widowed" codeSystemName="MaritalStatus" codeSystem="2.16.840.1.113883.5.2" />
+  </system>
+  <system valueSetOid="2.16.840.1.113883.2.20.3.87" valueSetName="ParticipationFunction" />
+  <system valueSetOid="2.16.840.1.113883.2.20.3.265" valueSetName="ProviderRoleCode" />
+  <system valueSetOid="2.16.840.1.113883.1.11.19366" valueSetName="x_InformationRecipient">
+    <code value="PRCP" displayName="primary information recipient" codeSystemName="HL7ParticipationType" codeSystem="2.16.840.1.113883.5.90" />
+    <code value="TRC" displayName="tracker" codeSystemName="HL7ParticipationType" codeSystem="2.16.840.1.113883.5.90" />
+  </system>
+</systems>
