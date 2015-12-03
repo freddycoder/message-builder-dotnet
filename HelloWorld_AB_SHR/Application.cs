@@ -66,6 +66,8 @@ namespace Hello_World
                 ResourceLoader.GetResource(cdaAssembly, "/vocabNameMap.xml"),
                 CdaCodeResolver.MODE_LENIENT
             ));
+
+            CodeResolverRegistry.RegisterCodeResolverRegistryForVersion(SpecificationVersion.CDA_AB_SHR, cdaCodeResolverRegistry);
         }
 
         public void processResponse(IInteraction queryResponse)
@@ -85,6 +87,7 @@ namespace Hello_World
                         Console.WriteLine(decodedString);
 
                         CAABTranscribedReportsDocument encapsulatedDocument = (CAABTranscribedReportsDocument)this.ProcessDocumentXml(decodedString, SpecificationVersion.CDA_AB_SHR);
+//                        Console.WriteLine(this.ConvertMessageObjectToXML(encapsulatedDocument, SpecificationVersion.CDA_AB_SHR));
                         if (encapsulatedDocument != null)
                         {
                             Console.WriteLine("Title from document: " + encapsulatedDocument.Title);
