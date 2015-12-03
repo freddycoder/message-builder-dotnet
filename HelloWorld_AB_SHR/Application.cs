@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Xml;
+using System.Reflection;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Marshalling;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
@@ -15,6 +16,7 @@ using Ca.Infoway.Messagebuilder.Model.Ab_r02_04_03_shr.Common.Rcmr_mt000004ab;
 using Ca.Infoway.Messagebuilder.Resolver.Configurator;
 using Ca.Infoway.Messagebuilder.Resolver;
 using Ca.Infoway.Messagebuilder.Terminology.Proxy;
+using Ca.Infoway.Messagebuilder.Platform;
 using Platform.Xml.Sax;
 
 namespace Hello_World
@@ -49,10 +51,12 @@ namespace Hello_World
             //Separate configuration for CDA code resolution
             GenericCodeResolverRegistry cdaCodeResolverRegistry = new GenericCodeResolverRegistryImpl();
 
+            Assembly cdaAssembly = Assembly.Load("message-builder-release-cda-ab-shr");
+
             cdaCodeResolverRegistry.Register(new CdaCodeResolver(
                 new TypedCodeFactory(),
-                ResourceUtil.GetEmbeddedFile("Hello_World", "Resources.voc.xml"),
-                ResourceUtil.GetEmbeddedFile("Hello_World", "Resources.vocabNameMap.xml"),
+                ResourceLoader.GetResource(cdaAssembly, "/voc.xml"),
+                ResourceLoader.GetResource(cdaAssembly, "/vocabNameMap.xml"),
                 CdaCodeResolver.MODE_LENIENT
             ));
         }

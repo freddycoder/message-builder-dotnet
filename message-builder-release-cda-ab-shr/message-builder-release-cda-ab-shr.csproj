@@ -178,6 +178,8 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MainResource\messageSet_cda_ab_shr.xml" />
+    <EmbeddedResource Include="MainResource\voc.xml" />
+    <EmbeddedResource Include="MainResource\vocabNameMap.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\message-builder-compatibility\message-builder-compatibility.csproj">
