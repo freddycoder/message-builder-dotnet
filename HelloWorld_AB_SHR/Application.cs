@@ -38,6 +38,13 @@ namespace Hello_World
 
             //Process Response 
             IInteraction response = this.ConvertXMLToMessageObject(xmlResponse, SpecificationVersion.R02_04_03_SHR_AB);
+
+            //Reconvert response to xml and print to screen (before decoding)
+            string xmlResponse2 = this.ConvertMessageObjectToXML(response, SpecificationVersion.R02_04_03_SHR_AB);
+            Console.WriteLine("XML response:");
+            Console.WriteLine(xmlResponse2);
+
+            //Process response - decode cda portion of response and print to screen
             this.processResponse(response);
 
             Console.WriteLine("Done!");
