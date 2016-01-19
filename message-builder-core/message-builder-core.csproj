@@ -491,6 +491,7 @@
     <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\QueryQuantityUnit.cs" />
     <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\QueryRequestLimit.cs" />
     <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\QueryResponse.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\Realm.cs" />
     <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ReferralDocumentType.cs" />
     <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\RelatedLinkType.cs" />
     <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\ResponseModality.cs" />
@@ -542,6 +543,7 @@
     <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\Transport\HL7TriggerEventCode.cs" />
     <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\Transport\ProcessingID.cs" />
     <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\Transport\ProcessingMode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\Transport\Realm.cs" />
     <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\Transport\ResponseMode.cs" />
     <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\Transport\x_ActMoodIntentEvent.cs" />
     <Compile Include="Main\Ca\Infoway\Messagebuilder\Domainvalue\URLScheme.cs" />
@@ -725,6 +727,7 @@
     <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\HL7\TsDateFormats.cs" />
     <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\MessageBeanRegistry.cs" />
     <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\Polymorphism\PolymorphismHandler.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\RealmCodeHelper.cs" />
     <Compile Include="Main\Ca\Infoway\Messagebuilder\Marshalling\XmlToCdaModelResult.cs" />
     <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\IClinicalDocument.cs" />
     <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\ExtendedNullFlavorSupport.cs" />

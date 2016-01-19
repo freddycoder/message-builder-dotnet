@@ -3,3 +3,5 @@ syntax: glob
 */bin/Release/*
 */bin/Debug/*
 */obj/*
+.vs/*
+TestResults/*

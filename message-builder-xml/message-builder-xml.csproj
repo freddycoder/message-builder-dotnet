@@ -203,6 +203,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <None Include="message-builder-core.licenseheader" />
     <None Include="message-builder-xml.snk" />
   </ItemGroup>
   <ItemGroup>

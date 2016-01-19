@@ -13,6 +13,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 
 		private NullFlavor nullFlavor;
 
+		private IList<Realm> realmCode;
+
 		public virtual void SetTypeName(string typeName)
 		{
 			this.typeName = typeName;
@@ -66,6 +68,17 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 		public virtual bool IsNullPart()
 		{
 			return false;
+		}
+
+		public virtual void AddRealmCode(Realm realmCode)
+		{
+			this.realmCode = new List<Realm>();
+			this.realmCode.Add(realmCode);
+		}
+
+		public virtual IList<Realm> GetRealmCode()
+		{
+			return this.realmCode;
 		}
 	}
 }

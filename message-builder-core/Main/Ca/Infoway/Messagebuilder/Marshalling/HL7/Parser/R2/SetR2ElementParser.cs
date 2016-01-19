@@ -17,6 +17,8 @@
  * Last modified: $LastChangedDate: 2015-11-19 18:20:12 -0500 (Fri, 30 Jan 2015) $
  * Revision:      $LastChangedRevision: 9755 $
  */
+
+
 using System.Collections.Generic;
 using System.Xml;
 using Ca.Infoway.Messagebuilder;
@@ -108,19 +110,26 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.R2
 											}
 											else
 											{
-												if ("SET<AD>".Equals(typeName))
+												if ("SET<CS>".Equals(typeName))
 												{
-													return new SETImpl<AD, PostalAddress>(typeof(ADImpl));
+													return new SETImpl<CS, Code>(typeof(CSImpl));
 												}
 												else
 												{
-													if ("SET<TN>".Equals(typeName))
+													if ("SET<AD>".Equals(typeName))
 													{
-														return new SETImpl<TN, TrivialName>(typeof(TNImpl));
+														return new SETImpl<AD, PostalAddress>(typeof(ADImpl));
 													}
 													else
 													{
-														throw new MarshallingException("Cannot create a data type construct for data type " + dataType);
+														if ("SET<TN>".Equals(typeName))
+														{
+															return new SETImpl<TN, TrivialName>(typeof(TNImpl));
+														}
+														else
+														{
+															throw new MarshallingException("Cannot create a data type construct for data type " + dataType);
+														}
 													}
 												}
 											}

@@ -17,6 +17,8 @@
  * Last modified: $LastChangedDate: 2015-11-19 18:20:12 -0500 (Fri, 30 Jan 2015) $
  * Revision:      $LastChangedRevision: 9755 $
  */
+
+
 using System.Collections.Generic;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype;
@@ -134,6 +136,11 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 		public virtual bool HasNullFlavor()
 		{
 			return false;
+		}
+
+		public virtual IList<Realm> GetRealmCode()
+		{
+			return this.bridge.GetRealmCode();
 		}
 
 		public virtual bool IsNullPart()

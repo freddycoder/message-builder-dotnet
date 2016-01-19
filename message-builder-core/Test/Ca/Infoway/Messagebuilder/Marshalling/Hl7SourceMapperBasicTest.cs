@@ -1,5 +1,6 @@
 using System.Xml;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
+using Ca.Infoway.Messagebuilder.Domainvalue.Transport;
 using Ca.Infoway.Messagebuilder.Error;
 using Ca.Infoway.Messagebuilder.Marshalling;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
@@ -22,6 +23,11 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 
 		private static readonly string XML2 = "<observation classCode=\"OBS\" moodCode=\"EVN\" xmlns=\"urn:hl7-org:v3\" >" + "		<code code=\"3137-7\" codeSystem=\"1.2.3.4\" />"
 			 + "		<statusCode code=\"completedINCORRECT\" />" + "		<value unit=\"mm\" value=\"5\" />" + "	</observation>";
+
+		private static readonly string XML3 = "<sender typeCode=\"SND\" xmlns=\"urn:hl7-org:v3\" >" + "		<realmCode code=\"CA\" />"
+			 + "		<realmCode code=\"AB\" />" + "		<telecom value=\"http://987.654.321.0\" />" + "		<device classCode=\"DEV\" determinerCode=\"INSTANCE\">"
+			 + "			<id extension=\"123\" root=\"2.16.840.1.113883.4.262.12\" use=\"BUS\" />" + "			<manufacturerModelName>1.0</manufacturerModelName>"
+			 + "			<softwareName>Panacea Pharmacy</softwareName>" + "		</device>" + "	</sender>";
 
 		private XmlDocument document;
 
@@ -103,6 +109,26 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 			Assert.AreEqual(Hl7ErrorCode.UNSUPPORTED_INTERACTION, result.GetHl7Errors()[0].GetHl7ErrorCode());
 			Assert.AreEqual(Hl7ErrorCode.MANDATORY_FIELD_NOT_PROVIDED, result.GetHl7Errors()[1].GetHl7ErrorCode());
 			Assert.AreEqual(Hl7ErrorCode.MANDATORY_FIELD_NOT_PROVIDED, result.GetHl7Errors()[2].GetHl7ErrorCode());
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void ShouldMapRealmCode()
+		{
+			Sender senderBean = (Sender)new Hl7SourceMapper().MapPartSourceToTeal(this.partSource, null);
+			Assert.IsNotNull(senderBean, "sender");
+			Assert.IsNull(senderBean.GetRealmCode(), "realm code not expected");
+			XmlDocument document2 = GetSourceDocument(XML3);
+			XmlElement element2 = document2.DocumentElement;
+			Hl7MessageSource rootSource2 = new Hl7MessageSource(MockVersionNumber.MOCK_NEWFOUNDLAND, document2, null, null, this.service
+				);
+			Hl7PartSource partSource2 = rootSource2.CreatePartSource(CreateRelationship("MCCI_MT002100CA.Sender"), element2);
+			Sender senderBeanWithRealm = (Sender)new Hl7SourceMapper().MapPartSourceToTeal(partSource2, null);
+			Assert.IsNotNull(senderBeanWithRealm, "observation");
+			Assert.IsNotNull(senderBeanWithRealm.GetRealmCode(), "observation has realms");
+			Assert.AreEqual(2, senderBeanWithRealm.GetRealmCode().Count, "observation has two realms");
+			Assert.AreEqual(Realm.CANADA, senderBeanWithRealm.GetRealmCode()[0], "realm");
+			Assert.AreEqual(Realm.ALBERTA, senderBeanWithRealm.GetRealmCode()[1], "realm");
 		}
 
 		/// <exception cref="System.Exception"></exception>

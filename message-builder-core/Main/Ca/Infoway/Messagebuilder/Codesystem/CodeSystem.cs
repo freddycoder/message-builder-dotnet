@@ -17,6 +17,8 @@
  * Last modified: $LastChangedDate: 2015-11-19 18:20:12 -0500 (Fri, 30 Jan 2015) $
  * Revision:      $LastChangedRevision: 9755 $
  */
+
+
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Lang;
 
@@ -218,6 +220,9 @@ namespace Ca.Infoway.Messagebuilder.Codesystem
 
 		public static readonly Ca.Infoway.Messagebuilder.Codesystem.CodeSystem VOCABULARY_ENTITY_NAME_USE = new Ca.Infoway.Messagebuilder.Codesystem.CodeSystem
 			("VOCABULARY_ENTITY_NAME_USE", "2.16.840.1.113883.5.45");
+
+		public static readonly Ca.Infoway.Messagebuilder.Codesystem.CodeSystem VOCABULARY_HL7_REALM = new Ca.Infoway.Messagebuilder.Codesystem.CodeSystem
+			("VOCABULARY_HL7_REALM", "2.16.840.1.113883.5.1124");
 
 		public static readonly Ca.Infoway.Messagebuilder.Codesystem.CodeSystem VOCABULARY_HL7_STANDARD_VERSION_CODE = new Ca.Infoway.Messagebuilder.Codesystem.CodeSystem
 			("VOCABULARY_HL7_STANDARD_VERSION_CODE", "2.16.840.1.113883.5.1092");

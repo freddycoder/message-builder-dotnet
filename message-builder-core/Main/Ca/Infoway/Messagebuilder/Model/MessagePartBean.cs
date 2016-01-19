@@ -17,6 +17,8 @@
  * Last modified: $LastChangedDate: 2015-11-19 18:20:12 -0500 (Fri, 30 Jan 2015) $
  * Revision:      $LastChangedRevision: 9755 $
  */
+
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,6 +43,7 @@ namespace Ca.Infoway.Messagebuilder.Model
         private const long serialVersionUID = -850542695451569891L;
 
         private NullFlavor nullFlavor;
+        private IList<Realm> realmcode;
 
         private Object getHl7ValueFromMessageAttributes(String propertyName)
         {
@@ -241,6 +244,25 @@ namespace Ca.Infoway.Messagebuilder.Model
              nullFlavor)
         {
             return SetMetadataInCollection(propertyName, -1, valueInSet, nullFlavor, false);
+        }
+
+        public virtual IList<Realm> GetRealmCode()
+        {
+            return this.realmcode;
+        }
+
+        public virtual void AddRealmCode(Realm code)
+        {
+            if (this.realmcode == null)
+            {
+                this.realmcode = new List<Realm>();
+            }
+            this.realmcode.Add(code);
+        }
+
+        public virtual void ClearRealmCode()
+        {
+            this.realmcode = null;
         }
         
         public StandardDataType GetSpecializationType(String propertyName)

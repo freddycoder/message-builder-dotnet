@@ -17,6 +17,8 @@
  * Last modified: $LastChangedDate: 2015-11-19 18:20:12 -0500 (Fri, 30 Jan 2015) $
  * Revision:      $LastChangedRevision: 9755 $
  */
+
+
 using System.Collections.Generic;
 using Ca.Infoway.Messagebuilder.Domainvalue;
 using Ca.Infoway.Messagebuilder.Marshalling;
@@ -66,5 +68,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 		/// <remarks>Returns the part's null flavor, if it has one, or null.</remarks>
 		/// <returns>the null flavor</returns>
 		NullFlavor GetNullFlavor();
+
+		IList<Realm> GetRealmCode();
 	}
 }

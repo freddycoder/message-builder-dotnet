@@ -58,19 +58,19 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Castle.Core">
-      <HintPath>Lib\Castle.Core.dll</HintPath>
+      <HintPath>..\SharedLibs\Castle.Core.dll</HintPath>
     </Reference>
     <Reference Include="Castle.DynamicProxy2">
-      <HintPath>Lib\Castle.DynamicProxy2.dll</HintPath>
+      <HintPath>..\SharedLibs\Castle.DynamicProxy2.dll</HintPath>
     </Reference>
     <Reference Include="ILOG.J2CsMapping">
-      <HintPath>Lib\ILOG.J2CsMapping.dll</HintPath>
+      <HintPath>..\SharedLibs\ILOG.J2CsMapping.dll</HintPath>
     </Reference>
     <Reference Include="log4net">
-      <HintPath>Lib\log4net.dll</HintPath>
+      <HintPath>..\SharedLibs\log4net.dll</HintPath>
     </Reference>
     <Reference Include="NMatrix.Schematron">
-      <HintPath>Lib\NMatrix.Schematron.dll</HintPath>
+      <HintPath>..\SharedLibs\NMatrix.Schematron.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">

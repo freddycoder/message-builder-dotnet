@@ -17,6 +17,8 @@
  * Last modified: $LastChangedDate: 2015-11-19 18:20:12 -0500 (Fri, 30 Jan 2015) $
  * Revision:      $LastChangedRevision: 9755 $
  */
+
+
 using System;
 using System.Collections.Generic;
 using Ca.Infoway.Messagebuilder;
@@ -31,6 +33,7 @@ using Ca.Infoway.Messagebuilder.Domainvalue.Util;
 using Ca.Infoway.Messagebuilder.J5goodies;
 using Ca.Infoway.Messagebuilder.Marshalling;
 using Ca.Infoway.Messagebuilder.Marshalling.Datatypeadapter;
+using Ca.Infoway.Messagebuilder.Model;
 using Ca.Infoway.Messagebuilder.Platform;
 using Ca.Infoway.Messagebuilder.Resolver;
 using Ca.Infoway.Messagebuilder.Xml;
@@ -272,6 +275,20 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 			{
 				this.log.Info(System.String.Format("CAN NOT SET NULL FLAVOR! Bean {0} does not implement {1}.", this.sorter.GetBeanType()
 					.Name, typeof(NullFlavorSupport).Name));
+			}
+		}
+
+		public virtual void WriteRealmCode(Realm realmcode)
+		{
+			object targetBean = this.sorter.GetBean();
+			if (targetBean is MessagePartBean)
+			{
+				((MessagePartBean)targetBean).AddRealmCode(realmcode);
+			}
+			else
+			{
+				this.log.Info(System.String.Format("CAN NOT SET REALM CODE! Bean {0} does not implement {1}.", this.sorter.GetBeanType().
+					Name, typeof(MessagePartBean).Name));
 			}
 		}
 

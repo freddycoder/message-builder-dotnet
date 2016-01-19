@@ -18,6 +18,7 @@ using Ca.Infoway.Messagebuilder.Resolver;
 using Ca.Infoway.Messagebuilder.Terminology.Proxy;
 using Ca.Infoway.Messagebuilder.Platform;
 using Platform.Xml.Sax;
+using Ca.Infoway.Messagebuilder.Domainvalue.Transport;
 
 namespace Hello_World
 {
@@ -73,6 +74,12 @@ namespace Hello_World
         public void processResponse(IInteraction queryResponse)
         {
             DocumentDetailQueryResponse response = (DocumentDetailQueryResponse)queryResponse;
+
+            var realmCodes = response.GetRealmCode();
+            foreach (Realm realm in realmCodes)
+            {
+                Console.WriteLine("Realm Code: " + realm.CodeValue);
+            }
 
             if (response.ControlActEvent.Subject != null)
             {

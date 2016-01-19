@@ -17,16 +17,20 @@
  * Last modified: $LastChangedDate: 2015-11-19 18:20:12 -0500 (Fri, 30 Jan 2015) $
  * Revision:      $LastChangedRevision: 9755 $
  */
+
+
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Xml;
+using System.Xml.XPath;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.CodeRegistry;
 using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Datatype.Impl;
 using Ca.Infoway.Messagebuilder.Domainvalue;
 using Ca.Infoway.Messagebuilder.Error;
+using Ca.Infoway.Messagebuilder.J5goodies;
 using Ca.Infoway.Messagebuilder.Marshalling;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser;
@@ -53,7 +57,6 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 			if (hl7MessageSource.GetInteraction() != null)
 			{
 				Type messageBeanType = MessageBeanRegistry.GetInstance().GetInteractionBeanType(hl7MessageSource.GetMessageTypeKey());
-                Console.WriteLine("Message Bean Type: " + messageBeanType);
 				object messageBean = BeanUtil.Instantiate<object>(messageBeanType);
 				BeanWrapper wrapper = new BeanWrapper(messageBean);
 				MapToTeal(hl7MessageSource, wrapper, null);
@@ -246,6 +249,10 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 
 		private void Process(BeanWrapper bean, Hl7Source source, IList<XmlNode> nodes, string traversalName)
 		{
+			if ("realmCode".Equals(traversalName))
+			{
+				WriteRealmCode(bean, source, nodes, traversalName);
+			}
 			Relationship relationship = source.GetRelationship(traversalName);
 			try
 			{
@@ -692,6 +699,27 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 			}
 		}
 
+		/// <exception cref="Ca.Infoway.Messagebuilder.Marshalling.HL7.XmlToModelTransformationException"></exception>
+		private void WriteRealmCode(BeanWrapper bean, Hl7Source source, IList<XmlNode> nodes, string traversalName)
+		{
+			XPathHelper xPathHelper = new XPathHelper();
+			foreach (XmlNode node in nodes)
+			{
+				try
+				{
+					string codeValue = xPathHelper.GetAttributeValue(node, "@code", null);
+					if (codeValue != null)
+					{
+						bean.WriteRealmCode(RealmCodeHelper.LookupRealm(codeValue));
+					}
+				}
+				catch (XPathException e)
+				{
+					throw new XmlToModelTransformationException("Exception encountered while parsing realmCode", e);
+				}
+			}
+		}
+
 		private void ChangeDatatypeIfNecessary(string type, Relationship relationship, BareANY @object)
 		{
 			// if the type parsed was different from the relationship type, preserve that info in the parsed object
@@ -719,12 +747,12 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 
 		private ErrorLogger CreateErrorLogger(XmlElement element, Hl7Errors errors)
 		{
-			return new _ErrorLogger_658(errors, element);
+			return new _ErrorLogger_682(errors, element);
 		}
 
-		private sealed class _ErrorLogger_658 : ErrorLogger
+		private sealed class _ErrorLogger_682 : ErrorLogger
 		{
-			public _ErrorLogger_658(Hl7Errors errors, XmlElement element)
+			public _ErrorLogger_682(Hl7Errors errors, XmlElement element)
 			{
 				this.errors = errors;
 				this.element = element;

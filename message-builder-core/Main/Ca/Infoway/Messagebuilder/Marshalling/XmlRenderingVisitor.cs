@@ -17,12 +17,15 @@
  * Last modified: $LastChangedDate: 2015-11-19 18:20:12 -0500 (Fri, 30 Jan 2015) $
  * Revision:      $LastChangedRevision: 9755 $
  */
+
+
 using System;
 using System.Collections.Generic;
 using System.Text;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Datatype.Impl;
+using Ca.Infoway.Messagebuilder.Datatype.Lang;
 using Ca.Infoway.Messagebuilder.Domainvalue;
 using Ca.Infoway.Messagebuilder.Error;
 using Ca.Infoway.Messagebuilder.Marshalling;
@@ -270,6 +273,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 					this.result.AddHl7Error(new Hl7Error(Hl7ErrorCode.DATA_TYPE_ERROR, warningMessage, propertyPath));
 				}
 				AddNewErrorsToList(CurrentBuffer().GetWarnings());
+				RenderRealmCodes(part);
 			}
 		}
 
@@ -570,12 +574,12 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 
 		private ErrorLogger CreateErrorLogger(string propertyPath, Hl7Errors errors)
 		{
-			return new _ErrorLogger_476(errors, propertyPath);
+			return new _ErrorLogger_481(errors, propertyPath);
 		}
 
-		private sealed class _ErrorLogger_476 : ErrorLogger
+		private sealed class _ErrorLogger_481 : ErrorLogger
 		{
-			public _ErrorLogger_476(Hl7Errors errors, string propertyPath)
+			public _ErrorLogger_481(Hl7Errors errors, string propertyPath)
 			{
 				this.errors = errors;
 				this.propertyPath = propertyPath;
@@ -661,6 +665,33 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 			else
 			{
 				CurrentBuffer().GetStructuralBuilder().Append("ITSVersion=\"XML_1.0\"");
+			}
+			RenderRealmCodes(tealBean);
+		}
+
+		private void RenderRealmCodes(PartBridge tealBean)
+		{
+			if (tealBean.GetRealmCode() != null)
+			{
+				string type = "CS";
+				PropertyFormatter formatter = this.formatterRegistry.Get(type);
+				Relationship placeholderRelationship = new Relationship("realmCode", type, Cardinality.Create("0-*"));
+				FormatContext context = Ca.Infoway.Messagebuilder.Marshalling.FormatContextImpl.Create(this.result, null, placeholderRelationship
+					, null, null, null, null, this.isCda);
+				foreach (Realm realm in tealBean.GetRealmCode())
+				{
+					BareANY any = (BareANY)DataTypeFactory.CreateDataType(type, this.isCda && this.isR2);
+					if (this.isR2)
+					{
+						((BareANYImpl)any).BareValue = new CodedTypeR2<Realm>(realm);
+					}
+					else
+					{
+						((BareANYImpl)any).BareValue = realm;
+					}
+					string xmlFragment = formatter.Format(context, any, GetIndent());
+					CurrentBuffer().GetChildBuilder().Append(xmlFragment);
+				}
 			}
 		}
 

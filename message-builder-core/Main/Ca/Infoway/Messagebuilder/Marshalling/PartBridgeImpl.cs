@@ -17,10 +17,13 @@
  * Last modified: $LastChangedDate: 2015-11-19 18:20:12 -0500 (Fri, 30 Jan 2015) $
  * Revision:      $LastChangedRevision: 9755 $
  */
+
+
 using System.Collections.Generic;
 using Ca.Infoway.Messagebuilder.Datatype.Nullflavor;
 using Ca.Infoway.Messagebuilder.Domainvalue;
 using Ca.Infoway.Messagebuilder.Marshalling;
+using Ca.Infoway.Messagebuilder.Model;
 using Ca.Infoway.Messagebuilder.Xml;
 
 namespace Ca.Infoway.Messagebuilder.Marshalling
@@ -112,6 +115,17 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 				result = nullable.NullFlavor;
 			}
 			return result;
+		}
+
+		public virtual IList<Realm> GetRealmCode()
+		{
+			IList<Realm> realm = null;
+			if (this.bean is MessagePartBean)
+			{
+				MessagePartBean partBean = (MessagePartBean)this.bean;
+				realm = partBean.GetRealmCode();
+			}
+			return realm;
 		}
 
 		public virtual bool IsCollapsed()

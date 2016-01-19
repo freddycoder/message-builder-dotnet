@@ -812,6 +812,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="message-builder-ccda-pcs-r1_1.snk" />
+    <None Include="message-builder-core.licenseheader" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MainResource\voc.xml" />

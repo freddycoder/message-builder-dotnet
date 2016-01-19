@@ -5,6 +5,7 @@ using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Datatype.Impl;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
 using Ca.Infoway.Messagebuilder.Domainvalue;
+using Ca.Infoway.Messagebuilder.Domainvalue.Transport;
 using Ca.Infoway.Messagebuilder.Error;
 using Ca.Infoway.Messagebuilder.Marshalling;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
@@ -70,6 +71,18 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 			string xml = this.visitor.ToXml().GetXmlMessage();
 			AssertXmlEquals("xml", "<ABCD_IN123456CA xmlns=\"urn:hl7-org:v3\" " + "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" ITSVersion=\"XML_1.0\"/>"
 				, xml);
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void ShouldRenderRootElementWithRealmCode()
+		{
+			this.partBridge.AddRealmCode(Domainvalue.Transport.Realm.ALBERTA);
+			this.visitor.VisitRootStart(this.partBridge, this.interation);
+			this.visitor.VisitRootEnd(this.partBridge, this.interation);
+			string xml = this.visitor.ToXml().GetXmlMessage();
+			AssertXmlEquals("xml", "<ABCD_IN123456CA xmlns=\"urn:hl7-org:v3\" " + "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" ITSVersion=\"XML_1.0\">"
+				 + "<realmCode code=\"AB\"/>" + "</ABCD_IN123456CA>", xml);
 		}
 
 		/// <exception cref="System.Exception"></exception>
@@ -262,6 +275,22 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 			string xml = this.visitor.ToXml().GetXmlMessage();
 			AssertXmlEquals("xml", "<ABCD_IN123456CA xmlns=\"urn:hl7-org:v3\" " + "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" ITSVersion=\"XML_1.0\">"
 				 + "<receiver/></ABCD_IN123456CA>", xml);
+		}
+
+		/// <exception cref="System.Exception"></exception>
+		[Test]
+		public virtual void ShouldRenderSimpleAssociationWithRealmCode()
+		{
+			Relationship relationship = CreateSimpleAssociationRelationship();
+			MockPartBridge associationPartBridge = new MockPartBridge();
+			associationPartBridge.AddRealmCode(Domainvalue.Transport.Realm.ALBERTA);
+			this.visitor.VisitRootStart(this.partBridge, this.interation);
+			this.visitor.VisitAssociationStart(associationPartBridge, relationship);
+			this.visitor.VisitAssociationEnd(associationPartBridge, relationship);
+			this.visitor.VisitRootEnd(this.partBridge, this.interation);
+			string xml = this.visitor.ToXml().GetXmlMessage();
+			AssertXmlEquals("xml", "<ABCD_IN123456CA xmlns=\"urn:hl7-org:v3\" " + "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" ITSVersion=\"XML_1.0\">"
+				 + "<receiver><realmCode code=\"AB\"/></receiver></ABCD_IN123456CA>", xml);
 		}
 
 		/// <exception cref="System.Exception"></exception>

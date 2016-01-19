@@ -17,6 +17,8 @@
  * Last modified: $LastChangedDate: 2015-11-19 18:20:12 -0500 (Fri, 30 Jan 2015) $
  * Revision:      $LastChangedRevision: 9755 $
  */
+
+
 namespace Ca.Infoway.Messagebuilder.Datatype.Lang.Util
 {
 	/// <summary>This class wraps a standard Date and provides for a datePattern to be supplied.</summary>

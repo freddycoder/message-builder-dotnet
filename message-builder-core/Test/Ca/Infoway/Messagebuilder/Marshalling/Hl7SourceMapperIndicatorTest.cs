@@ -1,5 +1,4 @@
 using System.Xml;
-using System.Reflection;
 using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Marshalling;
 using Ca.Infoway.Messagebuilder.Model.Mock;
@@ -39,7 +38,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 			MockMessageBeanRegistry.Initialize();
 			CodeResolverRegistry.Register(new TrivialCodeResolver());
 			this.service = new MockTestCaseMessageDefinitionService();
-        }
+		}
 
 		[NUnit.Framework.TearDown]
 		public virtual void TearDown()
