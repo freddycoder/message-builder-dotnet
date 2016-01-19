@@ -34,7 +34,6 @@ namespace Ca.Infoway.Messagebuilder.Model.Cda_ab_shr.Basemodel {
     public class RelatedSubject : MessagePartBean {
 
         private CS_R2<Ca.Infoway.Messagebuilder.Model.Cda_ab_shr.Domainvalue.x_DocumentSubject> classCode;
-        private LIST<CS_R2<Code>, CodedTypeR2<Code>> realmCode;
         private II typeId;
         private LIST<II, Identifier> templateId;
         private CE_R2<Code> code;
@@ -44,7 +43,6 @@ namespace Ca.Infoway.Messagebuilder.Model.Cda_ab_shr.Basemodel {
 
         public RelatedSubject() {
             this.classCode = new CS_R2Impl<Ca.Infoway.Messagebuilder.Model.Cda_ab_shr.Domainvalue.x_DocumentSubject>();
-            this.realmCode = new LISTImpl<CS_R2<Code>, CodedTypeR2<Code>>(typeof(CS_R2Impl<Code>));
             this.typeId = new IIImpl();
             this.templateId = new LISTImpl<II, Identifier>(typeof(IIImpl));
             this.code = new CE_R2Impl<Code>();
@@ -60,16 +58,6 @@ namespace Ca.Infoway.Messagebuilder.Model.Cda_ab_shr.Basemodel {
         public CodedTypeR2<Ca.Infoway.Messagebuilder.Model.Cda_ab_shr.Domainvalue.x_DocumentSubject> ClassCode {
             get { return (CodedTypeR2<Ca.Infoway.Messagebuilder.Model.Cda_ab_shr.Domainvalue.x_DocumentSubject>) this.classCode.Value; }
             set { this.classCode.Value = value; }
-        }
-
-        /**
-         * <summary>Relationship: BaseModel.RelatedSubject.realmCode</summary>
-         * 
-         * <remarks>Conformance/Cardinality: OPTIONAL (0-*)</remarks>
-         */
-        [Hl7XmlMappingAttribute(new string[] {"realmCode"})]
-        public IList<CodedTypeR2<Code>> RealmCode {
-            get { return this.realmCode.RawList<CodedTypeR2<Code>>(); }
         }
 
         /**

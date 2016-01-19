@@ -33,7 +33,6 @@ namespace Ca.Infoway.Messagebuilder.Model.Cda_ab_shr.Merged {
     [Hl7PartTypeMappingAttribute(new string[] {"BaseModel.AuthoringDevice","CAABTranscribedReports.AuthoringDevice"})]
     public class AuthoringDevice : MessagePartBean, Ca.Infoway.Messagebuilder.Model.Cda_ab_shr.Merged.IAssignedAuthorChoice {
 
-        private LIST<CS_R2<Code>, CodedTypeR2<Code>> realmCode;
         private II typeId;
         private LIST<II, Identifier> templateId;
         private CE_R2<Code> code;
@@ -42,7 +41,6 @@ namespace Ca.Infoway.Messagebuilder.Model.Cda_ab_shr.Merged {
         private IList<Ca.Infoway.Messagebuilder.Model.Cda_ab_shr.Basemodel.MaintainedEntity> asMaintainedEntity;
 
         public AuthoringDevice() {
-            this.realmCode = new LISTImpl<CS_R2<Code>, CodedTypeR2<Code>>(typeof(CS_R2Impl<Code>));
             this.typeId = new IIImpl();
             this.templateId = new LISTImpl<II, Identifier>(typeof(IIImpl));
             this.code = new CE_R2Impl<Code>();
@@ -50,21 +48,6 @@ namespace Ca.Infoway.Messagebuilder.Model.Cda_ab_shr.Merged {
             this.softwareName = new SC_R2Impl<Code>();
             this.asMaintainedEntity = new List<Ca.Infoway.Messagebuilder.Model.Cda_ab_shr.Basemodel.MaintainedEntity>();
         }
-        /**
-         * <summary>Un-merged Business Name: (no business name 
-         * specified)</summary>
-         * 
-         * <remarks>Relationship: BaseModel.AuthoringDevice.realmCode 
-         * Conformance/Cardinality: OPTIONAL (0-*) Un-merged Business 
-         * Name: (no business name specified) Relationship: 
-         * CAABTranscribedReports.AuthoringDevice.realmCode 
-         * Conformance/Cardinality: OPTIONAL (0-*)</remarks>
-         */
-        [Hl7XmlMappingAttribute(new string[] {"realmCode"})]
-        public IList<CodedTypeR2<Code>> RealmCode {
-            get { return this.realmCode.RawList<CodedTypeR2<Code>>(); }
-        }
-
         /**
          * <summary>Un-merged Business Name: (no business name 
          * specified)</summary>

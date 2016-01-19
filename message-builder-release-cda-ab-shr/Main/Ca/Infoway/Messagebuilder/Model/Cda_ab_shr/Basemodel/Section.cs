@@ -35,7 +35,6 @@ namespace Ca.Infoway.Messagebuilder.Model.Cda_ab_shr.Basemodel {
     public class Section : MessagePartBean {
 
         private ST iD;
-        private LIST<CS_R2<Code>, CodedTypeR2<Code>> realmCode;
         private II typeId;
         private LIST<II, Identifier> templateId;
         private II id;
@@ -52,7 +51,6 @@ namespace Ca.Infoway.Messagebuilder.Model.Cda_ab_shr.Basemodel {
 
         public Section() {
             this.iD = new STImpl();
-            this.realmCode = new LISTImpl<CS_R2<Code>, CodedTypeR2<Code>>(typeof(CS_R2Impl<Code>));
             this.typeId = new IIImpl();
             this.templateId = new LISTImpl<II, Identifier>(typeof(IIImpl));
             this.id = new IIImpl();
@@ -75,16 +73,6 @@ namespace Ca.Infoway.Messagebuilder.Model.Cda_ab_shr.Basemodel {
         public String ID {
             get { return this.iD.Value; }
             set { this.iD.Value = value; }
-        }
-
-        /**
-         * <summary>Relationship: BaseModel.Section.realmCode</summary>
-         * 
-         * <remarks>Conformance/Cardinality: OPTIONAL (0-*)</remarks>
-         */
-        [Hl7XmlMappingAttribute(new string[] {"realmCode"})]
-        public IList<CodedTypeR2<Code>> RealmCode {
-            get { return this.realmCode.RawList<CodedTypeR2<Code>>(); }
         }
 
         /**

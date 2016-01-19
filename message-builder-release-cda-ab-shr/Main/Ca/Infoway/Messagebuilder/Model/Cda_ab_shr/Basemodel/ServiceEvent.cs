@@ -35,7 +35,6 @@ namespace Ca.Infoway.Messagebuilder.Model.Cda_ab_shr.Basemodel {
     public class ServiceEvent : MessagePartBean {
 
         private CS_R2<ActClassRoot> classCode;
-        private LIST<CS_R2<Code>, CodedTypeR2<Code>> realmCode;
         private II typeId;
         private LIST<II, Identifier> templateId;
         private LIST<II, Identifier> id;
@@ -45,7 +44,6 @@ namespace Ca.Infoway.Messagebuilder.Model.Cda_ab_shr.Basemodel {
 
         public ServiceEvent() {
             this.classCode = new CS_R2Impl<ActClassRoot>();
-            this.realmCode = new LISTImpl<CS_R2<Code>, CodedTypeR2<Code>>(typeof(CS_R2Impl<Code>));
             this.typeId = new IIImpl();
             this.templateId = new LISTImpl<II, Identifier>(typeof(IIImpl));
             this.id = new LISTImpl<II, Identifier>(typeof(IIImpl));
@@ -62,16 +60,6 @@ namespace Ca.Infoway.Messagebuilder.Model.Cda_ab_shr.Basemodel {
         public CodedTypeR2<ActClassRoot> ClassCode {
             get { return (CodedTypeR2<ActClassRoot>) this.classCode.Value; }
             set { this.classCode.Value = value; }
-        }
-
-        /**
-         * <summary>Relationship: BaseModel.ServiceEvent.realmCode</summary>
-         * 
-         * <remarks>Conformance/Cardinality: OPTIONAL (0-*)</remarks>
-         */
-        [Hl7XmlMappingAttribute(new string[] {"realmCode"})]
-        public IList<CodedTypeR2<Code>> RealmCode {
-            get { return this.realmCode.RawList<CodedTypeR2<Code>>(); }
         }
 
         /**

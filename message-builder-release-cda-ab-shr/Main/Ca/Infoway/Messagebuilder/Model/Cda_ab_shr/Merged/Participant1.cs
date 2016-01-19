@@ -35,7 +35,6 @@ namespace Ca.Infoway.Messagebuilder.Model.Cda_ab_shr.Merged {
     public class Participant1 : MessagePartBean {
 
         private CS_R2<ParticipationType> typeCode;
-        private LIST<CS_R2<Code>, CodedTypeR2<Code>> realmCode;
         private II typeId;
         private LIST<II, Identifier> templateId;
         private IVL_TS time;
@@ -46,7 +45,6 @@ namespace Ca.Infoway.Messagebuilder.Model.Cda_ab_shr.Merged {
 
         public Participant1() {
             this.typeCode = new CS_R2Impl<ParticipationType>();
-            this.realmCode = new LISTImpl<CS_R2<Code>, CodedTypeR2<Code>>(typeof(CS_R2Impl<Code>));
             this.typeId = new IIImpl();
             this.templateId = new LISTImpl<II, Identifier>(typeof(IIImpl));
             this.time = new IVL_TSImpl();
@@ -70,24 +68,6 @@ namespace Ca.Infoway.Messagebuilder.Model.Cda_ab_shr.Merged {
         public CodedTypeR2<ParticipationType> TypeCode {
             get { return (CodedTypeR2<ParticipationType>) this.typeCode.Value; }
             set { this.typeCode.Value = value; }
-        }
-
-        /**
-         * <summary>Un-merged Business Name: (no business name 
-         * specified)</summary>
-         * 
-         * <remarks>Relationship: BaseModel.Participant2.realmCode 
-         * Conformance/Cardinality: OPTIONAL (0-*) Un-merged Business 
-         * Name: (no business name specified) Relationship: 
-         * BaseModel.Participant1.realmCode Conformance/Cardinality: 
-         * OPTIONAL (0-*) Un-merged Business Name: (no business name 
-         * specified) Relationship: 
-         * CAABTranscribedReports.Participant1.realmCode 
-         * Conformance/Cardinality: OPTIONAL (0-*)</remarks>
-         */
-        [Hl7XmlMappingAttribute(new string[] {"realmCode"})]
-        public IList<CodedTypeR2<Code>> RealmCode {
-            get { return this.realmCode.RawList<CodedTypeR2<Code>>(); }
         }
 
         /**

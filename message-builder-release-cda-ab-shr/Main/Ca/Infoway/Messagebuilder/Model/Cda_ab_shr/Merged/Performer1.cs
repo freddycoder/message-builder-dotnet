@@ -34,7 +34,6 @@ namespace Ca.Infoway.Messagebuilder.Model.Cda_ab_shr.Merged {
     [Hl7PartTypeMappingAttribute(new string[] {"BaseModel.Performer1","BaseModel.Performer2","CAABTranscribedReports.Performer1"})]
     public class Performer1 : MessagePartBean {
 
-        private LIST<CS_R2<Code>, CodedTypeR2<Code>> realmCode;
         private II typeId;
         private LIST<II, Identifier> templateId;
         private IVL_TS time;
@@ -44,7 +43,6 @@ namespace Ca.Infoway.Messagebuilder.Model.Cda_ab_shr.Merged {
         private CE_R2<Code> functionCode;
 
         public Performer1() {
-            this.realmCode = new LISTImpl<CS_R2<Code>, CodedTypeR2<Code>>(typeof(CS_R2Impl<Code>));
             this.typeId = new IIImpl();
             this.templateId = new LISTImpl<II, Identifier>(typeof(IIImpl));
             this.time = new IVL_TSImpl();
@@ -52,24 +50,6 @@ namespace Ca.Infoway.Messagebuilder.Model.Cda_ab_shr.Merged {
             this.typeCode = new CS_R2Impl<Ca.Infoway.Messagebuilder.Model.Cda_ab_shr.Domainvalue.x_ServiceEventPerformer>();
             this.functionCode = new CE_R2Impl<Code>();
         }
-        /**
-         * <summary>Un-merged Business Name: (no business name 
-         * specified)</summary>
-         * 
-         * <remarks>Relationship: BaseModel.Performer2.realmCode 
-         * Conformance/Cardinality: OPTIONAL (0-*) Un-merged Business 
-         * Name: (no business name specified) Relationship: 
-         * BaseModel.Performer1.realmCode Conformance/Cardinality: 
-         * OPTIONAL (0-*) Un-merged Business Name: (no business name 
-         * specified) Relationship: 
-         * CAABTranscribedReports.Performer1.realmCode 
-         * Conformance/Cardinality: OPTIONAL (0-*)</remarks>
-         */
-        [Hl7XmlMappingAttribute(new string[] {"realmCode"})]
-        public IList<CodedTypeR2<Code>> RealmCode {
-            get { return this.realmCode.RawList<CodedTypeR2<Code>>(); }
-        }
-
         /**
          * <summary>Un-merged Business Name: (no business name 
          * specified)</summary>

@@ -38,7 +38,6 @@ namespace Ca.Infoway.Messagebuilder.Model.Cda_ab_shr.Basemodel {
         private CS_R2<Ca.Infoway.Messagebuilder.Model.Cda_ab_shr.Domainvalue.x_ActClassDocumentEntryAct> classCode;
         private CS_R2<Ca.Infoway.Messagebuilder.Model.Cda_ab_shr.Domainvalue.x_DocumentActMood> moodCode;
         private BL negationInd;
-        private LIST<CS_R2<Code>, CodedTypeR2<Code>> realmCode;
         private II typeId;
         private LIST<II, Identifier> templateId;
         private LIST<II, Identifier> id;
@@ -62,7 +61,6 @@ namespace Ca.Infoway.Messagebuilder.Model.Cda_ab_shr.Basemodel {
             this.classCode = new CS_R2Impl<Ca.Infoway.Messagebuilder.Model.Cda_ab_shr.Domainvalue.x_ActClassDocumentEntryAct>();
             this.moodCode = new CS_R2Impl<Ca.Infoway.Messagebuilder.Model.Cda_ab_shr.Domainvalue.x_DocumentActMood>();
             this.negationInd = new BLImpl();
-            this.realmCode = new LISTImpl<CS_R2<Code>, CodedTypeR2<Code>>(typeof(CS_R2Impl<Code>));
             this.typeId = new IIImpl();
             this.templateId = new LISTImpl<II, Identifier>(typeof(IIImpl));
             this.id = new LISTImpl<II, Identifier>(typeof(IIImpl));
@@ -112,16 +110,6 @@ namespace Ca.Infoway.Messagebuilder.Model.Cda_ab_shr.Basemodel {
         public bool? NegationInd {
             get { return this.negationInd.Value; }
             set { this.negationInd.Value = value; }
-        }
-
-        /**
-         * <summary>Relationship: BaseModel.Act.realmCode</summary>
-         * 
-         * <remarks>Conformance/Cardinality: OPTIONAL (0-*)</remarks>
-         */
-        [Hl7XmlMappingAttribute(new string[] {"realmCode"})]
-        public IList<CodedTypeR2<Code>> RealmCode {
-            get { return this.realmCode.RawList<CodedTypeR2<Code>>(); }
         }
 
         /**

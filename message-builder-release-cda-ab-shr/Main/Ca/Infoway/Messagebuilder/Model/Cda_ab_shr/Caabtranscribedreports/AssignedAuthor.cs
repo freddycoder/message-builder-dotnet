@@ -33,32 +33,24 @@ namespace Ca.Infoway.Messagebuilder.Model.Cda_ab_shr.Caabtranscribedreports {
     [Hl7PartTypeMappingAttribute(new string[] {"CAABTranscribedReports.AssignedAuthor"})]
     public class AssignedAuthor : MessagePartBean {
 
-        private LIST<CS_R2<Code>, CodedTypeR2<Code>> realmCode;
         private II typeId;
         private LIST<II, Identifier> templateId;
         private II id;
         private CE_R2<Code> code;
         private Ca.Infoway.Messagebuilder.Model.Cda_ab_shr.Basemodel.Organization representedOrganization;
-        private Ca.Infoway.Messagebuilder.Model.Cda_ab_shr.Caabtranscribedreports.AssignedAuthorPerson assignedPerson;
+        private II assignedPersonTypeId;
+        private LIST<II, Identifier> assignedPersonTemplateId;
+        private PN assignedPersonName;
 
         public AssignedAuthor() {
-            this.realmCode = new LISTImpl<CS_R2<Code>, CodedTypeR2<Code>>(typeof(CS_R2Impl<Code>));
             this.typeId = new IIImpl();
             this.templateId = new LISTImpl<II, Identifier>(typeof(IIImpl));
             this.id = new IIImpl();
             this.code = new CE_R2Impl<Code>();
+            this.assignedPersonTypeId = new IIImpl();
+            this.assignedPersonTemplateId = new LISTImpl<II, Identifier>(typeof(IIImpl));
+            this.assignedPersonName = new PNImpl();
         }
-        /**
-         * <summary>Relationship: 
-         * CAABTranscribedReports.AssignedAuthor.realmCode</summary>
-         * 
-         * <remarks>Conformance/Cardinality: OPTIONAL (0-*)</remarks>
-         */
-        [Hl7XmlMappingAttribute(new string[] {"realmCode"})]
-        public IList<CodedTypeR2<Code>> RealmCode {
-            get { return this.realmCode.RawList<CodedTypeR2<Code>>(); }
-        }
-
         /**
          * <summary>Relationship: 
          * CAABTranscribedReports.AssignedAuthor.typeId</summary>
@@ -120,14 +112,37 @@ namespace Ca.Infoway.Messagebuilder.Model.Cda_ab_shr.Caabtranscribedreports {
 
         /**
          * <summary>Relationship: 
-         * CAABTranscribedReports.AssignedAuthor.assignedPerson</summary>
+         * CAABTranscribedReports.AssignedAuthorPerson.typeId</summary>
          * 
-         * <remarks>Conformance/Cardinality: MANDATORY (1)</remarks>
+         * <remarks>Conformance/Cardinality: OPTIONAL (0-1)</remarks>
          */
-        [Hl7XmlMappingAttribute(new string[] {"assignedPerson"})]
-        public Ca.Infoway.Messagebuilder.Model.Cda_ab_shr.Caabtranscribedreports.AssignedAuthorPerson AssignedPerson {
-            get { return this.assignedPerson; }
-            set { this.assignedPerson = value; }
+        [Hl7XmlMappingAttribute(new string[] {"assignedPerson/typeId"})]
+        public Identifier AssignedPersonTypeId {
+            get { return this.assignedPersonTypeId.Value; }
+            set { this.assignedPersonTypeId.Value = value; }
+        }
+
+        /**
+         * <summary>Relationship: 
+         * CAABTranscribedReports.AssignedAuthorPerson.templateId</summary>
+         * 
+         * <remarks>Conformance/Cardinality: OPTIONAL (0-*)</remarks>
+         */
+        [Hl7XmlMappingAttribute(new string[] {"assignedPerson/templateId"})]
+        public IList<Identifier> AssignedPersonTemplateId {
+            get { return this.assignedPersonTemplateId.RawList(); }
+        }
+
+        /**
+         * <summary>Relationship: 
+         * CAABTranscribedReports.AssignedAuthorPerson.name</summary>
+         * 
+         * <remarks>Conformance/Cardinality: POPULATED (1)</remarks>
+         */
+        [Hl7XmlMappingAttribute(new string[] {"assignedPerson/name"})]
+        public PersonName AssignedPersonName {
+            get { return this.assignedPersonName.Value; }
+            set { this.assignedPersonName.Value = value; }
         }
 
     }

@@ -32,7 +32,6 @@ namespace Ca.Infoway.Messagebuilder.Model.Cda_ab_shr.Basemodel {
     [Hl7PartTypeMappingAttribute(new string[] {"BaseModel.ExternalProcedure"})]
     public class ExternalProcedure : MessagePartBean, Ca.Infoway.Messagebuilder.Model.Cda_ab_shr.Basemodel.IReferenceChoice {
 
-        private LIST<CS_R2<Code>, CodedTypeR2<Code>> realmCode;
         private II typeId;
         private LIST<II, Identifier> templateId;
         private LIST<II, Identifier> id;
@@ -40,23 +39,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Cda_ab_shr.Basemodel {
         private ED<EncapsulatedData> text;
 
         public ExternalProcedure() {
-            this.realmCode = new LISTImpl<CS_R2<Code>, CodedTypeR2<Code>>(typeof(CS_R2Impl<Code>));
             this.typeId = new IIImpl();
             this.templateId = new LISTImpl<II, Identifier>(typeof(IIImpl));
             this.id = new LISTImpl<II, Identifier>(typeof(IIImpl));
             this.code = new CD_R2Impl<Code>();
             this.text = new EDImpl<EncapsulatedData>();
         }
-        /**
-         * <summary>Relationship: BaseModel.ExternalProcedure.realmCode</summary>
-         * 
-         * <remarks>Conformance/Cardinality: OPTIONAL (0-*)</remarks>
-         */
-        [Hl7XmlMappingAttribute(new string[] {"realmCode"})]
-        public IList<CodedTypeR2<Code>> RealmCode {
-            get { return this.realmCode.RawList<CodedTypeR2<Code>>(); }
-        }
-
         /**
          * <summary>Relationship: BaseModel.ExternalProcedure.typeId</summary>
          * 

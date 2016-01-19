@@ -33,7 +33,6 @@ namespace Ca.Infoway.Messagebuilder.Model.Cda_ab_shr.Basemodel {
     [Hl7PartTypeMappingAttribute(new string[] {"BaseModel.StructuredBody"})]
     public class StructuredBody : MessagePartBean, Ca.Infoway.Messagebuilder.Model.Cda_ab_shr.Basemodel.IComponent2Choice {
 
-        private LIST<CS_R2<Code>, CodedTypeR2<Code>> realmCode;
         private II typeId;
         private LIST<II, Identifier> templateId;
         private CE_R2<Code> confidentialityCode;
@@ -41,23 +40,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Cda_ab_shr.Basemodel {
         private IList<Ca.Infoway.Messagebuilder.Model.Cda_ab_shr.Merged.Component5> component;
 
         public StructuredBody() {
-            this.realmCode = new LISTImpl<CS_R2<Code>, CodedTypeR2<Code>>(typeof(CS_R2Impl<Code>));
             this.typeId = new IIImpl();
             this.templateId = new LISTImpl<II, Identifier>(typeof(IIImpl));
             this.confidentialityCode = new CE_R2Impl<Code>();
             this.languageCode = new CS_R2Impl<Code>();
             this.component = new List<Ca.Infoway.Messagebuilder.Model.Cda_ab_shr.Merged.Component5>();
         }
-        /**
-         * <summary>Relationship: BaseModel.StructuredBody.realmCode</summary>
-         * 
-         * <remarks>Conformance/Cardinality: OPTIONAL (0-*)</remarks>
-         */
-        [Hl7XmlMappingAttribute(new string[] {"realmCode"})]
-        public IList<CodedTypeR2<Code>> RealmCode {
-            get { return this.realmCode.RawList<CodedTypeR2<Code>>(); }
-        }
-
         /**
          * <summary>Relationship: BaseModel.StructuredBody.typeId</summary>
          * 

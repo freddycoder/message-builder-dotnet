@@ -114,7 +114,6 @@
     <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\SubstanceAdministration.cs" />
     <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\Supply.cs" />
     <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Caabtranscribedreports\AssignedAuthor.cs" />
-    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Caabtranscribedreports\AssignedAuthorPerson.cs" />
     <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Caabtranscribedreports\AssignedCustodian.cs" />
     <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Caabtranscribedreports\Authenticator.cs" />
     <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Caabtranscribedreports\AuthenticatorAssignedEntity.cs" />

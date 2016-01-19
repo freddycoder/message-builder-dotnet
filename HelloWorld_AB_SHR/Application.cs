@@ -101,7 +101,7 @@ namespace Hello_World
 
                             foreach(Author author in encapsulatedDocument.Author)
                             {
-                                PersonName authorName = author.AssignedAuthor.AssignedPerson.Name;
+                                PersonName authorName = author.AssignedAuthor.AssignedPersonName;
                                 Console.WriteLine("Document author: " + authorName.GivenName + " " + authorName.FamilyName);
                             }
 

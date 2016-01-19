@@ -33,7 +33,6 @@ namespace Ca.Infoway.Messagebuilder.Model.Cda_ab_shr.Basemodel {
     [Hl7PartTypeMappingAttribute(new string[] {"BaseModel.Material"})]
     public class Material : MessagePartBean, Ca.Infoway.Messagebuilder.Model.Cda_ab_shr.Basemodel.IManufacturedProductChoice {
 
-        private LIST<CS_R2<Code>, CodedTypeR2<Code>> realmCode;
         private II typeId;
         private LIST<II, Identifier> templateId;
         private CE_R2<Code> code;
@@ -41,23 +40,12 @@ namespace Ca.Infoway.Messagebuilder.Model.Cda_ab_shr.Basemodel {
         private ST lotNumberText;
 
         public Material() {
-            this.realmCode = new LISTImpl<CS_R2<Code>, CodedTypeR2<Code>>(typeof(CS_R2Impl<Code>));
             this.typeId = new IIImpl();
             this.templateId = new LISTImpl<II, Identifier>(typeof(IIImpl));
             this.code = new CE_R2Impl<Code>();
             this.name = new ENImpl<EntityName>();
             this.lotNumberText = new STImpl();
         }
-        /**
-         * <summary>Relationship: BaseModel.Material.realmCode</summary>
-         * 
-         * <remarks>Conformance/Cardinality: OPTIONAL (0-*)</remarks>
-         */
-        [Hl7XmlMappingAttribute(new string[] {"realmCode"})]
-        public IList<CodedTypeR2<Code>> RealmCode {
-            get { return this.realmCode.RawList<CodedTypeR2<Code>>(); }
-        }
-
         /**
          * <summary>Relationship: BaseModel.Material.typeId</summary>
          * 

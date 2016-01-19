@@ -34,7 +34,6 @@ namespace Ca.Infoway.Messagebuilder.Model.Cda_ab_shr.Basemodel {
     public class ExternalObservation : MessagePartBean, Ca.Infoway.Messagebuilder.Model.Cda_ab_shr.Basemodel.IReferenceChoice {
 
         private CS_R2<ActClassObservation> classCode;
-        private LIST<CS_R2<Code>, CodedTypeR2<Code>> realmCode;
         private II typeId;
         private LIST<II, Identifier> templateId;
         private LIST<II, Identifier> id;
@@ -43,7 +42,6 @@ namespace Ca.Infoway.Messagebuilder.Model.Cda_ab_shr.Basemodel {
 
         public ExternalObservation() {
             this.classCode = new CS_R2Impl<ActClassObservation>();
-            this.realmCode = new LISTImpl<CS_R2<Code>, CodedTypeR2<Code>>(typeof(CS_R2Impl<Code>));
             this.typeId = new IIImpl();
             this.templateId = new LISTImpl<II, Identifier>(typeof(IIImpl));
             this.id = new LISTImpl<II, Identifier>(typeof(IIImpl));
@@ -60,17 +58,6 @@ namespace Ca.Infoway.Messagebuilder.Model.Cda_ab_shr.Basemodel {
         public CodedTypeR2<ActClassObservation> ClassCode {
             get { return (CodedTypeR2<ActClassObservation>) this.classCode.Value; }
             set { this.classCode.Value = value; }
-        }
-
-        /**
-         * <summary>Relationship: 
-         * BaseModel.ExternalObservation.realmCode</summary>
-         * 
-         * <remarks>Conformance/Cardinality: OPTIONAL (0-*)</remarks>
-         */
-        [Hl7XmlMappingAttribute(new string[] {"realmCode"})]
-        public IList<CodedTypeR2<Code>> RealmCode {
-            get { return this.realmCode.RawList<CodedTypeR2<Code>>(); }
         }
 
         /**
