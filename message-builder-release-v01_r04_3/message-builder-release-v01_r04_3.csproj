@@ -525,6 +525,7 @@
     <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Pcs_cerx_v01_r04_3\Si\Rcmr_mt010002ca\Keyword.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="default.build">
       <Visible>False</Visible>
     </None>

@@ -13,10 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-08-23 18:29:01 -0400 (Tue, 23 Aug 2011) $
- * Revision:      $LastChangedRevision: 2913 $
+ * Author:        $LastChangedBy: gng $
+ * Last modified: $LastChangedDate: 2015-11-19 18:20:12 -0500 (Fri, 30 Jan 2015) $
+ * Revision:      $LastChangedRevision: 9755 $
  */
+
 
 using System;
 using Ca.Infoway.Messagebuilder.Marshalling;

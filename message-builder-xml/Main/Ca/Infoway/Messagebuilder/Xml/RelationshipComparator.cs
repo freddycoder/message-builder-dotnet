@@ -44,11 +44,16 @@ namespace Ca.Infoway.Messagebuilder.Xml
 				}
 				else
 				{
-					builder.Append(o1.AssociationSortKey, o2.AssociationSortKey);
+					builder.Append(Strip(o1.AssociationSortKey), Strip(o2.AssociationSortKey));
 				}
 				builder.Append(o1.Name, o2.Name);
 			}
 			return builder.ToComparison();
+		}
+
+		private string Strip(string input)
+		{
+			return StringUtils.Strip(input, "_");
 		}
 	}
 }

@@ -33,6 +33,8 @@ namespace Hello_World
             IInteraction request = this.CreateRequest();
 
             string xmlRequest = this.ConvertMessageObjectToXML(request, SpecificationVersion.R02_04_03_SHR_AB);
+            Console.WriteLine("XML request:");
+            Console.WriteLine(xmlRequest);
 
             //Submit Request and recieve response
             string xmlResponse = this.SubmitRequest(xmlRequest);
@@ -122,6 +124,9 @@ namespace Hello_World
         {
             DocumentDetailQuery interaction = new DocumentDetailQuery();
             interaction.ControlActEvent = new TriggerEvent<QueryDefinition>();
+
+            interaction.AddRealmCode(Realm.ALBERTA);
+            interaction.Id = new Identifier(UUID.RandomUUID().ToString());
             return interaction;
         }
 

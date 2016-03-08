@@ -1,3 +1,24 @@
+/**
+ * Copyright 2013 Canada Health Infoway, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Author:        $LastChangedBy: gng $
+ * Last modified: $LastChangedDate: 2015-11-19 18:20:12 -0500 (Fri, 30 Jan 2015) $
+ * Revision:      $LastChangedRevision: 9755 $
+ */
+
+
 using System.Collections.Generic;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Annotation;
@@ -5,7 +26,6 @@ using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Datatype.Impl;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
 using Ca.Infoway.Messagebuilder.Domainvalue;
-using Ca.Infoway.Messagebuilder.Domainvalue.Transport;
 using Ca.Infoway.Messagebuilder.Error;
 using Ca.Infoway.Messagebuilder.Marshalling;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
@@ -44,7 +64,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 		{
 			CodeResolverRegistry.RegisterResolver(typeof(ActStatus), new EnumBasedCodeResolver(typeof(Ca.Infoway.Messagebuilder.Domainvalue.Controlact.ActStatus
 				)));
-			this.visitor = new XmlRenderingVisitor();
+			CodeResolverRegistry.RegisterResolver(typeof(Realm), new EnumBasedCodeResolver(typeof(Domainvalue.Transport.Realm)));
+			this.visitor = new XmlRenderingVisitor(MockVersionNumber.MOCK_MR2009);
 			this.partBridge = new MockPartBridge();
 			this.attributeBridge = new MockAttributeBridge("aPropertyName");
 			this.interation = new Interaction();
@@ -91,7 +112,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 		{
 			this.attributeBridge.SetHl7Value(new IIImpl(Ca.Infoway.Messagebuilder.Domainvalue.Nullflavor.NullFlavor.MASKED));
 			this.visitor.VisitRootStart(this.partBridge, this.interation);
-			this.visitor.VisitAttribute(this.attributeBridge, CreateNonStructuralRelationship(), null, null, null, null);
+			this.visitor.VisitAttribute(this.attributeBridge, CreateNonStructuralRelationship(), null, null, null);
 			this.visitor.VisitRootEnd(this.partBridge, this.interation);
 			string xml = this.visitor.ToXml().GetXmlMessage();
 			AssertXmlEquals("xml", "<ABCD_IN123456CA xmlns=\"urn:hl7-org:v3\" " + "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" ITSVersion=\"XML_1.0\">"
@@ -102,10 +123,10 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 		[Test]
 		public virtual void ShouldRenderNonStructuralAttributeWithNullFlavorForCDA()
 		{
-			this.visitor = new XmlRenderingVisitor(true, true);
+			this.visitor = new XmlRenderingVisitor(true, true, null);
 			this.attributeBridge.SetHl7Value(new IIImpl(Ca.Infoway.Messagebuilder.Domainvalue.Nullflavor.NullFlavor.MASKED));
 			this.visitor.VisitRootStart(this.partBridge, this.interation);
-			this.visitor.VisitAttribute(this.attributeBridge, CreateNonStructuralRelationship(), null, null, null, null);
+			this.visitor.VisitAttribute(this.attributeBridge, CreateNonStructuralRelationship(), null, null, null);
 			this.visitor.VisitRootEnd(this.partBridge, this.interation);
 			string xml = this.visitor.ToXml().GetXmlMessage();
 			AssertXmlEquals("xml", "<ClinicalDocument xmlns=\"urn:hl7-org:v3\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:sdtc=\"urn:hl7-org:sdtc\" xmlns:cda=\"urn:hl7-org:v3\""
@@ -120,7 +141,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 			iiImpl.DataType = StandardDataType.II_TOKEN;
 			this.attributeBridge.SetHl7Value(iiImpl);
 			this.visitor.VisitRootStart(this.partBridge, this.interation);
-			this.visitor.VisitAttribute(this.attributeBridge, CreateNonStructuralRelationship(), null, null, null, null);
+			this.visitor.VisitAttribute(this.attributeBridge, CreateNonStructuralRelationship(), null, null, null);
 			this.visitor.VisitRootEnd(this.partBridge, this.interation);
 			string xml = this.visitor.ToXml().GetXmlMessage();
 			AssertXmlEquals("xml", "<ABCD_IN123456CA xmlns=\"urn:hl7-org:v3\" " + "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" ITSVersion=\"XML_1.0\">"
@@ -136,7 +157,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 			Relationship relationship = new Relationship();
 			relationship.Name = "value";
 			relationship.Type = StandardDataType.ANY_LAB.Type;
-			this.visitor.VisitAttribute(this.attributeBridge, relationship, null, null, null, null);
+			this.visitor.VisitAttribute(this.attributeBridge, relationship, null, null, null);
 			this.visitor.VisitRootEnd(this.partBridge, this.interation);
 			string xml = this.visitor.ToXml().GetXmlMessage();
 			AssertXmlEquals("xml", "<ABCD_IN123456CA xmlns=\"urn:hl7-org:v3\" " + "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" ITSVersion=\"XML_1.0\">"
@@ -152,7 +173,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 			Relationship relationship = new Relationship();
 			relationship.Name = "value";
 			relationship.Type = StandardDataType.ANY_LAB.Type;
-			this.visitor.VisitAttribute(attributeBridge, relationship, null, null, null, null);
+			this.visitor.VisitAttribute(attributeBridge, relationship, null, null, null);
 			this.visitor.VisitRootEnd(this.partBridge, this.interation);
 			ModelToXmlResult result = this.visitor.ToXml();
 			result.GetXmlMessage();
@@ -168,8 +189,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 		public virtual void ShouldRenderFixedValueNonStructuralAttribute()
 		{
 			this.visitor.VisitRootStart(this.partBridge, this.interation);
-			this.visitor.VisitAttribute(this.attributeBridge, CreateFixedValueNonStructuralRelationship(), null, SpecificationVersion
-				.V01R04_3, null, null);
+			this.visitor.VisitAttribute(this.attributeBridge, CreateFixedValueNonStructuralRelationship(), null, null, null);
 			this.visitor.VisitRootEnd(this.partBridge, this.interation);
 			string xml = this.visitor.ToXml().GetXmlMessage();
 			AssertXmlEquals("xml", "<ABCD_IN123456CA xmlns=\"urn:hl7-org:v3\" " + "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" ITSVersion=\"XML_1.0\">"
@@ -200,7 +220,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 		{
 			this.attributeBridge.SetValue(false);
 			this.visitor.VisitRootStart(this.partBridge, this.interation);
-			this.visitor.VisitAttribute(this.attributeBridge, CreateStructuralRelationship(), null, null, null, null);
+			this.visitor.VisitAttribute(this.attributeBridge, CreateStructuralRelationship(), null, null, null);
 			this.visitor.VisitRootEnd(this.partBridge, this.interation);
 			string xml = this.visitor.ToXml().GetXmlMessage();
 			AssertXmlEquals("xml", "<ABCD_IN123456CA xmlns=\"urn:hl7-org:v3\" " + "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" ITSVersion=\"XML_1.0\" negationInd=\"false\"/>"
@@ -213,7 +233,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 		{
 			this.attributeBridge.SetValue(false);
 			this.visitor.VisitRootStart(this.partBridge, this.interation);
-			this.visitor.VisitAttribute(this.attributeBridge, CreateFixedValueStructuralRelationship(), null, null, null, null);
+			this.visitor.VisitAttribute(this.attributeBridge, CreateFixedValueStructuralRelationship(), null, null, null);
 			this.visitor.VisitRootEnd(this.partBridge, this.interation);
 			string xml = this.visitor.ToXml().GetXmlMessage();
 			AssertXmlEquals("xml", "<ABCD_IN123456CA xmlns=\"urn:hl7-org:v3\" " + "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" ITSVersion=\"XML_1.0\" negationInd=\"true\"/>"
@@ -226,7 +246,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 		{
 			this.attributeBridge.SetValue(null);
 			this.visitor.VisitRootStart(this.partBridge, this.interation);
-			this.visitor.VisitAttribute(this.attributeBridge, CreateDefaultValueStructuralRelationship(), null, null, null, null);
+			this.visitor.VisitAttribute(this.attributeBridge, CreateDefaultValueStructuralRelationship(), null, null, null);
 			this.visitor.VisitRootEnd(this.partBridge, this.interation);
 			string xml = this.visitor.ToXml().GetXmlMessage();
 			AssertXmlEquals("xml", "<ABCD_IN123456CA xmlns=\"urn:hl7-org:v3\" " + "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" ITSVersion=\"XML_1.0\" classCode=\"ACT\"/>"
@@ -384,8 +404,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 			Relationship relationship = CreateSimpleAssociationRelationship();
 			this.visitor.VisitRootStart(this.partBridge, this.interation);
 			this.visitor.VisitAssociationStart(this.partBridge, relationship);
-			this.visitor.VisitAttribute(this.attributeBridge, CreateNonStructuralRelationship(), null, null, null, null);
-			this.visitor.VisitAttribute(this.attributeBridge, CreateStructuralRelationship(), null, null, null, null);
+			this.visitor.VisitAttribute(this.attributeBridge, CreateNonStructuralRelationship(), null, null, null);
+			this.visitor.VisitAttribute(this.attributeBridge, CreateStructuralRelationship(), null, null, null);
 			this.visitor.VisitAssociationEnd(this.partBridge, relationship);
 			this.visitor.VisitRootEnd(this.partBridge, this.interation);
 			string xml = this.visitor.ToXml().GetXmlMessage();

@@ -811,6 +811,7 @@
     <EmbeddedResource Include="MainResource\messageSet_ccda_pcs_r1_1.xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="message-builder-ccda-pcs-r1_1.snk" />
     <None Include="message-builder-core.licenseheader" />
   </ItemGroup>

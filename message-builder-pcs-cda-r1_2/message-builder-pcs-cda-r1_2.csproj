@@ -80,6 +80,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="message-builder-core.licenseheader" />
     <None Include="message-builder-pcs-cda-r1_2.snk" />
   </ItemGroup>

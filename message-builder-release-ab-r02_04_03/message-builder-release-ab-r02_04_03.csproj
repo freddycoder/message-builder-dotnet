@@ -597,6 +597,7 @@
     <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ab_r02_04_03\Si\Comt_mt500001ca\BroadcastMessage.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="message-builder-release-ab-r02_04_03.snk" />
   </ItemGroup>
 </Project>

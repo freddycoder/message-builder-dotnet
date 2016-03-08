@@ -1,3 +1,24 @@
+/**
+ * Copyright 2013 Canada Health Infoway, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Author:        $LastChangedBy: gng $
+ * Last modified: $LastChangedDate: 2015-11-19 18:20:12 -0500 (Fri, 30 Jan 2015) $
+ * Revision:      $LastChangedRevision: 9755 $
+ */
+
+
 using System;
 using System.Xml;
 using System.Reflection;
@@ -47,7 +68,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 				.SYNTAX_ERROR, "I hate you", Ca.Infoway.Messagebuilder.Domainvalue.Transport.AcknowledgementDetailType.ERROR));
 			tealBean.Acknowledgement.AcknowledgementDetails.Add(CreateDetail(Ca.Infoway.Messagebuilder.Domainvalue.Transport.AcknowledgementDetailCode
 				.UNKNOWN_SENDER, "Unauthorized user", Ca.Infoway.Messagebuilder.Domainvalue.Transport.AcknowledgementDetailType.ERROR));
-			XmlRenderingVisitor visitor = new XmlRenderingVisitor();
+			XmlRenderingVisitor visitor = new XmlRenderingVisitor(MockVersionNumber.MOCK_MR2009);
 			this.walker = new TealBeanRenderWalker(tealBean, MockVersionNumber.MOCK_MR2009, null, null, new MockTestCaseMessageDefinitionService
 				());
 			this.walker.Accept(visitor);
@@ -74,7 +95,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 			tealBean.ControlActEventBean.QueryId = new Identifier(UUID.RandomUUID().ToString());
 			tealBean.ControlActEventBean.EventId = new Identifier(UUID.RandomUUID().ToString());
 			tealBean.ControlActEventBean.GetCriteria().Gender = Ca.Infoway.Messagebuilder.Domainvalue.Payload.AdministrativeGender.MALE;
-			XmlRenderingVisitor visitor = new XmlRenderingVisitor();
+			XmlRenderingVisitor visitor = new XmlRenderingVisitor(MockVersionNumber.MOCK_MR2009);
 			this.walker.Accept(visitor);
 			string xml = visitor.ToXml().GetXmlMessage();
 			System.Console.Out.WriteLine(xml);

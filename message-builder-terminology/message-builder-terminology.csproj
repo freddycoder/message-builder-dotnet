@@ -131,6 +131,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="message-builder-terminology.snk" />
   </ItemGroup>
 </Project>

@@ -13,10 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Author:        $LastChangedBy: tmcgrady $
- * Last modified: $LastChangedDate: 2011-05-04 15:47:15 -0400 (Wed, 04 May 2011) $
- * Revision:      $LastChangedRevision: 2623 $
+ * Author:        $LastChangedBy: gng $
+ * Last modified: $LastChangedDate: 2015-11-19 18:20:12 -0500 (Fri, 30 Jan 2015) $
+ * Revision:      $LastChangedRevision: 9755 $
  */
+
+
 using System.Collections.Generic;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Xml;
@@ -36,7 +38,11 @@ namespace Ca.Infoway.Messagebuilder.Xml
 			Relationship relationship3 = CreateRelationship(false, "early association", 3, "A");
 			Relationship relationship4 = CreateRelationship(false, "late association a", 9, "ZZ");
 			Relationship relationship5 = CreateRelationship(false, "late association b", 6, "ZZ");
+			Relationship relationship6 = CreateRelationship(false, "underscores association a", 12, "ZZZ_____");
+			Relationship relationship7 = CreateRelationship(false, "underscores association b", 15, "ZZZA____");
 			List<Relationship> list = new List<Relationship>();
+			list.Add(relationship7);
+			list.Add(relationship6);
 			list.Add(relationship5);
 			list.Add(relationship3);
 			list.Add(relationship4);
@@ -49,6 +55,8 @@ namespace Ca.Infoway.Messagebuilder.Xml
 			Assert.IsTrue(relationship3 == list[2]);
 			Assert.IsTrue(relationship4 == list[3]);
 			Assert.IsTrue(relationship5 == list[4]);
+			Assert.IsTrue(relationship6 == list[5]);
+			Assert.IsTrue(relationship7 == list[6]);
 		}
 
 		private Relationship CreateRelationship(bool isAttribute, string name, int sortKey, string associationSortKey)

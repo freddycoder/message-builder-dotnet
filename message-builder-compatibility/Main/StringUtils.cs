@@ -520,6 +520,70 @@ namespace Ca.Infoway.Messagebuilder
 	        return new String(chs, 0, count);			
 		}
 			
-		
+		public static String Strip(String str, String stripChars = null)
+        {
+            if (IsEmpty(str))
+            {
+                return str;
+            }
+            str = StripStart(str, stripChars);
+            return StripEnd(str, stripChars);
+        }
+
+        public static String StripStart(String str, String stripChars)
+        {
+            int strLen;
+            if (str == null || (strLen = str.Length) == 0)
+            {
+                return str;
+            }
+            int start = 0;
+            if (stripChars == null)
+            {
+                while ((start != strLen) && Char.IsWhiteSpace(str.ElementAt(start)))
+                {
+                    start++;
+                }
+            }
+            else if (stripChars.Length == 0)
+            {
+                return str;
+            }
+            else {
+                while ((start != strLen) && (stripChars.IndexOf(str.ElementAt(start)) != -1))
+                {
+                    start++;
+                }
+            }
+            return str.Substring(start);
+        }
+
+        public static String StripEnd(String str, String stripChars)
+        {
+            int end;
+            if (str == null || (end = str.Length) == 0)
+            {
+                return str;
+            }
+
+            if (stripChars == null)
+            {
+                while ((end != 0) && Char.IsWhiteSpace(str.ElementAt(end - 1)))
+                {
+                    end--;
+                }
+            }
+            else if (stripChars.Length == 0)
+            {
+                return str;
+            }
+            else {
+                while ((end != 0) && (stripChars.IndexOf(str.ElementAt(end - 1)) != -1))
+                {
+                    end--;
+                }
+            }
+            return str.Substring(0, end);
+        }
     }
 }

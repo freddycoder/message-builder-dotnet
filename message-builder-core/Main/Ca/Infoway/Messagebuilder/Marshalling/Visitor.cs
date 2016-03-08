@@ -20,7 +20,6 @@
 
 
 using System;
-using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Error;
 using Ca.Infoway.Messagebuilder.Marshalling;
 using Ca.Infoway.Messagebuilder.Xml;
@@ -33,8 +32,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 
 		void VisitRootEnd(PartBridge tealBean, Interaction interaction);
 
-		void VisitAttribute(AttributeBridge tealBean, Relationship relationship, ConstrainedDatatype constraints, VersionNumber version
-			, TimeZoneInfo dateTimeZone, TimeZoneInfo dateTimeTimeZone);
+		void VisitAttribute(AttributeBridge tealBean, Relationship relationship, ConstrainedDatatype constraints, TimeZoneInfo dateTimeZone
+			, TimeZoneInfo dateTimeTimeZone);
 
 		void VisitAssociationStart(PartBridge tealBean, Relationship relationship);
 

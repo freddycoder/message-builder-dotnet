@@ -113,8 +113,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 			else
 			{
 				ConstrainedDatatype constraints = this.factory.GetConstraints(relationship.GetRelationship());
-				visitor.VisitAttribute((AttributeBridge)relationship, relationship.GetRelationship(), constraints, this.version, this.dateTimeZone
-					, this.dateTimeTimeZone);
+				visitor.VisitAttribute((AttributeBridge)relationship, relationship.GetRelationship(), constraints, this.dateTimeZone, this
+					.dateTimeTimeZone);
 			}
 		}
 

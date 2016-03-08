@@ -87,6 +87,14 @@ namespace Ca.Infoway.Messagebuilder.Xml
 			}
 		}
 
+		/// <summary>A convenience method to see if the cardinality of "0".</summary>
+		/// <remarks>A convenience method to see if the cardinality of "0".</remarks>
+		/// <returns>true if the maximum cardinality is 0; false otherwise.</returns>
+		public virtual bool IsForbidden()
+		{
+			return 0 == this.max;
+		}
+
 		/// <summary>
 		/// A convenience method to see if the maximum cardinality is greater than
 		/// one.

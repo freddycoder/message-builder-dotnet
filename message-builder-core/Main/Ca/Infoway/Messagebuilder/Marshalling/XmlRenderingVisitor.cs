@@ -177,14 +177,17 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 
 		private readonly bool isCda;
 
-		public XmlRenderingVisitor() : this(false, false)
+		private VersionNumber version;
+
+		public XmlRenderingVisitor(VersionNumber version) : this(false, false, version)
 		{
 		}
 
-		public XmlRenderingVisitor(bool isR2, bool isCda)
+		public XmlRenderingVisitor(bool isR2, bool isCda, VersionNumber version)
 		{
 			this.isR2 = isR2;
 			this.isCda = isCda;
+			this.version = version;
 			if (isR2)
 			{
 				this.formatterRegistry = FormatterR2Registry.GetInstance();
@@ -413,7 +416,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 		}
 
 		public virtual void VisitAttribute(AttributeBridge tealBean, Relationship relationship, ConstrainedDatatype constraints, 
-			VersionNumber version, TimeZoneInfo dateTimeZone, TimeZoneInfo dateTimeTimeZone)
+			TimeZoneInfo dateTimeZone, TimeZoneInfo dateTimeTimeZone)
 		{
 			PushPropertyPathName(DeterminePropertyName(tealBean.GetPropertyName(), relationship), false);
 			if (relationship.Structural)
@@ -430,7 +433,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 				bool hasProperty = !StringUtils.IsEmpty(tealBean.GetPropertyName());
 				if (hasProperty)
 				{
-					RenderNonStructuralAttribute(tealBean, relationship, constraints, version, dateTimeZone, dateTimeTimeZone);
+					RenderNonStructuralAttribute(tealBean, relationship, constraints, dateTimeZone, dateTimeTimeZone);
 				}
 				else
 				{
@@ -495,7 +498,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 		}
 
 		private void RenderNonStructuralAttribute(AttributeBridge tealBean, Relationship relationship, ConstrainedDatatype constraints
-			, VersionNumber version, TimeZoneInfo dateTimeZone, TimeZoneInfo dateTimeTimeZone)
+			, TimeZoneInfo dateTimeZone, TimeZoneInfo dateTimeTimeZone)
 		{
 			string propertyPath = BuildPropertyPath();
 			BareANY hl7Value = tealBean.GetHl7Value();
@@ -574,12 +577,12 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 
 		private ErrorLogger CreateErrorLogger(string propertyPath, Hl7Errors errors)
 		{
-			return new _ErrorLogger_481(errors, propertyPath);
+			return new _ErrorLogger_483(errors, propertyPath);
 		}
 
-		private sealed class _ErrorLogger_481 : ErrorLogger
+		private sealed class _ErrorLogger_483 : ErrorLogger
 		{
-			public _ErrorLogger_481(Hl7Errors errors, string propertyPath)
+			public _ErrorLogger_483(Hl7Errors errors, string propertyPath)
 			{
 				this.errors = errors;
 				this.propertyPath = propertyPath;
@@ -676,8 +679,9 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 				string type = "CS";
 				PropertyFormatter formatter = this.formatterRegistry.Get(type);
 				Relationship placeholderRelationship = new Relationship("realmCode", type, Cardinality.Create("0-*"));
+				placeholderRelationship.DomainType = "Realm";
 				FormatContext context = Ca.Infoway.Messagebuilder.Marshalling.FormatContextImpl.Create(this.result, null, placeholderRelationship
-					, null, null, null, null, this.isCda);
+					, version, null, null, null, this.isCda);
 				foreach (Realm realm in tealBean.GetRealmCode())
 				{
 					BareANY any = (BareANY)DataTypeFactory.CreateDataType(type, this.isCda && this.isR2);

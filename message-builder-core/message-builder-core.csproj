@@ -1043,6 +1043,7 @@
     <VisualStudio AllowExistingFolder="true" />
   </ProjectExtensions>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="AssemblyInfo.cs">
       <Visible>False</Visible>
     </None>

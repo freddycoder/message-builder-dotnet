@@ -149,7 +149,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 		{
 			CodeResolverRegistry.SetThreadLocalVersion(version);
 			CodeResolverRegistry.SetThreadLocalCodeResolverRegistryOverride(codeResolverRegistryOverride);
-			XmlRenderingVisitor visitor = new XmlRenderingVisitor(this.service.IsR2(version), this.service.IsCda(version));
+			XmlRenderingVisitor visitor = new XmlRenderingVisitor(this.service.IsR2(version), this.service.IsCda(version), version);
+			// TODO: Since the two boolean flags are derived from the version, we chould simplify this interface 
 			new TealBeanRenderWalker(messageBean, version, dateTimeZone, dateTimeTimeZone, this.service).Accept(visitor);
 			CodeResolverRegistry.ClearThreadLocalVersion();
 			CodeResolverRegistry.ClearThreadLocalCodeResolverRegistryOverride();

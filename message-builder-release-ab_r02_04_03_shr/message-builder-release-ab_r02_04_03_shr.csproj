@@ -2063,6 +2063,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="message-builder-release-ab_r02_04_03_shr.licenseheader" />
   </ItemGroup>
   <ItemGroup>
