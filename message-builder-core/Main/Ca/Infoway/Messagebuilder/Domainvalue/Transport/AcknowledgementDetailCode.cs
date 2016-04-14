@@ -80,13 +80,45 @@ namespace Ca.Infoway.Messagebuilder.Domainvalue.Transport
 			 = new Ca.Infoway.Messagebuilder.Domainvalue.Transport.AcknowledgementDetailCode("SYNTAX_ERROR_INVALID_CODE_SYSTEM_IN_CNE"
 			, "SYN104");
 
+		public static readonly Ca.Infoway.Messagebuilder.Domainvalue.Transport.AcknowledgementDetailCode SYNTAX_ERROR_REQUIRED_ELEMENT_MISSING
+			 = new Ca.Infoway.Messagebuilder.Domainvalue.Transport.AcknowledgementDetailCode("SYNTAX_ERROR_REQUIRED_ELEMENT_MISSING"
+			, "SYN105");
+
+		public static readonly Ca.Infoway.Messagebuilder.Domainvalue.Transport.AcknowledgementDetailCode SYNTAX_ERROR_TERMINOLOGY_ERROR
+			 = new Ca.Infoway.Messagebuilder.Domainvalue.Transport.AcknowledgementDetailCode("SYNTAX_ERROR_TERMINOLOGY_ERROR", "SYN106"
+			);
+
+		public static readonly Ca.Infoway.Messagebuilder.Domainvalue.Transport.AcknowledgementDetailCode SYNTAX_ERROR_DEPRECATED_CODE
+			 = new Ca.Infoway.Messagebuilder.Domainvalue.Transport.AcknowledgementDetailCode("SYNTAX_ERROR_DEPRECATED_CODE", "SYN107"
+			);
+
+		public static readonly Ca.Infoway.Messagebuilder.Domainvalue.Transport.AcknowledgementDetailCode SYNTAX_ERROR_NUMBER_OF_REPETITIONS_EXCEEDS_LIMIT
+			 = new Ca.Infoway.Messagebuilder.Domainvalue.Transport.AcknowledgementDetailCode("SYNTAX_ERROR_NUMBER_OF_REPETITIONS_EXCEEDS_LIMIT"
+			, "SYN108");
+
+		public static readonly Ca.Infoway.Messagebuilder.Domainvalue.Transport.AcknowledgementDetailCode SYNTAX_ERROR_MANDATORY_ELEMENT_WITH_NULL_VALUE
+			 = new Ca.Infoway.Messagebuilder.Domainvalue.Transport.AcknowledgementDetailCode("SYNTAX_ERROR_MANDATORY_ELEMENT_WITH_NULL_VALUE"
+			, "SYN109");
+
 		public static readonly Ca.Infoway.Messagebuilder.Domainvalue.Transport.AcknowledgementDetailCode SYNTAX_ERROR_NUMBER_OF_ASSOCIATION_REPETITIONS_EXCEEDS_LIMIT
 			 = new Ca.Infoway.Messagebuilder.Domainvalue.Transport.AcknowledgementDetailCode("SYNTAX_ERROR_NUMBER_OF_ASSOCIATION_REPETITIONS_EXCEEDS_LIMIT"
 			, "SYN110");
 
+		public static readonly Ca.Infoway.Messagebuilder.Domainvalue.Transport.AcknowledgementDetailCode SYNTAX_ERROR_VALUE_DOES_NOT_MATCH_FIXED_VALUE
+			 = new Ca.Infoway.Messagebuilder.Domainvalue.Transport.AcknowledgementDetailCode("SYNTAX_ERROR_VALUE_DOES_NOT_MATCH_FIXED_VALUE"
+			, "SYN111");
+
 		public static readonly Ca.Infoway.Messagebuilder.Domainvalue.Transport.AcknowledgementDetailCode SYNTAX_ERROR_NUMBER_OF_ATTRIBUTE_REPETITIONS_EXCEEDS_LIMIT
 			 = new Ca.Infoway.Messagebuilder.Domainvalue.Transport.AcknowledgementDetailCode("SYNTAX_ERROR_NUMBER_OF_ATTRIBUTE_REPETITIONS_EXCEEDS_LIMIT"
 			, "SYN112");
+
+		public static readonly Ca.Infoway.Messagebuilder.Domainvalue.Transport.AcknowledgementDetailCode SYNTAX_ERROR_FORMAL_CONSTRAINT_VIOLATION
+			 = new Ca.Infoway.Messagebuilder.Domainvalue.Transport.AcknowledgementDetailCode("SYNTAX_ERROR_FORMAL_CONSTRAINT_VIOLATION"
+			, "SYN113");
+
+		public static readonly Ca.Infoway.Messagebuilder.Domainvalue.Transport.AcknowledgementDetailCode SYNTAX_ERROR_INSUFFICIENT_REPETITIONS
+			 = new Ca.Infoway.Messagebuilder.Domainvalue.Transport.AcknowledgementDetailCode("SYNTAX_ERROR_INSUFFICIENT_REPETITIONS"
+			, "SYN114");
 
 		public static readonly Ca.Infoway.Messagebuilder.Domainvalue.Transport.AcknowledgementDetailCode UNKNOWN_SENDER = new Ca.Infoway.Messagebuilder.Domainvalue.Transport.AcknowledgementDetailCode
 			("UNKNOWN_SENDER", "NS260");
