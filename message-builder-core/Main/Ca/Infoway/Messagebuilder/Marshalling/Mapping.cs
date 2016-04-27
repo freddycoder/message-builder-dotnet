@@ -21,6 +21,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Annotation;
 using Ca.Infoway.Messagebuilder.J5goodies;
@@ -70,6 +71,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 			}
 		}
 
+		private static IDictionary<PropertyInfo, IList<Mapping>> mappingCache = new Dictionary<PropertyInfo, IList<Mapping>>();
+
 		private readonly string mapping;
 
 		private readonly IList<Mapping.PartTypeMapping> mappings;
@@ -110,9 +113,16 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 
 		public static IList<Mapping> From(BeanProperty property)
 		{
+			if (mappingCache.ContainsKey(property.Descriptor))
+			{
+				return mappingCache.SafeGet(property.Descriptor);
+			}
+			// This is an expensive operation. If possible, let's try to do it only once.
 			Hl7XmlMappingAttribute mapping = property.GetAnnotation<Hl7XmlMappingAttribute>();
 			Hl7MapByPartTypeAttribute[] exceptions = MappingHelper.GetAllHl7MapByPartType(property);
-			return From(mapping, exceptions);
+			IList<Mapping> mappingList = From(mapping, exceptions);
+			mappingCache[property.Descriptor] = mappingList;
+			return mappingList;
 		}
 
 		private static IList<Mapping> From(Hl7XmlMappingAttribute mapping, Hl7MapByPartTypeAttribute[] exceptions)

@@ -44,6 +44,7 @@ namespace Ca.Infoway.Messagebuilder.Model
 
         private NullFlavor nullFlavor;
         private IList<Realm> realmcode;
+        private Regex regex = new Regex("\\[\\d+\\]");
 
         private Object getHl7ValueFromMessageAttributes(String propertyName)
         {
@@ -87,7 +88,6 @@ namespace Ca.Infoway.Messagebuilder.Model
         private String pickIndexPart(String propertyName)
         {
             var indexPart = "";
-            var regex = new Regex("\\[\\d+\\]");
             var match = regex.Match(propertyName);
 
             if (match.Success)

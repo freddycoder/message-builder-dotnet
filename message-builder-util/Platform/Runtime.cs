@@ -20,6 +20,7 @@
 
 
 using System;
+using System.Collections.Generic;
 
 namespace Ca.Infoway.Messagebuilder
 {
@@ -27,16 +28,21 @@ namespace Ca.Infoway.Messagebuilder
 	public class Runtime
 	{
 
-		public Runtime ()
+        private static Dictionary<string, string> propertyCache = new Dictionary<string, string>();
+
+		static Runtime ()
 		{
+            propertyCache["line.separator"] = System.Environment.NewLine;
 		}
 		
 		public static string GetProperty(string property) {
-			if (property == "line.separator") {
-				return System.Environment.NewLine;
+			if (propertyCache.ContainsKey(property)) {
+				return propertyCache.SafeGet(property);
             }
             else if (property != null && isMessageBuilderProperty(property)) {
-                return System.Environment.GetEnvironmentVariable(property);
+                string value = System.Environment.GetEnvironmentVariable(property);
+                propertyCache[property] = value;
+                return value;
             }
 			throw new NotSupportedException(property);
 		}
@@ -44,6 +50,7 @@ namespace Ca.Infoway.Messagebuilder
         public static void SetProperty(string property, string propertyValue)
         {
             if (property != null && isMessageBuilderProperty(property)) {
+                propertyCache[property] = propertyValue;
                 System.Environment.SetEnvironmentVariable(property, propertyValue);
                 return;
             }
@@ -53,6 +60,7 @@ namespace Ca.Infoway.Messagebuilder
         public static void ClearProperty(string property)
         {
             if (property != null && isMessageBuilderProperty(property)) {
+                propertyCache.Remove(property);
                 System.Environment.SetEnvironmentVariable(property, null);
                 return;
             }
@@ -69,7 +77,7 @@ namespace Ca.Infoway.Messagebuilder
                 } 
                 else 
                 {
-				    return ILOG.J2CsMapping.Reflect.Helper.GetNativeType(StringUtils.Trim(typeName));
+				    return result;
                 }
 			} catch (ArgumentNullException e) {
 				throw new TypeLoadException("Unable to load type: " + typeName, e);				

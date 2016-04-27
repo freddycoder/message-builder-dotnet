@@ -108,11 +108,20 @@ namespace Ca.Infoway.Messagebuilder.Util.Xml
 		public static int GetIndexOf(XmlElement start)
 		{
 			int count = 1;
-			for (XmlNode node = start.PreviousSibling; node != null; node = node.PreviousSibling)
+			XmlNode parent = start.ParentNode;
+			if (parent is XmlElement)
 			{
-				if (HasSameName(start, node))
+				XmlNodeList children = parent.ChildNodes;
+				foreach (XmlNode child in new XmlNodeListIterable(children))
 				{
-					count++;
+					if (child == start)
+					{
+						break;
+					}
+					if (HasSameName(start, child))
+					{
+						count++;
+					}
 				}
 			}
 			return count;

@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "message-builder-compatibility", "message-builder-compatibility\message-builder-compatibility.csproj", "{6821E6B6-3A4D-4D4D-A9D0-147878B4FDEE}"
 EndProject
@@ -45,6 +45,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "message-builder-release-cda-ab-shr", "message-builder-release-cda-ab-shr\message-builder-release-cda-ab-shr.csproj", "{BD2C5B3D-9CCC-4CBC-89CD-FC56C7461B04}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hello_World", "HelloWorld_AB_SHR\Hello_World.csproj", "{C28A2D98-32E2-4248-96A4-679DCDF68A53}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4E2F6F77-6494-4213-A3AE-D38F65604CA4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
