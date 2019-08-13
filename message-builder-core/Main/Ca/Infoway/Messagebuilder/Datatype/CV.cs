@@ -41,8 +41,6 @@ namespace Ca.Infoway.Messagebuilder.Datatype {
 	/// be used in circumstances where multiple alternative cs for a given value are desired. This type may be used 
 	/// with both the CNE (cd, non-extensible) and the CWE (cd, with extensibility) domain qualifiers.
 	/// </summary>
-	///
-	/// <param name="V"> the underlying c type.</param>
 	public interface CV : CE {
 	}
 }

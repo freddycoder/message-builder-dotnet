@@ -57,12 +57,11 @@ namespace Ca.Infoway.Messagebuilder.Xml
 		{
 		}
 
-		/// <summary>Standard constructor.</summary>
-		/// <remarks>Standard constructor.</remarks>
-		/// <param name="name">- the relationship name</param>
-		/// <param name="type">- the relationship type</param>
-		/// <param name="cardinality">- the cardinality.</param>
-		public ConstrainedDatatype(string name, string baseType)
+        /// <summary>Standard constructor.</summary>
+        /// <remarks>Standard constructor.</remarks>
+        /// <param name="name">- the relationship name</param>
+        /// <param name="baseType">- the relationship type</param>
+        public ConstrainedDatatype(string name, string baseType)
 		{
 			this.name = name;
 			this.baseType = baseType;

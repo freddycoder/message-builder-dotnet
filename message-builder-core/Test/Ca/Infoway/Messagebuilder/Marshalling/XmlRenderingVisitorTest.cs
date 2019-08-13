@@ -32,6 +32,7 @@ using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser;
 using Ca.Infoway.Messagebuilder.Resolver;
 using Ca.Infoway.Messagebuilder.Xml;
+using Ca.Infoway.Messagebuilder.Xml.Util;
 using NUnit.Framework;
 
 namespace Ca.Infoway.Messagebuilder.Marshalling
@@ -58,11 +59,15 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 
 		private MockAttributeBridge attributeBridge;
 
-		/// <exception cref="System.Exception"></exception>
-		[SetUp]
+        private string ignoredAsNotAllowedOriginalValue;
+
+        /// <exception cref="System.Exception"></exception>
+        [SetUp]
 		public virtual void SetUp()
 		{
-			CodeResolverRegistry.RegisterResolver(typeof(ActStatus), new EnumBasedCodeResolver(typeof(Ca.Infoway.Messagebuilder.Domainvalue.Controlact.ActStatus
+            ignoredAsNotAllowedOriginalValue = Runtime.GetProperty(ConformanceLevelUtil.IGNORED_AS_NOT_ALLOWED);
+            
+            CodeResolverRegistry.RegisterResolver(typeof(ActStatus), new EnumBasedCodeResolver(typeof(Ca.Infoway.Messagebuilder.Domainvalue.Controlact.ActStatus
 				)));
 			CodeResolverRegistry.RegisterResolver(typeof(Realm), new EnumBasedCodeResolver(typeof(Domainvalue.Transport.Realm)));
 			this.visitor = new XmlRenderingVisitor(MockVersionNumber.MOCK_MR2009);
@@ -80,6 +85,14 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 		[TearDown]
 		public virtual void TearDown()
 		{
+            if (ignoredAsNotAllowedOriginalValue == null)
+            {
+                Runtime.ClearProperty(ConformanceLevelUtil.IGNORED_AS_NOT_ALLOWED);
+            }
+            else
+            {
+                Runtime.SetProperty(ConformanceLevelUtil.IGNORED_AS_NOT_ALLOWED, ignoredAsNotAllowedOriginalValue);
+            }
 			CodeResolverRegistry.UnregisterAll();
 		}
 
@@ -110,11 +123,10 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 		[Test]
 		public virtual void ShouldRenderNonStructuralAttributeWithNullFlavor()
 		{
-			this.attributeBridge.SetHl7Value(new IIImpl(Ca.Infoway.Messagebuilder.Domainvalue.Nullflavor.NullFlavor.MASKED));
-			this.visitor.VisitRootStart(this.partBridge, this.interation);
-			this.visitor.VisitAttribute(this.attributeBridge, CreateNonStructuralRelationship(), null, null, null);
-			this.visitor.VisitRootEnd(this.partBridge, this.interation);
-			string xml = this.visitor.ToXml().GetXmlMessage();
+            IIImpl attributeValue = new IIImpl(Ca.Infoway.Messagebuilder.Domainvalue.Nullflavor.NullFlavor.MASKED);
+            Relationship relationship = CreateNonStructuralRelationship();
+            ExerciseVisitorOverInteractionWithAttribute(attributeValue, relationship);
+            string xml = this.visitor.ToXml().GetXmlMessage();
 			AssertXmlEquals("xml", "<ABCD_IN123456CA xmlns=\"urn:hl7-org:v3\" " + "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" ITSVersion=\"XML_1.0\">"
 				 + "<id nullFlavor=\"MSK\"/>" + "</ABCD_IN123456CA>", xml);
 		}
@@ -124,11 +136,10 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 		public virtual void ShouldRenderNonStructuralAttributeWithNullFlavorForCDA()
 		{
 			this.visitor = new XmlRenderingVisitor(true, true, null);
-			this.attributeBridge.SetHl7Value(new IIImpl(Ca.Infoway.Messagebuilder.Domainvalue.Nullflavor.NullFlavor.MASKED));
-			this.visitor.VisitRootStart(this.partBridge, this.interation);
-			this.visitor.VisitAttribute(this.attributeBridge, CreateNonStructuralRelationship(), null, null, null);
-			this.visitor.VisitRootEnd(this.partBridge, this.interation);
-			string xml = this.visitor.ToXml().GetXmlMessage();
+            IIImpl attributeValue = new IIImpl(Ca.Infoway.Messagebuilder.Domainvalue.Nullflavor.NullFlavor.MASKED);
+            Relationship relationship = CreateNonStructuralRelationship();
+            ExerciseVisitorOverInteractionWithAttribute(attributeValue, relationship);
+            string xml = this.visitor.ToXml().GetXmlMessage();
 			AssertXmlEquals("xml", "<ClinicalDocument xmlns=\"urn:hl7-org:v3\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:sdtc=\"urn:hl7-org:sdtc\" xmlns:cda=\"urn:hl7-org:v3\""
 				 + ">" + "<id nullFlavor=\"MSK\"/>" + "</ClinicalDocument>", xml);
 		}
@@ -137,29 +148,111 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 		[Test]
 		public virtual void ShouldRenderNonStructuralAttribute()
 		{
-			IIImpl iiImpl = new IIImpl(new Identifier("1ee83ff1-08ab-4fe7-b573-ea777e9bad51"));
-			iiImpl.DataType = StandardDataType.II_TOKEN;
-			this.attributeBridge.SetHl7Value(iiImpl);
-			this.visitor.VisitRootStart(this.partBridge, this.interation);
-			this.visitor.VisitAttribute(this.attributeBridge, CreateNonStructuralRelationship(), null, null, null);
-			this.visitor.VisitRootEnd(this.partBridge, this.interation);
+			BareANY attributeHl7Value = CreateIITokenFromUuid("1ee83ff1-08ab-4fe7-b573-ea777e9bad51");
+            Relationship attributeRelationship = CreateNonStructuralRelationship();
+            ExerciseVisitorOverInteractionWithAttribute(attributeHl7Value, attributeRelationship);
 			string xml = this.visitor.ToXml().GetXmlMessage();
 			AssertXmlEquals("xml", "<ABCD_IN123456CA xmlns=\"urn:hl7-org:v3\" " + "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" ITSVersion=\"XML_1.0\">"
 				 + "<id root=\"1ee83ff1-08ab-4fe7-b573-ea777e9bad51\"/>" + "</ABCD_IN123456CA>", xml);
 		}
 
-		/// <exception cref="System.Exception"></exception>
-		[Test]
+        [Test]
+        public virtual void ShouldLogInfoMessageForUseOfIgnoredNonStructuralAttribute()
+        {
+            IIImpl iiImpl = CreateIITokenFromUuid("1ee83ff1-08ab-4fe7-b573-ea777e9bad51");
+            Relationship relationship = CreateNonStructuralRelationship();
+            relationship.Conformance = ConformanceLevel.IGNORED;
+
+            ExerciseVisitorOverInteractionWithAttribute(iiImpl, relationship);
+
+            AssertXmlContains(
+                    "<!-- INFO - DATA_TYPE_ERROR : Attribute is ignored and will not be used: (id) (aPropertyName2.aPropertyName) -->",
+                    this.visitor.ToXml().GetXmlMessage());
+        }
+
+        [Test]
+        public void ShouldNotLogInfoMessageForUseOfIgnoredNonStructuralAttributeWhenNoValueIsSet()
+        {
+            IIImpl emptyII = new IIImpl();  // don't set the value inside it
+            emptyII.DataType = StandardDataType.II_TOKEN;
+            Relationship relationship = CreateNonStructuralRelationship();
+            relationship.Conformance = ConformanceLevel.IGNORED;
+
+            ExerciseVisitorOverInteractionWithAttribute(emptyII, relationship);
+
+            Assert.IsFalse(StringUtils.Contains(this.visitor.ToXml().GetXmlMessage(), "Attribute is ignored and will not be used"));
+        }
+
+        /// <exception cref="System.Exception"></exception>
+        [Test]
+        public void ShouldNotLogInfoMessageForUseOfIgnoredNonStructuralAttributeWhenListIsEmpty()
+        {
+            LIST<II, Identifier> idList = new LISTImpl<II, Identifier>(typeof(IIImpl));
+		Relationship relationship = CreateNonStructuralRelationship();
+        relationship.Conformance = ConformanceLevel.IGNORED;
+
+		ExerciseVisitorOverInteractionWithAttribute(idList, relationship);
+
+        Assert.IsFalse(StringUtils.Contains(this.visitor.ToXml().GetXmlMessage(), "Attribute is ignored and will not be used"));
+        }
+
+
+        [Test]
+        public void ShouldLogInfoMessageForUseOfIgnoredNonStructuralAttributeWithNullFlavour()
+        {
+            IIImpl emptyII = new IIImpl();  // don't set the value inside it
+            emptyII.DataType = StandardDataType.II_TOKEN;
+            emptyII.NullFlavor = Ca.Infoway.Messagebuilder.Domainvalue.Nullflavor.NullFlavor.NO_INFORMATION;   // do set a null flavour
+
+            Relationship relationship = CreateNonStructuralRelationship();
+            relationship.Conformance = ConformanceLevel.IGNORED;
+
+            ExerciseVisitorOverInteractionWithAttribute(emptyII, relationship);
+
+            AssertXmlContains(
+                    "<!-- INFO - DATA_TYPE_ERROR : Attribute is ignored and will not be used: (id) (aPropertyName2.aPropertyName) -->",
+                    this.visitor.ToXml().GetXmlMessage());
+        }
+        [Test]
+        public virtual void ShouldLogErrorForUseOfIgnoredNonStructuralAttributeWhenIgnoreConfiguredAsNotAllowed()
+        {
+            Runtime.SetProperty(ConformanceLevelUtil.IGNORED_AS_NOT_ALLOWED, "true");
+
+            IIImpl iiImpl = CreateIITokenFromUuid("1ee83ff1-08ab-4fe7-b573-ea777e9bad51");
+            Relationship relationship = CreateNonStructuralRelationship();
+            relationship.Conformance = ConformanceLevel.IGNORED;
+
+            ExerciseVisitorOverInteractionWithAttribute(iiImpl, relationship);
+
+            AssertXmlContains(
+                    "<!-- ERROR - DATA_TYPE_ERROR : Attribute is ignored and cannot be used: (id) (aPropertyName2.aPropertyName) -->",
+                    this.visitor.ToXml().GetXmlMessage());
+        }
+
+        [Test]
+        public void shouldLogErrorForUseOfNotAllowedNonStructuralAttribute()
+        {
+            IIImpl iiImpl = CreateIITokenFromUuid("1ee83ff1-08ab-4fe7-b573-ea777e9bad51");
+            Relationship relationship = CreateNonStructuralRelationship();
+            relationship.Conformance = ConformanceLevel.NOT_ALLOWED;
+
+            ExerciseVisitorOverInteractionWithAttribute(iiImpl, relationship);
+
+            AssertXmlContains(
+                    "<!-- ERROR - DATA_TYPE_ERROR : Attribute is not allowed: (id) (aPropertyName2.aPropertyName) -->",
+                    this.visitor.ToXml().GetXmlMessage());
+        }
+
+        /// <exception cref="System.Exception"></exception>
+        [Test]
 		public virtual void ShouldRenderNonStructuralAttributeString()
 		{
-			this.attributeBridge.SetHl7Value(new STImpl("some string"));
-			this.visitor.VisitRootStart(this.partBridge, this.interation);
+			STImpl attributeValue = new STImpl("some string");
 			Relationship relationship = new Relationship();
 			relationship.Name = "value";
 			relationship.Type = StandardDataType.ANY_LAB.Type;
-			this.visitor.VisitAttribute(this.attributeBridge, relationship, null, null, null);
-			this.visitor.VisitRootEnd(this.partBridge, this.interation);
-			string xml = this.visitor.ToXml().GetXmlMessage();
+            ExerciseVisitorOverInteractionWithAttribute(attributeValue, relationship);
+            string xml = this.visitor.ToXml().GetXmlMessage();
 			AssertXmlEquals("xml", "<ABCD_IN123456CA xmlns=\"urn:hl7-org:v3\" " + "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" ITSVersion=\"XML_1.0\">"
 				 + "<value xsi:type=\"ST\">some string</value>" + "</ABCD_IN123456CA>", xml);
 		}
@@ -168,14 +261,12 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 		[Test]
 		public virtual void ShouldRenderNotNonStructuralAttributeFullDate()
 		{
-			this.attributeBridge.SetHl7Value(new TNImpl(new TrivialName("Trivial Name")));
-			this.visitor.VisitRootStart(this.partBridge, this.interation);
+			TNImpl attributeValue = new TNImpl(new TrivialName("Trivial Name"));
 			Relationship relationship = new Relationship();
 			relationship.Name = "value";
 			relationship.Type = StandardDataType.ANY_LAB.Type;
-			this.visitor.VisitAttribute(attributeBridge, relationship, null, null, null);
-			this.visitor.VisitRootEnd(this.partBridge, this.interation);
-			ModelToXmlResult result = this.visitor.ToXml();
+            ExerciseVisitorOverInteractionWithAttribute(attributeValue, relationship);
+            ModelToXmlResult result = this.visitor.ToXml();
 			result.GetXmlMessage();
 			IList<Hl7Error> hl7Errors = result.GetHl7Errors();
 			Assert.IsFalse(hl7Errors.IsEmpty(), "should have incompatable ANY.LAB value");
@@ -196,7 +287,23 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 				 + "<code code=\"completed\" codeSystem=\"2.16.840.1.113883.5.14\"/>" + "</ABCD_IN123456CA>", xml);
 		}
 
-		private Relationship CreateNonStructuralRelationship()
+        private void ExerciseVisitorOverInteractionWithAttribute(BareANY attributeHl7Value, Relationship attributeRelationship)
+        {
+
+            this.attributeBridge.SetHl7Value(attributeHl7Value);
+            this.visitor.VisitRootStart(this.partBridge, this.interation);
+            this.visitor.VisitAttribute(this.attributeBridge, attributeRelationship, null, null, null);
+            this.visitor.VisitRootEnd(this.partBridge, this.interation);
+        }
+
+        private IIImpl CreateIITokenFromUuid(string rootUuid)
+        {
+            IIImpl iiImpl = new IIImpl(new Identifier(rootUuid));
+            iiImpl.DataType = StandardDataType.II_TOKEN;
+            return iiImpl;
+        }
+
+        private Relationship CreateNonStructuralRelationship()
 		{
 			Relationship relationship = new Relationship();
 			relationship.Name = "id";
@@ -253,7 +360,42 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 				, xml);
 		}
 
-		private Relationship CreateStructuralRelationship()
+        /// <exception cref="System.Exception"></exception>
+        [Test]
+        public void ShouldLogInfoMessageForUseOfIgnoredStructuralAttribute()
+        {
+		    this.attributeBridge.SetValue(false);
+
+		    Relationship relationship = CreateStructuralRelationship();
+            relationship.Conformance = ConformanceLevel.IGNORED;
+
+		    this.visitor.VisitRootStart(this.partBridge, this.interation);
+		    this.visitor.VisitAttribute(this.attributeBridge, relationship, null, null, null);
+		    this.visitor.VisitRootEnd(this.partBridge, this.interation);
+
+            string xml = this.visitor.ToXml().GetXmlMessage();
+            AssertXmlEquals("xml", "<!-- WARNING: INFO - DATA_TYPE_ERROR : Attribute is ignored and will not be used: (negationInd) (aPropertyName2.aPropertyName) -->" +
+				"<ABCD_IN123456CA xmlns=\"urn:hl7-org:v3\" " +
+				"xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" ITSVersion=\"XML_1.0\" negationInd=\"false\"/>", xml);
+        }
+
+        /// <exception cref="System.Exception"></exception>
+        [Test]
+        public void ShouldNotLogInfoMessageForUseOfIgnoredStructuralAttributeWhenNoValueSet()
+        {
+		    this.attributeBridge.SetValue(null);    // no value is set
+
+            Relationship relationship = CreateStructuralRelationship();
+            relationship.Conformance = ConformanceLevel.IGNORED;
+
+		    this.visitor.VisitRootStart(this.partBridge, this.interation);
+		    this.visitor.VisitAttribute(this.attributeBridge, relationship, null, null, null);
+		    this.visitor.VisitRootEnd(this.partBridge, this.interation);
+
+            Assert.IsFalse(StringUtils.Contains(this.visitor.ToXml().GetXmlMessage(), "Attribute is ignored and will not be used"));
+        }
+
+        private Relationship CreateStructuralRelationship()
 		{
 			Relationship relationship = new Relationship();
 			relationship.Name = "negationInd";
@@ -448,5 +590,12 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 			Assert.AreEqual(WhitespaceUtil.NormalizeWhitespace(expected, false), WhitespaceUtil.NormalizeWhitespace(actual, false), @string
 				);
 		}
-	}
+
+        private void AssertXmlContains(string searchString, string actualXml)
+        {
+            Assert.IsTrue(
+                StringUtils.Contains(WhitespaceUtil.NormalizeWhitespace(actualXml, false), searchString),
+                System.String.Format("could not find {0} in xml message {1}", searchString, actualXml));
+        }
+    }
 }

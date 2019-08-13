@@ -84,8 +84,12 @@ namespace Ca.Infoway.Messagebuilder
 		public static readonly Ca.Infoway.Messagebuilder.SpecificationVersion V01R04_2_SK = new Ca.Infoway.Messagebuilder.SpecificationVersion
 			("V01R04_2_SK", "Saskatchewan (V01R04.2)", Hl7BaseVersion.CERX);
 
-		/// <summary>Alberta</summary>
-		public static readonly Ca.Infoway.Messagebuilder.SpecificationVersion V02R02_AB = new Ca.Infoway.Messagebuilder.SpecificationVersion
+        /// <summary>Alberta</summary>
+
+        public static readonly Ca.Infoway.Messagebuilder.SpecificationVersion V01R04_1_AB = new Ca.Infoway.Messagebuilder.SpecificationVersion
+            ("V01R04_1_AB", "Alberta (PIN)", Hl7BaseVersion.CERX);
+
+        public static readonly Ca.Infoway.Messagebuilder.SpecificationVersion V02R02_AB = new Ca.Infoway.Messagebuilder.SpecificationVersion
 			("V02R02_AB", "Alberta (V02R02)", Hl7BaseVersion.MR2007);
 
 		public static readonly Ca.Infoway.Messagebuilder.SpecificationVersion R02_04_03_AB = new Ca.Infoway.Messagebuilder.SpecificationVersion
@@ -115,7 +119,13 @@ namespace Ca.Infoway.Messagebuilder
 		public static readonly Ca.Infoway.Messagebuilder.SpecificationVersion V01R04_3_NB = new Ca.Infoway.Messagebuilder.SpecificationVersion
 			("V01R04_3_NB", "NB Drug (CeRx)", Hl7BaseVersion.CERX);
 
-		public static readonly Ca.Infoway.Messagebuilder.SpecificationVersion CCDA_R1_1 = new Ca.Infoway.Messagebuilder.SpecificationVersion
+        public static readonly Ca.Infoway.Messagebuilder.SpecificationVersion R02_04_03_NL = new Ca.Infoway.Messagebuilder.SpecificationVersion
+            ("R02_04_03_NL", "NL CR/PR/LR (R02_04_03)", Hl7BaseVersion.MR2009);
+
+        public static readonly Ca.Infoway.Messagebuilder.SpecificationVersion V01R04_3_NL = new Ca.Infoway.Messagebuilder.SpecificationVersion
+            ("V01R04_3_NL", "NL Drug (CeRx)", Hl7BaseVersion.CERX);
+
+        public static readonly Ca.Infoway.Messagebuilder.SpecificationVersion CCDA_R1_1 = new Ca.Infoway.Messagebuilder.SpecificationVersion
 			("CCDA_R1_1", "CDA (CCDA_R1_1)", Hl7BaseVersion.MR2009);
 
 		public static readonly Ca.Infoway.Messagebuilder.SpecificationVersion CCDA_PCS_R1_1 = new Ca.Infoway.Messagebuilder.SpecificationVersion
@@ -144,9 +154,11 @@ namespace Ca.Infoway.Messagebuilder
 			V01R04_2_SK.RegisterHl7ReleaseByDatatype("II.BUS", Hl7BaseVersion.MR2009);
 			V01R04_2_SK.RegisterHl7ReleaseByDatatype("II.VER", Hl7BaseVersion.MR2009);
 			V01R04_2_SK.RegisterHl7ReleaseByDatatype("II.BUS_AND_VER", Hl7BaseVersion.MR2009);
-		}
+            // MBR-368: a temporary work-around for producing AB PIN compliant date time renderings
+            V01R04_1_AB.RegisterHl7ReleaseByDatatype("TS.FULLDATETIME", Hl7BaseVersion.MR2009);
+        }
 
-		private readonly string description;
+        private readonly string description;
 
 		private readonly Hl7BaseVersion baseVersion;
 

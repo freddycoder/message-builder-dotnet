@@ -54,8 +54,6 @@ namespace Ca.Infoway.Messagebuilder.Datatype {
 	/// applicable, it is safe for an HL7 interface to assume the implicit default
 	/// value without testing.
 	/// </summary>
-	///
-	/// <param name="V"> the underlying c type.</param>
 	public interface CD : ANY<Code> {
 	
 		/// <summary>

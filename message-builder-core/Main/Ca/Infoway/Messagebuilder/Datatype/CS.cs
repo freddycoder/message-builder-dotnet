@@ -50,8 +50,6 @@ namespace Ca.Infoway.Messagebuilder.Datatype {
 	/// For CS values, the designation of the domain qualifier will always be CNE (cd, non-extensible) 
 	/// and the context will determine which HL7 values to use.
 	/// </summary>
-	///
-	/// <param name="V"> the underlying c.</param>
 	public interface CS : CV {
 	
 	}

@@ -257,7 +257,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 						if (ConformanceLevelUtil.IsIgnored(relationship))
 						{
 							validationWarning = true;
-							warningMessage = System.String.Format(ConformanceLevelUtil.IsIgnoredNotAllowed() ? ConformanceLevelUtil.ASSOCIATION_IS_IGNORED_AND_CAN_NOT_BE_USED
+							warningMessage = System.String.Format(ConformanceLevelUtil.IsIgnoredNotAllowed() ? ConformanceLevelUtil.ASSOCIATION_IS_IGNORED_AND_CANNOT_BE_USED
 								 : ConformanceLevelUtil.ASSOCIATION_IS_IGNORED_AND_WILL_NOT_BE_USED, relationship.Name);
 						}
 						else
@@ -422,7 +422,10 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 			if (relationship.Structural)
 			{
 				string propertyPath = BuildPropertyPath();
-				HandleNotAllowedAndIgnored(relationship, propertyPath);
+                if (tealBean.GetValue() != null)
+                {
+                    HandleNotAllowedAndIgnored(relationship, propertyPath);
+                }
 				// TODO - CDA - TM - may need to handle constraints for structural attributes
 				new VisitorStructuralAttributeRenderer(relationship, tealBean.GetValue()).Render(CurrentBuffer().GetStructuralBuilder(), 
 					propertyPath, this.result);
@@ -465,7 +468,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 					{
 						if (!StringUtils.Equals(previousPathName, currentPathName))
 						{
-							result.Append('.').Append(RemoveInlinedSuffix(currentPathName));
+							result.Insert(0, '.').Insert(0, RemoveInlinedSuffix(currentPathName));
 						}
 					}
 					else
@@ -473,17 +476,17 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 						string convertedPreviousPathName = RemoveInlinedSuffix(previousPathName);
 						if (!StringUtils.Equals(convertedPreviousPathName, currentPathName))
 						{
-							result.Append('.').Append(currentPathName);
+							result.Insert(0, '.').Insert(0, currentPathName);
 						}
 					}
 				}
 				else
 				{
-					result.Append('.').Append(RemoveInlinedSuffix(currentPathName));
+					result.Insert(0, '.').Insert(0, RemoveInlinedSuffix(currentPathName));
 				}
 				previousPathName = currentPathName;
 			}
-			return Ca.Infoway.Messagebuilder.StringUtils.Substring(result.ToString(), 1);
+			return Ca.Infoway.Messagebuilder.StringUtils.Substring(result.ToString(), 0, result.Length - 1);
 		}
 
 		private bool IsInlined(string propertyName)
@@ -532,14 +535,17 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 						any = hl7Value;
 						any = this.adapterProvider.GetAdapter(any != null ? any.GetType() : null, type).Adapt(type, any);
 					}
-					// TODO - CDA - TM - implement default value handling
-					//					boolean valueNotProvided = (any.getBareValue() == null && !any.hasNullFlavor());
-					//					if (valueNotProvided && relationship.hasDefaultValue() && isMandatoryOrPopulated) {
-					//						// FIXME - CDA - TM - this doesn't work - will have a class cast exception (put Object convert(Object/String?) on ANY, implement trivial in ANYImpl, implement where necessary?)
-					//						
-					//						any.setBareValue(relationship.getDefaultValue());
-					//					}
-					HandleNotAllowedAndIgnored(relationship, propertyPath);
+                    // TODO - CDA - TM - implement default value handling
+                    //					boolean valueNotProvided = (any.getBareValue() == null && !any.hasNullFlavor());
+                    //					if (valueNotProvided && relationship.hasDefaultValue() && isMandatoryOrPopulated) {
+                    //						// FIXME - CDA - TM - this doesn't work - will have a class cast exception (put Object convert(Object/String?) on ANY, implement trivial in ANYImpl, implement where necessary?)
+                    //						
+                    //						any.setBareValue(relationship.getDefaultValue());
+                    //					}
+                    if (hl7Value != null && Hl7ValueHasContent(hl7Value))
+                    {
+                        HandleNotAllowedAndIgnored(relationship, propertyPath);
+                    }
 					FormatContext context = Ca.Infoway.Messagebuilder.Marshalling.FormatContextImpl.Create(this.result, propertyPath, relationship
 						, version, dateTimeZone, dateTimeTimeZone, constraints, this.isCda);
 					if (!StringUtils.Equals(type, relationship.Type))
@@ -567,8 +573,28 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 				CurrentBuffer().GetChildBuilder().Append(xmlFragment);
 			}
 		}
+        private bool Hl7ValueHasContent(BareANY hl7Value)
+        {
+            if (hl7Value.BareValue != null)
+            {
+                // there's a value; if it's a list, check if it is empty
+                if (ListElementUtil.IsCollection(hl7Value.BareValue))
+                {
+                    return !ListElementUtil.IsEmpty(hl7Value.BareValue);
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            else
+            {
+                // contains no value, but perhaps has a null flavor
+                return hl7Value.HasNullFlavor();
+            }
+        }
 
-		private string DetermineActualType(Relationship relationship, BareANY hl7Value, Hl7Errors errors, string propertyPath)
+        private string DetermineActualType(Relationship relationship, BareANY hl7Value, Hl7Errors errors, string propertyPath)
 		{
 			StandardDataType newTypeEnum = (hl7Value == null ? null : hl7Value.DataType);
 			return this.polymorphismHandler.DetermineActualDataType(relationship.Type, newTypeEnum, this.isCda, !this.isR2, CreateErrorLogger
@@ -600,22 +626,31 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 
 		private void HandleNotAllowedAndIgnored(Relationship relationship, string propertyPath)
 		{
-			string warningForIncorrectUseOfIgnore = null;
+			Hl7Error hl7Error = null;
 			if (ConformanceLevelUtil.IsIgnored(relationship))
 			{
-				warningForIncorrectUseOfIgnore = System.String.Format(ConformanceLevelUtil.IsIgnoredNotAllowed() ? ConformanceLevelUtil.ATTRIBUTE_IS_IGNORED_AND_CAN_NOT_BE_USED
-					 : ConformanceLevelUtil.ATTRIBUTE_IS_IGNORED_AND_WILL_NOT_BE_USED, relationship.Name);
+                if (ConformanceLevelUtil.IsIgnoredNotAllowed())
+                {
+                    string message = System.String.Format(ConformanceLevelUtil.ATTRIBUTE_IS_IGNORED_AND_CANNOT_BE_USED, relationship.Name);
+                    hl7Error = new Hl7Error(Hl7ErrorCode.DATA_TYPE_ERROR, ErrorLevel.ERROR, message, propertyPath);
+                }
+                else
+                {
+                    string message = System.String.Format(ConformanceLevelUtil.ATTRIBUTE_IS_IGNORED_AND_WILL_NOT_BE_USED, relationship.Name);
+                    hl7Error = new Hl7Error(Hl7ErrorCode.DATA_TYPE_ERROR, ErrorLevel.INFO, message, propertyPath);
+                }
 			}
 			else
 			{
 				if (ConformanceLevelUtil.IsNotAllowed(relationship))
 				{
-					warningForIncorrectUseOfIgnore = System.String.Format(ConformanceLevelUtil.ATTRIBUTE_IS_NOT_ALLOWED, relationship.Name);
-				}
-			}
-			if (warningForIncorrectUseOfIgnore != null)
+                    string message = System.String.Format(ConformanceLevelUtil.ATTRIBUTE_IS_NOT_ALLOWED, relationship.Name);
+                    hl7Error = new Hl7Error(Hl7ErrorCode.DATA_TYPE_ERROR, ErrorLevel.ERROR, message, propertyPath);
+                }
+            }
+			if (hl7Error != null)
 			{
-				this.result.AddHl7Error(new Hl7Error(Hl7ErrorCode.DATA_TYPE_ERROR, warningForIncorrectUseOfIgnore, propertyPath));
+				this.result.AddHl7Error(hl7Error);
 			}
 		}
 

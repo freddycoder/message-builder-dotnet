@@ -31,6 +31,7 @@ using Ca.Infoway.Messagebuilder.Error;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.R2;
+using Ca.Infoway.Messagebuilder.Platform;
 using Ca.Infoway.Messagebuilder.Resolver;
 using Ca.Infoway.Messagebuilder.Util.Xml;
 using ILOG.J2CsMapping.Text;
@@ -131,8 +132,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser.R2
 		private ICollection<Ca.Infoway.Messagebuilder.Domainvalue.PostalAddressUse> ParseAddressUses(string nameUseAttribute, XmlNode
 			 node, XmlToModelResult xmlToModelResult)
 		{
-			ICollection<Ca.Infoway.Messagebuilder.Domainvalue.PostalAddressUse> uses = new HashSet<Ca.Infoway.Messagebuilder.Domainvalue.PostalAddressUse
-				>();
+			ICollection<Ca.Infoway.Messagebuilder.Domainvalue.PostalAddressUse> uses = CollUtils.SynchronizedSet(new LinkedSet<Ca.Infoway.Messagebuilder.Domainvalue.PostalAddressUse
+				>());
 			if (nameUseAttribute != null)
 			{
 				StringTokenizer tokenizer = new StringTokenizer(nameUseAttribute);

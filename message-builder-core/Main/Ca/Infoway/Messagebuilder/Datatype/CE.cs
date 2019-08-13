@@ -41,8 +41,6 @@ namespace Ca.Infoway.Messagebuilder.Datatype {
 	/// because the only difference between CD and CE was the use of the qualifier property, which is no longer 
 	/// being used for this release. 
 	/// </summary>
-	///
-	/// <param name="V"> the underlying Code</param>
 	public interface CE : CD {
 	
 	}

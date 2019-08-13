@@ -83,8 +83,14 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 			}
 			else
 			{
-				context.GetModelToXmlResult().AddHl7Error(new Hl7Error(Hl7ErrorCode.DATA_TYPE_ERROR, System.String.Format("Invalid date format {0} supplied for value of type {1}"
-					, datePattern, context == null ? "TS" : context.Type), context.GetPropertyPath()));
+                // MBR-368: a temporary work-around for producing AB PIN compliant date time renderings
+                // with out error messages -- required until the runtime's knowledge of datatypes has been
+                // corrected to distinguish between CeRx v3 (ie., V01R03) and CeRx v4 (ie., V01R04)
+                if (!SpecificationVersion.IsExactVersion(SpecificationVersion.V01R04_1_AB, version))
+                {
+                    context.GetModelToXmlResult().AddHl7Error(new Hl7Error(Hl7ErrorCode.DATA_TYPE_ERROR, System.String.Format("Invalid date format {0} supplied for value of type {1}"
+                        , datePattern, context == null ? "TS" : context.Type), context.GetPropertyPath()));
+                }
 			}
 		}
 

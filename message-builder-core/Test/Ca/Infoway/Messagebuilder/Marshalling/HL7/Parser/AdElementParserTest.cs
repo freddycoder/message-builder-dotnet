@@ -24,6 +24,7 @@ using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
 using Ca.Infoway.Messagebuilder.Datatype.Lang.Util;
+using Ca.Infoway.Messagebuilder.Domainvalue;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser;
 using NUnit.Framework;
@@ -151,12 +152,16 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 			Assert.IsTrue(this.xmlResult.IsValid());
 			PostalAddress postalAddress = ad.Value;
 			Assert.AreEqual(3, postalAddress.Uses.Count, "one use");
-			Assert.IsTrue(postalAddress.Uses.Contains(Ca.Infoway.Messagebuilder.Domainvalue.Basic.X_BasicPostalAddressUse.HOME), "contains HOME use"
-				);
-			Assert.IsTrue(postalAddress.Uses.Contains(Ca.Infoway.Messagebuilder.Domainvalue.Basic.X_BasicPostalAddressUse.PHYSICAL), 
-				"contains PHYS use");
-			Assert.IsTrue(postalAddress.Uses.Contains(Ca.Infoway.Messagebuilder.Domainvalue.Basic.X_BasicPostalAddressUse.POSTAL), "contains POSTAL use"
-				);
+            int index = 0;
+            PostalAddressUse[] expectedUses = { Ca.Infoway.Messagebuilder.Domainvalue.Basic.X_BasicPostalAddressUse.HOME,
+                Ca.Infoway.Messagebuilder.Domainvalue.Basic.X_BasicPostalAddressUse.PHYSICAL,
+                Ca.Infoway.Messagebuilder.Domainvalue.Basic.X_BasicPostalAddressUse.POSTAL };
+            foreach (PostalAddressUse actualUse in postalAddress.Uses)
+            {
+                PostalAddressUse expectedUse = expectedUses[index];
+                Assert.AreEqual(expectedUse, actualUse, "contains " + expectedUse.CodeValue + " use");
+                index++;
+            }
 		}
 
 		/// <exception cref="System.Exception"></exception>

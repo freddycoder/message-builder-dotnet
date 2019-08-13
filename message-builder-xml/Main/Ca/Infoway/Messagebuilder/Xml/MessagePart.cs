@@ -217,13 +217,13 @@ namespace Ca.Infoway.Messagebuilder.Xml
 			}
 		}
 
-		/// <summary>
-		/// Determines whether the message part has a specialization child
-		/// matching the given name
-		/// </summary>
-		/// <param name="the">name to test</param>
-		/// <returns>true if the name matches</returns>
-		public virtual SpecializationChild GetSpecializationChild(string childName)
+        /// <summary>
+        /// Determines whether the message part has a specialization child
+        /// matching the given name
+        /// </summary>
+        /// <param name="childName">the name to test</param>
+        /// <returns>true if the name matches</returns>
+        public virtual SpecializationChild GetSpecializationChild(string childName)
 		{
 			SpecializationChild result = null;
 			foreach (SpecializationChild child in this.specializationChilds)
@@ -265,13 +265,13 @@ namespace Ca.Infoway.Messagebuilder.Xml
 			}
 		}
 
-		/// <summary>
-		/// Determines whether the message part has a specialization child
-		/// matching the given name
-		/// </summary>
-		/// <param name="the">name to test</param>
-		/// <returns>true if the name matches</returns>
-		public virtual bool HasSpecializationChild(string childName)
+        /// <summary>
+        /// Determines whether the message part has a specialization child
+        /// matching the given name
+        /// </summary>
+        /// <param name="childName">the name to test</param>
+        /// <returns>true if the name matches</returns>
+        public virtual bool HasSpecializationChild(string childName)
 		{
 			return GetSpecializationChild(childName) != null;
 		}

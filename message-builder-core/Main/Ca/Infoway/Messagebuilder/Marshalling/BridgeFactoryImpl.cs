@@ -148,8 +148,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 			// FIXME - TM (see RM19206) - IGNORED/NOT_ALLOWED - these should log a warning in the Hl7Errors bean, not just as a log message
 			if (ConformanceLevelUtil.IsIgnoredNotAllowed() && ConformanceLevelUtil.IsIgnored(relationship))
 			{
-				this.log.Debug(System.String.Format(relationship.Association ? ConformanceLevelUtil.ASSOCIATION_IS_IGNORED_AND_CAN_NOT_BE_USED
-					 : ConformanceLevelUtil.ATTRIBUTE_IS_IGNORED_AND_CAN_NOT_BE_USED, relationship.Name));
+				this.log.Debug(System.String.Format(relationship.Association ? ConformanceLevelUtil.ASSOCIATION_IS_IGNORED_AND_CANNOT_BE_USED
+					 : ConformanceLevelUtil.ATTRIBUTE_IS_IGNORED_AND_CANNOT_BE_USED, relationship.Name));
 			}
 			else
 			{

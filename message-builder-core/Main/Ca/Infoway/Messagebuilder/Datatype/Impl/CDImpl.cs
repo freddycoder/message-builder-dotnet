@@ -56,8 +56,6 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Impl {
 	/// applicable, it is safe for an HL7 interface to assume the implicit default
 	/// value without testing.
 	/// </summary>
-	///
-	/// <param name="V"> the underlying c type.</param>
 	public class CDImpl : ANYImpl<Code>, CD {
 	
 		private const long serialVersionUID = 1152929036065255121L;

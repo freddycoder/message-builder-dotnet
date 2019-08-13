@@ -137,8 +137,6 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 					Process(wrapper, source, nodes, nodeName);
 				}
 			}
-			// this sorts the matching relationships according to HL7v3/MIF requirements
-			sortedRelationshipsMatchingUpToXmlElementNames.Sort();
 			ValidateElementOrder(source, xmlElementNamesInProvidedOrder, sortedRelationshipsMatchingUpToXmlElementNames, resolvedRelationshipNames
 				);
 			// only do this if relationship not null and relationship not a null flavor???

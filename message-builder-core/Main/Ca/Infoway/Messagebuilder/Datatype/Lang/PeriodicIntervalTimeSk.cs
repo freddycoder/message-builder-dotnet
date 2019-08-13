@@ -55,15 +55,16 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 				Representation representation_4) : base(period_0, phase_1, repetitions_2, null, representation_4) {
 			this.quantitySk = quantity_3;
 		}
-	
-		/// <summary>
-		/// Constructs a PeriodicIntervalTimeSk using the supplied parameters.
-		/// </summary>
-		///
-		/// <param name="repetitions_0">number of repetitions</param>
-		/// <param name="quantity_1">a physical quantity</param>
-		/// <returns>the constructed PeriodicIntervalTime</returns>
-		public static PeriodicIntervalTimeSk CreateFrequencySk(Int32? repetitions_0, PhysicalQuantity quantity_1, PhysicalQuantity quantity_2) {
+
+        /// <summary>
+        /// Constructs a PeriodicIntervalTimeSk using the supplied parameters.
+        /// </summary>
+        ///
+        /// <param name="repetitions_0">number of repetitions</param>
+        /// <param name="quantity_1">the lower boundary of the physical quantity range</param>
+        /// <param name="quantity_2">the upper boundary of the physical quantity range</param>
+        /// <returns>the constructed PeriodicIntervalTime</returns>
+        public static PeriodicIntervalTimeSk CreateFrequencySk(Int32? repetitions_0, PhysicalQuantity quantity_1, PhysicalQuantity quantity_2) {
 			Interval<PhysicalQuantity> ivlPq = IntervalUtil.CreateInterval(quantity_1, quantity_2);
 			return new PeriodicIntervalTimeSk(null, null, repetitions_0, ivlPq,
 					Representation.FREQUENCY);

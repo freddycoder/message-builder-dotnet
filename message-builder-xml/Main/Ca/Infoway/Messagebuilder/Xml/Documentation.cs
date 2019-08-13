@@ -56,10 +56,10 @@ namespace Ca.Infoway.Messagebuilder.Xml
 			this.annotations = annotations;
 		}
 
-		/// <summary>Standard constructor.</summary>
-		/// <remarks>Standard constructor.</remarks>
-		/// <param name="paragraphs">- annotations of documentation.</param>
-		public Documentation(params Annotation[] annotations)
+        /// <summary>Standard constructor.</summary>
+        /// <remarks>Standard constructor.</remarks>
+        /// <param name="annotations">- annotations of documentation.</param>
+        public Documentation(params Annotation[] annotations)
 		{
 			if (!ArrayUtils.IsEmpty(annotations))
 			{

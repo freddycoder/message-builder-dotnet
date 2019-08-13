@@ -52,8 +52,6 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Impl {
 	/// For CS values, the designation of the domain qualifier will always be CNE (cd, non-extensible) 
 	/// and the context will determine which HL7 values to use.
 	/// </summary>
-	///
-	/// <param name="V"> the underlying c.</param>
 	public class CSImpl : CVImpl, CS {
 	
 		private const long serialVersionUID = 1131698042396253284L;

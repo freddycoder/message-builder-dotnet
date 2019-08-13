@@ -44,7 +44,7 @@ namespace Ca.Infoway.Messagebuilder.Transport.Rest
             rest = new RestTransportLayer(client, "http://tl7.intelliware.ca/rest");
         }
 
-        [Test]
+        [Test][Ignore]
         public virtual void ShouldSendBasicMessageToServer()
         {
             var result = rest.SendRequestAndGetResponse(provider, CreateMessage());
@@ -71,7 +71,7 @@ namespace Ca.Infoway.Messagebuilder.Transport.Rest
             }
         }
 
-        [Test]
+        [Test][Ignore]
         public virtual void TestShouldRequestUseridAndPassword()
         {
             rest.SendRequestAndGetResponse(provider, CreateMessage());

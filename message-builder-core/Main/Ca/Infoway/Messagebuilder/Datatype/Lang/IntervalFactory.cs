@@ -292,7 +292,7 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang
 		/// Converts an UncertainRange into an Interval.
 		/// Note that the new Interval will lose any high/low inclusive data from the range.
 		/// </remarks>
-		/// <param name="the">uncertain range</param>
+		/// <param name="urg">the uncertain range</param>
 		/// <returns>an Interval that corresponds to the range</returns>
 		public static Interval<T> CreateFromUncertainRange<T>(UncertainRange<T> urg)
 		{

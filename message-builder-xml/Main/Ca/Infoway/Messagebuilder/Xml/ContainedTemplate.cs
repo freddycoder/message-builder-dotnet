@@ -50,12 +50,11 @@ namespace Ca.Infoway.Messagebuilder.Xml
 		{
 		}
 
-		/// <summary>Standard constructor.</summary>
-		/// <remarks>Standard constructor.</remarks>
-		/// <param name="name">- the relationship name</param>
-		/// <param name="type">- the relationship type</param>
-		/// <param name="cardinality">- the cardinality.</param>
-		public ContainedTemplate(string templateOid, Ca.Infoway.Messagebuilder.Xml.Cardinality cardinality)
+        /// <summary>Standard constructor.</summary>
+        /// <remarks>Standard constructor.</remarks>
+        /// <param name="templateOid">- the OID of the template</param>
+        /// <param name="cardinality">- the cardinality.</param>
+        public ContainedTemplate(string templateOid, Ca.Infoway.Messagebuilder.Xml.Cardinality cardinality)
 		{
 			this.templateOid = templateOid;
 			this.cardinality = cardinality.ToString();

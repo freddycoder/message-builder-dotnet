@@ -90,13 +90,13 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 				if (validSpecializationType)
 				{
 					typeFromContext = typeFromField;
-					AddSpecializationType(result, typeFromContext);
+                    AddSpecializationTypeAttributesBasedOnVersion(result, typeFromContext, context.GetVersion());
 				}
 				else
 				{
 					if (iiValidationUtils.IsIiBusAndVer(typeFromContext))
 					{
-						AddSpecializationType(result, IiValidationUtils.II_BUS);
+                        AddSpecializationTypeAttributesBasedOnVersion(result, IiValidationUtils.II_BUS, context.GetVersion());
 						typeFromContext = IiValidationUtils.II_BUS;
 						RecordError(iiValidationUtils.GetInvalidSpecializationTypeForBusAndVerErrorMessage(typeFromField, typeFromContext), context
 							);
@@ -124,7 +124,19 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Formatter
 				);
 		}
 
-		private void Validate(Identifier ii, string type, VersionNumber version, FormatContext context)
+        private void AddSpecializationTypeAttributesBasedOnVersion(IDictionary<string, string> attributes, string typeAsString, VersionNumber version)
+        {
+            AddSpecializationType(attributes, typeAsString);
+
+            // exception for specification versions that reject II elements containing the specializationType
+            // attribute itself, but still require the xsi:type and use attributes
+            if (SpecificationVersion.IsExactVersion(SpecificationVersion.V01R04_1_AB, version))
+            {
+                attributes.Remove(SPECIALIZATION_TYPE);
+            }
+        }
+
+        private void Validate(Identifier ii, string type, VersionNumber version, FormatContext context)
 		{
 			ValidateMandatoryAttribute("root", ii.Root, type, context);
 			if (StandardDataType.II.Type.Equals(type))

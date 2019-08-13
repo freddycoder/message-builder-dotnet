@@ -48,7 +48,10 @@ namespace Ca.Infoway.Messagebuilder.Domainvalue.Transport
 		public static readonly Ca.Infoway.Messagebuilder.Domainvalue.Transport.HL7StandardVersionCode V3_2007_05 = new Ca.Infoway.Messagebuilder.Domainvalue.Transport.HL7StandardVersionCode
 			("V3_2007_05", "V3-2007-05");
 
-		public static readonly Ca.Infoway.Messagebuilder.Domainvalue.Transport.HL7StandardVersionCode V3_2007N = new Ca.Infoway.Messagebuilder.Domainvalue.Transport.HL7StandardVersionCode
+        public static readonly Ca.Infoway.Messagebuilder.Domainvalue.Transport.HL7StandardVersionCode V3_2007_07 = new Ca.Infoway.Messagebuilder.Domainvalue.Transport.HL7StandardVersionCode
+            ("V3_2007_07", "V3-2007-07");
+
+        public static readonly Ca.Infoway.Messagebuilder.Domainvalue.Transport.HL7StandardVersionCode V3_2007N = new Ca.Infoway.Messagebuilder.Domainvalue.Transport.HL7StandardVersionCode
 			("V3_2007N", "V3-2007N");
 
 		public static readonly Ca.Infoway.Messagebuilder.Domainvalue.Transport.HL7StandardVersionCode V3_2008N = new Ca.Infoway.Messagebuilder.Domainvalue.Transport.HL7StandardVersionCode

@@ -52,7 +52,10 @@ namespace Ca.Infoway.Messagebuilder.Domainvalue.Controlact
 		public static readonly Ca.Infoway.Messagebuilder.Domainvalue.Controlact.ActCode DRUG = new Ca.Infoway.Messagebuilder.Domainvalue.Controlact.ActCode
 			("DRUG");
 
-		public static readonly Ca.Infoway.Messagebuilder.Domainvalue.Controlact.ActCode FS = new Ca.Infoway.Messagebuilder.Domainvalue.Controlact.ActCode
+        public static readonly Ca.Infoway.Messagebuilder.Domainvalue.Controlact.ActCode DX = new Ca.Infoway.Messagebuilder.Domainvalue.Controlact.ActCode
+            ("DX");
+
+        public static readonly Ca.Infoway.Messagebuilder.Domainvalue.Controlact.ActCode FS = new Ca.Infoway.Messagebuilder.Domainvalue.Controlact.ActCode
 			("FS");
 
 		public static readonly Ca.Infoway.Messagebuilder.Domainvalue.Controlact.ActCode G = new Ca.Infoway.Messagebuilder.Domainvalue.Controlact.ActCode

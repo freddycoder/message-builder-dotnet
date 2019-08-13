@@ -82,8 +82,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		private ICollection<Ca.Infoway.Messagebuilder.Domainvalue.PostalAddressUse> GetNameUses(string nameUseAttribute, XmlNode 
 			node, XmlToModelResult xmlToModelResult)
 		{
-			ICollection<Ca.Infoway.Messagebuilder.Domainvalue.PostalAddressUse> uses = new HashSet<Ca.Infoway.Messagebuilder.Domainvalue.PostalAddressUse
-				>();
+			ICollection<Ca.Infoway.Messagebuilder.Domainvalue.PostalAddressUse> uses = CollUtils.SynchronizedSet(new LinkedSet<Ca.Infoway.Messagebuilder.Domainvalue.PostalAddressUse
+                >());
 			if (nameUseAttribute != null)
 			{
 				StringTokenizer tokenizer = new StringTokenizer(nameUseAttribute);

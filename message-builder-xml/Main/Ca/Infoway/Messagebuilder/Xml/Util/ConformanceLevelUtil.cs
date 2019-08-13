@@ -27,11 +27,11 @@ namespace Ca.Infoway.Messagebuilder.Xml.Util
 {
 	public class ConformanceLevelUtil
 	{
-		public static readonly string ASSOCIATION_IS_IGNORED_AND_CAN_NOT_BE_USED = "Association is ignored and can not be used: ({0})";
+		public static readonly string ASSOCIATION_IS_IGNORED_AND_CANNOT_BE_USED = "Association is ignored and cannot be used: ({0})";
 
 		public static readonly string ASSOCIATION_IS_IGNORED_AND_WILL_NOT_BE_USED = "Association is ignored and will not be used: ({0})";
 
-		public static readonly string ATTRIBUTE_IS_IGNORED_AND_CAN_NOT_BE_USED = "Attribute is ignored and can not be used: ({0})";
+		public static readonly string ATTRIBUTE_IS_IGNORED_AND_CANNOT_BE_USED = "Attribute is ignored and cannot be used: ({0})";
 
 		public static readonly string ATTRIBUTE_IS_IGNORED_AND_WILL_NOT_BE_USED = "Attribute is ignored and will not be used: ({0})";
 

@@ -46,12 +46,10 @@ namespace Ca.Infoway.Messagebuilder.Xml
 		{
 		}
 
-		/// <summary>Standard constructor.</summary>
-		/// <remarks>Standard constructor.</remarks>
-		/// <param name="name">- the relationship name</param>
-		/// <param name="type">- the relationship type</param>
-		/// <param name="cardinality">- the cardinality.</param>
-		public SchematronContext(string context)
+        /// <summary>Standard constructor.</summary>
+        /// <remarks>Standard constructor.</remarks>
+        /// <param name="context">- the context</param>
+        public SchematronContext(string context)
 		{
 			this.context = context;
 		}

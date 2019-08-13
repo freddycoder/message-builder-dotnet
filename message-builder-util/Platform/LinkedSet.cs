@@ -26,7 +26,7 @@ using System.Collections.Generic;
 namespace Ca.Infoway.Messagebuilder.Platform
 {
 
-	public class LinkedSet<T> : ICollection<T>, IEquatable<LinkedSet<T>>
+	public class LinkedSet<T> : ILOG.J2CsMapping.Collections.Generics.ISet<T>, IEquatable<LinkedSet<T>>
 	{
 		private LinkedList<T> list;
 		
@@ -50,10 +50,12 @@ namespace Ca.Infoway.Messagebuilder.Platform
 			get { return false; }
 		}
 		
-		public void Add(T t) {
+		public bool Add(T t) {
 			if (!this.list.Contains(t)) {
 				this.list.AddLast(t);
+                return true;
 			}
+            return false;
 		}
 		public bool Remove(T t) {
 			return this.list.Remove(t);
@@ -99,5 +101,86 @@ namespace Ca.Infoway.Messagebuilder.Platform
             return true;
         }
 
-	}
+        public void UnionWith(IEnumerable<T> other)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void IntersectWith(IEnumerable<T> other)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ExceptWith(IEnumerable<T> other)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SymmetricExceptWith(IEnumerable<T> other)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool IsSubsetOf(IEnumerable<T> other)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool IsSupersetOf(IEnumerable<T> other)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool IsProperSupersetOf(IEnumerable<T> other)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool IsProperSubsetOf(IEnumerable<T> other)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Overlaps(IEnumerable<T> other)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool SetEquals(IEnumerable<T> other)
+        {
+            throw new NotImplementedException();
+        }
+
+        void ICollection<T>.Add(T item) => _ = Add(item);
+
+        public bool AddAll(ICollection<T> c)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool ContainsAll(ICollection<T> c)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool RemoveAll(ICollection<T> c)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool RetainAll(ICollection<T> c)
+        {
+            throw new NotImplementedException();
+        }
+
+        public T[] ToArray()
+        {
+            throw new NotImplementedException();
+        }
+
+        public T[] ToArray(T[] arr)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

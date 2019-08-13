@@ -585,5 +585,10 @@ namespace Ca.Infoway.Messagebuilder
             }
             return str.Substring(0, end);
         }
+
+        public static bool Contains(String superstring, String substring)
+        {
+            return superstring.Contains(substring);
+        }
     }
 }

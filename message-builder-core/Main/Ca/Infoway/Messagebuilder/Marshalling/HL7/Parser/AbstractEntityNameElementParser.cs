@@ -24,9 +24,11 @@ using System.Collections.Generic;
 using System.Xml;
 using Ca.Infoway.Messagebuilder.Datatype;
 using Ca.Infoway.Messagebuilder.Datatype.Lang;
+using Ca.Infoway.Messagebuilder.Domainvalue.Basic;
 using Ca.Infoway.Messagebuilder.Error;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser;
+using Ca.Infoway.Messagebuilder.Platform;
 using Ca.Infoway.Messagebuilder.Resolver;
 using ILOG.J2CsMapping.Util;
 
@@ -52,8 +54,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 		protected virtual ICollection<Ca.Infoway.Messagebuilder.Domainvalue.Basic.EntityNameUse> GetNameUses(string nameUseAttribute
 			, XmlElement element, XmlToModelResult xmlToModelResult)
 		{
-			ICollection<Ca.Infoway.Messagebuilder.Domainvalue.Basic.EntityNameUse> uses = new HashSet<Ca.Infoway.Messagebuilder.Domainvalue.Basic.EntityNameUse
-				>();
+            ICollection<EntityNameUse> uses = CollUtils.SynchronizedSet(new LinkedSet<EntityNameUse>());
 			if (nameUseAttribute != null)
 			{
 				StringTokenizer tokenizer = new StringTokenizer(nameUseAttribute);
