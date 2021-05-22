@@ -1,0 +1,830 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5D181889-F125-4747-A1FD-82D01D4D705A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>messagebuilderccdar1_1</RootNamespace>
+    <AssemblyName>message-builder-ccda-r1_1</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>message-builder-ccda-r1_1.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <CodeAnalysisFailOnMissingRules>true</CodeAnalysisFailOnMissingRules>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\message-builder-compatibility\message-builder-compatibility.csproj">
+      <Project>{6821E6B6-3A4D-4D4D-A9D0-147878B4FDEE}</Project>
+      <Name>message-builder-compatibility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\message-builder-core\message-builder-core.csproj">
+      <Project>{4139D4DB-FBAB-4951-92EA-B5F7BABD8746}</Project>
+      <Name>message-builder-core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\message-builder-xml\message-builder-xml.csproj">
+      <Project>{262BF0B7-4E11-43DA-B5E5-EAAE02EF9845}</Project>
+      <Name>message-builder-xml</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="message-builder-ccda-r1_1.snk" />
+    <None Include="message-builder-core.licenseheader" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Admissionmedication\Act.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Advancedirectiveobservation\CustodianParticipant2.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Advancedirectiveobservation\CustodianParticipantRole.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Advancedirectiveobservation\IParticipant2Choice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Advancedirectiveobservation\IReferenceChoice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Advancedirectiveobservation\Observation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Advancedirectiveobservation\Reference.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Advancedirectiveobservation\VerifierParticipant2.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Advancedirectiveobservation\VerifierParticipantRole.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Advancedirectivessectionentriesoptional\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Advancedirectivessectionentriesrequired\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Ageobservation\Observation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Allergiessectionentriesoptional\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Allergiessectionentriesrequired\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Allergyintoleranceobservation\IParticipant2Choice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Allergyintoleranceobservation\Observation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Allergyproblemact\Act.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Allergyproblemact\EntryRelationship.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Allergyproblemact\IEntryRelationshipChoice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Allergystatusobservation\Observation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Anesthesiasection\IEntryChoice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Anesthesiasection\MedicationActivityEntry.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Anesthesiasection\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Assessmentandplansection\Entry.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Assessmentandplansection\IEntryChoice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Assessmentandplansection\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Assessmentscaleobservation\EntryRelationship.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Assessmentscaleobservation\IEntryRelationshipChoice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Assessmentscaleobservation\Observation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Assessmentscalesupportingobservation\Observation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Assessmentsection\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Authorizationactivity\Act.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Authorizationactivity\EntryRelationship.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Authorizationactivity\IEntryRelationshipChoice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Basemodel\Act.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Basemodel\AssignedAuthor.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Basemodel\Authenticator.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Basemodel\Authorization.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Basemodel\BaseModel.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Basemodel\BaseModelDocument.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Basemodel\Component4.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Basemodel\Consumable.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Basemodel\Criterion.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Basemodel\DataEnterer.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Basemodel\DocumentationOf.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Basemodel\Encounter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Basemodel\Entry.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Basemodel\ExternalAct.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Basemodel\ExternalDocument.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Basemodel\ExternalObservation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Basemodel\ExternalProcedure.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Basemodel\Guardian.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Basemodel\IAssignedAuthorChoice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Basemodel\IComponent4Choice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Basemodel\IEntryChoice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Basemodel\IEntryRelationshipChoice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Basemodel\IGuardianChoice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Basemodel\IInformant12Choice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Basemodel\IManufacturedProductChoice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Basemodel\InformationRecipient.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Basemodel\IntendedRecipient.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Basemodel\IParticipantRoleChoice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Basemodel\IReferenceChoice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Basemodel\LabeledDrug.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Basemodel\LanguageCommunication.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Basemodel\LegalAuthenticator.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Basemodel\MaintainedEntity.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Basemodel\ManufacturedProduct.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Basemodel\Material.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Basemodel\NonXMLBody.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Basemodel\Observation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Basemodel\ObservationMedia.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Basemodel\OrganizationPartOf.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Basemodel\Organizer.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Basemodel\ParentDocument.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Basemodel\Patient.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Basemodel\PatientRole.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Basemodel\Person.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Basemodel\Precondition.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Basemodel\Procedure.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Basemodel\Product.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Basemodel\RecordTarget.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Basemodel\Reference.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Basemodel\RegionOfInterest.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Basemodel\RelatedDocument.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Basemodel\RelatedEntity.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Basemodel\RelatedSubject.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Basemodel\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Basemodel\ServiceEvent.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Basemodel\StructuredBody.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Basemodel\Subject.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Basemodel\SubjectPerson.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Basemodel\SubstanceAdministration.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Basemodel\Supply.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Boundaryobservation\Observation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Caregivercharacteristics\Observation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Chiefcomplaintandreasonforvisitsection\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Chiefcomplaintsection\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Codeobservations\Observation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Cognitivestatusproblemobservation\Observation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Cognitivestatusresultobservation\Observation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Cognitivestatusresultorganizer\Component4.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Cognitivestatusresultorganizer\IComponent4Choice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Cognitivestatusresultorganizer\Organizer.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Commentactivity\Act.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Commentactivity\AssignedAuthor.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Commentactivity\Author.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Complicationsopnote\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Complicationssection\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Consultationnote\Component2.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Consultationnote\ConsultationNote.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Consultationnote\ConsultationNoteDocument.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Consultationnote\IComponent2Choice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Consultationnote\IComponent3Choice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Consultationnote\ReasonForReferralSectionComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Consultationnote\StructuredBody.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Continuityofcaredocumentccd\AdvanceDirectivesSectionentriesOptionalComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Continuityofcaredocumentccd\AdvanceDirectivesSectionentriesRequiredComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Continuityofcaredocumentccd\Component2.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Continuityofcaredocumentccd\ContinuityOfCareDocumentCCD.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Continuityofcaredocumentccd\ContinuityOfCareDocumentCCDDocument.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Continuityofcaredocumentccd\DocumentationOf.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Continuityofcaredocumentccd\EncountersSectionentriesOptionalComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Continuityofcaredocumentccd\EncountersSectionentriesRequiredComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Continuityofcaredocumentccd\IComponent2Choice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Continuityofcaredocumentccd\IComponent3Choice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Continuityofcaredocumentccd\MedicalEquipmentSectionComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Continuityofcaredocumentccd\PayersSectionComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Continuityofcaredocumentccd\Performer1.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Continuityofcaredocumentccd\ServiceEvent.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Continuityofcaredocumentccd\StructuredBody.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Coverageactivity\Act.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Coverageactivity\EntryRelationship.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Coverageactivity\IEntryRelationshipChoice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Deceasedobservation\Observation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Diagnosticimagingreport\Component1.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Diagnosticimagingreport\Component2.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Diagnosticimagingreport\DiagnosticImagingReport.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Diagnosticimagingreport\DiagnosticImagingReportDocument.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Diagnosticimagingreport\DICOMObjectCatalogSectionDCM121181Component3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Diagnosticimagingreport\DocumentationOf.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Diagnosticimagingreport\EncompassingEncounter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Diagnosticimagingreport\FetusSubjectContextComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Diagnosticimagingreport\FindingsSectionDIRComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Diagnosticimagingreport\IComponent2Choice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Diagnosticimagingreport\IComponent3Choice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Diagnosticimagingreport\IDocumentationOfChoice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Diagnosticimagingreport\IRelatedDocumentChoice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Diagnosticimagingreport\ObserverContextComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Diagnosticimagingreport\ProcedureContextComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Diagnosticimagingreport\RelatedDocument.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Diagnosticimagingreport\ServiceEvent.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Diagnosticimagingreport\StructuredBody.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Dicomobjectcatalogsectiondcm121181\Entry.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Dicomobjectcatalogsectiondcm121181\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Dischargedietsection\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Dischargemedication\Act.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Dischargesummary\Component2.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Dischargesummary\DischargeDietSectionComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Dischargesummary\DischargeSummary.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Dischargesummary\DischargeSummaryDocument.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Dischargesummary\HospitalAdmissionDiagnosisSectionComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Dischargesummary\HospitalAdmissionMedicationsSectionentriesOptionalComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Dischargesummary\HospitalConsultationsSectionComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Dischargesummary\HospitalCourseSectionComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Dischargesummary\HospitalDischargeDiagnosisSectionComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Dischargesummary\HospitalDischargeInstructionsSectionComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Dischargesummary\HospitalDischargeMedicationsSectionentriesOptionalComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Dischargesummary\HospitalDischargeMedicationsSectionentriesRequiredComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Dischargesummary\HospitalDischargePhysicalSectionComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Dischargesummary\HospitalDischargeStudiesSummarySectionComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Dischargesummary\IComponent2Choice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Dischargesummary\IComponent3Choice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Dischargesummary\StructuredBody.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\ActClassDocument.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\ActClinicalDocument.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\AdvanceDirectiveTypeCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\AllergyAdverseEventType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\BasicConfidentialityKind.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\BodySite.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\ConsultDocumentType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\CoverageRoleType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\DCM.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\DIRDocumentTypeCodes.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\DIRQuantityMeasurementTypeCodes.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\DischargeSummaryDocumentTypeCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\EncounterTypeCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\EthnicityGroup.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\EvnIntMoodCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\FamilyMember.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\FinanciallyResponsiblePartyType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\HealthcareProviderTaxonomy.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\HealthcareServiceLocation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\HealthInsuranceType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\HPDocumentType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\Language.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\LOINC.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\MaritalStatus.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\MedicationClinicalDrugName.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\MedicationFillStatus.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\MedicationProductForm.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\MedicationRoute.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\NoImmunizationReason.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\NUCCProviderTaxonomy.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\PatientEducation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\PlanOfCareEncounterMoodCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\PlanOfCareObservationMoodCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\PlanOfCareSupplyMoodCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\PressurePoint.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\Problem.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\ProblemActStatusCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\ProblemType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\ProcedureActStatusCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\ProcedureNoteDocumentTypeCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\ProgressNoteDocumentTypeCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\ProviderRole.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\Race.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\ReligiousAffiliation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\ResponsibleParty.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\ResultStatus.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\RoleClassAssociative.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\RoleClassMutualRelationship.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\SmokingStatus.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\Snomed_CT.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\SocialHistoryType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\SurgicalOperationNoteDocumentTypeCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\TobaccoUse.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\VaccineAdministered.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\VitalSignResult.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\x_ActClassDocumentEntryAct.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\x_ActClassDocumentEntryOrganizer.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\x_ActMoodDocumentObservation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\x_ActRelationshipDocument.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\x_ActRelationshipEntry.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\x_ActRelationshipEntryRelationship.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\x_ActRelationshipExternalReference.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\x_DocumentActMood.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\x_DocumentEncounterMood.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\x_DocumentProcedureMood.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\x_DocumentSubject.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\x_DocumentSubstanceMood.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\x_EncounterParticipant.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\x_InformationRecipient.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\x_InformationRecipientRole.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Domainvalue\x_ServiceEventPerformer.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Drugvehicle\ParticipantRole.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Encounteractivities\Encounter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Encounteractivities\EncounterDiagnosisEntryRelationship.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Encounteractivities\IEntryRelationshipChoice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Encounteractivities\IParticipant2Choice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Encounterdiagnosis\Act.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Encounterssectionentriesoptional\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Encounterssectionentriesrequired\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Estimateddateofdelivery\Observation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Familyhistorydeathobservation\Observation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Familyhistoryobservation\FamilyHistoryDeathObservationEntryRelationship.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Familyhistoryobservation\IEntryRelationshipChoice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Familyhistoryobservation\Observation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Familyhistoryorganizer\Component4.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Familyhistoryorganizer\Organizer.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Familyhistoryorganizer\RelatedSubject.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Familyhistoryorganizer\Subject.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Familyhistoryorganizer\SubjectPerson.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Familyhistorysection\Entry.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Familyhistorysection\IEntryChoice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Familyhistorysection\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Fetussubjectcontext\RelatedSubject.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Fetussubjectcontext\SubjectPerson.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Findingssectiondir\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Functionalstatusproblemobservation\Observation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Functionalstatusresultobservation\Observation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Functionalstatusresultorganizer\Component4.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Functionalstatusresultorganizer\IComponent4Choice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Functionalstatusresultorganizer\Organizer.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Functionalstatussection\AssessmentScaleObservationEntry.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Functionalstatussection\CaregiverCharacteristicsEntry.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Functionalstatussection\CognitiveStatusProblemObservationEntry.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Functionalstatussection\CognitiveStatusResultObservationEntry.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Functionalstatussection\CognitiveStatusResultOrganizerEntry.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Functionalstatussection\FunctionalStatusProblemObservationEntry.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Functionalstatussection\FunctionalStatusResultObservationEntry.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Functionalstatussection\FunctionalStatusResultOrganizerEntry.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Functionalstatussection\IEntryChoice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Functionalstatussection\NonMedicinalSupplyActivityEntry.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Functionalstatussection\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Generalstatussection\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Healthstatusobservation\Observation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Highestpressureulcerstage\Observation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Historyandphysical\Component2.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Historyandphysical\HistoryAndPhysical.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Historyandphysical\HistoryAndPhysicalDocument.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Historyandphysical\IComponent2Choice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Historyandphysical\IComponent3Choice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Historyandphysical\StructuredBody.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Historyofpastillnesssection\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Historyofpresentillnesssection\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Hospitaladmissiondiagnosissection\Entry.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Hospitaladmissiondiagnosissection\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Hospitaladmissiondiagnosis\Act.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Hospitaladmissionmedicationssectionentriesoptional\Entry.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Hospitaladmissionmedicationssectionentriesoptional\IEntryChoice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Hospitaladmissionmedicationssectionentriesoptional\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Hospitalconsultationssection\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Hospitalcoursesection\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Hospitaldischargediagnosissection\Entry.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Hospitaldischargediagnosissection\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Hospitaldischargediagnosis\Act.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Hospitaldischargeinstructionssection\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Hospitaldischargemedicationssectionentriesoptional\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Hospitaldischargemedicationssectionentriesrequired\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Hospitaldischargephysicalsection\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Hospitaldischargestudiessummarysection\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Immunizationactivity\Consumable.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Immunizationactivity\IEntryRelationshipChoice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Immunizationactivity\ImmunizationRefusalReasonEntryRelationship.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Immunizationactivity\SubstanceAdministration.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Immunizationmedicationinformation\ManufacturedProduct.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Immunizationrefusalreason\Observation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Immunizationssectionentriesoptional\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Immunizationssectionentriesrequired\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Implantssection\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Indication\Observation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Instructionssection\Entry.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Instructionssection\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Instructions\Act.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Interventionssection\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Medicalequipmentsection\Entry.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Medicalequipmentsection\IEntryChoice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Medicalequipmentsection\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Medicalgeneralhistorysection\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Medicationactivity\Consumable.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Medicationactivity\IEntryRelationshipChoice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Medicationactivity\IParticipant2Choice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Medicationactivity\SubstanceAdministration.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Medicationdispense\AssignedEntity.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Medicationdispense\EntryRelationship.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Medicationdispense\IEntryRelationshipChoice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Medicationdispense\Performer2.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Medicationdispense\Supply.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Medicationinformation\ManufacturedProduct.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Medicationsadministeredsection\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Medicationssectionentriesoptional\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Medicationssectionentriesrequired\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Medicationsupplyorder\Supply.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Medicationusenoneknowndeprecated\Observation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\AgeObservationEntryRelationship.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\AllergiesSectionentriesOptionalComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\AllergiesSectionentriesRequiredComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\AllergyStatusObservationEntryRelationship.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\AnesthesiaSectionComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\AssessmentAndPlanSectionComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\AssessmentScaleObservationEntryRelationship.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\AssessmentSectionComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\AssignedAuthor.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\AssignedAuthorPerson.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\AssignedCustodian.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\AssignedEntityInformant12.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\AssignedEntity_1.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\AssignedEntity_2.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\AssociatedEntity.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\Authenticator.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\AuthenticatorAssignedEntity.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\AuthenticatorPerson.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\AuthoringDevice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\Authorization.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\Author_1.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\Author_2.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\Birthplace.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\CaregiverCharacteristicsEntryRelationship.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\ChiefComplaintAndReasonForVisitSectionComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\ChiefComplaintSectionComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\ComplicationsSectionComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\Component1_1.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\Component1_2.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\Component2.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\Component5.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\Consent.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\Custodian.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\CustodianOrganization.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\DataEnterer.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\DataEntererAssignedEntity.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\DataEntererPerson.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\Device.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\DocumentationOf.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\EncompassingEncounter_1.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\EncompassingEncounter_2.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\EncounterParticipant.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\Entity.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\EntryRelationship_1.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\EntryRelationship_2.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\EntryRelationship_3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\EntryRelationship_4.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\EntryRelationship_5.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\Entry_1.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\Entry_10.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\Entry_2.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\Entry_3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\Entry_4.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\Entry_5.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\Entry_6.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\Entry_7.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\Entry_8.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\Entry_9.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\FamilyHistorySectionComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\FunctionalStatusSectionComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\GeneralStatusSectionComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\Guardian.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\GuardianPerson.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\HasComponentEncounter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\HasComponentEntryRelationship.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\HealthCareFacility.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\HealthStatusObservationEntryRelationship.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\HighestPressureUlcerStageEntry.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\HistoryOfPastIllnessSectionComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\HistoryOfPresentIllnessSectionComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\IAssignedAuthorChoice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\IAuthorizationChoice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\IComponent2Choice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\IEntryChoice_1.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\IEntryChoice_10.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\IEntryChoice_2.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\IEntryChoice_3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\IEntryChoice_4.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\IEntryChoice_5.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\IEntryChoice_6.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\IEntryChoice_7.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\IEntryChoice_8.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\IEntryChoice_9.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\IEntryRelationshipChoice_1.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\IEntryRelationshipChoice_2.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\IEntryRelationshipChoice_3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\IEntryRelationshipChoice_4.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\IEntryRelationshipChoice_5.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\IEntryRelationshipChoice_6.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\IEntryRelationshipChoice_7.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\IInformant12Choice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\ImmunizationMedicationInformationProduct.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\ImmunizationsSectionentriesOptionalComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\ImmunizationsSectionentriesRequiredComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\IndicationEntryRelationship.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\Informant12.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\Informant12Person.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\InformationRecipient.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\InFulfillmentOf.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\InstructionsEntryRelationship.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\InstructionsSectionComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\IntendedRecipient.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\IntendedRecipientOrganization.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\IntendedRecipientPerson.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\IParticipant1Choice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\IPreconditionChoice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\IProductChoice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\LanguageCommunication.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\LegalAuthenticator.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\LegalAuthenticatorAssignedEntity.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\LegalAuthenticatorPerson.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\Location.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\MedicationActivityEntryRelationship.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\MedicationDispenseEntryRelationship.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\MedicationInformationProduct.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\MedicationsSectionentriesOptionalComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\MedicationsSectionentriesRequiredComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\MedicationSupplyOrderEntryRelationship.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\NonMedicinalSupplyActivityEntryRelationship.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\NumberOfPressureUlcersObservationEntry.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\ObservationRange.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\Order.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\Organization_1.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\Organization_2.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\Organization_3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\Participant2.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\Participant2_1.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\Participant2_2.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\Participant2_3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\ParticipantRole.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\Patient.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\PatientRole.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\PatientRoleOrganization.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\Performer1AssignedEntity.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\Performer1_1.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\Performer2.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\Performer2_1.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\PhysicalExamSectionComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\Place.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\PlannedProcedureSectionComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\PlanOfCareSectionComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\PlayingEntity_1.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\PlayingEntity_2.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\Precondition.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\PressureUlcerObservationEntry.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\ProblemSectionentriesOptionalComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\ProblemSectionentriesRequiredComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\ProblemStatusEntryRelationship.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\ProcedureActivityActEntry.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\ProcedureActivityObservationEntry.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\ProcedureActivityProcedureEntry.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\ProcedureDescriptionSectionComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\ProcedureDispositionSectionComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\ProcedureEstimatedBloodLossSectionComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\ProcedureFindingsSectionComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\ProcedureImplantsSectionComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\ProcedureIndicationsSectionComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\ProcedureSpecimensTakenSectionComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\ProceduresSectionentriesOptionalComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\ProceduresSectionentriesRequiredComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\QuantityMeasurementObservationEntryRelationship.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\ReactionObservationEntryRelationship.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\ReasonForVisitSectionComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\RecordTarget.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\ReferenceRange.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\RelatedEntityInformant12.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\ResponsibleParty.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\ResultsSectionentriesOptionalComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\ResultsSectionentriesRequiredComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\ReviewOfSystemsSectionComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\ServiceEvent.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\SeverityObservationEntryRelationship.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\SocialHistorySectionComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\SOPInstanceObservationEntryRelationship.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\Specimen.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\SpecimenRole.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\VitalSignsSectionentriesOptionalComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Merged\VitalSignsSectionentriesRequiredComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Nonmedicinalsupplyactivity\IParticipant2Choice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Nonmedicinalsupplyactivity\Participant2.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Nonmedicinalsupplyactivity\Supply.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Numberofpressureulcersobservation\EntryRelationshipObservation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Numberofpressureulcersobservation\Observation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Objectivesection\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Observercontext\AssignedAuthor.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Operativenotefluidssection\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Operativenotesurgicalproceduresection\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Operativenote\AssignedEntity.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Operativenote\Component2.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Operativenote\DocumentationOf.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Operativenote\IComponent2Choice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Operativenote\IComponent3Choice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Operativenote\IPerformer1Choice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Operativenote\OperativeNote.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Operativenote\OperativeNoteDocument.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Operativenote\OperativeNoteFluidsSectionComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Operativenote\OperativeNoteSurgicalProcedureSectionComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Operativenote\Performer1.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Operativenote\PostoperativeDiagnosisSectionComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Operativenote\PreoperativeDiagnosisSectionComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Operativenote\ServiceEvent.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Operativenote\StructuredBody.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Operativenote\SurgicalDrainsSectionComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Payerssection\Entry.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Payerssection\IEntryChoice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Payerssection\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Physicalexamsection\IEntryChoice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Physicalexamsection\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Physicianofrecordparticipant\AssignedEntity.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Physicianofrecordparticipant\EncounterParticipant.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Physicianreadingstudyperformer\Performer1.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Plannedproceduresection\Entry.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Plannedproceduresection\IEntryChoice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Plannedproceduresection\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Planofcareactivityact\Act.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Planofcareactivityencounter\Encounter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Planofcareactivityobservation\Observation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Planofcareactivityprocedure\Procedure.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Planofcareactivitysubstanceadministration\SubstanceAdministration.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Planofcareactivitysupply\Supply.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Planofcaresection\IEntryChoice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Planofcaresection\InstructionsEntry.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Planofcaresection\PlanOfCareActivityActEntry.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Planofcaresection\PlanOfCareActivityEncounterEntry.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Planofcaresection\PlanOfCareActivityObservationEntry.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Planofcaresection\PlanOfCareActivityProcedureEntry.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Planofcaresection\PlanOfCareActivitySubstanceAdministrationEntry.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Planofcaresection\PlanOfCareActivitySupplyEntry.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Planofcaresection\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Policyactivity\Act.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Policyactivity\CoveredPartyParticipantParticipant2.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Policyactivity\CoveredPartyParticipantParticipantRole.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Policyactivity\EntryRelationship.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Policyactivity\GuarantorPerformerAssignedEntity.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Policyactivity\GuarantorPerformerPerformer2.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Policyactivity\IEntryRelationshipChoice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Policyactivity\IParticipant2Choice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Policyactivity\IPerformer2Choice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Policyactivity\PayerPerformerAssignedEntity.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Policyactivity\PayerPerformerPerformer2.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Policyactivity\PolicyHolderParticipantParticipant2.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Policyactivity\PolicyHolderParticipantParticipantRole.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Postoperativediagnosissection\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Postprocedurediagnosissection\Entry.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Postprocedurediagnosissection\IEntryChoice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Postprocedurediagnosissection\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Postprocedurediagnosis\Act.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Preconditionforsubstanceadministration\Criterion.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Pregnancyobservation\EntryRelationship.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Pregnancyobservation\IEntryRelationshipChoice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Pregnancyobservation\Observation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Preoperativediagnosissection\Entry.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Preoperativediagnosissection\IEntryChoice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Preoperativediagnosissection\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Preoperativediagnosis\Act.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Pressureulcerobservation\DepthofWoundEntryRelationship.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Pressureulcerobservation\DepthofWoundEntryRelationshipObservation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Pressureulcerobservation\IEntryRelationshipChoice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Pressureulcerobservation\LengthofWoundEntryRelationship.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Pressureulcerobservation\LengthofWoundEntryRelationshipObservation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Pressureulcerobservation\Observation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Pressureulcerobservation\WidthofWoundEntryRelationship.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Pressureulcerobservation\WidthofWoundEntryRelationshipObservation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Problemconcernactcondition\Act.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Problemobservation\IEntryRelationshipChoice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Problemobservation\Observation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Problemsectionentriesoptional\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Problemsectionentriesrequired\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Problemstatus\Observation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Procedureactivityact\Act.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Procedureactivityobservation\ComponentEncounter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Procedureactivityobservation\ComponentEntryRelationship.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Procedureactivityobservation\IEntryRelationshipChoice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Procedureactivityobservation\Observation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Procedureactivityprocedure\IParticipant2Choice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Procedureactivityprocedure\IPerformer2Choice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Procedureactivityprocedure\Procedure.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Procedureactivityprocedure\ProductInstanceParticipant2.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Procedureactivityprocedure\ServiceDeliveryLocationParticipant2.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Procedurecontext\Act.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Proceduredescriptionsection\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Proceduredispositionsection\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Procedureestimatedbloodlosssection\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Procedurefindingssection\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Procedureimplantssection\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Procedureindicationssection\Entry.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Procedureindicationssection\IEntryChoice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Procedureindicationssection\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Procedurenote\AssignedEntity.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Procedurenote\Component1.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Procedurenote\Component2.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Procedurenote\DocumentationOf.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Procedurenote\EncompassingEncounter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Procedurenote\EncounterParticipant.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Procedurenote\IComponent2Choice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Procedurenote\IComponent3Choice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Procedurenote\IDocumentationOfChoice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Procedurenote\IEncounterParticipantChoice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Procedurenote\IParticipant1Choice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Procedurenote\Location.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Procedurenote\MedicalGeneralHistorySectionComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Procedurenote\MedicationsAdministeredSectionComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Procedurenote\Performer1.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Procedurenote\PostprocedureDiagnosisSectionComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Procedurenote\ProcedureNote.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Procedurenote\ProcedureNoteDocument.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Procedurenote\ServiceEvent.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Procedurenote\StructuredBody.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Procedurespecimenstakensection\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Proceduressectionentriesoptional\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Proceduressectionentriesrequired\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Productinstance\ParticipantRole.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Progressnote\Component1.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Progressnote\Component2.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Progressnote\EncompassingEncounter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Progressnote\HealthCareFacility.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Progressnote\IComponent2Choice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Progressnote\IComponent3Choice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Progressnote\InterventionsSectionComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Progressnote\Location.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Progressnote\ObjectiveSectionComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Progressnote\ProgressNote.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Progressnote\ProgressNoteDocument.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Progressnote\StructuredBody.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Progressnote\SubjectiveSectionComponent3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Purposeofreferenceobservation\Observation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Quantitymeasurementobservation\Observation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Reactionobservation\IEntryRelationshipChoice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Reactionobservation\Observation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Reactionobservation\ProcedureActivityProcedureEntryRelationship.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Reasonforreferralsection\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Reasonforvisitsection\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Referencedframesobservation\Observation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Resultobservation\Observation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Resultorganizer\Component4.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Resultorganizer\IComponent4Choice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Resultorganizer\Organizer.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Resultssectionentriesoptional\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Resultssectionentriesrequired\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Reviewofsystemssection\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Seriesact\Act.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Servicedeliverylocation\ParticipantRole.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Severityobservation\Observation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Smokingstatusobservation\Observation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Socialhistoryobservation\Observation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Socialhistorysection\IEntryChoice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Socialhistorysection\PregnancyObservationEntry.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Socialhistorysection\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Socialhistorysection\SmokingStatusObservationEntry.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Socialhistorysection\SocialHistoryObservationEntry.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Socialhistorysection\TobaccoUseEntry.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Sopinstanceobservation\HasSubjectEntryRelationship.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Sopinstanceobservation\IEntryRelationshipChoice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Sopinstanceobservation\Observation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Sopinstanceobservation\PurposeOfReferenceObservationEntryRelationship.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Sopinstanceobservation\ReferencedFramesObservationEntryRelationship.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Studyact\Act.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Studyact\IEntryRelationshipChoice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Subjectivesection\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Substanceordeviceallergyintoleranceobservation\Observation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Surgerydescriptionsection\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Surgicaldrainssection\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Textobservation\Observation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Tobaccouse\Observation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Unstructureddocument\AssignedAuthor.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Unstructureddocument\AssignedCustodian.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Unstructureddocument\Author.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Unstructureddocument\Custodian.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Unstructureddocument\CustodianOrganization.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Unstructureddocument\PatientRole.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Unstructureddocument\RecordTarget.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Unstructureddocument\UnstructuredDocument.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Unstructureddocument\UnstructuredDocumentDocument.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Usrealmheader\USRealmHeader.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Usrealmheader\USRealmHeaderDocument.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Vitalsignobservation\Observation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Vitalsignsorganizer\Component4.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Vitalsignsorganizer\IComponent4Choice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Vitalsignsorganizer\Organizer.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Vitalsignssectionentriesoptional\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Ccda_r1_1\Vitalsignssectionentriesrequired\Section.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="MainResource\messageSet_ccda_r1_1.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="MainResource\voc.xml" />
+    <EmbeddedResource Include="MainResource\vocabNameMap.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

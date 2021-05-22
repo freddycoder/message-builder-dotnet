@@ -1,52 +1,54 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "message-builder-compatibility", "message-builder-compatibility\message-builder-compatibility.csproj", "{6821E6B6-3A4D-4D4D-A9D0-147878B4FDEE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "message-builder-compatibility", "message-builder-compatibility\message-builder-compatibility.csproj", "{6821E6B6-3A4D-4D4D-A9D0-147878B4FDEE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "message-builder-core", "message-builder-core\message-builder-core.csproj", "{4139D4DB-FBAB-4951-92EA-B5F7BABD8746}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "message-builder-core", "message-builder-core\message-builder-core.csproj", "{4139D4DB-FBAB-4951-92EA-B5F7BABD8746}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "message-builder-terminology", "message-builder-terminology\message-builder-terminology.csproj", "{56003719-FF90-453D-AD34-C7283665EDFE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "message-builder-terminology", "message-builder-terminology\message-builder-terminology.csproj", "{56003719-FF90-453D-AD34-C7283665EDFE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "message-builder-release-r02_04_02", "message-builder-release-r02_04_02\message-builder-release-r02_04_02.csproj", "{2FF31723-036D-484B-BC07-DAE786262310}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "message-builder-release-r02_04_02", "message-builder-release-r02_04_02\message-builder-release-r02_04_02.csproj", "{2FF31723-036D-484B-BC07-DAE786262310}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "junitUtils", "junitUtils\junitUtils.csproj", "{59B6B14C-69AB-4566-8EEF-77881F80A2CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "junitUtils", "junitUtils\junitUtils.csproj", "{59B6B14C-69AB-4566-8EEF-77881F80A2CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "message-builder-util", "message-builder-util\message-builder-util.csproj", "{E3369ED8-EEBF-41F5-8CB7-A817A1D7EBCF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "message-builder-util", "message-builder-util\message-builder-util.csproj", "{E3369ED8-EEBF-41F5-8CB7-A817A1D7EBCF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "message-builder-xml", "message-builder-xml\message-builder-xml.csproj", "{262BF0B7-4E11-43DA-B5E5-EAAE02EF9845}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "message-builder-xml", "message-builder-xml\message-builder-xml.csproj", "{262BF0B7-4E11-43DA-B5E5-EAAE02EF9845}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "message-builder-release-v02_r02", "message-builder-release-v02_r02\message-builder-release-v02_r02.csproj", "{3C2AFF38-D4DA-49FC-8C9F-185C34C3923A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "message-builder-release-v02_r02", "message-builder-release-v02_r02\message-builder-release-v02_r02.csproj", "{3C2AFF38-D4DA-49FC-8C9F-185C34C3923A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "message-builder-release-v01_r04_3", "message-builder-release-v01_r04_3\message-builder-release-v01_r04_3.csproj", "{36DBD161-2D00-44F5-AF02-0208B907249D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "message-builder-release-v01_r04_3", "message-builder-release-v01_r04_3\message-builder-release-v01_r04_3.csproj", "{36DBD161-2D00-44F5-AF02-0208B907249D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "message-builder-release-v01_r04_4", "message-builder-release-v01_r04_4\message-builder-release-v01_r04_4.csproj", "{9E61E51A-0A9B-45D3-86D9-D45CD5BB3F56}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "message-builder-release-v01_r04_4", "message-builder-release-v01_r04_4\message-builder-release-v01_r04_4.csproj", "{9E61E51A-0A9B-45D3-86D9-D45CD5BB3F56}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "message-builder-release-sk-v01_r04_3", "message-builder-release-sk-v01_r04_3\message-builder-release-sk-v01_r04_3.csproj", "{9AB0DB24-B268-4568-BC64-B38CA0734513}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "message-builder-release-sk-v01_r04_3", "message-builder-release-sk-v01_r04_3\message-builder-release-sk-v01_r04_3.csproj", "{9AB0DB24-B268-4568-BC64-B38CA0734513}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "message-builder-release-ab-v02_r02", "message-builder-release-ab-v02_r02\message-builder-release-ab-v02_r02.csproj", "{6E3A7777-7CF8-476E-9659-A093D77776E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "message-builder-release-ab-v02_r02", "message-builder-release-ab-v02_r02\message-builder-release-ab-v02_r02.csproj", "{6E3A7777-7CF8-476E-9659-A093D77776E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "message-builder-release-r02_04_03", "message-builder-release-r02_04_03\message-builder-release-r02_04_03.csproj", "{5FBE3F83-C86B-47D7-84E1-05BB69C707B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "message-builder-release-r02_04_03", "message-builder-release-r02_04_03\message-builder-release-r02_04_03.csproj", "{5FBE3F83-C86B-47D7-84E1-05BB69C707B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "message-builder-release-ab-r02_04_03", "message-builder-release-ab-r02_04_03\message-builder-release-ab-r02_04_03.csproj", "{F5EA1710-042C-43E2-B93F-1C46261DA4B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "message-builder-release-ab-r02_04_03", "message-builder-release-ab-r02_04_03\message-builder-release-ab-r02_04_03.csproj", "{F5EA1710-042C-43E2-B93F-1C46261DA4B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "message-builder-release-ab-r02_04_03_imm", "message-builder-release-ab-r02_04_03_imm\message-builder-release-ab-r02_04_03_imm.csproj", "{F0EC84C8-DF28-416D-8F5A-433EC6509ECD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "message-builder-release-ab-r02_04_03_imm", "message-builder-release-ab-r02_04_03_imm\message-builder-release-ab-r02_04_03_imm.csproj", "{F0EC84C8-DF28-416D-8F5A-433EC6509ECD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "message-builder-release-r02_05_00", "message-builder-release-r02_05_00\message-builder-release-r02_05_00.csproj", "{1F36F571-DBD3-48F9-BDE7-8BA60D6F0997}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "message-builder-release-r02_05_00", "message-builder-release-r02_05_00\message-builder-release-r02_05_00.csproj", "{1F36F571-DBD3-48F9-BDE7-8BA60D6F0997}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "message-builder-pcs-cda-r1_2", "message-builder-pcs-cda-r1_2\message-builder-pcs-cda-r1_2.csproj", "{79044B7E-6B96-494D-A804-10453BB4A75C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "message-builder-pcs-cda-r1_2", "message-builder-pcs-cda-r1_2\message-builder-pcs-cda-r1_2.csproj", "{79044B7E-6B96-494D-A804-10453BB4A75C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "message-builder-ccda-r1_1", "message-builder-ccda-r1_1\message-builder-ccda-r1_1.csproj", "{5D181889-F125-4747-A1FD-82D01D4D705A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "message-builder-ccda-r1_1", "message-builder-ccda-r1_1\message-builder-ccda-r1_1.csproj", "{5D181889-F125-4747-A1FD-82D01D4D705A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "message-builder-ccda-pcs-r1_1", "message-builder-ccda-pcs-r1_1\message-builder-ccda-pcs-r1_1.csproj", "{3F34D868-A2E1-49FD-B2F8-8278C4ADDB35}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "message-builder-ccda-pcs-r1_1", "message-builder-ccda-pcs-r1_1\message-builder-ccda-pcs-r1_1.csproj", "{3F34D868-A2E1-49FD-B2F8-8278C4ADDB35}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "message-builder-release-ab_r02_04_03_shr", "message-builder-release-ab_r02_04_03_shr\message-builder-release-ab_r02_04_03_shr.csproj", "{C542229C-BBE5-4457-8D4A-0B57C2C2A142}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "message-builder-release-ab_r02_04_03_shr", "message-builder-release-ab_r02_04_03_shr\message-builder-release-ab_r02_04_03_shr.csproj", "{C542229C-BBE5-4457-8D4A-0B57C2C2A142}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "message-builder-release-cda-ab-shr", "message-builder-release-cda-ab-shr\message-builder-release-cda-ab-shr.csproj", "{BD2C5B3D-9CCC-4CBC-89CD-FC56C7461B04}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "message-builder-release-cda-ab-shr", "message-builder-release-cda-ab-shr\message-builder-release-cda-ab-shr.csproj", "{BD2C5B3D-9CCC-4CBC-89CD-FC56C7461B04}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hello_World", "HelloWorld_AB_SHR\Hello_World.csproj", "{C28A2D98-32E2-4248-96A4-679DCDF68A53}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hello_World", "HelloWorld_AB_SHR\Hello_World.csproj", "{C28A2D98-32E2-4248-96A4-679DCDF68A53}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4E2F6F77-6494-4213-A3AE-D38F65604CA4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreConsoleApp", "NetCoreConsoleApp\NetCoreConsoleApp.csproj", "{097F77EB-08C2-449B-8EC8-8F508D472967}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -290,9 +292,24 @@ Global
 		{C28A2D98-32E2-4248-96A4-679DCDF68A53}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{C28A2D98-32E2-4248-96A4-679DCDF68A53}.Release|x86.ActiveCfg = Release|Any CPU
 		{C28A2D98-32E2-4248-96A4-679DCDF68A53}.Release|x86.Build.0 = Release|Any CPU
+		{097F77EB-08C2-449B-8EC8-8F508D472967}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{097F77EB-08C2-449B-8EC8-8F508D472967}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{097F77EB-08C2-449B-8EC8-8F508D472967}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{097F77EB-08C2-449B-8EC8-8F508D472967}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{097F77EB-08C2-449B-8EC8-8F508D472967}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{097F77EB-08C2-449B-8EC8-8F508D472967}.Debug|x86.Build.0 = Debug|Any CPU
+		{097F77EB-08C2-449B-8EC8-8F508D472967}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{097F77EB-08C2-449B-8EC8-8F508D472967}.Release|Any CPU.Build.0 = Release|Any CPU
+		{097F77EB-08C2-449B-8EC8-8F508D472967}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{097F77EB-08C2-449B-8EC8-8F508D472967}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{097F77EB-08C2-449B-8EC8-8F508D472967}.Release|x86.ActiveCfg = Release|Any CPU
+		{097F77EB-08C2-449B-8EC8-8F508D472967}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A21ED051-37EF-4373-9A56-8BE7BC02D20A}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = message-builder-core\message-builder-core.csproj

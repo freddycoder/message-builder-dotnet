@@ -19,6 +19,7 @@ using Ca.Infoway.Messagebuilder.Terminology.Proxy;
 using Ca.Infoway.Messagebuilder.Platform;
 using Platform.Xml.Sax;
 using Ca.Infoway.Messagebuilder.Domainvalue.Transport;
+using System.Runtime.InteropServices;
 
 namespace Hello_World
 {
@@ -158,7 +159,20 @@ namespace Hello_World
 
         protected MessageBeanTransformerImpl CreateTransformer()
         {
-            TimeZoneInfo timeZone = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time");
+            TimeZoneInfo timeZone;
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                timeZone = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time");
+            }
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+            {
+                timeZone = TimeZoneInfo.FindSystemTimeZoneById("America/New_York");
+            }
+            else
+            {
+                throw new PlatformNotSupportedException();
+            }
+
             return new MessageBeanTransformerImpl(timeZone, timeZone);
         }
 
@@ -193,7 +207,20 @@ namespace Hello_World
             // specify a time zone when using the transformer 
             // (not absolutely necessary, if not set, local timezone is used)
             // Note: a time zone can also be specified for each individual transform, overriding any provided in the constructor
-            TimeZoneInfo timeZone = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time");
+            TimeZoneInfo timeZone;
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                timeZone = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time");
+            }
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+            {
+                timeZone = TimeZoneInfo.FindSystemTimeZoneById("America/New_York");
+            }
+            else
+            {
+                throw new PlatformNotSupportedException();
+            }
+
             return new ClinicalDocumentTransformer(timeZone, timeZone);
         }
 

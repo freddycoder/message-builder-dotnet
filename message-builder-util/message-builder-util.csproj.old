@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E3369ED8-EEBF-41F5-8CB7-A817A1D7EBCF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>messagebuilderutil</RootNamespace>
+    <AssemblyName>message-builder-util</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <ReleaseVersion>1.5.8.2</ReleaseVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DefineConstants>TRACE</DefineConstants>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>message-builder-util.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Hl7BaseVersion.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Util\Xml\XmlNamedNodeMapIterable.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Util\Xml\XmlNodeListIterable.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Typed.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Named.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\NamedAndTyped.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Lang\XmlStringEscape.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Util\Xml\NodeUtil.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Util\Text\Indenter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Lang\Enum.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Lang\EnumPattern.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Lang\Generics.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Lang\EnumUtils.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\J5goodies\AbstractClassPredicate.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\J5goodies\Tally.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\J5goodies\XPathHelper.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\J5goodies\Predicates.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\J5goodies\MapOfMaps.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\J5goodies\Counter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\J5goodies\DirectoryFinderStrategy.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\J5goodies\MimeTypes.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\J5goodies\CamelCaseUtil.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\J5goodies\ClassPredicate.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\J5goodies\JarFinderStrategy.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\J5goodies\BeanProperty.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\J5goodies\EnumeratedIterable.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\J5goodies\NamespaceContextMap.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\J5goodies\BeanReflectionException.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\J5goodies\Generics.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\J5goodies\ClassFinder.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\J5goodies\Namespace.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\J5goodies\FinderStrategy.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\J5goodies\ManifestReader.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\J5goodies\DateUtil.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Util\Iterator\EmptyIterable.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Util\Iterator\ArrayIterable.cs" />
+    <Compile Include="Platform\FileUtil.cs" />
+    <Compile Include="Platform\DateFormatUtil.cs" />
+    <Compile Include="Platform\ClassUtil.cs" />
+    <Compile Include="Platform\BytesUtil.cs" />
+    <Compile Include="Platform\Base64.cs" />
+    <Compile Include="Platform\AssemblyLocationUtil.cs" />
+    <Compile Include="Platform\LinkedSet.cs" />
+    <Compile Include="Platform\TemplateArgument.cs" />
+    <Compile Include="Platform\SourceCodeLocationUtil.cs" />
+    <Compile Include="Platform\Runtime.cs" />
+    <Compile Include="Platform\ResourceLoader.cs" />
+    <Compile Include="Platform\PropertyPath.cs" />
+    <Compile Include="Platform\NumberUtil.cs" />
+    <Compile Include="Platform\NumberFormatter.cs" />
+    <Compile Include="Platform\ListElementUtil.cs" />
+    <Compile Include="Platform\UUID.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\VersionNumber.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\J5goodies\ClassFileUtil.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Castle.Core">
+      <HintPath>..\SharedLibs\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.DynamicProxy2">
+      <HintPath>..\SharedLibs\Castle.DynamicProxy2.dll</HintPath>
+    </Reference>
+    <Reference Include="ILOG.J2CsMapping">
+      <HintPath>..\SharedLibs\ILOG.J2CsMapping.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\SharedLibs\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Data">
+      <HintPath>..\SharedLibs\Spring.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Data.NHibernate20">
+      <HintPath>..\SharedLibs\Spring.Data.NHibernate20.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="message-builder-core.licenseheader" />
+    <None Include="message-builder-util.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\message-builder-compatibility\message-builder-compatibility.csproj">
+      <Project>{6821E6B6-3A4D-4D4D-A9D0-147878B4FDEE}</Project>
+      <Name>message-builder-compatibility</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+</Project>

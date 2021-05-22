@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{262BF0B7-4E11-43DA-B5E5-EAAE02EF9845}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>messagebuilderxml</RootNamespace>
+    <AssemblyName>message-builder-xml</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <ReleaseVersion>1.5.8.2</ReleaseVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>message-builder-xml.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\Cda\Vocabulary\Code.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\Cda\Vocabulary\ValueSetDefinition.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\Cda\Vocabulary\ValueSetDefinitionSystem.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\CmetBinding.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\Code.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\CodedTypeEvaluator.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\CodeSystem.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\CodeSystemMaintenanceOrganization.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\Concept.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\ConceptDomain.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\ConstrainedDatatype.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\ContainedTemplate.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\ContextBinding.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\Hl7TypeName.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\Hl7TypeParser.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\ImportedPackage.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\MessageSetHistory.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\ReceiverResponsibility.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\RelationshipComparable.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\RelationshipComparator.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\RimClass.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\SchemaMetadata.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\SchematronContext.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\SchematronRule.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\SpecializationChild.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\Util\ConformanceLevelUtil.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\Util\MessageSetUtils.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\ValueSet.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\ValueSetFilter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\ValueSetFilterCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\ValueSetFilterReference.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\Vocabulary.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\MessageSetMarshaller.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\MessageSet.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\UpdateModeType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\MessagePartResolver.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\MessagePartVersionSuffixHelper.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\PackageLocation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\TypeName.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\Relationship.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\Predicate.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\UpdateMode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\DifferenceType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\DifferenceMatch.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\Difference.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\ConformanceLevel.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\DifferenceValue.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\Documentable.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\Interaction.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\HasDifferences.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\DomainSource.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\Documentation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\AnnotationType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\Argument.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\Cardinality.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\Categorizable.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\ChoiceSupport.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\CodingStrength.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\Annotation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\Util\XmlWarningRenderer.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\Util\NamespaceUtil.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\Visitor\RelationshipBridge.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\Visitor\MessageWalker.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\Visitor\MessageVisitor.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\Visitor\ElementBridge.cs" />
+    <Compile Include="Main\SimpleXml\ObjectTreeXmlReader.cs" />
+    <Compile Include="Main\SimpleXml\Helpers.cs" />
+    <Compile Include="Main\SimpleXml\Persister.cs" />
+    <Compile Include="Main\SimpleXml\FieldMapping.cs" />
+    <Compile Include="Main\SimpleXml\BaseAttribute.cs" />
+    <Compile Include="Main\SimpleXml\ElementAttribute.cs" />
+    <Compile Include="Main\SimpleXml\ObjectTreeSupport.cs" />
+    <Compile Include="Main\SimpleXml\ObjectTreeXmlWriter.cs" />
+    <Compile Include="Main\SimpleXml\Serializer.cs" />
+    <Compile Include="Main\SimpleXml\ElementListAttribute.cs" />
+    <Compile Include="Main\SimpleXml\XmlAttributeAttribute.cs" />
+    <Compile Include="Main\SimpleXml\RootAttribute.cs" />
+    <Compile Include="Main\SimpleXml\ElementMapping.cs" />
+    <Compile Include="Main\SimpleXml\ElementMapAttribute.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\MessagePart.cs" />
+    <Compile Include="Main\SimpleXml\NamespaceAttribute.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\Service\TrivialService.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\Service\CompositeMessageDefinitionService.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\Service\ManifestMessageDefinitionService.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\Service\MessageDefinitionService.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\Service\MessageDefinitionServiceFactory.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\Service\BaseMessageDefinitionService.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Xml\Service\ServiceFactory.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Annotation\MbtMessageSetAttribute.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Annotation\MbtModelVersionNumberAttribute.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\message-builder-compatibility\message-builder-compatibility.csproj">
+      <Project>{6821E6B6-3A4D-4D4D-A9D0-147878B4FDEE}</Project>
+      <Name>message-builder-compatibility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\message-builder-util\message-builder-util.csproj">
+      <Project>{E3369ED8-EEBF-41F5-8CB7-A817A1D7EBCF}</Project>
+      <Name>message-builder-util</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Castle.Core">
+      <HintPath>..\SharedLibs\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.DynamicProxy2">
+      <HintPath>..\SharedLibs\Castle.DynamicProxy2.dll</HintPath>
+    </Reference>
+    <Reference Include="ILOG.J2CsMapping">
+      <HintPath>..\SharedLibs\ILOG.J2CsMapping.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\SharedLibs\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Data">
+      <HintPath>..\SharedLibs\Spring.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="message-builder-core.licenseheader" />
+    <None Include="message-builder-xml.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+</Project>

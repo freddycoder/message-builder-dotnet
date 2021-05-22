@@ -1,20 +1,8 @@
-﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
-<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build" ToolsVersion="4.0">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{56003719-FF90-453D-AD34-C7283665EDFE}</ProjectGuid>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <OutputType>Library</OutputType>
-    <AssemblyName>message-builder-terminology</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <RootNamespace>messagebuilderterminology</RootNamespace>
-    <FileUpgradeFlags>
-    </FileUpgradeFlags>
-    <UpgradeBackupLocation>
-    </UpgradeBackupLocation>
-    <OldToolsVersion>3.5</OldToolsVersion>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -30,24 +18,15 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkProfile />
     <ReleaseVersion>1.5.8.2</ReleaseVersion>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Release</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <PropertyGroup>
@@ -56,23 +35,6 @@
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>message-builder-terminology.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup>
-    <Compile Include="Main\Ca\Infoway\Messagebuilder\Terminology\Codeset\DatabaseCodeResolverRegistrationUtility.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Main\Ca\Infoway\Messagebuilder\Terminology\Codeset\Dao\CodeSearchCriteria.cs" />
-    <Compile Include="Main\Ca\Infoway\Messagebuilder\Terminology\Codeset\Dao\CodeSetDao.cs" />
-    <Compile Include="Main\Ca\Infoway\Messagebuilder\Terminology\Codeset\Dao\CodeSystemSearchCriteria.cs" />
-    <Compile Include="Main\Ca\Infoway\Messagebuilder\Terminology\Codeset\Dao\HibernateCodeSetDao.cs" />
-    <Compile Include="Main\Ca\Infoway\Messagebuilder\Terminology\Codeset\Dao\MutableCodeSetDao.cs" />
-    <Compile Include="Main\Ca\Infoway\Messagebuilder\Terminology\Codeset\DatabaseCodeResolver.cs" />
-    <Compile Include="Main\Ca\Infoway\Messagebuilder\Terminology\Codeset\Domain\CodeSystem.cs" />
-    <Compile Include="Main\Ca\Infoway\Messagebuilder\Terminology\Codeset\Domain\CodedValue.cs" />
-    <Compile Include="Main\Ca\Infoway\Messagebuilder\Terminology\Codeset\Domain\ValueSet.cs" />
-    <Compile Include="Main\Ca\Infoway\Messagebuilder\Terminology\Codeset\Domain\ValueSetEntry.cs" />
-    <Compile Include="Main\Ca\Infoway\Messagebuilder\Terminology\Codeset\Domain\VocabularyDomain.cs" />
-    <Compile Include="Main\Ca\Infoway\Messagebuilder\Terminology\Codeset\Support\SupportStatus.cs" />
-  </ItemGroup>
   <ItemGroup>
     <Reference Include="ILOG.J2CsMapping">
       <HintPath>..\SharedLibs\ILOG.J2CsMapping.dll</HintPath>
@@ -92,26 +54,12 @@
     <Reference Include="Spring.Data.NHibernate20">
       <HintPath>..\SharedLibs\Spring.Data.NHibernate20.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\message-builder-compatibility\message-builder-compatibility.csproj">
-      <Project>{6821E6B6-3A4D-4D4D-A9D0-147878B4FDEE}</Project>
-      <Name>message-builder-compatibility</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\message-builder-core\message-builder-core.csproj">
-      <Project>{4139D4DB-FBAB-4951-92EA-B5F7BABD8746}</Project>
-      <Name>message-builder-core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\message-builder-util\message-builder-util.csproj">
-      <Project>{E3369ED8-EEBF-41F5-8CB7-A817A1D7EBCF}</Project>
-      <Name>message-builder-util</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\message-builder-xml\message-builder-xml.csproj">
-      <Project>{262BF0B7-4E11-43DA-B5E5-EAAE02EF9845}</Project>
-      <Name>message-builder-xml</Name>
-    </ProjectReference>
+    <ProjectReference Include="..\message-builder-compatibility\message-builder-compatibility.csproj" />
+    <ProjectReference Include="..\message-builder-core\message-builder-core.csproj" />
+    <ProjectReference Include="..\message-builder-util\message-builder-util.csproj" />
+    <ProjectReference Include="..\message-builder-xml\message-builder-xml.csproj" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -131,7 +79,13 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
-    <None Include="message-builder-terminology.snk" />
+    <Compile Remove="Main\Ca\Infoway\Messagebuilder\Terminology\Codeset\Dao\CodeTestFactory.cs" />
+    <Compile Remove="Main\Ca\Infoway\Messagebuilder\Terminology\Codeset\Dao\DaoTestSupport.cs" />
+    <Compile Remove="Main\Ca\Infoway\Messagebuilder\Terminology\Codeset\Dao\HibernateCodeSetDaoTest.cs" />
+    <Compile Remove="Test\Ca\Infoway\Messagebuilder\Terminology\Codeset\Dao\CodeTestFactory.cs" />
+    <Compile Remove="Test\Ca\Infoway\Messagebuilder\Terminology\Codeset\Dao\DaoTestSupport.cs" />
+    <Compile Remove="Test\Ca\Infoway\Messagebuilder\Terminology\Codeset\Dao\HibernateCodeSetDaoTest.cs" />
+    <Compile Remove="Test\Ca\Infoway\Messagebuilder\Terminology\Codeset\DatabaseCodeResolverTest.cs" />
+    <Compile Remove="Test\Ca\Infoway\Messagebuilder\Terminology\Codeset\PerformanceTester.cs" />
   </ItemGroup>
 </Project>

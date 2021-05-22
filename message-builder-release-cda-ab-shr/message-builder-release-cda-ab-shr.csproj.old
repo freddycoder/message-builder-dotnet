@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BD2C5B3D-9CCC-4CBC-89CD-FC56C7461B04}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>messagebuilderreleasecdaabshr</RootNamespace>
+    <AssemblyName>message-builder-release-cda-ab-shr</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\Act.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\AssignedAuthor.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\AssignedCustodian.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\AssignedEntity.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\AssociatedEntity.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\Authenticator.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\Author.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\BaseModel.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\BaseModelDocument.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\Birthplace.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\Component2.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\Component4.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\Consent.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\Consumable.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\Criterion.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\Custodian.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\CustodianOrganization.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\DataEnterer.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\Device.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\DocumentationOf.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\EncompassingEncounter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\Encounter.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\EncounterParticipant.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\Entity.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\Entry.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\EntryRelationship.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\ExternalAct.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\ExternalDocument.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\ExternalObservation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\ExternalProcedure.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\Guardian.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\HealthCareFacility.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\IComponent2Choice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\IComponent4Choice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\IEntryChoice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\IEntryRelationshipChoice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\IGuardianChoice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\IInformant12Choice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\IManufacturedProductChoice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\InformationRecipient.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\IntendedRecipient.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\IParticipantRoleChoice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\IReferenceChoice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\LabeledDrug.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\Location.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\MaintainedEntity.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\ManufacturedProduct.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\Material.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\NonXMLBody.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\Observation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\ObservationMedia.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\ObservationRange.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\Order.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\Organization.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\OrganizationPartOf.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\Organizer.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\ParentDocument.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\ParticipantRole.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\Patient.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\PatientRole.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\Person.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\Place.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\PlayingEntity.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\Precondition.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\Procedure.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\Product.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\RecordTarget.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\Reference.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\ReferenceRange.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\RegionOfInterest.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\RelatedEntity.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\RelatedSubject.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\ResponsibleParty.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\Section.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\ServiceEvent.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\Specimen.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\SpecimenRole.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\StructuredBody.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\Subject.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\SubjectPerson.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\SubstanceAdministration.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Basemodel\Supply.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Caabtranscribedreports\AssignedAuthor.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Caabtranscribedreports\AssignedCustodian.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Caabtranscribedreports\Authenticator.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Caabtranscribedreports\AuthenticatorAssignedEntity.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Caabtranscribedreports\AuthenticatorOrganization.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Caabtranscribedreports\AuthenticatorPerson.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Caabtranscribedreports\Author.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Caabtranscribedreports\CAABTranscribedReports.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Caabtranscribedreports\CAABTranscribedReportsDocument.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Caabtranscribedreports\Component2.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Caabtranscribedreports\Custodian.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Caabtranscribedreports\CustodianOrganization.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Caabtranscribedreports\DataEnterer.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Caabtranscribedreports\DataEntererAssignedEntity.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Caabtranscribedreports\DataEntererPerson.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Caabtranscribedreports\DocumentationOf.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Caabtranscribedreports\InformationRecipient.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Caabtranscribedreports\IntendedRecipient.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Caabtranscribedreports\Patient.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Caabtranscribedreports\PatientRole.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Caabtranscribedreports\Performer1AssignedEntity.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Caabtranscribedreports\Performer1Organization.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Caabtranscribedreports\Performer1Person.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Caabtranscribedreports\RecordTarget.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Caabtranscribedreports\ServiceEvent.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Domainvalue\ActClassDocument.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Domainvalue\ActClinicalDocument.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Domainvalue\AlbertaTranscribedReportType.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Domainvalue\ConfidentialityCode.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Domainvalue\ISO_639_3.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Domainvalue\RoleClassAssociative.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Domainvalue\RoleClassMutualRelationship.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Domainvalue\x_ActClassDocumentEntryAct.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Domainvalue\x_ActClassDocumentEntryOrganizer.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Domainvalue\x_ActMoodDocumentObservation.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Domainvalue\x_ActRelationshipDocument.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Domainvalue\x_ActRelationshipEntry.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Domainvalue\x_ActRelationshipEntryRelationship.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Domainvalue\x_ActRelationshipExternalReference.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Domainvalue\x_DocumentActMood.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Domainvalue\x_DocumentEncounterMood.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Domainvalue\x_DocumentProcedureMood.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Domainvalue\x_DocumentSubject.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Domainvalue\x_DocumentSubstanceMood.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Domainvalue\x_EncounterParticipant.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Domainvalue\x_InformationRecipient.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Domainvalue\x_InformationRecipientRole.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Domainvalue\x_ServiceEventPerformer.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Merged\AuthoringDevice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Merged\Authorization.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Merged\Component1.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Merged\Component5.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Merged\IAssignedAuthorChoice.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Merged\Informant12.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Merged\InFulfillmentOf.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Merged\LanguageCommunication.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Merged\LegalAuthenticator.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Merged\Participant1.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Merged\Performer1.cs" />
+    <Compile Include="Main\Ca\Infoway\Messagebuilder\Model\Cda_ab_shr\Merged\RelatedDocument.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="MainResource\messageSet_cda_ab_shr.xml" />
+    <EmbeddedResource Include="MainResource\voc.xml" />
+    <EmbeddedResource Include="MainResource\vocabNameMap.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\message-builder-compatibility\message-builder-compatibility.csproj">
+      <Project>{6821e6b6-3a4d-4d4d-a9d0-147878b4fdee}</Project>
+      <Name>message-builder-compatibility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\message-builder-core\message-builder-core.csproj">
+      <Project>{4139d4db-fbab-4951-92ea-b5f7babd8746}</Project>
+      <Name>message-builder-core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\message-builder-xml\message-builder-xml.csproj">
+      <Project>{262bf0b7-4e11-43da-b5e5-eaae02ef9845}</Project>
+      <Name>message-builder-xml</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="message-builder-release-cda-ab-shr.licenseheader" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
