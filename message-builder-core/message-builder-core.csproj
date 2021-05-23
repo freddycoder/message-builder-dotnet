@@ -38,6 +38,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>message-builder-core.snk</AssemblyOriginatorKeyFile>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Castle.Core">
@@ -61,7 +62,6 @@
     <Reference Include="Spring.Core">
       <HintPath>..\SharedLibs\Spring.Core.dll</HintPath>
     </Reference>
-    <Reference Include="System.Configuration" />
     <Reference Update="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -604,5 +604,8 @@
     <Compile Remove="Test\SimpleXml\MockElement.cs" />
     <Compile Remove="Test\SimpleXml\MockMyTest.cs" />
     <Compile Remove="Test\SimpleXml\PersisterTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
   </ItemGroup>
 </Project>

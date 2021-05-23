@@ -181,8 +181,8 @@ namespace Ca.Infoway.Messagebuilder.Marshalling.HL7.Parser
 					result = ParseDate(unparsedDate, GetDateFormatsForOtherType(type, context), context);
 					if (result != null)
 					{
-						string message = "The timestamp element {0} appears to be formatted as type {1}, but should be {2}.";
-						xmlToModelResult.AddHl7Error(new Hl7Error(Hl7ErrorCode.DATA_TYPE_ERROR, System.String.Format(message, XmlDescriber.DescribeSingleElement
+                        const string message = "The timestamp element {0} appears to be formatted as type {1}, but should be {2}.";
+                        xmlToModelResult.AddHl7Error(new Hl7Error(Hl7ErrorCode.DATA_TYPE_ERROR, System.String.Format(message, XmlDescriber.DescribeSingleElement
 							(element), type.Type, context.Type), element));
 						break;
 					}

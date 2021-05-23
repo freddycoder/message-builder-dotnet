@@ -12,5 +12,6 @@
     <ErrorReportUrlHistory />
     <FallbackCulture>en-US</FallbackCulture>
     <VerifyUploadedFiles>false</VerifyUploadedFiles>
+    <ActiveDebugProfile>Docker (1)</ActiveDebugProfile>
   </PropertyGroup>
 </Project>

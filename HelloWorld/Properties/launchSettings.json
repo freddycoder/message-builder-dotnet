@@ -1,9 +1,9 @@
 {
   "profiles": {
-    "Hello_World_AB_SHR": {
+    "Hello_World": {
       "commandName": "Project"
     },
-    "Docker Hello_World_AB_SHR": {
+    "Docker Hello_World": {
       "commandName": "Docker"
     }
   }
