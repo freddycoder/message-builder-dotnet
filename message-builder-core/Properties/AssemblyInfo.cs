@@ -27,11 +27,11 @@ using Ca.Infoway.Messagebuilder.Annotation;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Message Builder Core")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Dotnet core version of message-builder-donet. This is the result of the tool try-convert apply on this repo : https://github.com/CanadaHealthInfoway/message-builder-dotnet")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Canada Health Infoway")]
 [assembly: AssemblyProduct("Ca.Infoway.Messagebuilder")]
-[assembly: AssemblyCopyright("Copyright © Canada Health Infoway 2012")]
+[assembly: AssemblyCopyright("Copyright © Frédéric Jacques 2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

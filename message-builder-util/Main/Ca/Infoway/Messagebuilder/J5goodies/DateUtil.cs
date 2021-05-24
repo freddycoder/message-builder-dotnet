@@ -86,7 +86,8 @@ namespace Ca.Infoway.Messagebuilder.J5goodies {
 				String yyyymmdd = Instance("yyyy-M-d").Format(date);
 				try {
 					result = new PlatformDate(Instance("yyyy-M-d-HH:mm:ss.SSS").Parse(yyyymmdd + "-23:59:59.999"));
-				} catch (ParseException e) {
+				} catch (ParseException)
+                {
 				}
 			}
 			return result;
@@ -98,7 +99,8 @@ namespace Ca.Infoway.Messagebuilder.J5goodies {
 				String yyyymmdd = Instance("yyyy-M-d").Format(date);
 				try {
 					result = new PlatformDate(Instance("yyyy-M-d-HH:mm:ss.SSS").Parse(yyyymmdd + "-00:00:00.000"));
-				} catch (ParseException e) {
+				} catch (ParseException)
+                {
 				}
 			}
 			return result;

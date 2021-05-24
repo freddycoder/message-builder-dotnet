@@ -30,8 +30,8 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Canada Health Infoway")]
-[assembly: AssemblyProduct("Ca.Infoway.Messagebuilder")]
-[assembly: AssemblyCopyright("Copyright © Canada Health Infoway 2012")]
+[assembly: AssemblyProduct("Ca.Infoway.Messagebuilder.Xml")]
+[assembly: AssemblyCopyright("Copyright © Frédéric Jacques 2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

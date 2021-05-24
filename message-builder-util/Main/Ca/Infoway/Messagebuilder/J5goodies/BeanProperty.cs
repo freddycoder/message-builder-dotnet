@@ -102,8 +102,10 @@ namespace Ca.Infoway.Messagebuilder.J5goodies {
 			MethodInfo method = bridgeMethod;
 			try {
 				method = ILOG.J2CsMapping.Reflect.Helper.GetMethod(bridgeMethod.DeclaringType,bridgeMethod.Name,new ILOG.J2CsMapping.Reflect.IlrMethodInfoAdapter(bridgeMethod.GetParameters()).GetTypes());
-			} catch (SecurityException e) {
-			} catch (AmbiguousMatchException e_0) {
+			} catch (SecurityException)
+            {
+			} catch (AmbiguousMatchException)
+            {
 			}
 			return method;
 		}
@@ -179,7 +181,7 @@ namespace Ca.Infoway.Messagebuilder.J5goodies {
 			{
 				return (T) attributes[0];
 			} else {
-				return default(T);
+				return default;
 			}
         }
 		

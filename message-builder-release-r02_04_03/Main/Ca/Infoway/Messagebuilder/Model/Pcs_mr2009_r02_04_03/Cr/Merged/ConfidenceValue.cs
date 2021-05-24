@@ -58,8 +58,8 @@ namespace Ca.Infoway.Messagebuilder.Model.Pcs_mr2009_r02_04_03.Cr.Merged {
     [Hl7PartTypeMappingAttribute(new string[] {"PRPA_MT101102CA.ObservationEvent","PRPA_MT101104CA.ObservationEvent","PRPA_MT101106CA.ObservationEvent"})]
     public class ConfidenceValue : MessagePartBean {
 
-        private CV code;
-        private REAL value;
+        private readonly CV code;
+        private readonly REAL value;
 
         public ConfidenceValue() {
             this.code = new CVImpl();

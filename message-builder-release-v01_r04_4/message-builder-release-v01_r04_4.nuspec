@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Freddycoder.Ca.Infoway.V01_R04_4</id>
+    <version>1.0.0-alpha</version>
+    <title>Freddycoder.Ca.Infoway.V01_R04_4</title>
+    <authors>Frédéric Jacques</authors>
+    <owners>Frédéric Jacques</owners>
+    <license type="expression">Apache-2.0</license>
+    <projectUrl>https://github.com/freddycoder/message-builder-dotnet</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>HL7v3 interactions. This is a dotnet core version of message-builder-donet. This is the result of the tool try-convert apply on this repo : https://github.com/CanadaHealthInfoway/message-builder-dotnet</description>
+    <releaseNotes>Initial release of the package</releaseNotes>
+    <copyright>Copyright © Frédéric Jacques 2021</copyright>
+    <tags>HL7 HL7v3</tags>
+    <dependencies>
+      <group targetFramework="netstandard2.0" />
+    </dependencies>
+  </metadata>
+  <files />
+</package>

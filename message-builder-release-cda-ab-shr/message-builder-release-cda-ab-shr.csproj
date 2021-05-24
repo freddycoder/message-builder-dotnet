@@ -4,6 +4,15 @@
     <OutputType>Library</OutputType>
     <RootNamespace>messagebuilderreleasecdaabshr</RootNamespace>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <NoWarn>clear(NoWarn);NU5128</NoWarn>
+    <NoWarn>$(NoWarn);NU5128</NoWarn>
+    <NoWarn>$(NoWarn);NU5128</NoWarn>
+    <NoWarn>.\nuget-manager.ps1(NoWarn);NU5128</NoWarn>
+    <NoWarn>$(NoWarn);NU5128</NoWarn>
+    <NoWarn>.\nuget-manager.ps1(NoWarn);NU5128</NoWarn>
+    <NoWarn>/?(NoWarn);NU5128</NoWarn>
+    <NoWarn>$(NoWarn);NU5128</NoWarn>
+    <NoWarns>$(NoWarn);NU5128</NoWarns>
   </PropertyGroup>
   <ItemGroup>
     <EmbeddedResource Include="MainResource\messageSet_cda_ab_shr.xml" />

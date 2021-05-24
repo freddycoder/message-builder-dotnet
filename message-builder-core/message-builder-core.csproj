@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <OutputType>Library</OutputType>
@@ -22,8 +22,21 @@
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <ReleaseVersion>1.5.8.2</ReleaseVersion>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <NoWarn>clear(NoWarn);NU5128</NoWarn>
+    <NoWarn>$(NoWarn);NU5128</NoWarn>
+    <NoWarn>$(NoWarn);NU5128</NoWarn>
+    <NoWarn>$(NoWarn);NU5128</NoWarn>
+    <NoWarn>$(NoWarn);NU5128</NoWarn>
+    <NoWarn>.\nuget-manager.ps1(NoWarn);NU5128</NoWarn>
+    <NoWarn>$(NoWarn);NU5128</NoWarn>
+    <NoWarn>.\nuget-manager.ps1(NoWarn);NU5128</NoWarn>
+    <NoWarn>/?(NoWarn);NU5128</NoWarn>
+    <NoWarn>$(NoWarn);NU5128</NoWarn>
+    <NoWarns>$(NoWarn);NU5128</NoWarns>
+    <NoWarns>..(NoWarn);NU5128</NoWarns>
     <UseWindowsForms>true</UseWindowsForms>
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+    <NoWarn>$(NoWarn);NU5128</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DefineConstants>TRACE;DEBUG;UNIT_TESTS</DefineConstants>
@@ -38,7 +51,6 @@
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>message-builder-core.snk</AssemblyOriginatorKeyFile>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Castle.Core">
@@ -74,17 +86,20 @@
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
       <Visible>False</Visible>
-      <ProductName></ProductName>
+      <ProductName>
+      </ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
       <Visible>False</Visible>
-      <ProductName></ProductName>
+      <ProductName>
+      </ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
       <Visible>False</Visible>
-      <ProductName></ProductName>
+      <ProductName>
+      </ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
