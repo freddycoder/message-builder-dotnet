@@ -20,13 +20,6 @@
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <ReleaseVersion>1.5.8.2</ReleaseVersion>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <NoWarn>clear(NoWarn);NU5128</NoWarn>
-    <NoWarn>$(NoWarn);NU5128</NoWarn>
-    <NoWarn>$(NoWarn);NU5128</NoWarn>
-    <NoWarn>.\nuget-manager.ps1(NoWarn);NU5128</NoWarn>
-    <NoWarn>$(NoWarn);NU5128</NoWarn>
-    <NoWarn>.\nuget-manager.ps1(NoWarn);NU5128</NoWarn>
-    <NoWarn>/?(NoWarn);NU5128</NoWarn>
     <NoWarn>$(NoWarn);NU5128</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">

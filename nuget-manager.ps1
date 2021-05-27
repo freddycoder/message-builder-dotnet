@@ -14,8 +14,8 @@
  limitations under the License.
  
  Author:        $LastChangedBy: Frédéric Jacques
- Last modified: $LastChangedDate: 2021-01-23 12:24:12 -0500 (Sun, 23 May 2021)
- Revision:      $LastChangedRevision: 1
+ Last modified: $LastChangedDate: 2021-05-26 20:38:12 -0500 (Wed, 26 May 2021)
+ Revision:      $LastChangedRevision: 2
 #>
 
 param(
@@ -156,23 +156,16 @@ foreach ($project in $projects)
 
     $parent_xpath = '/Project/PropertyGroup'
     $nodes = $csproj.SelectNodes($parent_xpath);
-    $nodes | ForEach-Object {
-        $child_node = $_.SelectSingleNode('//GeneratePackageOnBuild');
-        if ($null -ne $child_node) {
-            $_.RemoveChild($child_node) | Out-Null
-        }
-    }
+    
 
     $parent_xpath = '/Project/PropertyGroup'
-    $nodes = $csproj.SelectNodes($parent_xpath);
-    $nodes | ForEach-Object {
-        $child_node = $_.SelectSingleNode('//NoWarn');
-        if ($null -ne $child_node -and $child_node.InnerText -eq "$$(NoWarn);NU5128") {
-            $_.RemoveChild($child_node) | Out-Null
-        }
-        $child_node = $_.SelectSingleNode('//NoWarns');
-        if ($null -ne $child_node -and $child_node.InnerText -eq "$$(NoWarn);NU5128") {
-            $_.RemoveChild($child_node) | Out-Null
+    $propertyGroup = $csproj.SelectNodes($parent_xpath);
+    foreach ($group in $nodes) {
+        $noWarnOldTags = $group.SelectNodes("//NoWarn");
+        $noWarnOldTags | ForEach-Object {
+            if ('NoWarn' -eq $_.Name) {
+                $group.RemoveChild($_);
+            }
         }
     }
 
@@ -181,10 +174,12 @@ foreach ($project in $projects)
     $propertyGroup = $csproj.SelectSingleNode("/Project/PropertyGroup");
     $propertyGroup.InsertAfter($nowarns, $csproj.SelectSingleNode("/Project/PropertyGroup/GenerateAssemblyInfo")) | Out-Null
 
-    $nuspec.Save($nuspecPath);
-    $csproj.Save($csprojPath);
+    $nuspec.Save($PWD.Path + "\" + $nuspecPath);
+    $csproj.Save($PWD.Path + "\" + $csprojPath);
 
     & Set-Location $project.Name
+    & dotnet restore
+    & dotnet build -f "netstandard2.0" -c Release
     & nuget pack -OutputDirectory ..\Packages -Properties Configuration=Release
 
     if ("true" -eq $generatesnuspec -and "true" -eq $includeSymbole) {
@@ -196,9 +191,11 @@ foreach ($project in $projects)
 
     if ("true" -eq $doPush) {
         $packageFile = $nuspec.package.metadata.id + "." + $nuspec.package.metadata.version + ".nupkg";
-        $symbolPackage = $nuspec.package.metadata.id + "." + $nuspec.package.metadata.version + ".snupkg";
         & nuget push ..\Packages\$packageFile -src $nugetSource -SkipDuplicate
+
         if ("true" -eq $includeSymbole) {
+            $symbolPackage = $nuspec.package.metadata.id + "." + $nuspec.package.metadata.version + ".snupkg";
+
             if (Test-Path ..\Packages\$symbolPackage) {
                 & nuget push ..\Packages\$symbolPackage -src $nugetSource -SkipDuplicate
             }

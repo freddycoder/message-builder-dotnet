@@ -22,21 +22,9 @@
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <ReleaseVersion>1.5.8.2</ReleaseVersion>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <NoWarn>clear(NoWarn);NU5128</NoWarn>
     <NoWarn>$(NoWarn);NU5128</NoWarn>
-    <NoWarn>$(NoWarn);NU5128</NoWarn>
-    <NoWarn>$(NoWarn);NU5128</NoWarn>
-    <NoWarn>$(NoWarn);NU5128</NoWarn>
-    <NoWarn>.\nuget-manager.ps1(NoWarn);NU5128</NoWarn>
-    <NoWarn>$(NoWarn);NU5128</NoWarn>
-    <NoWarn>.\nuget-manager.ps1(NoWarn);NU5128</NoWarn>
-    <NoWarn>/?(NoWarn);NU5128</NoWarn>
-    <NoWarn>$(NoWarn);NU5128</NoWarn>
-    <NoWarns>$(NoWarn);NU5128</NoWarns>
-    <NoWarns>..(NoWarn);NU5128</NoWarns>
     <UseWindowsForms>true</UseWindowsForms>
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
-    <NoWarn>$(NoWarn);NU5128</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DefineConstants>TRACE;DEBUG;UNIT_TESTS</DefineConstants>

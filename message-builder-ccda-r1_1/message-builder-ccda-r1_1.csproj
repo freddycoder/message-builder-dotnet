@@ -5,19 +5,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>messagebuilderccdar1_1</RootNamespace>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <NoWarn>clear(NoWarn);NU5128</NoWarn>
     <NoWarn>$(NoWarn);NU5128</NoWarn>
-    <NoWarn>true(NoWarn);NU5128</NoWarn>
-    <NoWarn>$(NoWarn);NU5128</NoWarn>
-    <NoWarn>$(NoWarn);NU5128</NoWarn>
-    <NoWarn>$(NoWarn);NU5128</NoWarn>
-    <NoWarn>.\nuget-manager.ps1(NoWarn);NU5128</NoWarn>
-    <NoWarn>$(NoWarn);NU5128</NoWarn>
-    <NoWarn>.\nuget-manager.ps1(NoWarn);NU5128</NoWarn>
-    <NoWarn>/?(NoWarn);NU5128</NoWarn>
-    <NoWarn>$(NoWarn);NU5128</NoWarn>
-    <NoWarns>$(NoWarn);NU5128</NoWarns>
-    <NoWarns>..(NoWarn);NU5128</NoWarns>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject />
