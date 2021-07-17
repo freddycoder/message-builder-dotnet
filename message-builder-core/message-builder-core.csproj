@@ -22,7 +22,7 @@
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <ReleaseVersion>1.5.8.2</ReleaseVersion>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <NoWarn>C:\Users\Frédéric\source\repos\message-builder-dotnet(NoWarn);NU5128</NoWarn>
+    <NoWarn>$(NoWarn);NU5128</NoWarn>
     <UseWindowsForms>true</UseWindowsForms>
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
   </PropertyGroup>

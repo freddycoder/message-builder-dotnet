@@ -173,7 +173,7 @@ foreach ($project in $projects)
     }
 
     $nowarns = $csproj.CreateElement('NoWarn');
-    $nowarns.InnerText = "$$(NoWarn);NU5128".Replace("..", "$");
+    $nowarns.InnerText = "_(NoWarn);NU5128".Replace("_", "$");
     $propertyGroup = $csproj.SelectSingleNode("/Project/PropertyGroup");
     $propertyGroup.InsertAfter($nowarns, $csproj.SelectSingleNode("/Project/PropertyGroup/GenerateAssemblyInfo")) | Out-Null
 

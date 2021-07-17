@@ -4,7 +4,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>messagebuilderreleaseab_r02_04_03_shr</RootNamespace>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <NoWarn>C:\Users\Frédéric\source\repos\message-builder-dotnet(NoWarn);NU5128</NoWarn>
+    <NoWarn>$(NoWarn);NU5128</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\message-builder-compatibility\message-builder-compatibility.csproj" />
