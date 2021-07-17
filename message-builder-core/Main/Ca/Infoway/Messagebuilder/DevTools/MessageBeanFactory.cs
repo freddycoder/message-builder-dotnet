@@ -136,11 +136,11 @@ namespace Ca.Infoway.Messagebuilder.DevTools
 				}
 				catch (MemberAccessException e)
 				{
-					Ca.Infoway.Messagebuilder.Runtime.PrintStackTrace(e);
+					Console.WriteLine(e.ToString());
 				}
 				catch (Exception e)
 				{
-					Ca.Infoway.Messagebuilder.Runtime.PrintStackTrace(e);
+					Console.WriteLine(e.ToString());
 				}
 			}
 		}

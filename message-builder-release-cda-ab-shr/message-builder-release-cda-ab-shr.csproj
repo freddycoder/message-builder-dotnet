@@ -4,7 +4,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>messagebuilderreleasecdaabshr</RootNamespace>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <NoWarn>$(NoWarn);NU5128</NoWarn>
+    <NoWarn>C:\Users\Frédéric\source\repos\message-builder-dotnet(NoWarn);NU5128</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <EmbeddedResource Include="MainResource\messageSet_cda_ab_shr.xml" />

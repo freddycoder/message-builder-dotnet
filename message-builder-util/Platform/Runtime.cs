@@ -19,8 +19,10 @@
  */
 
 
+using ILOG.J2CsMapping.Reflect;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 
 namespace Ca.Infoway.Messagebuilder
 {
@@ -66,21 +68,34 @@ namespace Ca.Infoway.Messagebuilder
             }
             throw new NotImplementedException();
         }
-        
+
+        private static Dictionary<string, Type> _typeCache = new Dictionary<string, Type>();
         public static Type GetType(string typeName)
         {
 			try {
-                Type result = ILOG.J2CsMapping.Reflect.Helper.GetNativeType(StringUtils.Trim(typeName));
+                if (_typeCache.TryGetValue(typeName, out var cachedResult))
+                {
+                    return cachedResult;
+                }
+                Type result = GetNativeType(StringUtils.Trim(typeName));
                 if (result == null)
                 {
-                    throw new TypeLoadException("Unable to load type: " + typeName);
-                } 
-                else 
+                    throw new TypeLoadException($"Unable to load type: {typeName}");
+                }
+                else
                 {
+                    try
+                    {
+                        _typeCache.Add(typeName, result);
+                    }
+                    catch (Exception e)
+                    {
+                        Console.Error.WriteLine($"Failed to cache {typeName}. Reason: {e}");
+                    }
 				    return result;
                 }
 			} catch (ArgumentNullException e) {
-				throw new TypeLoadException("Unable to load type: " + typeName, e);				
+                throw new TypeLoadException($"Unable to load type: {typeName}", e);
 			}
 		}
 
@@ -109,9 +124,46 @@ namespace Ca.Infoway.Messagebuilder
             return false;
         }
 
-		public static void PrintStackTrace(Exception e) {
-			Console.WriteLine(e.ToString());
-		}
+        public static Type GetNativeType(string className) => GetNativeType(Assembly.GetExecutingAssembly(), className);
 
+        public static Type GetNativeType(Assembly a, string className)
+        {
+            Type type1 = a.GetType(className);
+            if (type1 != null)
+                return type1;
+            int length1 = className.LastIndexOf(".");
+            if (length1 > 0)
+            {
+                string str = className.Substring(length1 + 1);
+                string name = className.Substring(0, length1) + "+" + str;
+                Type type2 = a.GetType(name);
+                if (type2 != null)
+                    return type2;
+            }
+            foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies())
+            {
+                Type type2 = assembly.GetType(className);
+                if (type2 == null)
+                {
+                    int length2 = className.LastIndexOf(".");
+                    if (length2 > 0)
+                    {
+                        string str = className.Substring(length2 + 1);
+                        string name = className.Substring(0, length2) + "+" + str;
+                        Type type3 = assembly.GetType(name);
+                        if (type3 != null)
+                            return type3;
+                    }
+                }
+                if (type2 != null)
+                    return type2;
+            }
+            if (AssemblyScanner.Self == null)
+            {
+                AssemblyScanner.Initialize();
+                AssemblyScanner.Self = new AssemblyScanner();
+            }
+            return AssemblyScanner.Self.Resolve(className);
+        }
     }
 }

@@ -40,7 +40,7 @@ namespace Ca.Infoway.Messagebuilder.Xml.Service {
 	///
 	public class MessageDefinitionServiceFactory : ServiceFactory<MessageDefinitionService> {
 	
-		private static object locker = new object ();
+		private static readonly object locker = new object ();
 		
 		private static MessageDefinitionService instance;
 	

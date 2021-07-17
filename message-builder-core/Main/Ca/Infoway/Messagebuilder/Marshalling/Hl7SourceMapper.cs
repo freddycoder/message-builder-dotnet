@@ -50,7 +50,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 	{
 		private readonly ILog log = log4net.LogManager.GetLogger(typeof(Hl7SourceMapper));
 
-		private PolymorphismHandler polymorphismHandler = new PolymorphismHandler();
+		private readonly PolymorphismHandler polymorphismHandler = new PolymorphismHandler();
 
 		public virtual XmlToModelResult MapToTeal(Hl7MessageSource hl7MessageSource)
 		{
@@ -116,9 +116,11 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 			{
 				XmlElement element = elements[j];
 				string nodeName = NodeUtil.GetLocalOrTagName(element);
-				IList<XmlNode> nodes = new List<XmlNode>();
-				nodes.Add(element);
-				while (j + 1 < length && IsSameElementName(element, elements[j + 1]))
+                IList<XmlNode> nodes = new List<XmlNode>
+                {
+                    element
+                };
+                while (j + 1 < length && IsSameElementName(element, elements[j + 1]))
 				{
 					nodes.Add(elements[++j]);
 				}
@@ -777,23 +779,23 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 				// optional and required fixed values do not have to provide a value, but if they do they must conform to specified value
 				if (valueProvided)
 				{
-					if ("BL".Equals(relationship.Type) && value is BL)
+					if ("BL".Equals(relationship.Type) && value is BL bL)
 					{
-						string valueAsString = ((BL)value).Value.ToString();
+						string valueAsString = bL.Value.ToString();
 						valid = relationship.FixedValue.EqualsIgnoreCase(valueAsString);
 					}
 					else
 					{
-						if ("ST".Equals(relationship.Type) && value is ST)
+						if ("ST".Equals(relationship.Type) && value is ST sT)
 						{
-							string valueAsString = ((ST)value).Value.ToString();
+							string valueAsString = sT.Value.ToString();
 							valid = relationship.FixedValue.EqualsIgnoreCase(valueAsString);
 						}
 						else
 						{
-							if ("INT.POS".Equals(relationship.Type) && value is INT)
+							if ("INT.POS".Equals(relationship.Type) && value is INT iNT)
 							{
-								string valueAsString = ((INT)value).Value.ToString();
+								string valueAsString = iNT.Value.ToString();
 								valid = relationship.FixedValue.EqualsIgnoreCase(valueAsString);
 							}
 							else
@@ -811,9 +813,9 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 									}
 									else
 									{
-										if (value is CD)
+										if (value is CD cD)
 										{
-											Code code = ((CD)value).Value;
+											Code code = cD.Value;
 											valid = (code.CodeValue != null && StringUtils.Equals(relationship.FixedValue, code.CodeValue));
 										}
 									}

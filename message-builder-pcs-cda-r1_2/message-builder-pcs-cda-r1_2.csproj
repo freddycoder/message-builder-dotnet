@@ -5,7 +5,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>messagebuilderpcscdar1_2</RootNamespace>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <NoWarn>$(NoWarn);NU5128</NoWarn>
+    <NoWarn>C:\Users\Frédéric\source\repos\message-builder-dotnet(NoWarn);NU5128</NoWarn>
     <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
   </PropertyGroup>
   <PropertyGroup>

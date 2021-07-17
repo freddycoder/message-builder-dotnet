@@ -13,18 +13,21 @@
  See the License for the specific language governing permissions and
  limitations under the License.
  
- Author:        $LastChangedBy: Frédéric Jacques
- Last modified: $LastChangedDate: 2021-05-26 20:38:12 -0500 (Wed, 26 May 2021)
- Revision:      $LastChangedRevision: 2
+ Author:        Frédéric Jacques
+ Last modified: 2021-05-26 20:38:12 -0500 (Wed, 26 May 2021)
+ Revision:      2
 #>
 
 param(
     [string] $includeSymbole,
     [string] $doPush,
-    [string] $apiKey
+    [string] $apiKey,
+    [string] $nugetSource
 )
 
-$nugetSource = "https://api.nuget.org/v3/index.json";
+if ([System.String]::IsNullOrWhiteSpace($nugetSource)) {
+    $nugetSource = "https://api.nuget.org/v3/index.json";
+}
 
 if ("true" -eq $doPush) {
     & nuget SetApiKey $apiKey -Source $nugetSource
@@ -63,7 +66,7 @@ foreach ($project in $projects)
     }
 
     $nuspec.package.metadata.id = $nugetId;
-    $nuspec.package.metadata.version = "1.0.0-alpha";
+    $nuspec.package.metadata.version = "1.0.0-beta";
     $nuspec.package.metadata.title = $nugetId;
     $nuspec.package.metadata.authors = "Frédéric Jacques";
     $nuspec.package.metadata.owners = "Frédéric Jacques";
@@ -96,7 +99,7 @@ foreach ($project in $projects)
 
     $nuspec.package.metadata.description = "HL7v3 interactions. This is a dotnet core version of message-builder-donet. This is the result of the tool try-convert apply on this repo : https://github.com/CanadaHealthInfoway/message-builder-dotnet";
 
-    $nuspec.package.metadata.releaseNotes = "Initial release of the package";
+    $nuspec.package.metadata.releaseNotes = "Some performance optimization and code cleanup";
 
     $nuspec.package.metadata.copyright = "Copyright © Frédéric Jacques 2021";
 

@@ -65,27 +65,26 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 			foreach (string part in pathParts)
 			{
 				object sorterObj = sorter.Get(part);
-				if (sorterObj is RelationshipSorter)
+				if (sorterObj is RelationshipSorter sorter1)
 				{
-					sorter = (RelationshipSorter)sorterObj;
+					sorter = sorter1;
 				}
 				else
 				{
-					if (sorterObj is BeanProperty)
-					{
-						BeanProperty beanProperty = (BeanProperty)sorterObj;
-						//				result.append(beanProperty.getPropertyType().getSimpleName()).append('.');  // BEAN PATH
-						result.Append(beanProperty.Name).Append('.');
-						// ACCESSOR PATH
-						sorter = RelationshipSorter.Create(string.Empty, beanProperty.Get());
-					}
-					else
-					{
-						// if can't find a mapping match then stop here
-						// just append letfover parts? i.e. a.b.c (.leftover1.leftover2)
-						break;
-					}
-				}
+                    if (sorterObj is BeanProperty beanProperty)
+                    {
+                        //				result.append(beanProperty.getPropertyType().getSimpleName()).append('.');  // BEAN PATH
+                        result.Append(beanProperty.Name).Append('.');
+                        // ACCESSOR PATH
+                        sorter = RelationshipSorter.Create(string.Empty, beanProperty.Get());
+                    }
+                    else
+                    {
+                        // if can't find a mapping match then stop here
+                        // just append letfover parts? i.e. a.b.c (.leftover1.leftover2)
+                        break;
+                    }
+                }
 			}
 			if (result[result.Length - 1] == '.')
 			{
