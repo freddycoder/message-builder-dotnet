@@ -21,9 +21,7 @@
 
 using System;
 using System.Xml;
-using Ca.Infoway.Messagebuilder;
 using Ca.Infoway.Messagebuilder.Error;
-using Ca.Infoway.Messagebuilder.Marshalling;
 using Ca.Infoway.Messagebuilder.Marshalling.HL7;
 using Ca.Infoway.Messagebuilder.Model;
 using Ca.Infoway.Messagebuilder.Resolver;
@@ -66,7 +64,7 @@ namespace Ca.Infoway.Messagebuilder.Marshalling
 		}
 
 		public MessageBeanTransformerImpl(MessageDefinitionService service, RenderMode renderMode, TimeZoneInfo dateTimeZone, TimeZoneInfo
-			 dateTimeTimeZone) : this(service, renderMode, null, null, true)
+             dateTimeTimeZone) : this(service, renderMode, null, null, true)
 		{
 		}
 

@@ -136,25 +136,43 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		/// <returns>the diff of the two values</returns>
 		/// <exception cref="IllegalArgumentException if the type is not supported"/>
 		public static Diff<T> Diff<T>(T t, T t2) {
-			if (t == null || t2 == null) {
-				return null;
-			} else if (t  is  PlatformDate) {
-                return (Diff<T>)(object)DiffDate((PlatformDate)(object)t, (PlatformDate)(object)t2);
-			} else if (t  is  Int64?) {
-                return (Diff<T>)(object)DiffLong((Int64?)(object)t, (Int64?)(object)t2);
-			} else if (t  is  BigDecimal) {
-                return (Diff<T>)(object)DiffBigDecimal((BigDecimal)(object)t, (BigDecimal)(object)t2);
-			} else if (t  is  Int32?) {
-                return (Diff<T>)(object)DiffInteger((Int32?)(object)t, (Int32?)(object)t2);
-			} else if (t  is  PhysicalQuantity) {
-                return (Diff<T>)(object)DiffPhysicalQuantity((PhysicalQuantity)(object)t, (PhysicalQuantity)(object)t2);
-            } else if (t is Money) {
-                return (Diff<T>)(object)DiffMoney((Money)(object)t, (Money)(object)t2);
-			} else {
-				throw new ArgumentException(
-						"Can't determine how to perform diff on " + t.GetType());
-			}
-		}
+            if (t != null && t2 != null)
+            {
+                if (t is PlatformDate)
+                {
+                    return (Diff<T>)(object)DiffDate((PlatformDate)(object)t, (PlatformDate)(object)t2);
+                }
+                else if (t is Int64?)
+                {
+                    return (Diff<T>)(object)DiffLong((Int64?)(object)t, (Int64?)(object)t2);
+                }
+                else if (t is BigDecimal)
+                {
+                    return (Diff<T>)(object)DiffBigDecimal((BigDecimal)(object)t, (BigDecimal)(object)t2);
+                }
+                else if (t is Int32?)
+                {
+                    return (Diff<T>)(object)DiffInteger((Int32?)(object)t, (Int32?)(object)t2);
+                }
+                else if (t is PhysicalQuantity)
+                {
+                    return (Diff<T>)(object)DiffPhysicalQuantity((PhysicalQuantity)(object)t, (PhysicalQuantity)(object)t2);
+                }
+                else if (t is Money)
+                {
+                    return (Diff<T>)(object)DiffMoney((Money)(object)t, (Money)(object)t2);
+                }
+                else
+                {
+                    throw new ArgumentException(
+                            "Can't determine how to perform diff on " + t.GetType());
+                }
+            }
+            else
+            {
+                return null;
+            }
+        }
 	
 		private static Diff<PhysicalQuantity> DiffPhysicalQuantity(
 				PhysicalQuantity q1, PhysicalQuantity q2) {
@@ -207,7 +225,7 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		/// <returns>the halved value</returns>
 		public static T Half<T>(T t) {
 			if (t == null) {
-				return  default(T)/* was: null */;
+				return  default/* was: null */;
 			} else if (t  is  Int32?) {
                 return (T)(object)Half((Int32?)(object)t);
 			} else if (t  is  Int64?) {
@@ -219,7 +237,7 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
             } else if (t is Money) {
                 return (T)(object)Half((Money)(object)t);
             } else {
-				return  default(T)/* was: null */;
+				return  default/* was: null */;
 			}
 		}
 	

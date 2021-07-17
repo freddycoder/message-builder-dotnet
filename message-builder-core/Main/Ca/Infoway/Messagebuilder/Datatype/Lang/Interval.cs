@@ -197,7 +197,7 @@ namespace Ca.Infoway.Messagebuilder.Datatype.Lang {
 		/// <returns>the constructed interval</returns>
 		public static Interval<TS> CreateCentre<TS>(TS centre_0) {
 			Ca.Infoway.Messagebuilder.Validate.NotNull(centre_0);
-            return new Interval<TS>(default(TS), default(TS), centre_0, null, Representation.CENTRE);
+            return new Interval<TS>(default, default, centre_0, null, Representation.CENTRE);
 		}
 
         /// <summary>
